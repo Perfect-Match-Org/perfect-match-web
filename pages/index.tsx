@@ -1,36 +1,42 @@
+
+// @ts-ignore
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Countdown, { calcTimeDelta, formatTimeDelta } from 'react-countdown';
+import logo from '../public/logo2.png'
 
+
+const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+  if (completed) {
+    // Render a completed state
+    return <span>It's time</span>;
+  } else {
+    // Render a countdown
+    return <div className={styles.ticker}><h1> {days} days {hours} hours {minutes} minutes {seconds} seconds</h1></div>;
+
+  }
+};
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.countdown}>
       <Head>
-        <title>Perfect Match</title>
+        <title></title>
         <meta name="description" content="Find your Perfect Match" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div style={{ position: "relative", height: "85vh", width: "100%" }}>
-          <div
-            style={{
-              position: "absolute",
-              left: "35%",
-              top: "50%",
-              margin: "-35px 0 0 -35px",
-              translate: "translate(-50%,-50%)",
-            }}
-          >
-            Cornell Perfect Match - Find Your Perfect Match on Campus
-          </div>
-        </div>
+        <h1>miss us....? </h1>
+        <Countdown
+          date={new Date('2023-02-01T00:00:00')}
+          renderer={renderer}
+          daysInHours={false}
+
+        />
+        <Image src={logo} width={100} height= {100}/>
       </main>
-      <footer className={styles.footer}>
-        <a href="/" rel="noopener noreferrer">
-          Cornell Perfect Match &#169; 2023
-        </a>
-      </footer>
+
     </div>
   );
 };

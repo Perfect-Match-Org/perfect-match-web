@@ -13,3 +13,14 @@
   align-items: center;
   flex-grow: 1;
 }
+
+.countdown {
+  color: white;
+  text-align: center;
+  border: 30px solid black;
+  font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+}
+
+.ticker {
+  color: #f9787d
+}
