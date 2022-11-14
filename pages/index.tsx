@@ -10,15 +10,13 @@ import { useEffect, useState } from 'react'
 import Typed from 'react-typed'
 import Footer from "../components/footer";
 
-
-
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   if (completed) {
     // Render a completed state
     return <span>It's time</span>;
   } else {
     // Render a countdown
-    return <div className={styles.ticker}><h1> {days} days {hours} hours {minutes} minutes {seconds} seconds</h1></div>;
+    return <div className="text-rose-400"><h1> {days} days {hours} hours {minutes} minutes {seconds} seconds</h1></div>;
 
   }
 };
@@ -48,6 +46,7 @@ function ticket() {
     />)
   }
 }
+
 const Home: NextPage = () => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
 
@@ -59,22 +58,24 @@ const Home: NextPage = () => {
       <Head>
         <title>Perfect Match</title>
         <meta name="description" content="Find your Perfect Match" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+        < link rel="icon" href="/favicon.ico" />
+      </Head >
       <main>
         <div className={styles.landingtext}>
           <h1>
             <Typed
 
-              typeSpeed={150}
+              typeSpeed={300}
               strings={['missed us...?',]}
             />
           </h1>
 
           <Image src={logo} width={100} height={100} />
+          <br></br>
           {ticket()}
-
+          <div></div>
         </div>
+
       </main >
       <div className={styles.footer}>
         <Footer />

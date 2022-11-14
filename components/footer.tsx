@@ -3,6 +3,8 @@ import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import Link from 'next/link'
+
 
 function Footer() {
     return (
@@ -11,27 +13,27 @@ function Footer() {
                 <div className="p-5 ">
                     <ul>
                         <p className="text-white-800 font-bold text-3xl pb-6">
-                            Perfect Match
+                            <Link href="/">Perfect Match</Link>
                         </p>
-                        <p className="text-pink-500 font-bold text-m pb-6">
+                        <p className="text-rose-400 font-bold text-m pb-6">
                             Cupid Just Got Smarter
                         </p>
                         <div className="flex gap-6 pb-5">
-                            <FaInstagram className="text-2xl cursor-pointer hover:text-pink-500" />
-                            <FaLinkedin className="text-2xl cursor-pointer hover:text-pink-500" />
+                            <FaInstagram className="text-2xl cursor-pointer hover:text-rose-400" />
+                            <FaLinkedin className="text-2xl cursor-pointer hover:text-rose-400" />
                         </div>
                     </ul>
                 </div>
                 <div className="p-5">
                     <ul>
                         <p className="text-white-800 font-bold text-2xl pb-4">About</p>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-pink-500 cursor-pointer">
-                            About Us
+                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
+                            <Link href="/about">About Us</Link>
                         </li>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-pink-500 cursor-pointer">
-                            Data Privacy
+                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
+                            <Link href="/privacy">Data Privacy</Link>
                         </li>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-pink-500 cursor-pointer">
+                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
 
                         </li>
 
@@ -40,10 +42,10 @@ function Footer() {
                 <div className="p-5">
                     <ul>
                         <p className="text-white-800 font-bold text-2xl pb-4">Past Years</p>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-pink-500 cursor-pointer">
+                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
                             2020 Statistics
                         </li>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-pink-500 cursor-pointer">
+                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
                             2021 Statistics
                         </li>
 
@@ -52,7 +54,7 @@ function Footer() {
                 <div className="p-5">
                     <ul>
                         <p className="text-white-800 font-bold text-2xl pb-4">Contact</p>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-pink-500 cursor-pointer">
+                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
                             cornell.perfectmatch@gmail.com
                         </li>
 
