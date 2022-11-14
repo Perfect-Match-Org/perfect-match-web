@@ -7,6 +7,8 @@ import styles from "../styles/Home.module.css";
 import Countdown, { calcTimeDelta, formatTimeDelta } from 'react-countdown';
 import logo from '../public/logo2.png'
 import { useEffect, useState } from 'react'
+import Typed from 'react-typed'
+import Footer from "../components/footer";
 
 
 
@@ -60,12 +62,24 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>miss us....? </h1>
-        <Image src={logo} width={100} height={100} />
-        {ticket()}
-      </main>
+        <div className={styles.landingtext}>
+          <h1>
+            <Typed
 
-    </div>
+              typeSpeed={150}
+              strings={['missed us...?',]}
+            />
+          </h1>
+
+          <Image src={logo} width={100} height={100} />
+          {ticket()}
+
+        </div>
+      </main >
+      <div className={styles.footer}>
+        <Footer />
+      </div>
+    </div >
   );
 };
 
