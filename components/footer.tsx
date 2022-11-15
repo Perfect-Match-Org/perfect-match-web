@@ -32,7 +32,7 @@ function Footer() {
                             <Link href="/about">About Us</Link>
                         </li>
                         <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
-                            <Link href="/privacy">Data Privacy</Link>
+                            <Link href="/about">Data Privacy</Link>
                         </li>
                         <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
 

@@ -13,7 +13,7 @@ import Footer from "../components/footer";
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   if (completed) {
     // Render a completed state
-    return <span>It's time</span>;
+    return <span></span>;
   } else {
     // Render a countdown
     return <div className="text-rose-400"><h1> {days} days {hours} hours {minutes} minutes {seconds} seconds</h1></div>;
@@ -21,7 +21,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   }
 };
 
-function ticket() {
+function Ticket() {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
 
   // This useEffect will only run once, during the first render
@@ -72,7 +72,7 @@ const Home: NextPage = () => {
 
           <Image src={logo} width={100} height={100} />
           <br></br>
-          {ticket()}
+          {Ticket()}
           <div></div>
         </div>
 
