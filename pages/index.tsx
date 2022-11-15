@@ -7,6 +7,8 @@ import styles from "../styles/Home.module.css";
 import Countdown, { calcTimeDelta, formatTimeDelta } from 'react-countdown';
 import logo from '../public/logo2.png'
 import { useEffect, useState } from 'react'
+import { TypeAnimation } from 'react-type-animation';
+
 
 import Footer from "../components/footer";
 
@@ -63,12 +65,19 @@ const Home: NextPage = () => {
       <main>
         <div className={styles.landingtext}>
           <h1>
-            missed us...?
-            {/* <Typed
 
-              typeSpeed={300}
-              strings={['missed us...?',]}
-            /> */}
+            <TypeAnimation
+              // Same String at the start will only be typed once, initially
+              sequence={[
+                'missed us...?',
+                1000,
+              ]}
+              speed={5} // Custom Speed from 1-99 - Default Speed: 40
+              style={{ fontSize: '1.25em' }}
+              wrapper="span" // Animation will be rendered as a <span>
+              repeat={Infinity} // Repeat this Animation Sequence infinitely
+            />
+
           </h1>
 
           <Image src={logo} width={100} height={100} />
