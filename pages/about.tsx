@@ -4,7 +4,8 @@ import Footer from "../components/footer";
 const Home: any = () => {
     return (
         <div className={styles.countdown}>
-            < h1 > About</h1 >
+            < h1 > Coming Soon</h1 >
+
             <div className={styles.footer}>
                 <Footer />
             </div>

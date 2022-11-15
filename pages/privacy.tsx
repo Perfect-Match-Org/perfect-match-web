@@ -1,9 +1,12 @@
 import styles from "../styles/Home.module.css";
 import Footer from "../components/footer";
+import Link from 'next/link'
 
 const Home: any = () => {
     return (
-        <div className={styles.privacy}>
+
+        < div className={styles.privacy} >
+            <Link href="/" >Click to Go Home</Link>
             < h1 >Data Privacy</h1 >
             <div>
                 <h1 ></h1>

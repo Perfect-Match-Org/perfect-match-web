@@ -16,12 +16,13 @@ function Footer() {
                             <Link href="/">Perfect Match</Link>
                         </p>
                         <p className="text-rose-400 font-bold text-m pb-6">
-                            Cupid Just Got Smarter
+                            Coming Valentines 2023
                         </p>
-                        <div className="flex gap-6 pb-5">
-                            <FaInstagram className="text-2xl cursor-pointer hover:text-rose-400" />
-                            <FaLinkedin className="text-2xl cursor-pointer hover:text-rose-400" />
-                        </div>
+                        {/* <div className="flex gap-6 pb-5">
+                            <FaInstagram href="https://www.instagram.com/cornellperfectmatch/?hl=en" className=" text-2xl cursor-pointer hover:text-rose-400" />
+
+                            <FaLinkedin href="https://www.linkedin.com/company/cornell-perfect-match/" className=" text-2xl cursor-pointer hover:text-rose-400" />
+                        </div> */}
                     </ul>
                 </div>
                 <div className="p-5">
@@ -39,7 +40,7 @@ function Footer() {
 
                     </ul>
                 </div>
-                <div className="p-5">
+                {/* <div className="p-5">
                     <ul>
                         <p className="text-white-800 font-bold text-2xl pb-4">Past Years</p>
                         <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
@@ -50,7 +51,7 @@ function Footer() {
                         </li>
 
                     </ul>
-                </div>
+                </div> */}
                 <div className="p-5">
                     <ul>
                         <p className="text-white-800 font-bold text-2xl pb-4">Contact</p>
@@ -60,7 +61,7 @@ function Footer() {
 
                     </ul>
                 </div>
-            </div>
+            </div >
             <div className="flex flex-col justify-center items-center text-center  p-5 bg-black-50">
                 <h1 className=" text-white-800 font-semibold">
                     © 2019-2022 Perfect Match, All rights reserved | Build with ❤ in Ithaca, NY
