@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 import Countdown, { calcTimeDelta, formatTimeDelta } from 'react-countdown';
 import logo from '../public/logo2.png'
 import { useEffect, useState } from 'react'
-import Typed from 'react-typed'
+
 import Footer from "../components/footer";
 
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
@@ -63,11 +63,12 @@ const Home: NextPage = () => {
       <main>
         <div className={styles.landingtext}>
           <h1>
-            <Typed
+            missed us...?
+            {/* <Typed
 
               typeSpeed={300}
               strings={['missed us...?',]}
-            />
+            /> */}
           </h1>
 
           <Image src={logo} width={100} height={100} />
