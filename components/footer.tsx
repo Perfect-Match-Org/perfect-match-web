@@ -16,7 +16,7 @@ function Footer() {
                             <Link href="/">Perfect Match</Link>
                         </p>
                         <p className="text-rose-400 font-bold text-m pb-6">
-                            Coming Valentines 2023
+                            Coming Valentine's 2023
                         </p>
                         {/* <div className="flex gap-6 pb-5">
                             <FaInstagram href="https://www.instagram.com/cornellperfectmatch/?hl=en" className=" text-2xl cursor-pointer hover:text-rose-400" />
@@ -64,7 +64,7 @@ function Footer() {
             </div >
             <div className="flex flex-col justify-center items-center text-center  p-5 bg-black-50">
                 <h1 className=" text-white-800 font-semibold">
-                    © 2019-2022 Perfect Match, All rights reserved | Build with ❤ in Ithaca, NY
+                    © 2019-2022 Perfect Match, All rights reserved | Built with ❤ in Ithaca, NY
 
                 </h1>
             </div>
