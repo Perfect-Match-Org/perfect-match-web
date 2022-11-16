@@ -16,7 +16,7 @@ function Footer() {
                             <Link href="/">Perfect Match</Link>
                         </p>
                         <p className="text-rose-400 font-bold text-m pb-6">
-                            Coming Valentine's 2023
+                            Coming Valentine&quot;s 2023
                         </p>
                         {/* <div className="flex gap-6 pb-5">
                             <FaInstagram href="https://www.instagram.com/cornellperfectmatch/?hl=en" className=" text-2xl cursor-pointer hover:text-rose-400" />
