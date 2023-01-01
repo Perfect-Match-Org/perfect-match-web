@@ -8,7 +8,7 @@ type AuthProps = {
 const GoogleAuth = (props: AuthProps) => {
   const auth = () => {
     props.login
-      ? signIn("google", { callbackUrl: "http://localhost:3000/matches" })
+      ? signIn("google", { callbackUrl: process.env.NEXTAUTH_URL })
       : signOut();
   };
 
