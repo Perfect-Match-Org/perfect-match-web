@@ -1,11 +1,12 @@
+import { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import React from "react";
 import { UserInfo } from "../types/User";
 
-const Matches: any = (props: UserInfo) => {
+const Matches: NextPage<UserInfo> = (props) => {
   const userName = props.user.name;
   return (
-    <div>
+    <div className="flex h-screen w-screen justify-center items-center">
       <h1>Hi {userName}! View your matches!</h1>
     </div>
   );
@@ -13,6 +14,7 @@ const Matches: any = (props: UserInfo) => {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
+  console.log(session);
   if (!session) {
     context.res.writeHead(302, { Location: "/" });
     context.res.end();
