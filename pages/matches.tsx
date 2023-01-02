@@ -14,7 +14,6 @@ const Matches: NextPage<UserInfo> = (props) => {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  console.log(session);
   if (!session) {
     context.res.writeHead(302, { Location: "/" });
     context.res.end();
