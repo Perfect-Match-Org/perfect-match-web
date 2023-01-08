@@ -6,389 +6,389 @@ export const questions = {
     "focusFirstQuestionAutomatic": false,
     "checkErrorsMode": "onValueChanged",
     "pages": [
-        // {
-        //     "name": "Profile",
-        //     "title": "Profile",
-        //     "elements": [{
-        //         "type": "panel",
-        //         "name": "profile",
-        //         "title": "All fields with an asterisk (*) are required fields.",
-        //         "elements": [{
-        //             "type": "text",
-        //             "name": "first-name",
-        //             "title": "First name",
-        //             "isRequired": true
-        //         }, {
-        //             "type": "text",
-        //             "name": "last-name",
-        //             "startWithNewLine": false,
-        //             "title": "Last name",
-        //             "isRequired": true
-        //         }, {
-        //             "type": "radiogroup",
-        //             "name": "gender",
-        //             "title": "I IDENTIFY as...",
-        //             "isRequired": true,
-        //             "hasOther": true,
-        //             "choices": [
-        //                 {
-        //                     "value": "male",
-        //                     "text": "A man"
-        //                 },
-        //                 {
-        //                     "value": "female",
-        //                     "text": "A woman"
-        //                 },
-        //                 {
-        //                     "value": "nonbinary",
-        //                     "text": "A non-binary individual"
-        //                 }
-        //             ]
-        //         }, {
-        //             "type": "checkbox",
-        //             "name": "genderpref",
-        //             "title": "MATCH me with... (Check all that apply)",
-        //             "isRequired": true,
-        //             "hasOther": false,
-        //             "startWithNewLine": false,
+        {
+            "name": "Profile",
+            "title": "Profile",
+            "elements": [{
+                "type": "panel",
+                "name": "profile",
+                "title": "All fields with an asterisk (*) are required fields.",
+                "elements": [{
+                    "type": "text",
+                    "name": "first-name",
+                    "title": "First name",
+                    "isRequired": true
+                }, {
+                    "type": "text",
+                    "name": "last-name",
+                    "startWithNewLine": false,
+                    "title": "Last name",
+                    "isRequired": true
+                }, {
+                    "type": "radiogroup",
+                    "name": "gender",
+                    "title": "I IDENTIFY as...",
+                    "isRequired": true,
+                    "hasOther": true,
+                    "choices": [
+                        {
+                            "value": "male",
+                            "text": "A man"
+                        },
+                        {
+                            "value": "female",
+                            "text": "A woman"
+                        },
+                        {
+                            "value": "nonbinary",
+                            "text": "A non-binary individual"
+                        }
+                    ]
+                }, {
+                    "type": "checkbox",
+                    "name": "genderpref",
+                    "title": "MATCH me with... (Check all that apply)",
+                    "isRequired": true,
+                    "hasOther": false,
+                    "startWithNewLine": false,
 
-        //             "choices": [
-        //                 {
-        //                     "value": "male",
-        //                     "text": "Men"
-        //                 },
-        //                 {
-        //                     "value": "female",
-        //                     "text": "Women"
-        //                 },
-        //                 {
-        //                     "value": "nonbinary",
-        //                     "text": "Non-binary individuals"
-        //                 },
-        //                 {
-        //                     "value": "anyone",
-        //                     "text": "Anyone"
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             "type": "text",
-        //             "name": "age",
-        //             "title": "Age",
-        //             "requiredErrorText": "You Age must be between 17 and 110",
-        //             "isRequired": false,
-        //             "validators": [{
-        //                 "type": "numeric",
-        //                 "text": "",
-        //                 "minValue": 17,
-        //                 "maxValue": 110
-        //             }]
-        //         }, {
-        //             type: "dropdown",
-        //             name: "year",
-        //             title: "Year",
-        //             "startWithNewLine": false,
+                    "choices": [
+                        {
+                            "value": "male",
+                            "text": "Men"
+                        },
+                        {
+                            "value": "female",
+                            "text": "Women"
+                        },
+                        {
+                            "value": "nonbinary",
+                            "text": "Non-binary individuals"
+                        },
+                        {
+                            "value": "anyone",
+                            "text": "Anyone"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "name": "age",
+                    "title": "Age",
+                    "requiredErrorText": "You Age must be between 17 and 110",
+                    "isRequired": false,
+                    "validators": [{
+                        "type": "numeric",
+                        "text": "",
+                        "minValue": 17,
+                        "maxValue": 110
+                    }]
+                }, {
+                    type: "dropdown",
+                    name: "year",
+                    title: "Year",
+                    "startWithNewLine": false,
 
-        //             choices: ["Freshman", "Sophomore", "Junior", "Senior", "Graduate Student", "Staff/Faculty"],
+                    choices: ["Freshman", "Sophomore", "Junior", "Senior", "Graduate Student", "Staff/Faculty"],
 
-        //         }, {
-        //             "type": "dropdown",
-        //             "name": "height",
-        //             "title": "Height",
-        //             "isRequired": true,
-        //             "choices": [
-        //                 {
-        //                     "value": "under",
-        //                     "text": "4'7 or shorter"
-        //                 },
-        //                 {
-        //                     "value": "56",
-        //                     "text": "4'8"
-        //                 },
-        //                 {
-        //                     "value": "57",
-        //                     "text": "4'9"
-        //                 },
-        //                 {
-        //                     "value": "58",
-        //                     "text": "4'10"
-        //                 },
-        //                 {
-        //                     "value": "59",
-        //                     "text": "4'11"
-        //                 },
-        //                 {
-        //                     "value": "60",
-        //                     "text": "5'0"
-        //                 },
-        //                 {
-        //                     "value": "61",
-        //                     "text": "5'1"
-        //                 },
-        //                 {
-        //                     "value": "62",
-        //                     "text": "5'2"
-        //                 },
-        //                 {
-        //                     "value": "63",
-        //                     "text": "5'3"
-        //                 },
-        //                 {
-        //                     "value": "64",
-        //                     "text": "5'4"
-        //                 },
-        //                 {
-        //                     "value": "65",
-        //                     "text": "5'5"
-        //                 },
-        //                 {
-        //                     "value": "66",
-        //                     "text": "5'6"
-        //                 },
-        //                 {
-        //                     "value": "67",
-        //                     "text": "5'7"
-        //                 },
-        //                 {
-        //                     "value": "68",
-        //                     "text": "5'8"
-        //                 },
-        //                 {
-        //                     "value": "69",
-        //                     "text": "5'9"
-        //                 },
-        //                 {
-        //                     "value": "70",
-        //                     "text": "5'10"
-        //                 },
-        //                 {
-        //                     "value": "71",
-        //                     "text": "5'11"
-        //                 },
-        //                 {
-        //                     "value": "72",
-        //                     "text": "6'0"
-        //                 },
-        //                 {
-        //                     "value": "73",
-        //                     "text": "6'1"
-        //                 },
-        //                 {
-        //                     "value": "74",
-        //                     "text": "6'2"
-        //                 },
-        //                 {
-        //                     "value": "75",
-        //                     "text": "6'3"
-        //                 },
-        //                 {
-        //                     "value": "76",
-        //                     "text": "6'4"
-        //                 },
-        //                 {
-        //                     "value": "77",
-        //                     "text": "6'5"
-        //                 },
-        //                 {
-        //                     "value": "over",
-        //                     "text": "6'6 or taller"
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             "type": "text",
-        //             "name": "city",
-        //             "title": "<> Hometown",
-        //             "startWithNewLine": false,
+                }, {
+                    "type": "dropdown",
+                    "name": "height",
+                    "title": "Height",
+                    "isRequired": true,
+                    "choices": [
+                        {
+                            "value": "under",
+                            "text": "4'7 or shorter"
+                        },
+                        {
+                            "value": "56",
+                            "text": "4'8"
+                        },
+                        {
+                            "value": "57",
+                            "text": "4'9"
+                        },
+                        {
+                            "value": "58",
+                            "text": "4'10"
+                        },
+                        {
+                            "value": "59",
+                            "text": "4'11"
+                        },
+                        {
+                            "value": "60",
+                            "text": "5'0"
+                        },
+                        {
+                            "value": "61",
+                            "text": "5'1"
+                        },
+                        {
+                            "value": "62",
+                            "text": "5'2"
+                        },
+                        {
+                            "value": "63",
+                            "text": "5'3"
+                        },
+                        {
+                            "value": "64",
+                            "text": "5'4"
+                        },
+                        {
+                            "value": "65",
+                            "text": "5'5"
+                        },
+                        {
+                            "value": "66",
+                            "text": "5'6"
+                        },
+                        {
+                            "value": "67",
+                            "text": "5'7"
+                        },
+                        {
+                            "value": "68",
+                            "text": "5'8"
+                        },
+                        {
+                            "value": "69",
+                            "text": "5'9"
+                        },
+                        {
+                            "value": "70",
+                            "text": "5'10"
+                        },
+                        {
+                            "value": "71",
+                            "text": "5'11"
+                        },
+                        {
+                            "value": "72",
+                            "text": "6'0"
+                        },
+                        {
+                            "value": "73",
+                            "text": "6'1"
+                        },
+                        {
+                            "value": "74",
+                            "text": "6'2"
+                        },
+                        {
+                            "value": "75",
+                            "text": "6'3"
+                        },
+                        {
+                            "value": "76",
+                            "text": "6'4"
+                        },
+                        {
+                            "value": "77",
+                            "text": "6'5"
+                        },
+                        {
+                            "value": "over",
+                            "text": "6'6 or taller"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "name": "city",
+                    "title": "<> Hometown",
+                    "startWithNewLine": false,
 
-        //             "isRequired": false
-        //         },
-        //         {
-        //             "type": "checkbox",
-        //             "name": "race",
-        //             "title": "What is your race/ethnicity? (Check all that apply)",
-        //             "isRequired": true,
-        //             "hasOther": true,
-        //             "choices": [
-        //                 {
-        //                     "value": "white",
-        //                     "text": "White"
-        //                 },
-        //                 {
-        //                     "value": "black",
-        //                     "text": "Black or African American"
-        //                 },
-        //                 {
-        //                     "value": "eastasian",
-        //                     "text": "East Asian"
-        //                 },
-        //                 {
-        //                     "value": "southasian",
-        //                     "text": "South Asian"
-        //                 },
-        //                 {
-        //                     "value": "latino",
-        //                     "text": "Hispanic or Latino"
-        //                 },
-        //                 {
-        //                     "value": "native_american",
-        //                     "text": "American Indian or Alaska Native"
-        //                 },
-        //                 {
-        //                     "value": "hawaiian",
-        //                     "text": "Native Hawaiian or Other Pacific Islander"
-        //                 },
-        //                 {
-        //                     "value": "middle_eastern",
-        //                     "text": "Middle Eastern"
-        //                 },
-        //             ]
-        //         },
-        //         {
-        //             "type": "radiogroup",
-        //             "name": "year",
-        //             "title": "<> Year",
-        //             "isRequired": true,
-        //             "startWithNewLine": false,
+                    "isRequired": false
+                },
+                {
+                    "type": "checkbox",
+                    "name": "race",
+                    "title": "What is your race/ethnicity? (Check all that apply)",
+                    "isRequired": true,
+                    "hasOther": true,
+                    "choices": [
+                        {
+                            "value": "white",
+                            "text": "White"
+                        },
+                        {
+                            "value": "black",
+                            "text": "Black or African American"
+                        },
+                        {
+                            "value": "eastasian",
+                            "text": "East Asian"
+                        },
+                        {
+                            "value": "southasian",
+                            "text": "South Asian"
+                        },
+                        {
+                            "value": "latino",
+                            "text": "Hispanic or Latino"
+                        },
+                        {
+                            "value": "native_american",
+                            "text": "American Indian or Alaska Native"
+                        },
+                        {
+                            "value": "hawaiian",
+                            "text": "Native Hawaiian or Other Pacific Islander"
+                        },
+                        {
+                            "value": "middle_eastern",
+                            "text": "Middle Eastern"
+                        },
+                    ]
+                },
+                {
+                    "type": "radiogroup",
+                    "name": "year",
+                    "title": "<> Year",
+                    "isRequired": true,
+                    "startWithNewLine": false,
 
-        //             "choices": [
-        //                 {
-        //                     "value": "freshman",
-        //                     "text": "Freshman"
-        //                 },
-        //                 {
-        //                     "value": "sophomore",
-        //                     "text": "Sophomore"
-        //                 },
-        //                 {
-        //                     "value": "junior",
-        //                     "text": "Junior"
-        //                 },
-        //                 {
-        //                     "value": "senior",
-        //                     "text": "Senior"
-        //                 },
-        //                 {
-        //                     "value": "masters",
-        //                     "text": "Masters Student"
-        //                 },
-        //                 {
-        //                     "value": "phd",
-        //                     "text": "PhD Student"
-        //                 },
-        //                 {
-        //                     "value": "faculty",
-        //                     "text": "Faculty/Staff"
-        //                 },
-        //                 {
-        //                     "value": "alumni",
-        //                     "text": "Alumni"
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             type: "dropdown",
-        //             name: "college",
-        //             title: "College",
-        //             choices: ["Agriculture and Life Sciences", "Architecture, Art, and Planning", "Arts and Sciences", "Hotel Adminstration", "Dyson", "Engineering", "Human Ecology", "Industrial and Labor Relations", "Public Policy", "Graduate/Tech/Medical/Law", "Other"],
+                    "choices": [
+                        {
+                            "value": "freshman",
+                            "text": "Freshman"
+                        },
+                        {
+                            "value": "sophomore",
+                            "text": "Sophomore"
+                        },
+                        {
+                            "value": "junior",
+                            "text": "Junior"
+                        },
+                        {
+                            "value": "senior",
+                            "text": "Senior"
+                        },
+                        {
+                            "value": "masters",
+                            "text": "Masters Student"
+                        },
+                        {
+                            "value": "phd",
+                            "text": "PhD Student"
+                        },
+                        {
+                            "value": "faculty",
+                            "text": "Faculty/Staff"
+                        },
+                        {
+                            "value": "alumni",
+                            "text": "Alumni"
+                        }
+                    ]
+                },
+                {
+                    type: "dropdown",
+                    name: "college",
+                    title: "College",
+                    choices: ["Agriculture and Life Sciences", "Architecture, Art, and Planning", "Arts and Sciences", "Hotel Adminstration", "Dyson", "Engineering", "Human Ecology", "Industrial and Labor Relations", "Public Policy", "Graduate/Tech/Medical/Law", "Other"],
 
-        //         },
-        //         {
-        //             "type": "dropdown",
-        //             "name": "major",
-        //             "title": "<> Major",
-        //             "isRequired": true,
-        //             "hasOther": true,
-        //             "choices": [
-        //                 "Africana Studies",
-        //                 "Agricultural Sciences",
-        //                 "American Studies",
-        //                 "Animal Science",
-        //                 "Anthropology",
-        //                 "Applied Economics and Management",
-        //                 "Archaeology",
-        //                 "Architecture",
-        //                 "Asian Studies",
-        //                 "Astronomy",
-        //                 "Atmospheric Science",
-        //                 "Biological Engineering",
-        //                 "Biological Sciences",
-        //                 "Biology & Society",
-        //                 "Biomedical Engineering",
-        //                 "Biometry and Statistics",
-        //                 "Chemical Engineering",
-        //                 "Chemistry",
-        //                 "China and Asia-Pacific Studies",
-        //                 "Civil Engineering",
-        //                 "Classics (Classics, Classical Civ., Greek, Latin)",
-        //                 "College Scholar",
-        //                 "Communication",
-        //                 "Comparative Literature",
-        //                 "Computer Science",
-        //                 "Design and Environmental Analysis",
-        //                 "Development Sociology",
-        //                 "Earth and Atmospheric Sciences",
-        //                 "Economics",
-        //                 "Electrical and Computer Engineering",
-        //                 "Engineering Physics",
-        //                 "English",
-        //                 "Entomology",
-        //                 "Environment & Sustainability",
-        //                 "Environmental Engineering",
-        //                 "Feminist, Gender & Sexuality Studies",
-        //                 "Fiber Science and Apparel Design",
-        //                 "Fine Arts",
-        //                 "Food Science",
-        //                 "French",
-        //                 "German Studies",
-        //                 "Global & Public Health Sciences",
-        //                 "Government",
-        //                 "History",
-        //                 "History of Architecture (transfer students only)",
-        //                 "History of Art",
-        //                 "Hotel AdministrationSchool of Hotel Administration",
-        //                 "Human Biology, Health and Society",
-        //                 "Human Development",
-        //                 "Independent Major—Arts and Sciences",
-        //                 "Independent Major—Engineering",
-        //                 "Industrial and Labor Relations",
-        //                 "Information Science",
-        //                 "Information Science, Systems, and Technology",
-        //                 "Interdisciplinary Studies",
-        //                 "International Agriculture and Rural Development",
-        //                 "Italian",
-        //                 "Landscape Architecture",
-        //                 "Linguistics",
-        //                 "Materials Science and Engineering",
-        //                 "Mathematics",
-        //                 "Mechanical Engineering",
-        //                 "Music",
-        //                 "Near Eastern Studies",
-        //                 "Nutritional Sciences",
-        //                 "Operations Research and Engineering",
-        //                 "Performing and Media Arts",
-        //                 "Philosophy",
-        //                 "Physics",
-        //                 "Plant Sciences",
-        //                 "Policy Analysis and Management",
-        //                 "Psychology",
-        //                 "Religious Studies",
-        //                 "Science and Technology Studies",
-        //                 "Sociology",
-        //                 "Spanish",
-        //                 "Statistical Science",
-        //                 "Urban and Regional Studies",
-        //                 "Viticulture and Enology"
-        //             ]
-        //         },
-        //         {
-        //             "type": "comment",
-        //             "name": "bio",
-        //             "title": "<> Bio! Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation!<br><br>Prompts:<br>a. How would your ideal wingperson describe you?<br>b. What would you like your match to know about you?<br>c. Any bio of your choice!",
-        //             "isRequired": true,
-        //         }]
-        //     }]
-        // },
+                },
+                {
+                    "type": "dropdown",
+                    "name": "major",
+                    "title": "<> Major",
+                    "isRequired": true,
+                    "hasOther": true,
+                    "choices": [
+                        "Africana Studies",
+                        "Agricultural Sciences",
+                        "American Studies",
+                        "Animal Science",
+                        "Anthropology",
+                        "Applied Economics and Management",
+                        "Archaeology",
+                        "Architecture",
+                        "Asian Studies",
+                        "Astronomy",
+                        "Atmospheric Science",
+                        "Biological Engineering",
+                        "Biological Sciences",
+                        "Biology & Society",
+                        "Biomedical Engineering",
+                        "Biometry and Statistics",
+                        "Chemical Engineering",
+                        "Chemistry",
+                        "China and Asia-Pacific Studies",
+                        "Civil Engineering",
+                        "Classics (Classics, Classical Civ., Greek, Latin)",
+                        "College Scholar",
+                        "Communication",
+                        "Comparative Literature",
+                        "Computer Science",
+                        "Design and Environmental Analysis",
+                        "Development Sociology",
+                        "Earth and Atmospheric Sciences",
+                        "Economics",
+                        "Electrical and Computer Engineering",
+                        "Engineering Physics",
+                        "English",
+                        "Entomology",
+                        "Environment & Sustainability",
+                        "Environmental Engineering",
+                        "Feminist, Gender & Sexuality Studies",
+                        "Fiber Science and Apparel Design",
+                        "Fine Arts",
+                        "Food Science",
+                        "French",
+                        "German Studies",
+                        "Global & Public Health Sciences",
+                        "Government",
+                        "History",
+                        "History of Architecture (transfer students only)",
+                        "History of Art",
+                        "Hotel AdministrationSchool of Hotel Administration",
+                        "Human Biology, Health and Society",
+                        "Human Development",
+                        "Independent Major—Arts and Sciences",
+                        "Independent Major—Engineering",
+                        "Industrial and Labor Relations",
+                        "Information Science",
+                        "Information Science, Systems, and Technology",
+                        "Interdisciplinary Studies",
+                        "International Agriculture and Rural Development",
+                        "Italian",
+                        "Landscape Architecture",
+                        "Linguistics",
+                        "Materials Science and Engineering",
+                        "Mathematics",
+                        "Mechanical Engineering",
+                        "Music",
+                        "Near Eastern Studies",
+                        "Nutritional Sciences",
+                        "Operations Research and Engineering",
+                        "Performing and Media Arts",
+                        "Philosophy",
+                        "Physics",
+                        "Plant Sciences",
+                        "Policy Analysis and Management",
+                        "Psychology",
+                        "Religious Studies",
+                        "Science and Technology Studies",
+                        "Sociology",
+                        "Spanish",
+                        "Statistical Science",
+                        "Urban and Regional Studies",
+                        "Viticulture and Enology"
+                    ]
+                },
+                {
+                    "type": "comment",
+                    "name": "bio",
+                    "title": "<> Bio! Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation!<br><br>Prompts:<br>a. How would your ideal wingperson describe you?<br>b. What would you like your match to know about you?<br>c. Any bio of your choice!",
+                    "isRequired": true,
+                }]
+            }]
+        },
         {
             "name": "Social Media",
             "title": "Social Media",
