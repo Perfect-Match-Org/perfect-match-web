@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import React from "react";
-import { Profile } from "../types/Profile";
+import { Matches } from "../types/mathes";
 
-const Matches: NextPage<Profile> = (props) => {
+const Matches: NextPage<Matches> = (props) => {
   const userName = props.name;
   return (
     <div className="flex h-screen w-screen justify-center items-center">
