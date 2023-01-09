@@ -14,12 +14,18 @@ export default NextAuth({
   callbacks: {
     async signIn({ profile }) {
       try {
+        let success = false;
         await connect();
         const user = await getUser(profile);
         if (!user) {
-          createUser(profile);
+          createUser(profile)
+            .then((user) => (success = true))
+            .catch((err) => {
+              console.error(err);
+              success = false;
+            });
         }
-        return true;
+        return success;
       } catch (err) {
         console.error(err);
         return false;
