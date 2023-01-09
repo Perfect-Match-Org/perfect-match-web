@@ -23,13 +23,12 @@ export default async (
     switch (method) {
       case "GET":
         survey = await getUser(session.user);
-        res.status(200).json(survey);
+        return res.status(200).json(survey);
       case "POST":
         survey = await updateUser(session.user, req.body);
-        res.status(200).json(survey);
+        return res.status(200).json(survey);
     }
   } else {
-    res.status(401);
+    return res.status(401);
   }
-  res.end();
 };

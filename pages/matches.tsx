@@ -4,7 +4,7 @@ import React from "react";
 import { Matches } from "../types/mathes";
 
 const Matches: NextPage<Matches> = (props) => {
-  const userName = props.name;
+  const userName = props.user.name;
   return (
     <div className="flex h-screen w-screen justify-center items-center">
       <h1>Hi {userName}! View your matches!</h1>

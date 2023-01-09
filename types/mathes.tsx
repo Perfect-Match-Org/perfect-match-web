@@ -1,4 +1,3 @@
 export type Matches = {
-  name: String;
-  email: String;
+  user: { name: String; email: String };
 };
