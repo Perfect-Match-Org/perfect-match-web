@@ -5,18 +5,19 @@ import authOptions from "./auth/[...nextauth]";
 import { getUser, updateUser } from "../../database/controllers";
 import { Session } from "next-auth";
 
-export default async (
+export default async function handler(
   req:
     | any
     | (IncomingMessage & { cookies: Partial<{ [key: string]: string }> })
     | NextApiRequest,
   res: any | ServerResponse<IncomingMessage> | NextApiResponse<any>
-) => {
+) {
   const session: Session | null = await unstable_getServerSession(
     req,
     res,
     authOptions
   );
+
   if (session) {
     const { method } = req;
     let survey;
@@ -29,6 +30,6 @@ export default async (
         return res.status(200).json(survey);
     }
   } else {
-    return res.status(401);
+    res.status(401).send("Unauthorized");
   }
-};
+}

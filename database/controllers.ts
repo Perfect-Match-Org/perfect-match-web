@@ -6,12 +6,12 @@ export const createUser = async (user: any) => {
     email: user.email,
     profile: { firstName: given_name, lastName: family_name, email: email },
   });
-  const doc = await newUser.save().lean();
+  const doc = await newUser.save();
   return doc;
 };
 
 export const getUser = async (user: any) => {
-  const doc = await User.findOne({ email: user.email }).lean();
+  const doc = await User.findOne({ email: user.email });
   return doc;
 };
 
@@ -25,6 +25,6 @@ export const updateUser = async (user: any, survey: any) => {
     { email: user.email },
     { $set: { survey: survey } },
     { new: true }
-  ).lean();
+  );
   return doc;
 };

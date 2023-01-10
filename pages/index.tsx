@@ -6,7 +6,7 @@ import Countdown, { calcTimeDelta, formatTimeDelta } from "react-countdown";
 import logo from "../public/logo2.png";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
 
@@ -53,9 +53,8 @@ function Ticket() {
   }
 }
 
-const Home: NextPage = () => {
+const Home: NextPage = (props: any) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
-  const { data: session, status } = useSession();
   return (
     <div className={styles.countdown}>
       <Head>
@@ -64,8 +63,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {!session && <GoogleAuth login={true} />}
-        {session && <GoogleAuth login={false} />}
+        {!props.user && <GoogleAuth login={true} />}
+        {props.user && <GoogleAuth login={false} />}
         <div className={styles.landingtext}>
           <h1>
             <TypeAnimation
@@ -88,5 +87,14 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+  return {
+    props: {
+      user: session,
+    },
+  };
+}
 
 export default Home;
