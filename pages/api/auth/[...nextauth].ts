@@ -19,13 +19,8 @@ export default NextAuth({
         const user = await getUser(profile);
         if (!user) {
           createUser(profile)
-            .then((user) => {
-              success = true;
-            })
-            .catch((err) => {
-              console.error(err);
-              success = false;
-            });
+            .then((user) => (success = true))
+            .catch((err) => (success = false));
         }
         return success;
       } catch (err) {
