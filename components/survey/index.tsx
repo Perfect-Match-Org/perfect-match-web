@@ -5,6 +5,8 @@ import { questions } from "./content" // these are the survey questions
 
 // Modern theme
 import "survey-react/modern.min.css"
+import { post } from "../../helpers/requests"
+import { AnyBulkWriteOperation } from "mongodb"
 // Default theme
 // import 'survey-react/survey.min.css';
 
@@ -25,7 +27,7 @@ const SurveyComponent = () => {
         window.localStorage.setItem(storageName, JSON.stringify(data))
         console.log(data)
     }
-    survey.onPartialSend.add(function (survey: any) {
+    survey.onPartialSend.add(function (survey: JSON) {
         saveSurveyData(survey)
     })
     const prevData = window.localStorage.getItem(storageName) || null
@@ -35,31 +37,16 @@ const SurveyComponent = () => {
         if (data.pageNo) {
             survey.currentPageNo = data.pageNo
         }
-
-
-        //When Survey is Complete send data 
-        survey.onComplete.add(function (survey: any, options: any) {
-            saveSurveyData(survey)
-            console.log(survey.data)
-            // fetch('/api/survey', method = POST, body = { survey })
-            fetch('/api/survey', {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(survey),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log('Success:', data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-            // window.location.href = "/survey/finish";
-        })
-
     }
+    //When Survey is Complete send data 
+    survey.onComplete.add(function (survey: any, options: any) {
+        saveSurveyData(survey)
+        console.log(survey.data)
+        post(survey.data, "/api/survey")
+
+    })
+
+
 
     // Render the survey
     return (
