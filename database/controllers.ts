@@ -20,10 +20,10 @@ export const getUsers = async () => {
   return resp;
 };
 
-export const updateUser = async (user: any, survey: any) => {
+export const updateSurvey = async (user: any, survey: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
-    { $set: { survey: survey } },
+    { survey: survey },
     { new: true }
   );
   return doc;

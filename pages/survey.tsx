@@ -1,8 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import styled from "styled-components";
-import { getSession } from "next-auth/react";
-import { get } from "../helpers/requests";
 
 const SurveyComponent = dynamic(() => import("../components/survey"), {
   ssr: false,
@@ -22,18 +20,17 @@ const Survey = (surveyData: any) => {
 };
 
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-  if (!session) {
-    context.res.writeHead(302, { Location: "/" });
-    context.res.end();
-    return {};
-  }
   try {
-    const res = await get("api/survey", context);
-    const data = res.data;
+    const baseURL = process.env.NEXT_PUBLIC_API_URL;
+    const data = await fetch(`${baseURL}/api/survey`, {
+      headers: {
+        cookie: context.req.headers.cookie,
+      },
+    });
+    const survey = await data.json();
     return {
       props: {
-        user: data,
+        user: survey,
       },
     };
   } catch (error) {

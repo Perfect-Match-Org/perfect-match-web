@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth/next";
 import authOptions from "./auth/[...nextauth]";
-import { getUser, updateUser } from "../../database/controllers";
+import { getUser, updateSurvey } from "../../database/controllers";
 import { Session } from "next-auth";
 
 export default async function handler(
@@ -26,7 +26,7 @@ export default async function handler(
         survey = await getUser(session.user);
         return res.status(200).json(survey);
       case "POST":
-        survey = await updateUser(session.user, req.body);
+        survey = await updateSurvey(session.user, JSON.parse(req.body));
         return res.status(200).json(survey);
     }
   } else {
