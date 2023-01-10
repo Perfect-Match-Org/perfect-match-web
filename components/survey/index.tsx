@@ -41,7 +41,21 @@ const SurveyComponent = () => {
         survey.onComplete.add(function (survey: any, options: any) {
             saveSurveyData(survey)
             console.log(survey.data)
-            fetch('/api/survey', method = POST, body = { surveyData })
+            // fetch('/api/survey', method = POST, body = { survey })
+            fetch('/api/survey', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(survey),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
             // window.location.href = "/survey/finish";
         })
 
