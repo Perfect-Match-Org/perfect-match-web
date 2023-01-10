@@ -41,6 +41,7 @@ const SurveyComponent = () => {
         survey.onComplete.add(function (survey: any, options: any) {
             saveSurveyData(survey)
             console.log(survey.data)
+            fetch('/api/survey', method = POST, body = { surveyData })
             // window.location.href = "/survey/finish";
         })
 
