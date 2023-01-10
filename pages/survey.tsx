@@ -22,6 +22,7 @@ const Survey = (surveyData: any) => {
 export async function getServerSideProps(context: any) {
   try {
     const baseURL = process.env.NEXT_PUBLIC_API_URL;
+    console.log(baseURL);
     const data = await fetch(`${baseURL}/api/survey`, {
       headers: {
         cookie: context.req.headers.cookie,
