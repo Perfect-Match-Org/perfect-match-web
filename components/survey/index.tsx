@@ -15,6 +15,52 @@ const SurveyComponent = () => {
     // Create a modal
     const survey = new Survey.Model(questions)
 
+
+    // Save data incase user refreshing page while filling out form
+    survey.sendResultOnPageNext = true
+    const storageName = "SurveyNextjs"
+    function saveSurveyData(survey: any) {
+        let data = survey.data
+        data.pageNo = survey.currentPageNo
+        window.localStorage.setItem(storageName, JSON.stringify(data))
+        console.log(data)
+    }
+    survey.onPartialSend.add(function (survey: any) {
+        saveSurveyData(survey)
+    })
+    const prevData = window.localStorage.getItem(storageName) || null
+    if (prevData) {
+        let data = JSON.parse(prevData)
+        survey.data = data
+        if (data.pageNo) {
+            survey.currentPageNo = data.pageNo
+        }
+
+
+        //When Survey is Complete send data 
+        survey.onComplete.add(function (survey: any, options: any) {
+            saveSurveyData(survey)
+            console.log(survey.data)
+            // fetch('/api/survey', method = POST, body = { survey })
+            fetch('/api/survey', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(survey),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            // window.location.href = "/survey/finish";
+        })
+
+    }
+
     // Render the survey
     return (
         <Survey.Survey model={survey} />
