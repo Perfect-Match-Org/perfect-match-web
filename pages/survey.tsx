@@ -1,6 +1,11 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import styled from "styled-components";
+import styles from "../styles/Home.module.css";
+import Footer from "../components/footer";
+import Header from "../components/header";
+
+
 
 const SurveyComponent = dynamic(() => import("../components/survey"), {
   ssr: false,
@@ -8,14 +13,15 @@ const SurveyComponent = dynamic(() => import("../components/survey"), {
 const Container = styled.div`
   margin: 2rem;
 `;
-const Survey = (surveyData: any) => {
+const Survey = (surveyData: any, props: any) => {
   return (
     <Container>
+      <Header props={props} />
       <SurveyComponent />
-      {/* <div className={styles.footer}>
-                <Footer /> */}
-      {/* </div> */}
+      <Footer />
     </Container>
+
+
   );
 };
 
