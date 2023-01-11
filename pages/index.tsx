@@ -9,6 +9,8 @@ import { TypeAnimation } from "react-type-animation";
 import { getSession, useSession } from "next-auth/react";
 import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
+import Header from "../components/header";
+
 
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   if (completed) {
@@ -57,6 +59,7 @@ const Home: NextPage = (props: any) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
   return (
     <div className={styles.countdown}>
+      <Header props={props} />
       <Head>
         <title>Perfect Match</title>
         <meta name="description" content="Find your Perfect Match" />
@@ -84,7 +87,7 @@ const Home: NextPage = (props: any) => {
       <div className={styles.footer}>
         <Footer />
       </div>
-    </div>
+    </div >
   );
 };
 

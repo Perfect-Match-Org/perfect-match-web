@@ -8,67 +8,23 @@ import Link from 'next/link'
 
 function Footer() {
     return (
-        <>
-            <div className="bg-black-50 h-1/2 w-full flex md:flex-row flex-col justify-around items-start p-15">
-                <div className="p-5 ">
-                    <ul>
-                        <p className="text-white-800 font-bold text-3xl pb-6">
-                            <Link href="/">Perfect Match</Link>
-                        </p>
-                        <p className="text-rose-400 font-bold text-m pb-6">
-                            Coming Valentine&apos;s 2023
-                        </p>
-                        {/* <div className="flex gap-6 pb-5">
-                            <FaInstagram href="https://www.instagram.com/cornellperfectmatch/?hl=en" className=" text-2xl cursor-pointer hover:text-rose-400" />
+        <div>
+            <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 light:bg-gray-800" >
 
-                            <FaLinkedin href="https://www.linkedin.com/company/cornell-perfect-match/" className=" text-2xl cursor-pointer hover:text-rose-400" />
-                        </div> */}
-                    </ul>
-                </div>
-                <div className="p-5">
-                    <ul>
-                        <p className="text-white-800 font-bold text-2xl pb-4">About</p>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
-                            <Link href="/about">About Us</Link>
-                        </li>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
-                            <Link href="/about">Data Privacy</Link>
-                        </li>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
+                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/" className="hover:underline">Perfect Match</a>. All Rights Reserved.
+                </span>
+                <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                    <li>
+                        <a href="/" className="mr-4 hover:underline md:mr-6 ">Home</a>
+                    </li>
+                    <li>
+                        {/* <a href="#" className="mr-4 hover:underline md:mr-6">Privacy Policy</a> */}
+                    </li>
+                    <li></li>
+                </ul>
+            </footer>
+        </div>
 
-                        </li>
-
-                    </ul>
-                </div>
-                {/* <div className="p-5">
-                    <ul>
-                        <p className="text-white-800 font-bold text-2xl pb-4">Past Years</p>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
-                            2020 Statistics
-                        </li>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
-                            2021 Statistics
-                        </li>
-
-                    </ul>
-                </div> */}
-                <div className="p-5">
-                    <ul>
-                        <p className="text-white-800 font-bold text-2xl pb-4">Contact</p>
-                        <li className="text-gray-500 text-md pb-2 font-semibold hover:text-rose-400 cursor-pointer">
-                            cornell.perfectmatch@gmail.com
-                        </li>
-
-                    </ul>
-                </div>
-            </div >
-            <div className="flex flex-col justify-center items-center text-center  p-5 bg-black-50">
-                <h1 className=" text-white-800 font-semibold">
-                    © 2019-2022 Perfect Match, All rights reserved | Built with ❤ in Ithaca, NY
-
-                </h1>
-            </div>
-        </>
     );
 }
 
