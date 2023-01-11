@@ -11,7 +11,7 @@ function Matches(props: any) {
                     </h1>
 
                     <p className="mt-4 sm:text-xl text-black sm:leading-relaxed">
-                        Matches aren't released yet. Check back later.
+                        Matches aren&apos;t released yet. Check back later.
                     </p>
 
 

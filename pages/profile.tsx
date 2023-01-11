@@ -18,7 +18,7 @@ const Contact: any = (props: any) => {
                     </h1>
 
                     <p className="mt-1 text-xl  font-bold text-white-500">
-                        Let's get matching!
+                        Let&apos;s get matching!
                     </p>
                 </div>
             </section></div>
