@@ -17,7 +17,7 @@ const Survey = (surveyData: any, props: any) => {
   return (
     <Container>
       <Header props={props} />
-      <SurveyComponent />
+
       <Footer />
     </Container>
 
