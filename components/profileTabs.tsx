@@ -7,14 +7,14 @@ import Matches from './matches';
 
 function ProfileTabs(props: any) {
     return (
-        <div className="w-full items-cente px-1 py-4 sm:px-0">
+        <div className="w-full items-cente px-2 py-4 sm:px-0">
 
             <Tab.Group>
-                <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 ">
-                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700">Status</Tab>
-                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700"  >Survey</Tab>
-                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700">Crushes & Forbidden</Tab>
-                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700" >Matches</Tab>
+                <Tab.List className="flex space-x-1 px-3 rounded-xl   ">
+                    <Tab className="p-2 w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-white-700 hover:bg-gray-400 bg-gray-600 ">Status</Tab>
+                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-white-700 hover:bg-gray-400 bg-gray-600"  >Survey</Tab>
+                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-white-700 hover:bg-gray-400 bg-gray-600 ">Crushes & Forbidden</Tab>
+                    <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-white-700 hover:bg-gray-400 bg-gray-600 " >Matches</Tab>
 
 
 

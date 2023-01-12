@@ -6,7 +6,7 @@ const Status: any = (props: any) => {
                 <div className="fle max-w-6xl mx-auto ">
 
                     <dl className="w-full md:w-full">
-                        <h2 className="w-full py-4 mr-8 text-3xl font-extrabold leading-9 md:w-1/3">
+                        <h2 className="w-full py-4 mr-8 text-3xl text-gray-600 font-extrabold leading-9 md:w-1/3">
                             Dashboard
                         </h2>
                         <dt className="mb-4">
@@ -34,8 +34,11 @@ const Status: any = (props: any) => {
                                 <p>
                                     You are currently opted-in to our 2023 matching process.
                                 </p>
-
-
+                            </div>
+                            <div className="text-red-400">
+                                <p>
+                                    You are currently opted-out to our 2023 matching process.
+                                </p>
                             </div>
                             <p>Pending completion of the survey, you will be matched with other Cornell students that have also filled out Perfect Match this year. </p>
                             <button className="bg-transparent hover:bg-rose-500 text-rose-700 font-semibold hover:text-white py-2 px-4 border border-rose-500 hover:border-transparent rounded">

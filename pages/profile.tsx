@@ -17,13 +17,13 @@ const Contact: any = (props: any) => {
                         Welcome Back, Jamal!
                     </h1>
 
-                    <p className="mt-1 text-xl  font-bold text-white-500">
+                    <p className="mt-1 text-xl  font-bold text-white">
                         Let&apos;s get matching!
                     </p>
                 </div>
             </section></div>
             <div> <section className="bg-white dark:bg-rose-300">
-                <div className="gap-10 items-center py-0 px-0 mx-auto max-w-screen-xl  ">
+                <div className="gap-10 items-center mx-auto max-w-screen-xl  ">
                     <div className="bg-white rounded-lg h-auto">
                         <ProfileTabs />
                     </div>
