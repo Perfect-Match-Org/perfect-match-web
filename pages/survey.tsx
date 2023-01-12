@@ -5,8 +5,6 @@ import styles from "../styles/Home.module.css";
 import Footer from "../components/footer";
 import Header from "../components/header";
 
-
-
 const SurveyComponent = dynamic(() => import("../components/survey"), {
   ssr: false,
 });
@@ -16,12 +14,9 @@ const Container = styled.div`
 const Survey = (surveyData: any, props: any) => {
   return (
     <Container>
-      <Header props={props} />
-
+      <Header />
       <Footer />
     </Container>
-
-
   );
 };
 

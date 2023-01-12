@@ -9,7 +9,7 @@ import { AnyBulkWriteOperation } from "mongodb";
 // Default theme
 // import 'survey-react/survey.min.css';
 
-const SurveyComponent = () => {
+const SurveyComponent = (props: any) => {
   // Apply theme
   Survey.StylesManager.applyTheme("modern");
 
@@ -27,7 +27,7 @@ const SurveyComponent = () => {
   survey.onPartialSend.add(function (survey: JSON) {
     saveSurveyData(survey);
   });
-  const prevData = window.localStorage.getItem(storageName) || null;
+  const prevData = window.localStorage.getItem(storageName) || props.survey;
   if (prevData) {
     let data = JSON.parse(prevData);
     survey.data = data;

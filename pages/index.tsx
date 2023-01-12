@@ -11,7 +11,6 @@ import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
 import Header from "../components/header";
 
-
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   if (completed) {
     // Render a completed state
@@ -59,7 +58,7 @@ const Home: NextPage = (props: any) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
   return (
     <div className={styles.countdown}>
-      <Header props={props} />
+      <Header />
       <Head>
         <title>Perfect Match</title>
         <meta name="description" content="Find your Perfect Match" />
@@ -87,7 +86,7 @@ const Home: NextPage = (props: any) => {
       <div className={styles.footer}>
         <Footer />
       </div>
-    </div >
+    </div>
   );
 };
 
@@ -95,7 +94,7 @@ export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   return {
     props: {
-      user: session,
+      user: session?.user || null,
     },
   };
 }
