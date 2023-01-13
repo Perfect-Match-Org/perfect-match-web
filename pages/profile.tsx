@@ -51,17 +51,13 @@ export async function getServerSideProps(context: any) {
       },
     });
     const survey = await data.json();
+    console.log(survey);
     return {
       props: {
         user: survey,
       },
     };
   } catch (error) {
-    // context.res.setHeader("Location", "/about");
-    // context.res.statusCode = 302;
-    // context.res.end();
-    // context.res.writeHead(302, { Location: "/" });
-    // context.res.end();
     return {
       redirect: {
         permanent: false,
