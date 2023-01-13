@@ -50,10 +50,7 @@ export async function getServerSideProps(context: any) {
         cookie: context.req.headers.cookie,
       },
     });
-    console.log(response.status);
     const survey = await response.json();
-    console.log(process.env.NODE_ENV);
-    console.log(JSON.parse(JSON.stringify(survey)));
     return { props: { user: JSON.parse(JSON.stringify(survey)) } };
   } catch (error) {
     return { redirect: { permanent: false, destination: "/" }, props: {} };

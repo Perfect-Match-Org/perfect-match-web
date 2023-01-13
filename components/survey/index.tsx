@@ -27,7 +27,8 @@ const SurveyComponent = (props: any) => {
   survey.onPartialSend.add(function (survey: JSON) {
     saveSurveyData(survey);
   });
-  const prevData = window.localStorage.getItem(storageName) || props.survey;
+  const prevData =
+    window.localStorage.getItem(storageName) || JSON.stringify(props.survey);
   if (prevData) {
     let data = JSON.parse(prevData);
     survey.data = data;
