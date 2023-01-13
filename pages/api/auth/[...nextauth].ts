@@ -10,9 +10,17 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  pages: {
+    error: "/auth/error",
+  },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ profile }) {
+      if (
+        profile?.email?.split("@")[1] !== "cornell.edu" &&
+        profile?.email !== "cornell.perfectmatch@gmail.com"
+      )
+        return false;
       try {
         let success = true;
         await connect();

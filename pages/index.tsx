@@ -65,9 +65,9 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {!props.user && <GoogleAuth login={true} />}
-        {props.user && <GoogleAuth login={false} />}
         <div className={styles.landingtext}>
+          {!props.user && <GoogleAuth login={true} />}
+          {props.user && <GoogleAuth login={false} />}
           <h1>
             <TypeAnimation
               // Same String at the start will only be typed once, initially
