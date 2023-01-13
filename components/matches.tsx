@@ -1,4 +1,9 @@
 function Matches(props: any) {
+    let randomNum = Math.floor(Math.random() * 10);
+    let nameToReturn = "Romeo"
+    if (randomNum % 2 == 0) {
+        nameToReturn = "Juliet"
+    }
     return (
         <section className="bg-gray-200">
             <div
@@ -6,7 +11,7 @@ function Matches(props: any) {
             >
                 <div className="mx-auto max-w-xl text-center">
                     <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
-                        Slow down, Romeo...
+                        Slow down, {nameToReturn}...
 
                     </h1>
 
