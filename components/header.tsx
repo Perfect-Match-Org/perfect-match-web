@@ -17,7 +17,7 @@ function Header(props: any) {
             />
             {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Perfect Match</span> */}
           </Link>
-          <div className="flex items-center lg:order-2">
+          {/* <div className="flex items-center lg:order-2">
             {!authenticated && <GoogleAuth login={true} />}
             {authenticated && <GoogleAuth login={false} />}
             <Link
@@ -59,7 +59,7 @@ function Header(props: any) {
                 ></path>
               </svg>
             </button>
-          </div>
+          </div> */}
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"

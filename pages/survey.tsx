@@ -21,24 +21,17 @@ const Survey = (surveyData: any, props: any) => {
 };
 
 export async function getServerSideProps(context: any) {
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    console.log(baseURL);
-    const data = await fetch(`${baseURL}/api/survey`, {
+    const response = await fetch(`${baseURL}/api/survey`, {
       headers: {
         cookie: context.req.headers.cookie,
       },
     });
-    const survey = await data.json();
-    return {
-      props: {
-        user: survey,
-      },
-    };
+    const survey = await response.json();
+    return { props: { user: survey } };
   } catch (error) {
-    context.res.writeHead(302, { Location: "/" });
-    context.res.end();
-    return {};
+    return { redirect: { permanent: false, destination: "/" }, props: {} };
   }
 }
 

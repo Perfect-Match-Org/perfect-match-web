@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { getUser, createUser } from "../../../database/controllers";
-import connect from "../../../database/database";
+import { connect } from "../../../database/database";
 
 export default NextAuth({
   providers: [

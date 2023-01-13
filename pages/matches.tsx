@@ -15,15 +15,9 @@ const Matches: NextPage<Matches> = (props) => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   if (!session) {
-    context.res.writeHead(302, { Location: "/" });
-    context.res.end();
-    return {};
+    return { redirect: { permanent: false, destination: "/" }, props: {} };
   }
-  return {
-    props: {
-      user: session.user,
-    },
-  };
+  return { props: { user: session.user } };
 }
 
 export default Matches;

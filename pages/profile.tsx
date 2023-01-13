@@ -43,28 +43,18 @@ const Contact: NextPage = (props: any) => {
 };
 
 export async function getServerSideProps(context: any) {
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    const data = await fetch(`${baseURL}/api/survey`, {
+    const response = await fetch(`${baseURL}/api/survey`, {
       headers: {
         cookie: context.req.headers.cookie,
       },
     });
-    const survey = await data.json();
+    const survey = await response.json();
     console.log(survey);
-    return {
-      props: {
-        user: survey,
-      },
-    };
+    return { props: { user: survey } };
   } catch (error) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-      props: {},
-    };
+    return { redirect: { permanent: false, destination: "/" }, props: {} };
   }
 }
 
