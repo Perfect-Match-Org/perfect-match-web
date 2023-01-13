@@ -7,7 +7,7 @@ import ProfileTabs from "../components/profileTabs";
 import { NextPage } from "next";
 import { profile } from "console";
 
-const Contact: NextPage = (props: any) => {
+const Profile: NextPage = (props: any) => {
   const user = props.user;
   return (
     <div>
@@ -50,12 +50,14 @@ export async function getServerSideProps(context: any) {
         cookie: context.req.headers.cookie,
       },
     });
+    console.log(response.status);
     const survey = await response.json();
-    console.log(survey);
-    return { props: { user: survey } };
+    console.log(process.env.NODE_ENV);
+    console.log(JSON.parse(JSON.stringify(survey)));
+    return { props: { user: JSON.parse(JSON.stringify(survey)) } };
   } catch (error) {
     return { redirect: { permanent: false, destination: "/" }, props: {} };
   }
 }
 
-export default Contact;
+export default Profile;
