@@ -4,6 +4,7 @@ import { unstable_getServerSession } from "next-auth/next";
 import authOptions from "./auth/[...nextauth]";
 import { getUser, updateSurvey } from "../../database/controllers";
 import { Session } from "next-auth";
+import { connect } from "../../database/database";
 
 export default async function handler(
   req:
@@ -17,7 +18,7 @@ export default async function handler(
     res,
     authOptions
   );
-
+  await connect();
   if (session) {
     const { method } = req;
     let survey;
