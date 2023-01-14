@@ -4,7 +4,6 @@ import ProfileTabs from "../components/profileTabs";
 import Spinner from "../components/spinner";
 import { NextPage } from "next";
 import { getSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const Profile: NextPage = (props: any) => {

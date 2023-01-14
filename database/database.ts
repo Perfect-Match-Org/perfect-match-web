@@ -19,6 +19,7 @@ export async function connect() {
     useUnifiedTopology: true,
     bufferCommands: false,
   };
+  mongoose.set("strictQuery", false);
   cached.connection = await mongoose
     .connect(MONGODB_URI, opts)
     .then((mongoose) => mongoose);
