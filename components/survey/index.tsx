@@ -40,7 +40,7 @@ const SurveyComponent = (props: any) => {
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);
     const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    fetch(`${baseURL}/api/survey`, {
+    fetch("/api/survey", {
       method: "POST",
       body: JSON.stringify(survey.data),
     });
