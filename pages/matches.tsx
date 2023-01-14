@@ -3,11 +3,10 @@ import { getSession } from "next-auth/react";
 import React from "react";
 import { Match } from "../types/matches";
 
-const Matches: NextPage<Match> = (props) => {
-  const userName = props.user.name;
+const Matches: NextPage<Match[]> = (props) => {
   return (
     <div className="flex h-screen w-screen justify-center items-center">
-      <h1>Hi {userName}! View your matches!</h1>
+      <h1>Hi! View your matches!</h1>
     </div>
   );
 };
