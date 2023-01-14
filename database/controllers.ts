@@ -1,4 +1,4 @@
-import { User } from "../models";
+import { User } from "./models";
 
 export const createUser = async (user: any) => {
   const { email, name, given_name, family_name } = user;
@@ -24,6 +24,15 @@ export const updateSurvey = async (user: any, survey: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
     { survey: survey },
+    { new: true }
+  );
+  return doc;
+};
+
+export const updateProfile = async (user: any, profile: any) => {
+  const doc = await User.findOneAndUpdate(
+    { email: user.email },
+    { profile: profile },
     { new: true }
   );
   return doc;

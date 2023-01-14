@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import mongoose, { model, Schema } from "mongoose";
-import { gender, race, classYear } from "../types/enums";
+import { gender, race, classYear } from "../../types/enums";
 
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true, index: true },

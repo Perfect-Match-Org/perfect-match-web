@@ -9,7 +9,7 @@ import useSWR from "swr";
 
 const Profile: NextPage = (props: any) => {
   const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
-  const { data, error } = useSWR("/api/survey", fetcher);
+  const { data, error } = useSWR("/api/profile", fetcher);
   if (!data) return <Spinner />;
   return (
     <div>
