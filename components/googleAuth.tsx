@@ -8,7 +8,10 @@ type AuthProps = {
 const GoogleAuth = (props: AuthProps) => {
   const auth = () => {
     props.login
-      ? signIn("google", { callbackUrl: process.env.NEXT_PUBLIC_API_URL })
+      ? signIn("google", {
+        callbackUrl: process.env.NEXT_PUBLIC_API_URL +
+          "/profile"
+      })
       : signOut();
   };
 
