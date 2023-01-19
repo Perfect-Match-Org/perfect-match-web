@@ -5,17 +5,14 @@ import { questions } from "./content"; // these are the survey questions
 
 // Modern theme
 import "survey-react/modern.min.css";
-import { AnyBulkWriteOperation } from "mongodb";
 // Default theme
-// import 'survey-react/survey.min.css';
+import 'survey-react/defaultV2.min.css';
 
 const SurveyComponent = () => {
   // Apply theme
   Survey.StylesManager.applyTheme("modern");
-
   // Create a modal
   const survey = new Survey.Model(questions);
-
   // Save data incase user refreshing page while filling out form
   survey.sendResultOnPageNext = true;
   const storageName = "SurveyNextjs";

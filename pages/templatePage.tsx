@@ -8,6 +8,7 @@ const Contact: any = (props: any) => {
   return (
     <div>
       <Header props={props} />
+
       <Footer />
     </div>
   );
