@@ -10,6 +10,7 @@ import 'survey-react/defaultV2.min.css';
 
 const SurveyComponent = () => {
   // Apply theme
+
   Survey.StylesManager.applyTheme("modern");
   // Create a modal
   const survey = new Survey.Model(questions);
@@ -32,6 +33,20 @@ const SurveyComponent = () => {
       survey.currentPageNo = data.pageNo;
     }
   }
+  var defaultThemeColors = Survey
+    .StylesManager
+    .ThemeColors["default"];
+  defaultThemeColors["$main-color"] = "#fca5a5";
+  defaultThemeColors["$main-hover-color"] = "#ff4d4f";
+  defaultThemeColors["$text-color"] = "#4a4a4a";
+  defaultThemeColors["$header-color"] = "#4a4a4a";
+
+  defaultThemeColors["$header-background-color"] = "#FFFFFF";
+  defaultThemeColors["$body-container-background-color"] = "#fff2f2";
+  defaultThemeColors["$primary"] = "#fff2f2";
+
+
+  Survey.StylesManager.applyTheme("default");
   //When Survey is Complete send data
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);

@@ -1,418 +1,189 @@
 // components/survey/content/index.tsx
+
 export const questions = {
   logoPosition: "right",
   focusFirstQuestionAutomatic: false,
   checkErrorsMode: "onValueChanged",
+  completedHtml:
+    "<h3>Survey Updated!</h3><br><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
+
   pages: [
     {
-      "name": "Profile",
-      "title": "Profile",
+      "name": "Cornell",
+      "title": "Cornell",
+      "description": "Elements marked <> will be shared with your matches.",
+
       "elements": [{
-        "type": "panel",
-        "name": "profile",
-        "title": "All fields with an asterisk (*) are required fields. Fields marked <> will be shared with matches",
-        "elements": [{
-          "type": "text",
-          "name": "first-name",
-          "title": "First name",
-          "isRequired": true
-        }, {
-          "type": "text",
-          "name": "last-name",
-          "startWithNewLine": false,
-          "title": "Last name",
-          "isRequired": true
-        }, {
-          "type": "radiogroup",
-          "name": "gender",
-          "title": "I IDENTIFY as...",
-          "isRequired": true,
-          "hasOther": true,
-          "choices": [
-            {
-              "value": "male",
-              "text": "A man"
-            },
-            {
-              "value": "female",
-              "text": "A woman"
-            },
-            {
-              "value": "nonbinary",
-              "text": "A non-binary individual"
-            }
-          ]
-        }, {
-          "type": "checkbox",
-          "name": "genderpref",
-          "title": "MATCH me with... (Check all that apply)",
-          "isRequired": true,
-          "hasOther": false,
-          "startWithNewLine": false,
 
-          "choices": [
-            {
-              "value": "male",
-              "text": "Men"
-            },
-            {
-              "value": "female",
-              "text": "Women"
-            },
-            {
-              "value": "nonbinary",
-              "text": "Non-binary individuals"
-            },
-            {
-              "value": "anyone",
-              "text": "Anyone"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "name": "age",
-          "title": "Age",
-          "requiredErrorText": "You Age must be between 17 and 110",
-          "isRequired": false,
-          "validators": [{
-            "type": "numeric",
-            "text": "",
-            "minValue": 17,
-            "maxValue": 110
-          }]
-        }, {
-          "type": "dropdown",
-          "name": "height",
-          "title": "Height",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "under",
-              "text": "4'7 or shorter"
-            },
-            {
-              "value": "56",
-              "text": "4'8"
-            },
-            {
-              "value": "57",
-              "text": "4'9"
-            },
-            {
-              "value": "58",
-              "text": "4'10"
-            },
-            {
-              "value": "59",
-              "text": "4'11"
-            },
-            {
-              "value": "60",
-              "text": "5'0"
-            },
-            {
-              "value": "61",
-              "text": "5'1"
-            },
-            {
-              "value": "62",
-              "text": "5'2"
-            },
-            {
-              "value": "63",
-              "text": "5'3"
-            },
-            {
-              "value": "64",
-              "text": "5'4"
-            },
-            {
-              "value": "65",
-              "text": "5'5"
-            },
-            {
-              "value": "66",
-              "text": "5'6"
-            },
-            {
-              "value": "67",
-              "text": "5'7"
-            },
-            {
-              "value": "68",
-              "text": "5'8"
-            },
-            {
-              "value": "69",
-              "text": "5'9"
-            },
-            {
-              "value": "70",
-              "text": "5'10"
-            },
-            {
-              "value": "71",
-              "text": "5'11"
-            },
-            {
-              "value": "72",
-              "text": "6'0"
-            },
-            {
-              "value": "73",
-              "text": "6'1"
-            },
-            {
-              "value": "74",
-              "text": "6'2"
-            },
-            {
-              "value": "75",
-              "text": "6'3"
-            },
-            {
-              "value": "76",
-              "text": "6'4"
-            },
-            {
-              "value": "77",
-              "text": "6'5"
-            },
-            {
-              "value": "over",
-              "text": "6'6 or taller"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "name": "city",
-          "title": "<> Hometown",
-          "startWithNewLine": false,
+        "type": "radiogroup",
+        "name": "faction",
+        "title": "What’s the least traumatizing Cornell faction your prospective match could belong to?",
+        "isRequired": true,
+        "choices": [
+          {
+            "value": "noshower",
+            "text": "Near the top of the class for engineering talent, near the bottom for shower frequency"
+          },
+          {
+            "value": "dyson",
+            "text": "Stress-free Dyson pupil, but claims to have a “genuine interest” in Discounted Cash Flow model."
+          },
+          {
+            "value": "phil",
+            "text": "Declared their love to you through a timeless sonnet, but won’t be able to use their Philosophy major to support your family"
+          },
+        ]
+      },
+      {
+        "type": "dropdown",
+        "name": "library-ranking",
+        "title": "If they’re a 5 in the Hotel Library, they're a _ in Duffield.",
+        "isRequired": true,
+        "choices": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+      }, {
 
-          "isRequired": false
-        },
-        {
-          "type": "checkbox",
-          "name": "race",
-          "title": "What is your race/ethnicity? (Check all that apply)",
-          "isRequired": true,
-          "hasOther": true,
-          "choices": [
-            {
-              "value": "white",
-              "text": "White"
-            },
-            {
-              "value": "black",
-              "text": "Black or African American"
-            },
-            {
-              "value": "eastasian",
-              "text": "East Asian"
-            },
-            {
-              "value": "southasian",
-              "text": "South Asian"
-            },
-            {
-              "value": "latino",
-              "text": "Hispanic or Latino"
-            },
-            {
-              "value": "native_american",
-              "text": "American Indian or Alaska Native"
-            },
-            {
-              "value": "hawaiian",
-              "text": "Native Hawaiian or Other Pacific Islander"
-            },
-            {
-              "value": "middle_eastern",
-              "text": "Middle Eastern"
-            },
-          ]
-        },
-        {
-          "type": "radiogroup",
-          "name": "year",
-          "title": "<> Year",
-          "isRequired": true,
-          "startWithNewLine": false,
+        "type": "radiogroup",
+        "name": "cloth-date",
+        "title": "Worst Thing Your Match Could Wear on a Date",
+        "isRequired": true,
+        "choices": [
+          {
+            "value": "gries",
+            "text": "David Gries 73 Years of Programming Experience T-Shirt"
+          },
+          {
+            "value": "jersey",
+            "text": "Cornell Hockey Jersey with some residual fish guts from the Cornell-Harvard game"
+          },
+          {
+            "value": "vest",
+            "text": "Patagonia Vest from their past internship"
+          },
+          {
+            "value": "letterman",
+            "text": "Scarsdale High School Letterman Jacket"
+          },
 
-          "choices": [
-            {
-              "value": "freshman",
-              "text": "Freshman"
-            },
-            {
-              "value": "sophomore",
-              "text": "Sophomore"
-            },
-            {
-              "value": "junior",
-              "text": "Junior"
-            },
-            {
-              "value": "senior",
-              "text": "Senior"
-            },
-            {
-              "value": "masters",
-              "text": "Masters Student"
-            },
-            {
-              "value": "phd",
-              "text": "PhD Student"
-            },
-            {
-              "value": "faculty",
-              "text": "Faculty/Staff"
-            },
-            {
-              "value": "alumni",
-              "text": "Alumni"
-            }
-          ]
-        },
-        {
-          type: "dropdown",
-          name: "college",
-          title: "College",
-          choices: ["Agriculture and Life Sciences", "Architecture, Art, and Planning", "Arts and Sciences", "Hotel Adminstration", "Dyson", "Engineering", "Human Ecology", "Industrial and Labor Relations", "Public Policy", "Graduate/Tech/Medical/Law", "Other"],
+        ]
+      }, {
 
-        },
-        {
-          "type": "dropdown",
-          "name": "major",
-          "title": "<> Major",
-          "isRequired": true,
-          "hasOther": true,
-          "choices": [
-            "Africana Studies",
-            "Agricultural Sciences",
-            "American Studies",
-            "Animal Science",
-            "Anthropology",
-            "Applied Economics and Management",
-            "Archaeology",
-            "Architecture",
-            "Asian Studies",
-            "Astronomy",
-            "Atmospheric Science",
-            "Biological Engineering",
-            "Biological Sciences",
-            "Biology & Society",
-            "Biomedical Engineering",
-            "Biometry and Statistics",
-            "Chemical Engineering",
-            "Chemistry",
-            "China and Asia-Pacific Studies",
-            "Civil Engineering",
-            "Classics (Classics, Classical Civ., Greek, Latin)",
-            "College Scholar",
-            "Communication",
-            "Comparative Literature",
-            "Computer Science",
-            "Design and Environmental Analysis",
-            "Development Sociology",
-            "Earth and Atmospheric Sciences",
-            "Economics",
-            "Electrical and Computer Engineering",
-            "Engineering Physics",
-            "English",
-            "Entomology",
-            "Environment & Sustainability",
-            "Environmental Engineering",
-            "Feminist, Gender & Sexuality Studies",
-            "Fiber Science and Apparel Design",
-            "Fine Arts",
-            "Food Science",
-            "French",
-            "German Studies",
-            "Global & Public Health Sciences",
-            "Government",
-            "History",
-            "History of Architecture (transfer students only)",
-            "History of Art",
-            "Hotel AdministrationSchool of Hotel Administration",
-            "Human Biology, Health and Society",
-            "Human Development",
-            "Independent Major—Arts and Sciences",
-            "Independent Major—Engineering",
-            "Industrial and Labor Relations",
-            "Information Science",
-            "Information Science, Systems, and Technology",
-            "Interdisciplinary Studies",
-            "International Agriculture and Rural Development",
-            "Italian",
-            "Landscape Architecture",
-            "Linguistics",
-            "Materials Science and Engineering",
-            "Mathematics",
-            "Mechanical Engineering",
-            "Music",
-            "Near Eastern Studies",
-            "Nutritional Sciences",
-            "Operations Research and Engineering",
-            "Performing and Media Arts",
-            "Philosophy",
-            "Physics",
-            "Plant Sciences",
-            "Policy Analysis and Management",
-            "Psychology",
-            "Religious Studies",
-            "Science and Technology Studies",
-            "Sociology",
-            "Spanish",
-            "Statistical Science",
-            "Urban and Regional Studies",
-            "Viticulture and Enology"
-          ]
-        },
-        {
-          type: "radiogroup",
-          name: "commitment",
-          title: "What are you looking for by taking this survey?",
-          isRequired: true,
-          choices: [
-            {
-              value: "plantomeet",
-              text: "I plan to meet my matches",
-            },
-            {
-              value: "willsee",
-              text: "I will potentially meet with my matches",
-            },
-            {
-              value: "meetfriends",
-              text: "I just want to meet new people",
-            },
-            {
-              value: "fun",
-              text: "I am taking this for fun and will probably not make an effort to meet",
-            },
-          ],
-        },
-        {
-          "type": "comment",
-          "name": "bio",
-          "title": "<> Bio! Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation!<br><br>Prompts:<br>a. How would your ideal wingperson describe you?<br>b. What would you like your match to know about you?<br>c. Any bio of your choice!",
-          "isRequired": true,
-        }]
-      }]
+        "type": "radiogroup",
+        "name": "alternative",
+        "title": "Choose the best alternative. Your match is a 10, but they ____.",
+        "isRequired": true,
+        "choices": [
+          {
+            "value": "gothics",
+            "text": "Live in the Gothics"
+          },
+          {
+            "value": "basement",
+            "text": "Enjoy studying in the Olin Basement"
+          },
+          {
+            "value": "oken",
+            "text": "Favorite Dining Hall is Oken"
+          },
+          {
+            "value": "hinge",
+            "text": "Matched with your roomate on Hinge"
+          },
+
+        ]
+      }, {
+
+        "type": "radiogroup",
+        "name": "task",
+        "title": "In the next year, I want to complete this task from the 161 Things Every Cornellian Should Do. ",
+        "isRequired": true,
+        "choices": [
+          {
+            "value": "hookup",
+            "text": "Hook up with your T.A."
+          },
+          {
+            "value": "bridge",
+            "text": "Kiss on the suspension bridge at midnight"
+          },
+          {
+            "value": "stacks",
+            "text": "Make the library into your bedroom and have sex in the stacks"
+          },
+          {
+            "value": "flirt",
+            "text": "Flirt with your professor"
+          },
+
+        ]
+      },{
+        "name": "hookupsong",
+        "type": "text",
+        "title": "The First Song of My Hook-Up Playlist Is…"
+      }, {
+        "name": "slope day",
+        "type": "text",
+        "title": "Which artist should come for Slope Day 2023?"
+      },  {
+
+        "type": "radiogroup",
+        "name": "",
+        "title": "",
+        "isRequired": true,
+        "choices": [
+          {
+            "value": "",
+            "text": ""
+          },
+          {
+            "value": "",
+            "text": "  "
+          },
+          {
+            "value": "",
+            "text": ""
+          },
+
+        ]
+      }, {
+
+        "type": "radiogroup",
+        "name": "",
+        "title": "",
+        "isRequired": true,
+        "choices": [
+          {
+            "value": "",
+            "text": ""
+          },
+          {
+            "value": "",
+            "text": "  "
+          },
+          {
+            "value": "",
+            "text": ""
+          },
+
+        ]
+      },
+
+      ]
+
     },
     {
-      "name": "Social Media",
-      "title": "Social Media",
+      "name": "Welcome",
+      "title": "Perfect Match 2023 ",
+      "description": "Elements marked <> will be shared with your matches.",
+
+
       "elements": [{
+
         "type": "panel",
         "name": "social-media",
         "elements": [{
           "type": "multipletext",
           "name": "contact",
-          "title": "<> Please provide your preferred methods of contact. These will be shared with your matches to get in touch. At least one social media link is required.",
+          "title": "<> When we find your matches how do you want them to contact you? At least one social media link is required.",
           "validators": [{
             "type": "expression",
             "text": "Please enter at least one method of contact",
@@ -448,11 +219,7 @@ export const questions = {
     {
       "name": "Interests",
       "elements": [
-        {
-          "type": "html",
-          "name": "disclaimer",
-          "html": "<h3>Survey</h3>"
-        },
+
         {
           "type": "html",
           "name": "disclaimer",
@@ -468,8 +235,15 @@ export const questions = {
               "name": "youngest_v2",
               "title": "Youngest",
               "inputType": "number",
-              "min": "18",
-              "max": "99"
+
+              "validators": [{
+                "requiredErrorText": "You Age must be between 17 and 110",
+
+                "type": "numeric",
+                "text": "",
+                "minValue": 17,
+                "maxValue": 110
+              }]
             },
             {
               "name": "oldest_v2",

@@ -5,7 +5,7 @@ const Status: any = (props: any) => {
         <div className="fle max-w-6xl mx-auto ">
           <dl className="w-full md:w-full">
             <h2 className="w-full py-4 mr-8 text-3xl text-gray-600 font-extrabold leading-9 md:w-1/3">
-              Dashboard
+              Status
             </h2>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Tasks</h3>
