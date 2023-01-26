@@ -3,6 +3,13 @@ import GoogleProvider from "next-auth/providers/google";
 import { getUser, createUser } from "../../../database/controllers";
 import { connect } from "../../../database/database";
 
+const isValidCornellEmail = (email: string) => {
+  const domain = email.split("@")[1];
+  if (domain !== "cornell.edu" && email !== "cornell.perfectmatch@gmail.com")
+    return false;
+  return true;
+};
+
 export default NextAuth({
   providers: [
     GoogleProvider({
@@ -16,25 +23,18 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ profile }) {
-      if (
-        profile?.email?.split("@")[1] !== "cornell.edu" &&
-        profile?.email !== "cornell.perfectmatch@gmail.com"
-      )
-        return false;
-      try {
-        let success = true;
-        await connect();
-        const user = await getUser(profile);
-        if (!user) {
-          createUser(profile)
-            .then((user) => (success = true))
-            .catch((err) => (success = false));
+      if (!isValidCornellEmail(profile?.email!)) return false;
+      await connect();
+      const user = await getUser(profile);
+      if (!user) {
+        try {
+          await createUser(profile);
+        } catch (err) {
+          console.error(err);
+          return false;
         }
-        return success;
-      } catch (err) {
-        console.error(err);
-        return false;
       }
+      return true;
     },
   },
 });
