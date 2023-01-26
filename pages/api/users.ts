@@ -6,11 +6,7 @@ import { getUsers } from "../../database/controllers";
 import { Session } from "next-auth";
 import { connect } from "../../database/database";
 import { Match } from "../../types/matches";
-
-const admins = new Set([
-  "cornell.perfectmatch@gmail.com",
-  "ps2245@cornell.edu",
-]);
+import { isAdmin } from "../../config/admins";
 
 export default async function handler(
   req:
@@ -25,7 +21,7 @@ export default async function handler(
     authOptions
   ))!;
   if (!session) return res.status(401).send("Unauthorized");
-  else if (!admins.has(session.user?.email!))
+  else if (!isAdmin(session.user?.email!))
     return res.status(401).send("Unauthorized");
   else if (req.method !== "GET")
     return res.status(405).send("Method Not Allowed");

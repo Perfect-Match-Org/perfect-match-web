@@ -1,16 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Countdown, { calcTimeDelta, formatTimeDelta } from "react-countdown";
-import logo from "../public/logo2.png";
+import Countdown from "react-countdown";
 import { useEffect, useState } from "react";
-import { TypeAnimation } from "react-type-animation";
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
 import Header from "../components/header";
-import Google from "next-auth/providers/google";
 
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   if (completed) {
@@ -56,49 +51,36 @@ function Ticket() {
 }
 
 const Home: NextPage = (props: any) => {
-  const [initialRenderComplete, setInitialRenderComplete] = useState(false);
   return (
-    <div >
-      <Header />
+    <div>
       <Head>
         <title>Perfect Match</title>
         <meta name="description" content="Find your Perfect Match" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div><section
-        className="relative bg-[url(../public/Cecil.png)] bg-cover bg-center bg-no-repeat"
-      >
-        <div
-          className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25"
-        ></div>
-
-        <div
-          className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
-        >
+      <Header />
+      <section className="relative bg-[url(../public/Cecil.png)] bg-bottom bg-cover bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25"></div>
+        <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-xl text-center sm:text-left">
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
               Let us find your
-
               <strong className="block font-extrabold text-rose-400">
                 Perfect Match!
               </strong>
             </h1>
-
             <p className="mt-4 max-w-lg sm:text-xl text-gray-600 sm:leading-relaxed">
-              Last year, we had over 4,200 participants. Share the link with your friends, and help spread some joy in 2023!
+              Last year, we had over 4,200 participants. Share the link with
+              your friends, and help spread some joy in 2023!
             </p>
-
             <div className="mt-8 flex flex-wrap gap-4 text-center">
-
               <GoogleAuth login={!props.user} />
-
             </div>
           </div>
         </div>
       </section>
-      </div>
       <Footer />
-    </div >
+    </div>
   );
 };
 
