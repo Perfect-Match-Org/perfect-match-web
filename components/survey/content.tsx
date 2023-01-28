@@ -9,6 +9,51 @@ export const questions = {
 
   pages: [
     {
+      "name": "Welcome",
+      "title": "Perfect Match 2023 ",
+      "description": "Elements marked <> will be shared with your matches.",
+
+
+      "elements": [{
+
+        "type": "panel",
+        "name": "social-media",
+        "elements": [{
+          "type": "multipletext",
+          "name": "contact",
+          "title": "<> When we find your matches how do you want them to contact you? At least one social media link is required.",
+          "validators": [{
+            "type": "expression",
+            "text": "Please enter at least one method of contact",
+            "expression": "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.phone} notempty or {contact.other} notempty"
+          }],
+          "items": [{
+            "name": "fb",
+            "title": "Facebook profile link"
+          },
+          {
+            "name": "insta",
+            "title": "Instagram handle"
+          },
+          {
+            "name": "twitter",
+            "title": "Twitter handle"
+          },
+          {
+            "name": "linkedin",
+            "title": "LinkedIn profile link"
+          },
+          {
+            "name": "phone",
+            "title": "Phone number"
+          }
+
+          ],
+          "colCount": 1
+        },]
+      }]
+    },
+    {
       "name": "Cornell",
       "title": "Cornell",
       "description": "Elements marked <> will be shared with your matches.",
@@ -115,7 +160,7 @@ export const questions = {
           },
 
         ]
-      },{
+      }, {
         "name": "hookupsong",
         "type": "text",
         "title": "The First Song of My Hook-Up Playlist Is…"
@@ -123,24 +168,33 @@ export const questions = {
         "name": "slope day",
         "type": "text",
         "title": "Which artist should come for Slope Day 2023?"
-      },  {
+      }, {
 
         "type": "radiogroup",
-        "name": "",
-        "title": "",
+        "name": "study",
+        "title": "Late night study sesh on campus. Where?",
         "isRequired": true,
         "choices": [
           {
             "value": "",
-            "text": ""
+            "text": "Duffield"
           },
           {
-            "value": "",
-            "text": "  "
+            "value": "cock",
+            "text": "Cocktail"
           },
           {
-            "value": "",
-            "text": ""
+            "value": "psb",
+            "text": "PSB"
+          }, {
+            "value": "lib",
+            "text": "Library"
+          }, {
+            "value": "goldwin",
+            "text": "Goldwin Classroom"
+          }, {
+            "value": "room",
+            "text": "My Cozy Room"
           },
 
         ]
@@ -167,54 +221,11 @@ export const questions = {
         ]
       },
 
+
       ]
 
     },
-    {
-      "name": "Welcome",
-      "title": "Perfect Match 2023 ",
-      "description": "Elements marked <> will be shared with your matches.",
 
-
-      "elements": [{
-
-        "type": "panel",
-        "name": "social-media",
-        "elements": [{
-          "type": "multipletext",
-          "name": "contact",
-          "title": "<> When we find your matches how do you want them to contact you? At least one social media link is required.",
-          "validators": [{
-            "type": "expression",
-            "text": "Please enter at least one method of contact",
-            "expression": "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.phone} notempty or {contact.other} notempty"
-          }],
-          "items": [{
-            "name": "fb",
-            "title": "Facebook profile link"
-          },
-          {
-            "name": "insta",
-            "title": "Instagram handle"
-          },
-          {
-            "name": "twitter",
-            "title": "Twitter handle"
-          },
-          {
-            "name": "linkedin",
-            "title": "LinkedIn profile link"
-          },
-          {
-            "name": "phone",
-            "title": "Phone number"
-          }
-
-          ],
-          "colCount": 1
-        },]
-      }]
-    },
 
     {
       "name": "Interests",
@@ -343,6 +354,42 @@ export const questions = {
               "value": "bars",
               "text": "Bar hopping"
             }
+          ]
+        },
+        {
+
+          "type": "checkbox",
+          "name": "music",
+          "title": "Favorite Music Genre(s): [can check all that apply]",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "pop",
+              "text": "Pop"
+            },
+            {
+              "value": "rock",
+              "text": "Rock"
+            },
+            {
+              "value": "indie",
+              "text": "Indie"
+            },
+            {
+              "value": "rap",
+              "text": "Rap"
+            }, {
+              "value": "jazz",
+              "text": "Jazz"
+            }, {
+              "value": "blues",
+              "text": "Blues"
+            },
+            {
+              "value": "r&b",
+              "text": "R&B"
+            },
+
           ]
         },
         {

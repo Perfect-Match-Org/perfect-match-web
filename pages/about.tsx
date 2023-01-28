@@ -13,10 +13,10 @@ const About: any = (props: any) => {
         <div>
           {" "}
           <section className="bg-white dark:bg-gray-600">
-            <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-              <div className="font text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-                  Cupid just got smarter!
+            <div className="gap-16 items-center py-12 px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6" style={{display: "flex", marginLeft: "10%", marginRight: "10%"}}>
+              <div className="font text-gray-500 sm:text-lg dark:text-gray-400" style={{width: "60%"}}>
+                <h2 className="mb-6 text-4xl tracking-tight font-extrabold text-rose-400">
+                  Cupid just got smarter 🦾💗!
                 </h2>
 
                 <p className="mb-4">
@@ -29,40 +29,82 @@ const About: any = (props: any) => {
                 </p>
                 {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
               </div>
-              <div className="grid grid-cols-3 gap-4 mt-8">
+              <div style={{width: "40%", marginLeft: "-20px"}}>
                 <img
-                  className="mt-4 w-full  rounded-lg"
-                  src="https://images.pexels.com/photos/8199567/pexels-photo-8199567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="office content 2"
-                />
-                <img
-                  className="w-full lg:mt-10 rounded-lg"
-                  src="https://live.staticflickr.com/2365/2440359722_cbe9203bba_b.jpg"
-                  alt="office content 1"
-                />
-                <img
-                  className="mt-4 w-full lg:mt-20 rounded-lg"
-                  src="https://images.unsplash.com/photo-1566572176693-74c6688e0141?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                  alt=" office content 2"
+                  className="rounded-lg"
+                  src="\new_cupid.png"
                 />
               </div>
             </div>
           </section>
         </div>
 
-        <section className="text-gray-700">
+        <section className="bg-white pt-3 pb-5">
+
+        <div style={{marginLeft:"10%", marginRight: "10%"}}>
+
+        {/* source: https://tailwind-elements.com/docs/standard/components/timeline/ */}
+          <ol className="md:border-xl-0 md:border-t border-rose-300 md:flex md:gap-6">
+            <li>
+              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                <div className="md:-mt-4 text-2xl">💓</div>
+                <p className="text-rose-400 text-xl my-2">2023-2-1 00:00</p>
+              </div>
+              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">PM2023 is Launched!</h4>
+                <p className="text-gray-500 mb-3">description goes here</p>
+              </div>
+            </li>
+            <li>
+              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                <div className="md:-mt-4 text-2xl">💘</div>
+                <p className="text-rose-400 text-xl my-2">2023-2-12 23:59</p>
+              </div>
+              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">PM Closes!</h4>
+                <p className="text-gray-500 mb-3">description goes here</p>
+              </div>
+            </li>
+            <li>
+              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                <div className="md:-mt-4 text-2xl">💞</div>
+                <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
+              </div>
+              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Matches Out!</h4>
+                <p className="text-gray-500 mb-3">description goes here</p>
+              </div>
+            </li>
+            <li>
+              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                <div className="md:-mt-4 text-2xl">❤️‍🔥</div>
+                <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
+              </div>
+              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 4</h4>
+                <p className="text-gray-500 mb-3">description goes here</p>
+              </div>
+            </li>
+          </ol>
+
+        </div>
+
+    </section>
+
+        <section className="text-gray-500 bg-pink-100">
           <div className="container px-5 py-24 mx-auto">
-            <div className="text-center mb-20">
-              <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">
-                Frequently Asked Question
-              </h1>
+            <div className="text-center mb-15">
+            <h2 className="mb-10 text-3xl tracking-tight font-extrabold text-rose-400">
+                Frequently Asked Questions
+              </h2>
             </div>
             <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
               <div className="w-full lg:w-1/2 px-4 py-2">
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-                    What is Perfect Match
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                    What is Perfect Match?
                   </summary>
+
                   <span>
                     Perfect Match is a matchmaking service that uses machine
                     learning algorithms to match participants based on their
@@ -72,14 +114,14 @@ const About: any = (props: any) => {
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold bg-gray-200 rounded-md py-2 px-4">
+                  <summary className="font-semibold bg-white rounded-md py-2 px-4">
                     How many matches will I get?
                   </summary>
 
                   <span>Most participants get between 4 and 7 matches.</span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What should I do when I receive my Matches?
                   </summary>
 
@@ -92,7 +134,7 @@ const About: any = (props: any) => {
               </div>
               <div className="w-full lg:w-1/2 px-4 py-2">
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What algorithm does Perfect Match use?
                   </summary>
 
@@ -106,7 +148,7 @@ const About: any = (props: any) => {
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What happens to my data?
                   </summary>
 
@@ -119,7 +161,7 @@ const About: any = (props: any) => {
                   </span>
                 </details>
                 <details className="mb-4">
-                  <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     How can I contact the Perfect Match team?
                   </summary>
 
