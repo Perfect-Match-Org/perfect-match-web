@@ -2,6 +2,12 @@
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 require("dotenv").config();
+const admins = require("./admins.json");
+
+adminEmails = [];
+admins.map((admin) => {
+  adminEmails.push(admin.email);
+});
 
 const transporter = nodemailer.createTransport({
   port: 587,
@@ -16,55 +22,29 @@ const transporter = nodemailer.createTransport({
   secureConnection: true,
 });
 
-const sendMail = (mailOptions) => {
+const sendMail = (receivers, subject, body) => {
+  const mailOptions = {
+    from: "Perfect Match <notifications@perfectmatch.ai>",
+    to: "cornell.perfectmatch@gmail.com",
+    bcc: receivers,
+    subject: subject,
+    replyTo: "cornell.perfectmatch@gmail.com",
+    html: body,
+  };
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) console.error(err);
   });
 };
 
-const remindOptedOut = async (users) => {
+const remindSurveyOut = async (users) => {
   let receivers = [];
   users.forEach((user) => receivers.push(user.email));
-  const body = fs.readFileSync("./optin.html").toString();
-  const mailOptions = {
-    from: "Perfect Match <notifications@perfectmatch.ai>",
-    to: "cornell.perfectmatch@gmail.com",
-    bcc: receivers,
-    subject: `Opt In`,
-    replyTo: "cornell.perfectmatch@gmail.com",
-    html: body,
-  };
-  sendMail(mailOptions);
+  const body = fs.readFileSync("./release.html").toString();
+  sendMail(receivers, "Perfect Match Survey Reminder", body);
 };
 
-const notifyMatchesOut = async (users) => {
-  let receivers = [];
-  users.forEach((user) => receivers.push(user.email));
-  const body = fs.readFileSync("./optin.html").toString();
-  const mailOptions = {
-    from: "Perfect Match <notifications@perfectmatch.ai>",
-    to: "cornell.perfectmatch@gmail.com",
-    bcc: receivers,
-    subject: `Matches Out`,
-    replyTo: "cornell.perfectmatch@gmail.com",
-    html: body,
-  };
-  sendMail(mailOptions);
-};
-
-const remindOptedOut = async (users) => {
-  let receivers = [];
-  users.forEach((user) => receivers.push(user.email));
-  const body = fs.readFileSync("./optin.html").toString();
-  const mailOptions = {
-    from: "Perfect Match <notifications@perfectmatch.ai>",
-    to: "cornell.perfectmatch@gmail.com",
-    bcc: receivers,
-    subject: `Opt In`,
-    replyTo: "cornell.perfectmatch@gmail.com",
-    html: body,
-  };
-  sendMail(mailOptions);
-};
-
-remindOptedOut([{ email: "ps2245@cornell.edu" }]);
+sendMail(
+  adminEmails,
+  "Perfect Match Releasing Soon!",
+  fs.readFileSync("./release.html").toString()
+);
