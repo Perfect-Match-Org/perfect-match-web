@@ -80,7 +80,7 @@ const Home: NextPage = () => {
 
           </h1>
 
-          <Image src={logo} width={100} height={100} />
+          <Image src={logo} alt="logo" width={100} height={100} />
           <br></br>
           {Ticket()}
           <div></div>
