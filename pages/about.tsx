@@ -145,7 +145,10 @@ const About: any = (props: any) => {
               </p>
               <p className="mb-4 font-medium">
                 {" "}
-                Email: Cornell.perfectmatch@gmail.com
+                Email:{" "}
+                <Link href={"mailto:cornell.perfectmatch@gmail.com"}>
+                  cornell.perfectmatch@gmail.com
+                </Link>
               </p>
 
               <div className="flex justify-center space-x-2">
