@@ -12,7 +12,7 @@ function Header(props: any) {
           <Link href="/" className="flex items-center">
             <img
               src="logo.png"
-              className="mr-3 h-6 sm:h-9"
+              className="mr-3 h-6 sm:h-9 cursor-pointer"
               alt="Perfect Match"
             />
             {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Perfect Match</span> */}
