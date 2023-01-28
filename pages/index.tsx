@@ -6,22 +6,13 @@ import { getSession } from "next-auth/react";
 import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
 import Header from "../components/header";
-
-var current_count = "331"
-fetch("https://live-perfect-match2023-git-google-auth-cornellperfectmatch.vercel.app/api/count", {
-  method: "get"
-})
-  .then(function (resp) {
-    if (resp.ok) {
-      current_count = resp.toString()
-    } else {
-      throw "shoot";
-    }
-  }).catch(function (err) {
-    console.log("count fetch failed", err)
-  });
+import useSWR from "swr";
 
 const Home: NextPage = (props: any) => {
+  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
+  const { data: currentCount, error } = useSWR("/api/count", fetcher, {
+    refreshInterval: 60000,
+  });
   return (
     <div>
       <Head>
@@ -38,7 +29,9 @@ const Home: NextPage = (props: any) => {
                 {/* <MegaphoneIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
               </span>
               <p className="ml-3 truncate font-medium text-white">
-                <span className="hidden md:inline">Interested in joining the Perfect Match Team?  </span>
+                <span className="hidden md:inline">
+                  Interested in joining the Perfect Match Team?{" "}
+                </span>
               </p>
             </div>
             <div className="order-3 mt-2 w-full flex-shrink-0 sm:order-3 sm:mt-0 sm:w-auto">
@@ -60,10 +53,27 @@ const Home: NextPage = (props: any) => {
           </div>
         </div>
       </div>
-      <section style={{ marginLeft: "5%", marginRight: "2%", marginBottom: "20px", marginTop: "-10px", backgroundImage: "url(\"Cecil.png\")", height: "100%", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "right top" }}>
-
-        <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8" style={{ marginTop: "auto", marginBottom: "auto" }}>
-          <div className="max-w-xl text-center sm:text-left" style={{ marginLeft: "5%" }}>
+      <section
+        style={{
+          marginLeft: "5%",
+          marginRight: "2%",
+          marginBottom: "20px",
+          marginTop: "-10px",
+          backgroundImage: 'url("Cecil.png")',
+          height: "100%",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right top",
+        }}
+      >
+        <div
+          className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+          style={{ marginTop: "auto", marginBottom: "auto" }}
+        >
+          <div
+            className="max-w-xl text-center sm:text-left"
+            style={{ marginLeft: "5%" }}
+          >
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
               Let us find your
               <strong className="mt-3 block font-extrabold text-rose-400">
@@ -74,9 +84,11 @@ const Home: NextPage = (props: any) => {
               Last year, we had over 4,200 participants. Share the link with
               your friends, and help spread some joy in 2023!
             </p>
-            <p className="mt-4 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Join over {current_count} Cornellians getting matched this year!
-            </p>
+            {!error && currentCount && (
+              <p className="mt-4 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+                Join over {currentCount} Cornellians getting matched this year!
+              </p>
+            )}
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <GoogleAuth login={!props.user} />
             </div>
@@ -84,7 +96,7 @@ const Home: NextPage = (props: any) => {
         </div>
       </section>
       <Footer />
-    </div >
+    </div>
   );
 };
 
@@ -98,4 +110,3 @@ export async function getServerSideProps(context: any) {
 }
 
 export default Home;
-

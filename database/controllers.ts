@@ -20,10 +20,6 @@ export const getUsers = async () => {
   return resp;
 };
 
-export const countUsers = async () => {
-  const resp = await User.find();
-  return resp.length;
-};
 export const updateSurvey = async (user: any, survey: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },

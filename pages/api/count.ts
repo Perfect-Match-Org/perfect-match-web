@@ -1,27 +1,16 @@
-import { IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth/next";
-import authOptions from "./auth/[...nextauth]";
-import { getUsers, countUsers } from "../../database/controllers";
-import { Session } from "next-auth";
+import { getUsers } from "../../database/controllers";
 import { connect } from "../../database/database";
-import { Match } from "../../types/matches";
-import { isAdmin } from "../../config/admins";
 
 export default async function handler(
-    req:
-        | any
-        | (IncomingMessage & { cookies: Partial<{ [key: string]: string }> })
-        | NextApiRequest,
-    res: any | ServerResponse<IncomingMessage> | NextApiResponse<any>
+  req: NextApiRequest,
+  res: NextApiResponse<number>
 ) {
-    const session: Session = (await unstable_getServerSession(
-        req,
-        res,
-        authOptions
-    ))!;
-
-    await connect();
-    const matches: any = await countUsers();
-    return res.status(200);
+  await connect();
+  try {
+    const usersCount: number = (await getUsers()).length;
+    return res.status(200).json(usersCount);
+  } catch (e: any) {
+    return res.status(500).json(e.toString());
+  }
 }
