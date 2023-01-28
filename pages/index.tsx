@@ -53,34 +53,16 @@ const Home: NextPage = (props: any) => {
           </div>
         </div>
       </div>
-      <section
-        style={{
-          marginLeft: "5%",
-          marginRight: "2%",
-          marginBottom: "20px",
-          marginTop: "-10px",
-          backgroundImage: 'url("Cecil.png")',
-          height: "100%",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "right top",
-        }}
-      >
-        <div
-          className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
-          style={{ marginTop: "auto", marginBottom: "auto" }}
-        >
-          <div
-            className="max-w-xl text-center sm:text-left"
-            style={{ marginLeft: "5%" }}
-          >
+      <section className ="sm:mx-[5%]" style={{ marginBottom: "20px", marginTop: "-10px", backgroundImage: "url(\"Cecil.png\")", height: "100%", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "right top"}}>
+        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
+          <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
               Let us find your
-              <strong className="mt-3 block font-extrabold text-rose-400">
-                Perfect Match💘!
+              <strong className="mt-2 sm:mt-3 block font-extrabold text-rose-400">
+              Perfect Match💘!
               </strong>
             </h1>
-            <p className="mt-4 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Last year, we had over 4,200 participants. Share the link with
               your friends, and help spread some joy in 2023!
             </p>
@@ -89,8 +71,10 @@ const Home: NextPage = (props: any) => {
                 Join over {currentCount} Cornellians getting matched this year!
               </p>
             )}
-            <div className="mt-8 flex flex-wrap gap-4 text-center">
-              <GoogleAuth login={!props.user} />
+            <div className="flex sm:contents">
+              <div className="mt-8 flex flex-wrap gap-4 text-center mx-auto">
+                <GoogleAuth login={!props.user} />
+              </div>
             </div>
           </div>
         </div>
