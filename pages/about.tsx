@@ -13,19 +13,13 @@ const About: any = (props: any) => {
         <div>
           {" "}
           <section className="bg-white dark:bg-gray-600">
-            <div
-              className="gap-16 items-center py-12 px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
-              style={{ display: "flex", marginLeft: "10%", marginRight: "10%" }}
-            >
-              <div
-                className="font text-gray-500 sm:text-lg dark:text-gray-400"
-                style={{ width: "60%" }}
-              >
-                <h2 className="mb-6 text-4xl tracking-tight font-extrabold text-rose-400">
+            <div className="gap-6 sm:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col sm:flex-row mx-[5%] sm:mx-[15%] sm:py-24 pb-12 pt-16" style={{display: "flex", paddingLeft: "0px"}}>
+              <div className="font text-gray-500 sm:text-lg dark:text-gray-400 sm:w-7/12">
+                <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">
                   Cupid just got smarter 🦾💗!
                 </h2>
 
-                <p className="mb-4">
+                <p className="sm:mb-4 mb-0">
                   {" "}
                   Perfect Match is a matchmaking survey ideated in February
                   2019. Our machine learning algorithm uses your survey to pair
@@ -35,144 +29,181 @@ const About: any = (props: any) => {
                 </p>
                 {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
               </div>
-              <div style={{ width: "40%", marginLeft: "-20px" }}>
-                <img className="rounded-lg" src="\new_cupid.png" />
+              <div className="sm:w-5/12">
+                <img className="rounded-lg" src="\new_cupid.png"/>
               </div>
             </div>
           </section>
         </div>
-        <section className="bg-white pt-3 pb-5 mx-auto flex flex-column text-start">
-          <div className="mx-auto mt-10">
-            {/* source: https://tailwind-elements.com/docs/standard/components/timeline/ */}
-            <ol className="md:border-xl-0 md:border-t border-rose-300 md:flex md:gap-6">
+
+        <section className="bg-white pt-3 sm:pb-5 pb-1">
+          <div style={{marginLeft:"15%", marginRight: "15%", marginBottom: "50px"}}>
+          {/* source: https://tailwind-elements.com/docs/standard/components/timeline/ */}
+            <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
               <li>
-                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                  <div className="md:-mt-4 text-2xl">💓</div>
-                  <p className="text-rose-400 text-xl my-2">2023-2-1 00:00</p>
+                <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
+                  <div className="sm:-mt-4 text-2xl -ml-1">💓</div>
+                  <p className="text-rose-400 text-l my-2 font-bold">2023-2-1 5PM</p>
                 </div>
-                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
-                    PM2023 is Launched!
-                  </h4>
+                <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">PM2023 is Launched!</h4>
                   <p className="text-gray-500 mb-3">description goes here</p>
                 </div>
               </li>
               <li>
-                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                  <div className="md:-mt-4 text-2xl">💘</div>
-                  <p className="text-rose-400 text-xl my-2">2023-2-12 23:59</p>
+                <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
+                  <div className="sm:-mt-4 text-2xl">💘</div>
+                  <p className="text-rose-400 text-l my-2 font-bold">2023-2-13 Noon</p>
                 </div>
-                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
-                    PM Closes!
-                  </h4>
+                <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">PM Closes!</h4>
                   <p className="text-gray-500 mb-3">description goes here</p>
                 </div>
               </li>
               <li>
-                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                  <div className="md:-mt-4 text-2xl">💞</div>
-                  <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
+                <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
+                  <div className="sm:-mt-4 text-2xl">💞</div>
+                  <p className="text-rose-400 text-l my-2 font-bold">2023-2-13 Night</p>
                 </div>
-                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
-                    Matches Out!
-                  </h4>
+                <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Matches Out!</h4>
                   <p className="text-gray-500 mb-3">description goes here</p>
                 </div>
               </li>
               <li>
-                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                  <div className="md:-mt-4 text-2xl">❤️‍🔥</div>
-                  <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
+                <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
+                  <div className="sm:-mt-4 text-2xl">❤️‍🔥</div>
+                  <p className="text-rose-400 text-l my-2 font-bold">2023-2-14</p>
                 </div>
-                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
-                    Title of section 4
-                  </h4>
+                <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 4</h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+            </ol>
+
+            <ol className="border-l-2 border-rose-300 sm:hidden">
+              <li>
+                <div className="flex flex-start items-center pt-3">
+                  <div className="-ml-3 mr-3 text-2xl">💞</div>
+                  <p className="text-rose-400 text-l font-bold">2023-2-1 5PM</p>
+                </div>
+                <div className="mt-0.5 ml-4 mb-6">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 1</h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+              <li>
+                <div className="flex flex-start items-center pt-2">
+                  <div className="-ml-3 mr-3 text-2xl">💘</div>
+                  <p className="text-rose-400 text-l font-bold">2023-2-13 Noon</p>
+                </div>
+                <div className="mt-0.5 ml-4 mb-6">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 2</h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+              <li>
+                <div className="flex flex-start items-center pt-2">
+                  <div className="-ml-3 mr-3 text-2xl">💞</div>
+                  <p className="text-rose-400 text-l font-bold">2023-2-13 Night</p>
+                </div>
+                <div className="mt-0.5 ml-4 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 3</h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+              <li>
+                <div className="flex flex-start items-center pt-2">
+                  <div className="-ml-3 mr-3 text-2xl">❤️‍🔥</div>
+                  <p className="text-rose-400 text-l font-bold">2023-2-14</p>
+                </div>
+                <div className="mt-0.5 ml-4 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 4</h4>
                   <p className="text-gray-500 mb-3">description goes here</p>
                 </div>
               </li>
             </ol>
           </div>
         </section>
+
         <section className="text-gray-500 bg-pink-100">
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
             <div className="text-center mb-15">
-              <h2 className="mb-10 text-3xl tracking-tight font-extrabold text-rose-400">
+              <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">
                 Frequently Asked Questions
               </h2>
             </div>
             <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-              <div className="w-full lg:w-1/2 px-4 py-2">
-                <details className="mb-4">
+              <div className="w-full lg:w-1/2 px-4">
+                <details className="mb-5">
                   <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What is Perfect Match?
                   </summary>
 
-                  <span>
+                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
                     Perfect Match is a matchmaking service that uses machine
                     learning algorithms to match participants based on their
                     reponses in their survey. Every year, the survey opens in
                     early Feburary. Matches are released the weekend before
                     Valentine&apos;s day.
-                  </span>
+                  </p>
                 </details>
-                <details className="mb-4">
+                <details className="mb-5">
                   <summary className="font-semibold bg-white rounded-md py-2 px-4">
                     How many matches will I get?
                   </summary>
 
-                  <span>Most participants get between 4 and 7 matches.</span>
+                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>Most participants get between 4 and 7 matches.</p>
                 </details>
-                <details className="mb-4">
+                <details className="mb-5">
                   <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What should I do when I receive my Matches?
                   </summary>
 
-                  <span>
+                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
                     It&apos;s up to you! Contact your Matches in any way
                     you&apos;d like. We will provide some suggestions for how to
                     connect when matches are released.
-                  </span>
+                  </p>
                 </details>
               </div>
-              <div className="w-full lg:w-1/2 px-4 py-2">
-                <details className="mb-4">
+              <div className="w-full lg:w-1/2 px-4">
+                <details className="mb-5">
                   <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What algorithm does Perfect Match use?
                   </summary>
 
-                  <span className="px-4 py-2">
+                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
                     The Perfect Match algorithm can be broken into two parts:
                     scoring and matching. First, we use our machine learning
                     algorithm to score compatability between you and all other
                     participants who satisfy your main criteria, as determined
                     by your responses. We then use a variant of the Hungarian
                     algorithm to generate optimal matches based on these scores.
-                  </span>
+                  </p>
                 </details>
-                <details className="mb-4">
+                <details className="mb-5">
                   <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     What happens to my data?
                   </summary>
 
-                  <span className="px-4 py-2">
+                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
                     Your data is safe with us! We will never share your data
                     with a third party, and we will only interact with your
                     information as needed to resolve user issues. We may collect
                     anonymous statistics to improve our algorithm, but your
                     identity will always be separated from such reports.
-                  </span>
+                  </p>
                 </details>
-                <details className="mb-4">
+                <details className="mb-5">
                   <summary className="font-semibold  bg-white rounded-md py-2 px-4">
                     How can I contact the Perfect Match team?
                   </summary>
 
-                  <span className="px-4 py-2">
+                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
                     Yes, our contact information is right below.
-                  </span>
+                  </p>
                 </details>
               </div>
             </div>
@@ -181,9 +212,9 @@ const About: any = (props: any) => {
       </div>
       <div>
         <section className="bg-white dark:bg-gray-600">
-          <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
             <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
+              <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 dark:text-white">
                 Contact Us!
               </h2>
               <p className="mb-4 font-light"></p>
