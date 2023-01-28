@@ -7,8 +7,8 @@ import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
 import Header from "../components/header";
 
-var current_count = "0"
-fetch("https://live-perfect-match2023-git-google-auth-cornellperfectmatch.vercel.app/api/" + "count", {
+var current_count = "331"
+fetch("https://live-perfect-match2023-git-google-auth-cornellperfectmatch.vercel.app/api/count", {
   method: "get"
 })
   .then(function (resp) {
