@@ -59,17 +59,16 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <section className="relative bg-[url(../public/Cecil.png)] bg-bottom bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25"></div>
-        <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-          <div className="max-w-xl text-center sm:text-left">
+      <section style={{ marginLeft: "5%", marginRight: "2%", marginBottom: "20px", marginTop: "-10px", backgroundImage: "url(\"Cecil.png\")", height: "100%", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "right top"}}>
+        <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8" style = {{marginTop: "auto", marginBottom: "auto"}}>
+          <div className="max-w-xl text-center sm:text-left" style = {{marginLeft: "5%"}}>
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
               Let us find your
-              <strong className="block font-extrabold text-rose-400">
-                Perfect Match!
+              <strong className="mt-3 block font-extrabold text-rose-400">
+                Perfect Match💘!
               </strong>
             </h1>
-            <p className="mt-4 max-w-lg sm:text-xl text-gray-600 sm:leading-relaxed">
+            <p className="mt-4 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Last year, we had over 4,200 participants. Share the link with
               your friends, and help spread some joy in 2023!
             </p>
@@ -94,3 +93,4 @@ export async function getServerSideProps(context: any) {
 }
 
 export default Home;
+
