@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 function Header(props: any) {
-  const { data: session, status } = useSession();
-  const authenticated = status === "authenticated";
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 light:bg-gray-800">

@@ -13,8 +13,14 @@ const About: any = (props: any) => {
         <div>
           {" "}
           <section className="bg-white dark:bg-gray-600">
-            <div className="gap-16 items-center py-12 px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6" style={{display: "flex", marginLeft: "10%", marginRight: "10%"}}>
-              <div className="font text-gray-500 sm:text-lg dark:text-gray-400" style={{width: "60%"}}>
+            <div
+              className="gap-16 items-center py-12 px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+              style={{ display: "flex", marginLeft: "10%", marginRight: "10%" }}
+            >
+              <div
+                className="font text-gray-500 sm:text-lg dark:text-gray-400"
+                style={{ width: "60%" }}
+              >
                 <h2 className="mb-6 text-4xl tracking-tight font-extrabold text-rose-400">
                   Cupid just got smarter 🦾💗!
                 </h2>
@@ -29,72 +35,71 @@ const About: any = (props: any) => {
                 </p>
                 {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
               </div>
-              <div style={{width: "40%", marginLeft: "-20px"}}>
-                <img
-                  className="rounded-lg"
-                  src="\new_cupid.png"
-                />
+              <div style={{ width: "40%", marginLeft: "-20px" }}>
+                <img className="rounded-lg" src="\new_cupid.png" />
               </div>
             </div>
           </section>
         </div>
-
-        <section className="bg-white pt-3 pb-5">
-
-        <div style={{marginLeft:"10%", marginRight: "10%"}}>
-
-        {/* source: https://tailwind-elements.com/docs/standard/components/timeline/ */}
-          <ol className="md:border-xl-0 md:border-t border-rose-300 md:flex md:gap-6">
-            <li>
-              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                <div className="md:-mt-4 text-2xl">💓</div>
-                <p className="text-rose-400 text-xl my-2">2023-2-1 00:00</p>
-              </div>
-              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">PM2023 is Launched!</h4>
-                <p className="text-gray-500 mb-3">description goes here</p>
-              </div>
-            </li>
-            <li>
-              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                <div className="md:-mt-4 text-2xl">💘</div>
-                <p className="text-rose-400 text-xl my-2">2023-2-12 23:59</p>
-              </div>
-              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">PM Closes!</h4>
-                <p className="text-gray-500 mb-3">description goes here</p>
-              </div>
-            </li>
-            <li>
-              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                <div className="md:-mt-4 text-2xl">💞</div>
-                <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
-              </div>
-              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Matches Out!</h4>
-                <p className="text-gray-500 mb-3">description goes here</p>
-              </div>
-            </li>
-            <li>
-              <div className="flex md:block flex-start items-center pt-2 md:pt-0">
-                <div className="md:-mt-4 text-2xl">❤️‍🔥</div>
-                <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
-              </div>
-              <div className="mt-0.5 ml-4 md:ml-0 pb-5">
-                <h4 className="text-gray-800 font-semibold text-xl mb-1.5">Title of section 4</h4>
-                <p className="text-gray-500 mb-3">description goes here</p>
-              </div>
-            </li>
-          </ol>
-
-        </div>
-
-    </section>
-
+        <section className="bg-white pt-3 pb-5 mx-auto flex flex-column text-start">
+          <div className="mx-auto mt-10">
+            {/* source: https://tailwind-elements.com/docs/standard/components/timeline/ */}
+            <ol className="md:border-xl-0 md:border-t border-rose-300 md:flex md:gap-6">
+              <li>
+                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                  <div className="md:-mt-4 text-2xl">💓</div>
+                  <p className="text-rose-400 text-xl my-2">2023-2-1 00:00</p>
+                </div>
+                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
+                    PM2023 is Launched!
+                  </h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+              <li>
+                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                  <div className="md:-mt-4 text-2xl">💘</div>
+                  <p className="text-rose-400 text-xl my-2">2023-2-12 23:59</p>
+                </div>
+                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
+                    PM Closes!
+                  </h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+              <li>
+                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                  <div className="md:-mt-4 text-2xl">💞</div>
+                  <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
+                </div>
+                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
+                    Matches Out!
+                  </h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+              <li>
+                <div className="flex md:block flex-start items-center pt-2 md:pt-0">
+                  <div className="md:-mt-4 text-2xl">❤️‍🔥</div>
+                  <p className="text-rose-400 text-xl my-2">2023-2-XX</p>
+                </div>
+                <div className="mt-0.5 ml-4 md:ml-0 pb-5">
+                  <h4 className="text-gray-800 font-semibold text-xl mb-1.5">
+                    Title of section 4
+                  </h4>
+                  <p className="text-gray-500 mb-3">description goes here</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </section>
         <section className="text-gray-500 bg-pink-100">
           <div className="container px-5 py-24 mx-auto">
             <div className="text-center mb-15">
-            <h2 className="mb-10 text-3xl tracking-tight font-extrabold text-rose-400">
+              <h2 className="mb-10 text-3xl tracking-tight font-extrabold text-rose-400">
                 Frequently Asked Questions
               </h2>
             </div>
