@@ -20,12 +20,8 @@ export default async function handler(
         res,
         authOptions
     ))!;
-    if (!session) return res.status(401).send("Unauthorized");
-    else if (!isAdmin(session.user?.email!))
-        return res.status(401).send("Unauthorized");
-    else if (req.method !== "GET")
-        return res.status(405).send("Method Not Allowed");
+
     await connect();
     const matches: any = await countUsers();
-    return res.status(200).json(matches);
+    return res.status(200);
 }
