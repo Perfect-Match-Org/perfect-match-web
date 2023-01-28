@@ -201,23 +201,18 @@ export const questions = {
       }, {
 
         "type": "radiogroup",
-        "name": "",
-        "title": "",
+        "name": "workto",
+        "title": "Which do you agree with?",
         "isRequired": true,
         "choices": [
           {
-            "value": "",
-            "text": ""
+            "value": "work",
+            "text": "Work to live"
           },
           {
-            "value": "",
-            "text": "  "
+            "value": "live",
+            "text": "Live to work"
           },
-          {
-            "value": "",
-            "text": ""
-          },
-
         ]
       },
 
