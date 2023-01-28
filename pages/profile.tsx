@@ -5,9 +5,9 @@ import Spinner from "../components/spinner";
 import { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import useSWR from "swr";
+import { fetcher } from "../helpers/fetch";
 
 const Profile: NextPage = (props: any) => {
-  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
   const { data, error } = useSWR("/api/profile", fetcher);
   if (!data) return <Spinner />;
   return (

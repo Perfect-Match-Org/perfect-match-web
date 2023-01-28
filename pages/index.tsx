@@ -7,9 +7,9 @@ import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
 import Header from "../components/header";
 import useSWR from "swr";
+import { fetcher } from "../helpers/fetch";
 
 const Home: NextPage = (props: any) => {
-  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
   const { data: currentCount, error } = useSWR("/api/count", fetcher, {
     refreshInterval: 60000,
   });
