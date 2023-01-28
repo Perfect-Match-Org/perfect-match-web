@@ -1,4 +1,3 @@
-import { IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth/next";
 import authOptions from "./auth/[...nextauth]";
@@ -8,11 +7,8 @@ import { connect } from "../../database/database";
 import { Match } from "../../types/matches";
 
 export default async function handler(
-  req:
-    | any
-    | (IncomingMessage & { cookies: Partial<{ [key: string]: string }> })
-    | NextApiRequest,
-  res: any | ServerResponse<IncomingMessage> | NextApiResponse<any>
+  req: NextApiRequest,
+  res: NextApiResponse<Match[] | String>
 ) {
   const session: Session = (await unstable_getServerSession(
     req,
