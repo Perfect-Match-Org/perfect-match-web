@@ -125,6 +125,10 @@ export const questions = {
         "isRequired": true,
         "choices": [
           {
+            "value": "drunk",
+            "text": "Drunk texted their ex last night"
+          },
+          {
             "value": "gothics",
             "text": "Live in the Gothics"
           },
@@ -138,7 +142,7 @@ export const questions = {
           },
           {
             "value": "hinge",
-            "text": "Matched with your roomate on Hinge"
+            "text": "Matched with your roommate on Hinge"
           },
 
         ]
@@ -321,6 +325,28 @@ export const questions = {
             },
 
           ]
+        }, {
+
+          "type": "checkbox",
+          "name": "music",
+          "title": "Favorite Music Genre(s): [can check all that apply]",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "pop",
+              "text": "Pop"
+            },
+            {
+              "value": "rock",
+              "text": "Rock"
+            },
+            {
+              "value": "indie",
+              "text": "Indie"
+            },
+
+
+          ]
         },
 
       ],
@@ -330,39 +356,39 @@ export const questions = {
       "elements": [
         {
           "type": "radiogroup",
-          "name": "friday",
-          "title": "What would an average Friday night look like?",
+          "name": "tv",
+          "title": "Which of these recent shows have you/will you binge watch with your match?",
           "isRequired": true,
           "choices": [
             {
-              "value": "pjsnetflix",
-              "text": "Netflix and PJs"
+              "value": "white",
+              "text": "White Lotus"
             },
             {
-              "value": "netflixchill",
-              "text": "Netflix and chill"
+              "value": "bear",
+              "text": "The Bear"
             },
             {
-              "value": "frat_party",
-              "text": "Frat party"
+              "value": "ted",
+              "text": "Ted Lasso"
             },
             {
-              "value": "study",
-              "text": "Studying"
+              "value": "euphoria",
+              "text": "Euphoria"
             },
             {
-              "value": "mixer",
-              "text": "Mixer or date night"
+              "value": "emily",
+              "text": "Emily in Paris"
             },
             {
-              "value": "bars",
-              "text": "Bar hopping"
+              "value": "stranger",
+              "text": "Stranger Things"
             }
           ]
         },
 
         {
-          "type": "radiogroup",
+          "type": "checkbox",
           "name": "date",
           "title": "Where would you go on a first date?",
           "isRequired": true,
