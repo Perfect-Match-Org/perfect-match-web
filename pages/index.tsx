@@ -21,38 +21,7 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="bg-rose-400">
-        <div className="mx-auto max-w-4xl py-1 px-3 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between">
-            <div className="flex w-0 flex-1 items-center">
-              <span className="flex rounded-lg bg-white p-2">
-                {/* <MegaphoneIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
-              </span>
-              <p className="ml-3 truncate font-medium text-white">
-                <span className="hidden md:inline">
-                  Interested in joining the Perfect Match Team?{" "}
-                </span>
-              </p>
-            </div>
-            <div className="order-3 mt-2 w-full flex-shrink-0 sm:order-3 sm:mt-0 sm:w-auto">
-              <a
-                href="http://www.google.com"
-                className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-rose-400 shadow-sm hover:bg-rose-50"
-              >
-                Apply Here!
-              </a>
-            </div>
-            <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
-              <button
-                type="button"
-                className="-mr-1 flex rounded-md p-2 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
-              >
-                {/* <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <section className ="sm:mx-[5%]" style={{ marginBottom: "20px", marginTop: "-10px", backgroundImage: "url(\"Cecil.png\")", height: "100%", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "right top"}}>
         <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
           <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
