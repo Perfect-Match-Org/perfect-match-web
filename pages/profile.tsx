@@ -6,12 +6,16 @@ import { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import useSWR from "swr";
 import { fetcher } from "../helpers/fetch";
+import Head from "next/head";
 
 const Profile: NextPage = (props: any) => {
   const { data, error } = useSWR("/api/profile", fetcher);
   if (!data) return <Spinner />;
   return (
     <div>
+      <Head>
+        <title>Profile</title>
+      </Head>
       <Header />
       <div>
         <section className="bg-white dark:bg-rose-300">

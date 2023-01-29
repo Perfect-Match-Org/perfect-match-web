@@ -15,19 +15,14 @@ function Header(props: any) {
               alt="Perfect Match"
             />
           </Link>
-
           <div className="sm:hidden">
             <Toggle />
           </div>
-
-          <div
-            className="hidden justify-between items-center w-full sm:block sm:w-auto sm:order-1"
-          >
+          <div className="hidden justify-between items-center w-full sm:block sm:w-auto sm:order-1">
             <ul className="flex flex-col mt-4 text-gray-500 font-medium sm:flex-row sm:space-x-8 sm:mt-0 text-lg">
               <li className="hover:text-rose-400">
                 <Link href="/">Home</Link>
               </li>
-
               <li className="hover:text-rose-400">
                 <Link href="/profile">Profile</Link>
               </li>

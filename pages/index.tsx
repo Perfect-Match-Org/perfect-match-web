@@ -1,7 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Countdown from "react-countdown";
-import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import Footer from "../components/footer";
 import GoogleAuth from "../components/googleAuth";
@@ -21,14 +19,24 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      
-      <section className ="sm:mx-[5%]" style={{ marginBottom: "20px", marginTop: "-10px", backgroundImage: "url(\"Cecil.png\")", height: "100%", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "right top"}}>
+      <section
+        className="sm:mx-[5%]"
+        style={{
+          marginBottom: "20px",
+          marginTop: "-10px",
+          backgroundImage: 'url("Cecil.png")',
+          height: "100%",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right top",
+        }}
+      >
         <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
           <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
               Let us find your
               <strong className="mt-2 sm:mt-3 block font-extrabold text-rose-400">
-              Perfect Match💘!
+                Perfect Match💘!
               </strong>
             </h1>
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">

@@ -1,28 +1,36 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import Script from "next/script";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Link from "next/link";
 
-
 const Statistics: any = (props: any) => {
   return (
     <div>
+      <Head>
+        <title>Statistics</title>
+      </Head>
       <Header />
       <div>
         <div>
           {" "}
-          <section className="sm:mx-[5%]" style={{ marginBottom: "10px", marginTop: "-10px", height: "100%" }}>
+          <section
+            className="sm:mx-[5%]"
+            style={{ marginBottom: "10px", marginTop: "-10px", height: "100%" }}
+          >
             <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
               <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
                 <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
                   Can Love be Visualized?
                 </h1>
                 <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-                  <strong>Perhaps not without daydreaming about your crush, but your survey responses can!</strong> Join
-                  us on this journey to learn about some of the preferences and habits we've discovered from several years of
-                  survey responses!
+                  <strong>
+                    Perhaps not without daydreaming about your crush, but your
+                    survey responses can!
+                  </strong>{" "}
+                  Join us on this journey to learn about some of the preferences
+                  and habits we&apos;ve discovered from several years of survey
+                  responses!
                 </p>
               </div>
             </div>
@@ -32,14 +40,23 @@ const Statistics: any = (props: any) => {
         <section className="bg-white pt-3 sm:pb-5 pb-1">
           <script src="https://d3js.org/d3.v7.min.js"></script>
           <script src="https://d3js.org/topojson.v3.min.js"></script>
-          <div style={{ marginLeft: "15%", marginRight: "15%", marginBottom: "50px" }}>
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization header
             </p>
 
             <svg id="demographicsBar" width="500" height="500"></svg>
-            <script type="text/javascript" src="../d3scripts/demographicsBar.js"></script>
+            <script
+              type="text/javascript"
+              src="../d3scripts/demographicsBar.js"
+            ></script>
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
@@ -48,7 +65,13 @@ const Statistics: any = (props: any) => {
         </section>
 
         <section className="bg-gray pt-3 sm:pb-5 pb-1">
-          <div style={{ marginLeft: "15%", marginRight: "15%", marginBottom: "50px" }}>
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization header
@@ -64,7 +87,13 @@ const Statistics: any = (props: any) => {
         </section>
 
         <section className="bg-white pt-3 sm:pb-5 pb-1">
-          <div style={{ marginLeft: "15%", marginRight: "15%", marginBottom: "50px" }}>
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization header
@@ -83,7 +112,7 @@ const Statistics: any = (props: any) => {
           <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
             <div className="text-center mb-15">
               <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">
-                FAQ's about User Privacy
+                FAQ&apos;s about User Privacy
               </h2>
             </div>
             <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
@@ -94,8 +123,10 @@ const Statistics: any = (props: any) => {
                   </summary>
 
                   <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
-                    Absolutely not! All user data collected from our surveys is anonymized, and then privately stored.
-                    Only your name and provided contact information is shared, and that is only with your matches.
+                    Absolutely not! All user data collected from our surveys is
+                    anonymized, and then privately stored. Only your name and
+                    provided contact information is shared, and that is only
+                    with your matches.
                   </p>
                 </details>
                 <details className="mb-5">
@@ -104,10 +135,14 @@ const Statistics: any = (props: any) => {
                   </summary>
 
                   <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
-                    <strong>Preserving the privacy of our participants is our utmost concern and is rooted behind every
-                      decision made in crafting these visualizations.</strong> We have taken several measures to remove any
-                    identifiable characteristics from the data we have collected, and the resulting datasets are randomly
-                    shuffled.
+                    <strong>
+                      Preserving the privacy of our participants is our utmost
+                      concern and is rooted behind every decision made in
+                      crafting these visualizations.
+                    </strong>{" "}
+                    We have taken several measures to remove any identifiable
+                    characteristics from the data we have collected, and the
+                    resulting datasets are randomly shuffled.
                   </p>
                 </details>
                 <details className="mb-5">
@@ -116,7 +151,8 @@ const Statistics: any = (props: any) => {
                   </summary>
 
                   <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
-                    These visualizations were generated using the Pandas and NumPy Python libraries, and the D3.js JavaScript library.
+                    These visualizations were generated using the Pandas and
+                    NumPy Python libraries, and the D3.js JavaScript library.
                   </p>
                 </details>
               </div>
@@ -127,7 +163,8 @@ const Statistics: any = (props: any) => {
                   </summary>
 
                   <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
-                    Absolutely not! All of your data is stored privately and will not be viewed by any third party.
+                    Absolutely not! All of your data is stored privately and
+                    will not be viewed by any third party.
                   </p>
                 </details>
                 <details className="mb-5">
@@ -149,9 +186,15 @@ const Statistics: any = (props: any) => {
                   </summary>
 
                   <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
-                    We greatly encourage you to reach out to us with any questions or concerns that you may have
-                    regarding data privacy. In fact, feedback from the Cornell community already has and will continue
-                    to be used in to improve our algorithm and measures to protect privacy. We can be reached at cornell.perfectmatch@gmail.com!
+                    We greatly encourage you to reach out to us with any
+                    questions or concerns that you may have regarding data
+                    privacy. In fact, feedback from the Cornell community
+                    already has and will continue to be used in to improve our
+                    algorithm and measures to protect privacy. We can be reached
+                    at{" "}
+                    <Link href="mailto:cornell.perfectmatch@gmail.com">
+                      cornell.perfectmatch@gmail.com!
+                    </Link>
                   </p>
                 </details>
               </div>
@@ -173,7 +216,7 @@ const Statistics: any = (props: any) => {
               <p className="mb-4 font-medium">
                 {" "}
                 Email:{" "}
-                <Link href={"mailto:cornell.perfectmatch@gmail.com"}>
+                <Link href="mailto:cornell.perfectmatch@gmail.com">
                   cornell.perfectmatch@gmail.com
                 </Link>
               </p>
