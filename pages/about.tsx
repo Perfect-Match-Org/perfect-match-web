@@ -9,6 +9,35 @@ const About: any = (props: any) => {
   return (
     <div>
       <Header />
+      
+      <div className="bg-rose-400">
+        <div className="py-2 px-3 sm:px-0 sm:py-3 flex">
+          <div className="flex flex-wrap items-center sm:mx-auto">
+            <div>
+              <p className="ml-2 font-small text-white sm:text-lg">
+                  Interested in joining the Perfect Match Team?
+              </p>
+            </div>
+            <div className="order-3 mt-2 w-full flex-shrink-0 sm:w-auto sm:ml-5 sm:mt-0">
+              <a
+                href="http://www.google.com"
+                className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-1 text-sm font-medium text-rose-400 shadow-sm hover:bg-rose-50 sm:text-lg"
+              >
+                Apply Here!
+              </a>
+            </div>
+            <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
+              <button
+                type="button"
+                className="-mr-1 flex rounded-md p-2 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
+              >
+                {/* <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div>
         <div>
           {" "}
