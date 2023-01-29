@@ -3,6 +3,7 @@ import Head from "next/head";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Link from "next/link";
+import Script from "next/script";
 
 const Statistics: any = (props: any) => {
   return (
@@ -38,8 +39,8 @@ const Statistics: any = (props: any) => {
         </div>
 
         <section className="bg-white pt-3 sm:pb-5 pb-1">
-          <script src="https://d3js.org/d3.v7.min.js"></script>
-          <script src="https://d3js.org/topojson.v3.min.js"></script>
+          <Script src="https://d3js.org/d3.v7.min.js"></Script>
+          <Script src="https://d3js.org/topojson.v3.min.js"></Script>
           <div
             style={{
               marginLeft: "15%",
@@ -53,10 +54,10 @@ const Statistics: any = (props: any) => {
             </p>
 
             <svg id="demographicsBar" width="500" height="500"></svg>
-            <script
+            <Script
               type="text/javascript"
               src="../d3scripts/demographicsBar.js"
-            ></script>
+            ></Script>
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
@@ -78,7 +79,7 @@ const Statistics: any = (props: any) => {
             </p>
 
             {/* <svg id="demographicsBar" width="500" height="500"></svg> */}
-            {/* <script type="text/javascript" src="../d3scripts/demographicsBar.js"></script> */}
+            {/* <Script type="text/javascript" src="../d3scripts/demographicsBar.js"></Script> */}
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
@@ -100,7 +101,7 @@ const Statistics: any = (props: any) => {
             </p>
 
             {/* <svg id="demographicsBar" width="500" height="500"></svg> */}
-            {/* <script type="text/javascript" src="../d3scripts/demographicsBar.js"></script> */}
+            {/* <Script type="text/javascript" src="../d3scripts/demographicsBar.js"></Script> */}
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
