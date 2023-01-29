@@ -397,6 +397,133 @@ export const questions = {
                         },
                     ],
                 },
+
+                {
+                    type: "radiogroup",
+                    name: "relationship-type",
+                    title: "What type of relationship are you looking for with you match??",
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: "romantic",
+                            text: "Romantic",
+                        },
+                        {
+                            value: "casual",
+                            text: "Casual",
+                        },
+                        {
+                            value: "platonic",
+                            text: "Platonic",
+                        },
+
+                    ],
+                }, {
+                    "type": "multipletext",
+                    "name": "agepref",
+                    "title": "What age range would you like your matches to be in?",
+                    "isRequired": true,
+                    "items": [
+                        {
+                            "name": "youngest_v2",
+                            "title": "Youngest",
+                            "inputType": "number",
+
+                            "validators": [{
+                                "requiredErrorText": "You Age must be between 17 and 110",
+
+                                "type": "numeric",
+                                "text": "",
+                                "minValue": 17,
+                                "maxValue": 110
+                            }]
+                        },
+
+                    ]
+                },
+                {
+                    "type": "multipletext",
+                    "name": "agepref",
+                    "title": " ",
+                    "isRequired": true,
+                    "items": [
+                        {
+                            "name": "oldest-v2",
+                            "title": "Oldest",
+                            "inputType": "number",
+
+                            "validators": [{
+                                "requiredErrorText": "You Age must be between 17 and 110",
+
+                                "type": "numeric",
+                                "text": "",
+                                "minValue": 17,
+                                "maxValue": 110
+                            }]
+                        },
+
+                    ]
+                },
+                {
+                    "type": "checkbox",
+                    "name": "activities",
+                    "title": "Check all involvements that apply to you.",
+                    "isRequired": true,
+                    "choices": [
+                        {
+                            "value": "athlete",
+                            "text": "Student athlete"
+                        },
+                        {
+                            "value": "greeklife",
+                            "text": "Greek life"
+                        },
+                        {
+                            "value": "proffrat",
+                            "text": "Professional fraternity"
+                        },
+                        {
+                            "value": "profclub",
+                            "text": "Professional club"
+                        },
+                        {
+                            "value": "projectteam",
+                            "text": "Project team"
+                        },
+                        {
+                            "value": "clubsports",
+                            "text": "Club sports"
+                        },
+                        {
+                            "value": "socialclub",
+                            "text": "Social club"
+                        },
+                        {
+                            "value": "culturalclub",
+                            "text": "Cultural club"
+                        },
+                        {
+                            "value": "otherclub",
+                            "text": "Other club"
+                        },
+                        {
+                            "value": "ra",
+                            "text": "RA (Resident advisor)"
+                        },
+                        {
+                            "value": "ta",
+                            "text": "TA (Teaching Assistant)"
+                        }
+                    ],
+                    "hasNone": true
+                },
+                {
+                    "type": "text",
+                    "name": "desscribeyou",
+                    "title": "<> Choose the best three words to describe your personality. (e.g. funny, smart, charming)",
+                    "isRequired": true
+                },
+
                 {
                     "type": "comment",
                     "name": "bio",

@@ -14,7 +14,7 @@ export const questions = {
       addRowText: "Add Person",
       columnColCount: 0,
       title:
-        "Name up to three Crushes. If you enter more than three, the extra ones will be discarded.",
+        "Name up to five Crushes. If you enter more than five, the extra ones will be discarded.",
       rowCount: 0,
       columns: [
         {

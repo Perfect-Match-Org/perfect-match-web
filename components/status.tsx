@@ -10,12 +10,12 @@ const Status: any = (props: any) => {
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Tasks</h3>
             </dt>
-            <div className="w-full bg-gray-200 rounded-full">
+            {/* <div className="w-full bg-gray-200 rounded-full">
               <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center w-2/3 p-0.5 leading-none rounded-l-full">
                 {" "}
                 33%
               </div>
-            </div>
+            </div> */}
             <dd className="mb-16">
               Please complete all required steps to be included to this years
               matching.
