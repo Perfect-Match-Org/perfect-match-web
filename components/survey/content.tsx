@@ -901,7 +901,7 @@ export const questions = {
         {
           type: "radiogroup",
           name: "general-personality",
-          title: "In general, I want my matches be...",
+          title: "In general, I want my matches to be...",
           isRequired: true,
           choices: [
             {
