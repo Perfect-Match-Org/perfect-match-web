@@ -38,6 +38,9 @@ export const questions = {
           {
             "name": "twitter",
             "title": "Twitter handle"
+          }, {
+            "name": "snapchat",
+            "title": "Snapchat username"
           },
           {
             "name": "linkedin",
@@ -74,8 +77,12 @@ export const questions = {
             "text": "Stress-free Dyson pupil, but claims to have a “genuine interest” in Discounted Cash Flow model."
           },
           {
+            "value": "med",
+            "text": "Pre-med who spends all their time complaining about CHEM 2070 on Sidechat."
+          },
+          {
             "value": "phil",
-            "text": "Declared their love to you through a timeless sonnet, but won’t be able to use their Philosophy major to support your family"
+            "text": "Philosophy major that can’t pay the bills but declares their love to you in a timeless sonnet."
           },
         ]
       },
@@ -106,7 +113,7 @@ export const questions = {
           },
           {
             "value": "letterman",
-            "text": "Scarsdale High School Letterman Jacket"
+            "text": "Scarsdale High School T-Shirt"
           },
 
         ]
@@ -127,7 +134,7 @@ export const questions = {
           },
           {
             "value": "oken",
-            "text": "Favorite Dining Hall is Oken"
+            "text": "Eats at Okenshields everyday"
           },
           {
             "value": "hinge",
@@ -232,122 +239,50 @@ export const questions = {
           "html": "<br><span style = \"font-size:16px\"><strong>Note: Questions marked with a \"<>\" may be shared with your matches. All other information will remain private and confidential</strong></span>"
         },
         {
-          "type": "multipletext",
-          "name": "agepref",
-          "title": "What age range would you like your matches to be in?",
-          "isRequired": true,
-          "items": [
-            {
-              "name": "youngest_v2",
-              "title": "Youngest",
-              "inputType": "number",
-
-              "validators": [{
-                "requiredErrorText": "You Age must be between 17 and 110",
-
-                "type": "numeric",
-                "text": "",
-                "minValue": 17,
-                "maxValue": 110
-              }]
-            },
-            {
-              "name": "oldest_v2",
-              "title": "Oldest",
-              "inputType": "number",
-              "min": "18",
-              "max": "99"
-            }
-          ]
-        },
-        {
           "type": "checkbox",
-          "name": "activities",
-          "title": "Check all involvements that apply to you.",
+          "name": "interests",
+          "title": "<> I am passionate about... (Select your top 3, and feel free to elaborate on them in your bio!)",
           "isRequired": true,
           "choices": [
             {
-              "value": "athlete",
-              "text": "Student athlete"
+              "value": "travel",
+              "text": "Travel"
             },
             {
-              "value": "greeklife",
-              "text": "Greek life"
+              "value": "tech",
+              "text": "Science/Tech"
             },
             {
-              "value": "proffrat",
-              "text": "Professional fraternity"
+              "value": "music",
+              "text": "Music"
             },
             {
-              "value": "profclub",
-              "text": "Professional club"
+              "value": "art",
+              "text": "Art"
             },
             {
-              "value": "projectteam",
-              "text": "Project team"
+              "value": "fitness",
+              "text": "Fitness"
             },
             {
-              "value": "clubsports",
-              "text": "Club sports"
+              "value": "literature",
+              "text": "Literature/Reading"
             },
             {
-              "value": "socialclub",
-              "text": "Social club"
+              "value": "food",
+              "text": "Food"
             },
             {
-              "value": "culturalclub",
-              "text": "Cultural club"
+              "value": "film",
+              "text": "Entertainment and film"
             },
             {
-              "value": "otherclub",
-              "text": "Other club"
+              "value": "sports",
+              "text": "Sports"
             },
             {
-              "value": "ra",
-              "text": "RA (Resident advisor)"
-            },
-            {
-              "value": "ta",
-              "text": "TA (Teaching Assistant)"
-            }
-          ],
-          "hasNone": true
-        },
-
-      ],
-    },
-    {
-      "name": "Tendencies",
-      "elements": [
-        {
-          "type": "radiogroup",
-          "name": "friday",
-          "title": "What would an average Friday night look like?",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "pjsnetflix",
-              "text": "Netflix and PJs"
-            },
-            {
-              "value": "netflixchill",
-              "text": "Netflix and chill"
-            },
-            {
-              "value": "frat_party",
-              "text": "Frat party"
-            },
-            {
-              "value": "study",
-              "text": "Studying"
-            },
-            {
-              "value": "mixer",
-              "text": "Mixer or date night"
-            },
-            {
-              "value": "bars",
-              "text": "Bar hopping"
+              "value": "games",
+              "text": "Games"
             }
           ]
         },
@@ -387,6 +322,45 @@ export const questions = {
 
           ]
         },
+
+      ],
+    },
+    {
+      "name": "Tendencies",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "friday",
+          "title": "What would an average Friday night look like?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "pjsnetflix",
+              "text": "Netflix and PJs"
+            },
+            {
+              "value": "netflixchill",
+              "text": "Netflix and chill"
+            },
+            {
+              "value": "frat_party",
+              "text": "Frat party"
+            },
+            {
+              "value": "study",
+              "text": "Studying"
+            },
+            {
+              "value": "mixer",
+              "text": "Mixer or date night"
+            },
+            {
+              "value": "bars",
+              "text": "Bar hopping"
+            }
+          ]
+        },
+
         {
           "type": "radiogroup",
           "name": "date",
@@ -423,30 +397,7 @@ export const questions = {
             }
           ]
         },
-        {
-          "type": "radiogroup",
-          "name": "work",
-          "title": "At what time of day are you most productive?",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "morning",
-              "text": "Morning"
-            },
-            {
-              "value": "afternoon",
-              "text": "Afternoon"
-            },
-            {
-              "value": "evening",
-              "text": "Evening"
-            },
-            {
-              "value": "nocturnal",
-              "text": "I am nocturnal"
-            }
-          ]
-        },
+
         {
           "type": "multipletext",
           "name": "sleephabits",
@@ -568,34 +519,9 @@ export const questions = {
             }
           ]
         },
-        {
-          "type": "text",
-          "name": "desscribeyou",
-          "title": "<> Choose the best three words to describe your personality. (e.g. funny, smart, charming)",
-          "isRequired": true
-        },
-        {
-          "type": "text",
-          "name": "describepartner",
-          "title": "Choose the best three words to describe your ideal partner.",
-          "isRequired": true
-        },
-        {
-          "type": "radiogroup",
-          "name": "todolist",
-          "title": "Do you keep a formal to-do list?",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "yes",
-              "text": "Yes"
-            },
-            {
-              "value": "no",
-              "text": "No"
-            }
-          ]
-        },
+
+
+
         {
           "type": "radiogroup",
           "name": "startover",
@@ -729,54 +655,7 @@ export const questions = {
             }
           ]
         },
-        {
-          "type": "checkbox",
-          "name": "interests",
-          "title": "<> I am passionate about... (Select your top 3, and feel free to elaborate on them in your bio!)",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "travel",
-              "text": "Travel"
-            },
-            {
-              "value": "tech",
-              "text": "Science/Tech"
-            },
-            {
-              "value": "music",
-              "text": "Music"
-            },
-            {
-              "value": "art",
-              "text": "Art"
-            },
-            {
-              "value": "fitness",
-              "text": "Fitness"
-            },
-            {
-              "value": "literature",
-              "text": "Literature/Reading"
-            },
-            {
-              "value": "food",
-              "text": "Food"
-            },
-            {
-              "value": "film",
-              "text": "Entertainment and film"
-            },
-            {
-              "value": "sports",
-              "text": "Sports"
-            },
-            {
-              "value": "games",
-              "text": "Games"
-            }
-          ]
-        }
+
       ]
     },
     {
@@ -860,19 +739,7 @@ export const questions = {
             "Strongly Agree"
           ]
         },
-        {
-          "type": "rating",
-          "name": "p7",
-          "title": "If I had a business, I would find it difficult to fire loyal but underperforming employees.",
-          "isRequired": true,
-          "rateValues": [
-            "Strongly Disagree",
-            "Disagree",
-            "Neutral",
-            "Agree",
-            "Strongly Agree"
-          ]
-        },
+
         {
           "type": "rating",
           "name": "p8",
@@ -886,19 +753,7 @@ export const questions = {
             "Strongly Agree"
           ]
         },
-        {
-          "type": "rating",
-          "name": "p9",
-          "title": "I would describe my friends as imaginative and creative.",
-          "isRequired": true,
-          "rateValues": [
-            "Strongly Disagree",
-            "Disagree",
-            "Neutral",
-            "Agree",
-            "Strongly Agree"
-          ]
-        },
+
         {
           "type": "rating",
           "name": "p10",
@@ -925,19 +780,7 @@ export const questions = {
             "Strongly Agree"
           ]
         },
-        {
-          "type": "rating",
-          "name": "p12",
-          "title": "I get anxious right before exams.",
-          "isRequired": true,
-          "rateValues": [
-            "Strongly Disagree",
-            "Disagree",
-            "Neutral",
-            "Agree",
-            "Strongly Agree"
-          ]
-        },
+
         {
           "type": "rating",
           "name": "p13",
@@ -1028,6 +871,24 @@ export const questions = {
             "Agree",
             "Strongly Agree"
           ]
+        },
+        {
+          type: "radiogroup",
+          name: "general-personality",
+          title: "In general, I want my matches be...",
+          isRequired: true,
+          choices: [
+            {
+              value: "simlar",
+              text: "More different to me in personality.",
+            },
+            {
+              value: "different",
+              text: "More similar to me in personality.",
+            },
+
+
+          ],
         },
         {
           "type": "panel",
@@ -1124,6 +985,14 @@ export const questions = {
           name: "longestrelationship",
           title: "How many months was your longest relationship?",
         },
+        {
+          "type": "dropdown",
+          "name": "rice-purity",
+          "title": "What is your Rice Purity Score?",
+          "isRequired": true,
+          "choices": ["0-20", "21-40", "41-60", "61-80", "81-100"]
+        },
+
 
         {
           type: "radiogroup",
@@ -1142,6 +1011,30 @@ export const questions = {
             {
               value: "either",
               text: "I am fine with either",
+            },
+          ],
+        },
+        {
+          type: "checkbox",
+          name: "apps",
+          title: "What dating apps do you use",
+          isRequired: true,
+          choices: [
+            {
+              value: "tinder",
+              text: "Tinder",
+            },
+            {
+              value: "bumble",
+              text: "Bumble",
+            },
+            {
+              value: "grindr",
+              text: "Grindr",
+            },
+            {
+              value: "hinge",
+              text: "Hinge",
             },
           ],
         },
