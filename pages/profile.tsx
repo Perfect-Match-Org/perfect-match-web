@@ -19,7 +19,7 @@ const Profile: NextPage = (props: any) => {
       <Header />
       <div>
         <section className="bg-white dark:bg-rose-300">
-          <div className="items-center pb-5 pt-20 px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
+          <div className="px-10 items-center pb-0 sm:pb-5 pt-20 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
             <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
               Welcome Back, {data.profile.firstName}!
             </h1>
