@@ -20,7 +20,7 @@ const SurveyComponent = (props: any) => {
   });
 
   const prevData =
-    window.localStorage.getItem(storageName) || JSON.stringify(props.survey);
+    JSON.stringify(props.survey) || window.localStorage.getItem(storageName);
 
   if (prevData) {
     let data = JSON.parse(prevData);
