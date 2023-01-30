@@ -2,7 +2,6 @@ import { Tab } from "@headlessui/react";
 import Status from "./status";
 import SurveyComponent from "./survey";
 import ProfileComponent from "./profile-section";
-
 import Crushes from "./crushes";
 import Matches from "./matches";
 
@@ -30,7 +29,7 @@ function ProfileTabs(props: any) {
         </Tab.List>
         <Tab.Panels className="mt-2">
           <Tab.Panel className="rounded-xl bg-white text-black">
-            <Status />
+            <Status optIn={user.optIn} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <h2 className="w-full py-4 px-10 mr-8 text-3xl text-gray-600 font-extrabold leading-9 md:w-1/3">

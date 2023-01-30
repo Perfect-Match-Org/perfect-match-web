@@ -4,11 +4,11 @@ import { gender, race, classYear } from "../../types/enums";
 
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true, index: true },
+  optIn: { type: Boolean, required: true },
   profile: {
     firstName: { type: String, trim: true, required: true },
     lastName: { type: String, trim: true, required: true },
     email: { type: String, trim: true, required: true },
-    optIn: { type: Boolean },
     inRelationship: { type: Boolean },
     gender: { type: String, enum: gender },
     genderPref: [{ type: String, enum: gender }],

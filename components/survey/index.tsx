@@ -46,9 +46,7 @@ const SurveyComponent = (props: any) => {
     });
   });
 
-  var defaultThemeColors = Survey
-    .StylesManager
-    .ThemeColors["default"];
+  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "#fca5a5";
   defaultThemeColors["$main-hover-color"] = "#ff4d4f";
   defaultThemeColors["$text-color"] = "#4a4a4a";
@@ -57,7 +55,6 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$header-background-color"] = "#FFFFFF";
   defaultThemeColors["$body-container-background-color"] = "#fff2f2";
   defaultThemeColors["$primary"] = "#fff2f2";
-
 
   Survey.StylesManager.applyTheme("default");
   // Render the survey

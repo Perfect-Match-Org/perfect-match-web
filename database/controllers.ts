@@ -1,9 +1,10 @@
 import { User } from "./models";
 
 export const createUser = async (user: any) => {
-  const { email, name, given_name, family_name } = user;
+  const { email, given_name, family_name } = user;
   const newUser = new User({
     email: user.email,
+    optIn: false,
     profile: { firstName: given_name, lastName: family_name, email: email },
   });
   const doc = await newUser.save();
@@ -33,6 +34,16 @@ export const updateProfile = async (user: any, profile: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
     { profile: profile },
+    { new: true }
+  );
+  return doc;
+};
+
+export const updateUserOptIn = async (user: any, optIn: any) => {
+  console.log(user, optIn);
+  const doc = await User.findOneAndUpdate(
+    { email: user.email },
+    { optIn: optIn },
     { new: true }
   );
   return doc;
