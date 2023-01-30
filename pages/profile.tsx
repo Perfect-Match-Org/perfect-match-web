@@ -19,8 +19,8 @@ const Profile: NextPage = (props: any) => {
       <Header />
       <div>
         <section className="bg-white dark:bg-rose-300">
-          <div className="gap-10 items-center py-4 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1 ">
-            <h1 className="text-2xl font-bold text-gray-600 sm:text-3xl">
+          <div className="items-center pb-5 pt-20 px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
+            <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
               Welcome Back, {data.profile.firstName}!
             </h1>
             <p className="mt-1 text-xl  font-bold text-white">
@@ -32,7 +32,7 @@ const Profile: NextPage = (props: any) => {
       <div>
         {" "}
         <section className="bg-white dark:bg-rose-300">
-          <div className="gap-10 pb-5 items-center mx-auto max-w-screen-xl  ">
+          <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
             <div className="bg-white rounded-lg h-auto">
               <ProfileTabs user={data} />
             </div>
