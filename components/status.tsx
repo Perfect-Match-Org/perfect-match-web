@@ -14,10 +14,10 @@ const Status: any = (props: any) => {
 
   return (
     <div>
-      <div className="px-4 py-20 bg-lightblue">
+      <div className="px-2 sm:py-20 bg-lightblue">
         <div className="fle max-w-6xl mx-auto text-gray-600">
           <dl className="w-full md:w-full">
-            <h2 className="w-full py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
+            <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Status
             </h2>
             <p className="mb-8 font-bold">
