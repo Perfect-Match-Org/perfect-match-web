@@ -19,7 +19,7 @@ function Header(props: any) {
             <Toggle />
           </div>
           <div className="hidden justify-between items-center w-full sm:block sm:w-auto sm:order-1">
-            <ul className="flex flex-col mt-4 text-gray-500 font-medium sm:flex-row sm:space-x-6 sm:mt-0 text-lg">
+            <ul className="flex flex-col mt-4 text-gray-500 font-medium sm:flex-row sm:space-x-6 sm:mt-0 md:space-x-9 text-lg">
               <li className="hover:text-rose-400">
                 <Link href="/">Home</Link>
               </li>
