@@ -15,26 +15,25 @@ const Status: any = (props: any) => {
   return (
     <div>
       <div className="px-4 py-20 bg-lightblue">
-        <div className="fle max-w-6xl mx-auto ">
+        <div className="fle max-w-6xl mx-auto text-gray-600">
           <dl className="w-full md:w-full">
-            <h2 className="w-full py-4 mr-8 text-3xl text-gray-600 font-extrabold leading-9 md:w-1/3">
+            <h2 className="w-full py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Status
             </h2>
-            <p className="mb-2">
+            <p className="mb-8 font-bold">
               {props.survey
-                ? "You have completed the survey"
-                : "We are still waiting for you to complete the survey"}
+                ? "You have completed the survey!"
+                : "We are still waiting for you to complete the survey."}
             </p>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Tasks</h3>
             </dt>
             <dd className="mb-8">
-              Please complete all required steps to be included to this years
+              Please complete all required steps to be included to this year&apos;s
               matching.
               <li>Opt In to indicate you are interested in participating. </li>
               <li>
-                Complete the survey so our algorithm can make more sound
-                decisions.
+                Complete the survey so our algorithm can make more sound decisions. It will take about 15 minutes.
               </li>
               <li>Input some crushes/forbidden matches if you&apos;d like.</li>
             </dd>
@@ -42,7 +41,7 @@ const Status: any = (props: any) => {
               <h3 className="text-xl font-semibold">Opt-Out</h3>
             </dt>
             <dd className="mb-8">
-              <div className={optIn ? "text-green-400" : "text-red-400"}>
+              <div className={optIn ? "text-green-500" : "text-red-400"}>
                 <p>
                   {optIn
                     ? "You are currently opted-in to our 2023 matching process."
