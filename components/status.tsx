@@ -36,7 +36,7 @@ const Status: any = (props: any) => {
                 Complete the survey so our algorithm can make more sound
                 decisions.
               </li>
-              <li>Input some crushes/forbidden matches if you'd like.</li>
+              <li>Input some crushes/forbidden matches if you&apos;d like.</li>
             </dd>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Opt-Out</h3>
