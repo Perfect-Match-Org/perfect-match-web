@@ -20,7 +20,7 @@ const Status: any = (props: any) => {
             <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Status
             </h2>
-            <p className="mb-8 font-bold">
+            <p className={props.survey ? "mb-8 font-bold text-green-500" : "mb-8 font-bold text-red-400"}>
               {props.survey
                 ? "You have completed the survey!"
                 : "We are still waiting for you to complete the survey."}
