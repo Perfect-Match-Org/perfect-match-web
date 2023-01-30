@@ -49,7 +49,7 @@ const SurveyComponent = (props: any) => {
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "#fca5a5";
   defaultThemeColors["$main-hover-color"] = "#ff4d4f";
-  defaultThemeColors["$text-color"] = "#4a4a4a";
+  defaultThemeColors["$text-color"] = "#6b7280";
   defaultThemeColors["$header-color"] = "#4a4a4a";
 
   defaultThemeColors["$header-background-color"] = "#FFFFFF";
