@@ -23,7 +23,7 @@ const Profile: NextPage = (props: any) => {
             <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
               Welcome Back, {data.profile.firstName}!
             </h1>
-            <p className="mt-1 text-xl  font-bold text-white">
+            <p className="mt-1 text-xl  font-bold text-gray-500">
               Let&apos;s get matching
             </p>
           </div>
