@@ -69,11 +69,12 @@ const About: any = (props: any) => {
           </section>
         </div>
 
-        <section className="bg-white pt-10 pb-10 md:pb-0">
+        <section className="bg-white pb-4">
           <div
             style={{
               marginLeft: "15%",
               marginRight: "15%",
+              marginBottom: "50px"
             }}
           >
             <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
