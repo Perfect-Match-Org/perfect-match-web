@@ -333,31 +333,27 @@ export const questions = {
               text: "Blues",
             },
             {
+              value: "reggaeton",
+              text: "Reggaeton",
+            },
+            {
               value: "r&b",
               text: "R&B",
             },
-          ],
-        },
-        {
-          type: "checkbox",
-          name: "music",
-          title: "Favorite Music Genre(s): [can check all that apply]",
-          isRequired: true,
-          choices: [
             {
-              value: "pop",
-              text: "Pop",
+              value: "classical",
+              text: "Classical",
             },
             {
-              value: "rock",
-              text: "Rock",
-            },
-            {
-              value: "indie",
-              text: "Indie",
+              value: "kpop",
+              text: "K-pop",
+            }, {
+              value: "edm",
+              text: "EDM",
             },
           ],
         },
+
       ],
     },
     {
@@ -394,11 +390,15 @@ export const questions = {
               value: "stranger",
               text: "Stranger Things",
             },
+            {
+              value: "other",
+              text: "Other",
+            },
           ],
         },
 
         {
-          type: "checkbox",
+          type: "radiogroup",
           name: "date",
           title: "Where would you go on a first date?",
           isRequired: true,
