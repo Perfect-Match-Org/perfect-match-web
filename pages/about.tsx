@@ -22,6 +22,7 @@ const About: any = (props: any) => {
             <div className="order-3 mt-2 w-full flex-shrink-0 sm:w-auto sm:ml-5 sm:mt-0">
               <a
                 href="http://www.google.com"
+                target="_blank"
                 className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-1 text-sm font-medium text-rose-400 shadow-sm hover:bg-rose-50 sm:text-lg"
               >
                 Apply Here!
