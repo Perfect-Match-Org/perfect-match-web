@@ -241,7 +241,7 @@ const About: any = (props: any) => {
             <div className="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2">
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What is Perfect Match?
                   </summary>
 
@@ -255,7 +255,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     How many matches will I get?
                   </summary>
 
@@ -264,7 +264,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What should I do when I receive my Matches?
                   </summary>
 
@@ -275,7 +275,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4">
                     What is the Perfect Match team like?
                   </summary>
 
@@ -288,7 +288,7 @@ const About: any = (props: any) => {
               </div>
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What algorithm does Perfect Match use?
                   </summary>
 
@@ -302,7 +302,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What happens to my data?
                   </summary>
 
@@ -320,7 +320,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     How can I contact the Perfect Match team?
                   </summary>
 
@@ -344,7 +344,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4">
                     How to join the Perfect Match team?
                   </summary>
 
@@ -372,11 +372,10 @@ const About: any = (props: any) => {
               <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 dark:text-white">
                 Contact Us!
               </h2>
-              <p className="mb-4 font-light"></p>
-              <p className="mb-4 font-medium">
+              <p className="mb-4 sm:font-medium">
                 Feel free to reach out with questions, suggestions, comments.{" "}
               </p>
-              <p className="mb-4 font-medium">
+              <p className="mb-4 sm:font-medium">
                 {" "}
                 Email:{" "}
                 <a
