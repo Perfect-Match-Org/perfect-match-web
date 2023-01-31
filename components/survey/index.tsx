@@ -35,7 +35,7 @@ const SurveyComponent = (props: any) => {
     saveSurveyData(survey);
     fetch("/api/survey", {
       method: "POST",
-      body: JSON.stringify({ ...survey.data, ...{ complete: true } }),
+      body: JSON.stringify(survey.data),
     });
   });
 
@@ -47,6 +47,7 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$error-color"] = "#fecdd3";
   defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
   defaultThemeColors["$error-background-color"] = "#fecdd3";
+  defaultThemeColors["$body-container-background-color"] = "#ff0000";
 
   Survey.StylesManager.applyTheme();
   return <Survey.Survey model={survey} />;
