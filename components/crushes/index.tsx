@@ -1,31 +1,30 @@
-// components/survey/index.tsx
 import React from "react";
 import * as Survey from "survey-react"; // import surveyjs
 import { questions } from "./content"; // these are the survey questions
-
-// Modern theme
 import "survey-react/modern.min.css";
-// Default theme
-import 'survey-react/defaultV2.min.css';
+import "survey-react/defaultV2.min.css";
 
-const SurveyComponent = () => {
-  // Apply theme
-
+const SurveyComponent = (props: any) => {
   Survey.StylesManager.applyTheme("modern");
-  // Create a modal
   const survey = new Survey.Model(questions);
-  // Save data incase user refreshing page while filling out form
+
   survey.sendResultOnPageNext = true;
   const storageName = "SurveyNextjs";
+
   function saveSurveyData(survey: any) {
     let data = survey.data;
     data.pageNo = survey.currentPageNo;
     window.localStorage.setItem(storageName, JSON.stringify(data));
   }
+
   survey.onPartialSend.add(function (survey: JSON) {
     saveSurveyData(survey);
   });
-  const prevData = window.localStorage.getItem(storageName) || null;
+
+  const prevData =
+    JSON.stringify({ ...props.crushes, ...props.forbidden }) ||
+    window.localStorage.getItem(storageName);
+
   if (prevData) {
     let data = JSON.parse(prevData);
     survey.data = data;
@@ -37,28 +36,29 @@ const SurveyComponent = () => {
   defaultThemeColors["$main-color"] = "#fda4af";
   defaultThemeColors["$main-hover-color"] = "#fda4af";
   defaultThemeColors["$header-color"] = "#fda4af";
-
-  // defaultThemeColors["$header-background-color"] = "#FFFFFF";
-  // defaultThemeColors["$body-container-background-color"] = "#fff2f2";
   defaultThemeColors["$primary"] = "#fda4af";
   defaultThemeColors["$error-color"] = "#fecdd3";
-  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9",
-    // defaultThemeColors["$inputs-background-color"] = "#fecdd3",
-    defaultThemeColors["$error-background-color"] = "#fecdd3";
-
-
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  defaultThemeColors["$error-background-color"] = "#fecdd3";
   Survey.StylesManager.applyTheme();
-  //When Survey is Complete send data
+
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);
+    let crushes: String[] = [];
+    let forbidden: String[] = [];
+    survey.data.crushes.forEach((crush: any) => {
+      crushes.push(crush.netid + "@cornell.edu");
+    });
+    survey.data.forbidden.forEach((forbid: any) => {
+      forbidden.push(forbid.netid + "@cornell.edu");
+    });
     const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    fetch(`${baseURL}/api/survey`, {
+    fetch(`${baseURL}/api/restrict`, {
       method: "POST",
-      body: JSON.stringify(survey.data),
+      body: JSON.stringify({ crushes: crushes, forbidden: forbidden }),
     });
   });
 
-  // Render the survey
   return <Survey.Survey model={survey} />;
 };
 

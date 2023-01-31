@@ -35,7 +35,7 @@ function ProfileTabs(props: any) {
             <h2 className="pt-10 w-full sm:pt-20 pb-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Profile
             </h2>
-            <ProfileComponent />
+            <ProfileComponent profile={user.profile} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <h2 className="pt-10 w-full sm:pt-20 pb-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
@@ -47,7 +47,7 @@ function ProfileTabs(props: any) {
             <h2 className="pt-10 w-full sm:pt-20 pb-4 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/2">
               Crushes & Forbidden
             </h2>
-            <Crushes />
+            <Crushes crushes={user.crushes} forbidden={user.forbidden} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <Matches />

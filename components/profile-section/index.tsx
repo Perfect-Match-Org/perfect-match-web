@@ -2,6 +2,7 @@ import React from "react";
 import * as Survey from "survey-react";
 import { questions } from "./content";
 import "survey-react/modern.min.css";
+
 const SurveyComponent = (props: any) => {
   Survey.StylesManager.applyTheme("modern");
   const survey = new Survey.Model(questions);
@@ -20,7 +21,7 @@ const SurveyComponent = (props: any) => {
   });
 
   const prevData =
-    JSON.stringify(props.survey) || window.localStorage.getItem(storageName);
+    JSON.stringify(props.profile) || window.localStorage.getItem(storageName);
 
   if (prevData) {
     let data = JSON.parse(prevData);
@@ -33,29 +34,19 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$main-color"] = "#fda4af";
   defaultThemeColors["$main-hover-color"] = "#fda4af";
   defaultThemeColors["$header-color"] = "#fda4af";
-
-  // defaultThemeColors["$header-background-color"] = "#FFFFFF";
-  // defaultThemeColors["$body-container-background-color"] = "#fff2f2";
   defaultThemeColors["$primary"] = "#fda4af";
   defaultThemeColors["$error-color"] = "#fecdd3";
-  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9",
-    // defaultThemeColors["$inputs-background-color"] = "#fecdd3",
-    defaultThemeColors["$error-background-color"] = "#fecdd3";
-
-
-
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  defaultThemeColors["$error-background-color"] = "#fecdd3";
   Survey.StylesManager.applyTheme();
-  //When Survey is Complete send data
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);
-    const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    fetch("/api/survey", {
+    fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(survey.data),
     });
   });
 
-  // Render the survey
   return <Survey.Survey model={survey} />;
 };
 

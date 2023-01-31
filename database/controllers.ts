@@ -39,6 +39,24 @@ export const updateProfile = async (user: any, profile: any) => {
   return doc;
 };
 
+export const updateCrushes = async (user: any, crushes: any) => {
+  const doc = await User.findOneAndUpdate(
+    { email: user.email },
+    { crushes: crushes },
+    { new: true }
+  );
+  return doc;
+};
+
+export const updateForbidden = async (user: any, forbidden: any) => {
+  const doc = await User.findOneAndUpdate(
+    { email: user.email },
+    { forbidden: forbidden },
+    { new: true }
+  );
+  return doc;
+};
+
 export const updateUserOptIn = async (user: any, optIn: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
