@@ -24,7 +24,7 @@ function Header(props: any) {
                 <Link href="/">Home</Link>
               </li>
               <li className="hover:text-rose-400">
-                <Link href="/profile">Profile</Link>
+                <Link href="/api/auth/signin">Profile</Link>
               </li>
               <li className="hover:text-rose-400">
                 <Link href="/statistics"> Statistics</Link>
