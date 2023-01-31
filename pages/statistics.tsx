@@ -39,7 +39,8 @@ const Statistics: any = (props: any) => {
             </p>
 
             <svg id="demographicsBar" width="500" height="500"></svg>
-            <script type="text/javascript" src="../d3scripts/demographicsBar.js"></script>
+            <script src="demographicsBar.js"></script>
+
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
