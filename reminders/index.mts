@@ -3,9 +3,13 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 require("dotenv").config();
 const admins = require("./admins.json");
+users = [];
+require("./matches.json").forEach((user) => {
+  users.push(user.email);
+});
 
 adminEmails = [];
-admins.map((admin) => {
+admins.forEach((admin) => {
   adminEmails.push(admin.email);
 });
 
