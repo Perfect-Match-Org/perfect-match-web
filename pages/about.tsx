@@ -74,7 +74,7 @@ const About: any = (props: any) => {
             style={{
               marginLeft: "15%",
               marginRight: "15%",
-              marginBottom: "50px"
+              marginBottom: "50px",
             }}
           >
             <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
@@ -276,13 +276,13 @@ const About: any = (props: any) => {
                 </details>
                 <details className="mb-5">
                   <summary className="font-semibold  bg-white rounded-md py-2 px-4">
-                  What is the Perfect Match team like?
+                    What is the Perfect Match team like?
                   </summary>
 
-                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
-                  There are currently seven members in the team. Each of us focuses 
-                    on designing, developing, or marketing; there is no leader, 
-                    and we make decisions together. 
+                  <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
+                    There are currently seven members in the team. Each of us
+                    focuses on designing, developing, or marketing; there is no
+                    leader, and we make decisions together.
                   </p>
                 </details>
               </div>
@@ -348,9 +348,16 @@ const About: any = (props: any) => {
                     How to join the Perfect Match team?
                   </summary>
 
-                  <p style={{paddingTop: "10px", paddingLeft: "15px"}}>
-                    We welcome new members and new ideas! If you are interested in joining the team, please fill out this <a href="https://forms.gle/Jv5th8zbajVF6qN6A" className="underline">form</a> at any time.
-                    We will contact you soon.
+                  <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
+                    We welcome new members and new ideas! If you are interested
+                    in joining the team, please fill out this{" "}
+                    <a
+                      href="https://forms.gle/Jv5th8zbajVF6qN6A"
+                      className="underline"
+                    >
+                      form
+                    </a>{" "}
+                    at any time. We will contact you soon.
                   </p>
                 </details>
               </div>
