@@ -10,20 +10,20 @@ function ProfileTabs(props: any) {
   return (
     <div className="w-full items-center px-2 py-4 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 px-2 rounded-xl   ">
-          <Tab className="text-base p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300 bg-rose-100 ">
+        <Tab.List className="flex space-x-1 px-0 rounded-xl   ">
+          <Tab className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300" style={{ background: "#ffebed"}}>
             Status
           </Tab>
-          <Tab className="text-base p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300 bg-rose-200 ">
+          <Tab className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300" style={{ background: "#ffd8db"}}>
             Profile
           </Tab>
-          <Tab className="text-base p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300 bg-rose-300">
+          <Tab className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300" style={{ background: "#ffc4c9"}}>
             Survey
           </Tab>
-          <Tab className="text-base p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300 bg-pink-200 ">
+          <Tab className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300" style={{ background: "#ffb1b7"}}>
             Crushes & Forbidden
           </Tab>
-          <Tab className="text-base p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300 bg-pink-300 ">
+          <Tab className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300" style={{ background: "#ff9da5"}}>
             Matches
           </Tab>
         </Tab.List>

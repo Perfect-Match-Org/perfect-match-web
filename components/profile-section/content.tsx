@@ -2,7 +2,7 @@
 export const questions = {
   logoPosition: "right",
   completedHtml:
-    "<h3>Profile Updated!</h3><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
+    "<h3>Profile Updated!</h3>",
 
   focusFirstQuestionAutomatic: false,
   checkErrorsMode: "onValueChanged",

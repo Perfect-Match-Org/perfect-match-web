@@ -5,7 +5,7 @@ export const questions = {
   focusFirstQuestionAutomatic: false,
   checkErrorsMode: "onValueChanged",
   completedHtml:
-    "<h3>Survey Updated!</h3><br><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
+    "<h3>Survey Updated!<h3>",
 
   pages: [
     {
@@ -28,7 +28,7 @@ export const questions = {
                   type: "expression",
                   text: "Please enter at least one method of contact",
                   expression:
-                    "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.phone} notempty or {contact.other} notempty",
+                    "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.snapchat} notempty or {contact.twitter} notempty or {contact.phone} notempty or {contact.other} notempty",
                 },
               ],
               items: [
@@ -333,31 +333,27 @@ export const questions = {
               text: "Blues",
             },
             {
-              value: "r&b",
+              value: "reggaeton",
+              text: "Reggaeton",
+            },
+            {
+              value: "rAndB",
               text: "R&B",
             },
-          ],
-        },
-        {
-          type: "checkbox",
-          name: "music",
-          title: "Favorite Music Genre(s): [can check all that apply]",
-          isRequired: true,
-          choices: [
             {
-              value: "pop",
-              text: "Pop",
+              value: "classical",
+              text: "Classical",
             },
             {
-              value: "rock",
-              text: "Rock",
-            },
-            {
-              value: "indie",
-              text: "Indie",
+              value: "kpop",
+              text: "K-pop",
+            }, {
+              value: "edm",
+              text: "EDM",
             },
           ],
         },
+
       ],
     },
     {
@@ -394,11 +390,15 @@ export const questions = {
               value: "stranger",
               text: "Stranger Things",
             },
+            {
+              value: "other",
+              text: "Other",
+            },
           ],
         },
 
         {
-          type: "checkbox",
+          type: "radiogroup",
           name: "date",
           title: "Where would you go on a first date?",
           isRequired: true,
@@ -1042,6 +1042,14 @@ export const questions = {
           isRequired: true,
 
           title: "How many people have you dated in the last 5 years?",
+          validators: [
+            {
+              type: "numeric",
+              text: "",
+              minValue: 0,
+              maxValue: 200,
+            },
+          ],
         },
         {
           type: "text",
@@ -1054,7 +1062,7 @@ export const questions = {
               type: "numeric",
               text: "",
               minValue: 0,
-              maxValue: 144,
+              maxValue: 200,
             },
           ],
         },
