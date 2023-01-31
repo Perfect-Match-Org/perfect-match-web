@@ -19,7 +19,7 @@ const About: any = (props: any) => {
             </div>
             <div className="order-3 mt-2 w-full flex-shrink-0 sm:w-auto sm:ml-5 sm:mt-0">
               <a
-                href="http://www.google.com"
+                href="https://forms.gle/Jv5th8zbajVF6qN6A"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-1 text-sm font-medium text-rose-400 shadow-sm hover:bg-rose-50 sm:text-lg"
