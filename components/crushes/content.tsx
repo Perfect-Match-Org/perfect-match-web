@@ -1,9 +1,7 @@
 export const questions = {
-
   completedHtml:
     "<h3>Crushes Updated!</h3><br><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
   elements: [
-
     {
       type: "html",
       name: "disregard2",
@@ -11,10 +9,11 @@ export const questions = {
     },
     {
       type: "matrixdynamic",
+      name: "crushes",
       addRowText: "Add Person",
       columnColCount: 0,
       title:
-        "Name up to three Crushes. If you enter more than three, the extra ones will be discarded.",
+        "Name up to five Crushes. If you enter more than five, the extra ones will be discarded.",
       rowCount: 0,
       columns: [
         {

@@ -18,14 +18,15 @@ export default async function handler(
   if (!session) return res.status(401).send("Unauthorized");
   await connect();
   const { method } = req;
-  let profile;
   switch (method) {
-    case "GET":
-      profile = await getUser(session.user);
+    case "GET": {
+      const profile = await getUser(session.user);
       return res.status(200).json(profile);
-    case "POST":
-      profile = await updateProfile(session.user, JSON.parse(req.body));
+    }
+    case "POST": {
+      const profile = await updateProfile(session.user, JSON.parse(req.body));
       return res.status(200).json(profile);
+    }
     default:
       return res.status(405).send("Method Not Allowed");
   }

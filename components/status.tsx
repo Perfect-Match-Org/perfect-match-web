@@ -1,53 +1,71 @@
+import { useState } from "react";
+
 const Status: any = (props: any) => {
+  const [optIn, setOptIn] = useState<Boolean>(props.optIn || false);
+  const handleClick = async () => {
+    const baseURL = process.env.NEXT_PUBLIC_API_URL;
+    const res = await fetch(`${baseURL}/api/optIn`, {
+      method: "POST",
+      body: JSON.stringify({ optIn: !optIn }),
+    });
+    const data = await res.json();
+    setOptIn(data);
+  };
+
   return (
     <div>
-      <div className="px-4 py-20 bg-lightblue">
-        <div className="fle max-w-6xl mx-auto ">
+      <div className="px-4 sm:py-20 bg-lightblue">
+        <div className="fle max-w-6xl mx-auto text-gray-600">
           <dl className="w-full md:w-full">
-            <h2 className="w-full py-4 mr-8 text-3xl text-gray-600 font-extrabold leading-9 md:w-1/3">
+            <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Status
             </h2>
+            <p
+              className={
+                props.survey?.complete
+                  ? "mb-8 font-bold text-green-500"
+                  : "mb-8 font-bold text-red-400"
+              }
+            >
+              {props.survey?.complete
+                ? "You have completed the survey!"
+                : "We are still waiting for you to complete the survey."}
+            </p>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Tasks</h3>
             </dt>
-            <div className="w-full bg-gray-200 rounded-full">
-              <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center w-2/3 p-0.5 leading-none rounded-l-full">
-                {" "}
-                33%
-              </div>
-            </div>
-            <dd className="mb-16">
-              Please complete all required steps to be included to this years
-              matching.
-              <li> Complete the Survey</li>
-              <li>Input some Crushes</li>
-              <li>Input some forbidden matches</li>
+            <dd className="mb-8">
+              Please complete all required steps to be included to this
+              year&apos;s matching.
+              <li>Opt In to indicate you are interested in participating. </li>
+              <li>
+                Complete the survey so our algorithm can make more sound
+                decisions. It will take about 15 minutes.
+              </li>
+              <li>Input some crushes/forbidden matches if you&apos;d like.</li>
             </dd>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Opt-Out</h3>
             </dt>
-            <dd className="mb-16">
-              <div className="text-green-400">
-                <p>You are currently opted-in to our 2023 matching process.</p>
+            <dd className="mb-8">
+              <div className={optIn ? "text-green-500" : "text-red-400"}>
+                <p>
+                  {optIn
+                    ? "You are currently opted-in to our 2023 matching process."
+                    : "You are currently opted-out to our 2023 matching process."}
+                </p>
               </div>
-              <div className="text-red-400">
-                <p>You are currently opted-out to our 2023 matching process.</p>
-              </div>
-              <p>
-                Pending completion of the survey, you will be matched with other
-                Cornell students that have also filled out Perfect Match this
-                year.{" "}
-              </p>
-              <button className="bg-transparent hover:bg-rose-500 text-rose-700 font-semibold hover:text-white py-2 px-4 border border-rose-500 hover:border-transparent rounded">
-                Opt-Out
+
+              <button
+                onClick={handleClick}
+                className={`mt-2 bg-transparent hover:bg-rose-500 font-semibold hover:text-white py-1 px-2 border hover:border-transparent rounded ${
+                  optIn
+                    ? "border-rose-500 text-rose-700"
+                    : "border-green-500 text-green-700"
+                }`}
+              >
+                {optIn ? "Opt-Out" : "Opt-In"}
               </button>
-            </dd>
-            <dt className="mb-4">
-              <h3 className="text-xl font-semibold">Need Help?</h3>
-            </dt>
-            <dd className="mb-16">
-              <p>Common FAQ are answered on our About & Contact Page</p>
-              <p>Email us at cornell.perfectmatch@gmail.com</p>
             </dd>
           </dl>
         </div>

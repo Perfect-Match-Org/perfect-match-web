@@ -46,20 +46,21 @@ const SurveyComponent = (props: any) => {
     });
   });
 
-  var defaultThemeColors = Survey
-    .StylesManager
-    .ThemeColors["default"];
-  defaultThemeColors["$main-color"] = "#fca5a5";
-  defaultThemeColors["$main-hover-color"] = "#ff4d4f";
-  defaultThemeColors["$text-color"] = "#4a4a4a";
-  defaultThemeColors["$header-color"] = "#4a4a4a";
+  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
+  defaultThemeColors["$main-color"] = "#fda4af";
+  defaultThemeColors["$main-hover-color"] = "#fda4af";
+  defaultThemeColors["$header-color"] = "#fda4af";
 
-  defaultThemeColors["$header-background-color"] = "#FFFFFF";
-  defaultThemeColors["$body-container-background-color"] = "#fff2f2";
-  defaultThemeColors["$primary"] = "#fff2f2";
+  // defaultThemeColors["$header-background-color"] = "#FFFFFF";
+  // defaultThemeColors["$body-container-background-color"] = "#fff2f2";
+  defaultThemeColors["$primary"] = "#fda4af";
+  defaultThemeColors["$error-color"] = "#fecdd3";
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9",
+    // defaultThemeColors["$inputs-background-color"] = "#fecdd3",
+    defaultThemeColors["$error-background-color"] = "#fecdd3";
 
 
-  Survey.StylesManager.applyTheme("default");
+  Survey.StylesManager.applyTheme();
   // Render the survey
   return <Survey.Survey model={survey} />;
 };

@@ -1,64 +1,53 @@
-// components/survey/index.tsx
 import React from "react";
-import * as Survey from "survey-react"; // import surveyjs
-import { questions } from "./content"; // these are the survey questions
-
-// Modern theme
+import * as Survey from "survey-react";
+import { questions } from "./content";
 import "survey-react/modern.min.css";
-import { AnyBulkWriteOperation } from "mongodb";
-// Default theme
-// import 'survey-react/survey.min.css';
 
 const SurveyComponent = (props: any) => {
-    // Apply theme
-    Survey.StylesManager.applyTheme("modern");
+  Survey.StylesManager.applyTheme("modern");
+  const survey = new Survey.Model(questions);
 
-    // Create a modal
-    const survey = new Survey.Model(questions);
+  survey.sendResultOnPageNext = true;
+  const storageName = "SurveyNextjs";
 
-    // Save data incase user refreshing page while filling out form
-    survey.sendResultOnPageNext = true;
-    const storageName = "SurveyNextjs";
-    function saveSurveyData(survey: any) {
-        let data = survey.data;
-        data.pageNo = survey.currentPageNo;
-        window.localStorage.setItem(storageName, JSON.stringify(data));
+  function saveSurveyData(survey: any) {
+    let data = survey.data;
+    data.pageNo = survey.currentPageNo;
+    window.localStorage.setItem(storageName, JSON.stringify(data));
+  }
+
+  survey.onPartialSend.add(function (survey: JSON) {
+    saveSurveyData(survey);
+  });
+
+  const prevData =
+    JSON.stringify(props.profile) || window.localStorage.getItem(storageName);
+
+  if (prevData) {
+    let data = JSON.parse(prevData);
+    survey.data = data;
+    if (data.pageNo) {
+      survey.currentPageNo = data.pageNo;
     }
-    survey.onPartialSend.add(function (survey: JSON) {
-        saveSurveyData(survey);
+  }
+  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
+  defaultThemeColors["$main-color"] = "#fda4af";
+  defaultThemeColors["$main-hover-color"] = "#fda4af";
+  defaultThemeColors["$header-color"] = "#fda4af";
+  defaultThemeColors["$primary"] = "#fda4af";
+  defaultThemeColors["$error-color"] = "#fecdd3";
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  defaultThemeColors["$error-background-color"] = "#fecdd3";
+  Survey.StylesManager.applyTheme();
+  survey.onComplete.add(function (survey: any, options: any) {
+    saveSurveyData(survey);
+    fetch("/api/profile", {
+      method: "POST",
+      body: JSON.stringify(survey.data),
     });
-    const prevData =
-        window.localStorage.getItem(storageName) || JSON.stringify(props.survey);
-    if (prevData) {
-        let data = JSON.parse(prevData);
-        survey.data = data;
-        if (data.pageNo) {
-            survey.currentPageNo = data.pageNo;
-        }
-    }
-    var defaultThemeColors = Survey
-        .StylesManager
-        .ThemeColors["default"];
-    defaultThemeColors["$main-color"] = "#fca5a5";
-    defaultThemeColors["$main-hover-color"] = "#ff4d4f";
-    defaultThemeColors["$text-color"] = "#4a4a4a";
-    defaultThemeColors["$header-color"] = "#4a4a4a";
+  });
 
-    defaultThemeColors["$header-background-color"] = "#FFFFFF";
-    defaultThemeColors["$body-container-background-color"] = "#fff2f2";
-    Survey.StylesManager.applyTheme("default");
-    //When Survey is Complete send data
-    survey.onComplete.add(function (survey: any, options: any) {
-        saveSurveyData(survey);
-        const baseURL = process.env.NEXT_PUBLIC_API_URL;
-        fetch("/api/survey", {
-            method: "POST",
-            body: JSON.stringify(survey.data),
-        });
-    });
-
-    // Render the survey
-    return <Survey.Survey model={survey} />;
+  return <Survey.Survey model={survey} />;
 };
 
 export default SurveyComponent;
