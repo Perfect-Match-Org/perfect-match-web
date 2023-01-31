@@ -109,7 +109,7 @@ const Statistics: any = (props: any) => {
           </div>
         </section>
 
-        <section className="text-gray-500 bg-pink-100">
+        <section id="privacy" className="text-gray-500 bg-pink-100">
           <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
             <div className="text-center mb-15">
               <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">
