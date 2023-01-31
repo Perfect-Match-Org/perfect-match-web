@@ -30,15 +30,21 @@ const SurveyComponent = (props: any) => {
     }
   }
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
-  defaultThemeColors["$main-color"] = "#fca5a5";
-  defaultThemeColors["$main-hover-color"] = "#ff4d4f";
-  defaultThemeColors["$text-color"] = "#6b7280";
-  defaultThemeColors["$header-color"] = "#4a4a4a";
+  defaultThemeColors["$main-color"] = "#fda4af";
+  defaultThemeColors["$main-hover-color"] = "#fda4af";
+  defaultThemeColors["$header-color"] = "#fda4af";
 
-  defaultThemeColors["$header-background-color"] = "#FFFFFF";
-  defaultThemeColors["$body-container-background-color"] = "#fff2f2";
-  defaultThemeColors["$primary"] = "#fff2f2";
-  Survey.StylesManager.applyTheme("default");
+  // defaultThemeColors["$header-background-color"] = "#FFFFFF";
+  // defaultThemeColors["$body-container-background-color"] = "#fff2f2";
+  defaultThemeColors["$primary"] = "#fda4af";
+  defaultThemeColors["$error-color"] = "#fecdd3";
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9",
+    // defaultThemeColors["$inputs-background-color"] = "#fecdd3",
+    defaultThemeColors["$error-background-color"] = "#fecdd3";
+
+
+
+  Survey.StylesManager.applyTheme();
   //When Survey is Complete send data
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);

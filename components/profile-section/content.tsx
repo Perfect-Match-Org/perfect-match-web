@@ -2,7 +2,7 @@
 export const questions = {
     logoPosition: "right",
     completedHtml:
-        "<h3>Profile Updated!</h3><br><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
+        "<h3>Profile Updated!</h3><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
 
     focusFirstQuestionAutomatic: false,
     checkErrorsMode: "onValueChanged",
@@ -527,8 +527,7 @@ export const questions = {
                 {
                     "type": "comment",
                     "name": "bio",
-                    "title": "<> Bio! Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation!<br><br>Prompts:<br>a. How would your ideal wingperson describe you?<br>b. What would you like your match to know about you?<br>c. Any bio of your choice!",
-                    "isRequired": true,
+                    "title": "<> Bio! What should you match know about you?  Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation! Need some ideas?: a. How would your ideal wingperson describe you? b. What would you like your match to know about you? c. Any bio of your choice!", "isRequired": true,
                 }]
             }]
         },

@@ -10,7 +10,7 @@ function ProfileTabs(props: any) {
   return (
     <div className="w-full items-center px-2 py-4 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 px-0 rounded-xl   ">
+        <Tab.List className="flex space-x-1 px-2 rounded-xl   ">
           <Tab className="text-base p-2 w-full rounded-lg py-2.5 sm:text-lg font-medium leading-5 text-gray-500 hover:bg-gray-300 bg-rose-100 ">
             Status
           </Tab>
