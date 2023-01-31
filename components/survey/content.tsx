@@ -28,7 +28,7 @@ export const questions = {
                   type: "expression",
                   text: "Please enter at least one method of contact",
                   expression:
-                    "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.phone} notempty or {contact.other} notempty",
+                    "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.snapchat} notempty or {contact.twitter} notempty or {contact.phone} notempty or {contact.other} notempty",
                 },
               ],
               items: [
