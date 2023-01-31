@@ -275,7 +275,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What is the Perfect Match team like?
                   </summary>
 
@@ -344,7 +344,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     How to join the Perfect Match team?
                   </summary>
 
