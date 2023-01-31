@@ -17,10 +17,8 @@ export default async function handler(
   if (!session) return res.status(401).send("Unauthorized");
   if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
   await connect();
-  const optIn = await updateUserOptIn(
-    session.user,
-    JSON.parse(req.body)?.optIn
-  );
-  console.log(optIn);
+  const optIn = (
+    await updateUserOptIn(session.user, JSON.parse(req.body)?.optIn)
+  ).optIn;
   return res.status(200).json(optIn);
 }

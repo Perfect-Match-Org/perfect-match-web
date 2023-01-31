@@ -40,7 +40,6 @@ export const updateProfile = async (user: any, profile: any) => {
 };
 
 export const updateUserOptIn = async (user: any, optIn: any) => {
-  console.log(user, optIn);
   const doc = await User.findOneAndUpdate(
     { email: user.email },
     { optIn: optIn },

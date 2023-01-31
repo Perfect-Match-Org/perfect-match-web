@@ -6,7 +6,7 @@ const Status: any = (props: any) => {
     const baseURL = process.env.NEXT_PUBLIC_API_URL;
     const res = await fetch(`${baseURL}/api/optIn`, {
       method: "POST",
-      body: JSON.stringify({ optIn: !props.profile?.optIn }),
+      body: JSON.stringify({ optIn: !optIn }),
     });
     const data = await res.json();
     setOptIn(data);
@@ -20,8 +20,14 @@ const Status: any = (props: any) => {
             <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Status
             </h2>
-            <p className={props.survey ? "mb-8 font-bold text-green-500" : "mb-8 font-bold text-red-400"}>
-              {props.survey
+            <p
+              className={
+                props.survey?.complete
+                  ? "mb-8 font-bold text-green-500"
+                  : "mb-8 font-bold text-red-400"
+              }
+            >
+              {props.survey?.complete
                 ? "You have completed the survey!"
                 : "We are still waiting for you to complete the survey."}
             </p>
@@ -29,11 +35,12 @@ const Status: any = (props: any) => {
               <h3 className="text-xl font-semibold">Tasks</h3>
             </dt>
             <dd className="mb-8">
-              Please complete all required steps to be included to this year&apos;s
-              matching.
+              Please complete all required steps to be included to this
+              year&apos;s matching.
               <li>Opt In to indicate you are interested in participating. </li>
               <li>
-                Complete the survey so our algorithm can make more sound decisions. It will take about 15 minutes.
+                Complete the survey so our algorithm can make more sound
+                decisions. It will take about 15 minutes.
               </li>
               <li>Input some crushes/forbidden matches if you&apos;d like.</li>
             </dd>
