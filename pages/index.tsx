@@ -40,7 +40,7 @@ function Ticket() {
   } else {
     const date = new Date();
     return (<Countdown
-      date={new Date('2023-02-01T00:00:00')}
+      date={new Date('2023-02-01T17:00:00')}
       renderer={renderer}
 
       daysInHours={false}
@@ -80,7 +80,7 @@ const Home: NextPage = () => {
 
           </h1>
 
-          <Image src={logo} alt="logo" width={100} height={100} />
+          <Image src={logo} width={100} height={100} />
           <br></br>
           {Ticket()}
           <div></div>
