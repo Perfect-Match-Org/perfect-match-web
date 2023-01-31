@@ -4,6 +4,19 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Link from "next/link";
 import Script from "next/script";
+import Image from "next/image";
+
+import politicsImg from "/vizImages/politics.png";
+import heatmenImg from "/vizImages/heatmen.png";
+import heatwomenImg from "/vizImages/heatwomen.png";
+import heightImg from "/vizImages/height.png";
+import personality1Img from "/vizImages/personality1.png";
+import personality2Img from "/vizImages/personality2.png";
+import personality3Img from "/vizImages/personality3.png";
+import personality4Img from "/vizImages/personality4.png";
+import personality5Img from "/vizImages/personality5.png";
+import selfbeliefsImg from "/vizImages/selfbeliefs.png";
+import sleepImg from "/vizImages/sleep.png";
 
 const Statistics: any = (props: any) => {
   return (
@@ -50,14 +63,15 @@ const Statistics: any = (props: any) => {
           >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization header
+              Politics
             </p>
-
-            <svg id="demographicsBar" width="500" height="500"></svg>
-            <Script
-              type="text/javascript"
-              src="../d3scripts/demographicsBar.js"
-            ></Script>
+            
+            <Image
+            src={politicsImg}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
@@ -75,11 +89,15 @@ const Statistics: any = (props: any) => {
           >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization header
+              Heat Men
             </p>
 
-            {/* <svg id="demographicsBar" width="500" height="500"></svg> */}
-            {/* <Script type="text/javascript" src="../d3scripts/demographicsBar.js"></Script> */}
+            <Image
+            src={heatmenImg}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
@@ -97,11 +115,223 @@ const Statistics: any = (props: any) => {
           >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization header
+              Heat Women
             </p>
 
-            {/* <svg id="demographicsBar" width="500" height="500"></svg> */}
-            {/* <Script type="text/javascript" src="../d3scripts/demographicsBar.js"></Script> */}
+            <Image
+            src={heatwomenImg}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-gray pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Height
+            </p>
+
+            <Image
+            src={heightImg}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-white pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Personality1
+            </p>
+
+            <Image
+            src={personality1Img}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-gray pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Personality2
+            </p>
+
+            <Image
+            src={personality2Img}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-white pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Personality3
+            </p>
+
+            <Image
+            src={personality3Img}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-gray pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Personality4
+            </p>
+
+            <Image
+            src={personality4Img}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-white pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Personality5
+            </p>
+
+            <Image
+            src={personality5Img}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-gray pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Self Beliefs
+            </p>
+
+            <Image
+            src={selfbeliefsImg}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
+
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              Optional visualization explanation
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-white pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+            {/* insert visualizations here */}
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              sleep
+            </p>
+
+            <Image
+            src={sleepImg}
+            alt="politics"
+            width={1000}
+            height={500}
+            ></Image>
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
               Optional visualization explanation
