@@ -29,7 +29,7 @@ function ProfileTabs(props: any) {
         </Tab.List>
         <Tab.Panels className="mt-2">
           <Tab.Panel className="rounded-xl bg-white text-black">
-            <Status optIn={user.optIn} />
+            <Status optIn={user.optIn} complete={user.survey.complete} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <h2 className="pt-10 w-full sm:pt-20 pb-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">

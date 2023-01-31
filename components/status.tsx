@@ -22,12 +22,12 @@ const Status: any = (props: any) => {
             </h2>
             <p
               className={
-                props.survey?.complete
+                props.complete
                   ? "mb-8 font-bold text-green-500"
                   : "mb-8 font-bold text-red-400"
               }
             >
-              {props.survey?.complete
+              {props.complete
                 ? "You have completed the survey!"
                 : "We are still waiting for you to complete the survey."}
             </p>

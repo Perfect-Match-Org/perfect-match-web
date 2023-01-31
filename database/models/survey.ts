@@ -3,6 +3,7 @@ import * as survey from "../../types/surveyEnums";
 
 export const surveySchema = new Schema(
   {
+    complete: { type: Boolean, default: false },
     social_media: {
       fb: { type: String },
       insta: { type: String },

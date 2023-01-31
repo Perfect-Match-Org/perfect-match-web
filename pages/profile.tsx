@@ -47,7 +47,7 @@ const Profile: NextPage = (props: any) => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   if (!session)
-    return { redirect: { permanent: false, destination: "/" }, props: {} };
+    return { redirect: { permanent: false, destination: "/api/auth/signin" }, props: {} };
   return {
     props: {
       user: session.user,

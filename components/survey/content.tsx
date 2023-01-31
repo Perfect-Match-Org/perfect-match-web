@@ -5,7 +5,7 @@ export const questions = {
   focusFirstQuestionAutomatic: false,
   checkErrorsMode: "onValueChanged",
   completedHtml:
-    "<h3>Survey Updated!</h3><br><h5>Share Perfect Match with your friends and/or on social media! The more participants we get, the more matches we can generate per person.</h5>",
+    "<h3>Survey Updated!<h3>",
 
   pages: [
     {
@@ -28,7 +28,7 @@ export const questions = {
                   type: "expression",
                   text: "Please enter at least one method of contact",
                   expression:
-                    "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.phone} notempty or {contact.other} notempty",
+                    "{contact.fb} notempty or {contact.insta} notempty or {contact.linkedin} notempty or {contact.snapchat} notempty or {contact.twitter} notempty or {contact.phone} notempty or {contact.other} notempty",
                 },
               ],
               items: [
