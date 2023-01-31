@@ -431,22 +431,21 @@ export const questions = {
         },
 
         {
-          type: "multipletext",
-          name: "sleepHabits",
-          title: "Sleep Habits",
-          items: [
-            {
-              name: "sleeptime",
-              isRequired: true,
-              title: "On average, what time do you sleep?",
-            },
-            {
-              name: "waketime",
-              isRequired: true,
-              title: "On average, what time do you wake up?",
-            },
-          ],
+          type: "dropdown",
+          name: "sleeptime",
+          title: "What time do you go to bed?",
+          isRequired: true,
+          choices: ["7pm", "8pm", "9pm", "10pm", "11pm", "12am", "1am", "2am", "3am", "4am", "5am", "6am"],
         },
+        {
+          type: "dropdown",
+          name: "waketime",
+          title: "What time do you wake up?",
+          isRequired: true,
+          choices: ["3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm"],
+        },
+
+
         {
           type: "radiogroup",
           name: "plans",
@@ -1010,12 +1009,24 @@ export const questions = {
         {
           type: "text",
           name: "numdated",
+          isRequired: true,
+
           title: "How many people have you dated in the last 5 years?",
         },
         {
           type: "text",
           name: "longestrelationship",
           title: "How many months was your longest relationship?",
+          requiredErrorText: "You relationship must be between 0 and 144",
+          isRequired: true,
+          validators: [
+            {
+              type: "numeric",
+              text: "",
+              minValue: 0,
+              maxValue: 144,
+            },
+          ],
         },
         {
           type: "dropdown",
