@@ -2,9 +2,7 @@
 const fs = require("fs");
 const config = require("dotenv");
 const AWS = require("aws-sdk");
-const admins = require("./admins.json");
 
-// ---Set Up AWS SES---
 config.config();
 const ses = new AWS.SES({
   region: "us-east-1",
@@ -12,48 +10,49 @@ const ses = new AWS.SES({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });
 
-// ---Get Users and Admins---
-let users = [];
-require("./users.json").forEach((user) => {
-  users.push(user.email);
-});
+const users = () => {
+  let users = [];
+  require("./users.json").forEach((user) => users.push(user.email));
+  return filterEmails(users);
+};
 
-let adminEmails = [];
-admins.forEach((admin) => {
-  adminEmails.push(admin.email);
-});
+const admins = () => {
+  let admins = [];
+  require("./admins.json").forEach((admin) => admins.push(admin.email));
+  return filterEmails(admins);
+};
 
-// ---Send Emails---
+/**
+ * Removing duplicates from the array.
+ */
+const filterEmails = (emails) => {
+  return [...new Set(emails)];
+};
+
+/**
+ * Sends emails to the given addresses.
+ * @param toAddresses: array of email addresses
+ * @param subject: subject of the email
+ * @param body: body of the email
+ */
 const sendEmails = async (toAddresses, subject, body) => {
   const params = {
-    Destination: {
-      ToAddresses: toAddresses,
-    },
+    Destination: { ToAddresses: toAddresses },
     Message: {
-      Body: {
-        Html: {
-          Charset: "UTF-8",
-          Data: body,
-        },
-      },
-      Subject: {
-        Charset: "UTF-8",
-        Data: subject,
-      },
+      Body: { Html: { Charset: "UTF-8", Data: body } },
+      Subject: { Charset: "UTF-8", Data: subject },
     },
     Source: "cornell.perfectmatch@gmail.com",
   };
-
   try {
-    const data = await ses.sendEmail(params).promise();
-    console.log("Email sent:", data.MessageId);
+    await ses.sendEmail(params).promise();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
 sendEmails(
-  ["ps2245@cornell.edu"],
+  admins(),
   "Perfect Match is Releasing Soon!",
   fs.readFileSync("./release.html").toString()
 );
