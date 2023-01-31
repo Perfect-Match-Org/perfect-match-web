@@ -337,7 +337,7 @@ export const questions = {
               text: "Reggaeton",
             },
             {
-              value: "r&b",
+              value: "rAndB",
               text: "R&B",
             },
             {
@@ -1042,6 +1042,14 @@ export const questions = {
           isRequired: true,
 
           title: "How many people have you dated in the last 5 years?",
+          validators: [
+            {
+              type: "numeric",
+              text: "",
+              minValue: 0,
+              maxValue: 200,
+            },
+          ],
         },
         {
           type: "text",
@@ -1054,7 +1062,7 @@ export const questions = {
               type: "numeric",
               text: "",
               minValue: 0,
-              maxValue: 144,
+              maxValue: 200,
             },
           ],
         },

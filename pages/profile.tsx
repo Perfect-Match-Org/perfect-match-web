@@ -18,7 +18,7 @@ const Profile: NextPage = (props: any) => {
       </Head>
       <Header />
       <div>
-        <section className="bg-white dark:bg-rose-300">
+        <section className="bg-white ">
           <div className="px-10 items-center pb-0 sm:pb-5 pt-20 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
             <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
               Welcome Back, {data.profile.firstName}!
@@ -31,7 +31,7 @@ const Profile: NextPage = (props: any) => {
       </div>
       <div>
         {" "}
-        <section className="bg-white dark:bg-rose-300">
+        <section className="bg-white ">
           <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
             <div className="bg-white rounded-lg h-auto">
               <ProfileTabs user={data} />
