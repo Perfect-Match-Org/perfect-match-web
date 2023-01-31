@@ -182,11 +182,15 @@ export const questions = {
         },
         {
           name: "hookupsong",
+          isRequired: true,
+
           type: "text",
           title: "The First Song of My Hook-Up Playlist Is…",
         },
         {
           name: "slopeDay",
+          isRequired: true,
+
           type: "text",
           title: "Which artist should come for Slope Day 2023?",
         },
