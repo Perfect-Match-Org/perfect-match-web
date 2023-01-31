@@ -23,6 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "reminders/index.mts",
   ],
   "exclude": [
     "node_modules"
