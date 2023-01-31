@@ -126,7 +126,7 @@ const Statistics: any = (props: any) => {
           >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              For better or worse, height is one of the first qualities that people evaluate when looking for a significant other. Interested to see how your height compares to other students' on campus?
+              For better or worse, height is one of the first qualities that people evaluate when looking for a significant other. Interested to see how your height compares to other students&apos; on campus?
             </p>
 
             <Image
@@ -147,7 +147,7 @@ const Statistics: any = (props: any) => {
           >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Answers to our controversial questions remained pretty consistent between 2021 and 2022. The biggest change from 2022's results was the share of participants who said they would not start college again if given the chance.
+              Answers to our controversial questions remained pretty consistent between 2021 and 2022. The biggest change from 2022&apos;s results was the share of participants who said they would not start college again if given the chance.
             </p>
 
             <Image
@@ -227,7 +227,7 @@ const Statistics: any = (props: any) => {
           >
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              We asked participants to describe themselves in a few adjectives. Here is the list of the top 20 adjectives used, separated into three categories. It's interesting how similar the adjectives are between genders.
+              We asked participants to describe themselves in a few adjectives. Here is the list of the top 20 adjectives used, separated into three categories. It&apos;s interesting how similar the adjectives are between genders.
             </p>
 
             <Image
@@ -262,7 +262,7 @@ const Statistics: any = (props: any) => {
 
             {/* insert visualizations here */}
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Finally, don't sweat if you have never been in a relationship before. We asked participants to give the both the number of people they had dated and the length of their longest relationship. The results were encouraging: 31% of people said they had never been in a relationship.
+              Finally, don&apos;t sweat if you have never been in a relationship before. We asked participants to give the both the number of people they had dated and the length of their longest relationship. The results were encouraging: 31% of people said they had never been in a relationship.
             </p>
 
             <Image
@@ -274,7 +274,7 @@ const Statistics: any = (props: any) => {
 
 
             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Thanks for taking Perfect Match this year and don't be afraid to shoot your shot!
+              Thanks for taking Perfect Match this year and don&apos;t be afraid to shoot your shot!
             </p>
 
 
