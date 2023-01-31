@@ -1,54 +1,59 @@
 // @ts-nocheck
-const nodemailer = require("nodemailer");
 const fs = require("fs");
-require("dotenv").config();
+const config = require("dotenv");
+const AWS = require("aws-sdk");
 const admins = require("./admins.json");
-users = [];
-require("./matches.json").forEach((user) => {
+
+// ---Set Up AWS SES---
+config.config();
+const ses = new AWS.SES({
+  region: "us-east-1",
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+});
+
+// ---Get Users and Admins---
+let users = [];
+require("./users.json").forEach((user) => {
   users.push(user.email);
 });
 
-adminEmails = [];
+let adminEmails = [];
 admins.forEach((admin) => {
   adminEmails.push(admin.email);
 });
 
-const transporter = nodemailer.createTransport({
-  port: 587,
-  host: "smtp.gmail.com",
-  auth: {
-    user: "cornell.perfectmatch@gmail.com",
-    pass: process.env.GMAIL_PASSWORD,
-  },
-  starttls: {
-    enable: true,
-  },
-  secureConnection: true,
-});
-
-const sendMail = (receivers, subject, body) => {
-  const mailOptions = {
-    from: "Perfect Match <notifications@perfectmatch.ai>",
-    to: "cornell.perfectmatch@gmail.com",
-    bcc: receivers,
-    subject: subject,
-    replyTo: "cornell.perfectmatch@gmail.com",
-    html: body,
+// ---Send Emails---
+const sendEmails = async (toAddresses, subject, body) => {
+  const params = {
+    Destination: {
+      ToAddresses: toAddresses,
+    },
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: body,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: subject,
+      },
+    },
+    Source: "cornell.perfectmatch@gmail.com",
   };
-  transporter.sendMail(mailOptions, function (err, info) {
-    if (err) console.error(err);
-  });
+
+  try {
+    const data = await ses.sendEmail(params).promise();
+    console.log("Email sent:", data.MessageId);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const remindSurveyOut = async (users) => {
-  let receivers = [];
-  users.forEach((user) => receivers.push(user.email));
-  const body = fs.readFileSync("./release.html").toString();
-  sendMail(receivers, "Perfect Match Survey Reminder", body);
-};
-
-sendMail(
-  adminEmails,
-  "Perfect Match Releasing Soon!",
+sendEmails(
+  ["ps2245@cornell.edu"],
+  "Perfect Match is Releasing Soon!",
   fs.readFileSync("./release.html").toString()
 );
