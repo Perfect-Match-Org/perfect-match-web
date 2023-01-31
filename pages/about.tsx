@@ -21,6 +21,7 @@ const About: any = (props: any) => {
               <a
                 href="http://www.google.com"
                 target="_blank"
+                rel="noreferrer"
                 className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-1 text-sm font-medium text-rose-400 shadow-sm hover:bg-rose-50 sm:text-lg"
               >
                 Apply Here!
