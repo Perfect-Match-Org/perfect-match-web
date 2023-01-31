@@ -119,7 +119,7 @@ const Statistics: any = (props: any) => {
             <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
                     Are my survey responses visible to others?
                   </summary>
 
@@ -131,7 +131,7 @@ const Statistics: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold bg-white rounded-md py-2 px-4">
+                  <summary className="font-semibold bg-white rounded-md py-2 px-4 cursor-pointer">
                     Can I be identified from these statistics?
                   </summary>
 
@@ -147,7 +147,7 @@ const Statistics: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
                     How are these visualizations generated?
                   </summary>
 
@@ -159,7 +159,7 @@ const Statistics: any = (props: any) => {
               </div>
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
                     Is my data sold to third-party advertisers?
                   </summary>
 
@@ -169,7 +169,7 @@ const Statistics: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
                     What happens to my data?
                   </summary>
 
@@ -182,7 +182,7 @@ const Statistics: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4">
+                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
                     Who can I contact if I have a privacy concern?
                   </summary>
 
