@@ -49,7 +49,7 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$error-background-color"] = "#fecdd3";
   defaultThemeColors["$body-container-background-color"] = "#ff0000";
 
-  Survey.StylesManager.applyTheme();
+  Survey.StylesManager.applyTheme("default");
   return <Survey.Survey model={survey} />;
 };
 
