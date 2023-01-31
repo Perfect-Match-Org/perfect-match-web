@@ -439,16 +439,42 @@ export const questions = {
           name: "sleeptime",
           title: "What time do you go to bed?",
           isRequired: true,
-          choices: ["7pm", "8pm", "9pm", "10pm", "11pm", "12am", "1am", "2am", "3am", "4am", "5am", "6am"],
+          choices: [
+            "7pm",
+            "8pm",
+            "9pm",
+            "10pm",
+            "11pm",
+            "12am",
+            "1am",
+            "2am",
+            "3am",
+            "4am",
+            "5am",
+            "6am",
+          ],
         },
         {
           type: "dropdown",
           name: "waketime",
           title: "What time do you wake up?",
           isRequired: true,
-          choices: ["3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm"],
+          choices: [
+            "3am",
+            "4am",
+            "5am",
+            "6am",
+            "7am",
+            "8am",
+            "9am",
+            "10am",
+            "11am",
+            "12pm",
+            "1pm",
+            "2pm",
+            "3pm",
+          ],
         },
-
 
         {
           type: "radiogroup",
@@ -1199,7 +1225,7 @@ export const questions = {
           isRequired: true,
           choices: [
             {
-              value: "politiics",
+              value: "politics",
               text: "Difference in political views",
             },
             {
