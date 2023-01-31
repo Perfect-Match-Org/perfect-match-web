@@ -36,23 +36,26 @@ const filterEmails = (emails) => {
  * @param body: body of the email
  */
 const sendEmails = async (toAddresses, subject, body) => {
-  const params = {
-    Destination: { ToAddresses: toAddresses },
-    Message: {
-      Body: { Html: { Charset: "UTF-8", Data: body } },
-      Subject: { Charset: "UTF-8", Data: subject },
-    },
-    Source: "cornell.perfectmatch@gmail.com",
-  };
-  try {
-    await ses.sendEmail(params).promise();
-  } catch (error) {
-    console.log(error);
+  for (let i = 5140; i < toAddresses.length; i += 48) {
+    const params = {
+      Destination: { BccAddresses: toAddresses.slice(i, i + 48) },
+      Message: {
+        Body: { Html: { Charset: "UTF-8", Data: body } },
+        Subject: { Charset: "UTF-8", Data: subject },
+      },
+      Source: "noreply@perfectmatch.ai",
+    };
+    try {
+      await ses.sendEmail(params).promise();
+      console.log("Email sent to " + (i, i + 50));
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
 sendEmails(
-  admins(),
+  users(),
   "Perfect Match is Releasing Soon!",
   fs.readFileSync("./release.html").toString()
 );

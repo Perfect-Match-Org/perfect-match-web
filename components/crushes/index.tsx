@@ -20,9 +20,14 @@ const SurveyComponent = (props: any) => {
   survey.onPartialSend.add(function (survey: JSON) {
     saveSurveyData(survey);
   });
-
+  const dataCrushes = props.crushes.map((crush: any) => {
+    return { netid: crush.split("@")[0] };
+  });
+  const dataForbidden = props.forbidden.map((forbid: any) => {
+    return { netid: forbid.split("@")[0] };
+  });
   const prevData =
-    JSON.stringify({ ...props.crushes, ...props.forbidden }) ||
+    JSON.stringify({ crushes: dataCrushes, forbidden: dataForbidden }) ||
     window.localStorage.getItem(storageName);
 
   if (prevData) {
@@ -41,7 +46,6 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
   defaultThemeColors["$error-background-color"] = "#fecdd3";
   Survey.StylesManager.applyTheme();
-
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);
     let crushes: String[] = [];
@@ -52,8 +56,7 @@ const SurveyComponent = (props: any) => {
     survey.data.forbidden.forEach((forbid: any) => {
       forbidden.push(forbid.netid + "@cornell.edu");
     });
-    const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    fetch(`${baseURL}/api/restrict`, {
+    fetch(`/api/restrict`, {
       method: "POST",
       body: JSON.stringify({ crushes: crushes, forbidden: forbidden }),
     });

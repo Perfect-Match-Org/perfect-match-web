@@ -50,7 +50,7 @@ function ProfileTabs(props: any) {
             <Crushes crushes={user.crushes} forbidden={user.forbidden} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
-            <Matches />
+            <Matches matches={user.matches} />
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

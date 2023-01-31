@@ -182,11 +182,15 @@ export const questions = {
         },
         {
           name: "hookupsong",
+          isRequired: true,
+
           type: "text",
           title: "The First Song of My Hook-Up Playlist Is…",
         },
         {
           name: "slopeDay",
+          isRequired: true,
+
           type: "text",
           title: "Which artist should come for Slope Day 2023?",
         },
@@ -329,31 +333,27 @@ export const questions = {
               text: "Blues",
             },
             {
+              value: "reggaeton",
+              text: "Reggaeton",
+            },
+            {
               value: "r&b",
               text: "R&B",
             },
-          ],
-        },
-        {
-          type: "checkbox",
-          name: "music",
-          title: "Favorite Music Genre(s): [can check all that apply]",
-          isRequired: true,
-          choices: [
             {
-              value: "pop",
-              text: "Pop",
+              value: "classical",
+              text: "Classical",
             },
             {
-              value: "rock",
-              text: "Rock",
-            },
-            {
-              value: "indie",
-              text: "Indie",
+              value: "kpop",
+              text: "K-pop",
+            }, {
+              value: "edm",
+              text: "EDM",
             },
           ],
         },
+
       ],
     },
     {
@@ -390,11 +390,15 @@ export const questions = {
               value: "stranger",
               text: "Stranger Things",
             },
+            {
+              value: "other",
+              text: "Other",
+            },
           ],
         },
 
         {
-          type: "checkbox",
+          type: "radiogroup",
           name: "date",
           title: "Where would you go on a first date?",
           isRequired: true,
@@ -431,22 +435,47 @@ export const questions = {
         },
 
         {
-          type: "multipletext",
-          name: "sleepHabits",
-          title: "Sleep Habits",
-          items: [
-            {
-              name: "sleeptime",
-              isRequired: true,
-              title: "On average, what time do you sleep?",
-            },
-            {
-              name: "waketime",
-              isRequired: true,
-              title: "On average, what time do you wake up?",
-            },
+          type: "dropdown",
+          name: "sleeptime",
+          title: "What time do you go to bed?",
+          isRequired: true,
+          choices: [
+            "7pm",
+            "8pm",
+            "9pm",
+            "10pm",
+            "11pm",
+            "12am",
+            "1am",
+            "2am",
+            "3am",
+            "4am",
+            "5am",
+            "6am",
           ],
         },
+        {
+          type: "dropdown",
+          name: "waketime",
+          title: "What time do you wake up?",
+          isRequired: true,
+          choices: [
+            "3am",
+            "4am",
+            "5am",
+            "6am",
+            "7am",
+            "8am",
+            "9am",
+            "10am",
+            "11am",
+            "12pm",
+            "1pm",
+            "2pm",
+            "3pm",
+          ],
+        },
+
         {
           type: "radiogroup",
           name: "plans",
@@ -1010,12 +1039,24 @@ export const questions = {
         {
           type: "text",
           name: "numdated",
+          isRequired: true,
+
           title: "How many people have you dated in the last 5 years?",
         },
         {
           type: "text",
           name: "longestrelationship",
           title: "How many months was your longest relationship?",
+          requiredErrorText: "You relationship must be between 0 and 144",
+          isRequired: true,
+          validators: [
+            {
+              type: "numeric",
+              text: "",
+              minValue: 0,
+              maxValue: 144,
+            },
+          ],
         },
         {
           type: "dropdown",
@@ -1184,7 +1225,7 @@ export const questions = {
           isRequired: true,
           choices: [
             {
-              value: "politiics",
+              value: "politics",
               text: "Difference in political views",
             },
             {

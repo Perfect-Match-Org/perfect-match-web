@@ -9,9 +9,8 @@ const GoogleAuth = (props: AuthProps) => {
   const auth = () => {
     props.login
       ? signIn("google", {
-        callbackUrl: process.env.NEXT_PUBLIC_API_URL +
-          "/profile"
-      })
+          callbackUrl: process.env.NEXT_PUBLIC_API_URL + "/profile",
+        })
       : signOut();
   };
 

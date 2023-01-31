@@ -19,7 +19,7 @@ const About: any = (props: any) => {
             </div>
             <div className="order-3 mt-2 w-full flex-shrink-0 sm:w-auto sm:ml-5 sm:mt-0">
               <a
-                href="http://www.google.com"
+                href="https://forms.gle/Jv5th8zbajVF6qN6A"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-1 text-sm font-medium text-rose-400 shadow-sm hover:bg-rose-50 sm:text-lg"
@@ -40,12 +40,12 @@ const About: any = (props: any) => {
       <div>
         <div>
           {" "}
-          <section className="bg-white dark:bg-gray-600">
+          <section className="bg-white ">
             <div
               className="gap-6 sm:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col sm:flex-row mx-[5%] sm:mx-[15%] sm:py-24 py-12"
               style={{ display: "flex", paddingLeft: "0px" }}
             >
-              <div className="font text-gray-500 sm:text-lg dark:text-gray-400 sm:w-7/12">
+              <div className="font text-gray-500 sm:text-lg  sm:w-7/12">
                 <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">
                   Cupid just got smarter 🦾💗!
                 </h2>
@@ -69,11 +69,12 @@ const About: any = (props: any) => {
           </section>
         </div>
 
-        <section className="bg-white pt-10 pb-10 md:pb-0">
+        <section className="bg-white pb-4">
           <div
             style={{
               marginLeft: "15%",
               marginRight: "15%",
+              marginBottom: "50px",
             }}
           >
             <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
@@ -240,7 +241,7 @@ const About: any = (props: any) => {
             <div className="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2">
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What is Perfect Match?
                   </summary>
 
@@ -254,7 +255,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     How many matches will I get?
                   </summary>
 
@@ -263,7 +264,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What should I do when I receive my Matches?
                   </summary>
 
@@ -273,10 +274,21 @@ const About: any = (props: any) => {
                     connect when matches are released.
                   </p>
                 </details>
+                <details className="mb-5">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
+                    What is the Perfect Match team like?
+                  </summary>
+
+                  <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
+                    There are currently seven members in the team. Each of us
+                    focuses on designing, developing, or marketing; there is no
+                    leader, and we make decisions together.
+                  </p>
+                </details>
               </div>
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What algorithm does Perfect Match use?
                   </summary>
 
@@ -290,7 +302,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     What happens to my data?
                   </summary>
 
@@ -308,16 +320,7 @@ const About: any = (props: any) => {
                   </p>
                 </details>
                 <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
-                    What is the Perfect Match team like?
-                  </summary>
-
-                  <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
-                    Will add the answer tmr.
-                  </p>
-                </details>
-                <details className="mb-5">
-                  <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
                     How can I contact the Perfect Match team?
                   </summary>
 
@@ -340,23 +343,39 @@ const About: any = (props: any) => {
                     !
                   </p>
                 </details>
+                <details className="mb-5">
+                  <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
+                    How to join the Perfect Match team?
+                  </summary>
+
+                  <p style={{ paddingTop: "10px", paddingLeft: "15px" }}>
+                    We welcome new members and new ideas! If you are interested
+                    in joining the team, please fill out this{" "}
+                    <a
+                      href="https://forms.gle/Jv5th8zbajVF6qN6A"
+                      className="underline"
+                    >
+                      form
+                    </a>{" "}
+                    at any time. We will contact you soon.
+                  </p>
+                </details>
               </div>
             </div>
           </div>
         </section>
       </div>
       <div>
-        <section className="bg-white dark:bg-gray-600">
+        <section className="bg-white ">
           <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
-            <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 dark:text-white">
+            <div className="max-w-screen-lg text-gray-500 sm:text-lg ">
+              <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 ">
                 Contact Us!
               </h2>
-              <p className="mb-4 font-light"></p>
-              <p className="mb-4 font-medium">
+              <p className="mb-4 sm:font-medium">
                 Feel free to reach out with questions, suggestions, comments.{" "}
               </p>
-              <p className="mb-4 font-medium">
+              <p className="mb-4 sm:font-medium">
                 {" "}
                 Email:{" "}
                 <a
