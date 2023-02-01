@@ -1,37 +1,15 @@
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-/*   border-top: 1px solid #eaeaea; */
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
 .countdown {
   color: white;
-  padding-top: 10%;
   text-align: center;
-  border: 30px solid black;
 
   font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
 }
 
-.privacy {
-  color: white;
-  border: 30px solid black;
 
-  font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
-}
 
 .landingtext {
   font-size: 300%;
+  color: black
 }
 
 .ticker {
@@ -55,4 +33,18 @@
 
 .about {
   color: white;
+}
+
+.surveybody {
+  height: 100%
+}
+
+.survey {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 0;
+  height: 100%
 }
