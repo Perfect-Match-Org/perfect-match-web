@@ -69,7 +69,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={politicsImg}
-              alt="politics"
+              alt="A look into user political beliefs!"
               width={1000}
               height={500}
             ></Image>
@@ -92,7 +92,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={heatmenImg}
-              alt="politics"
+              alt="A look into user (men) age preferences!"
               width={1000}
               height={500}
             ></Image>
@@ -110,7 +110,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={heatwomenImg}
-              alt="politics"
+              alt="A look into user (women) age preferences!"
               width={1000}
               height={500}
             ></Image>
@@ -131,7 +131,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={heightImg}
-              alt="politics"
+              alt="What do users think about height?"
               width={1000}
               height={500}
             ></Image>
@@ -152,7 +152,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={personality1Img}
-              alt="politics"
+              alt="Some deep personality questions..."
               width={1000}
               height={500}
             ></Image>
@@ -170,7 +170,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={personality2Img}
-              alt="politics"
+              alt="Some deep personality questions..."
               width={1000}
               height={500}
             ></Image>
@@ -189,7 +189,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={personality3Img}
-              alt="politics"
+              alt="Some deep personality questions..."
               width={1000}
               height={500}
             ></Image>
@@ -232,7 +232,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={selfbeliefsImg}
-              alt="politics"
+              alt="Some deep personality questions..."
               width={800}
               height={600}
             ></Image>
@@ -255,7 +255,7 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={sleepImg}
-              alt="politics"
+              alt="Some deep personality questions..."
               width={1000}
               height={500}
             ></Image>
@@ -267,9 +267,9 @@ const Statistics: any = (props: any) => {
 
             <Image
               src={personality5Img}
-              alt="politics"
+              alt="Some deep personality questions..."
               width={1000}
-              height={500}
+              height={450}
             ></Image>
 
 
