@@ -2,10 +2,26 @@ import GoogleAuth from "../components/googleAuth";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Toggle from "./burgerMenu";
+import Script from 'next/script'
+
 
 function Header(props: any) {
   return (
+
     <header>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-4RWCJT2EZV"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-4RWCJT2EZV');
+        `}
+      </Script>
       <nav className="bg-white border-gray-200 pr-4 lg:px-6 py-2.5 light:bg-gray-800 main-nav">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link href="/" className="flex items-center">
