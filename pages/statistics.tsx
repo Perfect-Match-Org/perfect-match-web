@@ -54,6 +54,7 @@ const Statistics: any = (props: any) => {
         <section className="bg-white pt-3 sm:pb-5 pb-1">
           <Script src="https://d3js.org/d3.v7.min.js"></Script>
           <Script src="https://d3js.org/topojson.v3.min.js"></Script>
+          <p>Last year, 4273 participants signed up to meet their Perfect Match. Here is a look at the results of the survey!</p>
           <div
             style={{
               marginLeft: "15%",
@@ -62,24 +63,19 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Politics
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              We asked participants to both rate their political tendencies on a scale of 1 to 10, with 1 being the farthest left and 10 being the most right, and rate their political activity on a scale of 1 to 5.
             </p>
-            
+
             <Image
-            src={politicsImg}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={politicsImg}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
           </div>
-        </section>
 
-        <section className="bg-gray pt-3 sm:pb-5 pb-1">
           <div
             style={{
               marginLeft: "15%",
@@ -88,24 +84,21 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Heat Men
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Participants also gave the minimum and maximum ages they would be willing to be matched with. We expected men and women to answer differently, but we were not prepared for just how differently men and women responded. This is a look at how age preferences broke down by gender.
+
             </p>
+
 
             <Image
-            src={heatmenImg}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={heatmenImg}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
           </div>
-        </section>
 
-        <section className="bg-white pt-3 sm:pb-5 pb-1">
           <div
             style={{
               marginLeft: "15%",
@@ -114,24 +107,16 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Heat Women
-            </p>
 
             <Image
-            src={heatwomenImg}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={heatwomenImg}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
           </div>
-        </section>
 
-        <section className="bg-gray pt-3 sm:pb-5 pb-1">
           <div
             style={{
               marginLeft: "15%",
@@ -140,24 +125,19 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Height
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              For better or worse, height is one of the first qualities that people evaluate when looking for a significant other. Interested to see how your height compares to other students' on campus?
             </p>
 
             <Image
-            src={heightImg}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={heightImg}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
           </div>
-        </section>
 
-        <section className="bg-white pt-3 sm:pb-5 pb-1">
           <div
             style={{
               marginLeft: "15%",
@@ -166,24 +146,19 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Personality1
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Answers to our controversial questions remained pretty consistent between 2021 and 2022. The biggest change from 2022's results was the share of participants who said they would not start college again if given the chance.
             </p>
 
             <Image
-            src={personality1Img}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={personality1Img}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
           </div>
-        </section>
 
-        <section className="bg-gray pt-3 sm:pb-5 pb-1">
           <div
             style={{
               marginLeft: "15%",
@@ -192,24 +167,17 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Personality2
-            </p>
 
             <Image
-            src={personality2Img}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={personality2Img}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
+
           </div>
-        </section>
 
-        <section className="bg-white pt-3 sm:pb-5 pb-1">
           <div
             style={{
               marginLeft: "15%",
@@ -218,24 +186,38 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Personality3
-            </p>
 
             <Image
-            src={personality3Img}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={personality3Img}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
+
           </div>
-        </section>
 
-        <section className="bg-gray pt-3 sm:pb-5 pb-1">
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+
+          </div>
+
+          <div
+            style={{
+              marginLeft: "15%",
+              marginRight: "15%",
+              marginBottom: "50px",
+            }}
+          >
+
+
+          </div>
+
           <div
             style={{
               marginLeft: "15%",
@@ -244,20 +226,17 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Personality4
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              We asked participants to describe themselves in a few adjectives. Here is the list of the top 20 adjectives used, separated into three categories. It's interesting how similar the adjectives are between genders.
             </p>
 
             <Image
-            src={personality4Img}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={selfbeliefsImg}
+              alt="politics"
+              width={800}
+              height={600}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
           </div>
         </section>
 
@@ -270,72 +249,36 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Personality5
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Need to know the best time to plan a date or make an impromptu phone call? Here is the aggregate data on when people are most likely to fall asleep and wake up.
             </p>
 
             <Image
-            src={personality5Img}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={sleepImg}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
-          </div>
-        </section>
-
-        <section className="bg-gray pt-3 sm:pb-5 pb-1">
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Self Beliefs
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Finally, don't sweat if you have never been in a relationship before. We asked participants to give the both the number of people they had dated and the length of their longest relationship. The results were encouraging: 31% of people said they had never been in a relationship.
             </p>
 
             <Image
-            src={selfbeliefsImg}
-            alt="politics"
-            width={1000}
-            height={500}
+              src={personality5Img}
+              alt="politics"
+              width={1000}
+              height={500}
             ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
-          </div>
-        </section>
 
-        <section className="bg-white pt-3 sm:pb-5 pb-1">
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
-            {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              sleep
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Thanks for taking Perfect Match this year and don't be afraid to shoot your shot!
             </p>
 
-            <Image
-            src={sleepImg}
-            alt="politics"
-            width={1000}
-            height={500}
-            ></Image>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Optional visualization explanation
-            </p>
+
           </div>
         </section>
 
