@@ -13,6 +13,7 @@ const Home: NextPage = (props: any) => {
   });
   return (
     <div>
+
       <Head>
         <title>Perfect Match</title>
         <meta name="description" content="Find your Perfect Match" />
