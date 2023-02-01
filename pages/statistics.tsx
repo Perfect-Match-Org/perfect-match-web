@@ -62,20 +62,16 @@ const Statistics: any = (props: any) => {
         <section className="bg-white pt-3 sm:pb-5 pb-1">
           <Script src="https://d3js.org/d3.v7.min.js"></Script>
           <Script src="https://d3js.org/topojson.v3.min.js"></Script>
-          <p>
-            In 2021, 4273 participants signed up to meet their Perfect Match.
+          <p className="my-4 lg:my-10 mx-[5%] sm:mx-[10%] lg:mx-[20%] max-w-4xl sm:text-xl text-gray-500">
+            In 2021, <strong className="text-rose-400 font-extrabold">4273</strong> participants signed up to meet their Perfect Match.
             Here is a look at the results of the survey!
           </p>
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              We asked participants to both rate their political tendencies on a
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              We asked participants to both rate their <strong className="text-rose-400">political tendencies </strong> on a
               scale of 1 to 10, with 1 being the farthest left and 10 being the
               most right, and rate their political activity on a scale of 1 to
               5.
@@ -84,22 +80,19 @@ const Statistics: any = (props: any) => {
             <Image
               src={politicsImg}
               alt="A look into user political beliefs!"
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              Participants also gave the minimum and maximum ages they would be
-              willing to be matched with. We expected men and women to answer
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Participants also gave <strong className="text-rose-400">the 
+              minimum and maximum ages they would be willing to be matched 
+              with</strong>. We expected men and women to answer
               differently, but we were not prepared for just how differently men
               and women responded. This is a look at how age preferences broke
               down by gender.
@@ -108,59 +101,46 @@ const Statistics: any = (props: any) => {
             <Image
               src={heatmenImg}
               alt="A look into user (men) age preferences!"
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
 
             <Image
               src={heatwomenImg}
               alt="A look into user (women) age preferences!"
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              For better or worse, height is one of the first qualities that
-              people evaluate when looking for a significant other. Interested
-              to see how your height compares to other students&apos; on campus?
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              For better or worse, <strong className="text-rose-400">height</strong> is
+              one of the first qualities that people evaluate when looking for 
+              a significant other. Interested to see how your height compares to other
+              students&apos; on campus?
             </p>
 
             <Image
               src={heightImg}
               alt="What do users think about height?"
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               Answers to our controversial questions remained pretty consistent
               between 2020 and 2021. The biggest change from 2021&apos;s results
               was the share of participants who said they would not start
@@ -170,35 +150,23 @@ const Statistics: any = (props: any) => {
             <Image
               src={personality1Img}
               alt="Some deep personality questions..."
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
 
             <Image
               src={personality2Img}
               alt="Some deep personality questions..."
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
 
             <Image
@@ -209,33 +177,13 @@ const Statistics: any = (props: any) => {
             ></Image>
           </div>
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          ></div>
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
 
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          ></div>
-
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               We asked participants to describe themselves in a few adjectives.
-              Here is the list of the top 20 adjectives used, separated into
+              Here is the list of <strong className="text-rose-400">the top 20 adjectives used</strong>, separated into
               three categories. It&apos;s interesting how similar the adjectives
               are between genders.
             </p>
@@ -247,51 +195,53 @@ const Statistics: any = (props: any) => {
               height={600}
             ></Image>
           </div>
+
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
         </section>
 
         <section className="bg-white pt-3 sm:pb-5 pb-1">
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              Need to know the best time to plan a date or make an impromptu
-              phone call? Here is the aggregate data on when people are most
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Need to know <strong className="text-rose-400">the best time to plan a date or make an impromptu
+              phone call</strong>? Here is the aggregate data on when people are most
               likely to fall asleep and wake up.
             </p>
 
             <Image
               src={sleepImg}
               alt="Some deep personality questions..."
-              width={1000}
-              height={500}
+              width={800}
+              height={400}
             ></Image>
+          </div>
 
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+            <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               Finally, don&apos;t sweat if you have never been in a relationship
-              before. We asked participants to give the both the number of
+              before. We asked participants to give both the number of
               people they had dated and the length of their longest
-              relationship. The results were encouraging: 31% of people said
-              they had never been in a relationship.
+              relationship. The results were encouraging: <strong className="text-rose-400">31% of people said
+              they had never been in a relationship</strong>.
             </p>
 
             <Image
               src={personality5Img}
               alt="Some deep personality questions..."
-              width={1000}
-              height={450}
+              width={800}
+              height={350}
             ></Image>
+            </div>
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+            <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               Thanks for taking Perfect Match this year and don&apos;t be afraid
               to shoot your shot!
             </p>
-          </div>
         </section>
 
         <section id="privacy" className="text-gray-500 bg-pink-100">
@@ -378,13 +328,9 @@ const Statistics: any = (props: any) => {
                     already has and will continue to be used in to improve our
                     algorithm and measures to protect privacy. We can be reached
                     at{" "}
-                    <a
-                      href="mailto:cornell.perfectmatch@gmail.com"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <Link href="mailto:cornell.perfectmatch@gmail.com">
                       cornell.perfectmatch@gmail.com!
-                    </a>
+                    </Link>
                   </p>
                 </details>
               </div>

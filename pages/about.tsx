@@ -312,9 +312,9 @@ const About: any = (props: any) => {
                     anonymous statistics to improve our algorithm, but your
                     identity will always be separated from such reports. More
                     FAQ&apos;s about user privacy can be found{" "}
-                    <Link href="/statistics#privacy" className="underline">
+                    <div className="underline inline" ><Link href="/statistics#privacy">
                       here
-                    </Link>
+                    </Link></div>
                     .
                   </p>
                 </details>
