@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   const { session } = pageProps;
+  
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
