@@ -29,9 +29,17 @@ const Statistics: any = (props: any) => {
         <div>
           {" "}
           <section
-            className="sm:mx-[5%]"
-            style={{ marginBottom: "10px", marginTop: "-10px", height: "100%" }}
-          >
+        className="sm:mx-[5%]"
+        style={{
+          marginBottom: "20px",
+          marginTop: "10px",
+          backgroundImage: 'url("networks.png")',
+          height: "100%",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right top",
+        }}
+      >
             <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
               <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
                 <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
