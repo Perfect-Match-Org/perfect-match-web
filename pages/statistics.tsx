@@ -63,7 +63,7 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               We asked participants to both rate their political tendencies on a scale of 1 to 10, with 1 being the farthest left and 10 being the most right, and rate their political activity on a scale of 1 to 5.
             </p>
 
@@ -84,7 +84,7 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               Participants also gave the minimum and maximum ages they would be willing to be matched with. We expected men and women to answer differently, but we were not prepared for just how differently men and women responded. This is a look at how age preferences broke down by gender.
 
             </p>
@@ -125,8 +125,8 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              For better or worse, height is one of the first qualities that people evaluate when looking for a significant other. Interested to see how your height compares to other students&apos; on campus?
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              For better or worse, height is one of the first qualities that people evaluate when looking for a significant other. Interested to see how your height compares to other students' on campus?
             </p>
 
             <Image
@@ -146,8 +146,8 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Answers to our controversial questions remained pretty consistent between 2021 and 2022. The biggest change from 2022&apos;s results was the share of participants who said they would not start college again if given the chance.
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Answers to our controversial questions remained pretty consistent between 2021 and 2022. The biggest change from 2022's results was the share of participants who said they would not start college again if given the chance.
             </p>
 
             <Image
@@ -226,8 +226,8 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              We asked participants to describe themselves in a few adjectives. Here is the list of the top 20 adjectives used, separated into three categories. It&apos;s interesting how similar the adjectives are between genders.
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              We asked participants to describe themselves in a few adjectives. Here is the list of the top 20 adjectives used, separated into three categories. It's interesting how similar the adjectives are between genders.
             </p>
 
             <Image
@@ -249,7 +249,7 @@ const Statistics: any = (props: any) => {
             }}
           >
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               Need to know the best time to plan a date or make an impromptu phone call? Here is the aggregate data on when people are most likely to fall asleep and wake up.
             </p>
 
@@ -261,8 +261,8 @@ const Statistics: any = (props: any) => {
             ></Image>
 
             {/* insert visualizations here */}
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Finally, don&apos;t sweat if you have never been in a relationship before. We asked participants to give the both the number of people they had dated and the length of their longest relationship. The results were encouraging: 31% of people said they had never been in a relationship.
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Finally, don't sweat if you have never been in a relationship before. We asked participants to give the both the number of people they had dated and the length of their longest relationship. The results were encouraging: 31% of people said they had never been in a relationship.
             </p>
 
             <Image
@@ -273,8 +273,8 @@ const Statistics: any = (props: any) => {
             ></Image>
 
 
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Thanks for taking Perfect Match this year and don&apos;t be afraid to shoot your shot!
+            <p className="mt-4 mx-[10%] sm:mx-0 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+              Thanks for taking Perfect Match this year and don't be afraid to shoot your shot!
             </p>
 
 
