@@ -48,7 +48,7 @@ const SurveyComponent = (props: any) => {
   
   defaultThemeColors["$error-background-color"] = "#fecdd3";
   defaultThemeColors["$header-background-color"] = "#ff0000";
-  defaultThemeColors["$body-container-background-color"] = "#ff0000";
+  defaultThemeColors["$answer-background-color"] = "#ff0000";
 
   defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
   defaultThemeColors["$progress-buttons-line-color"] = "#ff0000";
