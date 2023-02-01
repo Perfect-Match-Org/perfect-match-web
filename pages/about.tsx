@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import Footer from "../components/footer";
 import Header from "../components/header";
 
@@ -88,7 +89,9 @@ const About: any = (props: any) => {
                     and the survey! For updates on PM23, follow us on{" "}
                     <a
                       className="underline"
-                      href="https://www.instagram.com/cornellperfectmatch/?hl=en"
+                      href="https://www.instagram.com/cornellperfectmatch/"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       IG
                     </a>
@@ -164,7 +167,9 @@ const About: any = (props: any) => {
                     and the survey! For updates on PM23, follow us on{" "}
                     <a
                       className="underline"
-                      href="https://www.instagram.com/cornellperfectmatch/?hl=en"
+                      href="https://www.instagram.com/cornellperfectmatch/"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       IG
                     </a>
@@ -307,9 +312,9 @@ const About: any = (props: any) => {
                     anonymous statistics to improve our algorithm, but your
                     identity will always be separated from such reports. More
                     FAQ&apos;s about user privacy can be found{" "}
-                    <a href="\statistics#privacy" className="underline">
+                    <Link href="/statistics#privacy" className="underline">
                       here
-                    </a>
+                    </Link>
                     .
                   </p>
                 </details>
@@ -323,7 +328,9 @@ const About: any = (props: any) => {
                     us on{" "}
                     <a
                       className="underline"
-                      href="https://www.instagram.com/cornellperfectmatch/?hl=en"
+                      href="https://www.instagram.com/cornellperfectmatch/"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       IG
                     </a>{" "}
@@ -331,6 +338,8 @@ const About: any = (props: any) => {
                     <a
                       className="underline"
                       href="https://www.reddit.com/user/PerfectMatch2020/"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       Reddit
                     </a>
@@ -348,6 +357,8 @@ const About: any = (props: any) => {
                     <a
                       href="https://forms.gle/Jv5th8zbajVF6qN6A"
                       className="underline"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       form
                     </a>{" "}
@@ -373,7 +384,8 @@ const About: any = (props: any) => {
                 {" "}
                 Email:{" "}
                 <a
-                  className="underline"
+                  target="_blank"
+                  rel="noreferrer"
                   href="mailto:cornell.perfectmatch@gmail.com"
                 >
                   cornell.perfectmatch@gmail.com
