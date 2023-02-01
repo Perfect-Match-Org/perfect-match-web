@@ -17,7 +17,7 @@ const SurveyComponent = (props: any) => {
     window.localStorage.setItem(storageName, JSON.stringify(data));
   }
 
-  survey.onPartialSend.add(function (survey: JSON) {
+  survey.onPartialSend.add(function (survey: any) {
     saveSurveyData(survey);
   });
   const dataCrushes = props.crushes.map((crush: any) => {
