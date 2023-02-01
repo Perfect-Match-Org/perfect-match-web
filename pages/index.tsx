@@ -21,7 +21,7 @@ const Home: NextPage = (props: any) => {
       </Head>
       <Header />
       <section
-        className="sm:mx-[5%]"
+        className="lg:mx-[3%]"
         style={{
           marginBottom: "20px",
           marginTop: "-10px",
@@ -32,24 +32,26 @@ const Home: NextPage = (props: any) => {
           backgroundPosition: "right top",
         }}
       >
-        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
-          <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
+        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center lg:pt-60 lg:pb-36">
+          <div className="text-center lg:text-left lg:ml-[8%] mt-8 lg:mt-0">
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
               Let us find your
-              <strong className="mt-2 sm:mt-3 block font-extrabold text-rose-400">
+              <strong className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
                 Perfect Match💘!
               </strong>
             </h1>
-            <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
-              Last year, we had over 4,200 participants. Share the link with
-              your friends, and help spread some joy in 2023!
+            <p className="mt-4 mx-[5%] lg:max-w-lg sm:mx-[10%] lg:mx-0 sm:text-xl text-gray-500 sm:leading-relaxed">
+            Last year, we had over 4,200 participants. Fill out 
+            the survey <strong>by noon, 13 Feb.</strong>, and get 
+            your Matches the same evening. Share the link with 
+            your friends, and help spread some joy in 2023!
             </p>
             {!error && currentCount && (
-              <p className="mt-4 max-w-lg sm:text-xl text-gray-500 sm:leading-relaxed">
+              <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">
                 Join over {currentCount} Cornellians getting matched this year!
               </p>
             )}
-            <div className="flex sm:contents">
+            <div className="flex lg:contents">
               <div className="mt-8 flex flex-wrap gap-4 text-center mx-auto">
                 <GoogleAuth login={!props.user} />
               </div>
