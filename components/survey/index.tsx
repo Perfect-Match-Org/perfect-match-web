@@ -45,10 +45,13 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$header-color"] = "#fda4af";
   defaultThemeColors["$primary"] = "#fda4af";
   defaultThemeColors["$error-color"] = "#fecdd3";
-  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  
   defaultThemeColors["$error-background-color"] = "#fecdd3";
   defaultThemeColors["$header-background-color"] = "#ff0000";
   defaultThemeColors["$body-container-background-color"] = "#ff0000";
+
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  defaultThemeColors["$progress-buttons-line-color"] = "#ff0000";
 
   Survey.StylesManager.applyTheme("default");
   return <Survey.Survey model={survey} />;
