@@ -4,7 +4,7 @@ import { questions } from "./content";
 import "survey-react/modern.min.css";
 
 const SurveyComponent = (props: any) => {
-  Survey.StylesManager.applyTheme("modern");
+  Survey.StylesManager.applyTheme("default");
 
   const survey = new Survey.Model(questions);
   survey.sendResultOnPageNext = true;
@@ -35,7 +35,7 @@ const SurveyComponent = (props: any) => {
     saveSurveyData(survey);
     fetch("/api/survey", {
       method: "POST",
-      body: JSON.stringify({ ...survey.data, ...{ complete: true } }),
+      body: JSON.stringify(survey.data),
     });
   });
 
@@ -45,10 +45,15 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$header-color"] = "#fda4af";
   defaultThemeColors["$primary"] = "#fda4af";
   defaultThemeColors["$error-color"] = "#fecdd3";
-  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  
   defaultThemeColors["$error-background-color"] = "#fecdd3";
+  defaultThemeColors["$header-background-color"] = "#ff0000";
+  defaultThemeColors["$body-container-background-color"] = "#ff0000";
 
-  Survey.StylesManager.applyTheme();
+  defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
+  defaultThemeColors["$progress-buttons-line-color"] = "#ff0000";
+
+  Survey.StylesManager.applyTheme("default");
   return <Survey.Survey model={survey} />;
 };
 
