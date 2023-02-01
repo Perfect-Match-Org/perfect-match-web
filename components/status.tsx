@@ -1,15 +1,12 @@
 import { useState } from "react";
 
 const Status: any = (props: any) => {
-  const [optIn, setOptIn] = useState<Boolean>(props.optIn || false);
   const handleClick = async () => {
     const baseURL = process.env.NEXT_PUBLIC_API_URL;
-    const res = await fetch(`${baseURL}/api/optIn`, {
+    await fetch(`${baseURL}/api/optIn`, {
       method: "POST",
-      body: JSON.stringify({ optIn: !optIn }),
-    });
-    const data = await res.json();
-    setOptIn(data);
+      body: JSON.stringify({ optIn: !props.optIn }),
+    }).then((resp) => props.refresh());
   };
 
   return (
@@ -48,9 +45,9 @@ const Status: any = (props: any) => {
               <h3 className="text-xl font-semibold">Opt-Out</h3>
             </dt>
             <dd className="mb-8">
-              <div className={optIn ? "text-green-500" : "text-red-400"}>
+              <div className={props.optIn ? "text-green-500" : "text-red-400"}>
                 <p>
-                  {optIn
+                  {props.optIn
                     ? "You are currently opted-in to our 2023 matching process."
                     : "You are currently opted-out to our 2023 matching process."}
                 </p>
@@ -59,12 +56,12 @@ const Status: any = (props: any) => {
               <button
                 onClick={handleClick}
                 className={`mt-2 bg-transparent hover:bg-rose-500 font-semibold hover:text-white py-1 px-2 border hover:border-transparent rounded ${
-                  optIn
+                  props.optIn
                     ? "border-rose-500 text-rose-700"
                     : "border-green-500 text-green-700"
                 }`}
               >
-                {optIn ? "Opt-Out" : "Opt-In"}
+                {props.optIn ? "Opt-Out" : "Opt-In"}
               </button>
             </dd>
           </dl>

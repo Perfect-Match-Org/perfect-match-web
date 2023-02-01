@@ -31,11 +31,11 @@ const SurveyComponent = (props: any) => {
     }
   }
 
-  survey.onComplete.add(function (survey: any, options: any) {
+  survey.onComplete.add(async function (survey: any, options: any) {
     saveSurveyData(survey);
-    fetch("/api/survey", {
+    await fetch("/api/survey", {
       method: "POST",
-      body: JSON.stringify(survey.data),
+      body: JSON.stringify({ ...survey.data, ...{ complete: true } }),
     }).then((res) => props.refresh());
   });
 

@@ -40,9 +40,9 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$answer-background-color"] = "#rgba(255, 157, 165, 0.5)";
   Survey.StylesManager.applyTheme("default");
 
-  survey.onComplete.add(function (survey: any, options: any) {
+  survey.onComplete.add(async function (survey: any, options: any) {
     saveSurveyData(survey);
-    fetch("/api/profile", {
+    await fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(survey.data),
     }).then((res) => props.refresh());
