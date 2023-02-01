@@ -45,8 +45,9 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$error-color"] = "#fecdd3";
   defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
   defaultThemeColors["$error-background-color"] = "#fecdd3";
-  defaultThemeColors["$add-button-color"] = "#ffb1b7";
-  Survey.StylesManager.applyTheme();
+  defaultThemeColors["$add-button-color"] = "#fda4af";
+  defaultThemeColors["$answer-background-color"] = "#rgba(255, 157, 165, 0.5)";
+  Survey.StylesManager.applyTheme("default");
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);
     let crushes: String[] = [];
