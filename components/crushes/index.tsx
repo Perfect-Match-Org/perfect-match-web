@@ -26,9 +26,10 @@ const SurveyComponent = (props: any) => {
   const dataForbidden = props.forbidden.map((forbid: any) => {
     return { netid: forbid.split("@")[0] };
   });
-  const prevData =
-    JSON.stringify({ crushes: dataCrushes, forbidden: dataForbidden }) ||
-    window.localStorage.getItem(storageName);
+  const prevData = JSON.stringify({
+    crushes: dataCrushes,
+    forbidden: dataForbidden,
+  });
 
   if (prevData) {
     let data = JSON.parse(prevData);
@@ -52,16 +53,18 @@ const SurveyComponent = (props: any) => {
     saveSurveyData(survey);
     let crushes: String[] = [];
     let forbidden: String[] = [];
-    survey.data.crushes.forEach((crush: any) => {
-      crushes.push(crush.netid + "@cornell.edu");
-    });
-    survey.data.forbidden.forEach((forbid: any) => {
-      forbidden.push(forbid.netid + "@cornell.edu");
-    });
+    survey.data.crushes &&
+      survey.data.crushes.forEach((crush: any) => {
+        crushes.push(crush.netid + "@cornell.edu");
+      });
+    survey.data.forbidden &&
+      survey.data.forbidden.forEach((forbid: any) => {
+        forbidden.push(forbid.netid + "@cornell.edu");
+      });
     fetch(`/api/restrict`, {
       method: "POST",
       body: JSON.stringify({ crushes: crushes, forbidden: forbidden }),
-    });
+    }).then((res) => props.refresh());
   });
 
   return <Survey.Survey model={survey} />;

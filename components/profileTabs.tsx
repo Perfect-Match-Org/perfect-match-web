@@ -44,28 +44,36 @@ function ProfileTabs(props: any) {
         </Tab.List>
         <Tab.Panels className="mt-2">
           <Tab.Panel className="rounded-xl bg-white text-black">
-            <Status optIn={user.optIn} complete={user.survey?.complete} />
+            <Status
+              optIn={user.optIn}
+              complete={user.survey?.complete}
+              refresh={props.refresh}
+            />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <h2 className="pt-10 w-full sm:pt-20 pb-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Profile
             </h2>
-            <ProfileComponent profile={user.profile} />
+            <ProfileComponent profile={user.profile} refresh={props.refresh} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <h2 className="pt-10 w-full sm:pt-20 pb-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
               Survey
             </h2>
-            <SurveyComponent survey={user.survey} />
+            <SurveyComponent survey={user.survey} refresh={props.refresh} />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
             <h2 className="pt-10 w-full sm:pt-20 pb-4 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/2">
               Crushes & Forbidden
             </h2>
-            <Crushes crushes={user.crushes} forbidden={user.forbidden} />
+            <Crushes
+              crushes={user.crushes}
+              forbidden={user.forbidden}
+              refresh={props.refresh}
+            />
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3">
-            <Matches matches={user.matches} />
+            <Matches matches={user.matches} refresh={props.refresh} />
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

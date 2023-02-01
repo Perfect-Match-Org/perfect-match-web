@@ -20,8 +20,7 @@ const SurveyComponent = (props: any) => {
     saveSurveyData(survey);
   });
 
-  const prevData =
-    JSON.stringify(props.profile) || window.localStorage.getItem(storageName);
+  const prevData = JSON.stringify(props.profile);
 
   if (prevData) {
     let data = JSON.parse(prevData);
@@ -40,12 +39,13 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$error-background-color"] = "#fecdd3";
   defaultThemeColors["$answer-background-color"] = "#rgba(255, 157, 165, 0.5)";
   Survey.StylesManager.applyTheme("default");
+
   survey.onComplete.add(function (survey: any, options: any) {
     saveSurveyData(survey);
     fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(survey.data),
-    });
+    }).then((res) => props.refresh());
   });
 
   return <Survey.Survey model={survey} />;

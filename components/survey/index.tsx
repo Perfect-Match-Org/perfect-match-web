@@ -36,7 +36,7 @@ const SurveyComponent = (props: any) => {
     fetch("/api/survey", {
       method: "POST",
       body: JSON.stringify(survey.data),
-    });
+    }).then((res) => props.refresh());
   });
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
@@ -45,7 +45,6 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$header-color"] = "#fda4af";
   defaultThemeColors["$primary"] = "#fda4af";
   defaultThemeColors["$error-color"] = "#fecdd3";
-  
   defaultThemeColors["$error-background-color"] = "#fecdd3";
   defaultThemeColors["$answer-background-color"] = "#rgba(255, 157, 165, 0.5)";
 

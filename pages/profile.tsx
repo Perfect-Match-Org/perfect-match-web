@@ -9,7 +9,8 @@ import { fetcher } from "../helpers/fetch";
 import Head from "next/head";
 
 const Profile: NextPage = (props: any) => {
-  const { data, error } = useSWR("/api/profile", fetcher);
+  const { data, error, mutate } = useSWR("/api/profile", fetcher);
+  const refresh = () => mutate();
   if (!data) return <Spinner />;
   return (
     <div>
@@ -34,7 +35,7 @@ const Profile: NextPage = (props: any) => {
         <section className="bg-white ">
           <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
             <div className="bg-white rounded-lg h-auto">
-              <ProfileTabs user={data} />
+              <ProfileTabs user={data} refresh={refresh} />
             </div>
           </div>
         </section>
@@ -47,7 +48,10 @@ const Profile: NextPage = (props: any) => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   if (!session)
-    return { redirect: { permanent: false, destination: "/api/auth/signin" }, props: {} };
+    return {
+      redirect: { permanent: false, destination: "/api/auth/signin" },
+      props: {},
+    };
   return {
     props: {
       user: session.user,
