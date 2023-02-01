@@ -9,7 +9,7 @@ const SurveyComponent = (props: any) => {
   const survey = new Survey.Model(questions);
 
   survey.sendResultOnPageNext = true;
-  const storageName = "SurveyNextjs";
+  const storageName = "CrushesNextjs";
 
   function saveSurveyData(survey: any) {
     let data = survey.data;
