@@ -4,7 +4,7 @@ import * as survey from "../../types/surveyEnums";
 export const surveySchema = new Schema(
   {
     complete: { type: Boolean, default: false },
-    social_media: {
+    contact: {
       fb: { type: String },
       insta: { type: String },
       twitter: { type: String },
@@ -56,14 +56,10 @@ export const surveySchema = new Schema(
     p18: { type: String, enum: survey.range },
     p19: { type: String, enum: survey.range },
     generalPersonality: { type: String, enum: ["similar", "different"] },
-    panel1: {
-      introvert: { type: Number, min: 1, max: 10 },
-      introvert_same: { type: String, enum: survey.panel },
-    },
-    panel2: {
-      easygoing: { type: Number, min: 1, max: 10 },
-      easygoing_same: { type: String, enum: survey.panel },
-    },
+    introvert: { type: Number, min: 1, max: 10 },
+    introvert_same: { type: String, enum: survey.panel },
+    easygoing: { type: Number, min: 1, max: 10 },
+    easygoing_same: { type: String, enum: survey.panel },
     numdated: { type: Number, min: 0 },
     longestrelationship: { type: Number, min: 0, max: 144 },
     ricePurity: { type: String, enum: survey.ricePurity },
