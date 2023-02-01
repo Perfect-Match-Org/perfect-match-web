@@ -4,7 +4,7 @@ import { questions } from "./content";
 import "survey-react/modern.min.css";
 
 const SurveyComponent = (props: any) => {
-  Survey.StylesManager.applyTheme("default");
+  Survey.StylesManager.applyTheme("modern");
 
   const survey = new Survey.Model(questions);
   survey.sendResultOnPageNext = true;
@@ -47,11 +47,9 @@ const SurveyComponent = (props: any) => {
   defaultThemeColors["$error-color"] = "#fecdd3";
   
   defaultThemeColors["$error-background-color"] = "#fecdd3";
-  defaultThemeColors["$header-background-color"] = "#ff0000";
-  defaultThemeColors["$answer-background-color"] = "#ff0000";
+  defaultThemeColors["$answer-background-color"] = "#rgba(255, 157, 165, 0.5)";
 
   defaultThemeColors["$progress-buttons-color"] = "#f1f5f9";
-  defaultThemeColors["$progress-buttons-line-color"] = "#ff0000";
 
   Survey.StylesManager.applyTheme("default");
   return <Survey.Survey model={survey} />;
