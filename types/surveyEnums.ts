@@ -133,7 +133,7 @@ export const panel = ["same", "less", "more", "doesnt_matter"];
 
 export const ricePurity = ["0-20", "21-40", "41-60", "61-80", "81-100"];
 
-export const apps = ["tinder", "bumble", "grindr", "hinge"];
+export const apps = ["tinder", "bumble", "grindr", "hinge","none"];
 
 export const habits = [
   "never",
