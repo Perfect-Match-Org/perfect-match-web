@@ -1116,6 +1116,10 @@ export const questions = {
               value: "hinge",
               text: "Hinge",
             },
+            {
+              value: "none",
+              text: "None",
+            },
           ],
         },
         {
