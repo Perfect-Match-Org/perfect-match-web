@@ -41,7 +41,8 @@ const About: any = (props: any) => {
         <div>
           {" "}
           <section className="bg-white ">
-            <div className="gap-6 lg:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
+            <div
+              className="gap-6 lg:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
               style={{ display: "flex", paddingLeft: "0px" }}
             >
               <div className="font text-gray-500 sm:text-lg dark:text-gray-400 lg:w-7/12">
@@ -224,14 +225,14 @@ const About: any = (props: any) => {
           </div>
         </section>
 
-        <section className="bg-white dark:bg-gray-600">
-          <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[10%] lg:mx-[15%]">
-            <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 dark:text-white">
+        <section className="text-gray-500 bg-pink-100">
+          <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
+            <div className="text-center mb-15">
+              <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">
                 Frequently Asked Questions
               </h2>
             </div>
-            <div className="flex flex-wrap sm:mx-auto sm:mb-2 -mx-2">
+            <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
               <div className="w-full lg:w-1/2 px-4">
                 <details className="mb-5">
                   <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
