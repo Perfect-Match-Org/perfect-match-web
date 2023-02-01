@@ -41,11 +41,10 @@ const About: any = (props: any) => {
         <div>
           {" "}
           <section className="bg-white ">
-            <div
-              className="gap-6 sm:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col sm:flex-row mx-[5%] sm:mx-[15%] sm:py-24 py-12"
+            <div className="gap-6 lg:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
               style={{ display: "flex", paddingLeft: "0px" }}
             >
-              <div className="font text-gray-500 sm:text-lg  sm:w-7/12">
+              <div className="font text-gray-500 sm:text-lg dark:text-gray-400 lg:w-7/12">
                 <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">
                   Cupid just got smarter 🦾💗!
                 </h2>
@@ -62,21 +61,15 @@ const About: any = (props: any) => {
                 </p>
                 {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
               </div>
-              <div className="sm:w-5/12">
+              <div className="lg:w-5/12">
                 <img className="rounded-lg" src="\new_cupid.png" />
               </div>
             </div>
           </section>
         </div>
 
-        <section className="bg-white pb-4">
-          <div
-            style={{
-              marginLeft: "15%",
-              marginRight: "15%",
-              marginBottom: "50px",
-            }}
-          >
+        <section className="bg-white pt-3 sm:pb-10 pb-5">
+          <div className="mx-[10%] lg:mx-[15%]">
             <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
               <li>
                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
@@ -231,10 +224,10 @@ const About: any = (props: any) => {
           </div>
         </section>
 
-        <section className="text-gray-500 bg-pink-100 flex">
-          <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto sm:mx-[15%]">
-            <div className="text-center mb-15">
-              <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">
+        <section className="bg-white dark:bg-gray-600">
+          <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[10%] lg:mx-[15%]">
+            <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 dark:text-white">
                 Frequently Asked Questions
               </h2>
             </div>
