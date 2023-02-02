@@ -44,7 +44,7 @@ const SurveyComponent = (props: any) => {
     saveSurveyData(survey);
     await fetch("/api/profile", {
       method: "POST",
-      body: JSON.stringify(survey.data),
+      body: JSON.stringify({ ...survey.data, ...{ complete: true } }),
     }).then((res) => props.refresh());
   });
 

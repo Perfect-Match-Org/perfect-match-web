@@ -1,14 +1,21 @@
-export const faction = ["noshower", "dyson", "med", "phil"];
+export const faction = ["noshower", "dyson", "med", "phil", "none"];
 
-export const clothDate = ["gries", "jersey", "vest", "letterman"];
+export const clothDate = ["gries", "jersey", "vest", "letterman", "none"];
 
-export const alternative = ["drunk", "gothics", "basement", "oken", "hinge"];
+export const alternative = [
+  "drunk",
+  "gothics",
+  "basement",
+  "oken",
+  "hinge",
+  "none",
+];
 
-export const task = ["hookup", "bridge", "stacks", "flirt"];
+export const task = ["hookup", "bridge", "stacks", "flirt", "none"];
 
-export const study = ["duff", "cock", "psb", "lib", "goldwin", "room"];
+export const study = ["duff", "cock", "psb", "lib", "goldwin", "room", "none"];
 
-export const workto = ["work", "live"];
+export const workto = ["work", "live", "none"];
 
 export const interests = [
   "travel",
@@ -21,11 +28,30 @@ export const interests = [
   "film",
   "sports",
   "games",
+
+  "none",
 ];
 
-export const music = ["pop", "rock", "indie", "rap", "jazz", "blues", "r&b"];
+export const music = [
+  "pop",
+  "rock",
+  "indie",
+  "rap",
+  "jazz",
+  "blues",
+  "r&b",
+  "none",
+];
 
-export const tv = ["white", "bear", "ted", "euphoria", "emily", "stranger"];
+export const tv = [
+  "white",
+  "bear",
+  "ted",
+  "euphoria",
+  "emily",
+  "stranger",
+  "none",
+];
 
 export const date = [
   "coffee",
@@ -35,6 +61,8 @@ export const date = [
   "dininghall",
   "fratparty",
   "bubbletea",
+
+  "none",
 ];
 
 export const sleeptime = [
@@ -50,6 +78,8 @@ export const sleeptime = [
   "4am",
   "5am",
   "6am",
+
+  "none",
 ];
 
 export const waketime = [
@@ -66,9 +96,10 @@ export const waketime = [
   "1pm",
   "2pm",
   "3pm",
+  "none",
 ];
 
-export const plans = ["shify", "flow", "cancel", "new"];
+export const plans = ["shify", "flow", "cancel", "new", "none"];
 
 export const meal = [
   "political",
@@ -77,6 +108,7 @@ export const meal = [
   "scientist",
   "entrepreneur",
   "actor",
+  "none",
 ];
 
 export const perfectDay = [
@@ -90,15 +122,17 @@ export const perfectDay = [
   "friends",
   "city",
   "study",
+  "none",
 ];
 
-export const timeormoney = ["time", "money", "influence"];
+export const timeormoney = ["time", "money", "influence", "none"];
 
 export const quality = [
   "reliability",
   "humor",
   "thoughtfulness",
   "independence",
+  "none",
 ];
 
 export const humor = [
@@ -110,6 +144,7 @@ export const humor = [
   "improv",
   "surreal",
   "cultural",
+  "none",
 ];
 
 export const sociability = [
@@ -119,6 +154,7 @@ export const sociability = [
   "in_touch",
   "popular",
   "energetic",
+  "none",
 ];
 
 export const range = [
@@ -127,13 +163,14 @@ export const range = [
   "Neutral",
   "Agree",
   "Strongly Agree",
+  "none",
 ];
 
-export const panel = ["same", "less", "more", "doesnt_matter"];
+export const panel = ["same", "less", "more", "doesnt_matter", "none"];
 
-export const ricePurity = ["0-20", "21-40", "41-60", "61-80", "81-100"];
+export const ricePurity = ["0-20", "21-40", "41-60", "61-80", "81-100", "none"];
 
-export const apps = ["tinder", "bumble", "grindr", "hinge","none"];
+export const apps = ["tinder", "bumble", "grindr", "hinge", "none"];
 
 export const habits = [
   "never",
@@ -142,6 +179,7 @@ export const habits = [
   "often",
   "very_frequently",
   "dont_care",
+  "none",
 ];
 
-export const deal_breakers = ["politics", "social"];
+export const deal_breakers = ["politics", "social", "none"];
