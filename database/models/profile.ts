@@ -3,6 +3,7 @@ import * as profile from "../../types/profileEnums";
 
 export const profileSchema = new Schema(
   {
+    complete: { type: Boolean, default: false },
     firstName: { type: String, trim: true, required: true },
     lastName: { type: String, trim: true, required: true },
     gender: { type: String, enum: profile.gender },

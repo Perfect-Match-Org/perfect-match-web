@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Status: any = (props: any) => {
   const handleClick = async () => {
     const baseURL = process.env.NEXT_PUBLIC_API_URL;
@@ -19,14 +17,30 @@ const Status: any = (props: any) => {
             </h2>
             <p
               className={
-                props?.complete
+                props?.surveyComplete
                   ? "mb-8 font-bold text-green-500"
                   : "mb-8 font-bold text-red-400"
               }
             >
-              {props?.complete
+              {props?.surveyComplete
                 ? "You have completed the survey!"
                 : "We are still waiting for you to complete the survey."}
+            </p>
+            <p
+              className={
+                props?.profileComplete
+                  ? "mb-8 font-bold text-green-500"
+                  : "mb-8 font-bold text-red-400"
+              }
+            >
+              {props?.profileComplete
+                ? "You have completed your profile!"
+                : "We are still waiting for you to complete your profile."}
+            </p>
+            <p className="mb-8 font-bold text-green-500">
+              {props?.surveyComplete &&
+                props?.profileComplete &&
+                "You have completed all the steps! Matchmaking will begin soon, make sure you are opted-in"}
             </p>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Tasks</h3>

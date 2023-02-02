@@ -46,7 +46,8 @@ function ProfileTabs(props: any) {
           <Tab.Panel className="rounded-xl bg-white text-black">
             <Status
               optIn={user.optIn}
-              complete={user.survey?.complete}
+              surveyComplete={user.survey?.complete}
+              profileComplete={user.profile?.complete}
               refresh={props.refresh}
             />
           </Tab.Panel>
