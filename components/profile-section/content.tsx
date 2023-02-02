@@ -1,8 +1,7 @@
 // components/survey/content/index.tsx
 export const questions = {
   logoPosition: "right",
-  completedHtml:
-    "<h3>Profile Updated!</h3>",
+  completedHtml: "<h3>Profile Updated!</h3>",
 
   focusFirstQuestionAutomatic: false,
   checkErrorsMode: "onValueChanged",
@@ -80,7 +79,7 @@ export const questions = {
               name: "age",
               title: "Age",
               requiredErrorText: "You Age must be between 17 and 110",
-              isRequired: false,
+              isRequired: true,
               validators: [
                 {
                   type: "numeric",
