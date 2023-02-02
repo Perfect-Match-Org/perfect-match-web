@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getUsers } from "../../database/controllers";
+import { getUsersCount } from "../../database/controllers";
 import { connect } from "../../database/database";
 
 export default async function handler(
@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   await connect();
   try {
-    const usersCount: number = (await getUsers()).length;
+    const usersCount: number = await getUsersCount();
     return res.status(200).json(usersCount);
   } catch (e: any) {
     return res.status(500).json(e.toString());
