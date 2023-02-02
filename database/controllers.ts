@@ -65,39 +65,3 @@ export const updateUserOptIn = async (user: any, optIn: any) => {
   );
   return doc;
 };
-
-export const updateUserProfileComplete = async () => {
-  const reqFields: any[] = [
-    "profile.firstName",
-    "profile.lastName",
-    "profile.gender",
-    "profile.genderPref",
-    "profile.age",
-    "profile.height",
-    "profile.city",
-    "profile.race",
-    "profile.year",
-    "profile.college",
-    "profile.major",
-    "profile.commitment",
-    "profile.relationshipType",
-    "profile.agePref.youngest",
-    "profile.agePref.oldest",
-    "profile.activities",
-    "profile.describeYourself",
-    "profile.bio",
-  ];
-  const constraints = reqFields.map((field) => {
-    return { [field]: { $exists: true, $ne: "" } };
-  });
-
-  const condition = constraints.reduce(
-    (obj, item) => Object.assign(obj, item),
-    {}
-  );
-  const users = await User.find(condition).exec();
-  await User.updateMany(condition, {
-    $set: { "profile.complete": true },
-  }).exec();
-  return users;
-};
