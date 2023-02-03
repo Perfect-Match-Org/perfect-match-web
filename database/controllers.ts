@@ -23,7 +23,7 @@ export const getUsersCount = async () => {
 };
 
 export const getUsers = async () => {
-  const resp = await User.find().lean();
+  const resp = await User.find();
   return resp;
 };
 
