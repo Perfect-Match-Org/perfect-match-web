@@ -9,11 +9,13 @@ export const createUser = async (user: any) => {
     profile: { firstName: given_name, lastName: family_name, email: email },
   });
   const doc = await newUser.save();
+  const cachedUsers = JSON.parse(await redisClient.get("users")).push(doc);
+  await redisClient.set("users", cachedUsers);
   return doc;
 };
 
 export const getUser = async (user: any) => {
-  const doc = await User.findOne({ email: user.email }).lean();
+  const doc = await User.findOne({ email: user.email });
   return doc;
 };
 
@@ -23,8 +25,13 @@ export const getUsersCount = async () => {
 };
 
 export const getUsers = async () => {
-  const users = await User.find();
-  return users;
+  const cachedUsers = await redisClient.get("users");
+  if (!cachedUsers) {
+    const users = await User.find();
+    redisClient.set("users", JSON.stringify(users));
+    return users;
+  }
+  return JSON.parse(cachedUsers);
 };
 
 export const updateSurvey = async (user: any, survey: any) => {
