@@ -1098,6 +1098,8 @@ export const questions = {
           type: "checkbox",
           name: "apps",
           title: "What dating apps do you use",
+          hasNone: true,
+
           isRequired: true,
           choices: [
             {
@@ -1116,10 +1118,7 @@ export const questions = {
               value: "hinge",
               text: "Hinge",
             },
-            {
-              value: "none",
-              text: "None",
-            },
+
           ],
         },
         {
@@ -1188,7 +1187,7 @@ export const questions = {
           type: "matrix",
           name: "partner_habits",
           title:
-            "At MAXIMUM, how often is it okay for you partner to use the following?",
+            "At MAXIMUM, how often is it okay for your partner to use the following?",
           columns: [
             {
               value: "never",
