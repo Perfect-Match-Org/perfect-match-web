@@ -445,6 +445,8 @@ export const questions = {
                   name: "youngest",
                   title: "Youngest",
                   inputType: "number",
+                  isRequired: true,
+
 
                   validators: [
                     {
@@ -461,6 +463,8 @@ export const questions = {
                   name: "oldest",
                   title: "Oldest",
                   inputType: "number",
+                  isRequired: true,
+
 
                   validators: [
                     {
@@ -541,7 +545,7 @@ export const questions = {
               type: "comment",
               name: "bio",
               title:
-                "<> Bio! What should you match know about you?  Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation! Need some ideas?: a. How would your ideal wingperson describe you? b. What would you like your match to know about you? c. Any bio of your choice!",
+                "<> Bio! What should your match know about you?  Please answer one or more of the prompts below. Your bio can be as short as a sentence encouraging matches to reach out to you or as long as a few paragraphs. We will share it with your matches to help start the conversation! Need some ideas?: a. How would your ideal wingperson describe you? b. What would you like your match to know about you? c. Any bio of your choice!",
               isRequired: true,
             },
           ],
