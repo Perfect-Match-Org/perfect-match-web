@@ -3,6 +3,7 @@ declare global {
   namespace NodeJS {
     interface Global {
       mongoose: any;
+      redisClient: any;
     }
   }
 }

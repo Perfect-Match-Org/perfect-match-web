@@ -1,18 +1,16 @@
-const redis = require("redis");
+// @ts-nocheck
+import * as redis from "redis";
 
-console.log(process.env.REDIS_HOST);
-const client = redis.createClient({
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
-  password: process.env.REDIS_PASSWORD,
-});
+let redisClient: any;
 
-client.on("connect", () => {
-  console.log("Redis client connected");
-});
+if (process.env.NODE_ENV !== "development" || !global.redisClient) {
+  console.log("Creating redis client");
+  redisClient = redis.createClient({ url: process.env.REDIS_URL });
+  redisClient.connect();
+  if (process.env.NODE_ENV === "development") global.redisClient = redisClient;
+} else {
+  console.log("Using existing redis client");
+  redisClient = global.redisClient;
+}
 
-client.on("error", (err: string) => {
-  console.log(`Error: ${err}`);
-});
-
-export default client;
+export { redisClient };
