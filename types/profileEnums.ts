@@ -1,5 +1,5 @@
 //-------------------------Profile Enums--------------------------------
-export const gender = ["male", "female", "nonbinary", "anyone"];
+export const gender = ["male", "female", "nonbinary", "anyone", "other"];
 
 export const classYear = [
   "freshman",
