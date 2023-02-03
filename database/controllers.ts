@@ -13,7 +13,7 @@ export const createUser = async (user: any) => {
 };
 
 export const getUser = async (user: any) => {
-  const doc = await User.findOne({ email: user.email }).lean();
+  const doc = await User.findOne({ email: user.email });
   return doc;
 };
 
