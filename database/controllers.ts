@@ -9,8 +9,6 @@ export const createUser = async (user: any) => {
     profile: { firstName: given_name, lastName: family_name, email: email },
   });
   const doc = await newUser.save();
-  const cachedUsers = JSON.parse(await redisClient.get("users")).push(doc);
-  await redisClient.set("users", cachedUsers);
   return doc;
 };
 
@@ -34,7 +32,7 @@ export const updateSurvey = async (user: any, survey: any) => {
     { email: user.email },
     { survey: survey },
     { new: true }
-  ).lean();
+  );
   return doc;
 };
 
@@ -43,7 +41,7 @@ export const updateProfile = async (user: any, profile: any) => {
     { email: user.email },
     { profile: profile },
     { new: true }
-  ).lean();
+  );
   return doc;
 };
 
@@ -52,7 +50,7 @@ export const updateCrushes = async (user: any, crushes: any) => {
     { email: user.email },
     { crushes: crushes },
     { new: true }
-  ).lean();
+  );
   return doc;
 };
 
@@ -61,7 +59,7 @@ export const updateForbidden = async (user: any, forbidden: any) => {
     { email: user.email },
     { forbidden: forbidden },
     { new: true }
-  ).lean();
+  );
   return doc;
 };
 
@@ -70,6 +68,6 @@ export const updateUserOptIn = async (user: any, optIn: any) => {
     { email: user.email },
     { optIn: optIn },
     { new: true }
-  ).lean();
+  );
   return doc;
 };
