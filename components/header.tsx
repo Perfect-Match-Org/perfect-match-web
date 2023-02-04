@@ -2,12 +2,10 @@ import GoogleAuth from "../components/googleAuth";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Toggle from "./burgerMenu";
-import Script from 'next/script'
-
+import Script from "next/script";
 
 function Header(props: any) {
   return (
-
     <header>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-4RWCJT2EZV"
@@ -52,7 +50,27 @@ function Header(props: any) {
           </div>
         </div>
       </nav>
-      <hr className="border-2 border-rose-300" />
+      <div className="bg-rose-400">
+        <div className="py-2 px-3 sm:px-0 sm:pt-1 sm:pb-0 flex">
+          <div className="flex flex-wrap items-center sm:mx-auto">
+            <div>
+              <p className="ml-2 text-xs text-white sm:text-base pb-1">
+                Interested in joining the Perfect Match Team?
+              </p>
+            </div>
+            <div className="order-3 mt-2 w-full flex-shrink-0 sm:w-auto sm:ml-5 sm:mt-0">
+              <a
+                href="https://forms.gle/Jv5th8zbajVF6qN6A"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center rounded-md border border-transparent bg-white px-2 mb-1  text-sm font-small text-rose-400 shadow-sm hover:bg-rose-50 sm:text-base"
+              >
+                Apply Here!
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
