@@ -3,6 +3,14 @@ import Toggle from "./burgerMenu";
 import Script from "next/script";
 
 function Header(props: any) {
+  const handleClick = () => {
+    gtag("event", "Application_Form", {
+      event_category: "Application",
+      event_label: "submission",
+      value: 1,
+    });
+  };
+
   return (
     <header>
       <Script
@@ -61,6 +69,7 @@ function Header(props: any) {
                 href="https://forms.gle/Jv5th8zbajVF6qN6A"
                 target="_blank"
                 rel="noreferrer"
+                onClick={handleClick}
                 className="flex items-center justify-center rounded-md border border-transparent bg-white sm:px-4 md:px-2 mb-1 text-sm font-small text-rose-400 shadow-sm hover:bg-rose-50 sm:text-lg md:text-base"
               >
                 Apply Here!
@@ -74,3 +83,10 @@ function Header(props: any) {
 }
 
 export default Header;
+function gtag(
+  arg0: string,
+  action: any,
+  arg2: { event_category: any; event_label: any; value: any }
+) {
+  throw new Error("Function not implemented.");
+}
