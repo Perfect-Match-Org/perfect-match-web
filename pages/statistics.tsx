@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import Footer from "../components/footer";
-import Header from "../components/header";
+import { Footer } from "../components/footer";
+import { Header } from "../components/header";
 import Link from "next/link";
 import Script from "next/script";
 import Image from "next/image";

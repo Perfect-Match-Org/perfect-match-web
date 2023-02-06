@@ -1,12 +1,12 @@
-import Footer from "../components/footer";
-import Header from "../components/header";
-import ProfileTabs from "../components/profileTabs";
-import Spinner from "../components/spinner";
+import Head from "next/head";
+import { Footer } from "../components/footer";
+import { Header } from "../components/header";
+import { ProfileTabs } from "../components/profile-tabs";
+import { Spinner } from "../components/general";
 import { NextPage } from "next";
 import { getSession } from "next-auth/react";
-import useSWR from "swr";
 import { fetcher } from "../helpers/fetch";
-import Head from "next/head";
+import useSWR from "swr";
 
 const Profile: NextPage = (props: any) => {
   const { data, error, mutate } = useSWR("/api/profile", fetcher);
