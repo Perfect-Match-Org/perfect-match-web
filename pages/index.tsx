@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
 import Head from "next/head";
+import type { NextPage } from "next";
 import { getSession } from "next-auth/react";
-import Footer from "../components/footer";
-import GoogleAuth from "../components/googleAuth";
-import Header from "../components/header";
-import useSWR from "swr";
+import { Footer } from "../components/footer";
+import { GoogleAuth } from "../components/general";
+import { Header } from "../components/header";
 import { fetcher } from "../helpers/fetch";
+import useSWR from "swr";
 
 const Home: NextPage = (props: any) => {
   const { data: currentCount, error } = useSWR("/api/count", fetcher, {
@@ -13,7 +13,6 @@ const Home: NextPage = (props: any) => {
   });
   return (
     <div>
-
       <Head>
         <title>Perfect Match</title>
         <meta name="description" content="Find your Perfect Match" />
@@ -41,10 +40,10 @@ const Home: NextPage = (props: any) => {
               </strong>
             </h1>
             <p className="mt-4 mx-[5%] lg:max-w-lg sm:mx-[10%] lg:mx-0 sm:text-xl text-gray-500 sm:leading-relaxed">
-            Last year, we had over 4,200 participants. Fill out 
-            the survey <strong>by noon, 13 Feb.</strong>, and get 
-            your Matches the same evening. Share the link with 
-            your friends, and help spread some joy in 2023!
+              Last year, we had over 4,200 participants. Fill out the survey{" "}
+              <strong>by noon, 13 Feb.</strong>, and get your Matches the same
+              evening. Share the link with your friends, and help spread some
+              joy in 2023!
             </p>
             {!error && currentCount && (
               <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">

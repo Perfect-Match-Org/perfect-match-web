@@ -1,22 +1,22 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import Footer from "../components/footer";
-import Header from "../components/header";
+import { Footer } from "../components/footer";
+import { Header } from "../components/header";
 import Link from "next/link";
 import Script from "next/script";
 import Image from "next/image";
 
-import politicsImg from "/vizImages/politics.png";
-import heatmenImg from "/vizImages/heatmen.png";
-import heatwomenImg from "/vizImages/heatwomen.png";
-import heightImg from "/vizImages/height.png";
-import personality1Img from "/vizImages/personality1.png";
-import personality2Img from "/vizImages/personality2.png";
-import personality3Img from "/vizImages/personality3.png";
-import personality4Img from "/vizImages/personality4.png";
-import personality5Img from "/vizImages/personality5.png";
-import selfbeliefsImg from "/vizImages/selfbeliefs.png";
-import sleepImg from "/vizImages/sleep.png";
+import politicsImg from "/analytics/images/politics.png";
+import heatmenImg from "/analytics/images/heatmen.png";
+import heatwomenImg from "/analytics/images/heatwomen.png";
+import heightImg from "/analytics/images/height.png";
+import personality1Img from "/analytics/images/personality1.png";
+import personality2Img from "/analytics/images/personality2.png";
+import personality3Img from "/analytics/images/personality3.png";
+import personality4Img from "/analytics/images/personality4.png";
+import personality5Img from "/analytics/images/personality5.png";
+import selfbeliefsImg from "/analytics/images/selfbeliefs.png";
+import sleepImg from "/analytics/images/sleep.png";
 
 const Statistics: any = (props: any) => {
   return (
@@ -63,18 +63,21 @@ const Statistics: any = (props: any) => {
           <Script src="https://d3js.org/d3.v7.min.js"></Script>
           <Script src="https://d3js.org/topojson.v3.min.js"></Script>
           <p className="my-4 lg:my-10 mx-[5%] sm:mx-[10%] lg:mx-[20%] max-w-4xl sm:text-xl text-gray-500">
-            In 2021, <strong className="text-rose-400 font-extrabold">4273</strong> participants signed up to meet their Perfect Match.
-            Here is a look at the results of the survey!
+            In 2021,{" "}
+            <strong className="text-rose-400 font-extrabold">4273</strong>{" "}
+            participants signed up to meet their Perfect Match. Here is a look
+            at the results of the survey!
           </p>
           <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
 
           <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
             <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              We asked participants to both rate their <strong className="text-rose-400">political tendencies </strong> on a
-              scale of 1 to 10, with 1 being the farthest left and 10 being the
-              most right, and rate their political activity on a scale of 1 to
-              5.
+              We asked participants to both rate their{" "}
+              <strong className="text-rose-400">political tendencies </strong>{" "}
+              on a scale of 1 to 10, with 1 being the farthest left and 10 being
+              the most right, and rate their political activity on a scale of 1
+              to 5.
             </p>
 
             <Image
@@ -90,12 +93,14 @@ const Statistics: any = (props: any) => {
           <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
             <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              Participants also gave <strong className="text-rose-400">the 
-              minimum and maximum ages they would be willing to be matched 
-              with</strong>. We expected men and women to answer
-              differently, but we were not prepared for just how differently men
-              and women responded. This is a look at how age preferences broke
-              down by gender.
+              Participants also gave{" "}
+              <strong className="text-rose-400">
+                the minimum and maximum ages they would be willing to be matched
+                with
+              </strong>
+              . We expected men and women to answer differently, but we were not
+              prepared for just how differently men and women responded. This is
+              a look at how age preferences broke down by gender.
             </p>
 
             <Image
@@ -122,10 +127,11 @@ const Statistics: any = (props: any) => {
           <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
             <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              For better or worse, <strong className="text-rose-400">height</strong> is
-              one of the first qualities that people evaluate when looking for 
-              a significant other. Interested to see how your height compares to other
-              students&apos; on campus?
+              For better or worse,{" "}
+              <strong className="text-rose-400">height</strong> is one of the
+              first qualities that people evaluate when looking for a
+              significant other. Interested to see how your height compares to
+              other students&apos; on campus?
             </p>
 
             <Image
@@ -183,9 +189,12 @@ const Statistics: any = (props: any) => {
             {/* insert visualizations here */}
             <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               We asked participants to describe themselves in a few adjectives.
-              Here is the list of <strong className="text-rose-400">the top 20 adjectives used</strong>, separated into
-              three categories. It&apos;s interesting how similar the adjectives
-              are between genders.
+              Here is the list of{" "}
+              <strong className="text-rose-400">
+                the top 20 adjectives used
+              </strong>
+              , separated into three categories. It&apos;s interesting how
+              similar the adjectives are between genders.
             </p>
 
             <Image
@@ -203,9 +212,12 @@ const Statistics: any = (props: any) => {
           <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
             <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              Need to know <strong className="text-rose-400">the best time to plan a date or make an impromptu
-              phone call</strong>? Here is the aggregate data on when people are most
-              likely to fall asleep and wake up.
+              Need to know{" "}
+              <strong className="text-rose-400">
+                the best time to plan a date or make an impromptu phone call
+              </strong>
+              ? Here is the aggregate data on when people are most likely to
+              fall asleep and wake up.
             </p>
 
             <Image
@@ -218,14 +230,17 @@ const Statistics: any = (props: any) => {
 
           <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
 
-            <div className="mb-10 flex items-center flex-col">
+          <div className="mb-10 flex items-center flex-col">
             {/* insert visualizations here */}
             <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
               Finally, don&apos;t sweat if you have never been in a relationship
-              before. We asked participants to give both the number of
-              people they had dated and the length of their longest
-              relationship. The results were encouraging: <strong className="text-rose-400">31% of people said
-              they had never been in a relationship</strong>.
+              before. We asked participants to give both the number of people
+              they had dated and the length of their longest relationship. The
+              results were encouraging:{" "}
+              <strong className="text-rose-400">
+                31% of people said they had never been in a relationship
+              </strong>
+              .
             </p>
 
             <Image
@@ -234,14 +249,14 @@ const Statistics: any = (props: any) => {
               width={800}
               height={350}
             ></Image>
-            </div>
+          </div>
 
-            <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+          <hr className="border-1 border-dotted border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
 
-            <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
-              Thanks for taking Perfect Match this year and don&apos;t be afraid
-              to shoot your shot!
-            </p>
+          <p className="mt-5 mx-[5%] sm:mx-[10%] lg:mx-[20%] mb-3 sm:mb-6 max-w-4xl sm:text-xl text-gray-500 sm:leading-relaxed">
+            Thanks for taking Perfect Match this year and don&apos;t be afraid
+            to shoot your shot!
+          </p>
         </section>
 
         <section id="privacy" className="text-gray-500 bg-pink-100">
