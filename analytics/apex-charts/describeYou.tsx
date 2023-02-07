@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: true,
+  ssr: false,
 });
 
 const DescribeYou = () => {
