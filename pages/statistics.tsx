@@ -5,6 +5,7 @@ import { Header } from "../components/header";
 import Link from "next/link";
 import Script from "next/script";
 import Image from "next/image";
+import DescribeYou from "../analytics/apex-charts/describeYou";
 
 import politicsImg from "/analytics/images/politics.png";
 import heatmenImg from "/analytics/images/heatmen.png";
@@ -58,7 +59,7 @@ const Statistics: any = (props: any) => {
             </div>
           </section>
         </div>
-
+        <DescribeYou />
         <section className="bg-white pt-3 sm:pb-5 pb-1">
           <Script src="https://d3js.org/d3.v7.min.js"></Script>
           <Script src="https://d3js.org/topojson.v3.min.js"></Script>
