@@ -17,6 +17,17 @@ const Status: any = (props: any) => {
             </h2>
             <p
               className={
+                props?.optIn
+                  ? "mb-8 font-bold text-green-500"
+                  : "mb-8 font-bold text-red-400"
+              }
+            >
+              {props?.optIn
+                ? "You have opted In!"
+                : "We are still waiting for you to opt In."}
+            </p>
+            <p
+              className={
                 props?.surveyComplete
                   ? "mb-8 font-bold text-green-500"
                   : "mb-8 font-bold text-red-400"
@@ -40,7 +51,8 @@ const Status: any = (props: any) => {
             <p className="mb-8 font-bold text-green-500">
               {props?.surveyComplete &&
                 props?.profileComplete &&
-                "You have completed all the steps! Matchmaking will begin soon, make sure you are opted-in"}
+                props?.optIn &&
+                "You have completed all the steps! Matchmaking will begin soon."}
             </p>
             <dt className="mb-4">
               <h3 className="text-xl font-semibold">Tasks</h3>

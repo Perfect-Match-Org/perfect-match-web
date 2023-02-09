@@ -12,7 +12,7 @@ const ses = new AWS.SES({
 
 const users = () => {
   let users = [];
-  require("./users.json").forEach((user) => users.push(user.email));
+  require("./incomplete.json").forEach((user) => users.push(user.email));
   return filterEmails(users);
 };
 
@@ -36,18 +36,19 @@ const filterEmails = (emails) => {
  * @param body: body of the email
  */
 const sendEmails = async (toAddresses, subject, body) => {
-  for (let i = 5140; i < toAddresses.length; i += 48) {
+  for (let i = 0; i < toAddresses.length; i += 30) {
     const params = {
-      Destination: { BccAddresses: toAddresses.slice(i, i + 48) },
+      Destination: { BccAddresses: toAddresses.slice(i, i + 30) },
       Message: {
         Body: { Html: { Charset: "UTF-8", Data: body } },
         Subject: { Charset: "UTF-8", Data: subject },
       },
       Source: "noreply@perfectmatch.ai",
+      ReplyToAddresses: ["cornell.perfectmatch@gmail.com"],
     };
     try {
       await ses.sendEmail(params).promise();
-      console.log("Email sent to " + (i, i + 50));
+      console.log("Email sent to " + i + (i + 30));
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +56,7 @@ const sendEmails = async (toAddresses, subject, body) => {
 };
 
 sendEmails(
-  users(),
-  "Perfect Match is Releasing Soon!",
-  fs.readFileSync("./release.html").toString()
+  admins(),
+  "Reminder: Complete Your Perfect Match Profile by January 13th",
+  fs.readFileSync("./incomplete.html").toString()
 );
