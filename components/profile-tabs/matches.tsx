@@ -16,7 +16,7 @@ function Matches(props: any) {
     var i = 0;
     while (i < matches_array.length) {
       let match_id = matches_array[i]
-      all_matches = <Match_Tile id={match_id}></Match_Tile>;
+      all_matches += <Match_Tile id={match_id}></Match_Tile>;
       i++;
     }
   }
