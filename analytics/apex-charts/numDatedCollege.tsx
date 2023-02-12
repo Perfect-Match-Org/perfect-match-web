@@ -12,7 +12,7 @@ const NumDatedCollege = () => {
       color: '#bae6fd'
     },
     {
-      name: 'Median',
+      name: 'Mean',
       data: [1.82, 1.62, 1.82, 1.27, 1.33, 1.31, 1.51],
       color: '#fecdd3'
     }
