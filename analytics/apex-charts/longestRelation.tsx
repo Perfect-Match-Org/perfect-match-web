@@ -13,7 +13,7 @@ const LongestRelation = () => {
   
     },
     {
-      name: 'Median',
+      name: 'Mean',
       data: [10.8, 9.2, 10.0, 9.1, 9.5, 8.8, 10.0],
       color: '#fecdd3'
     }
