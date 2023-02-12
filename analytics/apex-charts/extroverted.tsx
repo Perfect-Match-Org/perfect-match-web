@@ -44,7 +44,7 @@ const Extroverted = () => {
         }
       },
       title: {
-        text: "Extroverted to Introverted",
+        text: "Introverted to Extroverted",
           style:{
               fontSize: '12px',
               color: '#6b7280'
