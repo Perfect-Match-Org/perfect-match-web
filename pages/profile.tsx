@@ -35,7 +35,7 @@ const Profile: NextPage = (props: any) => {
         <section className="bg-white ">
           <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
             <div className="bg-white rounded-lg h-auto">
-              <ProfileTabs user={data} refresh={refresh} />
+              <ProfileTabs user={data} />
             </div>
           </div>
         </section>

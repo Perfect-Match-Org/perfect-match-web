@@ -41,7 +41,7 @@ const Home: NextPage = (props: any) => {
             </h1>
             <p className="mt-4 mx-[5%] lg:max-w-lg sm:mx-[10%] lg:mx-0 sm:text-xl text-gray-500 sm:leading-relaxed">
               That&apos;s a wrap! Log in to see your matches!
-              
+
             </p>
             {!error && currentCount && (
               <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">
