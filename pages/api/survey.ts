@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next";
+import getServerSession from "next-auth/next";
 import authOptions from "./auth/[...nextauth]";
 import { updateSurvey } from "../../database/controllers";
 import { Session } from "next-auth";
