@@ -10,7 +10,14 @@ type ResponseData = {
     "bio": string;
     "year": string;
     "city": string;
-    "contact": JSON;
+    "fb": string;
+    "insta": string;
+    "twitter": string;
+    "snapchat": string,
+
+    "linkedin": string,
+    "phone": string,
+
     "hookupsong": string;
 
 }
@@ -24,6 +31,15 @@ export default async function handler(
         const { id } = req.query
         const user: any = (await getUserByID({ _id: id }));
 
+        let fb_link = user.survey.contact.get("fb");
+        let insta_link = user.survey.contact.get("insta");
+        let twitter_link = user.survey.contact.get("twitter");
+        let snap_link = user.survey.contact.get("snapchart");
+        let linkedin_link = user.survey.contact.get("linkedin");
+        let phone_link = user.survey.contact.get("phone");
+
+
+
         let obj = {
             "name": user.profile.firstName,
             "major": user.profile.major,
@@ -31,8 +47,14 @@ export default async function handler(
             "bio": user.profile.bio,
             "year": user.profile.year,
             "city": user.profile.city,
-            "contact": JSON.parse(user.survey.contact),
-            "hookupson": user.survey.hookupsong
+            "fb": fb_link,
+            "insta": insta_link,
+            "twitter": twitter_link,
+            "snapchat": snap_link,
+            "linkedin": linkedin_link,
+            "phone": phone_link,
+
+            "hookupsong": user.survey.hookupsong
         };
         return res.status(200).json(obj);
     } catch (e: any) {
@@ -43,7 +65,12 @@ export default async function handler(
             "bio": "Not Found",
             "year": "Not Found",
             "city": "Not Found",
-            "contact": {},
+            "snapchat": "Not Found",
+            "fb": "Not Found",
+            "insta": "Not Found",
+            "twitter": "Not Found",
+            "linkedin": "Not Found",
+            "phone": "Not Found",
             "hookupsong": "Not Found",
         });
     }
