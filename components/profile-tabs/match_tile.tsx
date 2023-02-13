@@ -40,7 +40,7 @@ function Match_Tile(props: any) {
                     <h3 className="text-xl font-botracking-tight text-gray-900 dark:text-white">
                         <a href="#">{match_data.name}</a>
                     </h3>
-                    <span className="text-gray-500 dark:text-gray-400">{match_data.year}, {match_data.major.charAt(0).toUpperCase() + match_data.major.slice(1)}, {match_data.city}</span>
+                    <span className="text-gray-500 dark:text-gray-400">{match_data.year.charAt(0).toUpperCase() + match_data.year.slice(1)}, {match_data.major.charAt(0).toUpperCase() + match_data.major.slice(1)}, {match_data.city}</span>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Three words to describe me... {match_data.threewords}</p>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bio.. {match_data.bio}</p>
 
