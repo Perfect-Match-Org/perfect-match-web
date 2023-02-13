@@ -3,11 +3,15 @@ import { fetcher } from "../../helpers/fetch";
 
 function Match_Tile(props: any) {
 
-    const { data: match_data, error } = useSWR("/api/user_lookup/63d9a3114c2725bd08273e89", fetcher, {
+    const { data: match_data_temp, error } = useSWR("/api/lookup/63d9a3114c2725bd08273e89", fetcher, {
         refreshInterval: 600000000,
     });
-
-
+    let match_data = match_data_temp
+    if (!match_data) {
+        match_data = {
+            name: "ERROR", major: "ERROR", bio: "ERROR", threewords: "ERROR ERROR ERROR"
+        }
+    }
 
     return (
         <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2" >
