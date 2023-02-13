@@ -52,12 +52,12 @@
 
   .absolute{
     position: absolute;
-    top: 450px
+    top: 400px
   }
 
   .absolute1{
     position: absolute;
-    top: 460px
+    top: 410px
   }
 
   .layer2{
@@ -91,7 +91,7 @@
 
   .absolute2{
     position: absolute;
-    top: 470px
+    top: 420px
   }
 
   .layer3{
@@ -125,7 +125,7 @@
 
   .absolute3{
     position: absolute;
-    top: 480px
+    top: 430px
   }
 
   .absolute4:hover{
@@ -163,7 +163,7 @@
 
   .absolute4{
     position: absolute;
-    top: 505px;
+    top: 455px;
     font-size: 70px;
     z-index: 10;
     animation: size 1.5s linear 10;
@@ -438,7 +438,7 @@
 
     .absolute4{
         font-size: 60px;
-        top: 495px;
+        top: 450px;
     }
 
     .match_list{
