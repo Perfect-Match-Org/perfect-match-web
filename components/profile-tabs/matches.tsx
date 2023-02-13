@@ -1,6 +1,8 @@
 import Match_Tile from "./match_tile";
 import useSWR from "swr";
 import { fetcher } from "../../helpers/fetch";
+import styles from "/styles/Matches.module.css"
+import React from "react";
 
 
 function Matches(props: any) {
