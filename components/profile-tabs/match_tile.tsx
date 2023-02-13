@@ -2,6 +2,9 @@ import useSWR from "swr";
 import { fetcher } from "../../helpers/fetch";
 
 function Match_Tile(props: any) {
+    
+    const emoji = ["😃", "😆", "😄", "😆", "😊", "😎", "😳"]
+    const color = ['text-rose-400', 'text-orange-400', 'text-yellow-400', 'text-lime-500', 'text-emerald-400', 'text-sky-400', 'text-purple-400']
 
     const { data: match_data_temp, error } = useSWR("/api/lookup/" + props.id, fetcher);
     let match_data = match_data_temp
@@ -12,16 +15,18 @@ function Match_Tile(props: any) {
 
     return (
         <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-1" >
-            <div className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+            <div className="items-center rounded-lg shadow-lg sm:flex dark:bg-gray-800 dark:border-gray-700 mx-[2%] sm:mx-[6%] lg:mx-[12%] pr-10">
+                <div className="text-8xl ml-10 mr-4">{emoji[Math.floor(Math.random() * (6 - 0 + 1) + 0)]}</div>
                 <div className="p-5">
-                    <h3 className="text-xl font-botracking-tight text-gray-900 dark:text-white">
-                        <a href="#">{match_data.name}</a>
+                    <h3 className="text-2xl font-bold font-botracking-tight text-gray-500 dark:text-white">
+                        <span className={color[Math.floor(Math.random() * (6 - 0 + 1) + 0)]}>{match_data.name}</span>
                     </h3>
-                    <span className="text-gray-500 dark:text-gray-400">{match_data.year.charAt(0).toUpperCase() + match_data.year.slice(1)}, {match_data.major.charAt(0).toUpperCase() + match_data.major.slice(1)}, {match_data.city}</span>
-                    <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Three words to describe me... {match_data.threewords}</p>
-                    <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">First Song on My Hookup Playlist .. {match_data.hookupsong}</p>
-
-                    <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bio.. {match_data.bio}</p>
+                    <hr className="h-0.5 my-2 bg-rose-200 border-0"></hr>
+                    <p className="text-gray-500 dark:text-gray-400">📚 {match_data.year.charAt(0).toUpperCase() + match_data.year.slice(1)}, {match_data.major.charAt(0).toUpperCase() + match_data.major.slice(1)}</p>
+                    <p className="text-gray-500 dark:text-gray-400">📍 {match_data.city}</p>
+                    <p className="mt-4 mb-3 font-light text-gray-500 dark:text-gray-400">Three words to describe me...<span className="font-bold">{match_data.threewords}</span>!</p>
+                    <p className="mb-4 font-light text-gray-500 dark:text-gray-400">First song on my hookup playlist...🎶<span className="font-bold"> {match_data.hookupsong}</span></p>
+                    <p className="mb-4 font-light text-gray-500 dark:text-gray-400">Bio...<span className="font-bold">{match_data.bio}</span></p>
 
                     <ul className="flex space-x-4 sm:mt-0">
                         {/* facebook */}
