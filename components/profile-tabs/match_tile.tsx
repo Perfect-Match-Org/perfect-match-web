@@ -9,7 +9,7 @@ function Match_Tile(props: any) {
     let match_data = match_data_temp
     if (!match_data) {
         match_data = {
-            name: "ERROR", major: "ERROR", year: "ERROR", bio: "ERROR", threewords: "ERROR ERROR ERROR"
+            name: "ERROR", major: "ERROR", year: "ERROR", bio: "ERROR", city: "ERROR", threewords: "ERROR ERROR ERROR"
         }
     }
 
@@ -23,7 +23,7 @@ function Match_Tile(props: any) {
                     <h3 className="text-xl font-botracking-tight text-gray-900 dark:text-white">
                         <a href="#">{match_data.name}</a>
                     </h3>
-                    <span className="text-gray-500 dark:text-gray-400">{match_data.year}, {match_data.major}</span>
+                    <span className="text-gray-500 dark:text-gray-400">{match_data.year}, {match_data.major}, {match_data.city}</span>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Three words to describe me... {match_data.threewords}</p>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bio.. {match_data.bio}</p>
 

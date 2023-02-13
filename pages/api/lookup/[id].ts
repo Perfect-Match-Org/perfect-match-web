@@ -8,6 +8,8 @@ type ResponseData = {
     "major": string;
     "threewords": string;
     "bio": string;
+    "year": string;
+    "city": string;
 
 }
 
@@ -26,15 +28,17 @@ export default async function handler(
             "threewords": user.profile.describeYourself,
             "bio": user.profile.bio,
             "year": user.profile.year,
+            "city": user.profile.city
         };
         return res.status(200).json(obj);
     } catch (e: any) {
         return res.status(500).json({
             "name": "Not Found",
             "major": "Not Found",
-            "threewords": "user.profile.describeYourself",
-            "bio": "user.profile.bio",
-
+            "threewords": "Not Found",
+            "bio": "Not Found",
+            "year": "Not Found",
+            "city": "Not Found"
         });
     }
 }
