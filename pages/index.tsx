@@ -40,14 +40,12 @@ const Home: NextPage = (props: any) => {
               </strong>
             </h1>
             <p className="mt-4 mx-[5%] lg:max-w-lg sm:mx-[10%] lg:mx-0 sm:text-xl text-gray-500 sm:leading-relaxed">
-              Last year, we had over 4,200 participants. Fill out the survey{" "}
-              <strong>by noon, 13 Feb.</strong>, and get your Matches the same
-              evening. Share the link with your friends, and help spread some
-              joy in 2023!
+              That&apos;s a wrap! Log in to see your matches!
+              
             </p>
             {!error && currentCount && (
               <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">
-                Join over {currentCount} Cornellians getting matched this year!
+                Over {currentCount} Cornellians matched this year!
               </p>
             )}
             <div className="flex lg:contents">
