@@ -10,7 +10,7 @@ import useSWR from "swr";
 
 const Profile: NextPage = (props: any) => {
   const { data, error, mutate } = useSWR("/api/profile", fetcher);
-  const refresh = () => mutate();
+  // const refresh = () => mutate();
   if (!data) return <Spinner />;
   return (
     <div>
