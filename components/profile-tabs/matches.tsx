@@ -6,20 +6,21 @@ import Match_Tile from "./match_tile";
 
 function Matches(props: any) {
 
-  const { data: matches, error } = useSWR("/api/matches");
-  var matches_array = JSON.parse(matches);
+  // const { data: matches, error } = useSWR("/api/matches");
+  // var matches_array = JSON.parse(matches);
 
-  var all_matches = <h1>No Matches</h1>;
+  // var all_matches = <h1>No Matches</h1>;
 
-  if (matches_array && matches_array.length != 0) {
-    all_matches = <h1></h1>;
-    var i = 0;
-    while (i < matches_array.length) {
-      let match_id = matches_array[i]
-      all_matches += <Match_Tile id={match_id}></Match_Tile>;
-      i++;
-    }
-  }
+  // if (matches_array && matches_array.length != 0) {
+  //   all_matches = <h1></h1>;
+  //   var i = 0;
+  //   while (i < matches_array.length) {
+  //     let match_id = matches_array[i]
+  //     //problem here, how to loop over elements, I tired the map function that that did not work 
+  //     all_matches = <Match_Tile id={match_id}></Match_Tile>;
+  //     i++;
+  //   }
+  // }
 
 
   return (
@@ -32,7 +33,7 @@ function Matches(props: any) {
               <p className="font-light text-gray-500 lg:mb-16 sm:text-xl ">We&apos;ve crunched the numbers, analysed your responses, ran the models, chatted with our in-house love specialists, and consulted Touchdown. Here are your Perfect Matches. </p>
             </div>
 
-            {all_matches}
+            {/* {all_matches} */}
 
           </div>
         </section>
