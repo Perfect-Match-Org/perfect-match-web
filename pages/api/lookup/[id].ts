@@ -10,6 +10,8 @@ type ResponseData = {
     "bio": string;
     "year": string;
     "city": string;
+    "contact": Object;
+    "hookupsong": string;
 
 }
 
@@ -28,7 +30,9 @@ export default async function handler(
             "threewords": user.profile.describeYourself,
             "bio": user.profile.bio,
             "year": user.profile.year,
-            "city": user.profile.city
+            "city": user.profile.city,
+            "contact": user.survey.contact,
+            "hookupsong": user.survey.hookupsong
         };
         return res.status(200).json(obj);
     } catch (e: any) {
@@ -38,7 +42,9 @@ export default async function handler(
             "threewords": "Not Found",
             "bio": "Not Found",
             "year": "Not Found",
-            "city": "Not Found"
+            "city": "Not Found",
+            "contact": {},
+            "hookupsong": "Not Found",
         });
     }
 }
