@@ -37,7 +37,7 @@ function Match_Tile(props: any) {
                             <h3 className="font-semibold text-gray-900 dark:text-white">Popover title</h3>
                         </div>
                         <div className="px-3 py-2">
-                            <p>And here's some amazing content. It's very engaging. Right?</p>
+                            <p>And heres some amazing content. Its very engaging. Right?</p>
                         </div>
                         <div data-popper-arrow></div>
                     </div>
