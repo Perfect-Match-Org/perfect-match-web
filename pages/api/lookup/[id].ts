@@ -10,7 +10,7 @@ type ResponseData = {
     "bio": string;
     "year": string;
     "city": string;
-    "contact": Object;
+    "contact": JSON;
     "hookupsong": string;
 
 }
@@ -31,8 +31,8 @@ export default async function handler(
             "bio": user.profile.bio,
             "year": user.profile.year,
             "city": user.profile.city,
-            "contact": user.survey.contact,
-            "hookupsong": user.survey.hookupsong
+            "contact": JSON.parse(user.survey.contact),
+            "hookupson": user.survey.hookupsong
         };
         return res.status(200).json(obj);
     } catch (e: any) {
