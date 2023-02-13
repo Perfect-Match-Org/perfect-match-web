@@ -25,6 +25,7 @@ export default async function handler(
             "major": user.profile.major,
             "threewords": user.profile.describeYourself,
             "bio": user.profile.bio,
+            "year": user.profile.year,
         };
         return res.status(200).json(obj);
     } catch (e: any) {

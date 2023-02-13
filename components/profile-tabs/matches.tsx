@@ -3,12 +3,12 @@ import Match_Tile from "./match_tile";
 function Matches(props: any) {
 
 
-  const products = ['orange', 'apple', 'watermelon'];
+  const matches = ['63d990b4495e8331ffe9a6b0', '63d829b39b26d2d1b523ed23', '63d9a3114c2725bd08273e89'];
 
   const list: any = []
 
-  products.forEach((product) => {
-    list.push(<li><Match_Tile></Match_Tile></li>)
+  matches.forEach((match) => {
+    list.push(<li><Match_Tile id={match}></Match_Tile></li >)
   })
 
   return (

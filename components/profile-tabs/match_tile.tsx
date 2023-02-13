@@ -1,20 +1,20 @@
 import useSWR from "swr";
 import { fetcher } from "../../helpers/fetch";
 
-function Match_Tile(props: any) {
+function Match_Tile(props: any, id: any) {
 
-    const { data: match_data_temp, error } = useSWR("/api/lookup/63d9a3114c2725bd08273e89", fetcher, {
+    const { data: match_data_temp, error } = useSWR("/api/lookup/" + id, fetcher, {
         refreshInterval: 600000000,
     });
     let match_data = match_data_temp
     if (!match_data) {
         match_data = {
-            name: "ERROR", major: "ERROR", bio: "ERROR", threewords: "ERROR ERROR ERROR"
+            name: "ERROR", major: "ERROR", year: "ERROR", bio: "ERROR", threewords: "ERROR ERROR ERROR"
         }
     }
 
     return (
-        <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2" >
+        <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-1" >
             <div className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <img className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://static.wixstatic.com/media/150f53_bcde85061dbd46688e5a08a66cc07842~mv2.jpg/v1/fill/w_250,h_250,fp_0.50_0.50,q_30,blur_30,enc_auto/150f53_bcde85061dbd46688e5a08a66cc07842~mv2.jpg" alt="Jese Avatar" />
@@ -23,7 +23,7 @@ function Match_Tile(props: any) {
                     <h3 className="text-xl font-botracking-tight text-gray-900 dark:text-white">
                         <a href="#">{match_data.name}</a>
                     </h3>
-                    <span className="text-gray-500 dark:text-gray-400">Default Senior,{match_data.major}</span>
+                    <span className="text-gray-500 dark:text-gray-400">{match_data.year}, {match_data.major}</span>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Three words to describe me... {match_data.threewords}</p>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bio.. {match_data.bio}</p>
 
