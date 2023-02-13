@@ -19,6 +19,8 @@ function Matches(props: any) {
   list.forEach((match: any) => {
     list.push(<li><Match_Tile id={match}></Match_Tile></li >)
   })
+  
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <div>
