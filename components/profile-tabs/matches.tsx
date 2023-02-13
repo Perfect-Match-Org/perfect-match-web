@@ -1,13 +1,20 @@
 import Match_Tile from "./match_tile";
+import useSWR from "swr";
+import { fetcher } from "../../helpers/fetch";
+
 
 function Matches(props: any) {
 
 
-  const matches = ['63d990b4495e8331ffe9a6b0', '63dae84a2267f86bdf0eba69', '63d9a3114c2725bd08273e89', '63dae84a2267f86bdf0eba6c', '63dae857f6e7dc16fe61e354'];
+  const { data: match_list, error } = useSWR("/api/matches/", fetcher, {
 
-  const list: any = []
+    refreshInterval: 600000000,
+  });
+  let list = match_list;
+  if (!list) { list = [] }
 
-  matches.forEach((match) => {
+
+  list.forEach((match: any) => {
     list.push(<li><Match_Tile id={match}></Match_Tile></li >)
   })
 
