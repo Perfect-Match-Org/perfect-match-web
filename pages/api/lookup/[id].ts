@@ -2,9 +2,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getUserByID, getUsers } from "../../../database/controllers";
 import { connect } from "../../../database/database";
 
+type ResponseData = {
+
+    "name": string;
+    "major": string;
+    "threewords": string;
+    "bio": string;
+
+}
+
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<string>
+    res: NextApiResponse<ResponseData>
 ) {
     await connect();
     try {
@@ -17,8 +26,14 @@ export default async function handler(
             "threewords": user.profile.describeYourself,
             "bio": user.profile.bio,
         };
-        return res.status(200).json(JSON.stringify(obj));
+        return res.status(200).json(obj);
     } catch (e: any) {
-        return res.status(500).json("None");
+        return res.status(500).json({
+            "name": "Not Found",
+            "major": "Not Found",
+            "threewords": "user.profile.describeYourself",
+            "bio": "user.profile.bio",
+
+        });
     }
 }
