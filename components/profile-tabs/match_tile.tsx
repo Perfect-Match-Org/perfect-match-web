@@ -3,9 +3,7 @@ import { fetcher } from "../../helpers/fetch";
 
 function Match_Tile(props: any) {
 
-    const { data: match_data_temp, error } = useSWR("/api/lookup/" + props.id, fetcher, {
-        refreshInterval: 600000000,
-    });
+    const { data: match_data_temp, error } = useSWR("/api/lookup/" + props.id, fetcher);
     let match_data = match_data_temp
     if (!match_data) {
         match_data = {
