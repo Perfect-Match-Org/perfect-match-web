@@ -31,12 +31,12 @@ export default async function handler(
         const { id } = req.query
         const user: any = (await getUserByID({ _id: id }));
 
-        let fb_link = user.survey.contact.get("fb");
-        let insta_link = user.survey.contact.get("insta");
-        let twitter_link = user.survey.contact.get("twitter");
-        let snap_link = user.survey.contact.get("snapchart");
-        let linkedin_link = user.survey.contact.get("linkedin");
-        let phone_link = user.survey.contact.get("phone");
+        let fb_link = user.survey.contact.fb || "NULL";
+        let insta_link = user.survey.contact.insta || "NULL";
+        let twitter_link = user.survey.contact.twitter || "NULL";
+        let snap_link = user.survey.contact.snapchat || "NULL";
+        let linkedin_link = user.survey.contact.linkedin || "NULL";
+        let phone_link = user.survey.contact.phone || "NULL";
 
 
 
