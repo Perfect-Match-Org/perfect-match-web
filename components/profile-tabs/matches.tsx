@@ -3,13 +3,11 @@ import useSWR from "swr";
 import { fetcher } from "../../helpers/fetch";
 import styles from "/styles/Matches.module.css"
 import React from "react";
-import SurveyComponent from "./survey";
 
 
 
 function Matches(props: any) {
 
-  const user = props.user;
 
   const { data: match_list, error } = useSWR("/api/matches/", fetcher, {
 
@@ -88,7 +86,6 @@ function Matches(props: any) {
                 {list}
               </div>
             </section>
-            <SurveyComponent survey={user.survey} refresh={props.refresh} />
           </div>
         </section>
 
