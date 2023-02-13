@@ -20,7 +20,7 @@ function Match_Tile(props: any) {
                     <span className="text-gray-500 dark:text-gray-400">{match_data.year.charAt(0).toUpperCase() + match_data.year.slice(1)}, {match_data.major.charAt(0).toUpperCase() + match_data.major.slice(1)}, {match_data.city}</span>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Three words to describe me... {match_data.threewords}</p>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bio.. {match_data.bio}</p>
-                    <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Social Media.. {match_data.survey.get("contact")}</p>
+                    {/* <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Social Media.. {match_data.survey.get("contact")}</p> */}
 
                     <ul className="flex space-x-4 sm:mt-0">
                         <li>
