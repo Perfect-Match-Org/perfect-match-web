@@ -34,7 +34,7 @@ const Home: NextPage = (props: any) => {
         <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center lg:pt-60 lg:pb-36">
           <div className="text-center lg:text-left lg:ml-[8%] mt-8 lg:mt-0">
             <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
-              Let&apos; find your
+              Let&apos;s find your
               <strong className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
                 Perfect Match!
               </strong>
