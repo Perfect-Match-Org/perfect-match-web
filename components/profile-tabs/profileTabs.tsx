@@ -20,8 +20,6 @@ function ProfileTabs(props: any) {
   return (
     <div className="w-full items-center px-2 py-4 sm:px-0">
       <Matches matches={user.matches} />
-
-
     </div>
   );
 }

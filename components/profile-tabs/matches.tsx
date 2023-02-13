@@ -10,13 +10,16 @@ function Matches(props: any) {
 
 
   const { data: match_list, error } = useSWR("/api/matches/", fetcher);
-  let list = match_list;
-  if (!list) { list = [] }
+  let list: any = [];
+
+  if (match_list) {
+    match_list.forEach((match: any) => {
+      list.push(<li><Match_Tile id={match}></Match_Tile></li >)
+    })
+  }
 
 
-  list.forEach((match: any) => {
-    list.push(<li><Match_Tile id={match}></Match_Tile></li >)
-  })
+
 
   const [visible, setVisible] = React.useState(false);
 
@@ -80,6 +83,7 @@ function Matches(props: any) {
                     We&apos;ve crunched the numbers, analysed your responses, ran the models, chatted with our in-house love specialists, and consulted Touchdown. Here are your Perfect Matches!
                   </p>
                 </div>
+
                 {list}
               </div>
             </section>
