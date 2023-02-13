@@ -9,7 +9,7 @@ import React from "react";
 function Matches(props: any) {
 
 
-  const { data: match_list, error } = useSWR("/api/matches/", fetcher,);
+  const { data: match_list, error } = useSWR("/api/matches/", fetcher);
   let list = match_list;
   if (!list) { list = [] }
 

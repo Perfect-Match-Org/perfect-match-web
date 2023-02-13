@@ -19,9 +19,9 @@ function ProfileTabs(props: any) {
   const user = props.user;
   return (
     <div className="w-full items-center px-2 py-4 sm:px-0">
-      <Matches matches={user.matches} refresh={props.refresh} />
+      <Matches matches={user.matches} />
 
-    
+
     </div>
   );
 }
