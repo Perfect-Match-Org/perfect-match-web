@@ -71,12 +71,12 @@ function Matches(props: any) {
       </div>
       {visible &&
         <section className={styles.match_list}>
-          <div className="mx-flex my-flex   lg:items-center">
-            <section className="bg-white ">
+          <div className="mx-flex my-flex lg:items-center">
+            <section className="bg-white">
               <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
                 <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-                  <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">Your Matches are Here!</h2>
-                  <p className="font-light text-gray-500 lg:mb-16 sm:text-xl ">
+                  <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-rose-400">Your Matches are Here 💝!</h2>
+                  <p className="text-gray-500 lg:mb-16 sm:text-xl ">
                     We&apos;ve crunched the numbers, analysed your responses, ran the models, chatted with our in-house love specialists, and consulted Touchdown. Here are your Perfect Matches!
                   </p>
                 </div>
@@ -85,7 +85,6 @@ function Matches(props: any) {
             </section>
           </div>
         </section>
-
       }
 
 
