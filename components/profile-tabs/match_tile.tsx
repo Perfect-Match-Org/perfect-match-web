@@ -1,9 +1,9 @@
 import useSWR from "swr";
 import { fetcher } from "../../helpers/fetch";
 
-function Match_Tile(props: any, id: string) {
+function Match_Tile(props: any) {
 
-    const { data: match_data_temp, error } = useSWR("/api/lookup/" + id, fetcher, {
+    const { data: match_data_temp, error } = useSWR("/api/lookup/" + props.id, fetcher, {
         refreshInterval: 600000000,
     });
     let match_data = match_data_temp
@@ -21,7 +21,7 @@ function Match_Tile(props: any, id: string) {
                 </a>
                 <div className="p-5">
                     <h3 className="text-xl font-botracking-tight text-gray-900 dark:text-white">
-                        <a href="#">{id}</a>
+                        <a href="#">{match_data.name}</a>
                     </h3>
                     <span className="text-gray-500 dark:text-gray-400">{match_data.year}, {match_data.major}</span>
                     <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Three words to describe me... {match_data.threewords}</p>
