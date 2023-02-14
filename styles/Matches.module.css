@@ -439,6 +439,7 @@
     height: 250px;
     width: 300px;
     place-items: center;
+    display: flex;
   }
 
   .layer1,
