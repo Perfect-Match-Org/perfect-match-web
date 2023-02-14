@@ -7,6 +7,7 @@
 .container {
   box-sizing: border-box;
   font-size: 62.5%;
+  display: flex;
 }
 
 .main {
@@ -438,7 +439,6 @@
   .main {
     height: 250px;
     width: 300px;
-    place-items: center;
     display: flex;
   }
 
