@@ -34,22 +34,22 @@ function Match_Tile(props: any) {
 
                     {match_data.insta != "NULL" && (
                         <p className="mb-4 sm:mb-6 text-gray-500">Instagram: <span className="font-bold">{match_data.insta}</span></p>
-                    )};
+                    )}
                     {match_data.fb != "NULL" && (
                         <p className="mb-4 sm:mb-6 text-gray-500">Facebook: <span className="font-bold">{match_data.fb}</span></p>
-                    )};
+                    )}
                     {match_data.snapchat != "NULL" && (
                         <p className="mb-4 sm:mb-6 text-gray-500">Snapchat: <span className="font-bold">{match_data.snapchat}</span></p>
-                    )};
+                    )}
                     {match_data.twitter != "NULL" && (
                         <p className="mb-4 sm:mb-6 text-gray-500">Twitter: <span className="font-bold">{match_data.twitter}</span></p>
-                    )};
+                    )}
                     {match_data.linkedin != "NULL" && (
                         <p className="mb-4 sm:mb-6 text-gray-500">LinkedIn: <span className="font-bold">{match_data.linkedin}</span></p>
-                    )};
+                    )}
                     {match_data.phone != "NULL" && (
                         <p className="mb-4 sm:mb-6 text-gray-500">Phone Number: <span className="font-bold">{match_data.phone}</span></p>
-                    )};
+                    )}
                 </div >
             </div >
         </div >
