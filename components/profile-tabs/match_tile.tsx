@@ -27,9 +27,9 @@ function Match_Tile(props: any) {
                     <hr className="h-0.5 my-2 bg-rose-200 border-0"></hr>
                     <p className="text-gray-500">📚 {match_data.year.charAt(0).toUpperCase() + match_data.year.slice(1)}, {match_data.major.charAt(0).toUpperCase() + match_data.major.slice(1)}</p>
                     <p className="text-gray-500 ">📍 {match_data.city}</p>
-                    <p className="mt-3 sm:mt-4 mb-3 text-gray-500">Three words to describe me...<span className="font-bold">{match_data.threewords}</span>!</p>
-                    <p className="mb-3 sm:mb-4 text-gray-500">First song on my hookup playlist...🎶<span className="font-bold"> {match_data.hookupsong}</span></p>
-                    <p className="mb-4 sm:mb-6 text-gray-500">Bio...<span className="font-bold">{match_data.bio}</span></p>
+                    <p className="mt-3 sm:mt-4 mb-3 text-gray-500">Your match in three of their own words: <span className="font-bold">{match_data.threewords}</span>!</p>
+                    <p className="mb-3 sm:mb-4 text-gray-500">First song on their hookup playlist: <span className="font-bold">🎶 {match_data.hookupsong} 🎶</span></p>
+                    <p className="mb-4 sm:mb-6 text-gray-500">Bio: <span className="font-bold">{match_data.bio}</span></p>
 
 
                     {match_data.insta != "NULL" && (
