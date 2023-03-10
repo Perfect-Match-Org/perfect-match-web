@@ -38,3 +38,6 @@ reminders/.env
 
 # redis
 *.rdb
+
+# venv
+venv
