@@ -127,7 +127,7 @@ const About: any = (props: any) => {
             <ol className="border-l-2 border-rose-300 sm:hidden">
               <li>
                 <div className="flex flex-start items-center pt-3">
-                  <div className="-ml-3 mr-3 text-2xl">💞</div>
+                  <div className="-ml-3 mr-3 text-2xl">💓</div>
                   <p className="text-rose-400 text-l font-bold">02-01-23 5PM</p>
                 </div>
                 <div className="mt-0.5 ml-4 mb-6">
