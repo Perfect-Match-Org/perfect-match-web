@@ -17,6 +17,12 @@ export const getUser = async (user: any) => {
   return doc;
 };
 
+export const getUserByID = async (id_search: any) => {
+  const doc = await User.findOne({ _id: id_search });
+  return doc;
+};
+
+
 export const getUsersCount = async () => {
   const resp = await User.countDocuments();
   return resp;
