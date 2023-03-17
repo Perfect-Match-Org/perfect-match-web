@@ -1,44 +1,85 @@
-import useSWR from "swr";
-import { fetcher } from "../../helpers/fetch";
-import Match_Tile from "./match_tile";
+import MatchTile from "./matchTile";
+import styles from "/styles/Matches.module.css";
+import React from "react";
 
-
-
-function Matches(props: any) {
-
-  // const { data: matches, error } = useSWR("/api/matches");
-  // var matches_array = JSON.parse(matches);
-
-  // var all_matches = <h1>No Matches</h1>;
-
-  // if (matches_array && matches_array.length != 0) {
-  //   all_matches = <h1></h1>;
-  //   var i = 0;
-  //   while (i < matches_array.length) {
-  //     let match_id = matches_array[i]
-  //     //problem here, how to loop over elements, I tired the map function that that did not work 
-  //     all_matches = <Match_Tile id={match_id}></Match_Tile>;
-  //     i++;
-  //   }
-  // }
-
-
+function Matches({ matches }: any) {
+  const [visible, setVisible] = React.useState(false);
   return (
-    <section className="bg-gray-200">
-      <div className="mx-auto max-w-screen-xl  lg:flex lg:h-screen lg:items-center">
-        <section className="bg-white ">
-          <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
-            <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">Your Matches are Here!</h2>
-              <p className="font-light text-gray-500 lg:mb-16 sm:text-xl ">We&apos;ve crunched the numbers, analysed your responses, ran the models, chatted with our in-house love specialists, and consulted Touchdown. Here are your Perfect Matches. </p>
+    <div>
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <button
+            className={styles.absolute4}
+            onClick={() => setVisible(!visible)}
+          >
+            {visible ? "" : "💌"}
+          </button>
+          {!visible && (
+            <div className={styles.absolute}>
+              <div className={styles.layer1}></div>
             </div>
-
-            {/* {all_matches} */}
-
+          )}
+          {visible && (
+            <div className={styles.absolute}>
+              <div className={styles.layer1_fading}></div>
+            </div>
+          )}
+          {!visible && (
+            <div className={styles.absolute1}>
+              <div className={styles.layer2}></div>
+            </div>
+          )}
+          {visible && (
+            <div className={styles.absolute1}>
+              <div className={styles.layer2_fading}></div>
+            </div>
+          )}
+          {!visible && (
+            <div className={styles.absolute2}>
+              <div className={styles.layer3}></div>
+            </div>
+          )}
+          {visible && (
+            <div className={styles.absolute2}>
+              <div className={styles.layer3_fading}></div>
+            </div>
+          )}
+          {!visible && (
+            <div className={styles.absolute3}>
+              <div className={styles.layer4}></div>
+            </div>
+          )}
+          {visible && (
+            <div className={styles.absolute3}>
+              <div className={styles.layer4_fading}></div>
+            </div>
+          )}
+        </div>
+      </div>
+      {visible && (
+        <section className={styles.match_list}>
+          <div className="mx-flex my-flex lg:items-center">
+            <section className="bg-white">
+              <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+                <div className="mx-auto max-w-screen-sm text-center lg:mb-16">
+                  <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">
+                    Your Matches are Here 💝!
+                  </h2>
+                  <p className="text-gray-500 lg:mb-16 sm:text-xl pb-10">
+                    We&apos;ve crunched the numbers, analysed your responses,
+                    ran the models, chatted with our in-house love specialists,
+                    and consulted Touchdown. Here are your Perfect Matches!
+                  </p>
+                </div>
+                {matches.map((match: any) => (
+                  <MatchTile matchData={match} contact={match.survey.contact} />
+                ))}
+              </div>
+            </section>
           </div>
         </section>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
 

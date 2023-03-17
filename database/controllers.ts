@@ -1,6 +1,9 @@
 import { User } from "./models";
 import { redisClient } from "./redis";
 
+const matchRevealData =
+  "id profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap";
+
 export const createUser = async (user: any) => {
   const { email, given_name, family_name } = user;
   const newUser = new User({
@@ -13,7 +16,10 @@ export const createUser = async (user: any) => {
 };
 
 export const getUser = async (user: any) => {
-  const doc = await User.findOne({ email: user.email });
+  const doc = (await User.findOne({ email: user.email })).populate(
+    "matches",
+    matchRevealData
+  );
   return doc;
 };
 
@@ -21,7 +27,6 @@ export const getUserByID = async (id_search: any) => {
   const doc = await User.findOne({ _id: id_search });
   return doc;
 };
-
 
 export const getUsersCount = async () => {
   const resp = await User.countDocuments();
