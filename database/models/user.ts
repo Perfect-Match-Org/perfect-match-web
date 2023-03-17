@@ -11,6 +11,9 @@ const userSchema = new Schema({
   crushes: [{ type: String }],
   forbidden: [{ type: String }],
   matches: [{ type: ObjectId, ref: "User" }],
+  collab: {
+    mutual: { type: Boolean },
+  },
 });
 
 export const User = mongoose.models.User || model("User", userSchema);

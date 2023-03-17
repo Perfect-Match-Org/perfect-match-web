@@ -16,15 +16,10 @@ export const createUser = async (user: any) => {
 };
 
 export const getUser = async (user: any) => {
-  const doc = (await User.findOne({ email: user.email })).populate(
+  const doc = await User.findOne({ email: user.email }).populate(
     "matches",
     matchRevealData
   );
-  return doc;
-};
-
-export const getUserByID = async (id_search: any) => {
-  const doc = await User.findOne({ _id: id_search });
   return doc;
 };
 
@@ -81,4 +76,18 @@ export const updateUserOptIn = async (user: any, optIn: any) => {
     { new: true }
   );
   return doc;
+};
+
+export const getMutualVerifiedMatches = async (email: string) => {
+  await User.findOneAndUpdate(
+    { email: email },
+    { "collab.mutual": true }
+  ).exec();
+  const user = await User.findOne({ email: email }).populate("matches");
+  const verifiedMatches = user.matches
+    .map((match: any) => {
+      if (match?.collab?.mutual) return match.email;
+    })
+    .filter((email: string) => email);
+  return verifiedMatches;
 };
