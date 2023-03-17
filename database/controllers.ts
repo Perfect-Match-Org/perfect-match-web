@@ -84,6 +84,7 @@ export const getMutualVerifiedMatches = async (email: string) => {
     { "collab.mutual": true }
   ).exec();
   const user = await User.findOne({ email: email }).populate("matches");
+  if (!user) return [];
   const verifiedMatches = user.matches
     .map((match: any) => {
       if (match?.collab?.mutual) return match.email;
