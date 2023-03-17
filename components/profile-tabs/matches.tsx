@@ -72,7 +72,11 @@ function Matches({ matches }: any) {
                   </p>
                 </div>
                 {matches.map((match: any) => (
-                  <MatchTile matchData={match} contact={match.survey.contact} />
+                  <MatchTile
+                    key={match.id}
+                    matchData={match}
+                    contact={match.survey.contact}
+                  />
                 ))}
               </div>
             </section>
