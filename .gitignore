@@ -39,5 +39,5 @@ reminders/.env
 # redis
 *.rdb
 
-# venv
+# python
 venv

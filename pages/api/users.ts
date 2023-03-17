@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import getServerSession from "next-auth/next";
+import { unstable_getServerSession } from "next-auth/next";
 import authOptions from "./auth/[...nextauth]";
 import { getUsers } from "../../database/controllers";
 import { Session } from "next-auth";
@@ -11,7 +11,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<User[] | String>
 ) {
-  const session: Session = (await getServerSession(req, res, authOptions))!;
+  const session: Session = (await unstable_getServerSession(
+    req,
+    res,
+    authOptions
+  ))!;
   if (!session) return res.status(401).send("Unauthorized");
   else if (!isAdmin(session.user?.email!))
     return res.status(401).send("Unauthorized");
