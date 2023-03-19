@@ -16,9 +16,10 @@ export const getUser = async (user: any) => {
   const doc = await User.findOne({ email: user.email }).lean();
   return doc;
 };
-  
+
 export const getUsersCount = async () => {
   const resp = await User.countDocuments();
+  console.log();
   return resp;
 };
 
