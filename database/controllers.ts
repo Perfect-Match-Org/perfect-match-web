@@ -1,5 +1,6 @@
 import { User } from "./models";
 import { redisClient } from "./redis";
+
 export const createUser = async (user: any) => {
   const { email, given_name, family_name } = user;
   const newUser = new User({
@@ -15,16 +16,6 @@ export const getUser = async (user: any) => {
   const doc = await User.findOne({ email: user.email }).lean();
   return doc;
 };
-
-
-    
-        
-          
-    
-
-        
-    
-    @@ -23,8 +25,13 @@ export const getUsersCount = async () => {
   
 export const getUsersCount = async () => {
   const resp = await User.countDocuments();
@@ -37,16 +28,6 @@ export const getUsers = async () => {
 };
 
 export const updateSurvey = async (user: any, survey: any) => {
-
-    
-          
-            
-    
-
-          
-    
-    
-  
   const doc = await User.findOneAndUpdate(
     { email: user.email },
     { survey: survey },
@@ -54,6 +35,7 @@ export const updateSurvey = async (user: any, survey: any) => {
   );
   return doc;
 };
+
 export const updateProfile = async (user: any, profile: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
@@ -62,6 +44,7 @@ export const updateProfile = async (user: any, profile: any) => {
   );
   return doc;
 };
+
 export const updateCrushes = async (user: any, crushes: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
@@ -70,6 +53,7 @@ export const updateCrushes = async (user: any, crushes: any) => {
   );
   return doc;
 };
+
 export const updateForbidden = async (user: any, forbidden: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
@@ -78,6 +62,7 @@ export const updateForbidden = async (user: any, forbidden: any) => {
   );
   return doc;
 };
+
 export const updateUserOptIn = async (user: any, optIn: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
