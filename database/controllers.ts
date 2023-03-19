@@ -1,6 +1,5 @@
 import { User } from "./models";
 import { redisClient } from "./redis";
-
 export const createUser = async (user: any) => {
   const { email, given_name, family_name } = user;
   const newUser = new User({
@@ -9,32 +8,45 @@ export const createUser = async (user: any) => {
     profile: { firstName: given_name, lastName: family_name, email: email },
   });
   const doc = await newUser.save();
-  const cachedUsers = JSON.parse(await redisClient.get("users")).push(doc);
-  await redisClient.set("users", cachedUsers);
   return doc;
 };
 
 export const getUser = async (user: any) => {
-  const doc = await User.findOne({ email: user.email });
+  const doc = await User.findOne({ email: user.email }).lean();
   return doc;
 };
 
+
+    
+        
+          
+    
+
+        
+    
+    @@ -23,8 +25,13 @@ export const getUsersCount = async () => {
+  
 export const getUsersCount = async () => {
   const resp = await User.countDocuments();
   return resp;
 };
 
 export const getUsers = async () => {
-  const cachedUsers = await redisClient.get("users");
-  if (!cachedUsers) {
-    const users = await User.find();
-    redisClient.set("users", JSON.stringify(users));
-    return users;
-  }
-  return JSON.parse(cachedUsers);
+  const users = await User.find();
+  return users;
 };
 
 export const updateSurvey = async (user: any, survey: any) => {
+
+    
+          
+            
+    
+
+          
+    
+    
+  
   const doc = await User.findOneAndUpdate(
     { email: user.email },
     { survey: survey },
@@ -42,7 +54,6 @@ export const updateSurvey = async (user: any, survey: any) => {
   );
   return doc;
 };
-
 export const updateProfile = async (user: any, profile: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
@@ -51,7 +62,6 @@ export const updateProfile = async (user: any, profile: any) => {
   );
   return doc;
 };
-
 export const updateCrushes = async (user: any, crushes: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
@@ -60,7 +70,6 @@ export const updateCrushes = async (user: any, crushes: any) => {
   );
   return doc;
 };
-
 export const updateForbidden = async (user: any, forbidden: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
@@ -69,7 +78,6 @@ export const updateForbidden = async (user: any, forbidden: any) => {
   );
   return doc;
 };
-
 export const updateUserOptIn = async (user: any, optIn: any) => {
   const doc = await User.findOneAndUpdate(
     { email: user.email },
