@@ -1,7 +1,7 @@
 import { User, OTP } from "./models";
 import AWS from "aws-sdk";
 import crypto from "crypto";
-import fs from "fs";
+import { promises as fs } from "fs";
 import path from "path";
 
 const matchRevealData =
@@ -115,7 +115,10 @@ export const getMutualVerifiedMatches = async (email: string, otp: number) => {
 };
 
 async function sendOTP(user: any, otp: string) {
-  const html = fs.readFileSync("emails\\otp.html").toString();
+  const emailsDirectory = path.join(process.cwd(), "emails");
+  const html = await fs
+    .readFile(emailsDirectory + "/otp.html", "utf8")
+    .then((data) => data);
   const message = html
     .replace("{name}", user.profile.firstName)
     .replace("{otp}", otp);
