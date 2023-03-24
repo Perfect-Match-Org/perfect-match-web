@@ -1,5 +1,6 @@
-import { User } from "./models";
-import { redisClient } from "./redis";
+import { User, OTP } from "./models";
+import AWS from "aws-sdk";
+import crypto from "crypto";
 
 const matchRevealData =
   "id profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap";
@@ -78,12 +79,30 @@ export const updateUserOptIn = async (user: any, optIn: any) => {
   return doc;
 };
 
-export const getMutualVerifiedMatches = async (email: string) => {
-  await User.findOneAndUpdate(
+export const requestOTP = async (email: string) => {
+  const user = await User.findOne({ email });
+  if (!user) return null;
+  const existingOTP = await OTP.findOne({ email }).exec();
+  let otpValue;
+  if (!existingOTP) {
+    otpValue = crypto.randomBytes(3).toString("hex");
+    const newOTP = new OTP({ email, otp: otpValue });
+    await newOTP.save();
+  } else {
+    otpValue = existingOTP.otp;
+  }
+  return await sendOTP(user, otpValue);
+};
+
+export const getMutualVerifiedMatches = async (email: string, otp: number) => {
+  // find user with that email
+  const registeredOTP = await OTP.findOne({ email: email }).exec();
+  if (!registeredOTP || registeredOTP.otp !== otp) return null;
+  const user = await User.findOneAndUpdate(
     { email: email },
-    { "collab.mutual": true }
-  ).exec();
-  const user = await User.findOne({ email: email }).populate("matches");
+    { "collab.mutual": true },
+    { new: true }
+  ).populate("matches");
   if (!user) return [];
   const verifiedMatches = user.matches
     .map((match: any) => {
@@ -92,3 +111,41 @@ export const getMutualVerifiedMatches = async (email: string) => {
     .filter((email: string) => email);
   return verifiedMatches;
 };
+
+async function sendOTP(user: any, otp: string) {
+  const params = {
+    Destination: {
+      ToAddresses: [user.email],
+    },
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `<html>
+          <head>
+          </head>
+          <body>
+              Dear ${user.profile.firstName},
+              <br><br>
+              Your OTP is <b>${otp}</b>. Please enter this OTP in the Mutual App to verify your email address. This OTP will expire in 60 minutes.
+              <br><br>
+              <br><br>
+            </body>
+          </html>`,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: "Perfect Match OTP",
+      },
+    },
+    Source: " Perfect Match <noreply@perfectmatch.ai>",
+  };
+  AWS.config.update({
+    region: "us-east-1",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  });
+  await new AWS.SES({ apiVersion: "2010-12-01" }).sendEmail(params).promise();
+  return otp;
+}
