@@ -61,5 +61,7 @@ def send_emails(to_addresses, subject, body):
 
 
 send_emails(
-    admins(), "Surprise! A Perfect Match with Mutual 💌", open("./collab.html").read()
+    admins(),
+    "Surprise! A Perfect Match with Mutual 💌",
+    open("../emails/collab.html").read(),
 )

@@ -1,6 +1,8 @@
 import { User, OTP } from "./models";
 import AWS from "aws-sdk";
 import crypto from "crypto";
+import fs from "fs";
+import path from "path";
 
 const matchRevealData =
   "id profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap";
@@ -113,30 +115,17 @@ export const getMutualVerifiedMatches = async (email: string, otp: number) => {
 };
 
 async function sendOTP(user: any, otp: string) {
+  const html = fs.readFileSync("emails\\otp.html").toString();
+  const message = html
+    .replace("{name}", user.profile.firstName)
+    .replace("{otp}", otp);
   const params = {
-    Destination: {
-      ToAddresses: [user.email],
-    },
+    Destination: { ToAddresses: [user.email] },
     Message: {
-      Body: {
-        Html: {
-          Charset: "UTF-8",
-          Data: `<html>
-          <head>
-          </head>
-          <body>
-              Dear ${user.profile.firstName},
-              <br><br>
-              Your OTP is <b>${otp}</b>. Please enter this OTP in the Mutual App to verify your email address. This OTP will expire in 60 minutes.
-              <br><br>
-              <br><br>
-            </body>
-          </html>`,
-        },
-      },
+      Body: { Html: { Charset: "UTF-8", Data: message } },
       Subject: {
         Charset: "UTF-8",
-        Data: "Perfect Match OTP",
+        Data: "Your OTP for Mutual X Perfect Match Verification",
       },
     },
     Source: " Perfect Match <noreply@perfectmatch.ai>",
@@ -146,6 +135,6 @@ async function sendOTP(user: any, otp: string) {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   });
-  await new AWS.SES({ apiVersion: "2010-12-01" }).sendEmail(params).promise();
+  await new AWS.SES({ apiVersion: "latest" }).sendEmail(params).promise();
   return otp;
 }
