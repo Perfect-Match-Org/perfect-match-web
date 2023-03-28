@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { Footer } from "../components/footer";
 import { GoogleAuth } from "../components/general";
 import { Header } from "../components/header";
-import { fetcher } from "../helpers/fetch";
+import { fetcher } from "../utils/fetch";
 import useSWR from "swr";
 
 const Home: NextPage = (props: any) => {

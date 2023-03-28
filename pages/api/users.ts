@@ -4,7 +4,7 @@ import authOptions from "./auth/[...nextauth]";
 import { getUsers } from "../../database/controllers";
 import { Session } from "next-auth";
 import { connect } from "../../database/database";
-import { isAdmin } from "../../helpers/admins";
+import { isAdmin } from "../../utils/admins";
 import { User } from "../../types/users";
 
 export default async function handler(

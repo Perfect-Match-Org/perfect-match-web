@@ -5,7 +5,7 @@ import { ProfileTabs } from "../components/profile-tabs";
 import { Spinner } from "../components/general";
 import { NextPage } from "next";
 import { getSession } from "next-auth/react";
-import { fetcher } from "../helpers/fetch";
+import { fetcher } from "../utils/fetch";
 import useSWR from "swr";
 
 const Profile: NextPage = (props: any) => {

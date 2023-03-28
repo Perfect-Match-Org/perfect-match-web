@@ -5,20 +5,20 @@ import { Header } from "../components/header";
 import Link from "next/link";
 import Script from "next/script";
 import Image from "next/image";
-import DescribeYou from "../analytics/apex-charts/describeYou";
-import DescribePartner from "../analytics/apex-charts/describePartner";
-import Year from "../analytics/apex-charts/year";
-import Height from "../analytics/apex-charts/height";
-import LongestRelation from "../analytics/apex-charts/longestRelation";
-import NumDatedGender from "../analytics/apex-charts/numDated";
-import NumDatedCollege from "../analytics/apex-charts/numDatedCollege";
-import Extroverted from "../analytics/apex-charts/extroverted";
-import Easygoing from "../analytics/apex-charts/easygoing";
-import Political from "../analytics/apex-charts/political";
-import TimeOrMoney from "../analytics/apex-charts/timeOrMoney";
-import SimilarInterest from "../analytics/apex-charts/similarInterest";
-import FirstDate from "../analytics/apex-charts/firstDate";
-import FridayNight from "../analytics/apex-charts/fridayNight";
+import DescribeYou from "../components/analytics/apex-charts/describeYou";
+import DescribePartner from "../components/analytics/apex-charts/describePartner";
+import Year from "../components/analytics/apex-charts/year";
+import Height from "../components/analytics/apex-charts/height";
+import LongestRelation from "../components/analytics/apex-charts/longestRelation";
+import NumDatedGender from "../components/analytics/apex-charts/numDated";
+import NumDatedCollege from "../components/analytics/apex-charts/numDatedCollege";
+import Extroverted from "../components/analytics/apex-charts/extroverted";
+import Easygoing from "../components/analytics/apex-charts/easygoing";
+import Political from "../components/analytics/apex-charts/political";
+import TimeOrMoney from "../components/analytics/apex-charts/timeOrMoney";
+import SimilarInterest from "../components/analytics/apex-charts/similarInterest";
+import FirstDate from "../components/analytics/apex-charts/firstDate";
+import FridayNight from "../components/analytics/apex-charts/fridayNight";
 
 const Statistics: any = (props: any) => {
   return (
