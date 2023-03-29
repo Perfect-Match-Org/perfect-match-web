@@ -115,7 +115,7 @@ export const getMutualVerifiedMatches = async (email: string, otp: number) => {
 };
 
 async function sendOTP(user: any, otp: string) {
-  const emailsDirectory = path.join(process.cwd(), "emails");
+  const emailsDirectory = path.join(process.cwd(), "reminders/emails");
   const html = await fs
     .readFile(emailsDirectory + "/otp.html", "utf8")
     .then((data) => data);
