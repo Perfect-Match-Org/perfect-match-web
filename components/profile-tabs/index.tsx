@@ -1,1 +1,1 @@
-export { default as ProfileTabs } from "./profileTabs";
+export { default as ProfileTabs } from './profileTabs';

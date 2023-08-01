@@ -1,50 +1,48 @@
 .countdown {
-  color: white;
-  text-align: center;
+    color: white;
+    text-align: center;
 
-  font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+    font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace;
 }
 
-
-
 .landingtext {
-  font-size: 300%;
-  color: black
+    font-size: 300%;
+    color: black;
 }
 
 .ticker {
-  color: #f9787d
+    color: #f9787d;
 }
 
 @media screen and (max-width: 600px) {
-  .footer {
-    visibility: hidden;
-    display: none;
-  }
+    .footer {
+        visibility: hidden;
+        display: none;
+    }
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  /* width: 100%; */
-  /* height: 2.5rem; */
-  /* Footer height */
+    position: absolute;
+    bottom: 0;
+    /* width: 100%; */
+    /* height: 2.5rem; */
+    /* Footer height */
 }
 
 .about {
-  color: white;
+    color: white;
 }
 
 .surveybody {
-  height: 100%
+    height: 100%;
 }
 
 .survey {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 0;
-  height: 100%
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 0;
+    height: 100%;
 }

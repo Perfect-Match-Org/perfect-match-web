@@ -2,7 +2,7 @@
 
 Finished working on task A:
 
-- [x] Implemented feature X
-- [ ] Refactored code for feature Y
+-   [x] Implemented feature X
+-   [ ] Refactored code for feature Y
 
 ### Notes <!-- Any notes for fellow developers who might be affected by these changes -->

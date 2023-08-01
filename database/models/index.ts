@@ -1,2 +1,2 @@
-export { User } from "./user";
-export { OTP } from "./otp";
+export { User } from './user';
+export { OTP } from './otp';

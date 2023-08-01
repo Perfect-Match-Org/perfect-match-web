@@ -1,9 +1,12 @@
 # Cornell Perfect Match
-Welcome to the Cornell Perfect Match repository! 
 
-Perfect Match is a matchmaking survey that pairs Cornell students with their "Perfect Matches" based on our machine learning algorithm. The survey was first ideated in February 2019 and has grown in popularity, with over 4,200 participants in the previous iteration.
+Welcome to the Cornell Perfect Match repository!
 
-This repository contains the code for the 2023 iteration of Perfect Match, built using Next.js and yarn. We invite you to take the survey and share the link with your friends to help spread some joy in 2023.
+Perfect Match is a matchmaking survey that pairs Cornell students with their "Perfect Matches" based on our machine learning algorithm. The survey was first
+ideated in February 2019 and has grown in popularity, with over 4,200 participants in the previous iteration.
+
+This repository contains the code for the 2023 iteration of Perfect Match, built using Next.js and yarn. We invite you to take the survey and share the link
+with your friends to help spread some joy in 2023.
 
 ## Getting Started
 
