@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
+import Members from '../components/members';
 
 const About: any = (props: any) => {
     return (
@@ -22,7 +23,6 @@ const About: any = (props: any) => {
                                 <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">Cupid just got smarter 🦾💗!</h2>
 
                                 <p className="sm:mb-4 mb-0">
-                                    {' '}
                                     Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning algorithm uses your survey to pair you
                                     with other Cornell students — your Perfect Matches! This year, we are back with fun survey questions, improved matching
                                     algorithm, and better privacy protection measures! Don&apos;t hesitate to get in for a Valentine&apos;s Day you won&apos;t
@@ -37,7 +37,11 @@ const About: any = (props: any) => {
                     </section>
                 </div>
 
-                <section className="bg-white pt-3 sm:pb-10 pb-5">
+                <section className="bg-pink-100">
+                    <Members />
+                </section>
+
+                <section className="bg-white py-24 sm:pb-10 pb-5">
                     <div className="mx-[10%] lg:mx-[15%]">
                         <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
                             <li>
@@ -206,13 +210,15 @@ const About: any = (props: any) => {
                                         What happens to my data?
                                     </summary>
 
-                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                    <p className="pt-2 pl-4">
                                         Your data is safe with us! We will never share your data with a third party, and we will only interact with your
                                         information as needed to resolve user issues. We may collect anonymous statistics to improve our algorithm, but your
                                         identity will always be separated from such reports. More FAQ&apos;s about user privacy can be found{' '}
-                                        <div className="underline inline">
-                                            <Link href="/statistics#privacy">here</Link>
-                                        </div>
+                                        <u>
+                                            <Link href="/statistics#privacy" className="underline">
+                                                here
+                                            </Link>
+                                        </u>{' '}
                                         .
                                     </p>
                                 </details>
