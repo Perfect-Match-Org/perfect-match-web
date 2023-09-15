@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
     return (
         <div className="bg-white">
-            <hr className="border-2 border-rose-300 my-5" />
+            <hr className="border-2 border-rose-300 mb-5" />
             <footer>
                 <div className="flex justify-center items-center mb-5">
                     <a href="https://www.reddit.com/user/PerfectMatch2020/" target="_blank" rel="noreferrer">
