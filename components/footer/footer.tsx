@@ -30,7 +30,7 @@ function Footer() {
                 </div>
 
                 <div className="text-xs text-gray-400 flex justify-center mb-3">
-                    *This organization is a registered student organization of Cornell University.
+                    This organization is a registered student organization of Cornell University.
                 </div>
                 <div className="text-xs text-gray-400 flex justify-center pb-6">
                     If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, please
