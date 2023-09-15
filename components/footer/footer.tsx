@@ -3,17 +3,9 @@ import React from 'react';
 function Footer() {
     return (
         <div className="bg-white">
-            <hr className="border-2 border-rose-300" />
+            <hr className="border-2 border-rose-300 my-5" />
             <footer>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        paddingBottom: '20px',
-                        marginTop: '25px',
-                    }}
-                >
+                <div className="flex justify-center items-center mb-5">
                     <a href="https://www.reddit.com/user/PerfectMatch2020/" target="_blank" rel="noreferrer">
                         <img src="\reddit.svg" alt="Reddit Logo" className="w-7 sm:w-9 mr-4" />
                     </a>
@@ -27,21 +19,23 @@ function Footer() {
                     </a>
                 </div>
 
-                <p
-                    className="text-sm text-gray-500 dark:text-gray-400"
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        paddingBottom: '25px',
-                    }}
-                >
-                    ©{' '}
-                    <a href="/" target="_blank" rel="noreferrer" className="hover:underline">
-                        Perfect Match 2023.{' '}
-                    </a>{' '}
-                    &nbsp;All Rights Reserved.
-                </p>
+                <div className="text-sm text-gray-500 dark:text-gray-400 flex justify-center items-center mb-3">
+                    <p>
+                        ©
+                        <a href="/" target="_blank" rel="noreferrer" className="hover:underline">
+                            Perfect Match 2023.
+                        </a>
+                        &nbsp;All Rights Reserved.
+                    </p>
+                </div>
+
+                <div className="text-xs text-gray-400 flex justify-center mb-3">
+                    *This organization is a registered student organization of Cornell University.
+                </div>
+                <div className="text-xs text-gray-400 flex justify-center pb-6">
+                    If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, please
+                    contact us at cornell.perfectmatch@gmail.com.
+                </div>
             </footer>
         </div>
     );
