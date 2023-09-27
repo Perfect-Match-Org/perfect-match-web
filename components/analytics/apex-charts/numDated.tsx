@@ -68,7 +68,16 @@ const NumDatedGender = () => {
             },
         },
         xaxis: {
-            categories: ['0 person', '1 person', '2 people', '3 people', '4 people', '5 people', '6-10 people', '10+ people'],
+            categories: [
+                '0 person',
+                '1 person',
+                '2 people',
+                '3 people',
+                '4 people',
+                '5 people',
+                '6-10 people',
+                '10+ people',
+            ],
             labels: {
                 formatter: function (val: any) {
                     return Math.abs(Math.round(val)) + '%';

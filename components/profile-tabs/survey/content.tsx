@@ -438,7 +438,21 @@ export const questions = {
                     name: 'waketime',
                     title: 'What time do you wake up?',
                     isRequired: true,
-                    choices: ['3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm'],
+                    choices: [
+                        '3am',
+                        '4am',
+                        '5am',
+                        '6am',
+                        '7am',
+                        '8am',
+                        '9am',
+                        '10am',
+                        '11am',
+                        '12pm',
+                        '1pm',
+                        '2pm',
+                        '3pm',
+                    ],
                 },
 
                 {
