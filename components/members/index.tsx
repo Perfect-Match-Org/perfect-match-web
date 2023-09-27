@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Members: React.FC = () => {
     const leads = [
@@ -6,22 +8,25 @@ const Members: React.FC = () => {
             Name: 'Grace Wilkey',
             ClassYear: 2024,
             Major: 'Hospitality Administration',
-            Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+            Img: '/members/grace.jpg',
             Team: 'Business',
+            Linkedin: 'https://www.linkedin.com/in/grace-wilkey-201a30147',
         },
         {
             Name: 'Pratyush Sudhakar',
             ClassYear: 2025,
             Major: 'Computer Science & Math',
-            Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+            Img: '/members/pratyush.jpg',
             Team: 'Engineering',
+            Linkedin: 'https://www.linkedin.com/in/pratyushsudhakar',
         },
         {
             Name: 'Nicholas Varela',
             ClassYear: 2025,
             Major: 'Computer Science & Government',
-            Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+            Img: '/members/nick.jpg',
             Team: 'Engineering',
+            Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
         },
     ];
 
@@ -34,7 +39,8 @@ const Members: React.FC = () => {
                     Name: 'Nicholas Varela',
                     ClassYear: 2025,
                     Major: 'Computer Science & Government',
-                    Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+                    Img: '/members/nick.jpg',
+                    Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
                 },
             ],
         },
@@ -46,7 +52,8 @@ const Members: React.FC = () => {
                     Name: 'Taerim Eom',
                     ClassYear: 2024,
                     Major: 'Computer Science',
-                    Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+                    Img: '/members/taerim.jpg',
+                    Linkedin: 'https://www.linkedin.com/in/taerim-eom-301a41197',
                 },
             ],
             Members: [
@@ -54,7 +61,8 @@ const Members: React.FC = () => {
                     Name: 'Vipin Gunda',
                     ClassYear: 2025,
                     Major: 'Computer Science & Math',
-                    Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+                    Img: '/members/vipin.jpg',
+                    Linkedin: 'https://www.linkedin.com/in/vipin-gunda',
                 },
             ],
         },
@@ -66,7 +74,8 @@ const Members: React.FC = () => {
                     Name: 'Flavia Jiang',
                     ClassYear: 2025,
                     Major: 'Information Science',
-                    Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+                    Img: '/members/person.jpg',
+                    Linkedin: 'https://www.linkedin.com/in/ziyan-jiang-73b882255',
                 },
             ],
         },
@@ -78,7 +87,8 @@ const Members: React.FC = () => {
                     Name: 'Grace Wilkey',
                     ClassYear: 2024,
                     Major: 'Hospitality Administration',
-                    Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+                    Img: '/members/grace.jpg',
+                    Linkedin: 'https://www.linkedin.com/in/grace-wilkey-201a30147',
                 },
             ],
             Members: [
@@ -86,7 +96,8 @@ const Members: React.FC = () => {
                     Name: 'Varshini Madhavan',
                     ClassYear: 2025,
                     Major: 'Industrial and Labor Relations',
-                    Img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+                    Img: '/members/varshini.jpg',
+                    Linkedin: 'https://www.linkedin.com/in/varshinimadhavan',
                 },
             ],
         },
@@ -100,16 +111,16 @@ const Members: React.FC = () => {
 
                     <div className="flex flex-wrap justify-center gap-6 mb-6">
                         {leads.map((lead) => (
-                            <div key={lead.Name} className="p-4 sm:w-1/3">
+                            <a key={lead.Name} className="p-4 sm:w-1/4" href={lead.Linkedin} target="_blank" rel="noopener noreferrer">
                                 <div className="flex flex-col items-center">
-                                    <img className="w-72 h-72 rounded-full mb-4 shadow-lg object-cover" src={lead.Img} alt={lead.Name} />
+                                    <Image src={lead.Img} alt={lead.Name} width={208} height={208} className="rounded-full mb-4 object-cover" />
                                     <p className="font-bold text-lg text-gray-800">{lead.Name}</p>
                                     <p className="text-gray-600">
                                         {lead.Major}, {lead.ClassYear}
                                     </p>
                                     <p className="text-rose-500">Head of {lead.Team}</p>
                                 </div>
-                            </div>
+                            </a>
                         ))}
                     </div>
                     <hr className="border-2 border-rose-300 my-5 w-2/3 mx-auto" />
@@ -122,28 +133,28 @@ const Members: React.FC = () => {
 
                         <div className="flex flex-wrap justify-center gap-4">
                             {division.Leads.map((lead) => (
-                                <div key={lead.Name} className="p-4 sm:w-1/3">
+                                <a key={lead.Name} className="p-4 sm:w-1/4" href={lead.Linkedin} target="_blank" rel="noopener noreferrer">
                                     <div className="flex flex-col items-center">
-                                        <img className="w-72 h-72 rounded-full mb-4 shadow-lg object-cover" src={lead.Img} alt={lead.Name} />
+                                        <Image src={lead.Img} alt={lead.Name} width={208} height={208} className="rounded-full mb-4 object-cover" />
                                         <p className="font-bold text-lg text-gray-800">{lead.Name}</p>
                                         <p className="text-gray-600">
                                             {lead.Major}, {lead.ClassYear}
                                         </p>
                                         <p className="text-rose-500">Team Lead</p>
                                     </div>
-                                </div>
+                                </a>
                             ))}
 
                             {division.Members &&
                                 division.Members.map((member) => (
-                                    <div key={member.Name} className="p-4 sm:w-1/4">
+                                    <a key={member.Name} className="p-4 sm:w-1/4" href={member.Linkedin} target="_blank" rel="noopener noreferrer">
                                         <div className="flex flex-col items-center">
-                                            <img className="w-72 h-72 rounded-full mb-4 shadow-lg object-cover" src={member.Img} alt={member.Name} />
+                                            <Image src={member.Img} alt={member.Name} width={208} height={208} className="rounded-full mb-4  object-cover" />
                                             <p className="font-medium text-lg text-gray-800">{member.Name}</p>
                                             <p className="text-gray-600">{member.Major}</p>
                                             <p className="text-gray-700">{member.ClassYear}</p>
                                         </div>
-                                    </div>
+                                    </a>
                                 ))}
                         </div>
                         <hr className="border-2 border-rose-300 my-5 w-1/4 mx-auto" />
