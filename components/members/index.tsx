@@ -13,7 +13,7 @@ const Members: React.FC = () => {
                         {leads.map((lead) => (
                             <a key={lead.Name} className="p-4 sm:w-1/4" href={lead.Linkedin} target="_blank" rel="noopener noreferrer">
                                 <div className="flex flex-col items-center">
-                                    <Image src={lead.Img} alt={lead.Name} width={208} height={208} className="rounded-full mb-4 object-cover" />
+                                    <Image src={lead.Img} alt={lead.Name} width={208} height={208} className="rounded-full mb-4 object-cover" loading="eager" />
                                     <p className="font-bold text-lg text-gray-800">{lead.Name}</p>
                                     <p className="text-gray-600">
                                         {lead.Major}, {lead.ClassYear}
@@ -35,7 +35,14 @@ const Members: React.FC = () => {
                             {division.Leads.map((lead) => (
                                 <a key={lead.Name} className="p-4 sm:w-1/4" href={lead.Linkedin} target="_blank" rel="noopener noreferrer">
                                     <div className="flex flex-col items-center">
-                                        <Image src={lead.Img} alt={lead.Name} width={208} height={208} className="rounded-full mb-4 object-cover" />
+                                        <Image
+                                            src={lead.Img}
+                                            alt={lead.Name}
+                                            width={208}
+                                            height={208}
+                                            className="rounded-full mb-4 object-cover"
+                                            loading="eager"
+                                        />
                                         <p className="font-bold text-lg text-gray-800">{lead.Name}</p>
                                         <p className="text-gray-600">
                                             {lead.Major}, {lead.ClassYear}
@@ -49,7 +56,14 @@ const Members: React.FC = () => {
                                 division.Members.map((member) => (
                                     <a key={member.Name} className="p-4 sm:w-1/4" href={member.Linkedin} target="_blank" rel="noopener noreferrer">
                                         <div className="flex flex-col items-center">
-                                            <Image src={member.Img} alt={member.Name} width={208} height={208} className="rounded-full mb-4  object-cover" />
+                                            <Image
+                                                src={member.Img}
+                                                alt={member.Name}
+                                                width={208}
+                                                height={208}
+                                                className="rounded-full mb-4 object-cover"
+                                                loading="eager"
+                                            />
                                             <p className="font-medium text-lg text-gray-800">{member.Name}</p>
                                             <p className="text-gray-600">{member.Major}</p>
                                             <p className="text-gray-700">{member.ClassYear}</p>
