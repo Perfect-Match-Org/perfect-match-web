@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
     return (
         <div className="bg-white">
-            <hr className="border-2 border-rose-300 my-5" />
+            <hr className="border-2 border-rose-300 mb-5" />
             <footer>
                 <div className="flex justify-center items-center mb-5">
                     <a href="https://www.reddit.com/user/PerfectMatch2020/" target="_blank" rel="noreferrer">
@@ -29,8 +29,12 @@ function Footer() {
                     </p>
                 </div>
 
+                <div className="text-xs text-gray-400 flex justify-center mb-3">
+                    This organization is a registered student organization of Cornell University.
+                </div>
                 <div className="text-xs text-gray-400 flex justify-center pb-6">
-                    *This organization is a registered student organization of Cornell University.
+                    If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, please
+                    contact us at cornell.perfectmatch@gmail.com.
                 </div>
             </footer>
         </div>
