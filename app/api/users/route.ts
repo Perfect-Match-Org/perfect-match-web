@@ -8,7 +8,7 @@ import { isAdmin } from '@/lib/utils/admins'
 import { User } from '@/lib/types/users';
 import { NextResponse } from 'next/server';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
     const session: Session | null = await getServerSession(authOptions);
 
     if (!session) return res.status(401).send('Unauthorized');
@@ -20,3 +20,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const users = await getUsers();
     return NextResponse.json(users, { status: 200 });
 }
+
+export { handler as GET }
