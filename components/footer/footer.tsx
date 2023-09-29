@@ -1,6 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 
 function Footer() {
     return (
@@ -9,24 +7,24 @@ function Footer() {
             <footer>
                 <div className="flex justify-center items-center mb-5">
                     <a href="https://www.reddit.com/user/PerfectMatch2020/" target="_blank" rel="noreferrer">
-                        <Image src="\reddit.svg" alt="Reddit Logo" width={36} height={36} className="mr-5" />
+                        <img src="\reddit.svg" alt="Reddit Logo" className="w-7 sm:w-9 mr-4" />
                     </a>
 
                     <a href="https://www.instagram.com/cornellperfectmatch/?hl=en" target="_blank" rel="noreferrer">
-                        <Image src="\ins.svg" alt="Instagram Logo" width={36} height={36} className="mr-3" />
+                        <img src="\ins.svg" alt="Instagram Logo" className="w-7 sm:w-9 mr-3" />
                     </a>
 
                     <a href="https://www.facebook.com/cornellperfectmatch/" target="_blank" rel="noreferrer">
-                        <Image src="\facebook.svg" alt="Facebook Logo" width={36} height={36} />
+                        <img src="\facebook.svg" alt="Facebook Logo" className="w-7 sm:w-9" />
                     </a>
                 </div>
 
                 <div className="text-sm text-gray-500 dark:text-gray-400 flex justify-center items-center mb-3">
                     <p>
                         ©
-                        <Link href="/" target="_blank" rel="noreferrer" className="hover:underline">
+                        <a href="/" target="_blank" rel="noreferrer" className="hover:underline">
                             Perfect Match 2023.
-                        </Link>
+                        </a>
                         &nbsp;All Rights Reserved.
                     </p>
                 </div>

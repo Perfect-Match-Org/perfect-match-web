@@ -1,8 +1,6 @@
-'use client';
 import Link from 'next/link';
 import Toggle from './burgerMenu';
 import Script from 'next/script';
-import Image from 'next/image';
 
 function Header(props: any) {
     return (
@@ -20,12 +18,10 @@ function Header(props: any) {
             <nav className="bg-white border-gray-200 pr-4 lg:px-6 py-2.5 light:bg-gray-800 main-nav">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <Link href="/" className="flex items-center">
-                        <Image
-                            src="/logo.png"
-                            className="mr-3 sm:h-9 cursor-pointer ml-4 sm:ml-8"
+                        <img
+                            src="logo.png"
+                            className="mr-3 h-7 sm:h-9 cursor-pointer ml-4 sm:ml-8"
                             alt="Perfect Match"
-                            width={190}
-                            height={28}
                         />
                     </Link>
                     <div className="sm:hidden">

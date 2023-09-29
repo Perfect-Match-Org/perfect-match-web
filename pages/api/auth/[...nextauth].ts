@@ -1,14 +1,14 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import { getUser, createUser } from '@/database/controllers';
-import { connect } from '@/database/index';
+import { getUser, createUser } from '../../../database/controllers';
+import { connect } from '../../../database/database';
 
 const isValidCornellEmail = (email: string): boolean => {
     const domain = email.split('@')[1];
     return domain === 'cornell.edu' || email === 'cornell.perfectmatch@gmail.com';
 };
 
-export const authOptions: NextAuthOptions = {
+export default NextAuth({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -17,10 +17,6 @@ export const authOptions: NextAuthOptions = {
     ],
     pages: {
         error: '/auth/error',
-    },
-    session: {
-        strategy: 'jwt',
-        maxAge: 30 * 24 * 60 * 60,
     },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
@@ -41,8 +37,4 @@ export const authOptions: NextAuthOptions = {
             return true;
         },
     },
-};
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
+});

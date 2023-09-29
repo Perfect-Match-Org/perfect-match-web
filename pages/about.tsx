@@ -1,8 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { Footer } from 'components/footer';
-import { Header } from '@/components/header';
-import Image from 'next/image';
+import { Footer } from '../components/footer';
+import { Header } from '../components/header';
 
 const About: any = (props: any) => {
     return (
@@ -13,6 +12,7 @@ const About: any = (props: any) => {
             <Header />
             <div>
                 <div>
+                    {' '}
                     <section className="bg-white ">
                         <div
                             className="gap-6 lg:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
@@ -24,6 +24,7 @@ const About: any = (props: any) => {
                                 </h2>
 
                                 <p className="sm:mb-4 mb-0">
+                                    {' '}
                                     Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning
                                     algorithm uses your survey to pair you with other Cornell students — your Perfect
                                     Matches! This year, we are back with fun survey questions, improved matching
@@ -33,7 +34,7 @@ const About: any = (props: any) => {
                                 {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
                             </div>
                             <div className="lg:w-5/12">
-                                <Image className="rounded-lg" src="/new_cupid.png" width={30} height={30} alt={''} />
+                                <img className="rounded-lg" src="\new_cupid.png" />
                             </div>
                         </div>
                     </section>
@@ -60,7 +61,7 @@ const About: any = (props: any) => {
                                         >
                                             IG
                                         </a>
-                                        .
+                                        .{' '}
                                     </p>
                                 </div>
                             </li>

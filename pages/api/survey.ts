@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import getServerSession from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { updateSurvey } from '@/database/controllers';
+import { unstable_getServerSession } from 'next-auth/next';
+import authOptions from './auth/[...nextauth]';
+import { updateSurvey } from '../../database/controllers';
 import { Session } from 'next-auth';
-import { connect } from '@/database/index';
-import { Survey } from '@/lib/types/users';
+import { connect } from '../../database/database';
+import { Survey } from '../../types/users';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Survey | String>) {
-    const session: Session | null = await getServerSession(req, res, authOptions);
+    const session: Session | null = await unstable_getServerSession(req, res, authOptions);
     if (!session) return res.status(401).send('Unauthorized');
     if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 

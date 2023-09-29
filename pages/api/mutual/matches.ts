@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMutualVerifiedMatches } from '@/database/controllers';
-import { connect } from '@/database/index';
+import { getMutualVerifiedMatches } from '../../../database/controllers';
+import { connect } from '../../../database/database';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const apiToken = req.headers['x-api-key'];

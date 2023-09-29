@@ -1,5 +1,8 @@
-'use client';
-import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
+
+const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+    ssr: false,
+});
 
 const Political = () => {
     const series = [412, 685, 1078, 566, 496, 182, 140, 81, 21, 16];
