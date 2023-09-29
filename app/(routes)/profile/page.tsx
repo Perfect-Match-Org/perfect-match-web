@@ -1,17 +1,17 @@
 import Head from 'next/head';
-import { Footer } from '../components/footer';
-import { Header } from '../components/header';
-import { ProfileTabs } from '../components/profile-tabs';
-import { Spinner } from '../components/general';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { ProfileTabs } from '@/components/profile-tabs';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
 import { NextPage } from 'next';
-import { getSession } from 'next-auth/react';
-import { fetcher } from '../utils/fetch';
-import useSWR from 'swr';
+import { redirect } from 'next/navigation';
 
-const Profile: NextPage = (props: any) => {
-    const { data, error, mutate } = useSWR('/api/profile', fetcher);
-    const refresh = () => mutate();
-    if (!data) return <Spinner />;
+export default async function Page() {
+    const session = await getServerSession(authOptions);
+
+    if (!session || session == undefined) redirect('/api/auth/signin');
+
     return (
         <div>
             <Head>
@@ -22,18 +22,17 @@ const Profile: NextPage = (props: any) => {
                 <section className="bg-white ">
                     <div className="px-10 items-center pb-0 sm:pb-5 pt-20 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
                         <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
-                            Welcome Back, {data.profile.firstName}!
+                            Welcome Back, {session && session.user?.name}!
                         </h1>
                         <p className="mt-1 text-xl  font-bold text-gray-500">Let&apos;s get matching</p>
                     </div>
                 </section>
             </div>
             <div>
-                {' '}
                 <section className="bg-white ">
                     <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
                         <div className="bg-white rounded-lg h-auto">
-                            <ProfileTabs user={data} refresh={refresh} />
+                            <ProfileTabs />
                         </div>
                     </div>
                 </section>
@@ -41,20 +40,4 @@ const Profile: NextPage = (props: any) => {
             <Footer />
         </div>
     );
-};
-
-export async function getServerSideProps(context: any) {
-    const session = await getSession(context);
-    if (!session)
-        return {
-            redirect: { permanent: false, destination: '/api/auth/signin' },
-            props: {},
-        };
-    return {
-        props: {
-            user: session.user,
-        },
-    };
 }
-
-export default Profile;

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { requestOTP } from '../../../database/controllers';
-import { connect } from '../../../database/database';
+import { requestOTP } from '@/database/controllers';
+import { connect } from '@/database/index';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const apiToken = req.headers['x-api-key'];

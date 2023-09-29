@@ -1,8 +1,5 @@
-import dynamic from 'next/dynamic';
-
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
-    ssr: false,
-});
+'use client';
+import ReactApexChart from 'react-apexcharts';
 
 const TimeOrMoney = () => {
     const series = [2398, 843, 436];

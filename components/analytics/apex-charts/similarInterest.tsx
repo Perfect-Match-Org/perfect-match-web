@@ -1,8 +1,5 @@
-import dynamic from 'next/dynamic';
-
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
-    ssr: false,
-});
+'use client';
+import ReactApexChart from 'react-apexcharts';
 
 const SimilarInterest = () => {
     const series = [1585, 2070, 22];

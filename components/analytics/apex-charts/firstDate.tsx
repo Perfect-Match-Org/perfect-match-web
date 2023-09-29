@@ -1,8 +1,5 @@
-import dynamic from 'next/dynamic';
-
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
-    ssr: false,
-});
+'use client';
+import ReactApexChart from 'react-apexcharts';
 
 const FirstDate = () => {
     const series = [1024, 960, 838, 564, 175, 61, 55];

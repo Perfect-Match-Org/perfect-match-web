@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import * as survey from '../../types/surveyEnums';
+import * as survey from '@/lib/types/surveyEnums';
 
 export const surveySchema = new Schema(
     {

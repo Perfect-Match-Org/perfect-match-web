@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import * as profile from '../../types/profileEnums';
+import * as profile from '@/lib/types/profileEnums';
 
 export const profileSchema = new Schema(
     {

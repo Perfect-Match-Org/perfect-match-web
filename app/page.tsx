@@ -1,16 +1,21 @@
 import Head from 'next/head';
-import type { NextPage } from 'next';
-import { getSession } from 'next-auth/react';
-import { Footer } from '../components/footer';
-import { GoogleAuth } from '../components/general';
-import { Header } from '../components/header';
-import { fetcher } from '../utils/fetch';
-import useSWR from 'swr';
+import { Footer } from '@/components/footer';
+import { GoogleAuth } from '@/components/general';
+import { Header } from '@/components/header';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
-const Home: NextPage = (props: any) => {
-    const { data: currentCount, error } = useSWR('/api/count', fetcher, {
-        refreshInterval: 60000,
+async function getUsersCount() {
+    const fetchCount = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/count', {
+        next: { revalidate: 1 },
     });
+    const data = await fetchCount.json();
+    const session = await getServerSession(authOptions);
+    return { user: session?.user, count: data.count };
+}
+
+export default async function Page() {
+    const { user, count } = await getUsersCount();
     return (
         <div>
             <Head>
@@ -22,9 +27,7 @@ const Home: NextPage = (props: any) => {
             <section
                 className="lg:mx-[3%]"
                 style={{
-                    marginBottom: '20px',
-                    marginTop: '-10px',
-                    backgroundImage: 'url("Cecil.png")',
+                    backgroundImage: `url("Cecil.png")`,
                     height: '100%',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
@@ -34,43 +37,31 @@ const Home: NextPage = (props: any) => {
                 <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center lg:pt-60 lg:pb-36">
                     <div className="text-center lg:text-left lg:ml-[8%] mt-8 lg:mt-0">
                         <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
-                            Let&apos;s find your
-                            <strong className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
+                            Let's find your
+                            <span className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
                                 Perfect Match!
-                            </strong>
+                            </span>
                         </h1>
                         <p className="mt-4 mx-[5%] lg:max-w-lg sm:mx-[10%] lg:mx-0 sm:text-xl text-gray-500 sm:leading-relaxed">
-                            That&apos;s a wrap! Log in to see your matches!
+                            That's a wrap! Log in to see your matches!
                         </p>
 
                         <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">
-                            Over 4500+ Cornellians matched this year!{' '}
+                            Over 4500 Cornellians matched this year!
                         </p>
                         <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">
-                            <strong>22,000+ Perfect Matches 💘 </strong>
+                            22,000+ Perfect Matches
                         </p>
 
                         <div className="flex lg:contents">
                             <div className="mt-8 flex flex-wrap gap-4 text-center mx-auto">
-                                <GoogleAuth login={!props.user} />
+                                <GoogleAuth login={!user} />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             <Footer />
         </div>
     );
-};
-
-export async function getServerSideProps(context: any) {
-    const session = await getSession(context);
-    return {
-        props: {
-            user: session?.user || null,
-        },
-    };
 }
-
-export default Home;

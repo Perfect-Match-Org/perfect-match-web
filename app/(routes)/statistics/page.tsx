@@ -1,24 +1,21 @@
-import styles from '../styles/Home.module.css';
 import Head from 'next/head';
-import { Footer } from '../components/footer';
-import { Header } from '../components/header';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import Link from 'next/link';
-import Script from 'next/script';
-import Image from 'next/image';
-import DescribeYou from '../components/analytics/apex-charts/describeYou';
-import DescribePartner from '../components/analytics/apex-charts/describePartner';
-import Year from '../components/analytics/apex-charts/year';
-import Height from '../components/analytics/apex-charts/height';
-import LongestRelation from '../components/analytics/apex-charts/longestRelation';
-import NumDatedGender from '../components/analytics/apex-charts/numDated';
-import NumDatedCollege from '../components/analytics/apex-charts/numDatedCollege';
-import Extroverted from '../components/analytics/apex-charts/extroverted';
-import Easygoing from '../components/analytics/apex-charts/easygoing';
-import Political from '../components/analytics/apex-charts/political';
-import TimeOrMoney from '../components/analytics/apex-charts/timeOrMoney';
-import SimilarInterest from '../components/analytics/apex-charts/similarInterest';
-import FirstDate from '../components/analytics/apex-charts/firstDate';
-import FridayNight from '../components/analytics/apex-charts/fridayNight';
+import DescribeYou from '@/components/analytics/apex-charts/describeYou';
+import DescribePartner from '@/components/analytics/apex-charts/describePartner';
+import Year from '@/components/analytics/apex-charts/year';
+import Height from '@/components/analytics/apex-charts/height';
+import LongestRelation from '@/components/analytics/apex-charts/longestRelation';
+import NumDatedGender from '@/components/analytics/apex-charts/numDated';
+import NumDatedCollege from '@/components/analytics/apex-charts/numDatedCollege';
+import Extroverted from '@/components/analytics/apex-charts/extroverted';
+import Easygoing from '@/components/analytics/apex-charts/easygoing';
+import Political from '@/components/analytics/apex-charts/political';
+import TimeOrMoney from '@/components/analytics/apex-charts/timeOrMoney';
+import SimilarInterest from '@/components/analytics/apex-charts/similarInterest';
+import FirstDate from '@/components/analytics/apex-charts/firstDate';
+import FridayNight from '@/components/analytics/apex-charts/fridayNight';
 
 const Statistics: any = (props: any) => {
     return (
@@ -29,7 +26,6 @@ const Statistics: any = (props: any) => {
             <Header />
             <div>
                 <div>
-                    {' '}
                     <section
                         className="sm:mx-[5%]"
                         style={{
@@ -50,7 +46,7 @@ const Statistics: any = (props: any) => {
                                 <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-gray-500 sm:leading-relaxed">
                                     <strong>
                                         Perhaps not without daydreaming about your crush, but your survey responses can!
-                                    </strong>{' '}
+                                    </strong>
                                     Join us on this journey to learn about some of the preferences and habits we&apos;ve
                                     discovered from several years of survey responses!
                                 </p>

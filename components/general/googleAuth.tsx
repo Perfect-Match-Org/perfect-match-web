@@ -1,5 +1,6 @@
+'use client';
 import React from 'react';
-import { signIn, signOut, getSession } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 type AuthProps = {
     login: boolean;
@@ -9,7 +10,7 @@ const GoogleAuth = (props: AuthProps) => {
     const auth = () => {
         props.login
             ? signIn('google', {
-                  callbackUrl: process.env.NEXT_PUBLIC_API_URL + '/profile',
+                  callbackUrl: process.env.NEXT_PUBLIC_API_URL,
               })
             : signOut();
     };
