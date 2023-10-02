@@ -5,17 +5,18 @@ import { leads, team } from './members';
 const Members: React.FC = () => {
     return (
         <div className="container px-5 sm:px-0 py-16 sm:py-6 mx-auto">
-            <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
+            <div className="container px-5 sm:px-0 py-12 sm:py-20 mx-auto">
                 <div className="text-center mb-20">
-                    <h2 className="mb-6 text-3xl tracking-tight font-extrabold text-rose-500 sm:text-5xl">Meet the Cupids</h2>
+                    <h2 className="mb-6 text-3xl tracking-tight font-extrabold text-rose-400 sm:text-5xl sm:mb-8">Meet the Cupids</h2>
 
+                    <p className="text-gray-500 text-xl mb-10">We have two subteams – Engineering and Business. Meet our heads!</p>
                     <div className="flex flex-wrap justify-center gap-6 mb-6">
                         {leads.map((lead) => (
                             <a key={lead.Name} className="p-4 sm:w-1/4" href={lead.Linkedin} target="_blank" rel="noopener noreferrer">
                                 <div className="flex flex-col items-center">
                                     <Image src={lead.Img} alt={lead.Name} width={208} height={208} className="rounded-full mb-4 object-cover" loading="eager" />
-                                    <p className="font-bold text-lg text-gray-800">{lead.Name}</p>
-                                    <p className="text-gray-600">
+                                    <p className="font-bold text-lg text-gray-800 sm:mt-6">{lead.Name}</p>
+                                    <p className="text-gray-500">
                                         {lead.Major}, {lead.ClassYear}
                                     </p>
                                     <p className="text-rose-500">Head of {lead.Team}</p>
@@ -23,7 +24,7 @@ const Members: React.FC = () => {
                             </a>
                         ))}
                     </div>
-                    <hr className="border-2 border-rose-300 my-5 w-2/3 mx-auto" />
+                    <hr className="border-1 border-rose-300 my-5 w-4/5 mx-auto" />
                 </div>
 
                 {team.map((division, idx) => (

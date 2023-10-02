@@ -37,16 +37,12 @@ const About: any = (props: any) => {
                     </section>
                 </div>
 
-                <section className="bg-pink-100">
-                    <Members />
-                </section>
-
-                <section className="bg-white py-24 sm:pb-10 pb-5">
+                <section className="bg-pink-100 pt-0 pb-12 sm:pb-10 pb-5">
                     <div className="mx-[10%] lg:mx-[15%]">
-                        <ol className="hidden sm:block sm:border-xl-0 sm:border-t-2 border-rose-300 sm:flex sm:gap-6">
+                        <ol className="hidden sm:block sm:border-xl-0 sm:border-t-4 border-rose-300 sm:flex sm:gap-6">
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="sm:-mt-4 text-2xl -ml-1">💓</div>
+                                    <div className="sm:-mt-5 text-3xl -ml-1">💓</div>
                                     <p className="text-rose-400 text-l my-2 font-bold">02-01-23 5PM</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
@@ -62,7 +58,7 @@ const About: any = (props: any) => {
                             </li>
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="sm:-mt-4 text-2xl">💘</div>
+                                    <div className="sm:-mt-5 text-3xl">💘</div>
                                     <p className="text-rose-400 text-l my-2 font-bold">02-13-23 Noon</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
@@ -72,7 +68,7 @@ const About: any = (props: any) => {
                             </li>
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="sm:-mt-4 text-2xl">💞</div>
+                                    <div className="sm:-mt-5 text-3xl">💞</div>
                                     <p className="text-rose-400 text-l my-2 font-bold">02-13-23 Night</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
@@ -84,7 +80,7 @@ const About: any = (props: any) => {
                             </li>
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="sm:-mt-4 text-2xl">❤️‍🔥</div>
+                                    <div className="sm:-mt-5 text-3xl">❤️‍🔥</div>
                                     <p className="text-rose-400 text-l my-2 font-bold">02-14-23</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
@@ -145,6 +141,10 @@ const About: any = (props: any) => {
                             </li>
                         </ol>
                     </div>
+                </section>
+
+                <section className="bg-white">
+                    <Members />
                 </section>
 
                 <section className="text-gray-500 bg-pink-100">

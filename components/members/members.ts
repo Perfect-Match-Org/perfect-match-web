@@ -68,9 +68,9 @@ export const team = [
             {
                 Name: 'Flavia Jiang',
                 ClassYear: 2025,
-                Major: 'Information Science',
+                Major: 'Information Science & Statistical Science',
                 Img: '/members/person.jpg',
-                Linkedin: 'https://www.linkedin.com/in/ziyan-jiang-73b882255',
+                Linkedin: ''
             },
         ],
     },
