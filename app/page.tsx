@@ -37,13 +37,13 @@ export default async function Page() {
                 <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center lg:pt-60 lg:pb-36">
                     <div className="text-center lg:text-left lg:ml-[8%] mt-8 lg:mt-0">
                         <h1 className="text-3xl text-gray-600 font-extrabold sm:text-5xl">
-                            Let's find your
+                            Let&apos;s find your
                             <span className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
                                 Perfect Match!
                             </span>
                         </h1>
                         <p className="mt-4 mx-[5%] lg:max-w-lg sm:mx-[10%] lg:mx-0 sm:text-xl text-gray-500 sm:leading-relaxed">
-                            That's a wrap! Log in to see your matches!
+                            That&apos;s a wrap! Log in to see your matches!
                         </p>
 
                         <p className="mx-[5%] sm:mx-[10%] lg:max-w-lg lg:mx-0 mt-4 sm:text-xl text-gray-500 sm:leading-relaxed">
