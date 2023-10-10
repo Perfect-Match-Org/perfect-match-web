@@ -1,21 +1,24 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import getServerSession from 'next-auth/next';
-import { authOptions } from './auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { updateCrushes, updateForbidden } from '@/database/controllers';
 import { Session } from 'next-auth';
+import { NextResponse } from 'next/server';
+import { User } from '@/lib/types/users';
 import { connect } from '@/database/index';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<String[] | String>) {
-    const session: Session | null = await getServerSession(await authOptions(req, res));
-    if (!session) return res.status(401).send('Unauthorized');
-    if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
-
-    await connect();
+async function handler(req: NextApiRequest, res: NextApiResponse<User[] | string>) {
+    const session: Session | null = await getServerSession(authOptions);
+    if (!session) return NextResponse.json('Unauthorized', { status: 401 });
 
     const body = JSON.parse(req.body);
+
+    await connect();
     const crushes = updateCrushes(session.user, body.crushes);
     const forbidden = updateForbidden(session.user, body.forbidden);
-    const resp: String[] = await Promise.all([crushes, forbidden]);
 
-    return res.status(200).json(resp);
+    const resp: User[] = await Promise.all([crushes, forbidden]);
+    return NextResponse.json(resp, { status: 200 });
 }
+
+export { handler as POST };

@@ -1,13 +1,15 @@
+import { Match } from '@/lib/types/matches';
 import { User, OTP } from './models';
 import AWS from 'aws-sdk';
 import crypto from 'crypto';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { User as UserType } from '@/lib/types/users';
 
 const matchRevealData =
     'id profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap';
 
-export const createUser = async (user: any) => {
+export const createUser = async (user: any): Promise<UserType> => {
     const { email, given_name, family_name } = user;
     const newUser = new User({
         email: user.email,
@@ -18,47 +20,47 @@ export const createUser = async (user: any) => {
     return doc;
 };
 
-export const getUser = async (user: any) => {
+export const getUser = async (user: any): Promise<UserType> => {
     const doc = await User.findOne({ email: user.email }).populate('matches', matchRevealData);
     return doc;
 };
 
-export const getUsersCount = async () => {
-    const resp = await User.countDocuments();
+export const getUsersCount = async (): Promise<number> => {
+    const resp: number = await User.countDocuments();
     return resp;
 };
 
-export const getUsers = async () => {
+export const getUsers = async (): Promise<UserType[]> => {
     const users = await User.find();
     return users;
 };
 
-export const updateSurvey = async (user: any, survey: any) => {
+export const updateSurvey = async (user: any, survey: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { survey: survey }, { new: true });
     return doc;
 };
 
-export const updateProfile = async (user: any, profile: any) => {
+export const updateProfile = async (user: any, profile: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { profile: profile }, { new: true });
     return doc;
 };
 
-export const updateCrushes = async (user: any, crushes: any) => {
+export const updateCrushes = async (user: any, crushes: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { crushes: crushes }, { new: true });
     return doc;
 };
 
-export const updateForbidden = async (user: any, forbidden: any) => {
+export const updateForbidden = async (user: any, forbidden: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { forbidden: forbidden }, { new: true });
     return doc;
 };
 
-export const updateUserOptIn = async (user: any, optIn: any) => {
+export const updateUserOptIn = async (user: any, optIn: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { optIn: optIn }, { new: true });
     return doc;
 };
 
-export const requestOTP = async (email: string) => {
+export const requestOTP = async (email: string): Promise<string | null> => {
     const user = await User.findOne({ email });
     if (!user) return null;
 
@@ -74,7 +76,7 @@ export const requestOTP = async (email: string) => {
     return await sendOTP(user, otpValue);
 };
 
-export const getMutualVerifiedMatches = async (email: string, otp: number) => {
+export const getMutualVerifiedMatches = async (email: string, otp: number): Promise<Match[] | null> => {
     const registeredOTP = await OTP.findOne({ email }).exec();
 
     if (!registeredOTP || registeredOTP.otp !== otp) return null;
@@ -83,14 +85,14 @@ export const getMutualVerifiedMatches = async (email: string, otp: number) => {
 
     if (!user) return [];
 
-    const verifiedMatches = user.matches
+    const verifiedMatches: Match[] = user.matches
         .map((match: any) => (match?.collab?.mutual ? match.email : null))
         .filter((email: string) => email);
 
     return verifiedMatches;
 };
 
-async function sendOTP(user: any, otp: string) {
+async function sendOTP(user: any, otp: string): Promise<string> {
     const emailsDirectory = path.join(process.cwd(), 'reminders/emails');
     const html = await fs.readFile(emailsDirectory + '/otp.html', 'utf8').then((data) => data);
     const message = html.replace('{name}', user.profile.firstName).replace('{otp}', otp);

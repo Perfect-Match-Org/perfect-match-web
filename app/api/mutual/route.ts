@@ -1,20 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getMutualVerifiedMatches } from '@/database/controllers';
 import { connect } from '@/database/index';
+import { NextResponse } from 'next/server';
+import { Match } from '@/lib/types/matches';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<Match[] | string>) {
     const apiToken = req.headers['x-api-key'];
-    if (apiToken !== process.env.MUTUAL_API) return res.status(401).json({ message: 'Invalid API Key' });
-    if (req.method !== 'POST') return res.status(405).json({ message: 'Method Not Allowed' });
-
-    await connect();
+    if (apiToken !== process.env.MUTUAL_API) return NextResponse.json('Invalid API Key', { status: 401 });
 
     const email = req.body.email;
-    if (!email) return res.status(400).json({ message: 'Missing Email Address' });
-    const otp = req.body.otp;
-    if (!otp) return res.status(400).json({ message: 'Missing OTP' });
+    if (!email) return NextResponse.json('Missing Email Address', { status: 400 });
 
-    const mutualVerifiedMatches = await getMutualVerifiedMatches(email, otp);
-    if (mutualVerifiedMatches === null) return res.status(400).json({ message: 'Invalid OTP' });
-    return res.status(200).json(mutualVerifiedMatches);
+    await connect();
+    const otp = req.body.otp;
+    if (!otp) return NextResponse.json('Missing OTP', { status: 400 });
+
+    const mutualVerifiedMatches: Match[] | null = await getMutualVerifiedMatches(email, otp);
+    if (mutualVerifiedMatches === null) return NextResponse.json('Invalid OTP', { status: 401 });
+    return NextResponse.json(mutualVerifiedMatches, { status: 200 });
 }
+
+export { handler as POST };

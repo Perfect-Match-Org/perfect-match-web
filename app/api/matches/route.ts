@@ -3,16 +3,18 @@ import getServerSession from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/route';
 import { getUser } from '@/database/controllers';
 import { Session } from 'next-auth';
-import { connect } from '@/database/index';
 import { Match } from '@/lib/types/matches';
+import { connect } from '@/database/index';
+import { NextResponse } from 'next/server';
+import { Matches } from '@/lib/types/users';
 
-export default async function GET(req: NextApiRequest, res: NextApiResponse<Match[] | String>) {
-    const session: Session | null = await getServerSession(req, res, authOptions);
+async function handler(req: NextApiRequest, res: NextApiResponse<Match[] | String>) {
+    const session: Session | null = await getServerSession(authOptions);
     if (!session) return res.status(401).send('Unauthorized');
-    if (req.method !== 'GET') return res.status(405).send('Method Not Allowed');
 
     await connect();
-
-    const matches: Match[] = (await getUser(session.user)).matches;
-    return res.status(200).json(matches);
+    const matches: Matches[] = (await getUser(session.user)).matches;
+    return NextResponse.json(matches, { status: 200 });
 }
+
+export { handler as GET };

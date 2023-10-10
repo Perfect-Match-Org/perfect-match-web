@@ -1,17 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import getServerSession from 'next-auth/next';
-import authOptions from './auth/[...nextauth]';
+import { authOptions } from '../auth/[...nextauth]/route';
 import { updateUserOptIn } from '@/database/controllers';
 import { Session } from 'next-auth';
+import { NextResponse } from 'next/server';
 import { connect } from '@/database/index';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Boolean | String>) {
-    const session: Session | null = await getServerSession(await authOptions(req, res));
-    if (!session) return res.status(401).send('Unauthorized');
-    if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
+export default async function handler(req: NextApiRequest, res: NextApiResponse<boolean | string>) {
+    const session: Session | null = await getServerSession(authOptions);
+    if (!session) return NextResponse.json('Unauthorized', { status: 401 });
 
     await connect();
-
-    const optIn = (await updateUserOptIn(session.user, JSON.parse(req.body)?.optIn)).optIn;
-    return res.status(200).json(optIn);
+    const requestOptIn = JSON.parse(req.body)?.optIn;
+    const resp = await updateUserOptIn(session.user, requestOptIn);
+    if (!resp) return NextResponse.json('User not found', { status: 404 });
+    return NextResponse.json(resp.optIn, { status: 200 });
 }
+
+export { handler as POST };

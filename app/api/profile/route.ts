@@ -3,11 +3,11 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getUser, updateProfile } from '@/database/controllers';
 import { Session } from 'next-auth';
-import { connect } from '@/database/index';
-import { Profile } from '@/lib/types/users';
+import { User } from '@/lib/types/users';
 import { NextResponse } from 'next/server';
+import { connect } from '@/database/index';
 
-async function handler(req: NextApiRequest, res: NextApiResponse<Profile | String>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<User | string>) {
     const session: Session | null = await getServerSession(authOptions);
     if (!session) return res.status(401).send('Unauthorized');
 
@@ -15,7 +15,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Profile | Strin
     const { method } = req;
     switch (method) {
         case 'GET': {
-            console.log(session);
             const profile = await getUser(session.user);
             return NextResponse.json(profile, { status: 200 });
         }
@@ -28,4 +27,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Profile | Strin
     }
 }
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

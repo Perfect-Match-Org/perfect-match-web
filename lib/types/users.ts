@@ -1,5 +1,6 @@
 export type User = {
     _id: string;
+    optIn: boolean;
     profile: Profile;
     survey: Survey;
     matches: Matches[];
