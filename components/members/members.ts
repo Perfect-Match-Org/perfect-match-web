@@ -9,7 +9,7 @@ export const team = [
                 Major: 'CS & Public Policy',
                 Img: '/members/nick.jpg',
                 Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
-                Title1: 'Engineering Team Lead',
+                Title1: 'Engineering Team Co-Lead',
                 Title2: 'Web Dev Subteam Head'
             },
             {
@@ -19,7 +19,7 @@ export const team = [
                 Img: '/members/pratyush.jpg',
                 Team: 'Engineering',
                 Linkedin: 'https://www.linkedin.com/in/pratyushsudhakar',
-                Title1: 'Engineering Team Lead',
+                Title1: 'Engineering Team Co-Lead',
                 Title2: 'Web Dev Member'
             },
             {
