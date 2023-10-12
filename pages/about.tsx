@@ -97,7 +97,7 @@ const About: any = (props: any) => {
                                     <p className="text-rose-400 text-l font-bold">02-01-23 5PM</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 mb-6">
-                                    <h4 className="text-gray-700 font-semibold text-xl mb-1.5">PM2023 is Launched!</h4>
+                                    <h4 className="text-gray-700 font-semibold text-lg mb-1.5">PM2023 is Launched!</h4>
                                     <p className="text-gray-500 mb-3">
                                         Sign in with your Cornell email. Then fill out your profile and the survey! For updates on PM23, follow us on{' '}
                                         <a className="underline" href="https://www.instagram.com/cornellperfectmatch/" target="_blank" rel="noreferrer">
@@ -113,17 +113,17 @@ const About: any = (props: any) => {
                                     <p className="text-rose-400 text-l font-bold">02-13-23 Noon</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 mb-6">
-                                    <h4 className="text-gray-700 font-semibold text-xl mb-1.5">PM Closes!</h4>
+                                    <h4 className="text-gray-700 font-semibold text-lg mb-1.5">PM Closes!</h4>
                                     <p className="text-gray-500 mb-3">Hurry up! Cupid is flying away! Make sure to submit your response on time.</p>
                                 </div>
                             </li>
                             <li>
                                 <div className="flex flex-start items-center pt-2">
                                     <div className="-ml-3 mr-3 text-2xl">💞</div>
-                                    <p className="text-rose-400 text-l font-bold">02-13-23 Night</p>
+                                    <p className="text-rose-400 font-bold">02-13-23 Night</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 pb-5">
-                                    <h4 className="text-gray-700 font-semibold text-xl mb-1.5">Matches Out!</h4>
+                                    <h4 className="text-gray-700 font-semibold text-lg mb-1.5">Matches Out!</h4>
                                     <p className="text-gray-500 mb-3">
                                         An email will be sent to you when your perfect matches are out. Go ahead and shoot your shot!
                                     </p>
@@ -132,10 +132,10 @@ const About: any = (props: any) => {
                             <li>
                                 <div className="flex flex-start items-center pt-2">
                                     <div className="-ml-3 mr-3 text-2xl">❤️‍🔥</div>
-                                    <p className="text-rose-400 text-l font-bold">02-14-23</p>
+                                    <p className="text-rose-400 font-bold">02-14-23</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 pb-5">
-                                    <h4 className="text-gray-700 font-semibold text-xl mb-1.5">It&apos;s Valentine&apos;s Day!</h4>
+                                    <h4 className="text-gray-700 font-semibold text-lg mb-1.5">It&apos;s Valentine&apos;s Day!</h4>
                                     <p className="text-gray-500 mb-3">It&apos;s that time of the year! Grab some food with your perfect matches!</p>
                                 </div>
                             </li>
@@ -160,7 +160,7 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Perfect Match is a matchmaking service for Cornell students and faculty. It uses machine learning algorithms to match
+                                        Perfect Match is a matchmaking service for Cornell students and alumni. It uses machine learning algorithms to match
                                         participants based on their responses to the survey. Every year, the survey opens in early Feburary and has thousands of
                                         participants. Matches are released the weekend before Valentine&apos;s day.
                                     </p>
@@ -188,8 +188,8 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        There are currently seven members in the team. Each of us focuses on designing, developing, or marketing; there is no
-                                        leader, and we make decisions together.
+                                        There are currently seven members in the team. It is a small team; every member has their unique strengths and responsibilities.
+                                        We typically meet every month to decide on tasks and assign them. However, every January is still a super busy time!
                                     </p>
                                 </details>
                             </div>
@@ -259,7 +259,7 @@ const About: any = (props: any) => {
             </div>
             <div>
                 <section className="bg-white ">
-                    <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
+                    <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[10%] lg:mx-[15%]">
                         <div className="max-w-screen-lg text-gray-500 sm:text-lg ">
                             <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 ">Contact Us!</h2>
                             <p className="mb-4 sm:font-medium">Feel free to reach out with questions, suggestions, comments. </p>

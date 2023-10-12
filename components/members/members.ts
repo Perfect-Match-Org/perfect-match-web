@@ -1,12 +1,12 @@
 export const team = [
     {
         Name: 'Engineering',
-        Description: 'There are three subteams of Engineering: Web Development, Algorithms, and Data Analysis. The Web Development subteam is responsible for building the front-end and back-end of the Perfect Match website. The Algorithms subteam is responsible for building the matching algorithm that matches students based on their preferences. The Data Analysis subteam is responsible for analyzing and visualizing the data collected from the Perfect Match survey.',
+        Description: 'There are three subteams of Engineering: Web Development, Algorithms, and Data Analysis. The Web Dev subteam builds the front-end and back-end of the Perfect Match website. The Algorithms subteam improves the matching algorithm that matches students based on their preferences. The Data Analysis subteam analyzes and visualizes the data collected from the Perfect Match survey.',
         Members: [
             {
                 Name: 'Nicholas Varela',
                 ClassYear: 2025,
-                Major: 'CS & Government',
+                Major: 'CS & Public Policy',
                 Img: '/members/nick.jpg',
                 Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
                 Title1: 'Engineering Team Lead',
