@@ -36,6 +36,14 @@ export const getUser = async (user: any): Promise<UserType> => {
         model: 'Match',
         populate: [populateMatch('A'), populateMatch('B')],
     });
+    // remove the match's feedback from the user for security reasons
+    if (doc) {
+        doc.matchReviews = doc.matchReviews.map((match: any) => {
+            if (match.partnerAId.email === user.email) match.partnerBFeedback = null;
+            else match.partnerAFeedback = null;
+            return match;
+        });
+    }
     return doc;
 };
 
