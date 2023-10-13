@@ -1,13 +1,14 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+
 import { requestOTP } from '@/database/controllers';
 import { connect } from '@/database/index';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-async function handler(req: NextApiRequest, res: NextApiResponse<String>) {
-    const apiToken = req.headers['x-api-key'];
+async function handler(req: Request) {
+    const apiToken = req.headers.get('x-api-key');
     if (apiToken !== process.env.MUTUAL_API) return NextResponse.json('Invalid API Key', { status: 401 });
 
-    const email: string = req.body.email;
+    // TODO: doubt this
+    const { email } = (await req.json()).body as { email: string };
     if (!email) return NextResponse.json('Missing Email Address', { status: 400 });
 
     await connect();

@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+
 import { getMutualVerifiedMatches } from '@/database/controllers';
 import { connect } from '@/database/index';
 import { NextResponse } from 'next/server';
 import { Match } from '@/lib/types/matches';
 
-async function handler(req: NextApiRequest, res: NextApiResponse<Match[] | string>) {
+async function handler(req: Request, res: NextResponse<Match[] | string>) {
     const apiToken = req.headers['x-api-key'];
     if (apiToken !== process.env.MUTUAL_API) return NextResponse.json('Invalid API Key', { status: 401 });
 

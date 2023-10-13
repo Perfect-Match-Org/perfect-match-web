@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse } from 'next';
 import { NextResponse } from 'next/server';
 import { getUsersCount } from '@/database/controllers';
 import { connect } from '@/database/index';
 
-async function handler(req: NextApiRequest, res: NextApiResponse<number>) {
+async function handler(req: Request) {
     await connect();
     const count: number = await getUsersCount();
     return NextResponse.json(count, { status: 200 });

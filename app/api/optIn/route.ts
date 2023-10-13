@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+
 import getServerSession from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/route';
 import { updateUserOptIn } from '@/database/controllers';
@@ -6,7 +6,7 @@ import { Session } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { connect } from '@/database/index';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<boolean | string>) {
+export default async function handler(req: Request, res: NextApiResponse<boolean | string>) {
     const session: Session | null = await getServerSession(authOptions);
     if (!session) return NextResponse.json('Unauthorized', { status: 401 });
 

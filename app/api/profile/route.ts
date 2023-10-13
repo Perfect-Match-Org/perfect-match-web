@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getUser, updateProfile } from '@/database/controllers';
@@ -7,7 +7,7 @@ import { User } from '@/lib/types/users';
 import { NextResponse } from 'next/server';
 import { connect } from '@/database/index';
 
-async function handler(req: NextApiRequest, res: NextApiResponse<User | string>) {
+async function handler(req: Request, res: NextApiResponse<User | string>) {
     const session: Session | null = await getServerSession(authOptions);
     if (!session) return res.status(401).send('Unauthorized');
 
