@@ -102,7 +102,7 @@ export const updateMatchReview = async (
             [partnerField]: review,
             overallStatus: status,
         },
-        { new: true },
+        { upsert: true, new: true },
     );
 
     return updatedMatch;
