@@ -20,7 +20,9 @@ const About: any = (props: any) => {
                             style={{ display: 'flex', paddingLeft: '0px' }}
                         >
                             <div className="font text-gray-500 sm:text-lg dark:text-gray-400 lg:w-7/12">
-                                <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">Cupid just got smarter 🦾💗!</h2>
+                                <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400">
+                                    Cupid just got smarter 🦾💗!
+                                </h2>
 
                                 <p className="sm:mb-4 mb-0">
                                     Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning algorithm uses your survey to pair you
@@ -48,8 +50,14 @@ const About: any = (props: any) => {
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
                                     <h4 className="text-gray-700 font-semibold text-xl mb-1.5">PM2023 is Launched!</h4>
                                     <p className="text-gray-500 mb-3">
-                                        Sign in with your Cornell email. Then fill out your profile and the survey! For updates on PM23, follow us on{' '}
-                                        <a className="underline" href="https://www.instagram.com/cornellperfectmatch/" target="_blank" rel="noreferrer">
+                                        Sign in with your Cornell email. Then fill out your profile and the survey! For
+                                        updates on PM23, follow us on{' '}
+                                        <a
+                                            className="underline"
+                                            href="https://www.instagram.com/cornellperfectmatch/"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
                                             IG
                                         </a>
                                         .{' '}
@@ -74,7 +82,8 @@ const About: any = (props: any) => {
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
                                     <h4 className="text-gray-700 font-semibold text-xl mb-1.5">Matches Out!</h4>
                                     <p className="text-gray-500 mb-3">
-                                        An email will be sent to you when your perfect matches are out. Go ahead and shoot your shot!{' '}
+                                        An email will be sent to you when your perfect matches are out. Go ahead and
+                                        shoot your shot!{' '}
                                     </p>
                                 </div>
                             </li>
@@ -99,8 +108,14 @@ const About: any = (props: any) => {
                                 <div className="mt-0.5 ml-4 mb-6">
                                     <h4 className="text-gray-700 font-semibold text-lg mb-1.5">PM2023 is Launched!</h4>
                                     <p className="text-gray-500 mb-3">
-                                        Sign in with your Cornell email. Then fill out your profile and the survey! For updates on PM23, follow us on{' '}
-                                        <a className="underline" href="https://www.instagram.com/cornellperfectmatch/" target="_blank" rel="noreferrer">
+                                        Sign in with your Cornell email. Then fill out your profile and the survey! For
+                                        updates on PM23, follow us on{' '}
+                                        <a
+                                            className="underline"
+                                            href="https://www.instagram.com/cornellperfectmatch/"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
                                             IG
                                         </a>
                                         .
@@ -125,7 +140,8 @@ const About: any = (props: any) => {
                                 <div className="mt-0.5 ml-4 pb-5">
                                     <h4 className="text-gray-700 font-semibold text-lg mb-1.5">Matches Out!</h4>
                                     <p className="text-gray-500 mb-3">
-                                        An email will be sent to you when your perfect matches are out. Go ahead and shoot your shot!
+                                        An email will be sent to you when your perfect matches are out. Go ahead and
+                                        shoot your shot!
                                     </p>
                                 </div>
                             </li>
@@ -150,7 +166,9 @@ const About: any = (props: any) => {
                 <section className="text-gray-500 bg-pink-100">
                     <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
                         <div className="text-center mb-15">
-                            <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">Frequently Asked Questions</h2>
+                            <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-rose-400 sm:text-4xl">
+                                Frequently Asked Questions
+                            </h2>
                         </div>
                         <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
                             <div className="w-full lg:w-1/2 px-4">
@@ -170,7 +188,9 @@ const About: any = (props: any) => {
                                         How many matches will I get?
                                     </summary>
 
-                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>Most participants get between 4 and 7 matches.</p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        Most participants get between 4 and 7 matches.
+                                    </p>
                                 </details>
                                 <details className="mb-5">
                                     <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
@@ -178,8 +198,8 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        It&apos;s up to you! Contact your Matches in any way you&apos;d like. We will provide some suggestions for how to
-                                        connect when matches are released.
+                                        It&apos;s up to you! Contact your Matches in any way you&apos;d like. We will
+                                        provide some suggestions for how to connect when matches are released.
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -200,9 +220,11 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        The Perfect Match algorithm can be broken into two parts: scoring and matching. First, we use our machine learning
-                                        algorithm to score compatability between you and all other participants who satisfy your main criteria, as determined by
-                                        your responses. We then use a variant of the Hungarian algorithm to generate optimal matches based on these scores.
+                                        The Perfect Match algorithm can be broken into two parts: scoring and matching.
+                                        First, we use our machine learning algorithm to score compatability between you
+                                        and all other participants who satisfy your main criteria, as determined by your
+                                        responses. We then use a variant of the Hungarian algorithm to generate optimal
+                                        matches based on these scores.
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -229,11 +251,21 @@ const About: any = (props: any) => {
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
                                         Our contact information is right below. Feel free to follow us on{' '}
-                                        <a className="underline" href="https://www.instagram.com/cornellperfectmatch/" target="_blank" rel="noreferrer">
+                                        <a
+                                            className="underline"
+                                            href="https://www.instagram.com/cornellperfectmatch/"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
                                             IG
                                         </a>{' '}
                                         or chat with us on{' '}
-                                        <a className="underline" href="https://www.reddit.com/user/PerfectMatch2020/" target="_blank" rel="noreferrer">
+                                        <a
+                                            className="underline"
+                                            href="https://www.reddit.com/user/PerfectMatch2020/"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
                                             Reddit
                                         </a>
                                         !
@@ -245,8 +277,14 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        We welcome new members and new ideas! If you are interested in joining the team, please fill out this{' '}
-                                        <a href="https://forms.gle/Jv5th8zbajVF6qN6A" className="underline" target="_blank" rel="noreferrer">
+                                        We welcome new members and new ideas! If you are interested in joining the team,
+                                        please fill out this{' '}
+                                        <a
+                                            href="https://forms.gle/Jv5th8zbajVF6qN6A"
+                                            className="underline"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
                                             form
                                         </a>{' '}
                                         at any time. We will contact you soon.
@@ -261,8 +299,12 @@ const About: any = (props: any) => {
                 <section className="bg-white ">
                     <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[10%] lg:mx-[15%]">
                         <div className="max-w-screen-lg text-gray-500 sm:text-lg ">
-                            <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 ">Contact Us!</h2>
-                            <p className="mb-4 sm:font-medium">Feel free to reach out with questions, suggestions, comments. </p>
+                            <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 ">
+                                Contact Us!
+                            </h2>
+                            <p className="mb-4 sm:font-medium">
+                                Feel free to reach out with questions, suggestions, comments.{' '}
+                            </p>
                             <p className="mb-4 sm:font-medium">
                                 {' '}
                                 Email:{' '}

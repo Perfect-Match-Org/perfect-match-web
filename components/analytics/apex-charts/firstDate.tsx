@@ -17,7 +17,15 @@ const FirstDate = () => {
             width: '100%',
             type: 'donut',
         },
-        labels: ['Restaurant in the Commons', 'Bubble tea', 'CTB', 'Coffee on campus', 'Starbucks', 'Dining Hall', 'Frat annex'],
+        labels: [
+            'Restaurant in the Commons',
+            'Bubble tea',
+            'CTB',
+            'Coffee on campus',
+            'Starbucks',
+            'Dining Hall',
+            'Frat annex',
+        ],
         colors: ['#fda4af', '#fdba74', '#fde047', '#86efac', '#7dd3fc', '#c4b5fd', '#f0abfc'],
         plotOptions: {
             pie: {

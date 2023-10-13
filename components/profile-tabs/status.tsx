@@ -12,15 +12,29 @@ const Status: any = (props: any) => {
             <div className="px-4 sm:py-20 bg-lightblue">
                 <div className="fle max-w-6xl mx-auto text-gray-600">
                     <dl className="w-full md:w-full">
-                        <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">Status</h2>
+                        <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
+                            Status
+                        </h2>
                         <p className={props?.optIn ? 'mb-8 font-bold text-green-500' : 'mb-8 font-bold text-red-400'}>
                             {props?.optIn ? 'You have opted In!' : 'We are still waiting for you to opt In.'}
                         </p>
-                        <p className={props?.surveyComplete ? 'mb-8 font-bold text-green-500' : 'mb-8 font-bold text-red-400'}>
-                            {props?.surveyComplete ? 'You have completed the survey!' : 'We are still waiting for you to complete the survey.'}
+                        <p
+                            className={
+                                props?.surveyComplete ? 'mb-8 font-bold text-green-500' : 'mb-8 font-bold text-red-400'
+                            }
+                        >
+                            {props?.surveyComplete
+                                ? 'You have completed the survey!'
+                                : 'We are still waiting for you to complete the survey.'}
                         </p>
-                        <p className={props?.profileComplete ? 'mb-8 font-bold text-green-500' : 'mb-8 font-bold text-red-400'}>
-                            {props?.profileComplete ? 'You have completed your profile!' : 'We are still waiting for you to complete your profile.'}
+                        <p
+                            className={
+                                props?.profileComplete ? 'mb-8 font-bold text-green-500' : 'mb-8 font-bold text-red-400'
+                            }
+                        >
+                            {props?.profileComplete
+                                ? 'You have completed your profile!'
+                                : 'We are still waiting for you to complete your profile.'}
                         </p>
                         <p className="mb-8 font-bold text-green-500">
                             {props?.surveyComplete &&
@@ -34,7 +48,10 @@ const Status: any = (props: any) => {
                         <dd className="mb-8">
                             Please complete all required steps to be included to this year&apos;s matching.
                             <li>Opt In to indicate you are interested in participating. </li>
-                            <li>Complete the survey so our algorithm can make more sound decisions. It will take about 15 minutes.</li>
+                            <li>
+                                Complete the survey so our algorithm can make more sound decisions. It will take about
+                                15 minutes.
+                            </li>
                             <li>Input some crushes/forbidden matches if you&apos;d like.</li>
                         </dd>
                         <dt className="mb-4">
