@@ -33,8 +33,8 @@ function Footer() {
                     This organization is a registered student organization of Cornell University.
                 </div>
                 <div className="text-xs text-gray-400 flex justify-center pb-6 mx-1">
-                    If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, please
-                    contact us at cornell.perfectmatch@gmail.com.
+                    If you have a disability and are having trouble accessing information on this website or need
+                    materials in an alternate format, please contact us at cornell.perfectmatch@gmail.com.
                 </div>
             </footer>
         </div>

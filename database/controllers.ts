@@ -3,10 +3,12 @@ import AWS from 'aws-sdk';
 import crypto from 'crypto';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { Match } from './models/match';
 
 const matchRevealData =
     'id profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap';
 
+// User CRUD operations-----------------------------------------------------------------------------------------------
 export const createUser = async (user: any) => {
     const { email, given_name, family_name } = user;
     const newUser = new User({
@@ -29,18 +31,8 @@ export const getUsersCount = async () => {
 };
 
 export const getUsers = async () => {
-    const users = await User.find();
+    const users = await User.find().populate('matches', matchRevealData);
     return users;
-};
-
-export const updateSurvey = async (user: any, survey: any) => {
-    const doc = await User.findOneAndUpdate({ email: user.email }, { survey: survey }, { new: true });
-    return doc;
-};
-
-export const updateProfile = async (user: any, profile: any) => {
-    const doc = await User.findOneAndUpdate({ email: user.email }, { profile: profile }, { new: true });
-    return doc;
 };
 
 export const updateCrushes = async (user: any, crushes: any) => {
@@ -58,6 +50,21 @@ export const updateUserOptIn = async (user: any, optIn: any) => {
     return doc;
 };
 
+// Survey and Profile CRUD operations---------------------------------------------------------------------------------------------
+export const updateSurvey = async (user: any, survey: any) => {
+    const doc = await User.findOneAndUpdate({ email: user.email }, { survey: survey }, { new: true });
+    return doc;
+};
+
+export const updateProfile = async (user: any, profile: any) => {
+    const doc = await User.findOneAndUpdate({ email: user.email }, { profile: profile }, { new: true });
+    return doc;
+};
+
+// Review CRUD operations---------------------------------------------------------------------------------------------
+// export const get
+
+// Collab CRUD operations---------------------------------------------------------------------------------------------
 export const requestOTP = async (email: string) => {
     const user = await User.findOne({ email });
     if (!user) return null;

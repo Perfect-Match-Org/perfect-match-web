@@ -25,10 +25,11 @@ const About: any = (props: any) => {
                                 </h2>
 
                                 <p className="sm:mb-4 mb-0">
-                                    Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning algorithm uses your survey to pair you
-                                    with other Cornell students — your Perfect Matches! This year, we are back with fun survey questions, improved matching
-                                    algorithm, and better privacy protection measures! Don&apos;t hesitate to get in for a Valentine&apos;s Day you won&apos;t
-                                    forget!
+                                    Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning
+                                    algorithm uses your survey to pair you with other Cornell students — your Perfect
+                                    Matches! This year, we are back with fun survey questions, improved matching
+                                    algorithm, and better privacy protection measures! Don&apos;t hesitate to get in for
+                                    a Valentine&apos;s Day you won&apos;t forget!
                                 </p>
                                 {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
                             </div>
@@ -71,7 +72,9 @@ const About: any = (props: any) => {
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
                                     <h4 className="text-gray-700 font-semibold text-xl mb-1.5">PM Closes!</h4>
-                                    <p className="text-gray-500 mb-3">Hurry up! Cupid is flying away! Make sure to submit your response on time.</p>
+                                    <p className="text-gray-500 mb-3">
+                                        Hurry up! Cupid is flying away! Make sure to submit your response on time.
+                                    </p>
                                 </div>
                             </li>
                             <li>
@@ -93,8 +96,12 @@ const About: any = (props: any) => {
                                     <p className="text-rose-400 text-l my-2 font-bold">02-14-23</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
-                                    <h4 className="text-gray-700 font-semibold text-xl mb-1.5">It&apos;s Valentine&apos;s Day!</h4>
-                                    <p className="text-gray-500 mb-3">It&apos;s that time of the year! Grab some food with your perfect matches!</p>
+                                    <h4 className="text-gray-700 font-semibold text-xl mb-1.5">
+                                        It&apos;s Valentine&apos;s Day!
+                                    </h4>
+                                    <p className="text-gray-500 mb-3">
+                                        It&apos;s that time of the year! Grab some food with your perfect matches!
+                                    </p>
                                 </div>
                             </li>
                         </ol>
@@ -129,7 +136,9 @@ const About: any = (props: any) => {
                                 </div>
                                 <div className="mt-0.5 ml-4 mb-6">
                                     <h4 className="text-gray-700 font-semibold text-lg mb-1.5">PM Closes!</h4>
-                                    <p className="text-gray-500 mb-3">Hurry up! Cupid is flying away! Make sure to submit your response on time.</p>
+                                    <p className="text-gray-500 mb-3">
+                                        Hurry up! Cupid is flying away! Make sure to submit your response on time.
+                                    </p>
                                 </div>
                             </li>
                             <li>
@@ -151,8 +160,12 @@ const About: any = (props: any) => {
                                     <p className="text-rose-400 font-bold">02-14-23</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 pb-5">
-                                    <h4 className="text-gray-700 font-semibold text-lg mb-1.5">It&apos;s Valentine&apos;s Day!</h4>
-                                    <p className="text-gray-500 mb-3">It&apos;s that time of the year! Grab some food with your perfect matches!</p>
+                                    <h4 className="text-gray-700 font-semibold text-lg mb-1.5">
+                                        It&apos;s Valentine&apos;s Day!
+                                    </h4>
+                                    <p className="text-gray-500 mb-3">
+                                        It&apos;s that time of the year! Grab some food with your perfect matches!
+                                    </p>
                                 </div>
                             </li>
                         </ol>
@@ -178,8 +191,9 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Perfect Match is a matchmaking service for Cornell students and alumni. It uses machine learning algorithms to match
-                                        participants based on their responses to the survey. Every year, the survey opens in early Feburary and has thousands of
+                                        Perfect Match is a matchmaking service for Cornell students and alumni. It uses
+                                        machine learning algorithms to match participants based on their responses to
+                                        the survey. Every year, the survey opens in early Feburary and has thousands of
                                         participants. Matches are released the weekend before Valentine&apos;s day.
                                     </p>
                                 </details>
@@ -208,8 +222,10 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        There are currently seven members in the team. It is a small team; every member has their unique strengths and responsibilities.
-                                        We typically meet every month to decide on tasks and assign them. However, every January is still a super busy time!
+                                        There are currently seven members in the team. It is a small team; every member
+                                        has their unique strengths and responsibilities. We typically meet every month
+                                        to decide on tasks and assign them. However, every January is still a super busy
+                                        time!
                                     </p>
                                 </details>
                             </div>
@@ -233,9 +249,11 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p className="pt-2 pl-4">
-                                        Your data is safe with us! We will never share your data with a third party, and we will only interact with your
-                                        information as needed to resolve user issues. We may collect anonymous statistics to improve our algorithm, but your
-                                        identity will always be separated from such reports. More FAQ&apos;s about user privacy can be found{' '}
+                                        Your data is safe with us! We will never share your data with a third party, and
+                                        we will only interact with your information as needed to resolve user issues. We
+                                        may collect anonymous statistics to improve our algorithm, but your identity
+                                        will always be separated from such reports. More FAQ&apos;s about user privacy
+                                        can be found{' '}
                                         <u>
                                             <Link href="/statistics#privacy" className="underline">
                                                 here

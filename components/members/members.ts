@@ -1,7 +1,8 @@
 export const team = [
     {
         Name: 'Engineering',
-        Description: 'There are three subteams of Engineering: Web Development, Algorithms, and Data Analysis. The Web Dev subteam builds the front-end and back-end of the Perfect Match website. The Algorithms subteam improves the matching algorithm that matches students based on their preferences. The Data Analysis subteam analyzes and visualizes the data collected from the Perfect Match survey.',
+        Description:
+            'There are three subteams of Engineering: Web Development, Algorithms, and Data Analysis. The Web Dev subteam builds the front-end and back-end of the Perfect Match website. The Algorithms subteam improves the matching algorithm that matches students based on their preferences. The Data Analysis subteam analyzes and visualizes the data collected from the Perfect Match survey.',
         Members: [
             {
                 Name: 'Nicholas Varela',
@@ -10,7 +11,7 @@ export const team = [
                 Img: '/members/nick.jpg',
                 Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
                 Title1: 'Engineering Team Co-Lead',
-                Title2: 'Web Dev Subteam Head'
+                Title2: 'Web Dev Subteam Head',
             },
             {
                 Name: 'Pratyush Sudhakar',
@@ -20,7 +21,7 @@ export const team = [
                 Team: 'Engineering',
                 Linkedin: 'https://www.linkedin.com/in/pratyushsudhakar',
                 Title1: 'Engineering Team Co-Lead',
-                Title2: 'Web Dev Member'
+                Title2: 'Web Dev Member',
             },
             {
                 Name: 'Flavia Jiang',
@@ -28,7 +29,7 @@ export const team = [
                 Major: 'Info Sci & Stats',
                 Img: '/members/flavia.jpg',
                 Title1: 'Data Analysis Subteam Head',
-                Title2: 'Web Dev Member'
+                Title2: 'Web Dev Member',
             },
             {
                 Name: 'Taerim Eom',
@@ -50,7 +51,8 @@ export const team = [
     },
     {
         Name: 'Business',
-        Description: 'The Business team is responsible for marketing Perfect Match and reaching out to potential sponsors.',
+        Description:
+            'The Business team is responsible for marketing Perfect Match and reaching out to potential sponsors.',
         Members: [
             {
                 Name: 'Grace Wilkey',
