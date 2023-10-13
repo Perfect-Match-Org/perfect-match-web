@@ -1,7 +1,5 @@
 import React, { useState, useMemo } from 'react';
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
-
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any) {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(matchFeedback?.rating);
@@ -27,7 +25,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
     };
 
     const submitFeedback = async () => {
-        await fetch(`${baseURL}/api/review/${matchID}`, {
+        await fetch(`/api/review/${matchID}`, {
             method: 'POST',
             body: JSON.stringify({ rating: rating, comment: comment, dateSubmitted: new Date() }),
         });
