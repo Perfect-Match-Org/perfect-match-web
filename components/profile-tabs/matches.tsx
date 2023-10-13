@@ -2,7 +2,7 @@ import MatchTile from './matchTile';
 import styles from '/styles/Matches.module.css';
 import React from 'react';
 
-function Matches({ matches }: any) {
+function Matches({ matches, userId, refresh }: any) {
     const [visible, setVisible] = React.useState(false);
     return (
         <div>
@@ -68,9 +68,24 @@ function Matches({ matches }: any) {
                                         your Perfect Matches!
                                     </p>
                                 </div>
-                                {matches.map((match: any) => (
-                                    <MatchTile key={match.id} matchData={match} contact={match.survey.contact} />
-                                ))}
+                                {matches.map((match: any) => {
+                                    const matchData =
+                                        match.partnerAId._id === userId ? match.partnerBId : match.partnerAId;
+                                    const matchFeedback =
+                                        match.partnerAId._id === userId
+                                            ? match.partnerAFeedback
+                                            : match.partnerBFeedback;
+                                    return (
+                                        <MatchTile
+                                            key={match._id}
+                                            matchID={match._id}
+                                            matchData={matchData}
+                                            contact={matchData.survey.contact}
+                                            matchFeedback={matchFeedback}
+                                            refresh={refresh}
+                                        />
+                                    );
+                                })}
                             </div>
                         </section>
                     </div>

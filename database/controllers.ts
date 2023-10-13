@@ -3,13 +3,23 @@ import AWS from 'aws-sdk';
 import crypto from 'crypto';
 import { promises as fs } from 'fs';
 import path from 'path';
+import type { User as UserType, Review, MatchReview } from '../types/users';
 import { Match } from './models/match';
+import { ObjectId } from 'mongodb';
 
 const matchRevealData =
-    'id profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap';
+    'id email profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap';
+
+const populateMatch = (index: string) => {
+    return {
+        path: `partner${index}Id`,
+        model: 'User',
+        select: matchRevealData,
+    };
+};
 
 // User CRUD operations-----------------------------------------------------------------------------------------------
-export const createUser = async (user: any) => {
+export const createUser = async (user: any): Promise<UserType> => {
     const { email, given_name, family_name } = user;
     const newUser = new User({
         email: user.email,
@@ -20,49 +30,83 @@ export const createUser = async (user: any) => {
     return doc;
 };
 
-export const getUser = async (user: any) => {
-    const doc = await User.findOne({ email: user.email }).populate('matches', matchRevealData);
+export const getUser = async (user: any): Promise<UserType> => {
+    const doc = await User.findOne({ email: user.email }).populate({
+        path: 'matchReviews',
+        model: 'Match',
+        populate: [populateMatch('A'), populateMatch('B')],
+    });
     return doc;
 };
 
-export const getUsersCount = async () => {
+export const getUsersCount = async (): Promise<number> => {
     const resp = await User.countDocuments();
     return resp;
 };
 
-export const getUsers = async () => {
-    const users = await User.find().populate('matches', matchRevealData);
+export const getUsers = async (): Promise<UserType[]> => {
+    const users = await User.find();
     return users;
 };
 
-export const updateCrushes = async (user: any, crushes: any) => {
+export const updateCrushes = async (user: any, crushes: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { crushes: crushes }, { new: true });
     return doc;
 };
 
-export const updateForbidden = async (user: any, forbidden: any) => {
+export const updateForbidden = async (user: any, forbidden: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { forbidden: forbidden }, { new: true });
     return doc;
 };
 
-export const updateUserOptIn = async (user: any, optIn: any) => {
+export const updateUserOptIn = async (user: any, optIn: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { optIn: optIn }, { new: true });
     return doc;
 };
 
 // Survey and Profile CRUD operations---------------------------------------------------------------------------------------------
-export const updateSurvey = async (user: any, survey: any) => {
+export const updateSurvey = async (user: any, survey: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { survey: survey }, { new: true });
     return doc;
 };
 
-export const updateProfile = async (user: any, profile: any) => {
+export const updateProfile = async (user: any, profile: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { profile: profile }, { new: true });
     return doc;
 };
 
-// Review CRUD operations---------------------------------------------------------------------------------------------
-// export const get
+// Match Review CRUD operations---------------------------------------------------------------------------------------------
+export const updateMatchReview = async (
+    userEmail: string,
+    matchId: string,
+    review: Review,
+): Promise<MatchReview | null> => {
+    const user = await User.findOne({ email: userEmail });
+    if (!user) return null;
+
+    const match = await Match.findOne({ _id: new ObjectId(matchId) });
+    if (!match) return null;
+
+    const { _id: userId } = user;
+    const { partnerAId, partnerBId } = match;
+    // IMPORTANT SECURITY CHECK
+    if (!userId.equals(partnerAId) && !userId.equals(partnerBId)) return null;
+
+    const partnerField = userId.equals(partnerAId) ? 'partnerAFeedback' : 'partnerBFeedback';
+    const oppositeField = userId.equals(partnerAId) ? 'partnerBFeedback' : 'partnerAFeedback';
+    const status = match[oppositeField].dateSubmitted !== null ? 'reviewed' : 'partial';
+
+    const updatedMatch = await Match.findOneAndUpdate(
+        { _id: new ObjectId(matchId) },
+        {
+            [partnerField]: review,
+            overallStatus: status,
+        },
+        { new: true },
+    );
+
+    return updatedMatch;
+};
 
 // Collab CRUD operations---------------------------------------------------------------------------------------------
 export const requestOTP = async (email: string) => {

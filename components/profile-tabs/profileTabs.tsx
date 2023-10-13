@@ -14,12 +14,12 @@ function ProfileTabs(props: any) {
         profile: 1,
         survey: 2,
         crushes: 3,
-        matches: 4,
+        matchReviews: 4,
     };
     const user = props.user;
     return (
         <div className="w-full items-center px-2 py-4 sm:px-0">
-            <Matches matches={user.matches} />
+            <Matches matches={user.matchReviews} userId={user._id} refresh={props.refresh} />
         </div>
     );
 }
