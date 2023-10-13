@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any) {
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(matchFeedback?.rating);
     const [comment, setComment] = useState<string>(matchFeedback?.comment);
 
@@ -17,12 +16,8 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
     ];
 
     const matchEmoji = useMemo(() => {
-        return emoji[Math.floor(Math.random() * (6 - 0 + 1) + 0)];
+        return emoji[Math.floor(Math.random() * emoji.length)];
     }, []);
-
-    const toggleExpanded = () => {
-        setIsExpanded(!isExpanded);
-    };
 
     const submitFeedback = async () => {
         await fetch(`/api/review/${matchID}`, {
