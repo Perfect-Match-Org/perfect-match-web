@@ -376,8 +376,8 @@ const Statistics: any = (props: any) => {
                                         you may have regarding data privacy. In fact, feedback from the Cornell
                                         community already has and will continue to be used in to improve our algorithm
                                         and measures to protect privacy. We can be reached at{' '}
-                                        <Link href="mailto:cornell.perfectmatch@gmail.com">
-                                            cornell.perfectmatch@gmail.com!
+                                        <Link href="mailto:perfectmatch@cornell.edu">
+                                            perfectmatch@cornell.edu
                                         </Link>
                                     </p>
                                 </details>
