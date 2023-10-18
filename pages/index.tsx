@@ -83,7 +83,7 @@ const Home: NextPage = (props: any) => {
                 <div className="lg:items-center sm:pt-60 sm:pb-36 ">
                     <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
                         <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
-                            We've crunched the numbers and here's what we found...
+                            We&apos;ve crunched the numbers and here&apos;s what we found...
                         </h1>
 
                     </div>
@@ -119,9 +119,9 @@ const Home: NextPage = (props: any) => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center mb-5">
-                        <a href="/statistics" className="bg-rose-400 content-center hover:bg-rose-400 text-white font-bold py-2 px-4 rounded-full">
+                        <Link href="/statistics" className="bg-rose-400 content-center hover:bg-rose-400 text-white font-bold py-2 px-4 rounded-full">
                             View the Full 2022 Statisical Analysis
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
