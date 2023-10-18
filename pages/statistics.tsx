@@ -65,7 +65,7 @@ const Statistics: any = (props: any) => {
                     </h2>
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                         In 2022, we received <strong className="text-rose-400"> 3,677 </strong>
-                        valid responses. Here is a look at the results of the survey!
+                        completed responses. Here is a look at the results of the survey!
                     </p>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
@@ -77,7 +77,7 @@ const Statistics: any = (props: any) => {
                     <div className="my-8">
                         <p className="my-4 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                             <strong className="text-rose-400">Juniors</strong> made up the highest proportion of the
-                            PM22 client body. Also interesting to notice is that
+                            PM22 participants. Also interesting to notice is that
                             <strong className="text-rose-400"> 5 faculty members </strong>filled out the survey!
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
