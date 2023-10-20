@@ -119,7 +119,7 @@ const Home: NextPage = (props: any) => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center mb-5">
-                        <Link href="/statistics" className="bg-rose-400 content-center hover:bg-rose-400 text-white font-bold py-2 px-4 rounded-full">
+                        <Link href="/statistics" className="bg-red-400 content-center hover:bg-rose-400 font-bold py-2 px-4 rounded-full">
                             View the Full 2022 Statisical Analysis
                         </Link>
                     </div>

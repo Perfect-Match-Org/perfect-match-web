@@ -360,10 +360,17 @@ const Statistics: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Your data is safe with us! We will never share your data with a third party, and
+                                        Your data is safe with us! We will never share your data with a third party advertisers, and
                                         we will only interact with your information as needed to resolve user issues. We
                                         may collect anonymous statistics to improve our algorithm, but your identity
                                         will always be separated from such reports.
+                                    </p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        Anonymized statistics are published each year on our website and provided to media and student groups
+                                        for publications. In the past, these are included Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
+                                    </p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        For media requests, please reach out at perfectmatch@cornell.edu
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -385,7 +392,7 @@ const Statistics: any = (props: any) => {
                         </div>
                     </div>
                 </section>
-            </div>
+            </div >
             <div>
                 <section className="bg-white ">
                     <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
@@ -411,7 +418,7 @@ const Statistics: any = (props: any) => {
                 </section>
             </div>
             <Footer />
-        </div>
+        </div >
     );
 };
 
