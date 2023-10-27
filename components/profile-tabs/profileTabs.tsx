@@ -48,7 +48,7 @@ function ProfileTabs(props: any) {
             {/* General Feedback Section */}
             <div className="my-14 sm:mx-[15%] lg:mx-[22%]">
                 <details className="text-gray-500 border rounded-lg">
-                    <summary className="cursor-pointer my-4 text-center text-rose-400 font-extrabold text-xl">General Feedback (Click to expand)</summary>
+                    <summary className="cursor-pointer my-4 text-center text-rose-400 font-extrabold text-xl">General Feedback (Click to expand)📝</summary>
                     {/* Feedback content */}
                     <div className="p-4">
                         {/* Category Ranking */}

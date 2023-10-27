@@ -25,7 +25,7 @@ const Profile: NextPage = (props: any) => {
                             Welcome Back, {data.profile.firstName}!
                         </h1>
                         <div className="content-center flex">
-                            <p className="mt-8 mx-auto text-xl"><strong className="text-rose-400">NEW:</strong> Fill out the feedback survey below to receive an extra match in 2024❣️</p>
+                            <p className="mt-8 mx-auto text-xl text-center"><strong className="text-rose-400">NEW:</strong> Fill out the feedback survey below to receive an extra match in 2024❣️</p>
                         </div>
                         <p className="mt-6 text-center">We really appreciate your feedback and comments!
                             They will be used to improve next year's survey and matching algorithms. Please

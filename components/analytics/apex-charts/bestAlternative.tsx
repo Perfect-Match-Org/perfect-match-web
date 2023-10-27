@@ -16,6 +16,15 @@ const BestAlternative = () => {
             },
             width: '100%',
             type: 'donut',
+            animations: {
+                speed: 1400,
+                animateGradually: {
+                    delay: 250
+                },
+                dynamicAnimation: {
+                    speed: 450
+                }
+            }
         },
         labels: [
             'Enjoy studying in the Olin Basement',
@@ -41,7 +50,7 @@ const BestAlternative = () => {
                 return [name, parseInt(val).toFixed(1) + '%'];
             },
             style: {
-                fontSize: '13px',
+                fontSize: '14px',
                 fontWeight: 'bold',
             },
         },
@@ -50,7 +59,18 @@ const BestAlternative = () => {
         },
         tooltip: {
             enabled: false
-        }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                dataLabels: {
+                    style: {
+                        fontSize: '12px',
+                    },
+                },
+            },
+        }]
+
     };
 
     return <ReactApexChart type="donut" series={series} options={options as unknown as ApexCharts.ApexOptions} />;

@@ -12,6 +12,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
 import BestAlternative from '../components/analytics/apex-charts/bestAlternative';
+import demo from '../public/feedback-demo.gif';
 
 const Home: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/count', fetcher, {
@@ -26,51 +27,44 @@ const Home: NextPage = (props: any) => {
             </Head>
             <Header />
 
-            <section className="grid grid-cols-2">
+            <section className="grid lg:grid-cols-2">
 
                 <div className="bg-white">
-                    <div className="mt-6 mb-6 sm:my-24 sm:mb-6">
-                        <div className="text-center sm:text-left sm:ml-[8%] sm:mr-[6%]">
-                            <h1 className="text-lg text-gray-600 font-extrabold sm:text-3xl">Want an <span className="text-rose-400">extra match </span>next year?</h1>
-                            <p className="mt-6 sm:text-lg text-gray-500">
+                    <div className="mt-12 lg:my-24 lg:mb-10">
+                        <div className="text-center lg:text-left mx-[3%] md:mx-[10%] lg:ml-[8%] lg:mr-[6%]">
+                            <h1 className="text-xl text-gray-600 font-extrabold md:text-3xl">Want an <span className="text-rose-400">extra match </span>next year?</h1>
+                            <p className="mt-6 lg:mt-10 text-base md:text-lg text-gray-500">
                                 <strong className="font-bold text-rose-400">NEW: </strong>Give us feedback on your matches this year and recieve an additional match in 2024❣️
                             </p>
-                            <p className="mt-2 sm:text-lg text-gray-500">
-                                Sign in to complete the <strong className="font-bold text-rose-400">feedback survey</strong>:
+                            <p className="mt-2 md:text-lg text-gray-500">
+                                Head to your <a href="/profile" className="underline font-bold">Profile</a> to complete the <strong className="font-bold text-rose-400">feedback survey</strong>.
                             </p>
-
-                            <div className="flex sm:contents">
-                                <div className="mt-4 flex flex-wrap text-center mx-auto">
-                                    <GoogleAuth login={!props.user} />
-                                </div>
-                            </div>
                         </div>
+                    </div>
+                    <div className="lg:mt-6 mt-4 mb-10">
+                        <Image priority={true} src={demo} alt="Loading..."></Image>
                     </div>
                 </div >
 
                 <div className="bg-pink-100">
-                    <div className="mt-6 mb-6 sm:my-24">
-                        <div className="text-center sm:text-left sm:ml-[8%] sm:mr-[6%]">
-                            <h1 className="text-lg text-gray-600 font-extrabold sm:text-3xl">Curious about the results of <span className="text-rose-400">PM23? </span></h1>
-                            <ul className="mt-8 sm:text-lg text-gray-500">
+                    <div className="my-12 lg:my-24">
+                        <div className="text-center lg:text-left mx-[3%] md:mx-[10%] lg:ml-[8%] lg:mr-[6%]">
+                            <h1 className="text-xl text-gray-600 font-extrabold md:text-3xl">Curious about the results of <span className="text-rose-400">PM23? </span></h1>
+                            <ul className="mt-6 lg:mt-10 md:text-lg text-gray-500">
                                 <li>🐻 4500+ Cornellians matched this year</li>
                                 <li>💌 22,000+ Perfect Matches</li>
                                 <li>📊 Visit the <a href="/statistics" className="underline font-bold">Statistics</a> page for more about the results!</li>
                             </ul>
-                            <div className="mt-10 sm:text-lg">
+                            <div className="mt-6 lg:mt-12 md:text-lg">
                                 <p className="text-rose-400 font-bold">For example, we asked:</p>
-                                <p className="my-4 text-gray-500">Choose the <strong>best alternative</strong>. Your match is a 10, but they ____.</p>
+                                <p className="my-2 lg:my-4 text-gray-500">Choose the <strong>best alternative</strong>. Your match is a 10, but they ____.</p>
                                 <p className="text-rose-400 font-bold">You chose:</p>
 
                                 <div className="content-center my-3">
-                                    <div className="max-w-lg mx-auto">
+                                    <div className="max-w-xl mx-auto">
                                         <BestAlternative />
                                     </div>
                                 </div>
-                                <p className="text-gray-500 mt-4 border-2 border-rose-300 rounded-md p-2 sm:text-base">
-                                    💬 Huh, so it might be OK to invite your matches to study in the Olin Basement but don't ever let them
-                                    know you got matched with their roommates on Hinge...
-                                </p>
                             </div>
                         </div>
                     </div>

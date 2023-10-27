@@ -28,23 +28,23 @@ const Statistics: any = (props: any) => {
             </Head>
             <Header />
             <div>
-                <div>
+                <div className="bg-white sm:py-6 sm:pr-4">
                     {' '}
                     <section
-                        className="sm:mx-[5%]"
+                        className="sm:mr-0"
                         style={{
-                            marginBottom: '20px',
-                            marginTop: '10px',
-                            backgroundImage: 'url("networks.png")',
+                            paddingBottom: '20px',
+                            paddingTop: '20px',
                             height: '100%',
                             backgroundSize: 'contain',
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'right top',
+                            backgroundImage: 'url("valentine.png")',
                         }}
                     >
-                        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
-                            <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
-                                <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
+                        <div className="pb-10 sm:pt-64 sm:pb-36">
+                            <div className="max-w-xl text-center sm:text-left sm:ml-[12%] mt-8 sm:mt-0 opacity-100">
+                                <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl opacity-100">
                                     Can Love be Visualized?
                                 </h1>
                                 <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-gray-500 sm:leading-relaxed">

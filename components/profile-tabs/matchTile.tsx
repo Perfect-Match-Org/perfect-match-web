@@ -47,13 +47,13 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
     };
 
     return (
-        <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-1">
-            <div className="items-center rounded-lg shadow-lg sm:flex mx-[1%] sm:mx-[6%] lg:mx-[12%]">
+        <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-1 sm:flex">
+            <div className="items-center rounded-lg shadow-xl sm:flex sm:mx-[10%] lg:mx-[20%]">
                 <div className="flex sm:contents">
                     <div className="text-8xl mt-4 sm:mt-0 sm:text-9xl mx-auto sm:ml-12 sm:mr-0">{matchEmoji}</div>
                 </div>
                 <div className="p-3 pt-1 sm:pl-10 sm:pr-16 sm:py-5">
-                    <h3 className="text-2xl font-bold font-botracking-tight text-gray-500">
+                    <h3 className="text-3xl font-bold font-botracking-tight text-gray-500">
                         <span className={color[Math.floor(Math.random() * (6 - 0 + 1) + 0)]}>
                             {matchData.profile.firstName}
                         </span>
@@ -64,44 +64,44 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                         {matchData.profile.major.charAt(0).toUpperCase() + matchData.profile.major.slice(1)}
                     </p>
                     <p className="text-gray-500 ">📍 {matchData.profile.city}</p>
-                    <p className="mt-3 sm:mt-4 mb-3 text-gray-500">
+                    <p className="mt-3 sm:mt-4 mb-2 text-gray-500">
                         Three words to describe me:{' '}
                         <span className="font-bold">{matchData.profile.describeYourself}</span>!
                     </p>
-                    <p className="mb-3 sm:mb-4 text-gray-500">
+                    <p className="mb-3 sm:mb-3 text-gray-500">
                         First song on my hookup playlist: 🎶
                         <span className="font-bold"> {matchData.survey.hookupsong}</span>
                     </p>
-                    <p className="mb-4 sm:mb-6 text-gray-500">
+                    <p className="mb-4 sm:mb-3 text-gray-500">
                         Bio: <span className="font-bold">{matchData.profile.bio}</span>
                     </p>
                     {contact.insta && (
-                        <p className="mb-4 sm:mb-6 text-gray-500">
+                        <p className="mb-4 sm:mb-3 text-gray-500">
                             Instagram: <span className="font-bold">{contact.insta}</span>
                         </p>
                     )}
                     {contact.fb && (
-                        <p className="mb-4 sm:mb-6 text-gray-500">
+                        <p className="mb-4 sm:mb-3 text-gray-500">
                             Facebook: <span className="font-bold">{contact.fb}</span>
                         </p>
                     )}
                     {contact.twitter && (
-                        <p className="mb-4 sm:mb-6 text-gray-500">
+                        <p className="mb-4 sm:mb-3 text-gray-500">
                             Twitter: <span className="font-bold">{contact.twitter}</span>
                         </p>
                     )}
                     {contact.linkedin && (
-                        <p className="mb-4 sm:mb-6 text-gray-500">
+                        <p className="mb-4 sm:mb-3 text-gray-500">
                             LinkedIn: <span className="font-bold">{contact.linkedin}</span>
                         </p>
                     )}
                     {contact.phone && (
-                        <p className="mb-4 sm:mb-6 text-gray-500">
+                        <p className="mb-4 sm:mb-3 text-gray-500">
                             Phone Number: <span className="font-bold">{contact.phone}</span>
                         </p>
                     )}
                     {contact.snap && (
-                        <p className="mb-4 sm:mb-6 text-gray-500">
+                        <p className="mb-4 sm:mb-3 text-gray-500">
                             Snapchat: <span className="font-bold">{contact.snap}</span>
                         </p>
                     )}
@@ -152,7 +152,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
 
                                     {/* Met Match */}
                                     <div>
-                                        <label className="text-gray-600">Met Match:</label>
+                                        <label className="text-gray-600">Have you met this match?</label>
                                         <input
                                             type="checkbox"
                                             checked={review.metMatch}
