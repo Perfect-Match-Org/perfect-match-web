@@ -79,7 +79,9 @@ function ProfileTabs(props: any) {
 
                         {/* Valentine's Day Impact */}
                         <div>
-                            <label htmlFor="valentinesDayImpact">How did Valentine's Day impact your experience?</label>
+                            <label htmlFor="valentinesDayImpact">
+                                How did Valentine&apos;s Day impact your experience?
+                            </label>
                             <input
                                 type="text"
                                 id="valentinesDayImpact"
@@ -94,7 +96,7 @@ function ProfileTabs(props: any) {
 
                         {/* Other Valentine's Day Impact */}
                         <div>
-                            <label htmlFor="otherValentinesDayImpact">Other Valentine's Day Impact:</label>
+                            <label htmlFor="otherValentinesDayImpact">Other Valentine&apos;s Day Impact:</label>
                             <textarea
                                 id="otherValentinesDayImpact"
                                 rows={4}

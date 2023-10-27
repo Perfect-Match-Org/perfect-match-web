@@ -29,7 +29,6 @@ const Profile: NextPage = (props: any) => {
                 </section>
             </div>
             <div>
-                {' '}
                 <section className="bg-white ">
                     <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
                         <div className="bg-white rounded-lg h-auto">
