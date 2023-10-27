@@ -81,7 +81,7 @@ function ProfileTabs(props: any) {
                         {/* Valentine's Day Impact */}
                         <div className="mb-8">
                             <label htmlFor="valentinesDayImpact">
-                                What did Perfect Match add to your last Valentine's Day? Choose one or more.
+                                What did Perfect Match add to your last Valentine&#39;s Day? Choose one or more.
                             </label>
                             <input
                                 type="checkbox"
@@ -97,7 +97,7 @@ function ProfileTabs(props: any) {
 
                         {/* Other Valentine's Day Impact */}
                         <div>
-                            <label htmlFor="otherValentinesDayImpact">What did Perfect Match add to your last Valentine's Day? Choose one or more.</label>
+                            <label htmlFor="otherValentinesDayImpact">What did Perfect Match add to your last Valentine&#39;s Day? Choose one or more.</label>
                             <textarea
                                 id="otherValentinesDayImpact"
                                 rows={4}

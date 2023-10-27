@@ -37,7 +37,7 @@ const Home: NextPage = (props: any) => {
                                 <strong className="font-bold text-rose-400">NEW: </strong>Give us feedback on your matches this year and recieve an additional match in 2024❣️
                             </p>
                             <p className="mt-2 md:text-lg text-gray-500">
-                                Head to your <a href="/profile" className="underline font-bold">Profile</a> to complete the <strong className="font-bold text-rose-400">feedback survey</strong>.
+                                Head to your <Link href="/profile" className="underline font-bold">Profile</Link> to complete the <strong className="font-bold text-rose-400">feedback survey</strong>.
                             </p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ const Home: NextPage = (props: any) => {
                             <ul className="mt-6 lg:mt-10 md:text-lg text-gray-500">
                                 <li>🐻 4500+ Cornellians matched this year</li>
                                 <li>💌 22,000+ Perfect Matches</li>
-                                <li>📊 Visit the <a href="/statistics" className="underline font-bold">Statistics</a> page for more about the results!</li>
+                                <li>📊 Visit the <Link href="/statistics" className="underline font-bold">Statistics</Link> page for more about the results!</li>
                             </ul>
                             <div className="mt-6 lg:mt-12 md:text-lg">
                                 <p className="text-rose-400 font-bold">For example, we asked:</p>

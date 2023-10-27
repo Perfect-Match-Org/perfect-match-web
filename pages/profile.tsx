@@ -28,11 +28,11 @@ const Profile: NextPage = (props: any) => {
                             <p className="mt-8 mx-auto text-xl text-center"><strong className="text-rose-400">NEW:</strong> Fill out the feedback survey below to receive an extra match in 2024❣️</p>
                         </div>
                         <p className="mt-6 text-center">We really appreciate your feedback and comments!
-                            They will be used to improve next year's survey and matching algorithms. Please
+                            They will be used to improve next year&#39;s survey and matching algorithms. Please
                             kindly complete two parts of the feedback survey: <strong className="text-rose-400">General Feedback and Match-Specific Feedback</strong>. It
                             will take 5~10 minutes in total.
                             The General Feedback section is right below. For Match-Specific Feedback, scroll down to
-                            each of your matches and click "Leave Feedback."
+                            each of your matches and click &#34;Leave Feedback.&#34;
                         </p>
                         <p className="mt-2 text-center">Again, thanks for your feedback and see you in Febraury❤️‍🔥!</p>
                     </div>
