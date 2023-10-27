@@ -1,19 +1,37 @@
 import React, { useState, useMemo } from 'react';
+import { Review } from '../../types/users';
+
+const emoji = ['😃', '😆', '😄', '😆', '😊', '😎', '😳'];
+const color = [
+    'text-rose-400',
+    'text-orange-400',
+    'text-yellow-400',
+    'text-lime-500',
+    'text-emerald-400',
+    'text-sky-400',
+    'text-purple-400',
+];
+
+const ratingOptions = [
+    'My match ghosted me',
+    'My match and I were not a physical match',
+    'My match and I were not a personality match',
+    'I did not reach out',
+    'They did not reach out',
+    'prob some other options',
+];
 
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any) {
-    const [rating, setRating] = useState<number>(matchFeedback?.rating);
-    const [comment, setComment] = useState<string>(matchFeedback?.comment);
-
-    const emoji = ['😃', '😆', '😄', '😆', '😊', '😎', '😳'];
-    const color = [
-        'text-rose-400',
-        'text-orange-400',
-        'text-yellow-400',
-        'text-lime-500',
-        'text-emerald-400',
-        'text-sky-400',
-        'text-purple-400',
-    ];
+    const [review, setReview] = useState<Review>({
+        overallRating: matchFeedback?.overallRating || 0,
+        topReasonForRating: matchFeedback?.topReasonForRating || '',
+        metMatch: matchFeedback?.metMatch || false,
+        initialRatingDifference: matchFeedback?.initialRatingDifference || false,
+        numberOfDates: matchFeedback?.numberOfDates || 0,
+        inRelationshipWithMatch: matchFeedback?.inRelationshipWithMatch || false,
+        additionalComments: matchFeedback?.additionalComments || '',
+    });
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const matchEmoji = useMemo(() => {
         return emoji[Math.floor(Math.random() * emoji.length)];
@@ -22,9 +40,10 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
     const submitFeedback = async () => {
         await fetch(`/api/review/${matchID}`, {
             method: 'POST',
-            body: JSON.stringify({ rating: rating, comment: comment, dateSubmitted: new Date() }),
+            body: JSON.stringify({ ...review, dateSubmitted: new Date() }),
         });
         refresh();
+        setIsModalOpen(false);
     };
 
     return (
@@ -86,45 +105,127 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                             Snapchat: <span className="font-bold">{contact.snap}</span>
                         </p>
                     )}
-                    <details>
-                        <summary className="text-gray-500 cursor-pointer">Let us know how we did</summary>
-                        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="rating">
-                            Rate your match (1-10):
-                        </label>
-                        <select
-                            value={rating || ''}
-                            onChange={(e) => setRating(Number(e.target.value))}
-                            className="w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline-blue"
-                            id="rating"
-                        >
-                            <option value="" disabled>
-                                Select Rating
-                            </option>
-                            {Array.from({ length: 10 }, (_, i) => (
-                                <option key={i + 1} value={i + 1}>
-                                    {i + 1}
-                                </option>
-                            ))}
-                        </select>
+                    <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                        Leave Feedback
+                    </button>
+                    {isModalOpen && (
+                        <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex items-center justify-center">
+                            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                                <h2 className="text-2xl mb-4 font-bold text-gray-700">Match Feedback</h2>
 
-                        <label className="block mt-4 mb-2 text-sm font-bold text-gray-600" htmlFor="comment">
-                            Any comments:
-                        </label>
-                        <textarea
-                            value={comment}
-                            onChange={(e) => setComment(e.target.value)}
-                            className="w-full px-3 py-2 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline-blue"
-                            rows={4}
-                            id="comment"
-                        ></textarea>
+                                {/* Feedback form */}
+                                <div className="space-y-4">
+                                    {/* Overall Rating */}
+                                    <div>
+                                        <label className="text-gray-600">Overall Rating:</label>
+                                        <input
+                                            type="number"
+                                            value={review.overallRating}
+                                            onChange={(e) =>
+                                                setReview({ ...review, overallRating: Number(e.target.value) })
+                                            }
+                                            className="w-full p-2 mt-1 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                        />
+                                    </div>
 
-                        <button
-                            onClick={submitFeedback}
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        >
-                            Submit Feedback
-                        </button>
-                    </details>
+                                    {/* Top Reason for Rating */}
+                                    <div>
+                                        <label className="text-gray-600">Top Reason for Rating:</label>
+                                        <select
+                                            value={review.topReasonForRating}
+                                            onChange={(e) =>
+                                                setReview({ ...review, topReasonForRating: e.target.value })
+                                            }
+                                        >
+                                            {ratingOptions.map((option: string) => (
+                                                <option key={option} value={option}>
+                                                    {option}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    {/* Met Match */}
+                                    <div>
+                                        <label className="text-gray-600">Met Match:</label>
+                                        <input
+                                            type="checkbox"
+                                            checked={review.metMatch}
+                                            onChange={(e) => setReview({ ...review, metMatch: e.target.checked })}
+                                        />
+                                    </div>
+
+                                    {/* Initial Rating Difference */}
+                                    <div>
+                                        <label className="text-gray-600">Initial Rating Difference:</label>
+                                        <input
+                                            type="checkbox"
+                                            checked={review.initialRatingDifference}
+                                            onChange={(e) =>
+                                                setReview({ ...review, initialRatingDifference: e.target.checked })
+                                            }
+                                        />
+                                    </div>
+
+                                    {/* Number of Dates */}
+                                    <div>
+                                        <label className="text-gray-600">Number of Dates:</label>
+                                        <input
+                                            type="number"
+                                            value={review.numberOfDates}
+                                            onChange={(e) =>
+                                                setReview({ ...review, numberOfDates: Number(e.target.value) })
+                                            }
+                                        />
+                                    </div>
+
+                                    {/* In Relationship with Match */}
+                                    <div>
+                                        <label className="text-gray-600">In Relationship with Match:</label>
+                                        <input
+                                            type="checkbox"
+                                            checked={review.inRelationshipWithMatch}
+                                            onChange={(e) =>
+                                                setReview({ ...review, inRelationshipWithMatch: e.target.checked })
+                                            }
+                                        />
+                                    </div>
+
+                                    {/* Additional Comments */}
+                                    <div>
+                                        <label className="text-gray-600">Additional Comments:</label>
+                                        <textarea
+                                            value={review.additionalComments}
+                                            onChange={(e) =>
+                                                setReview({ ...review, additionalComments: e.target.value })
+                                            }
+                                            className="w-full p-2 mt-1 border rounded-md"
+                                            rows={4}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Buttons */}
+                                <div className="mt-6 flex justify-end space-x-4">
+                                    <button
+                                        onClick={() => setIsModalOpen(false)}
+                                        className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"
+                                    >
+                                        Close
+                                    </button>
+                                    <button
+                                        onClick={submitFeedback}
+                                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                                    >
+                                        Submit Feedback
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

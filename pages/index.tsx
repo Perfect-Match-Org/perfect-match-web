@@ -71,14 +71,12 @@ const Home: NextPage = (props: any) => {
                                     know you got matched with their roommates on Hinge...
                                 </p>
                             </div>
-
                         </div>
                     </div>
-                </div >
-
+                </div>
             </section>
             <Footer />
-        </div >
+        </div>
     );
 };
 
