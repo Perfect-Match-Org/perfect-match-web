@@ -65,7 +65,7 @@ const Statistics: any = (props: any) => {
                     </h2>
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                         In 2022, we received <strong className="text-rose-400"> 3,677 </strong>
-                        valid responses. Here is a look at the results of the survey!
+                        completed responses. Here is a look at the results of the survey!
                     </p>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
@@ -77,7 +77,7 @@ const Statistics: any = (props: any) => {
                     <div className="my-8">
                         <p className="my-4 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                             <strong className="text-rose-400">Juniors</strong> made up the highest proportion of the
-                            PM22 client body. Also interesting to notice is that
+                            PM22 participants. Also interesting to notice is that
                             <strong className="text-rose-400"> 5 faculty members </strong>filled out the survey!
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
@@ -360,10 +360,17 @@ const Statistics: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Your data is safe with us! We will never share your data with a third party, and
+                                        Your data is safe with us! We will never share your data with a third party advertisers, and
                                         we will only interact with your information as needed to resolve user issues. We
                                         may collect anonymous statistics to improve our algorithm, but your identity
                                         will always be separated from such reports.
+                                    </p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        Anonymized statistics are published each year on our website and provided to media and student groups
+                                        for publications. In the past, these are included Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
+                                    </p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        For media requests, please reach out at perfectmatch@cornell.edu
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -376,8 +383,8 @@ const Statistics: any = (props: any) => {
                                         you may have regarding data privacy. In fact, feedback from the Cornell
                                         community already has and will continue to be used in to improve our algorithm
                                         and measures to protect privacy. We can be reached at{' '}
-                                        <Link href="mailto:cornell.perfectmatch@gmail.com">
-                                            cornell.perfectmatch@gmail.com!
+                                        <Link href="mailto:perfectmatch@cornell.edu">
+                                            perfectmatch@cornell.edu
                                         </Link>
                                     </p>
                                 </details>
@@ -385,7 +392,7 @@ const Statistics: any = (props: any) => {
                         </div>
                     </div>
                 </section>
-            </div>
+            </div >
             <div>
                 <section className="bg-white ">
                     <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
@@ -411,7 +418,7 @@ const Statistics: any = (props: any) => {
                 </section>
             </div>
             <Footer />
-        </div>
+        </div >
     );
 };
 

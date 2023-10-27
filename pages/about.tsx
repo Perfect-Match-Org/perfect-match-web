@@ -326,8 +326,8 @@ const About: any = (props: any) => {
                             <p className="mb-4 sm:font-medium">
                                 {' '}
                                 Email:{' '}
-                                <a target="_blank" rel="noreferrer" href="mailto:cornell.perfectmatch@gmail.com">
-                                    cornell.perfectmatch@gmail.com
+                                <a target="_blank" rel="noreferrer" href="mailto:perfectmatch@cornell.edu">
+                                    perfectmatch@cornell.edu
                                 </a>
                             </p>
                         </div>
