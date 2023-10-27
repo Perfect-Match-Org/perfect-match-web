@@ -13,24 +13,34 @@ const Profile: NextPage = (props: any) => {
     const refresh = () => mutate();
     if (!data) return <Spinner />;
     return (
-        <div>
+        <div className="bg-white">
             <Head>
                 <title>Profile</title>
             </Head>
             <Header />
             <div>
-                <section className="bg-white ">
-                    <div className="px-10 items-center pb-0 sm:pb-5 pt-20 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
-                        <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
+                <section className="text-gray-500">
+                    <div className="pt-28 sm:mx-[15%] lg:mx-[22%] mx-auto">
+                        <h1 className="text-2xl sm:text-3xl font-extrabold text-rose-400 text-center">
                             Welcome Back, {data.profile.firstName}!
                         </h1>
-                        <p className="mt-1 text-xl  font-bold text-gray-500">Let&apos;s get matching</p>
+                        <div className="content-center flex">
+                            <p className="mt-8 mx-auto text-xl"><strong className="text-rose-400">NEW:</strong> Fill out the feedback survey below to receive an extra match in 2024❣️</p>
+                        </div>
+                        <p className="mt-6 text-center">We really appreciate your feedback and comments!
+                            They will be used to improve next year's survey and matching algorithms. Please
+                            kindly complete two parts of the feedback survey: <strong className="text-rose-400">General Feedback and Match-Specific Feedback</strong>. It
+                            will take 5~10 minutes in total.
+                            The General Feedback section is right below. For Match-Specific Feedback, scroll down to
+                            each of your matches and click "Leave Feedback."
+                        </p>
+                        <p className="mt-2 text-center">Again, thanks for your feedback and see you in Febraury❤️‍🔥!</p>
                     </div>
                 </section>
             </div>
             <div>
-                <section className="bg-white ">
-                    <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
+                <section>
+                    <div>
                         <div className="bg-white rounded-lg h-auto">
                             <ProfileTabs user={data} refresh={refresh} />
                         </div>

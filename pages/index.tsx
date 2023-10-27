@@ -29,14 +29,14 @@ const Home: NextPage = (props: any) => {
             <section className="grid grid-cols-2">
 
                 <div className="bg-white">
-                    <div className="mt-6 mb-6 sm:mt-24 sm:mb-6">
+                    <div className="mt-6 mb-6 sm:my-24 sm:mb-6">
                         <div className="text-center sm:text-left sm:ml-[8%] sm:mr-[6%]">
-                            <h1 className="text-lg text-gray-600 font-extrabold sm:text-3xl">Want an extra <span className="text-rose-400">Perfect Match? </span></h1>
+                            <h1 className="text-lg text-gray-600 font-extrabold sm:text-3xl">Want an <span className="text-rose-400">extra match </span>next year?</h1>
                             <p className="mt-6 sm:text-lg text-gray-500">
-                                <strong className="font-extrabold text-rose-400">NEW: </strong>Give us feedback on your matches this year and recieve an additional match in 2024❣️
+                                <strong className="font-bold text-rose-400">NEW: </strong>Give us feedback on your matches this year and recieve an additional match in 2024❣️
                             </p>
                             <p className="mt-2 sm:text-lg text-gray-500">
-                                Sign in to complete the <strong className="font-extrabold text-rose-400">feedback survey</strong>:
+                                Sign in to complete the <strong className="font-bold text-rose-400">feedback survey</strong>:
                             </p>
 
                             <div className="flex sm:contents">
@@ -49,25 +49,26 @@ const Home: NextPage = (props: any) => {
                 </div >
 
                 <div className="bg-pink-100">
-                    <div className="mt-6 mb-6 sm:my-24 sm:mb-6">
+                    <div className="mt-6 mb-6 sm:my-24">
                         <div className="text-center sm:text-left sm:ml-[8%] sm:mr-[6%]">
                             <h1 className="text-lg text-gray-600 font-extrabold sm:text-3xl">Curious about the results of <span className="text-rose-400">PM23? </span></h1>
-                            <ul className="mt-6 sm:text-lg text-gray-500">
+                            <ul className="mt-8 sm:text-lg text-gray-500">
                                 <li>🐻 4500+ Cornellians matched this year</li>
                                 <li>💌 22,000+ Perfect Matches</li>
+                                <li>📊 Visit the <a href="/statistics" className="underline font-bold">Statistics</a> page for more about the results!</li>
                             </ul>
-                            <div className="mt-6 sm:text-lg">
-                                <p className="text-rose-400 font-extrabold">For example, we asked:</p>
-                                <p className="my-2 text-gray-500">Choose the <strong>best alternative</strong>. Your match is a 10, but they ____.</p>
-                                <p className="text-rose-400 font-extrabold">You responded:</p>
+                            <div className="mt-10 sm:text-lg">
+                                <p className="text-rose-400 font-bold">For example, we asked:</p>
+                                <p className="my-4 text-gray-500">Choose the <strong>best alternative</strong>. Your match is a 10, but they ____.</p>
+                                <p className="text-rose-400 font-bold">You chose:</p>
 
-                                <div className="content-center">
+                                <div className="content-center my-3">
                                     <div className="max-w-lg mx-auto">
                                         <BestAlternative />
                                     </div>
                                 </div>
-                                <p className="text-gray-500 mt-2 sm:text-base">
-                                    Huh, so you can still enjoy studying in the Olin Basement but don't ever let you perfect matches
+                                <p className="text-gray-500 mt-4 border-2 border-rose-300 rounded-md p-2 sm:text-base">
+                                    💬 Huh, so it might be OK to invite your matches to study in the Olin Basement but don't ever let them
                                     know you got matched with their roommates on Hinge...
                                 </p>
                             </div>

@@ -23,7 +23,7 @@ const ratingOptions = [
 
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any) {
     const [review, setReview] = useState<Review>({
-        overallRating: matchFeedback?.overallRating || 0,
+        overallRating: matchFeedback?.overallRating || '',
         topReasonForRating: matchFeedback?.topReasonForRating || '',
         metMatch: matchFeedback?.metMatch || false,
         initialRatingDifference: matchFeedback?.initialRatingDifference || false,
@@ -114,15 +114,17 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                     {isModalOpen && (
                         <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex items-center justify-center">
                             <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                                <h2 className="text-2xl mb-4 font-bold text-gray-700">Match Feedback</h2>
+                                <h2 className="text-2xl mb-4 font-extrabold text-rose-400">Match Feedback</h2>
 
                                 {/* Feedback form */}
-                                <div className="space-y-4">
+                                <div className="space-y-4 text-gray-500">
                                     {/* Overall Rating */}
                                     <div>
-                                        <label className="text-gray-600">Overall Rating:</label>
+                                        <label>On a scale of 1-10, is this match a Perfect Match? &#40;1-terrible match; 10-Perfect Match!&#41;</label>
                                         <input
                                             type="number"
+                                            min="1"
+                                            max="10"
                                             value={review.overallRating}
                                             onChange={(e) =>
                                                 setReview({ ...review, overallRating: Number(e.target.value) })
@@ -133,7 +135,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
 
                                     {/* Top Reason for Rating */}
                                     <div>
-                                        <label className="text-gray-600">Top Reason for Rating:</label>
+                                        <label>Top Reason for Rating:</label>
                                         <select
                                             value={review.topReasonForRating}
                                             onChange={(e) =>

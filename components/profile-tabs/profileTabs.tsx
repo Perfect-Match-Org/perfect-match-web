@@ -17,6 +17,7 @@ function ProfileTabs(props: any) {
         surveyFeedback: '',
         valentinesDayImpact: [],
         otherValentinesDayImpact: '',
+        anyComment: ''
     });
 
     const section = router.asPath.split('#')[1];
@@ -43,15 +44,15 @@ function ProfileTabs(props: any) {
     };
 
     return (
-        <div className="w-full items-center px-2 py-4 sm:px-0">
+        <div className="w-full items-center">
             {/* General Feedback Section */}
-            <div className="mt-6">
-                <details className="text-gray-600 border rounded-md p-4">
-                    <summary className="cursor-pointer mb-2">General Feedback (Click to expand)</summary>
+            <div className="my-14 sm:mx-[15%] lg:mx-[22%]">
+                <details className="text-gray-500 border rounded-lg">
+                    <summary className="cursor-pointer my-4 text-center text-rose-400 font-extrabold text-xl">General Feedback (Click to expand)</summary>
                     {/* Feedback content */}
-                    <div className="space-y-4">
+                    <div className="p-4">
                         {/* Category Ranking */}
-                        <div>
+                        <div className="mb-8">
                             <label htmlFor="categoryRanking">Rank the category of questions:</label>
                             <input
                                 type="text"
@@ -66,8 +67,8 @@ function ProfileTabs(props: any) {
                         </div>
 
                         {/* Survey Feedback */}
-                        <div>
-                            <label htmlFor="surveyFeedback">Feedback about current survey questions:</label>
+                        <div className="mb-8">
+                            <label htmlFor="surveyFeedback">Feedback on the 2023 Perfect Match survey questions:</label>
                             <textarea
                                 id="surveyFeedback"
                                 rows={4}
@@ -78,25 +79,25 @@ function ProfileTabs(props: any) {
                         </div>
 
                         {/* Valentine's Day Impact */}
-                        <div>
+                        <div className="mb-8">
                             <label htmlFor="valentinesDayImpact">
-                                How did Valentine&apos;s Day impact your experience?
+                                What did Perfect Match add to your last Valentine's Day? Choose one or more.
                             </label>
                             <input
-                                type="text"
+                                type="checkbox"
                                 id="valentinesDayImpact"
                                 value={feedback.valentinesDayImpact.join(',')}
                                 onChange={(e) =>
                                     setFeedback({ ...feedback, valentinesDayImpact: e.target.value.split(',') })
                                 }
                                 className="w-full p-2 mt-2 border rounded-md"
-                                placeholder="E.g.: 1,2,3,4"
+                                name="A. A sense of anticipation and excitement."
                             />
                         </div>
 
                         {/* Other Valentine's Day Impact */}
                         <div>
-                            <label htmlFor="otherValentinesDayImpact">Other Valentine&apos;s Day Impact:</label>
+                            <label htmlFor="otherValentinesDayImpact">What did Perfect Match add to your last Valentine's Day? Choose one or more.</label>
                             <textarea
                                 id="otherValentinesDayImpact"
                                 rows={4}
@@ -106,9 +107,21 @@ function ProfileTabs(props: any) {
                             ></textarea>
                         </div>
 
-                        <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Submit
-                        </button>
+                        <div>
+                            <label htmlFor="anyComment">Comments about any aspect of Perfect Match:</label>
+                            <textarea
+                                id="anyComment"
+                                rows={4}
+                                value={feedback.anyComment}
+                                onChange={(e) => setFeedback({ ...feedback, anyComment: e.target.value })}
+                                className="w-full p-2 mt-2 border rounded-md"
+                            ></textarea>
+                        </div>
+                        <div className="mb-16 mt-4">
+                            <button className="float-right px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </details>
             </div>

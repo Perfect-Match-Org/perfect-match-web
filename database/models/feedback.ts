@@ -16,6 +16,7 @@ export interface ISurveyFeedback {
     surveyFeedback: string;
     valentinesDayImpact: string[];
     otherValentinesDayImpact: string;
+    anyComment: string;
 }
 
 export const matchFeedbackSchema: Schema = new Schema<IMatchFeedback>(
@@ -38,6 +39,7 @@ export const surveyFeedbackSchema: Schema = new Schema<ISurveyFeedback>(
         surveyFeedback: { type: String, required: true },
         valentinesDayImpact: [{ type: String, required: true }],
         otherValentinesDayImpact: { type: String, required: false },
+        anyComment: { type: String, required: false },
     },
     { _id: false },
 );
