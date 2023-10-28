@@ -53,7 +53,7 @@ function ProfileTabs(props: any) {
                     <div className="p-4">
                         {/* Category Ranking */}
                         <div className="mb-8">
-                            <label htmlFor="categoryRanking">Rank the category of questions:</label>
+                            <label htmlFor="categoryRanking">Please rank the following categories by their importance in matching you with others (1-most important):</label>
                             <input
                                 type="text"
                                 id="categoryRanking"

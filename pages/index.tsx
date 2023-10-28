@@ -30,18 +30,23 @@ const Home: NextPage = (props: any) => {
             <section className="grid lg:grid-cols-2">
 
                 <div className="bg-white">
-                    <div className="mt-12 lg:my-24 lg:mb-10">
+                    <div className="mt-12 lg:my-24 lg:mb-8">
                         <div className="text-center lg:text-left mx-[3%] md:mx-[10%] lg:ml-[8%] lg:mr-[6%]">
                             <h1 className="text-xl text-gray-600 font-extrabold md:text-3xl">Want an <span className="text-rose-400">extra match </span>next year?</h1>
                             <p className="mt-6 lg:mt-10 text-base md:text-lg text-gray-500">
                                 <strong className="font-bold text-rose-400">NEW: </strong>Give us feedback on your matches this year and recieve an additional match in 2024❣️
                             </p>
                             <p className="mt-2 md:text-lg text-gray-500">
-                                Head to your <Link href="/profile" className="underline font-bold">Profile</Link> to complete the <strong className="font-bold text-rose-400">feedback survey</strong>.
+                                Sign in and head to your <Link href="/profile"><span className="underline font-bold">Profile</span></Link> to complete the <strong className="font-bold text-rose-400">feedback survey</strong>.
                             </p>
+                            <div className="flex">
+                                <div className="mt-4 flex flex-wrap content-center mx-auto lg:mx-0">
+                                    <GoogleAuth login={!props.user} />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="lg:mt-6 mt-4 mb-10">
+                    <div className="lg:mt-4 mt-4 mb-10">
                         <Image priority={true} src={demo} alt="Loading..."></Image>
                     </div>
                 </div >
@@ -53,7 +58,7 @@ const Home: NextPage = (props: any) => {
                             <ul className="mt-6 lg:mt-10 md:text-lg text-gray-500">
                                 <li>🐻 4500+ Cornellians matched this year</li>
                                 <li>💌 22,000+ Perfect Matches</li>
-                                <li>📊 Visit the <Link href="/statistics" className="underline font-bold">Statistics</Link> page for more about the results!</li>
+                                <li>📊 Visit the <Link href="/statistics"><span className="underline font-bold">Statistics</span></Link> page for more about the results!</li>
                             </ul>
                             <div className="mt-6 lg:mt-12 md:text-lg">
                                 <p className="text-rose-400 font-bold">For example, we asked:</p>

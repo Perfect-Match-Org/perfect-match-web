@@ -50,7 +50,7 @@ const BestAlternative = () => {
                 return [name, parseInt(val).toFixed(1) + '%'];
             },
             style: {
-                fontSize: '14px',
+                fontSize: '15px',
                 fontWeight: 'bold',
             },
         },

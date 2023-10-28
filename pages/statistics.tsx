@@ -43,7 +43,7 @@ const Statistics: any = (props: any) => {
                         }}
                     >
                         <div className="pb-10 sm:pt-64 sm:pb-36">
-                            <div className="max-w-xl text-center sm:text-left sm:ml-[12%] mt-8 sm:mt-0 opacity-100">
+                            <div className="max-w-xl text-center sm:text-left sm:ml-[15%] mt-8 sm:mt-0 opacity-100">
                                 <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl opacity-100">
                                     Can Love be Visualized?
                                 </h1>
