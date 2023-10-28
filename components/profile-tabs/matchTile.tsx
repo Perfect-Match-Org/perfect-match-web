@@ -107,14 +107,14 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                     )}
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        className="mt-1 mb-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                     >
                         Leave Feedback
                     </button>
                     {isModalOpen && (
                         <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex items-center justify-center">
                             <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                                <h2 className="text-2xl mb-4 font-extrabold text-rose-400">Match Feedback</h2>
+                                <h2 className="text-2xl mb-4 mt-2 font-extrabold text-rose-400">Match Feedback</h2>
 
                                 {/* Feedback form */}
                                 <div className="space-y-4 text-gray-500">
@@ -211,7 +211,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                 </div>
 
                                 {/* Buttons */}
-                                <div className="mt-6 flex justify-end space-x-4">
+                                <div className="mt-2 mb-2 flex justify-end space-x-4">
                                     <button
                                         onClick={() => setIsModalOpen(false)}
                                         className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"

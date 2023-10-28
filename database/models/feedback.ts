@@ -12,9 +12,18 @@ export interface IMatchFeedback {
 }
 
 export interface ISurveyFeedback {
-    categoryRanking: number[];
+    addBad: boolean | undefined;
+    addOpportunities: boolean | undefined;
+    addFun: boolean | undefined;
+    addJoy: boolean | undefined;
+    addMemories: boolean | undefined;
+    addAnticipation: boolean | undefined;
+    categoryVibe: string | number | readonly string[] | undefined;
+    categoryGoal: string | number | readonly string[] | undefined;
+    categoryBeliefs: string | number | readonly string[] | undefined;
+    categoryLifestyle: string | number | readonly string[] | undefined;
+    categoryInterest: string | number | readonly string[] | undefined;
     surveyFeedback: string;
-    valentinesDayImpact: string[];
     otherValentinesDayImpact: string;
     anyComment: string;
 }
@@ -35,9 +44,12 @@ export const matchFeedbackSchema: Schema = new Schema<IMatchFeedback>(
 
 export const surveyFeedbackSchema: Schema = new Schema<ISurveyFeedback>(
     {
-        categoryRanking: [{ type: Number, required: true }],
+        categoryInterest: [{ type: Number, required: true }],
+        categoryGoal: [{ type: Number, required: true }],
+        categoryBeliefs: [{ type: Number, required: true }],
+        categoryVibe: [{ type: Number, required: true }],
+        categoryLifestyle: [{ type: Number, required: true }],
         surveyFeedback: { type: String, required: true },
-        valentinesDayImpact: [{ type: String, required: true }],
         otherValentinesDayImpact: { type: String, required: false },
         anyComment: { type: String, required: false },
     },
