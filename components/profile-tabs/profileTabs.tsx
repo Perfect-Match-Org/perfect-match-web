@@ -55,16 +55,16 @@ function ProfileTabs(props: any) {
     return (
         <div className="w-full items-center">
             {/* General Feedback Section */}
-            <div className="my-14 mx-[2%] sm:mx-[15%] lg:mx-[22%]">
+            <div className="my-14 mx-[2%] sm:mx-[15%] lg:mx-[22%] text-sm sm:text-base">
                 <details className="text-gray-500 border rounded-lg">
                     <summary className="text-lg cursor-pointer my-4 text-center text-rose-400 font-extrabold sm:text-xl">General Feedback (Click to expand)📝</summary>
                     {/* Feedback content */}
-                    <div className="py-6 px-6">
+                    <div className="pt-4 pb-6 sm:px-6 px-3">
                         {/* Category Ranking */}
-                        <p className="mb-4">1. Rank the following key categories by importance in matching (1-most important, 5-least important):</p>
+                        <p className="mb-4">1. Rank the following categories by importance in matching (1-most important, 5-least important):</p>
 
                         <div className="flex relative mb-3">
-                            <label htmlFor="interest" className="absolute left-16">Personal interests (shared hobbies etc.)</label>
+                            <label htmlFor="interest" className="absolute left-16 mt-1 sm:mt-0">Personal interests (shared hobbies etc.)</label>
                             <input
                                 type="number"
                                 id="interest"
@@ -76,8 +76,8 @@ function ProfileTabs(props: any) {
                             />
                         </div>
 
-                        <div className="flex relative mb-3">
-                            <label htmlFor="lifestyle" className="absolute left-16">Lifestyle (work/life balance, drinking habits etc.)</label>
+                        <div className="flex relative sm:mb-3 mb-6">
+                            <label htmlFor="lifestyle" className="absolute left-16 mt-1 sm:mt-0">Lifestyle (work/life balance, drinking habits etc.)</label>
                             <input
                                 type="number"
                                 id="lifestyle"
@@ -85,12 +85,12 @@ function ProfileTabs(props: any) {
                                 max="5"
                                 value={feedback.categoryLifestyle}
                                 onChange={(e) => setFeedback({ ...feedback, categoryLifestyle: e.target.value })}
-                                className="w-14 px-2 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                className="mt-0.5 sm:mt-0 w-14 px-2 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                             />
                         </div>
 
-                        <div className="flex relative mb-3">
-                            <label htmlFor="beliefs" className="absolute left-16">Core values and beliefs (religious beliefs, political views etc.)</label>
+                        <div className="flex relative sm:mb-3 mb-6">
+                            <label htmlFor="beliefs" className="absolute left-16 mt-1 sm:mt-0">Core values and beliefs (religious beliefs, political views etc.)</label>
                             <input
                                 type="number"
                                 id="beliefs"
@@ -98,12 +98,12 @@ function ProfileTabs(props: any) {
                                 max="5"
                                 value={feedback.categoryBeliefs}
                                 onChange={(e) => setFeedback({ ...feedback, categoryBeliefs: e.target.value })}
-                                className="w-14 px-2 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                className="mt-0.5 sm:mt-0 w-14 px-2 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                             />
                         </div>
 
-                        <div className="flex relative mb-3">
-                            <label htmlFor="goal" className="absolute left-16">Long-term goals (careers, academic paths etc.)</label>
+                        <div className="flex relative sm:mb-3 mb-6">
+                            <label htmlFor="goal" className="absolute left-16 mt-1 sm:mt-0">Long-term goals (careers, academic paths etc.)</label>
                             <input
                                 type="number"
                                 id="goal"
@@ -111,12 +111,12 @@ function ProfileTabs(props: any) {
                                 max="5"
                                 value={feedback.categoryGoal}
                                 onChange={(e) => setFeedback({ ...feedback, categoryGoal: e.target.value })}
-                                className="w-14 px-2 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                className="mt-0.5 sm:mt-0 w-14 px-2 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                             />
                         </div>
 
                         <div className="flex relative mb-3">
-                            <label htmlFor="vibe" className="absolute left-16">Overall vibes (personalities etc.)</label>
+                            <label htmlFor="vibe" className="absolute left-16 mt-1 sm:mt-0">Overall vibes (personalities etc.)</label>
                             <input
                                 type="number"
                                 id="vibe"
@@ -129,7 +129,7 @@ function ProfileTabs(props: any) {
                         </div>
 
                         {/* Survey Feedback */}
-                        <div className="my-12">
+                        <div className="my-14">
                             <label htmlFor="surveyFeedback">2. Provide any feedback on the 2023 Perfect Match survey questions:</label>
                             <textarea
                                 id="surveyFeedback"
@@ -152,7 +152,7 @@ function ProfileTabs(props: any) {
                                     id="anticipation"
                                     checked={feedback.addAnticipation}
                                     onChange={(e) => setFeedback({ ...feedback, addAnticipation: e.target.checked })}
-                                    className="ml-1 w-5 h-5 mt-0.5"
+                                    className="ml-1 w-5 h-5 sm:mt-0.5"
                                 />
                             </div>
 
@@ -163,18 +163,18 @@ function ProfileTabs(props: any) {
                                     id="memories"
                                     checked={feedback.addMemories}
                                     onChange={(e) => setFeedback({ ...feedback, addMemories: e.target.checked })}
-                                    className="ml-1 w-5 h-5 mt-0.5"
+                                    className="ml-1 w-5 h-5 sm:mt-0.5"
                                 />
                             </div>
 
-                            <div className="relative flex mb-3">
+                            <div className="relative flex sm:mb-3 mb-7">
                                 <label htmlFor="joy" className="absolute left-9">C. The joy of meeting like-minded people on campus.</label>
                                 <input
                                     type="checkbox"
                                     id="joy"
                                     checked={feedback.addJoy}
                                     onChange={(e) => setFeedback({ ...feedback, addJoy: e.target.checked })}
-                                    className="ml-1 w-5 h-5 mt-0.5"
+                                    className="ml-1 w-5 h-5 sm:mt-0.5"
                                 />
                             </div>
 
@@ -185,18 +185,18 @@ function ProfileTabs(props: any) {
                                     id="fun"
                                     checked={feedback.addFun}
                                     onChange={(e) => setFeedback({ ...feedback, addFun: e.target.checked })}
-                                    className="ml-1 w-5 h-5 mt-0.5"
+                                    className="ml-1 w-5 h-5 sm:mt-0.5"
                                 />
                             </div>
 
-                            <div className="relative flex mb-3">
+                            <div className="relative flex sm:mb-3 mb-7">
                                 <label htmlFor="opportunities" className="absolute left-9">E. The opportunity to explore new activities and interests.</label>
                                 <input
                                     type="checkbox"
                                     id="opportunities"
                                     checked={feedback.addOpportunities}
                                     onChange={(e) => setFeedback({ ...feedback, addOpportunities: e.target.checked })}
-                                    className="ml-1 w-5 h-5 mt-0.5"
+                                    className="ml-1 w-5 h-5 sm:mt-0.5"
                                 />
                             </div>
 
@@ -207,7 +207,7 @@ function ProfileTabs(props: any) {
                                     id="bad"
                                     checked={feedback.addBad}
                                     onChange={(e) => setFeedback({ ...feedback, addBad: e.target.checked })}
-                                    className="ml-1 w-5 h-5 mt-0.5"
+                                    className="ml-1 w-5 h-5 sm:mt-0.5"
                                 />
                             </div>
                         </fieldset>
@@ -220,11 +220,11 @@ function ProfileTabs(props: any) {
                                 id="otherValentinesDayImpact"
                                 value={feedback.otherValentinesDayImpact}
                                 onChange={(e) => setFeedback({ ...feedback, otherValentinesDayImpact: e.target.value })}
-                                className="w-96 p-2 border rounded-md h-6 ml-2"
+                                className="sm:w-96 w-80 p-2 border rounded-md h-6 sm:ml-2 sm:mt-0 mt-2 ml-9"
                             ></input>
                         </div>
 
-                        <div className="mt-12">
+                        <div className="mt-14">
                             <label htmlFor="anyComment">4. Leave comments about any aspects of Perfect Match:</label>
                             <textarea
                                 id="anyComment"
