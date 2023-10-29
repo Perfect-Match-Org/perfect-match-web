@@ -34,7 +34,7 @@ const Profile: NextPage = (props: any) => {
                         </p>
                         <p className="mt-6 text-center"> <strong className="text-rose-400">Step 1 </strong>The General Feedback section is right below.</p>
                         <p className="mt-6 text-center">
-                            <strong className="text-rose-400">Step 2 </strong>For Match-Specific Feedback, scroll down toeach of your matches and click &#34;Leave Feedback.&#34;</p>
+                            <strong className="text-rose-400">Step 2 </strong>For Match-Specific Feedback, scroll down to each of your matches and click &#34;Leave Feedback.&#34;</p>
                     </div>
                 </section>
             </div >
