@@ -10,7 +10,7 @@
         "format": "prettier --write ."
     },
     "engines": {
-        "node": ">=14.0.0 <18.0.0"
+        "node": ">=16.0.0 <20.0.0"
     },
     "dependencies": {
         "@aws-sdk/client-ses": "^3.288.0",

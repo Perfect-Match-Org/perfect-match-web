@@ -26,8 +26,14 @@ export type Matches = {
 };
 
 export type Review = {
-    rating: number;
-    comment: string;
+    overallRating: number;
+    topReasonForRating: string;
+    metMatch: boolean;
+    initialRatingDifference: boolean;
+    numberOfDates: number;
+    inRelationshipWithMatch: boolean;
+    additionalComments: string;
+    dateSubmitted?: Date;
 };
 
 export type MatchReview = {

@@ -28,23 +28,23 @@ const Statistics: any = (props: any) => {
             </Head>
             <Header />
             <div>
-                <div>
+                <div className="bg-white sm:py-14 lg:py-6 sm:pr-4 pt-6">
                     {' '}
                     <section
-                        className="sm:mx-[5%]"
+                        className="sm:mr-0"
                         style={{
-                            marginBottom: '20px',
-                            marginTop: '10px',
-                            backgroundImage: 'url("networks.png")',
+                            paddingBottom: '20px',
+                            paddingTop: '20px',
                             height: '100%',
                             backgroundSize: 'contain',
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'right top',
+                            backgroundImage: 'url("valentine.png")',
                         }}
                     >
-                        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
-                            <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
-                                <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
+                        <div className="pb-8 pt-56 sm:pt-72 lg:pt-64 lg:pb-36">
+                            <div className="max-w-xl text-center sm:text-left sm:ml-[15%] mt-8 sm:mt-0 opacity-100">
+                                <h1 className="text-2xl sm:text-3xl font-extrabold text-rose-400 lg:text-5xl opacity-100">
                                     Can Love be Visualized?
                                 </h1>
                                 <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-gray-500 sm:leading-relaxed">
@@ -360,14 +360,15 @@ const Statistics: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Your data is safe with us! We will never share your data with a third party advertisers, and
-                                        we will only interact with your information as needed to resolve user issues. We
-                                        may collect anonymous statistics to improve our algorithm, but your identity
-                                        will always be separated from such reports.
+                                        Your data is safe with us! We will never share your data with a third party
+                                        advertisers, and we will only interact with your information as needed to
+                                        resolve user issues. We may collect anonymous statistics to improve our
+                                        algorithm, but your identity will always be separated from such reports.
                                     </p>
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Anonymized statistics are published each year on our website and provided to media and student groups
-                                        for publications. In the past, these are included Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
+                                        Anonymized statistics are published each year on our website and provided to
+                                        media and student groups for publications. In the past, these are included
+                                        Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
                                     </p>
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
                                         For media requests, please reach out at perfectmatch@cornell.edu
@@ -383,16 +384,14 @@ const Statistics: any = (props: any) => {
                                         you may have regarding data privacy. In fact, feedback from the Cornell
                                         community already has and will continue to be used in to improve our algorithm
                                         and measures to protect privacy. We can be reached at{' '}
-                                        <Link href="mailto:perfectmatch@cornell.edu">
-                                            perfectmatch@cornell.edu
-                                        </Link>
+                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>
                                     </p>
                                 </details>
                             </div>
                         </div>
                     </div>
                 </section>
-            </div >
+            </div>
             <div>
                 <section className="bg-white ">
                     <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
@@ -418,7 +417,7 @@ const Statistics: any = (props: any) => {
                 </section>
             </div>
             <Footer />
-        </div >
+        </div>
     );
 };
 
