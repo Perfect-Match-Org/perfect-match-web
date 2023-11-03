@@ -120,7 +120,10 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                 <div className="space-y-4 text-gray-500">
                                     {/* Overall Rating */}
                                     <div>
-                                        <label>On a scale of 1-10, is this match a Perfect Match? &#40;1-terrible match; 10-Perfect Match!&#41;</label>
+                                        <label>
+                                            On a scale of 1-10, is this match a Perfect Match? &#40;1-terrible match;
+                                            10-Perfect Match!&#41;
+                                        </label>
                                         <input
                                             type="number"
                                             min="1"
@@ -129,7 +132,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                             onChange={(e) =>
                                                 setReview({ ...review, overallRating: Number(e.target.value) })
                                             }
-                                            className="w-full p-2 mt-1 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                            className="w-full bg-white p-2 mt-1 border rounded-md text-base leading-light focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                                         />
                                     </div>
 
@@ -137,13 +140,15 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                     <div>
                                         <label>Top Reason for Rating:</label>
                                         <select
+                                            autoFocus
+                                            className="bg-white"
                                             value={review.topReasonForRating}
                                             onChange={(e) =>
                                                 setReview({ ...review, topReasonForRating: e.target.value })
                                             }
                                         >
                                             {ratingOptions.map((option: string) => (
-                                                <option key={option} value={option}>
+                                                <option key={option} value={option} className="bg-white">
                                                     {option}
                                                 </option>
                                             ))}
@@ -154,6 +159,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                     <div>
                                         <label className="text-gray-600">Have you met this match?</label>
                                         <input
+                                            className="ml-1 cursor-pointer"
                                             type="checkbox"
                                             checked={review.metMatch}
                                             onChange={(e) => setReview({ ...review, metMatch: e.target.checked })}
@@ -164,6 +170,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                     <div>
                                         <label className="text-gray-600">Initial Rating Difference:</label>
                                         <input
+                                            className="ml-1 cursor-pointer"
                                             type="checkbox"
                                             checked={review.initialRatingDifference}
                                             onChange={(e) =>
@@ -176,6 +183,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                     <div>
                                         <label className="text-gray-600">Number of Dates:</label>
                                         <input
+                                            className="bg-white ml-1 pl-1"
                                             type="number"
                                             value={review.numberOfDates}
                                             onChange={(e) =>
@@ -188,6 +196,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                     <div>
                                         <label className="text-gray-600">In Relationship with Match:</label>
                                         <input
+                                            className="ml-1 cursor-pointer"
                                             type="checkbox"
                                             checked={review.inRelationshipWithMatch}
                                             onChange={(e) =>
@@ -204,7 +213,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                             onChange={(e) =>
                                                 setReview({ ...review, additionalComments: e.target.value })
                                             }
-                                            className="w-full p-2 mt-1 border rounded-md"
+                                            className="w-full p-2 mt-1 border rounded-md bg-white"
                                             rows={4}
                                         />
                                     </div>

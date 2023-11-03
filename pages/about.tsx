@@ -13,7 +13,6 @@ const About: any = (props: any) => {
             <Header />
             <div>
                 <div>
-                    {' '}
                     <section className="bg-white">
                         <div
                             className="gap-6 lg:gap-10 items-center px-0 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
@@ -61,7 +60,7 @@ const About: any = (props: any) => {
                                         >
                                             IG
                                         </a>
-                                        .{' '}
+                                        .
                                     </p>
                                 </div>
                             </li>

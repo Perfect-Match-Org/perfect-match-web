@@ -7,12 +7,8 @@ function Matches({ matches, userId, refresh }: any) {
     return (
         <div>
             {matches.map((match: any) => {
-                const matchData =
-                    match.partnerAId._id === userId ? match.partnerBId : match.partnerAId;
-                const matchFeedback =
-                    match.partnerAId._id === userId
-                        ? match.partnerAFeedback
-                        : match.partnerBFeedback;
+                const matchData = match.partnerAId._id === userId ? match.partnerBId : match.partnerAId;
+                const matchFeedback = match.partnerAId._id === userId ? match.partnerAFeedback : match.partnerBFeedback;
                 return (
                     <MatchTile
                         key={match._id}
@@ -25,7 +21,7 @@ function Matches({ matches, userId, refresh }: any) {
                 );
             })}
         </div>
-    )
-};
+    );
+}
 
 export default Matches;

@@ -83,6 +83,11 @@ export const updateProfile = async (user: any, profile: any): Promise<UserType> 
     return doc;
 };
 
+export const updateFeedback = async (user: any, feedback: any): Promise<UserType> => {
+    const doc = await User.findOneAndUpdate({ email: user.email }, { feedback: feedback }, { new: true });
+    return doc;
+};
+
 // Match Review CRUD operations---------------------------------------------------------------------------------------------
 export const updateMatchReview = async (
     userEmail: string,

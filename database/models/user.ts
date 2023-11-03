@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import mongoose, { model, Schema } from 'mongoose';
 import { IProfile, profileSchema } from './profile';
 import { ISurvey, surveySchema } from './survey';
-import { ISurveyFeedback } from './feedback';
+import { ISurveyFeedback, surveyFeedbackSchema } from './feedback';
 
 export interface IUser extends Document {
     email: string;
@@ -15,9 +15,7 @@ export interface IUser extends Document {
     matchReviews: ObjectId[];
     collab: { mutual: boolean };
     categoryRanking: number[];
-    surveyFeedback: ISurveyFeedback;
-    valentinesDayImpact: string[];
-    otherValentinesDayImpact: string;
+    feedback: ISurveyFeedback;
 }
 
 const userSchema: Schema = new Schema<IUser>({
@@ -31,9 +29,7 @@ const userSchema: Schema = new Schema<IUser>({
     matchReviews: [{ type: ObjectId, ref: 'Match' }],
     collab: { mutual: { type: Boolean } },
     categoryRanking: [{ type: Number, required: true }],
-    surveyFeedback: { type: Schema.Types.Mixed, required: true },
-    valentinesDayImpact: [{ type: String, required: true }],
-    otherValentinesDayImpact: { type: String, required: false },
+    feedback: surveyFeedbackSchema,
 });
 
 export const User = mongoose.models.User || model<IUser>('User', userSchema);

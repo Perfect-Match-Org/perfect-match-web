@@ -334,7 +334,6 @@
     }
 }
 
-
 @keyframes hbeat2 {
     0% {
         transform: rotate(45deg) scale(1);
@@ -376,7 +375,6 @@
         opacity: 0;
         display: none;
     }
-
 }
 
 @keyframes hbeat3 {
@@ -488,7 +486,6 @@
 }
 
 @media screen and (max-width: 1024px) {
-
     .layer4_fading,
     .layer3_fading,
     .layer1_fading,

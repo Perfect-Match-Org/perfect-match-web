@@ -19,19 +19,19 @@ const BestAlternative = () => {
             animations: {
                 speed: 1400,
                 animateGradually: {
-                    delay: 250
+                    delay: 250,
                 },
                 dynamicAnimation: {
-                    speed: 450
-                }
-            }
+                    speed: 450,
+                },
+            },
         },
         labels: [
             'Enjoy studying in the Olin Basement',
             'Live in the Gothics',
             'Eat at Okenshields everyday',
             'Drunk texted their ex last night',
-            'Matched with your roommate on Hinge'
+            'Matched with your roommate on Hinge',
         ],
         colors: ['#fda4af', '#fdba74', '#fde047', '#86efac', '#7dd3fc'],
         plotOptions: {
@@ -55,22 +55,23 @@ const BestAlternative = () => {
             },
         },
         legend: {
-            show: false
+            show: false,
         },
         tooltip: {
-            enabled: false
+            enabled: false,
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                dataLabels: {
-                    style: {
-                        fontSize: '12px',
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    dataLabels: {
+                        style: {
+                            fontSize: '12px',
+                        },
                     },
                 },
             },
-        }]
-
+        ],
     };
 
     return <ReactApexChart type="donut" series={series} options={options as unknown as ApexCharts.ApexOptions} />;

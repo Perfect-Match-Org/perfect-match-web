@@ -12,20 +12,16 @@ export interface IMatchFeedback {
 }
 
 export interface ISurveyFeedback {
-    addBad: boolean | undefined;
-    addOpportunities: boolean | undefined;
-    addFun: boolean | undefined;
-    addJoy: boolean | undefined;
-    addMemories: boolean | undefined;
-    addAnticipation: boolean | undefined;
-    categoryVibe: string | number | readonly string[] | undefined;
-    categoryGoal: string | number | readonly string[] | undefined;
-    categoryBeliefs: string | number | readonly string[] | undefined;
-    categoryLifestyle: string | number | readonly string[] | undefined;
-    categoryInterest: string | number | readonly string[] | undefined;
+    bad: boolean;
+    opportunities: boolean;
+    fun: boolean;
+    joy: boolean;
+    memories: boolean;
+    anticipation: boolean;
+    categoryRanking: string[];
     surveyFeedback: string;
     otherValentinesDayImpact: string;
-    anyComment: string;
+    comments: string;
 }
 
 export const matchFeedbackSchema: Schema = new Schema<IMatchFeedback>(
@@ -44,14 +40,16 @@ export const matchFeedbackSchema: Schema = new Schema<IMatchFeedback>(
 
 export const surveyFeedbackSchema: Schema = new Schema<ISurveyFeedback>(
     {
-        categoryInterest: [{ type: Number, required: true }],
-        categoryGoal: [{ type: Number, required: true }],
-        categoryBeliefs: [{ type: Number, required: true }],
-        categoryVibe: [{ type: Number, required: true }],
-        categoryLifestyle: [{ type: Number, required: true }],
+        categoryRanking: { type: [String], required: true, default: ['Interest', 'Lifestyle', 'Beliefs', 'Goal', 'Vibe'] },
         surveyFeedback: { type: String, required: true },
         otherValentinesDayImpact: { type: String, required: false },
-        anyComment: { type: String, required: false },
+        comments: { type: String, required: false },
+        bad: { type: Boolean, required: false, default: false },
+        opportunities: { type: Boolean, required: false, default: false },
+        fun: { type: Boolean, required: false, default: false },
+        joy: { type: Boolean, required: false, default: false },
+        memories: { type: Boolean, required: false, default: false },
+        anticipation: { type: Boolean, required: false, default: false },
     },
     { _id: false },
 );

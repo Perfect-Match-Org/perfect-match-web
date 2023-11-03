@@ -25,19 +25,29 @@ const Profile: NextPage = (props: any) => {
                             Welcome Back, {data.profile.firstName}!
                         </h1>
                         <div className="content-center flex">
-                            <p className="text-lg mt-8 mx-auto sm:text-xl text-center"><strong className="text-rose-400">NEW:</strong> Fill out the feedback survey below to receive an extra match in 2024❣️</p>
+                            <p className="text-lg mt-8 mx-auto sm:text-xl text-center">
+                                <strong className="text-rose-400">NEW:</strong> Fill out the feedback survey below to
+                                receive an extra match in 2024❣️
+                            </p>
                         </div>
-                        <p className="mt-6 text-center">We truly appreciate your feedback and comments!
-                            They will be used to improve next year&#39;s survey and matching algorithms. Please
-                            complete the two parts of the feedback survey: <strong className="text-rose-400">General Feedback and Match-Specific Feedback</strong>. It
+                        <p className="mt-6 text-center">
+                            We truly appreciate your feedback and comments! They will be used to improve next year&#39;s
+                            survey and matching algorithms. Please complete the two parts of the feedback survey:{' '}
+                            <strong className="text-rose-400">General Feedback and Match-Specific Feedback</strong>. It
                             will take 5~10 minutes in total. We truly appreciate your feedback and comments!
                         </p>
-                        <p className="mt-6 text-center"> <strong className="text-rose-400">Step 1 </strong>The General Feedback section is right below.</p>
                         <p className="mt-6 text-center">
-                            <strong className="text-rose-400">Step 2 </strong>For Match-Specific Feedback, scroll down to each of your matches and click &#34;Leave Feedback.&#34;</p>
+                            {' '}
+                            <strong className="text-rose-400">Step 1 </strong>The General Feedback section is right
+                            below.
+                        </p>
+                        <p className="mt-6 text-center">
+                            <strong className="text-rose-400">Step 2 </strong>For Match-Specific Feedback, scroll down
+                            to each of your matches and click &#34;Leave Feedback.&#34;
+                        </p>
                     </div>
                 </section>
-            </div >
+            </div>
             <div>
                 <section>
                     <div>
@@ -48,7 +58,7 @@ const Profile: NextPage = (props: any) => {
                 </section>
             </div>
             <Footer />
-        </div >
+        </div>
     );
 };
 
