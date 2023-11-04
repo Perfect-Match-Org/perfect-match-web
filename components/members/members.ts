@@ -48,7 +48,7 @@ export const team = [
                 Title1: 'Algorithms Subteam Member',
             },
             {
-                Name: 'Daniel Gunda',
+                Name: 'Daniel Chuang',
                 ClassYear: 2026,
                 Major: 'CS & Math & Government',
                 Img: '/members/daniel.png',
