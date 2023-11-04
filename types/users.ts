@@ -29,7 +29,6 @@ export type Review = {
     overallRating: number;
     topReasonForRating: string;
     metMatch: boolean;
-    initialRatingDifference: boolean;
     numberOfDates: number;
     inRelationshipWithMatch: boolean;
     additionalComments: string;

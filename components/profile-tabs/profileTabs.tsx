@@ -89,6 +89,7 @@ const DraggableList: React.FC<DraggableListProps> = ({ initialItems, onRankChang
 function ProfileTabs(props: any) {
     const router = useRouter();
     const user = props.user;
+    const [loading, setLoading] = useState(false);
 
     const [feedback, setFeedback] = useState<ISurveyFeedback>({
         surveyFeedback: props.user?.feedback?.surveyFeedback || '',
@@ -114,16 +115,22 @@ function ProfileTabs(props: any) {
 
     const handleFeedbackSubmit = async () => {
         try {
+            setLoading(true);
             const response = await fetch('/api/feedback', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(feedback),
             });
-            if (response.ok) props.refresh();
-            else console.error('Failed to submit feedback');
+            if (response.ok) {
+                alert('Feedback submitted successfully!');
+                props.refresh();
+            } else {
+                alert('Failed to submit feedback. Please try again and contact us if the problem persists.');
+            }
         } catch (error) {
-            console.error('There was an error updating the feedback:', error);
+            alert('Failed to submit feedback. Please try again and contact us if the problem persists.');
         }
+        setLoading(false);
     };
 
     const handleRankChange = (newRankings: { [key: number]: string }) => {
@@ -272,12 +279,18 @@ function ProfileTabs(props: any) {
                             ></textarea>
                         </div>
                         <div className="mb-16 mt-4">
-                            <button
-                                className="float-right px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                                onClick={handleFeedbackSubmit}
-                            >
-                                Submit
-                            </button>
+                            {loading ? (
+                                <button className="float-right px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                    Submitting...
+                                </button>
+                            ) : (
+                                <button
+                                    className="float-right px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                    onClick={handleFeedbackSubmit}
+                                >
+                                    Submit
+                                </button>
+                            )}
                         </div>
                     </div>
                 </details>

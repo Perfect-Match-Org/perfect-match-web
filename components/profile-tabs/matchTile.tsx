@@ -18,7 +18,6 @@ const ratingOptions = [
     'My match and I were not a personality match',
     'I did not reach out',
     'They did not reach out',
-    'prob some other options',
 ];
 
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any) {
@@ -26,7 +25,6 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
         overallRating: matchFeedback?.overallRating || '',
         topReasonForRating: matchFeedback?.topReasonForRating || '',
         metMatch: matchFeedback?.metMatch || false,
-        initialRatingDifference: matchFeedback?.initialRatingDifference || false,
         numberOfDates: matchFeedback?.numberOfDates || 0,
         inRelationshipWithMatch: matchFeedback?.inRelationshipWithMatch || false,
         additionalComments: matchFeedback?.additionalComments || '',
@@ -163,19 +161,6 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                             type="checkbox"
                                             checked={review.metMatch}
                                             onChange={(e) => setReview({ ...review, metMatch: e.target.checked })}
-                                        />
-                                    </div>
-
-                                    {/* Initial Rating Difference */}
-                                    <div>
-                                        <label className="text-gray-600">Initial Rating Difference:</label>
-                                        <input
-                                            className="ml-1 cursor-pointer"
-                                            type="checkbox"
-                                            checked={review.initialRatingDifference}
-                                            onChange={(e) =>
-                                                setReview({ ...review, initialRatingDifference: e.target.checked })
-                                            }
                                         />
                                     </div>
 

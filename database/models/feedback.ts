@@ -4,7 +4,6 @@ export interface IMatchFeedback {
     overallRating: number;
     topReasonForRating: string;
     metMatch: boolean;
-    initialRatingDifference: boolean;
     numberOfDates: number;
     inRelationshipWithMatch: boolean;
     additionalComments: string;
@@ -29,7 +28,6 @@ export const matchFeedbackSchema: Schema = new Schema<IMatchFeedback>(
         overallRating: { type: Number, required: true },
         topReasonForRating: { type: String, required: true },
         metMatch: { type: Boolean, required: true },
-        initialRatingDifference: { type: Boolean, required: true },
         numberOfDates: { type: Number, required: true },
         inRelationshipWithMatch: { type: Boolean, required: true },
         additionalComments: { type: String, required: true },
