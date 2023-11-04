@@ -1,7 +1,31 @@
 import { Schema } from 'mongoose';
 import * as profile from '../../types/profileEnums';
 
-export const profileSchema = new Schema(
+export interface IProfile extends Document {
+    complete: boolean;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    genderPref: string[];
+    age: number;
+    height: number;
+    city?: string;
+    race: string[];
+    year: string;
+    college: string;
+    major?: string;
+    commitment: string;
+    relationshipType: string;
+    agePref: {
+        youngest: number;
+        oldest: number;
+    };
+    activities: string[];
+    describeYourself?: string;
+    bio?: string;
+}
+
+export const profileSchema: Schema = new Schema<IProfile>(
     {
         complete: { type: Boolean, default: false },
         firstName: { type: String, trim: true, required: true },

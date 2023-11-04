@@ -1,7 +1,6 @@
 const Status: any = (props: any) => {
     const handleClick = async () => {
-        const baseURL = process.env.NEXT_PUBLIC_API_URL;
-        await fetch(`${baseURL}/api/optIn`, {
+        await fetch(`/api/optIn`, {
             method: 'POST',
             body: JSON.stringify({ optIn: !props.optIn }),
         }).then((resp) => props.refresh());

@@ -1,7 +1,87 @@
 import { Schema } from 'mongoose';
 import * as survey from '../../types/surveyEnums';
 
-export const surveySchema = new Schema(
+export interface ISurvey extends Document {
+    complete: boolean;
+    contact: {
+        fb: string;
+        insta: string;
+        twitter: string;
+        snapchat: string;
+        linkedin: string;
+        phone: string;
+    };
+    faction: string;
+    libraryRanking: number;
+    clothDate: string;
+    alternative: string;
+    task: string;
+    hookupsong: string;
+    hookupsongartist: string;
+    slopeDay: string;
+    study: string;
+    workTo: string;
+    interests: string[];
+    music: string[];
+    tv: string;
+    date: string;
+    sleeptime: string;
+    waketime: string;
+    plans: string;
+    meal: string;
+    perfectDay: string;
+    startover: string;
+    timeormoney: string;
+    quality: string;
+    humor: string[];
+    sociability: string[];
+    p1: string;
+    p2: string;
+    p3: string;
+    p4: string;
+    p5: string;
+    p6: string;
+    p7: string;
+    p8: string;
+    p9: string;
+    p10: string;
+    p11: string;
+    p12: string;
+    p13: string;
+    p14: string;
+    p15: string;
+    p16: string;
+    p17: string;
+    p18: string;
+    p19: string;
+    generalPersonality: string;
+    introvert: number;
+    introvert_same: string;
+    easygoing: number;
+    easygoing_same: string;
+    numdated: number;
+    longestrelationship: number;
+    ricePurity: string;
+    pairedwith: string;
+    apps: string[];
+    politics: number;
+    politically_active: number;
+    habits: {
+        drinking: string;
+        smoking: string;
+        weed: string;
+        other: string;
+    };
+    partner_habits: {
+        drinking: string;
+        smoking: string;
+        weed: string;
+        other: string;
+    };
+    deal_breakers: string[];
+}
+
+export const surveySchema: Schema = new Schema<ISurvey>(
     {
         complete: { type: Boolean, default: false },
         contact: {

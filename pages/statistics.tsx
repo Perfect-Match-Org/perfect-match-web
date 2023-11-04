@@ -28,23 +28,23 @@ const Statistics: any = (props: any) => {
             </Head>
             <Header />
             <div>
-                <div>
+                <div className="bg-white sm:py-14 lg:py-6 sm:pr-4 pt-6">
                     {' '}
                     <section
-                        className="sm:mx-[5%]"
+                        className="sm:mr-0"
                         style={{
-                            marginBottom: '20px',
-                            marginTop: '10px',
-                            backgroundImage: 'url("networks.png")',
+                            paddingBottom: '20px',
+                            paddingTop: '20px',
                             height: '100%',
                             backgroundSize: 'contain',
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'right top',
+                            backgroundImage: 'url("valentine.png")',
                         }}
                     >
-                        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
-                            <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
-                                <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">
+                        <div className="pb-8 pt-56 sm:pt-72 lg:pt-64 lg:pb-36">
+                            <div className="max-w-xl text-center sm:text-left sm:ml-[15%] mt-8 sm:mt-0 opacity-100">
+                                <h1 className="text-2xl sm:text-3xl font-extrabold text-rose-400 lg:text-5xl opacity-100">
                                     Can Love be Visualized?
                                 </h1>
                                 <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-gray-500 sm:leading-relaxed">
@@ -65,7 +65,7 @@ const Statistics: any = (props: any) => {
                     </h2>
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                         In 2022, we received <strong className="text-rose-400"> 3,677 </strong>
-                        valid responses. Here is a look at the results of the survey!
+                        completed responses. Here is a look at the results of the survey!
                     </p>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
@@ -77,7 +77,7 @@ const Statistics: any = (props: any) => {
                     <div className="my-8">
                         <p className="my-4 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                             <strong className="text-rose-400">Juniors</strong> made up the highest proportion of the
-                            PM22 client body. Also interesting to notice is that
+                            PM22 participants. Also interesting to notice is that
                             <strong className="text-rose-400"> 5 faculty members </strong>filled out the survey!
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
@@ -360,10 +360,18 @@ const Statistics: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        Your data is safe with us! We will never share your data with a third party, and
-                                        we will only interact with your information as needed to resolve user issues. We
-                                        may collect anonymous statistics to improve our algorithm, but your identity
-                                        will always be separated from such reports.
+                                        Your data is safe with us! We will never share your data with a third party
+                                        advertisers, and we will only interact with your information as needed to
+                                        resolve user issues. We may collect anonymous statistics to improve our
+                                        algorithm, but your identity will always be separated from such reports.
+                                    </p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        Anonymized statistics are published each year on our website and provided to
+                                        media and student groups for publications. In the past, these are included
+                                        Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
+                                    </p>
+                                    <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
+                                        For media requests, please reach out at perfectmatch@cornell.edu
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -376,9 +384,7 @@ const Statistics: any = (props: any) => {
                                         you may have regarding data privacy. In fact, feedback from the Cornell
                                         community already has and will continue to be used in to improve our algorithm
                                         and measures to protect privacy. We can be reached at{' '}
-                                        <Link href="mailto:cornell.perfectmatch@gmail.com">
-                                            cornell.perfectmatch@gmail.com!
-                                        </Link>
+                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>
                                     </p>
                                 </details>
                             </div>
