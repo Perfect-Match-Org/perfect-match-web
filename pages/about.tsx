@@ -221,7 +221,7 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        There are currently seven members in the team. It is a small team; every member
+                                        There are currently 10 members in the team. It is a small team; every member
                                         has their unique strengths and responsibilities. We typically meet every month
                                         to decide on tasks and assign them. However, every January is still a super busy
                                         time!

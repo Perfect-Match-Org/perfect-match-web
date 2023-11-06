@@ -34,7 +34,7 @@ const Profile: NextPage = (props: any) => {
                             We truly appreciate your feedback and comments! They will be used to improve next year&#39;s
                             survey and matching algorithms. Please complete the two parts of the feedback survey:{' '}
                             <strong className="text-rose-400">General Feedback and Match-Specific Feedback</strong>. It
-                            will take 5~10 minutes in total. We truly appreciate your feedback and comments!
+                            will take 5~10 minutes in total.
                         </p>
                         <p className="mt-6 text-center">
                             {' '}

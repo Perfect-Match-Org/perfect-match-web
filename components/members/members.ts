@@ -47,6 +47,22 @@ export const team = [
                 Linkedin: 'https://www.linkedin.com/in/vipin-gunda',
                 Title1: 'Algorithms Subteam Member',
             },
+            {
+                Name: 'Daniel Chuang',
+                ClassYear: 2026,
+                Major: 'CS & Math & Government',
+                Img: '/members/daniel.png',
+                Linkedin: 'https://www.linkedin.com/in/daniel-chuang-7a1bb920b/',
+                Title1: 'Analytics Subteam Member',
+            },
+            {
+                Name: 'Samantha Smith',
+                ClassYear: 2026,
+                Major: 'Information Science',
+                Img: '/members/person.jpg',
+                Linkedin: 'https://www.linkedin.com/in/daniel-chuang-7a1bb920b/',
+                Title1: 'Web Dev Subteam Member & Designer',
+            },
         ],
     },
     {
@@ -69,7 +85,14 @@ export const team = [
                 Img: '/members/varshini.jpg',
                 Linkedin: 'https://www.linkedin.com/in/varshinimadhavan',
                 Title1: 'Business Team Member',
-            },
+            }, {
+                Name: 'Kelly Hong',
+                ClassYear: 2027,
+                Major: 'Fine Arts',
+                Img: '/members/kelly.png',
+                Linkedin: 'https://www.linkedin.com/in/kelly-hong-64666b294/ ',
+                Title1: 'Designer',
+            }
         ],
     },
 ];

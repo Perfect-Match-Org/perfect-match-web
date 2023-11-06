@@ -12,7 +12,7 @@ const Members: React.FC = () => {
                     </h2>
 
                     <p className="text-gray-500 italic text-base sm:text-xl mb-10">
-                        We currently have seven members, divided into two teams – Engineering and Business.
+                        We currently have ten members, divided into two teams – Engineering and Business.
                     </p>
                     <hr className="border-1 border-rose-300 w-[100%]" />
                 </div>
