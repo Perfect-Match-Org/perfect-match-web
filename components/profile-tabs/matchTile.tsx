@@ -18,6 +18,27 @@ const ratingOptions = [
     'My match and I were not a personality match',
     'I did not reach out',
     'They did not reach out',
+    'We have nothing in common, but they seem cool',
+    'Different majors, but could be fun to learn something new',
+    'Same college - gives us something to talk about!',
+    'Their class year makes them an interesting match',
+    'Major heart-eyes for their music taste',
+    'Their three words are a vibe, we might click',
+    'They seem fun, and their profile stands out',
+    'Our majors are worlds apart, but opposites attract?',
+    'Their song choice is my jam, we could be in tune',
+    'Feels like we’d click, their profile just clicked with me',
+    'The way they describe themselves is intriguing, wanna know more',
+    'Everything aligns – their college, major, and those three words',
+    'Their profile is all good vibes, can’t wait to chat',
+    'They sound ambitious, and their taste in music is a bonus',
+    'Just my type on paper – from their major to their song choice',
+    'Their description’s got depth and their song choice rocks',
+    'Their profile’s a perfect pitch – right college, right year, right tune',
+    'We’re in the same class year, and their profile’s class apart',
+    'Their college and major are impressive, and so is their profile',
+    'It’s a match! Their profile’s got personality and brains',
+    'A+ profile – love the academic flair and personal touch',
 ];
 
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any) {
@@ -139,7 +160,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh }: any)
                                         <label>Top Reason for Rating:</label>
                                         <select
                                             autoFocus
-                                            className="bg-white"
+                                            className="w-full bg-white border rounded-md overflow-hidden"
                                             value={review.topReasonForRating}
                                             onChange={(e) =>
                                                 setReview({ ...review, topReasonForRating: e.target.value })
