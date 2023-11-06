@@ -4,65 +4,61 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const DescribeYou = () => {
+const DescribeYouFemale = () => {
     const series = [
         {
             data: [
                 {
                     x: 'Funny',
-                    y: 1170,
-                },
-                {
-                    x: 'Smart',
-                    y: 523,
+                    y: 26.8
                 },
                 {
                     x: 'Caring',
-                    y: 467,
+                    y: 11.5
                 },
                 {
                     x: 'Kind',
-                    y: 441,
-                },
-                {
-                    x: 'Thoughtful',
-                    y: 423,
+                    y: 10.3
                 },
                 {
                     x: 'Outgoing',
-                    y: 283,
+                    y: 8.6
+                },
+                {
+                    x: 'Thoughtful',
+                    y: 8.4
                 },
                 {
                     x: 'Adventurous',
-                    y: 229,
+                    y: 8.0
                 },
                 {
                     x: 'Creative',
-                    y: 220,
+                    y: 6.8
                 },
                 {
-                    x: 'Chill',
-                    y: 208,
+                    x: 'Loyal',
+                    y: 6.6
+                },
+                {
+                    x: 'Smart',
+                    y: 6.5
                 },
                 {
                     x: 'Witty',
-                    y: 202,
+                    y: 5.5
+                },
+                {
+                    x: 'Fun',
+                    y: 5.2
                 },
                 {
                     x: 'Passionate',
-                    y: 183,
+                    y: 5.2
                 },
                 {
-                    x: 'Charming',
-                    y: 169,
-                },
-                {
-                    x: 'Ambitious',
-                    y: 155,
-                },
-                {
-                    x: 'Spontaneous',
-                    y: 152,
+                    x: 'Bubbly',
+                    y: 5.1
                 },
             ],
         },
@@ -88,21 +84,19 @@ const DescribeYou = () => {
             },
         },
         colors: [
-            '#25b7f7',
-            '#38bdf8',
-            '#4bc3f9',
-            '#5ecaf9',
-            '#71d0fa',
-            '#84d6fb',
-            '#97dcfb',
-            '#aae3fc',
-            '#bde9fd',
-            '#d0effd',
-            '#e3f6fe',
-            '#f5fcff',
-            '#e3f4fe',
-            '#f6fbff',
-            '#ffffff',
+            '#fb7185',
+            '#ff8b98',
+            '#ff9fa8',
+            '#ffafb6',
+            '#ffbdc2',
+            '#ffc8cc',
+            '#ffd1d4',
+            '#ffd9db',
+            '#ffe0e2',
+            '#ffe8e9',
+            '#fff0f0',
+            '#fff7f8',
+            '#ffffff'
         ],
         plotOptions: {
             treemap: {
@@ -110,9 +104,16 @@ const DescribeYou = () => {
                 enableShades: false,
             },
         },
+        tooltip: {
+            y: {
+                formatter: function (value: any) {
+                    return value + "%"
+                }
+            }
+        }
     };
 
     return <ReactApexChart type="treemap" series={series} options={options as ApexCharts.ApexOptions} />;
 };
 
-export default DescribeYou;
+export default DescribeYouFemale;

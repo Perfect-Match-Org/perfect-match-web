@@ -4,8 +4,8 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const TimeOrMoney = () => {
-    const series = [2398, 843, 436];
+const RelationshipType = () => {
+    const series = [2226, 1375, 310];
     const options = {
         chart: {
             toolbar: {
@@ -17,7 +17,7 @@ const TimeOrMoney = () => {
             width: '100%',
             type: 'donut',
         },
-        labels: ['Time', 'Money', 'Influence'],
+        labels: ['Casual', 'Platonic', 'Romantic'],
         colors: ['#fda4af', '#86efac', '#fde047'],
         plotOptions: {
             pie: {
@@ -25,15 +25,18 @@ const TimeOrMoney = () => {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: '40%',
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(0) + '%'];
             },
+            style: {
+                fontSize: '13px'
+            }
         },
         legend: {
             show: false,
@@ -43,4 +46,4 @@ const TimeOrMoney = () => {
     return <ReactApexChart type="donut" series={series} options={options as unknown as ApexCharts.ApexOptions} />;
 };
 
-export default TimeOrMoney;
+export default RelationshipType;

@@ -5,7 +5,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 });
 
 const FirstDate = () => {
-    const series = [1024, 960, 838, 564, 175, 61, 55];
+    const series = [1175, 1124, 704, 631, 108, 86, 83];
     const options = {
         chart: {
             toolbar: {
@@ -22,26 +22,29 @@ const FirstDate = () => {
             'Bubble tea',
             'CTB',
             'Coffee on campus',
-            'Starbucks',
-            'Dining Hall',
             'Frat annex',
+            'Dining Hall',
+            'Starbucks'
         ],
-        colors: ['#fda4af', '#fdba74', '#fde047', '#86efac', '#7dd3fc', '#c4b5fd', '#f0abfc'],
+        colors: ['#fda4af', '#86efac', '#fde047', '#7dd3fc', '#fdba74', '#c4b5fd', '#f0abfc'],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: '40%',
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(0) + '%'];
             },
+            style: {
+                fontSize: '13px'
+            }
         },
         legend: {
             show: false,
