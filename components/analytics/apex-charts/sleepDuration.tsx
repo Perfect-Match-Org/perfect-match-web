@@ -34,10 +34,10 @@ const SleepDuration = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '13px',
+                fontSize: '14px',
                 colors: ['#6b7280'],
             },
-            offsetX: -5
+            offsetX: -8
         },
         stroke: {
             show: true,
@@ -58,7 +58,7 @@ const SleepDuration = () => {
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '12px'
+                    fontSize: '14px'
                 },
             },
         },
@@ -72,6 +72,34 @@ const SleepDuration = () => {
             min: 6.7,
             max: 8.7
         },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '10px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '10px',
+                        fontWeight: 600
+                    },
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            colors: '#6b7280',
+                        },
+                    },
+                    min: 6.7,
+                    max: 8.7
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

@@ -103,7 +103,48 @@ const AgePrefFemale = () => {
             style: {
                 fontSize: '13px'
             },
-        }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        rotate: -90,
+                        style: {
+                            fontSize: '11px'
+                        },
+                        offsetY: -5
+                    },
+                    title: {
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '11px',
+                    },
+                    offsetY: -16
+                },
+                yaxis: {
+                    title: {
+                        text: 'Age of Participants',
+                        style: {
+                            fontSize: '11px',
+                            color: '#6b7280',
+                            fontWeight: 400
+                        },
+                    },
+                    labels: {
+                        style: {
+                            fontSize: '11px',
+                            colors: '#6b7280',
+                        },
+                    }
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="heatmap" series={series} options={options as ApexCharts.ApexOptions} />;

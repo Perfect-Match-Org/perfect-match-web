@@ -69,6 +69,7 @@ const completeTask = () => {
             labels: {
                 style: {
                     colors: '#6b7280',
+                    fontSize: '14px'
                 },
             },
         },
@@ -79,7 +80,36 @@ const completeTask = () => {
         },
         legend: {
             show: false
-        }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '11px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '7px',
+                        fontWeight: 600
+                    },
+                }
+            }
+        },
+        {
+            breakpoint: 1024,
+            options: {
+                dataLabels: {
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 600
+                    },
+                }
+            }
+        },]
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;
