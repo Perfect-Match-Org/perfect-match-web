@@ -64,7 +64,7 @@ const Home: NextPage = (props: any) => {
                                 Curious about the results of <span className="text-rose-400">PM23? </span>
                             </h1>
                             <ul className="mt-6 lg:mt-10 md:text-lg text-gray-500">
-                                <li>🐻 4500+ Cornellians matched this year</li>
+                                <li>🐻 3900+ Cornellians matched this year</li>
                                 <li>💌 22,000+ Perfect Matches</li>
                                 <li>
                                     📊 Visit the{' '}

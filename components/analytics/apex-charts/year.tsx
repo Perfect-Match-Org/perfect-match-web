@@ -8,7 +8,7 @@ const Year = () => {
     const series = [
         {
             name: 'Percent in total',
-            data: [690, 877, 971, 882, 130, 81, 41, 5],
+            data: [954, 1095, 835, 803, 117, 61, 40, 6],
         },
     ];
     const options = {
@@ -37,9 +37,9 @@ const Year = () => {
             formatter: function (val: any) {
                 return val;
             },
-            offsetY: -20,
+            offsetY: -22,
             style: {
-                fontSize: '12px',
+                fontSize: '14px',
                 colors: ['#6b7280'],
             },
         },
@@ -58,7 +58,7 @@ const Year = () => {
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '12px',
+                    fontSize: '14px',
                 },
             },
         },
@@ -80,6 +80,24 @@ const Year = () => {
         legend: {
             show: false,
         },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '12px'
+                    }
+
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

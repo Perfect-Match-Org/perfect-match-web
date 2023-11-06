@@ -4,8 +4,8 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const FridayNight = () => {
-    const series = [1305, 652, 519, 518, 443, 240];
+const Quality = () => {
+    const series = [1847, 1043, 821, 200];
     const options = {
         chart: {
             toolbar: {
@@ -17,23 +17,26 @@ const FridayNight = () => {
             width: '100%',
             type: 'donut',
         },
-        labels: ["Netflix & PJ's", 'Mixer or date night', 'Frat party', 'Bar hopping', 'Netflix & chill', 'Studying'],
-        colors: ['#fda4af', '#fdba74', '#fde047', '#86efac', '#7dd3fc', '#c4b5fd'],
+        labels: ["Thoughtfulness", "Reliability", "Humor", "Independence"],
+        colors: ['#fda4af', '#86efac', '#fde047', '#7dd3fc'],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: '40%',
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(0) + '%'];
             },
+            style: {
+                fontSize: '13px'
+            }
         },
         legend: {
             show: false,
@@ -43,4 +46,4 @@ const FridayNight = () => {
     return <ReactApexChart type="donut" series={series} options={options as unknown as ApexCharts.ApexOptions} />;
 };
 
-export default FridayNight;
+export default Quality;
