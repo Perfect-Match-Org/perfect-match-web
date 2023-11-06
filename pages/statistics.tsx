@@ -306,7 +306,7 @@ const Statistics: any = (props: any) => {
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                             <strong className="text-rose-400">37.9%</strong> of participants thought differences in political views were a deal breaker. Here
                             is how people rated their political tendencies on a scale of 1 to 10, with 1 being the
-                            farthest left and 10 being the most right. The graph looks very similar to last year's.
+                            farthest left and 10 being the most right. The graph looks very similar to last year&apos;s.
                         </p>
                         <div className="-mb-8 sm:mx-[10%] lg:mx-[20%] sm:-mb-28 md:-mb-36 lg:-mb-48">
                             <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
