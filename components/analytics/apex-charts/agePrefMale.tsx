@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { ValidatorResult } from 'survey-react';
+import styles from '../../../styles/Statistics.module.css';
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
@@ -92,7 +93,15 @@ const AgePrefMale = () => {
                     if (ageParticipant == 23) {
                         ageParticipant = ageParticipant + ' and over'
                     }
-                    return value + '% of men aged ' + ageParticipant + ' would date someone aged ' + (dataPointIndex + 17) + '.'
+                    return (
+                        '<div className="text-orange-500">' +
+                        value +
+                        "% of men aged " +
+                        ageParticipant +
+                        " would date someone aged " +
+                        (dataPointIndex + 17) +
+                        ".</div>"
+                    );
                 },
                 title: {
                     formatter: function (value: any) {
@@ -104,7 +113,48 @@ const AgePrefMale = () => {
                 fontSize: '13px'
             }
 
-        }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        rotate: -90,
+                        style: {
+                            fontSize: '11px'
+                        },
+                        offsetY: -5
+                    },
+                    title: {
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '11px',
+                    },
+                    offsetY: -16
+                },
+                yaxis: {
+                    title: {
+                        text: 'Age of Participants',
+                        style: {
+                            fontSize: '11px',
+                            color: '#6b7280',
+                            fontWeight: 400
+                        },
+                    },
+                    labels: {
+                        style: {
+                            fontSize: '11px',
+                            colors: '#6b7280',
+                        },
+                    }
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="heatmap" series={series} options={options as ApexCharts.ApexOptions} />;

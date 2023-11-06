@@ -85,16 +85,17 @@ const Year = () => {
             options: {
                 xaxis: {
                     labels: {
+                        rotate: -90,
                         style: {
-                            fontSize: '12px'
+                            fontSize: '11px'
                         }
                     }
                 },
                 dataLabels: {
                     style: {
-                        fontSize: '12px'
-                    }
-
+                        fontSize: '11px',
+                    },
+                    offsetY: -16
                 }
             },
         }]

@@ -60,7 +60,7 @@ const Height = () => {
             ],
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '14px',
                     colors: '#6b7280',
                 },
             },
@@ -82,7 +82,7 @@ const Height = () => {
             },
         },
         legend: {
-            fontSize: '14px',
+            fontSize: '16px',
             labels: {
                 colors: '#6b7280',
             },
@@ -93,7 +93,36 @@ const Height = () => {
                     return value + '%'
                 }
             }
-        }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        rotate: -90,
+                        style: {
+                            fontSize: '11px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '11px',
+                    },
+                },
+                yaxis: {
+                    title: {
+                        show: false
+                    },
+                    labels: {
+                        show: false
+                    }
+                },
+                legend: {
+                    fontSize: '13px',
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="area" series={series} options={options as ApexCharts.ApexOptions} />;

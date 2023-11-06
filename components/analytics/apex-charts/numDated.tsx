@@ -53,7 +53,7 @@ const NumDatedGender = () => {
             max: 40,
             labels: {
                 style: {
-                    fontSize: '13px',
+                    fontSize: '15px',
                     colors: '#6b7280',
                 },
             },
@@ -82,17 +82,41 @@ const NumDatedGender = () => {
                     return Math.abs(Math.round(val)) + '%';
                 },
                 style: {
-                    fontSize: '12px',
+                    fontSize: '15px',
                     colors: '#6b7280',
                 },
             },
         },
         legend: {
-            fontSize: '14px',
+            fontSize: '16px',
             labels: {
                 colors: '#6b7280',
             },
         },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '11px'
+                        },
+                        offsetY: -5
+                    },
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '11px',
+                            colors: '#6b7280',
+                        },
+                    }
+                },
+                legend: {
+                    fontSize: '12px'
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

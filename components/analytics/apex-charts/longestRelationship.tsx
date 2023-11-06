@@ -57,6 +57,7 @@ const LongestRelationship = () => {
             labels: {
                 style: {
                     colors: '#6b7280',
+                    fontSize: '14px'
                 },
             },
         },
@@ -68,6 +69,32 @@ const LongestRelationship = () => {
                 },
             },
         },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '10px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '10px',
+                        fontWeight: 600
+                    },
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            colors: '#6b7280',
+                        },
+                    },
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

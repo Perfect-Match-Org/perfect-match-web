@@ -87,11 +87,42 @@ const WakeTime = () => {
             },
         },
         legend: {
-            fontSize: '14px',
+            fontSize: '16px',
             labels: {
                 colors: '#6b7280',
             },
         },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        rotate: -90,
+                        style: {
+                            fontSize: '11px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '11px',
+                    },
+                    offsetY: -16
+                },
+                yaxis: {
+                    title: {
+                        show: false
+                    },
+                    labels: {
+                        show: false
+                    }
+                },
+                legend: {
+                    fontSize: '13px',
+                    offsetY: -10
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="area" series={series} options={options as ApexCharts.ApexOptions} />;

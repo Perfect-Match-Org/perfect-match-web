@@ -70,6 +70,7 @@ const BestAlternativeBar = () => {
             labels: {
                 style: {
                     colors: '#6b7280',
+                    fontSize: '14px'
                 },
             },
         },
@@ -80,7 +81,25 @@ const BestAlternativeBar = () => {
         },
         legend: {
             show: false
-        }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                xaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '11px'
+                        }
+                    }
+                },
+                dataLabels: {
+                    style: {
+                        fontSize: '11px',
+                        fontWeight: 600
+                    },
+                }
+            },
+        }]
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;
