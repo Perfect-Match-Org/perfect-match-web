@@ -42,22 +42,26 @@ const AgePrefMale = () => {
                     download: false,
                 },
             },
+            animations: {
+                enabled: false
+            }
         },
         xaxis: {
             type: 'category',
             categories: ['17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35'],
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '14px',
                     colors: '#6b7280',
                 },
             },
             title: {
-                text: 'Age Range Preferences for Dates',
+                text: 'Age Range Preferences for Matches',
                 offSetY: -10,
                 style: {
-                    fontSize: '14px',
+                    fontSize: '15px',
                     color: '#6b7280',
+                    fontWeight: 400
                 },
             },
         },
@@ -65,13 +69,14 @@ const AgePrefMale = () => {
             title: {
                 text: 'Age of Participants',
                 style: {
-                    fontSize: '14px',
+                    fontSize: '15px',
                     color: '#6b7280',
+                    fontWeight: 400
                 },
             },
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '14px',
                     colors: '#6b7280',
                 },
             },
@@ -97,6 +102,9 @@ const AgePrefMale = () => {
                     }
                 }
             },
+            style: {
+                fontSize: '13px'
+            }
 
         }
     };

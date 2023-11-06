@@ -16,10 +16,9 @@ import TimeOrMoney from '../components/analytics/apex-charts/timeOrMoney';
 import SimilarInterest from '../components/analytics/apex-charts/similarInterest';
 import FirstDate from '../components/analytics/apex-charts/firstDate';
 import FridayNight from '../components/analytics/apex-charts/fridayNight';
-import AgePrefFemale from '../components/analytics/apex-charts/agePrefFemale';
-import AgePrefMale from '../components/analytics/apex-charts/agePrefMale';
 import WakeTime from '../components/analytics/apex-charts/wakeTime';
 import SleepDuration from '../components/analytics/apex-charts/sleepDuration';
+import AgePrefToggle from '../components/analytics/apex-charts/toggleSwitchAgePref';
 
 const Statistics: any = (props: any) => {
     return (
@@ -58,13 +57,6 @@ const Statistics: any = (props: any) => {
                             </div>
                         </div>
                     </section>
-                </div>
-
-                <div className="sm:mx-[10%] lg:mx-[20%] -mb-2 -mt-4 sm:my-4">
-                    <AgePrefFemale />
-                </div>
-                <div className="sm:mx-[10%] lg:mx-[20%] -mb-2 -mt-4 sm:my-4">
-                    <AgePrefMale />
                 </div>
 
                 <hr className="border-2 border-rose-300" />
@@ -114,7 +106,7 @@ const Statistics: any = (props: any) => {
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
                             <h3 className=" text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                Cornellians&rsquo; Sleep Schedule
+                                Cornellians&#39; Sleep Schedule
                             </h3>
                             <WakeTime />
                         </div>
@@ -125,7 +117,7 @@ const Statistics: any = (props: any) => {
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
                             <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                Popular Majors&rsquo; Sleep Duration
+                                Popular Majors&#39; Sleep Duration
                             </h3>
                             <SleepDuration />
                         </div>
@@ -143,7 +135,7 @@ const Statistics: any = (props: any) => {
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-2 -mt-4 sm:my-4">
                             <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                Cornellians&rsquo; Height by Gender
+                                Cornellians&#39; Height by Gender
                             </h3>
                             <Height />
                         </div>
@@ -178,7 +170,7 @@ const Statistics: any = (props: any) => {
 
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                The female participants&rsquo; median longest relationship duration was <strong className="text-rose-400">three months</strong>,
+                                The female participants&#39; median longest relationship duration was <strong className="text-rose-400">three months</strong>,
                                 while for the male participants, it was <strong className="text-rose-400">five months</strong>.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
@@ -250,7 +242,7 @@ const Statistics: any = (props: any) => {
                         </div>
                         <div className="sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                ToTop Adjectives Used by <span className="text-sky-400">Male Participants</span> to Describe Themselves
+                                Top Adjectives Used by <span className="text-sky-400">Male Participants</span> to Describe Themselves
                             </h3>
                             <DescribeYouMale />
                         </div>
@@ -259,12 +251,31 @@ const Statistics: any = (props: any) => {
 
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
-                            38.5% of participants thought that differences in political views were a deal breaker. Here
+                            In the survey, each participant indicated an <strong className="text-rose-400">age range they
+                                would like their matches to be in</strong>.
+                            Play around with the graph below. Hover over the small rectangles to see what they mean
+                            (if you are on mobile devices, click them). Then, switch the graph by clicking the button right
+                            below and observe the differences. Do you notice <strong className="text-rose-400">male participants prefer younger matches
+                                overall than female participants</strong>?
+                        </p>
+                        <div className="sm:mx-[10%] lg:mx-[20%]">
+                            <AgePrefToggle />
+                        </div>
+                        <p className="mx-[5%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
+                            *Participants who gave their gender as non-binary individual or other are excluded due to
+                            small sample size.
+                        </p>
+                    </div>
+                    <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+
+                    <div className="my-8 sm:my-12">
+                        <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
+                            <strong className="text-rose-400">37.9%</strong> of participants thought differences in political views were a deal breaker. Here
                             is how people rated their political tendencies on a scale of 1 to 10, with 1 being the
-                            farthest left and 10 being the most right.
+                            farthest left and 10 being the most right. The graph looks very similar to last year's.
                         </p>
                         <div className="-mb-8 sm:mx-[10%] lg:mx-[20%] sm:-mb-28 md:-mb-36 lg:-mb-48">
-                            <h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 text-rose-400 sm:text-base sm:mt-8 sm:mb-0">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
                                 Political Tendency
                             </h3>
                             <Political />

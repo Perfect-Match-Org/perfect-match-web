@@ -5,7 +5,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 });
 
 const Political = () => {
-    const series = [412, 685, 1078, 566, 496, 182, 140, 81, 21, 16];
+    const series = [379, 638, 1178, 599, 615, 252, 124, 85, 25, 16];
     const options = {
         chart: {
             type: 'pie',
@@ -52,7 +52,7 @@ const Political = () => {
         dataLabels: {
             formatter(val: any, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val) + '%'];
             },
             style: {
                 fontSize: '14px',
