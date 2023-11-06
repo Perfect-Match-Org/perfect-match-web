@@ -70,7 +70,7 @@ const Statistics: any = (props: any) => {
                     </h2>
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                         In 2023, we received <strong className="text-rose-400"> 3,911 </strong>
-                        valid responses, a 8.3% increase from last year! Thank you all for filling out the survey and helping
+                        valid responses, an 8.3% increase from last year! Thank you all for filling out the survey and helping
                         spread love at Cornell🫶! Here is a look at the results of the survey.
                     </p>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
@@ -100,13 +100,13 @@ const Statistics: any = (props: any) => {
                     <div className="my-8">
                         <p className="my-4 lg:my-6 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                             To ensure you and your matches were not too different in the daily schedule,
-                            we surveyed when you were most likely to fall asleep and wake up.
+                            we surveyed when you would most likely fall asleep and wake up.
                         </p>
                         <p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                             <strong className="text-rose-400">Dyson people go to bed the latest </strong>among all colleges:
-                            63% of them fall asleep at or after 1AM, while for the population, it is 51%.
-                            {' '}<strong className="text-rose-400">Grad students wake up the earliest </strong>: 65% wake up
-                            at or before 8AM, while for the population, it is 48%.
+                            63% of them fall asleep at or after 1 AM, while for the population, it is 51%.
+                            {' '}<strong className="text-rose-400">Grad students wake up the earliest</strong>: 65% wake up
+                            at or before 8 AM, while for the population, it is 48%.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
                             <h3 className=" text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -174,7 +174,8 @@ const Statistics: any = (props: any) => {
 
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                The female participants&#39; median longest relationship duration was <strong className="text-rose-400">three months</strong>,
+                                The median duration of their longest relationship for female participants
+                                was <strong className="text-rose-400">three months</strong>,
                                 while for male participants, it was <strong className="text-rose-400">five months</strong>.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
@@ -187,7 +188,7 @@ const Statistics: any = (props: any) => {
                                 &quot;funny&quot; and &quot;smart&quot;.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                Only a few people said they preferred to be paired with someone who were less
+                                Only a few people said they preferred to be paired with someone who was less
                                 extroverted than themselves.
                             </li>
                         </ul>
