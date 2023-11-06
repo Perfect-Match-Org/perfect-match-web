@@ -5,7 +5,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 });
 
 const SimilarInterest = () => {
-    const series = [1585, 2070, 22];
+    const series = [1726, 2124, 61];
     const options = {
         chart: {
             toolbar: {
@@ -25,15 +25,18 @@ const SimilarInterest = () => {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: '40%',
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(0) + '%'];
             },
+            style: {
+                fontSize: '13px'
+            }
         },
         legend: {
             show: false,

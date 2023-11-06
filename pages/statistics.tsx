@@ -12,13 +12,17 @@ import Height from '../components/analytics/apex-charts/height';
 import LongestRelationship from '../components/analytics/apex-charts/longestRelationship';
 import NumDatedGender from '../components/analytics/apex-charts/numDated';
 import Political from '../components/analytics/apex-charts/political';
-import TimeOrMoney from '../components/analytics/apex-charts/timeOrMoney';
 import SimilarInterest from '../components/analytics/apex-charts/similarInterest';
 import FirstDate from '../components/analytics/apex-charts/firstDate';
-import FridayNight from '../components/analytics/apex-charts/fridayNight';
+import Quality from '../components/analytics/apex-charts/quality';
 import WakeTime from '../components/analytics/apex-charts/wakeTime';
 import SleepDuration from '../components/analytics/apex-charts/sleepDuration';
 import AgePrefToggle from '../components/analytics/apex-charts/toggleSwitchAgePref';
+import Faction from '../components/analytics/apex-charts/faction';
+import CompleteTask from '../components/analytics/apex-charts/completeTask';
+import BestAlternativeBar from '../components/analytics/apex-charts/bestAlternativeBar';
+import DateWear from '../components/analytics/apex-charts/dateWear';
+import RelationshipType from '../components/analytics/apex-charts/relationshipType';
 
 const Statistics: any = (props: any) => {
     return (
@@ -117,7 +121,7 @@ const Statistics: any = (props: any) => {
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
                             <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                Popular Majors&#39; Sleep Duration
+                                Popular Majors&#39; Average Sleep Duration (in Hours)
                             </h3>
                             <SleepDuration />
                         </div>
@@ -171,15 +175,10 @@ const Statistics: any = (props: any) => {
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 The female participants&#39; median longest relationship duration was <strong className="text-rose-400">three months</strong>,
-                                while for the male participants, it was <strong className="text-rose-400">five months</strong>.
+                                while for male participants, it was <strong className="text-rose-400">five months</strong>.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                <strong className="text-rose-400">Grad</strong> students tended to have the most
-                                long-lasting relationship. Among undergrads, <strong className="text-rose-400">hotelies and ILRers</strong> {' '}
-                                tended to have the most long-lasting relationship.
-                            </li>
-                            <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                The median number of people that the participants had dated in the last five years was{' '}
+                                The median number of people the participants had dated in the last five years was{' '}
                                 <strong className="text-rose-400">1</strong>.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
@@ -192,37 +191,6 @@ const Statistics: any = (props: any) => {
                                 extroverted than themselves.
                             </li>
                         </ul>
-                    </div>
-                    <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
-                    <div className="my-8 sm:my-12">
-                        <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
-                            We asked participants to give the length of their longest relationship. The results indicate
-                            that <strong className="text-rose-400">grads, hotelies, and ILRers </strong> tend
-                            to be in longer relationships.
-                        </p>
-                        <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
-                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                Median Duration of Longest Relationship (in Months), by College
-                            </h3>
-                            <LongestRelationship />
-                        </div>
-                    </div>
-                    <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
-                    <div className="my-8 sm:my-12">
-                        <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
-                            We also asked participants to give the number of people they had dated in the last five
-                            years. It is interesting to observe how female and male participants gave different numbers.
-                        </p>
-                        <div className="sm:mx-[10%] lg:mx-[20%]">
-                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                Number of People one had Dated, by Gender
-                            </h3>
-                            <NumDatedGender />
-                        </div>
-                        <p className="mx-[5%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
-                            *Participants who gave their gender as non-binary individual or other are excluded due to
-                            small sample size.
-                        </p>
                     </div>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
@@ -267,6 +235,72 @@ const Statistics: any = (props: any) => {
                         </p>
                     </div>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+                    <div className="my-8 sm:my-12">
+                        <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
+                            We asked participants to give the number of people they had dated in the last five
+                            years. It is interesting to observe how female and male participants gave different numbers.
+                        </p>
+                        <div className="sm:mx-[10%] lg:mx-[20%]">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
+                                Number of People one had Dated, by Gender
+                            </h3>
+                            <NumDatedGender />
+                        </div>
+                        <p className="mx-[5%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
+                            *Participants who gave their gender as non-binary individual or other are excluded due to
+                            small sample size.
+                        </p>
+                    </div>
+                    <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+                    <div className="my-8 sm:my-12">
+                        <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
+                            We also asked participants to give the length of their longest relationship. The results indicate
+                            that <strong className="text-rose-400">grads, hotelies, and ILRers </strong> tend
+                            to be in longer relationships.
+                        </p>
+                        <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
+                                Median Duration of Longest Relationship (in Months), by College
+                            </h3>
+                            <LongestRelationship />
+                        </div>
+                    </div>
+
+                    <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
+                    <div className="my-8 sm:my-12">
+                        <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
+                            This year, we added some <strong className="text-rose-400">fun Cornell-related questions</strong> to
+                            the survey. Are these results in your
+                            expectations? Are you the same or different from the majority?
+                        </p>
+                        <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
+                                1. Choose the <span className="text-lime-500">best alternative</span>. Your match is a 10, but they ____.
+                            </h3>
+                            <BestAlternativeBar />
+                        </div>
+                        <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
+                                2. In the next year, I want to complete this task from the <span className="text-pink-400">161 Things Every Cornellian Should Do</span>.
+                            </h3>
+                            <CompleteTask />
+                        </div>
+                        <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
+                                3. What&#39;s the <span className="text-violet-400">least traumatizing Cornell faction</span> your prospective match could belong to?
+                            </h3>
+                            <Faction />
+                        </div>
+                        <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
+                            <h3 className="text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
+                                4. <span className="text-amber-500">Worst Thing</span> Your Match Could Wear on a Date.
+                            </h3>
+                            <DateWear />
+                        </div>
+                    </div>
+
+
+                    <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
 
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
@@ -283,24 +317,24 @@ const Statistics: any = (props: any) => {
                     </div>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <p className="mt-8 mb-4 sm:mt-12 sm:mb-0 lg:mb-4 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
-                        Answers to our controversial questions remained pretty consistent between 2021 and 2022.
+                        Here are more facts you must know before dating a Cornellian!
                     </p>
                     <div className="sm:flex sm:mx-[10%] lg:mx-[20%]">
                         <div className="mt-6 sm:mt-0 sm:w-[50%]">
                             <div className="justify-center sm:h-20">
                                 <p className="mt-6 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[5%] sm:mx-0 font-semibold text-center">
-                                    Would you rather have more time, influence, or money?
+                                    What <span className="text-rose-400">type of relationship</span> are you looking for with you match?
                                 </p>
                             </div>
                             <div>
-                                <TimeOrMoney />
+                                <RelationshipType />
                             </div>
                         </div>
                         <div className="sm:w-[50%]">
                             <div className="justify-center sm:h-20">
-                                <p className="mt-6 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[5%] sm:mx-0 font-semibold text-center">
-                                    Would you like to be paired with someone who has mostly similar or different
-                                    interests to you?
+                                <p className="mt-6 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[5%] sm:mx-4 font-semibold text-center">
+                                    Would you like to be paired with someone who has mostly <span className="text-rose-400">similar or different
+                                        interests</span> to you?
                                 </p>
                             </div>
                             <div>
@@ -312,7 +346,7 @@ const Statistics: any = (props: any) => {
                         <div className="mt-4 sm:mt-0 sm:w-[50%]">
                             <div className="justify-center sm:h-14">
                                 <p className="mt-6 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[5%] sm:mx-0 font-semibold text-center">
-                                    Where would you go on a first date?
+                                    <span className="text-rose-400">Where</span> would you go on a first date?
                                 </p>
                             </div>
                             <div>
@@ -322,11 +356,11 @@ const Statistics: any = (props: any) => {
                         <div className="sm:w-[50%]">
                             <div className="justify-center sm:h-14">
                                 <p className="mt-6 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[5%] sm:mx-0 font-semibold text-center">
-                                    What would an average Friday night look like?
+                                    What <span className="text-rose-400">quality</span> do you value the most?
                                 </p>
                             </div>
                             <div>
-                                <FridayNight />
+                                <Quality />
                             </div>
                         </div>
                     </div>
@@ -375,8 +409,7 @@ const Statistics: any = (props: any) => {
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        These visualizations were generated using the Pandas and NumPy Python libraries,
-                                        and the D3.js JavaScript library.
+                                        These visualizations were generated using the ApexCharts JavaScript library.
                                     </p>
                                 </details>
                             </div>
@@ -408,7 +441,7 @@ const Statistics: any = (props: any) => {
                                         Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
                                     </p>
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        For media requests, please reach out at perfectmatch@cornell.edu
+                                        For media requests, please reach out at <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -421,7 +454,7 @@ const Statistics: any = (props: any) => {
                                         you may have regarding data privacy. In fact, feedback from the Cornell
                                         community already has and will continue to be used in to improve our algorithm
                                         and measures to protect privacy. We can be reached at{' '}
-                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>
+                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
                                     </p>
                                 </details>
                             </div>

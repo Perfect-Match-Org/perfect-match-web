@@ -4,17 +4,17 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const LongestRelationship = () => {
+const BestAlternativeBar = () => {
     const series = [
         {
-            name: 'Median longest relationship duration',
-            data: [5, 4, 4, 4, 5, 3, 6, 6, 13],
-            color: '#fdba74',
+            name: '',
+            data: [1360, 884, 781, 565, 321],
         }
     ];
     const options = {
         chart: {
             type: 'bar',
+            height: 380,
             toolbar: {
                 show: false,
                 tools: {
@@ -24,19 +24,25 @@ const LongestRelationship = () => {
         },
         plotOptions: {
             bar: {
+                barHeight: '100%',
                 horizontal: true,
+                distributed: true,
                 dataLabels: {
-                    position: 'top',
-                },
+                    position: 'bottom'
+                }
             },
         },
         dataLabels: {
             enabled: true,
+            textAnchor: 'start',
             style: {
-                fontSize: '14px',
+                fontSize: '15px',
                 colors: ['#6b7280']
             },
-            offsetX: -6
+            formatter: function (val: any, opt: any) {
+                return opt.w.globals.labels[opt.dataPointIndex]
+            },
+            offsetX: 0
         },
         stroke: {
             show: true,
@@ -44,16 +50,23 @@ const LongestRelationship = () => {
             colors: ['#fff'],
         },
         tooltip: {
-            shared: true,
-            intersect: false,
             y: {
                 formatter: function (value: any) {
-                    return value + ' months'
+                    const percent = parseInt(value) / 3911 * 100
+                    return percent.toFixed(0) + '%'
                 }
+            },
+            x: {
+                show: false
             }
         },
+        colors: ['#a3e635', '#bef264', '#d9f99d', '#ecfccb', '#f7fee7'],
         xaxis: {
-            categories: ['AAP', 'CAS', 'CALS', 'CHE', 'Dyson', 'Engineering', 'Hotel', 'ILR', 'Grad'],
+            categories: ['A. Enjoy studying in the Olin Basement.',
+                'B. Live in the Gothics.',
+                'C. Eats at Okenshields everyday.',
+                'D. Drunk texted their ex last night.',
+                'E. Matched with your roommate on Hinge.'],
             labels: {
                 style: {
                     colors: '#6b7280',
@@ -62,15 +75,15 @@ const LongestRelationship = () => {
         },
         yaxis: {
             labels: {
-                style: {
-                    fontSize: '14px',
-                    colors: '#6b7280',
-                },
-            },
+                show: false
+            }
         },
+        legend: {
+            show: false
+        }
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;
 };
 
-export default LongestRelationship;
+export default BestAlternativeBar;
