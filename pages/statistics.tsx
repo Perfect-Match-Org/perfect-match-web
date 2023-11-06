@@ -103,10 +103,13 @@ const Statistics: any = (props: any) => {
                             we surveyed when you would most likely fall asleep and wake up.
                         </p>
                         <p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
-                            <strong className="text-rose-400">Dyson people go to bed the latest </strong>among all colleges:
+                            <strong className="text-rose-400">Dyson students go to bed the latest </strong>among all colleges:
                             63% of them fall asleep at or after 1 AM, while for the population, it is 51%.
                             {' '}<strong className="text-rose-400">Grad students wake up the earliest</strong>: 65% wake up
                             at or before 8 AM, while for the population, it is 48%.
+                        </p>
+                        <p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-gray-500 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
+                            ❗Try hovering over the curve or clicking it to see the data❗
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 -mt-4 sm:my-4">
                             <h3 className=" text-gray-500 mx-[5%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -169,7 +172,7 @@ const Statistics: any = (props: any) => {
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 PM also allowed you to indicate your crush&#40;es&#41;, increasing the chance of
                                 matching you with your
-                                {' '}<strong className="text-rose-400">crush&#40;es&#41; - 26.3% </strong> of the participants listed at least one crush in their response.
+                                {' '}<strong className="text-rose-400">crush&#40;es&#41; — 26.3% </strong> of the participants listed at least one crush in their response.
                                 Hope we helped a bit :&#41;
 
                             </li>
@@ -185,7 +188,7 @@ const Statistics: any = (props: any) => {
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 <strong className="text-rose-400">&quot;Funny&quot; and &quot;caring&quot; </strong>
                                 were the top adjectives used by people to describe themselves. Last year, it was
-                                &quot;funny&quot; and &quot;smart&quot;.
+                                &quot;funny&quot; and &quot;smart.&quot;
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 Only a few people said they preferred to be paired with someone who was less
@@ -223,7 +226,7 @@ const Statistics: any = (props: any) => {
                             In the survey, each participant indicated an <strong className="text-rose-400">age range they
                                 would like their matches to be in</strong>.
                             Play around with the graph below. Hover over the small rectangles to see what they mean
-                            (if you are on mobile devices, click them). Then, switch the graph by clicking the button right
+                            (if you are on mobile devices, click them). Then, switch the chart by clicking the button right
                             below and observe the differences. Do you notice <strong className="text-rose-400">male participants prefer younger matches
                                 overall than female participants</strong>?
                         </p>
@@ -459,30 +462,6 @@ const Statistics: any = (props: any) => {
                                     </p>
                                 </details>
                             </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div>
-                <section className="bg-white ">
-                    <div className="py-8 mx-auto max-w-screen-xl lg:py-16 mx-[5%] sm:mx-[15%]">
-                        <div className="max-w-screen-lg text-gray-500 sm:text-lg ">
-                            <h2 className="mb-4 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 ">
-                                Contact Us!
-                            </h2>
-                            <p className="mb-4 font-light"></p>
-                            <p className="mb-4 font-medium">
-                                Feel free to reach out with questions, suggestions, comments.{' '}
-                            </p>
-                            <p className="mb-4 font-medium">
-                                {' '}
-                                Email:{' '}
-                                <a href="mailto:cornell.perfectmatch@gmail.com" target="_blank" rel="noreferrer">
-                                    cornell.perfectmatch@gmail.com
-                                </a>
-                            </p>
-
-                            <div className="flex justify-center space-x-2"></div>
                         </div>
                     </div>
                 </section>
