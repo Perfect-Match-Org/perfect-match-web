@@ -4,65 +4,61 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const DescribePartner = () => {
+const DescribeYouMale = () => {
     const series = [
         {
             data: [
                 {
                     x: 'Funny',
-                    y: 1775,
+                    y: 28.9
                 },
                 {
                     x: 'Smart',
-                    y: 750,
-                },
-                {
-                    x: 'Kind',
-                    y: 704,
-                },
-                {
-                    x: 'Caring',
-                    y: 512,
+                    y: 11.1
                 },
                 {
                     x: 'Thoughtful',
-                    y: 456,
+                    y: 10
                 },
                 {
-                    x: 'Outgoing',
-                    y: 247,
+                    x: 'Caring',
+                    y: 8.1
                 },
                 {
                     x: 'Adventurous',
-                    y: 230,
-                },
-                {
-                    x: 'Loyal',
-                    y: 228,
-                },
-                {
-                    x: 'Honest',
-                    y: 199,
+                    y: 7.5
                 },
                 {
                     x: 'Charming',
-                    y: 193,
+                    y: 7
+                },
+                {
+                    x: 'Kind',
+                    y: 6.7
+                },
+                {
+                    x: 'Witty',
+                    y: 6.2
                 },
                 {
                     x: 'Chill',
-                    y: 179,
-                },
-                {
-                    x: 'Intelligent',
-                    y: 167,
-                },
-                {
-                    x: 'Ambitious',
-                    y: 162,
+                    y: 5.8
                 },
                 {
                     x: 'Passionate',
-                    y: 156,
+                    y: 4.9
+                },
+                {
+                    x: 'Outgoing',
+                    y: 4.7
+                },
+                {
+                    x: 'Loyal',
+                    y: 4.3
+                },
+                {
+                    x: 'Goofy',
+                    y: 4.2
                 },
             ],
         },
@@ -88,19 +84,18 @@ const DescribePartner = () => {
             },
         },
         colors: [
-            '#fb7185',
-            '#fc848c',
-            '#fc8495',
-            '#fc979e',
-            '#fc97a6',
-            '#fdaab6',
-            '#fdbdc7',
-            '#fdbdc1',
-            '#fed0d7',
-            '#fee3e7',
-            '#fee3e5',
-            '#fff7f8',
-            '#fff7f7',
+            '#0ea5e9',
+            '#38bdf8',
+            '#4bc3f9',
+            '#71d0fa',
+            '#84d6fb',
+            '#97dcfb',
+            '#aae3fc',
+            '#bde9fd',
+            '#d0effd',
+            '#e3f6fe',
+            '#e3f4fe',
+            '#f5fcff',
             '#ffffff',
         ],
         plotOptions: {
@@ -109,9 +104,16 @@ const DescribePartner = () => {
                 enableShades: false,
             },
         },
+        tooltip: {
+            y: {
+                formatter: function (value: any) {
+                    return value + "%"
+                }
+            }
+        }
     };
 
     return <ReactApexChart type="treemap" series={series} options={options as ApexCharts.ApexOptions} />;
 };
 
-export default DescribePartner;
+export default DescribeYouMale;

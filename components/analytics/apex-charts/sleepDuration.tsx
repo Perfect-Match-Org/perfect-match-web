@@ -4,17 +4,12 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const NumDatedCollege = () => {
+const SleepDuration = () => {
     const series = [
         {
-            name: 'Median',
-            data: [1.5, 1, 1, 1, 1, 1, 1],
-            color: '#bae6fd',
-        },
-        {
-            name: 'Mean',
-            data: [1.82, 1.62, 1.82, 1.27, 1.33, 1.31, 1.51],
-            color: '#fecdd3',
+            name: "Average sleep duration",
+            data: [6.96, 7.66, 7.83, 7.84, 7.84, 7.86, 7.91, 8.06, 8.13, 8.28, 8.77],
+            color: '#86efac'
         },
     ];
     const options = {
@@ -39,9 +34,10 @@ const NumDatedCollege = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '12px',
+                fontSize: '13px',
                 colors: ['#6b7280'],
             },
+            offsetX: -5
         },
         stroke: {
             show: true,
@@ -51,32 +47,34 @@ const NumDatedCollege = () => {
         tooltip: {
             shared: true,
             intersect: false,
+            y: {
+                formatter: function (value: any) {
+                    return value + ' hours'
+                }
+            }
         },
         xaxis: {
-            categories: ['AAP', 'CAS', 'CALS', 'Engineering', 'Hotel', 'CHE', 'ILR'],
+            categories: ['Architecture', 'ECE', 'CS', 'MechE', 'BioSci', 'InfoSci', 'AEM', 'ILR', 'Econ', 'Hotel', 'Comm'],
             labels: {
                 style: {
                     colors: '#6b7280',
+                    fontSize: '12px'
                 },
             },
         },
         yaxis: {
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '14px',
                     colors: '#6b7280',
                 },
             },
-        },
-        legend: {
-            fontSize: '12px',
-            labels: {
-                colors: '#6b7280',
-            },
+            min: 6.7,
+            max: 8.7
         },
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;
 };
 
-export default NumDatedCollege;
+export default SleepDuration;

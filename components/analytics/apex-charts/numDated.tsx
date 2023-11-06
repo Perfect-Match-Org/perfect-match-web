@@ -8,13 +8,13 @@ const NumDatedGender = () => {
     const series = [
         {
             name: 'Male',
-            data: [-29.5, -30.7, -21.5, -11.3, -2.8, -2.0, -1.4, -0.0],
-            color: '#bae6fd',
+            data: [-29.2, -30.1, -23.2, -9.7, -3.5, -1.9, -1.5, -0.8],
+            color: '#7dd3fc',
         },
         {
             name: 'Female',
-            data: [37.1, 27.7, 19.5, 10.7, 2.5, 1.4, 0.8, 0.5],
-            color: '#fecdd3',
+            data: [38.7, 28.5, 19.7, 8.5, 2.7, 1.0, 0.7, 0.2],
+            color: '#fda4af',
         },
     ];
     const options = {
@@ -54,7 +54,7 @@ const NumDatedGender = () => {
             max: 40,
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '13px',
                     colors: '#6b7280',
                 },
             },
@@ -89,7 +89,7 @@ const NumDatedGender = () => {
             },
         },
         legend: {
-            fontSize: '13px',
+            fontSize: '14px',
             labels: {
                 colors: '#6b7280',
             },

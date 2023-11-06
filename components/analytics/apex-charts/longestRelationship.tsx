@@ -4,18 +4,13 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const LongestRelation = () => {
+const LongestRelationship = () => {
     const series = [
         {
-            name: 'Median',
-            data: [6, 4, 5, 4, 5, 5, 6],
-            color: '#bae6fd',
-        },
-        {
-            name: 'Mean',
-            data: [10.8, 9.2, 10.0, 9.1, 9.5, 8.8, 10.0],
-            color: '#fecdd3',
-        },
+            name: 'Median longest relationship duration',
+            data: [5, 4, 4, 4, 5, 3, 6, 6, 13],
+            color: '#fdba74',
+        }
     ];
     const options = {
         chart: {
@@ -39,9 +34,10 @@ const LongestRelation = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '12px',
-                colors: ['#6b7280'],
+                fontSize: '14px',
+                colors: ['#6b7280']
             },
+            offsetX: -6
         },
         stroke: {
             show: true,
@@ -51,9 +47,14 @@ const LongestRelation = () => {
         tooltip: {
             shared: true,
             intersect: false,
+            y: {
+                formatter: function (value: any) {
+                    return value + ' months'
+                }
+            }
         },
         xaxis: {
-            categories: ['AAP', 'CAS', 'CALS', 'Engineering', 'Hotel', 'CHE', 'ILR'],
+            categories: ['AAP', 'CAS', 'CALS', 'CHE', 'Dyson', 'Engineering', 'Hotel', 'ILR', 'Grad'],
             labels: {
                 style: {
                     colors: '#6b7280',
@@ -63,15 +64,9 @@ const LongestRelation = () => {
         yaxis: {
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '14px',
                     colors: '#6b7280',
                 },
-            },
-        },
-        legend: {
-            fontSize: '12px',
-            labels: {
-                colors: '#6b7280',
             },
         },
     };
@@ -79,4 +74,4 @@ const LongestRelation = () => {
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;
 };
 
-export default LongestRelation;
+export default LongestRelationship;
