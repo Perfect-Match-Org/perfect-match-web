@@ -1,8 +1,13 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { getUser, createUser } from '../../../database/controllers';
-import { connect } from '../../../database/database';
+import { connect } from '@/database'
 
+/**
+ * Checks if the given email is a valid Cornell University email.
+ * @param {string} email - The email to validate.
+ * @returns {boolean} - True if it's a Cornell email, false otherwise.
+ */
 const isValidCornellEmail = (email: string): boolean => {
     const domain = email.split('@')[1];
     return domain === 'cornell.edu' || email === 'cornell.perfectmatch@gmail.com';
@@ -15,9 +20,7 @@ export default NextAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         }),
     ],
-    pages: {
-        error: '/auth/error',
-    },
+    pages: { error: '/auth/error' },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async signIn({ profile }) {

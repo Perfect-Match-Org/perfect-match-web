@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import authOptions from './auth/[...nextauth]';
-import { getUsers } from '../../database/controllers';
+import { getUsers } from '@/controllers'
 import { Session } from 'next-auth';
-import { connect } from '../../database/database';
-import { isAdmin } from '../../utils/admins';
-import { User } from '../../types/users';
+import { connect } from '@/database'
+import { isAdmin } from '@/utils/admins';
+import { User } from '@/types/users';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
     const session: Session = (await unstable_getServerSession(req, res, authOptions))!;

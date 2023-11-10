@@ -1,28 +1,28 @@
-import styles from '../styles/Home.module.css';
+import styles from '@/styles/Home.module.css';
 import Head from 'next/head';
-import { Footer } from '../components/footer';
-import { Header } from '../components/header';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
-import DescribeYouFemale from '../components/analytics/apex-charts/describeYouFemale';
-import DescribeYouMale from '../components/analytics/apex-charts/describeYouMale';
-import Year from '../components/analytics/apex-charts/year';
-import Height from '../components/analytics/apex-charts/height';
-import LongestRelationship from '../components/analytics/apex-charts/longestRelationship';
-import NumDatedGender from '../components/analytics/apex-charts/numDated';
-import Political from '../components/analytics/apex-charts/political';
-import SimilarInterest from '../components/analytics/apex-charts/similarInterest';
-import FirstDate from '../components/analytics/apex-charts/firstDate';
-import Quality from '../components/analytics/apex-charts/quality';
-import WakeTime from '../components/analytics/apex-charts/wakeTime';
-import SleepDuration from '../components/analytics/apex-charts/sleepDuration';
-import AgePrefToggle from '../components/analytics/apex-charts/toggleSwitchAgePref';
-import Faction from '../components/analytics/apex-charts/faction';
-import CompleteTask from '../components/analytics/apex-charts/completeTask';
-import BestAlternativeBar from '../components/analytics/apex-charts/bestAlternativeBar';
-import DateWear from '../components/analytics/apex-charts/dateWear';
-import RelationshipType from '../components/analytics/apex-charts/relationshipType';
+import DescribeYouFemale from '@/components/analytics/apex-charts/describeYouFemale';
+import DescribeYouMale from '@/components/analytics/apex-charts/describeYouMale';
+import Year from '@/components/analytics/apex-charts/year';
+import Height from '@/components/analytics/apex-charts/height';
+import LongestRelationship from '@/components/analytics/apex-charts/longestRelationship';
+import NumDatedGender from '@/components/analytics/apex-charts/numDated';
+import Political from '@/components/analytics/apex-charts/political';
+import SimilarInterest from '@/components/analytics/apex-charts/similarInterest';
+import FirstDate from '@/components/analytics/apex-charts/firstDate';
+import Quality from '@/components/analytics/apex-charts/quality';
+import WakeTime from '@/components/analytics/apex-charts/wakeTime';
+import SleepDuration from '@/components/analytics/apex-charts/sleepDuration';
+import AgePrefToggle from '@/components/analytics/apex-charts/toggleSwitchAgePref';
+import Faction from '@/components/analytics/apex-charts/faction';
+import CompleteTask from '@/components/analytics/apex-charts/completeTask';
+import BestAlternativeBar from '@/components/analytics/apex-charts/bestAlternativeBar';
+import DateWear from '@/components/analytics/apex-charts/dateWear';
+import RelationshipType from '@/components/analytics/apex-charts/relationshipType';
 
 const Statistics: any = (props: any) => {
     return (
@@ -70,24 +70,25 @@ const Statistics: any = (props: any) => {
                     </h2>
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
                         In 2023, we received <strong className="text-rose-400"> 3,911 </strong>
-                        valid responses, an 8.3% increase from last year! Thank you all for filling out the survey and helping
-                        spread love at Cornell🫶! Here is a look at the results of the survey.
+                        valid responses, an 8.3% increase from last year! Thank you all for filling out the survey and
+                        helping spread love at Cornell🫶! Here is a look at the results of the survey.
                     </p>
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                        Same as last year, <strong className="text-rose-400">CS</strong> majors
-                        seemed to really need our help; 566 of them opted in for PM23. The second place went
-                        to <strong className="text-rose-400">Biological Science</strong> with 258 participants.
+                        Same as last year, <strong className="text-rose-400">CS</strong> majors seemed to really need
+                        our help; 566 of them opted in for PM23. The second place went to{' '}
+                        <strong className="text-rose-400">Biological Science</strong> with 258 participants.
                     </p>
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8">
                         <p className="my-4 lg:my-6 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            This year, <strong className="text-rose-400">sophomores</strong> made up the highest proportion of the
-                            PM23 participants. And the number of freshman students filling out the survey increased by 40% from last year.
+                            This year, <strong className="text-rose-400">sophomores</strong> made up the highest
+                            proportion of the PM23 participants. And the number of freshman students filling out the
+                            survey increased by 40% from last year.
                         </p>
                         <p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            In total, we had 3,687 undergrad participants, which was <strong className="text-rose-400">1/4 of the Cornell
-                                undergrad student population</strong>.
+                            In total, we had 3,687 undergrad participants, which was{' '}
+                            <strong className="text-rose-400">1/4 of the Cornell undergrad student population</strong>.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-12 sm:my-4">
                             <h3 className="mx-[3%] text-gray-500 text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -99,13 +100,13 @@ const Statistics: any = (props: any) => {
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8">
                         <p className="my-4 lg:my-6 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            To ensure you and your matches were not too different in the daily schedule,
-                            we surveyed when you would most likely fall asleep and wake up.
+                            To ensure you and your matches were not too different in the daily schedule, we surveyed
+                            when you would most likely fall asleep and wake up.
                         </p>
                         <p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            <strong className="text-rose-400">Dyson students go to bed the latest </strong>among all colleges:
-                            63% of them fall asleep at or after 1 AM, while for the population, it is 51%.
-                            {' '}<strong className="text-rose-400">Grad students wake up the earliest</strong>: 65% wake up
+                            <strong className="text-rose-400">Dyson students go to bed the latest </strong>among all
+                            colleges: 63% of them fall asleep at or after 1 AM, while for the population, it is 51%.{' '}
+                            <strong className="text-rose-400">Grad students wake up the earliest</strong>: 65% wake up
                             at or before 8 AM, while for the population, it is 48%.
                         </p>
                         <p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
@@ -118,9 +119,10 @@ const Statistics: any = (props: any) => {
                             <WakeTime />
                         </div>
                         <p className="my-4 lg:my-6 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            You might also be curious about how long Cornellians typically sleep. Our data shows that an average
-                            Cornell student sleeps <strong className="text-rose-400">8 hours</strong> and is not sleep-deprived, fortunately. However, if you still feel like
-                            you are not getting enough sleep, choose your major wisely:
+                            You might also be curious about how long Cornellians typically sleep. Our data shows that an
+                            average Cornell student sleeps <strong className="text-rose-400">8 hours</strong> and is not
+                            sleep-deprived, fortunately. However, if you still feel like you are not getting enough
+                            sleep, choose your major wisely:
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -132,13 +134,13 @@ const Statistics: any = (props: any) => {
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            Though PM does not use height for matching, <strong className="text-rose-400">height </strong>
-                            is one of the first qualities people evaluate when looking for a significant other,
-                            for better or worse.
-                            The median height is
-                            <strong className="text-rose-400"> 65 inches</strong> for female participants and
-                            {' '}<strong className="text-rose-400">70 inches</strong> for male participants, the same as last year.
-
+                            Though PM does not use height for matching,{' '}
+                            <strong className="text-rose-400">height </strong>
+                            is one of the first qualities people evaluate when looking for a significant other, for
+                            better or worse. The median height is
+                            <strong className="text-rose-400"> 65 inches</strong> for female participants and{' '}
+                            <strong className="text-rose-400">70 inches</strong> for male participants, the same as last
+                            year.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -162,24 +164,24 @@ const Statistics: any = (props: any) => {
                         <ul className="list-disc mb-8 sm:mb-12 ml-4">
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 Don&apos;t sweat if you have never been in a relationship before.
-                                <strong className="text-rose-400"> 33.6%</strong> of participants said they had never been
-                                in a relationship. Last year, it was 30%.
+                                <strong className="text-rose-400"> 33.6%</strong> of participants said they had never
+                                been in a relationship. Last year, it was 30%.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                PM allowed you to indicate people you did not want to be matched with, called
-                                {' '}<strong className="text-rose-400">&quot;forbidden&quot; — 22.8% </strong> of the participants listed at least one forbidden in their response.
+                                PM allowed you to indicate people you did not want to be matched with, called{' '}
+                                <strong className="text-rose-400">&quot;forbidden&quot; — 22.8% </strong> of the
+                                participants listed at least one forbidden in their response.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 PM also allowed you to indicate your crush&#40;es&#41;, increasing the chance of
-                                matching you with your
-                                {' '}<strong className="text-rose-400">crush&#40;es&#41; — 26.3% </strong> of the participants listed at least one crush in their response.
-                                Hope we helped a bit :&#41;
-
+                                matching you with your{' '}
+                                <strong className="text-rose-400">crush&#40;es&#41; — 26.3% </strong> of the
+                                participants listed at least one crush in their response. Hope we helped a bit :&#41;
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                The median duration of their longest relationship for female participants
-                                was <strong className="text-rose-400">three months</strong>,
-                                while for male participants, it was <strong className="text-rose-400">five months</strong>.
+                                The median duration of their longest relationship for female participants was{' '}
+                                <strong className="text-rose-400">three months</strong>, while for male participants, it
+                                was <strong className="text-rose-400">five months</strong>.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
                                 The median number of people the participants had dated in the last five years was{' '}
@@ -191,30 +193,37 @@ const Statistics: any = (props: any) => {
                                 &quot;funny&quot; and &quot;smart.&quot;
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-gray-500">
-                                Only a few people said they preferred to be paired with someone who was less
-                                extroverted than themselves.
+                                Only a few people said they preferred to be paired with someone who was less extroverted
+                                than themselves.
                             </li>
                         </ul>
                     </div>
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            Participants were asked to describe themselves by three adjectives in the survey,
-                            which would later be displayed to their matches. Female and male participants chose
-                            quite different words. As shown below, the top adjectives used by female participants were
-                            {' '}<strong className="text-rose-400">&quot;funny,&quot; &quot;caring,&quot; and &quot;kind.&quot;</strong>{' '}
-                            For male participants, they were <strong className="text-sky-400">&quot;funny,&quot; &quot;smart,&quot; and &quot;thoughtful.&quot; </strong>
-                            {' '}Huh, how did gender stereotypes shape your self-presentation to your matches?
+                            Participants were asked to describe themselves by three adjectives in the survey, which
+                            would later be displayed to their matches. Female and male participants chose quite
+                            different words. As shown below, the top adjectives used by female participants were{' '}
+                            <strong className="text-rose-400">
+                                &quot;funny,&quot; &quot;caring,&quot; and &quot;kind.&quot;
+                            </strong>{' '}
+                            For male participants, they were{' '}
+                            <strong className="text-sky-400">
+                                &quot;funny,&quot; &quot;smart,&quot; and &quot;thoughtful.&quot;{' '}
+                            </strong>{' '}
+                            Huh, how did gender stereotypes shape your self-presentation to your matches?
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-2 sm:text-lg sm:mt-8 sm:mb-0">
-                                Top Adjectives Used by <span className="text-rose-400">Female Participants</span> to Describe Themselves
+                                Top Adjectives Used by <span className="text-rose-400">Female Participants</span> to
+                                Describe Themselves
                             </h3>
                             <DescribeYouFemale />
                         </div>
                         <div className="sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-2 sm:text-lg sm:mt-8 sm:mb-0">
-                                Top Adjectives Used by <span className="text-sky-400">Male Participants</span> to Describe Themselves
+                                Top Adjectives Used by <span className="text-sky-400">Male Participants</span> to
+                                Describe Themselves
                             </h3>
                             <DescribeYouMale />
                         </div>
@@ -223,12 +232,15 @@ const Statistics: any = (props: any) => {
 
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            In the survey, each participant indicated an <strong className="text-rose-400">age range they
-                                would like their matches to be in</strong>.
-                            Play around with the graph below. Hover over the small rectangles to see what they mean
-                            (if you are on mobile devices, click them). Then, switch the chart by clicking the button right
-                            below and observe the differences. Do you notice <strong className="text-rose-400">male participants prefer younger matches
-                                overall than female participants</strong>?
+                            In the survey, each participant indicated an{' '}
+                            <strong className="text-rose-400">age range they would like their matches to be in</strong>.
+                            Play around with the graph below. Hover over the small rectangles to see what they mean (if
+                            you are on mobile devices, click them). Then, switch the chart by clicking the button right
+                            below and observe the differences. Do you notice{' '}
+                            <strong className="text-rose-400">
+                                male participants prefer younger matches overall than female participants
+                            </strong>
+                            ?
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%]">
                             <AgePrefToggle />
@@ -241,8 +253,8 @@ const Statistics: any = (props: any) => {
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            We asked participants to give the number of people they had dated in the last five
-                            years. It is interesting to observe how female and male participants gave different numbers.
+                            We asked participants to give the number of people they had dated in the last five years. It
+                            is interesting to observe how female and male participants gave different numbers.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -258,8 +270,8 @@ const Statistics: any = (props: any) => {
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            We also asked participants to give the length of their longest relationship. The results indicate
-                            that <strong className="text-rose-400">grads, hotelies, and ILRers </strong> tend
+                            We also asked participants to give the length of their longest relationship. The results
+                            indicate that <strong className="text-rose-400">grads, hotelies, and ILRers </strong> tend
                             to be in longer relationships.
                         </p>
                         <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
@@ -273,25 +285,29 @@ const Statistics: any = (props: any) => {
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            This year, we added some <strong className="text-rose-400">fun Cornell-related questions</strong> to
-                            the survey. Are these results in your
-                            expectations? Are you the same or different from the majority?
+                            This year, we added some{' '}
+                            <strong className="text-rose-400">fun Cornell-related questions</strong> to the survey. Are
+                            these results in your expectations? Are you the same or different from the majority?
                         </p>
                         <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                1. Choose the <span className="text-lime-500">best alternative</span>. Your match is a 10, but they ____.
+                                1. Choose the <span className="text-lime-500">best alternative</span>. Your match is a
+                                10, but they ____.
                             </h3>
                             <BestAlternativeBar />
                         </div>
                         <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                2. In the next year, I want to complete this task from the <span className="text-pink-400">161 Things Every Cornellian Should Do</span>.
+                                2. In the next year, I want to complete this task from the{' '}
+                                <span className="text-pink-400">161 Things Every Cornellian Should Do</span>.
                             </h3>
                             <CompleteTask />
                         </div>
                         <div className="-mb-2 sm:mx-[10%] lg:mx-[20%]">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
-                                3. What&#39;s the <span className="text-violet-400">least traumatizing Cornell faction</span> your prospective match could belong to?
+                                3. What&#39;s the{' '}
+                                <span className="text-violet-400">least traumatizing Cornell faction</span> your
+                                prospective match could belong to?
                             </h3>
                             <Faction />
                         </div>
@@ -303,14 +319,14 @@ const Statistics: any = (props: any) => {
                         </div>
                     </div>
 
-
                     <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
 
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg text-gray-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
-                            <strong className="text-rose-400">37.9%</strong> of participants thought differences in political views were a deal breaker. Here
-                            is how people rated their political tendencies on a scale of 1 to 10, with 1 being the
-                            farthest left and 10 being the most right. The graph looks very similar to last year&apos;s.
+                            <strong className="text-rose-400">37.9%</strong> of participants thought differences in
+                            political views were a deal breaker. Here is how people rated their political tendencies on
+                            a scale of 1 to 10, with 1 being the farthest left and 10 being the most right. The graph
+                            looks very similar to last year&apos;s.
                         </p>
                         <div className="-mb-8 sm:mx-[10%] lg:mx-[20%] sm:-mb-28 md:-mb-36 lg:-mb-68">
                             <h3 className="text-gray-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 sm:text-lg sm:mt-8 sm:mb-0">
@@ -327,7 +343,8 @@ const Statistics: any = (props: any) => {
                         <div className="mt-6 sm:mt-0 sm:w-[50%]">
                             <div className="justify-center sm:h-20">
                                 <p className="mt-8 mb-2 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[3%] sm:mx-0 font-semibold text-center">
-                                    What <span className="text-rose-400">type of relationship</span> are you looking for with you match?
+                                    What <span className="text-rose-400">type of relationship</span> are you looking for
+                                    with you match?
                                 </p>
                             </div>
                             <div>
@@ -337,8 +354,8 @@ const Statistics: any = (props: any) => {
                         <div className="sm:w-[50%]">
                             <div className="justify-center sm:h-20">
                                 <p className="mt-8 mb-2 sm:my-10 max-w-4xl lg:text-lg text-gray-500 mx-[3%] sm:mx-4 font-semibold text-center">
-                                    Would you like to be paired with someone who has mostly <span className="text-rose-400">similar or different
-                                        interests</span> to you?
+                                    Would you like to be paired with someone who has mostly{' '}
+                                    <span className="text-rose-400">similar or different interests</span> to you?
                                 </p>
                             </div>
                             <div>
@@ -445,7 +462,8 @@ const Statistics: any = (props: any) => {
                                         Cornell Daily Sun, Big Red Heads, Cornell Chronicle, etc.
                                     </p>
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
-                                        For media requests, please reach out at <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
+                                        For media requests, please reach out at{' '}
+                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
                                     </p>
                                 </details>
                                 <details className="mb-5">
@@ -470,5 +488,13 @@ const Statistics: any = (props: any) => {
         </div>
     );
 };
+
+export async function getStaticProps() {
+    return {
+        props: {
+            title: 'Statistics',
+        },
+    };
+}
 
 export default Statistics;

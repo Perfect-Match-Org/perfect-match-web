@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { GoogleAuth } from '../../components/general';
+import { GoogleAuth } from '@/components/general';
 
 const Error: NextPage = () => {
     return (

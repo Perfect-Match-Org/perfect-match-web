@@ -1,18 +1,18 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
-import { Footer } from '../components/footer';
-import { GoogleAuth } from '../components/general';
-import { Header } from '../components/header';
-import { fetcher } from '../utils/fetch';
+import { Footer } from '@/components/footer';
+import { GoogleAuth } from '@/components/general';
+import { Header } from '@/components/header';
+import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
-import styles from '../styles/Home.module.css';
+import styles from '@/styles/Home.module.css';
 
 import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
-import BestAlternative from '../components/analytics/apex-charts/bestAlternative';
-import demo from '../public/feedback-demo.gif';
+import BestAlternative from '@/components/analytics/apex-charts/bestAlternative';
+import demo from 'public/feedback-demo.gif';
 
 const Home: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/count', fetcher, {

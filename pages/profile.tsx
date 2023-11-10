@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import { Footer } from '../components/footer';
-import { Header } from '../components/header';
-import { ProfileTabs } from '../components/profile-tabs';
-import { Spinner } from '../components/general';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { ProfileTabs } from '@/components/profile-tabs';
+import { Spinner } from '@/components/general';
 import { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
-import { fetcher } from '../utils/fetch';
+import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
 
 const Profile: NextPage = (props: any) => {
@@ -62,6 +62,12 @@ const Profile: NextPage = (props: any) => {
     );
 };
 
+/**
+ * Declaring the server-side props makes the page server-side rendered.
+ * If the user is not logged in, redirect to the login page. Otherwise, return the user's session.
+ * @param context The request context that contains the request object.
+ * @returns The user's session if they are logged in, otherwise redirect to the login page.
+ */
 export async function getServerSideProps(context: any) {
     const session = await getSession(context);
     if (!session)
@@ -70,9 +76,7 @@ export async function getServerSideProps(context: any) {
             props: {},
         };
     return {
-        props: {
-            user: session.user,
-        },
+        props: { user: session.user },
     };
 }
 

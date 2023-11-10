@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import authOptions from './auth/[...nextauth]';
-import { updateUserOptIn } from '../../database/controllers';
+import { updateUserOptIn } from '@/controllers'
 import { Session } from 'next-auth';
-import { connect } from '../../database/database';
+import { connect } from '@/database'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Boolean | String>) {
     const session: Session | null = await unstable_getServerSession(req, res, authOptions);

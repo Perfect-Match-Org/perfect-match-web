@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import React from 'react';
-import { Match } from '../types/matches';
+import { Match } from '@/types/matches';
 import Head from 'next/head';
 
 const Matches: NextPage<Match[]> = (props) => {
@@ -17,6 +17,12 @@ const Matches: NextPage<Match[]> = (props) => {
     );
 };
 
+/**
+ * Declaring the server-side props makes the page server-side rendered.
+ * If the user is not logged in, redirect to the login page. Otherwise, return the user's session.
+ * @param context The request context that contains the request object.
+ * @returns The user's session if they are logged in, otherwise redirect to the login page.
+ */
 export async function getServerSideProps(context: any) {
     const session = await getSession(context);
     if (!session) {

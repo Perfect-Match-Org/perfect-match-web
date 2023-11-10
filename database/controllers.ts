@@ -10,6 +10,11 @@ import { ObjectId } from 'mongodb';
 const matchRevealData =
     'id email profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap';
 
+/**
+* Populates match data with specific fields from the User model.
+* @param {string} index - The index of the partner (A or B) to populate.
+* @returns An object with the path, model, and selected fields for populating match data.
+*/
 const populateMatch = (index: string) => {
     return {
         path: `partner${index}Id`,
@@ -19,6 +24,12 @@ const populateMatch = (index: string) => {
 };
 
 // User CRUD operations-----------------------------------------------------------------------------------------------
+
+/**
+ * Creates a new user in the database.
+ * @param {UserType} user - The user data to create a new user.
+ * @returns A Promise that resolves to the created UserType.
+ */
 export const createUser = async (user: any): Promise<UserType> => {
     const { email, given_name, family_name } = user;
     const newUser = new User({
@@ -30,6 +41,11 @@ export const createUser = async (user: any): Promise<UserType> => {
     return doc;
 };
 
+/**
+ * Retrieves a user from the database by email and populates match reviews.
+ * @param {any} user - The user object containing the email to search for.
+ * @returns A Promise that resolves to the UserType with populated match reviews.
+ */
 export const getUser = async (user: any): Promise<UserType> => {
     const doc = await User.findOne({ email: user.email }).populate({
         path: 'matchReviews',
@@ -47,48 +63,101 @@ export const getUser = async (user: any): Promise<UserType> => {
     return doc;
 };
 
+/**
+ * Counts the number of User documents in the database.
+ * @returns A Promise that resolves to the number of users.
+ */
 export const getUsersCount = async (): Promise<number> => {
     const resp = await User.countDocuments();
     return resp;
 };
 
+/**
+ * Retrieves all users from the database.
+ * @returns A Promise that resolves to an array of UserType.
+ */
 export const getUsers = async (): Promise<UserType[]> => {
     const users = await User.find();
     return users;
 };
 
+/**
+ * Updates the crushes list for a specific user.
+ * @param {any} user - The user object containing the email to match.
+ * @param {any} crushes - The new crushes data to update.
+ * @returns A Promise that resolves to the updated UserType.
+ */
 export const updateCrushes = async (user: any, crushes: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { crushes: crushes }, { new: true });
     return doc;
 };
 
+/**
+ * Updates the forbidden list for a specific user.
+ * @param {any} user - The user object containing the email to match.
+ * @param {any} forbidden - The new forbidden data to update.
+ * @returns A Promise that resolves to the updated UserType.
+ */
 export const updateForbidden = async (user: any, forbidden: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { forbidden: forbidden }, { new: true });
     return doc;
 };
 
+/**
+ * Updates the opt-in status for a specific user.
+ * @param {any} user - The user object containing the email to match.
+ * @param {any} optIn - The new opt-in status to update.
+ * @returns A Promise that resolves to the updated UserType.
+ */
 export const updateUserOptIn = async (user: any, optIn: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { optIn: optIn }, { new: true });
     return doc;
 };
 
 // Survey and Profile CRUD operations---------------------------------------------------------------------------------------------
+
+/**
+ * Updates the survey data for a specific user.
+ * @param {any} user - The user object containing the email to match.
+ * @param {any} survey - The new survey data to update.
+ * @returns A Promise that resolves to the updated UserType.
+ */
 export const updateSurvey = async (user: any, survey: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { survey: survey }, { new: true });
     return doc;
 };
 
+/**
+ * Updates the profile information for a specific user.
+ * @param {any} user - The user object containing the email to match.
+ * @param {any} profile - The new profile data to update.
+ * @returns A Promise that resolves to the updated UserType.
+ */
 export const updateProfile = async (user: any, profile: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { profile: profile }, { new: true });
     return doc;
 };
 
+/**
+ * Updates the feedback for a specific user.
+ * @param {any} user - The user object containing the email to match.
+ * @param {any} feedback - The new feedback data to update.
+ * @returns A Promise that resolves to the updated UserType.
+ */
 export const updateFeedback = async (user: any, feedback: any): Promise<UserType> => {
     const doc = await User.findOneAndUpdate({ email: user.email }, { feedback: feedback }, { new: true });
     return doc;
 };
 
 // Match Review CRUD operations---------------------------------------------------------------------------------------------
+
+/**
+ * Updates or creates a match review for a specific match and user.
+ * @param {string} userEmail - The email of the user providing the review.
+ * @param {string} matchId - The ID of the match being reviewed.
+ * @param {Review} review - The review data to update.
+ * @returns A Promise that resolves to the updated MatchReview or null if not valid.
+ */
 export const updateMatchReview = async (
     userEmail: string,
     matchId: string,
@@ -122,6 +191,12 @@ export const updateMatchReview = async (
 };
 
 // Collab CRUD operations---------------------------------------------------------------------------------------------
+
+/**
+ * Requests a One-Time Password (OTP) for a user to perform a mutual verification.
+ * @param {string} email - The email of the user requesting the OTP.
+ * @returns A Promise that resolves to the OTP if it was successfully sent, or null if the user does not exist.
+ */
 export const requestOTP = async (email: string) => {
     const user = await User.findOne({ email });
     if (!user) return null;
@@ -138,6 +213,12 @@ export const requestOTP = async (email: string) => {
     return await sendOTP(user, otpValue);
 };
 
+/**
+ * Retrieves a list of mutual verified matches for a user after verifying their OTP.
+ * @param {string} email - The email of the user.
+ * @param {number} otp - The OTP provided by the user for verification.
+ * @returns A Promise that resolves to an array of emails representing the mutual verified matches.
+ */
 export const getMutualVerifiedMatches = async (email: string, otp: number) => {
     const registeredOTP = await OTP.findOne({ email }).exec();
 

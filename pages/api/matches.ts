@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import authOptions from './auth/[...nextauth]';
-import { getUser } from '../../database/controllers';
+import { getUser } from '@/controllers'
 import { Session } from 'next-auth';
-import { connect } from '../../database/database';
-import { Matches } from '../../types/users';
+import { connect } from '@/database'
+import { Matches } from '@/types/users';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Matches[] | String>) {
     const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
