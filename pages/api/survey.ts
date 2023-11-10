@@ -6,6 +6,15 @@ import { Session } from 'next-auth';
 import { connect } from '@/database'
 import { Survey } from '@/types/users';
 
+/**
+ * Handles the API request to update a survey.
+ * This route requires authentication and only accepts POST requests.
+ * It updates the survey details of the authenticated user.
+ * 
+ * @param {NextApiRequest} req - The incoming HTTP request.
+ * @param {NextApiResponse<Survey | string>} res - The HTTP response object.
+ * @returns {Promise<void>} - A promise that resolves when the response is sent.
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Survey | String>) {
     const session: Session | null = await unstable_getServerSession(req, res, authOptions);
     if (!session) return res.status(401).send('Unauthorized');

@@ -13,6 +13,12 @@ const isValidCornellEmail = (email: string): boolean => {
     return domain === 'cornell.edu' || email === 'cornell.perfectmatch@gmail.com';
 };
 
+/**
+ * Configures NextAuth authentication with Google as a provider.
+ * Includes custom logic for sign-in callbacks.
+ * 
+ * @returns {object} The NextAuth configuration object.
+ */
 export default NextAuth({
     providers: [
         GoogleProvider({

@@ -6,6 +6,16 @@ import { Session } from 'next-auth';
 import { connect } from '@/database'
 import { Profile } from '@/types/users';
 
+/**
+ * API handler to manage user profiles.
+ * Supports GET for retrieving the user profile and POST for updating it.
+ * The function first checks the user session for authentication.
+ * Depending on the request method, it either retrieves or updates the user's profile.
+ * 
+ * @param {NextApiRequest} req - The API request object.
+ * @param {NextApiResponse<Profile | String>} res - The API response object used to return the user profile or an error message.
+ * @returns {Promise<void>} - A promise that resolves when the response is sent.
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Profile | String>) {
     const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
     if (!session) return res.status(401).send('Unauthorized');
