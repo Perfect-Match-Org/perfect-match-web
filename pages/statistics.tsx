@@ -6,8 +6,13 @@ import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
 import Stats2023 from '@/components/analytics/2023Analytics';
+import Stats2022 from '@/components/analytics/2022Analytics';
+import { Stats } from 'fs';
+import { useState } from 'react';
 
 const Statistics: any = (props: any) => {
+    const [year, setYear] = useState(2022);
+
     return (
         <div>
             <Head>
@@ -44,7 +49,13 @@ const Statistics: any = (props: any) => {
                     </div>
                 </section>
             </div>
-            <Stats2023 />
+
+            <div>
+                <button onClick={() => setYear(2022)}>2022</button>
+                <button onClick={() => setYear(2023)}>2023</button>
+
+                {year === 2022 ? <Stats2022 /> : <Stats2023 />}
+            </div>
 
             <Footer />
         </div>
