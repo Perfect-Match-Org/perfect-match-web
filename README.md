@@ -1,4 +1,4 @@
-# Cornell Perfect Match - 2024 Iteration
+# Cornell Perfect Match
 
 Welcome to the Cornell Perfect Match repository!
 
@@ -6,16 +6,18 @@ Perfect Match is a matchmaking survey that pairs Cornell students with their "Pe
 learning algorithm. The survey was first ideated in February 2019 and has grown in popularity, with over 4,200
 participants in the previous iteration.
 
-This repository contains the code for the 2023 iteration of Perfect Match, built using Next.js and yarn. We invite you
+This repository contains the code for the 2023 iteration of Perfect Match, built using Next.js and pnpm. We invite you
 to take the survey and share the link with your friends to help spread some joy in 2023.
 
 ## Getting Started
 
 To run the application locally, please follow these steps:
 
+Note: Please ensure that you have [pnpm](https://pnpm.io/) installed on your machine.
+
 1. Clone the repository to your local machine
-2. Run `yarn` to install the dependencies
-3. Run `yarn dev` to start the development server
+2. Run `pnpm install` to install the dependencies
+3. Run `pnpm dev` to start the development server
 4. The application will be running on `http://localhost:3000`
 
 ## Contributing
