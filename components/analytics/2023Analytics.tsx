@@ -24,10 +24,7 @@ const Stats2023 = () => {
 
     return (
         <div>  <div>
-
-
-            <hr className="border-2 border-rose-300" />
-            <section className="bg-white pt-12 sm:pt-16 lg:pt-24 sm:pb-5 pb-1">
+            <section className="bg-white pt-12 sm:pt-16 lg:pt-20 sm:pb-5 pb-1">
                 <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 mx-[3%] sm:mx-[10%] lg:mx-[20%]">
                     About Participants of PM23
                 </h2>

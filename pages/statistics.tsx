@@ -18,9 +18,8 @@ const Statistics: any = (props: any) => {
             <Head>
                 <title>Statistics</title>
             </Head>
-            <Header />`
-            <div className="bg-white sm:py-14 lg:py-6 sm:pr-4 pt-6">
-                {' '}
+            <Header />
+            <div className="bg-white sm:py-14 lg:py-10 sm:pr-4 pt-6">
                 <section
                     className="sm:mr-0"
                     style={{
@@ -51,18 +50,18 @@ const Statistics: any = (props: any) => {
             </div>
 
             <div>
-                <div className="w-full flex flex-col items-center justify-center text-white">
-                    <p className="mt-4 sm:mx-0 sm:text-lg text-gray-500 sm:leading-relaxed">
+                <div className="w-full flex flex-col items-center justify-center text-white bg-pink-100 sm:py-12 py-8">
+                    <p className="text-center mt-4 sm:text-lg text-gray-500 font-bold mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                         See this year&apos;s statistics or travel back in time to explore statistics from past years!</p>
-                    <div className="flex">
+                    <div className="flex sm:mt-4 mt-2 gap-4">
                         <button
-                            className="bg-rose-400 hover:bg-rose-300 text-white font-bold py-4 px-10 rounded-full m-2"
+                            className="text-lg bg-rose-400 hover:bg-rose-300 text-white font-bold py-2 px-8 rounded-full m-2"
                             onClick={() => setYear(2022)}
                         >
                             2022
                         </button>
                         <button
-                            className="bg-rose-400 hover:bg-rose-300 text-white font-bold py-4 px-10 rounded-full m-2"
+                            className="text-lg bg-rose-400 hover:bg-rose-300 text-white font-bold py-2 px-8 rounded-full m-2"
                             onClick={() => setYear(2023)}
                         >
                             2023

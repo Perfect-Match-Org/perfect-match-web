@@ -27,31 +27,8 @@ const Stats2022 = () => {
             <div>
                 <div>
                     {' '}
-                    {/* <section
-                        className="sm:mx-[5%]"
-                        style={{
-                            marginBottom: '20px',
-                            marginTop: '10px',
-                            backgroundImage: 'url("networks.png")',
-                            height: '100%',
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'right top',
-                        }}
-                    >
-                        <div className="mx-auto max-w-screen-xl pt-[70%] pb-10 lg:items-center sm:pt-60 sm:pb-36">
-                            <div className="max-w-xl text-center sm:text-left sm:ml-[8%] mt-8 sm:mt-0">
-                                <h1 className="text-3xl font-extrabold text-rose-400 sm:text-5xl">Can Love be Visualized?</h1>
-                                <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-gray-500 sm:leading-relaxed">
-                                    <strong>Perhaps not without daydreaming about your crush, but your survey responses can!</strong> Join us on this journey to
-                                    learn about some of the preferences and habits we&apos;ve discovered from several years of survey responses!
-                                </p>
-                            </div>
-                        </div>
-                    </section> */}
                 </div>
-                <hr className="border-2 border-rose-300" />
-                <section className="bg-white pt-12 sm:pt-16 lg:pt-24 sm:pb-5 pb-1">
+                <section className="bg-white pt-12 sm:pt-16 lg:pt-20 sm:pb-5 pb-1">
                     <h2 className="mb-6 text-2xl sm:text-4xl tracking-tight font-extrabold text-rose-400 mx-[5%] sm:mx-[10%] lg:mx-[20%]">
                         About Participants of PM22
                     </h2>
