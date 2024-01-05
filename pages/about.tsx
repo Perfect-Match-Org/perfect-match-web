@@ -290,7 +290,7 @@ const About: any = (props: any) => {
                                 </details>
                                 <details className="mb-5">
                                     <summary className="sm:font-semibold font-medium bg-white rounded-md py-2 px-4 cursor-pointer">
-                                        How to join the Perfect Match team?
+                                        How to join the Perfect Match team ?
                                     </summary>
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
