@@ -24,9 +24,9 @@ export function ChatSection({ people }) {
 
                 <main>
                     <ul role="list" className="divide-y divide-gray-100">
-                        {people.map((person) => (
+                        {people.map((person, index) => (
                             // <a href={"/chat/" + person.chatroom} style={{ textDecoration: 'none' }}>
-                            <a href={"/chat/chatroom"} style={{ textDecoration: 'none' }}>
+                            <a key={index} href={"/chat/chatroom"} style={{ textDecoration: 'none' }}>
 
                                 <li key={person.major} className="border-t border-b border-gray-200 flex justify-between gap-x-6 py-5">
 
