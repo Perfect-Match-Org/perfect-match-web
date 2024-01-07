@@ -26,6 +26,9 @@ const Toggle = () => {
                                 <Link href="/blog">Blog🥳</Link>
                             </li>
                             <li className="text-gray-500 text-xl font-medium mt-5 mb-5">
+                                <Link href="/chat">Chats</Link>
+                            </li>
+                            <li className="text-gray-500 text-xl font-medium mt-5 mb-5">
                                 <Link href="/about">About & Contact👨‍💻</Link>
                             </li>
                         </ul>

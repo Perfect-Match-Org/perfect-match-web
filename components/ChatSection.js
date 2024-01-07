@@ -14,12 +14,7 @@ export function ChatSection({ people }) {
 
         <div>
 
-            <header className="bg-slate-100 shadow">
-                <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    {/* <img src="https://perfectmatch.ai/logo.png" alt="Logo" className="logo h-16" /> */}
-                    {/* <h1 className="text-3xl font-bold tracking-tight text-gray-500"> Chats</h1> */}
-                </div>
-            </header>
+
             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
                 <main>
@@ -40,7 +35,7 @@ export function ChatSection({ people }) {
                                         </div>
                                     </div>
                                     <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                                        <button type="button" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-rose-400 rounded-lg hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:bg-rose-600 dark:hover:bg-rose-400 dark:focus:ring-rose-400">
+                                        <button type="button" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-rose-400 rounded-lg hover:bg-rose-500 focus:ring-4 focus:outline-none focus:ring-rose-400 ">
                                             Messages
                                             <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-rose-800 bg-rose-200 rounded-full">
                                                 2

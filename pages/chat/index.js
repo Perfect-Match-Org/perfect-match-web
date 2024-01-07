@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { ChatSection } from '../../components/ChatSection';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 
 export default function Chat() {
 
@@ -44,7 +46,9 @@ export default function Chat() {
     return (
 
         <div>
+            <Header />
             <ChatSection people={people} />
+            <Footer />
         </div>
     );
 }

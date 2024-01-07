@@ -36,11 +36,15 @@ function Header(props: any) {
                                 <Link href="/profile">Profile</Link>
                             </li>
                             <li className="hover:text-rose-400">
+                                <Link href="/chat"> Chat</Link>
+                            </li>
+                            <li className="hover:text-rose-400">
                                 <Link href="/statistics"> Statistics</Link>
                             </li>
                             <li className="hover:text-rose-400">
                                 <Link href="/blog"> Blog</Link>
                             </li>
+
                             <li className="hover:text-rose-400">
                                 <Link href="/about"> About & Contact</Link>
                             </li>
