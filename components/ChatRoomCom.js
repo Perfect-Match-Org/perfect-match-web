@@ -103,7 +103,7 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
                         {messages.length > 0 ? (
                             messages.map((message, index) => (
                                 <div key={index} className={message.sender != sender ? "flex justify-start mb-4" : "flex justify-end mb-4"}>
-                                    <div className={message.sender === sender ? "ml-2 py-3 px-4 bg-gray-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white" : "mr-2 py-3 px-4 bg-rose-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"}>
+                                    <div key={index} className={message.sender === sender ? "ml-2 py-3 px-4 bg-gray-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white" : "mr-2 py-3 px-4 bg-rose-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"}>
                                         {message.message}
                                     </div>
                                 </div>
