@@ -101,7 +101,7 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
 
                         <div className="bg-red-100 border-l border-r border-red-400 text-red-700 px-[10%] py-3 rounded relative" role="alert">
                             <strong className="font-bold">Holy smokes! </strong>
-                            <span className="block sm:inline"> You and Pratyush are a Match! Here's a tip from our in-house Cupid: ask Pratyush about Wushu and *Insert Another Insert Another Interst Here *!</span>
+                            <span className="block sm:inline"> You and Pratyush are a Match! Here is a tip from our in-house Cupid: ask Pratyush about Wushu and *Insert Another Insert Another Interst Here *!</span>
 
                         </div>
 
