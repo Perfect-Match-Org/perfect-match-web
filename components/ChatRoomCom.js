@@ -57,22 +57,22 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
 
 
     const handleButtonClick = () => {
-        // const messageData = {
-        //     chatRoomId: chatRoomId,
-        //     sender: sender,
-        //     receiver: receiver,
-        //     message: inputMessage
-        // };
+        const messageData = {
+            chat_room_id: current_chat_room_id,
+            sender: sender,
+            receiver: receiver,
+            message: inputMessage
+        };
 
-        // axios.post('/api/messages', messageData)
-        //     .then(response => {
-        //         console.log('Success:', response.data);
-        //         fetchMessages();
-        //         setInputMessage(''); // Clear the input field
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
+        axios.post(CHAT_API_URL + '/api/messages/' + current_chat_room_id)
+            .then(response => {
+                console.log('Success:', response.data);
+                // fetchMessages();
+                // setInputMessage(''); // Clear the input field
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
         console.log("button clicked")
     };
@@ -95,8 +95,7 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
 
                     ))}
                 </div> */}
-                <div className="flex">
-
+                <div className="flex flex-col sm:flex-row">
                     <div className="w-1/2">
                         <MatchTileChat />
 
@@ -109,19 +108,18 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
 
                     </div>
                     <div className="w-1/2">
-                        <div className="w-full px-5 flex flex-col-reverse justify-between">
-                            <div className="flex flex-col mt-5">
-                                {messages.length > 0 ? (
-                                    messages.map((message, index) => (
-                                        <div key={index} className={message.sender != sender ? "flex justify-start mb-4" : "flex justify-end mb-4"}>
-                                            <div key={index} className={message.sender === sender ? "ml-2 py-3 px-4 bg-gray-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white" : "mr-2 py-3 px-4 bg-rose-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"}>
-                                                {message.message}
-                                            </div>
+                        <div className="w-full px-5 flex flex-col-reverse justify-between bg-white rounded h-[500px] overflow-auto">                            <div className="flex flex-col mt-5">
+                            {messages.length > 0 ? (
+                                messages.map((message, index) => (
+                                    <div key={index} className={message.sender != sender ? "flex justify-start mb-4" : "flex justify-end mb-4"}>
+                                        <div key={index} className={message.sender === sender ? "ml-2 py-3 px-4 bg-gray-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white" : "mr-2 py-3 px-4 bg-rose-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"}>
+                                            {message.message}
                                         </div>
-                                    ))
-                                ) : null}
-                                <div ref={messagesEndRef} />
-                            </div>
+                                    </div>
+                                ))
+                            ) : null}
+                            <div ref={messagesEndRef} />
+                        </div>
                         </div>
                         <div className=" bottom-0 w-full py-3 bg-white flex items-center">
                             <input

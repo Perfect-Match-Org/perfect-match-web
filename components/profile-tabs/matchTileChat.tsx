@@ -21,7 +21,7 @@ export function MatchTileChat() {
     }, []);
 
     return (
-        <div className="grid gap-1 mb-2 lg:mb-1 md:grid-cols-1 flex border-t-10% border-gray-300">
+        <div className="grid gap-1 bg-white mb-2 lg:mb-1 md:grid-cols-1 flex border-t-10% border-gray-300">
             <div className="items-center rounded-lg shadow-xl flex sm:mx-[10%] ">
                 <div className="flex sm:contents">
                     <div className="text-8xl mt-4 sm:mt-0 sm:text-9xl mx-auto sm:ml-12 sm:mr-0">{matchEmoji}</div>
