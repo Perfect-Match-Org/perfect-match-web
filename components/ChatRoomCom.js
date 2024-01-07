@@ -33,7 +33,7 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
 
     //get messages from backend calling to api 
     useEffect(() => {
-        console.log(CHAT_API_URL + '/api/chats/' + current_chat_room_id)
+        console.log(CHAT_API_URL + '/api/chats/')
         const fetchMessages = (current_chat_room_id) => {
             fetch(CHAT_API_URL + '/api/chats/' + current_chat_room_id)
                 .then(response => {
@@ -64,7 +64,7 @@ export function ChatRoomCom({ current_chat_room_id, sender, receiver }) {
             message: inputMessage
         };
 
-        axios.post(CHAT_API_URL + '/api/messages/' + current_chat_room_id)
+        axios.post(CHAT_API_URL + '/api/messages/')
             .then(response => {
                 console.log('Success:', response.data);
                 // fetchMessages();
