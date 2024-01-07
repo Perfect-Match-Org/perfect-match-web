@@ -8,7 +8,7 @@ const keyLength = 32;
 const ivLength = 16;
 const constantIv = Buffer.alloc(ivLength, process.env.ENCRYPTION_L);
 
-export const CHAT_API_URL = 'https:/chat.perfectmatch.ai';
+export const CHAT_API_URL = 'https://chat.perfectmatch.ai';
 
 
 export function find_chatroom_id(user1, user2) {
