@@ -1,6 +1,7 @@
 import { ref, push, onValue } from 'firebase/database';
 import { createCipheriv, createDecipheriv, randomBytes, scrypt } from 'crypto';
 // import { db } from '../firebase';
+import prohibitedWords from './prohibitedWords.json';
 
 const algorithm = 'aes-256-cbc';
 const password = process.env.ENCRYPTION_KEY;
@@ -9,6 +10,7 @@ const ivLength = 16;
 const constantIv = Buffer.alloc(ivLength, process.env.ENCRYPTION_L);
 
 export const CHAT_API_URL = 'https://chat.perfectmatch.ai';
+
 
 
 export function find_chatroom_id(user1, user2) {
@@ -47,3 +49,17 @@ export function decrypt_chatroom_id(encrypted_chat_room_id, iv) {
     });
 }
 
+export function check_message(message) {
+    if (message.length === 0) {
+        return false;
+    }
+
+    const words = message.split(' ');
+    for (let word of words) {
+        if (prohibitedWords.includes(word.toLowerCase())) {
+            return false;
+        }
+    }
+
+    return true;
+}
