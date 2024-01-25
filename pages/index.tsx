@@ -244,11 +244,11 @@ const Home: NextPage = (props: any) => {
                     <div className="mt-12 lg:my-24 lg:mb-8">
                         <div className="text-center lg:text-left mx-[3%] md:mx-[10%] lg:ml-[8%] lg:mr-[6%]">
                             <h1 className="text-xl text-gray-600 font-extrabold md:text-3xl">
-                                Want an <span className="text-rose-400">extra match </span>next year?
+                                Want an <span className="text-rose-400">extra match </span>for PM2024?
                             </h1>
                             <p className="mt-6 lg:mt-10 text-base md:text-lg text-gray-500">
                                 <strong className="font-bold text-rose-400">NEW: </strong>Give us feedback on your
-                                matches this year and recieve an additional match in 2024❣️
+                                PM2023 matches and receive an additional match this year❣️
                             </p>
                             <p className="mt-2 md:text-lg text-gray-500">
                                 Sign in and head to your{' '}
