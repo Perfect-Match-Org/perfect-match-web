@@ -42,7 +42,7 @@ function CountDown() {
             >
                 <div className="font text-gray-500 sm:text-lg dark:text-gray-400">
                     <h2 className="text-xl text-gray-600 font-extrabold sm:text-3xl mb-4 mt-8">
-                        Perfect Match Returns <span className="text-rose-400"> Feburary 2024 😻 </span>
+                        Perfect Match Returns <span className="text-rose-400"> February 2024 😻 </span>
                     </h2>
                     <h2 className="text-xl text-gray-600 font-extrabold md:text-3xl mb-4">
                         See you in ...
