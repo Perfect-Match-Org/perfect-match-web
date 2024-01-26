@@ -257,7 +257,7 @@ const About: any = (props: any) => {
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
                                         Perfect Match is a matchmaking service for Cornell students and alumni. It uses
                                         machine learning algorithms to match participants based on their responses to
-                                        the survey. Every year, the survey opens in early Feburary and has thousands of
+                                        the survey. Every year, the survey opens in early February and has thousands of
                                         participants. Matches are released the weekend before Valentine&apos;s day.
                                     </p>
                                 </details>
@@ -301,7 +301,7 @@ const About: any = (props: any) => {
 
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
                                         The Perfect Match algorithm can be broken into two parts: scoring and matching.
-                                        First, we use our machine learning algorithm to score compatability between you
+                                        First, we use our machine learning algorithm to score compatibility between you
                                         and all other participants who satisfy your main criteria, as determined by your
                                         responses. We then use our proprietary matching algorithm to generate optimal
                                         matches based on these scores.
@@ -385,7 +385,7 @@ const About: any = (props: any) => {
                                 Contact Us!
                             </h2>
                             <p className="mb-4 sm:font-medium">
-                                Feel free to reach out with questions, suggestions, comments.{' '}
+                                Feel free to reach out with questions, suggestions, or comments.{' '}
                             </p>
                             <p className="mb-4 sm:font-medium">
                                 {' '}
