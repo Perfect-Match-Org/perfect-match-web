@@ -53,7 +53,7 @@ export const team = [
                 Major: 'CS & Math & Government',
                 Img: '/members/daniel.png',
                 Linkedin: 'https://www.linkedin.com/in/daniel-chuang-7a1bb920b/',
-                Title1: 'Analytics Subteam Member',
+                Title1: 'Data Analysis Subteam Member',
             },
             {
                 Name: 'Samantha Smith',
