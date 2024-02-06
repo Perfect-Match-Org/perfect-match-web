@@ -12,7 +12,6 @@ import { useState } from 'react';
 import Blogposts from '@/components/blogposts/index';
 import Members from '@/components/members';
 
-
 const Blog: any = (props: any) => {
     const [year, setYear] = useState(2023);
 
@@ -41,22 +40,19 @@ const Blog: any = (props: any) => {
                                 Blog
                             </h1>
                             <p className="mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-gray-500 sm:leading-relaxed">
-                                <strong>
-                                    Stories from the team and community behind Perfect Match
-                                </strong>{' '}
-
+                                <strong>Stories from the team and community behind Perfect Match</strong>{' '}
                             </p>
                         </div>
                     </div>
                 </section>
-            </div >
+            </div>
 
             <div>
                 <Blogposts />
             </div>
 
             <Footer />
-        </div >
+        </div>
     );
 };
 

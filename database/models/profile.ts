@@ -21,8 +21,8 @@ export interface IProfile extends Document {
         oldest: number;
     };
     activities: string[];
-    describeYourself?: { describe1: string; describe2: string; describe3: string; }
-    describePartner?: { describe1: string; describe2: string; describe3: string; }
+    describeYourself?: { describe1: string; describe2: string; describe3: string };
+    describePartner?: { describe1: string; describe2: string; describe3: string };
     bio?: string;
 }
 

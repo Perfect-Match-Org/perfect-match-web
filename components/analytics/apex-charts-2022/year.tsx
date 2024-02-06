@@ -53,6 +53,8 @@ const Year = () => {
                 show: false,
             },
             tooltip: {
+                theme: 'dark',
+
                 enabled: true,
             },
             labels: {

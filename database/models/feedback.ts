@@ -38,7 +38,11 @@ export const matchFeedbackSchema: Schema = new Schema<IMatchFeedback>(
 
 export const surveyFeedbackSchema: Schema = new Schema<ISurveyFeedback>(
     {
-        categoryRanking: { type: [String], required: true, default: ['Interest', 'Lifestyle', 'Beliefs', 'Goal', 'Vibe'] },
+        categoryRanking: {
+            type: [String],
+            required: true,
+            default: ['Interest', 'Lifestyle', 'Beliefs', 'Goal', 'Vibe'],
+        },
         surveyFeedback: { type: String, required: true },
         otherValentinesDayImpact: { type: String, required: false },
         comments: { type: String, required: false },

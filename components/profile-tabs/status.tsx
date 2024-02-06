@@ -46,11 +46,17 @@ const Status: any = (props: any) => {
                         </dt>
                         <ol className="mb-8 list-decimal list-inside">
                             Please complete all required steps to be included to this year&apos;s matching.
-                            <li>&#91;Required&#93;<strong> Opt In</strong> &#40;right below&#41; to indicate you are interested in participating.</li>
                             <li>
-                                &#91;Required&#93; Complete your <strong>profile</strong> to tell us and your matches about you.
+                                &#91;Required&#93;<strong> Opt In</strong> &#40;right below&#41; to indicate you are
+                                interested in participating.
                             </li>
-                            <li>&#91;Required&#93; Complete the <strong>survey</strong>.  It will take 10~15 minutes.</li>
+                            <li>
+                                &#91;Required&#93; Complete your <strong>profile</strong> to tell us and your matches
+                                about you.
+                            </li>
+                            <li>
+                                &#91;Required&#93; Complete the <strong>survey</strong>. It will take 10~15 minutes.
+                            </li>
                             <li>&#91;Optional&#93; Input your crushes/forbidden matches if you&apos;d like.</li>
                         </ol>
                         <dt className="mb-4">
@@ -67,8 +73,9 @@ const Status: any = (props: any) => {
 
                             <button
                                 onClick={handleClick}
-                                className={`mt-2 bg-transparent hover:bg-rose-500 font-semibold hover:text-white py-1 px-2 border hover:border-transparent rounded ${props.optIn ? 'border-rose-500 text-rose-700' : 'border-green-500 text-green-700'
-                                    }`}
+                                className={`mt-2 bg-transparent hover:bg-rose-500 font-semibold hover:text-white py-1 px-2 border hover:border-transparent rounded ${
+                                    props.optIn ? 'border-rose-500 text-rose-700' : 'border-green-500 text-green-700'
+                                }`}
                             >
                                 {props.optIn ? 'Opt-Out' : 'Opt-In'}
                             </button>

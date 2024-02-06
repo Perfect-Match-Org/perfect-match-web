@@ -35,8 +35,8 @@ const RelationshipType = () => {
                 return [name, parseInt(val).toFixed(0) + '%'];
             },
             style: {
-                fontSize: '13px'
-            }
+                fontSize: '13px',
+            },
         },
         legend: {
             show: false,
@@ -47,4 +47,3 @@ const RelationshipType = () => {
 };
 
 export default RelationshipType;
-

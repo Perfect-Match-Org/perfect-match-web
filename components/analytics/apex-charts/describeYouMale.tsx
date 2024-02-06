@@ -10,55 +10,55 @@ const DescribeYouMale = () => {
             data: [
                 {
                     x: 'Funny',
-                    y: 28.9
+                    y: 28.9,
                 },
                 {
                     x: 'Smart',
-                    y: 11.1
+                    y: 11.1,
                 },
                 {
                     x: 'Thoughtful',
-                    y: 10
+                    y: 10,
                 },
                 {
                     x: 'Caring',
-                    y: 8.1
+                    y: 8.1,
                 },
                 {
                     x: 'Adventurous',
-                    y: 7.5
+                    y: 7.5,
                 },
                 {
                     x: 'Charming',
-                    y: 7
+                    y: 7,
                 },
                 {
                     x: 'Kind',
-                    y: 6.7
+                    y: 6.7,
                 },
                 {
                     x: 'Witty',
-                    y: 6.2
+                    y: 6.2,
                 },
                 {
                     x: 'Chill',
-                    y: 5.8
+                    y: 5.8,
                 },
                 {
                     x: 'Passionate',
-                    y: 4.9
+                    y: 4.9,
                 },
                 {
                     x: 'Outgoing',
-                    y: 4.7
+                    y: 4.7,
                 },
                 {
                     x: 'Loyal',
-                    y: 4.3
+                    y: 4.3,
                 },
                 {
                     x: 'Goofy',
-                    y: 4.2
+                    y: 4.2,
                 },
             ],
         },
@@ -105,12 +105,14 @@ const DescribeYouMale = () => {
             },
         },
         tooltip: {
+            theme: 'dark',
+
             y: {
                 formatter: function (value: any) {
-                    return value + "%"
-                }
-            }
-        }
+                    return value + '%';
+                },
+            },
+        },
     };
 
     return <ReactApexChart type="treemap" series={series} options={options as ApexCharts.ApexOptions} />;

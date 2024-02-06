@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { requestOTP } from '@/controllers'
-import { connect } from '@/database'
+import { requestOTP } from '@/controllers';
+import { connect } from '@/database';
 
 /**
  * API handler for requesting an OTP (One-Time Password).

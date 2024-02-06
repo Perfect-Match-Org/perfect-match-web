@@ -8,7 +8,7 @@ const Year = () => {
     const series = [
         {
             name: 'Percent in total',
-            data: [954, 1095, 835, 803, 117, 61, 40, 6]
+            data: [954, 1095, 835, 803, 117, 61, 40, 6],
         },
     ];
     const options = {
@@ -44,7 +44,7 @@ const Year = () => {
             },
         },
         xaxis: {
-            categories: ["Freshman", "Sophomore", "Junior", "Senior", "Masters", "PhD", "Alumni", "Faculty"],
+            categories: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Masters', 'PhD', 'Alumni', 'Faculty'],
             position: 'bottom',
             axisBorder: {
                 show: false,
@@ -53,6 +53,8 @@ const Year = () => {
                 show: false,
             },
             tooltip: {
+                theme: 'dark',
+
                 enabled: true,
             },
             labels: {

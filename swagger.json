@@ -1,807 +1,794 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "Perfect Match API Documentation",
-    "version": "1.0.0"
-  },
-  "components": {
-    "schemas": {
-      "Profile": {
-        "type": "object",
-        "properties": {
-          "complete": {
-            "type": "boolean"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "gender": {
-            "type": "string"
-          },
-          "genderPref": {
-            "type": "array",
-            "items": {
-              "type": "string"
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Perfect Match API Documentation",
+        "version": "1.0.0"
+    },
+    "components": {
+        "schemas": {
+            "Profile": {
+                "type": "object",
+                "properties": {
+                    "complete": {
+                        "type": "boolean"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": "string"
+                    },
+                    "genderPref": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "age": {
+                        "type": "integer"
+                    },
+                    "height": {
+                        "type": "integer"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "race": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "year": {
+                        "type": "string"
+                    },
+                    "college": {
+                        "type": "string"
+                    },
+                    "major": {
+                        "type": "string"
+                    },
+                    "commitment": {
+                        "type": "string"
+                    },
+                    "relationshipType": {
+                        "type": "string"
+                    },
+                    "agePref": {
+                        "type": "object",
+                        "properties": {
+                            "youngest": {
+                                "type": "integer"
+                            },
+                            "oldest": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "activities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "describeYourself": {
+                        "type": "string"
+                    },
+                    "bio": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Survey": {
+                "type": "object",
+                "properties": {
+                    "complete": {
+                        "type": "boolean"
+                    },
+                    "p1": {
+                        "type": "string"
+                    },
+                    "p2": {
+                        "type": "string"
+                    },
+                    "p3": {
+                        "type": "string"
+                    },
+                    "p4": {
+                        "type": "string"
+                    },
+                    "p5": {
+                        "type": "string"
+                    },
+                    "p6": {
+                        "type": "string"
+                    },
+                    "p7": {
+                        "type": "string"
+                    },
+                    "p8": {
+                        "type": "string"
+                    },
+                    "p9": {
+                        "type": "string"
+                    },
+                    "p10": {
+                        "type": "string"
+                    },
+                    "p11": {
+                        "type": "string"
+                    },
+                    "p12": {
+                        "type": "string"
+                    },
+                    "p13": {
+                        "type": "string"
+                    },
+                    "p14": {
+                        "type": "string"
+                    },
+                    "p15": {
+                        "type": "string"
+                    },
+                    "p16": {
+                        "type": "string"
+                    },
+                    "p17": {
+                        "type": "string"
+                    },
+                    "p18": {
+                        "type": "string"
+                    },
+                    "p19": {
+                        "type": "string"
+                    },
+                    "generalPersonality": {
+                        "type": "string"
+                    },
+                    "introvert": {
+                        "type": "number"
+                    },
+                    "introvert_same": {
+                        "type": "string"
+                    },
+                    "easygoing": {
+                        "type": "number"
+                    },
+                    "easygoing_same": {
+                        "type": "string"
+                    },
+                    "numdated": {
+                        "type": "number"
+                    },
+                    "longestrelationship": {
+                        "type": "number"
+                    },
+                    "ricePurity": {
+                        "type": "string"
+                    },
+                    "pairedwith": {
+                        "type": "string"
+                    },
+                    "apps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "politics": {
+                        "type": "number"
+                    },
+                    "politically_active": {
+                        "type": "number"
+                    },
+                    "habits": {
+                        "type": "object",
+                        "properties": {
+                            "drinking": {
+                                "type": "string"
+                            },
+                            "smoking": {
+                                "type": "string"
+                            },
+                            "weed": {
+                                "type": "string"
+                            },
+                            "other": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "partner_habits": {
+                        "type": "object",
+                        "properties": {
+                            "drinking": {
+                                "type": "string"
+                            },
+                            "smoking": {
+                                "type": "string"
+                            },
+                            "weed": {
+                                "type": "string"
+                            },
+                            "other": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "deal_breakers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "partner_deal_breakers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "optIn": {
+                        "type": "boolean"
+                    },
+                    "profile": {
+                        "$ref": "#/components/schemas/Profile"
+                    },
+                    "survey": {
+                        "$ref": "#/components/schemas/Survey"
+                    },
+                    "crushes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "forbidden": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "matches": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "objectId"
+                        }
+                    },
+                    "matchReviews": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "objectId"
+                        }
+                    },
+                    "collab": {
+                        "type": "object",
+                        "properties": {
+                            "mutual": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "feedback": {
+                        "$ref": "#/components/schemas/SurveyFeedback"
+                    }
+                }
+            },
+            "Match": {
+                "type": "object",
+                "properties": {
+                    "partnerAId": {
+                        "type": "string",
+                        "format": "objectId"
+                    },
+                    "partnerBId": {
+                        "type": "string",
+                        "format": "objectId"
+                    },
+                    "partnerAFeedback": {
+                        "type": "object",
+                        "properties": {
+                            "overallRating": {
+                                "type": "number"
+                            },
+                            "topReasonForRating": {
+                                "type": "string"
+                            },
+                            "metMatch": {
+                                "type": "boolean"
+                            },
+                            "numberOfDates": {
+                                "type": "number"
+                            },
+                            "inRelationshipWithMatch": {
+                                "type": "boolean"
+                            },
+                            "additionalComments": {
+                                "type": "string"
+                            },
+                            "dateSubmitted": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "partnerBFeedback": {
+                        "type": "object",
+                        "properties": {
+                            "overallRating": {
+                                "type": "number"
+                            },
+                            "topReasonForRating": {
+                                "type": "string"
+                            },
+                            "metMatch": {
+                                "type": "boolean"
+                            },
+                            "numberOfDates": {
+                                "type": "number"
+                            },
+                            "inRelationshipWithMatch": {
+                                "type": "boolean"
+                            },
+                            "additionalComments": {
+                                "type": "string"
+                            },
+                            "dateSubmitted": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "overallStatus": {
+                        "type": "string",
+                        "enum": ["pending", "complete", "partial"]
+                    }
+                }
+            },
+            "MatchFeedback": {
+                "type": "object",
+                "properties": {
+                    "overallRating": {
+                        "type": "number"
+                    },
+                    "topReasonForRating": {
+                        "type": "string"
+                    },
+                    "metMatch": {
+                        "type": "boolean"
+                    },
+                    "numberOfDates": {
+                        "type": "number"
+                    },
+                    "inRelationshipWithMatch": {
+                        "type": "boolean"
+                    },
+                    "additionalComments": {
+                        "type": "string"
+                    },
+                    "dateSubmitted": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "SurveyFeedback": {
+                "type": "object",
+                "properties": {
+                    "bad": {
+                        "type": "boolean"
+                    },
+                    "opportunities": {
+                        "type": "boolean"
+                    },
+                    "fun": {
+                        "type": "boolean"
+                    },
+                    "joy": {
+                        "type": "boolean"
+                    },
+                    "memories": {
+                        "type": "boolean"
+                    },
+                    "anticipation": {
+                        "type": "boolean"
+                    },
+                    "categoryRanking": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "surveyFeedback": {
+                        "type": "string"
+                    },
+                    "otherValentinesDayImpact": {
+                        "type": "string"
+                    },
+                    "comments": {
+                        "type": "string"
+                    }
+                }
             }
-          },
-          "age": {
-            "type": "integer"
-          },
-          "height": {
-            "type": "integer"
-          },
-          "city": {
-            "type": "string"
-          },
-          "race": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "year": {
-            "type": "string"
-          },
-          "college": {
-            "type": "string"
-          },
-          "major": {
-            "type": "string"
-          },
-          "commitment": {
-            "type": "string"
-          },
-          "relationshipType": {
-            "type": "string"
-          },
-          "agePref": {
-            "type": "object",
-            "properties": {
-              "youngest": {
-                "type": "integer"
-              },
-              "oldest": {
-                "type": "integer"
-              }
-            }
-          },
-          "activities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "describeYourself": {
-            "type": "string"
-          },
-          "bio": {
-            "type": "string"
-          }
         }
-      },
-      "Survey": {
-        "type": "object",
-        "properties": {
-          "complete": {
-            "type": "boolean"
-          },
-          "p1": {
-            "type": "string"
-          },
-          "p2": {
-            "type": "string"
-          },
-          "p3": {
-            "type": "string"
-          },
-          "p4": {
-            "type": "string"
-          },
-          "p5": {
-            "type": "string"
-          },
-          "p6": {
-            "type": "string"
-          },
-          "p7": {
-            "type": "string"
-          },
-          "p8": {
-            "type": "string"
-          },
-          "p9": {
-            "type": "string"
-          },
-          "p10": {
-            "type": "string"
-          },
-          "p11": {
-            "type": "string"
-          },
-          "p12": {
-            "type": "string"
-          },
-          "p13": {
-            "type": "string"
-          },
-          "p14": {
-            "type": "string"
-          },
-          "p15": {
-            "type": "string"
-          },
-          "p16": {
-            "type": "string"
-          },
-          "p17": {
-            "type": "string"
-          },
-          "p18": {
-            "type": "string"
-          },
-          "p19": {
-            "type": "string"
-          },
-          "generalPersonality": {
-            "type": "string"
-          },
-          "introvert": {
-            "type": "number"
-          },
-          "introvert_same": {
-            "type": "string"
-          },
-          "easygoing": {
-            "type": "number"
-          },
-          "easygoing_same": {
-            "type": "string"
-          },
-          "numdated": {
-            "type": "number"
-          },
-          "longestrelationship": {
-            "type": "number"
-          },
-          "ricePurity": {
-            "type": "string"
-          },
-          "pairedwith": {
-            "type": "string"
-          },
-          "apps": {
-            "type": "array",
-            "items": {
-              "type": "string"
+    },
+    "paths": {
+        "/api/review/{matchid}": {
+            "post": {
+                "summary": "Update match review",
+                "description": "Updates match review details for a given match ID.",
+                "operationId": "updateMatchReview",
+                "parameters": [
+                    {
+                        "name": "matchid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MatchFeedback"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Match review updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad request, invalid inputs"
+                    }
+                }
             }
-          },
-          "politics": {
-            "type": "number"
-          },
-          "politically_active": {
-            "type": "number"
-          },
-          "habits": {
-            "type": "object",
-            "properties": {
-              "drinking": {
-                "type": "string"
-              },
-              "smoking": {
-                "type": "string"
-              },
-              "weed": {
-                "type": "string"
-              },
-              "other": {
-                "type": "string"
-              }
+        },
+        "/api/count": {
+            "get": {
+                "summary": "Retrieve total user count",
+                "description": "Fetches the total count of registered users.",
+                "operationId": "getUserCount",
+                "responses": {
+                    "200": {
+                        "description": "Total user count",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          },
-          "partner_habits": {
-            "type": "object",
-            "properties": {
-              "drinking": {
-                "type": "string"
-              },
-              "smoking": {
-                "type": "string"
-              },
-              "weed": {
-                "type": "string"
-              },
-              "other": {
-                "type": "string"
-              }
+        },
+        "/api/feedback": {
+            "post": {
+                "summary": "Update user feedback",
+                "description": "Updates user feedback and returns the updated user profile.",
+                "operationId": "updateUserFeedback",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SurveyFeedback"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User feedback updated and profile returned",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Profile"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or invalid session"
+                    }
+                }
             }
-          },
-          "deal_breakers": {
-            "type": "array",
-            "items": {
-              "type": "string"
+        },
+        "/api/matches": {
+            "get": {
+                "summary": "Retrieve user matches",
+                "description": "Retrieves matches for the authenticated user.",
+                "operationId": "getUserMatches",
+                "responses": {
+                    "200": {
+                        "description": "List of user matches",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Match"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          },
-          "partner_deal_breakers": {
-            "type": "array",
-            "items": {
-              "type": "string"
+        },
+        "/api/optin": {
+            "post": {
+                "summary": "Update opt-in status",
+                "description": "Updates the user's opt-in status for receiving updates or newsletters.",
+                "operationId": "updateOptInStatus",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["optIn"],
+                                "properties": {
+                                    "optIn": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Opt-in status updated"
+                    },
+                    "400": {
+                        "description": "Bad request or invalid session"
+                    }
+                }
             }
-          }
+        },
+        "/api/profile": {
+            "get": {
+                "summary": "Retrieve user profile",
+                "description": "Returns the user's profile details after authentication.",
+                "responses": {
+                    "200": {
+                        "description": "User profile data retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Profile"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Update user profile",
+                "description": "Updates the user's profile details after authentication.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Profile"
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "User profile updated successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Profile"
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized access."
+                }
+            }
+        },
+        "/api/restrict": {
+            "post": {
+                "summary": "Update user's restrictions",
+                "description": "Updates the user's list of crushes and forbidden users after authentication.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Restriction list updated successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access."
+                    }
+                }
+            }
+        },
+        "/api/survey": {
+            "post": {
+                "summary": "Update survey",
+                "description": "Updates the user's survey details after authentication.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Survey"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Survey updated successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Survey"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access."
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "summary": "Retrieve list of users",
+                "description": "Returns a list of users after verifying admin privileges.",
+                "responses": {
+                    "200": {
+                        "description": "List of users retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access."
+                    },
+                    "403": {
+                        "description": "Access forbidden."
+                    }
+                }
+            }
+        },
+        "/api/mutual/matches": {
+            "post": {
+                "summary": "Fetch mutual verified matches",
+                "description": "This endpoint fetches mutual verified matches for a user with a valid API key, email, and OTP.",
+                "operationId": "fetchMutualMatches",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["apiKey", "email", "otp"],
+                                "properties": {
+                                    "apiKey": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "otp": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response with mutual matches",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Match"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid inputs"
+                    }
+                }
+            }
+        },
+        "/api/mutual/otp": {
+            "post": {
+                "summary": "Request One-Time Password",
+                "description": "Requests an OTP for a given email address and validates the API token.",
+                "operationId": "requestOTP",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["email", "apiKey"],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "apiKey": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP request successful"
+                    },
+                    "400": {
+                        "description": "Bad request, invalid inputs"
+                    }
+                }
+            }
         }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "optIn": {
-            "type": "boolean"
-          },
-          "profile": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "survey": {
-            "$ref": "#/components/schemas/Survey"
-          },
-          "crushes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "forbidden": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "matches": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "objectId"
-            }
-          },
-          "matchReviews": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "objectId"
-            }
-          },
-          "collab": {
-            "type": "object",
-            "properties": {
-              "mutual": {
-                "type": "boolean"
-              }
-            }
-          },
-          "feedback": {
-            "$ref": "#/components/schemas/SurveyFeedback"
-          }
-        }
-      },
-      "Match": {
-        "type": "object",
-        "properties": {
-          "partnerAId": {
-            "type": "string",
-            "format": "objectId"
-          },
-          "partnerBId": {
-            "type": "string",
-            "format": "objectId"
-          },
-          "partnerAFeedback": {
-            "type": "object",
-            "properties": {
-              "overallRating": {
-                "type": "number"
-              },
-              "topReasonForRating": {
-                "type": "string"
-              },
-              "metMatch": {
-                "type": "boolean"
-              },
-              "numberOfDates": {
-                "type": "number"
-              },
-              "inRelationshipWithMatch": {
-                "type": "boolean"
-              },
-              "additionalComments": {
-                "type": "string"
-              },
-              "dateSubmitted": {
-                "type": "string",
-                "format": "date-time"
-              }
-            }
-          },
-          "partnerBFeedback": {
-            "type": "object",
-            "properties": {
-              "overallRating": {
-                "type": "number"
-              },
-              "topReasonForRating": {
-                "type": "string"
-              },
-              "metMatch": {
-                "type": "boolean"
-              },
-              "numberOfDates": {
-                "type": "number"
-              },
-              "inRelationshipWithMatch": {
-                "type": "boolean"
-              },
-              "additionalComments": {
-                "type": "string"
-              },
-              "dateSubmitted": {
-                "type": "string",
-                "format": "date-time"
-              }
-            }
-          },
-          "overallStatus": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "complete",
-              "partial"
-            ]
-          }
-        }
-      },
-      "MatchFeedback": {
-        "type": "object",
-        "properties": {
-          "overallRating": {
-            "type": "number"
-          },
-          "topReasonForRating": {
-            "type": "string"
-          },
-          "metMatch": {
-            "type": "boolean"
-          },
-          "numberOfDates": {
-            "type": "number"
-          },
-          "inRelationshipWithMatch": {
-            "type": "boolean"
-          },
-          "additionalComments": {
-            "type": "string"
-          },
-          "dateSubmitted": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "SurveyFeedback": {
-        "type": "object",
-        "properties": {
-          "bad": {
-            "type": "boolean"
-          },
-          "opportunities": {
-            "type": "boolean"
-          },
-          "fun": {
-            "type": "boolean"
-          },
-          "joy": {
-            "type": "boolean"
-          },
-          "memories": {
-            "type": "boolean"
-          },
-          "anticipation": {
-            "type": "boolean"
-          },
-          "categoryRanking": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "surveyFeedback": {
-            "type": "string"
-          },
-          "otherValentinesDayImpact": {
-            "type": "string"
-          },
-          "comments": {
-            "type": "string"
-          }
-        }
-      }
     }
-  },
-  "paths": {
-    "/api/review/{matchid}": {
-      "post": {
-        "summary": "Update match review",
-        "description": "Updates match review details for a given match ID.",
-        "operationId": "updateMatchReview",
-        "parameters": [
-          {
-            "name": "matchid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchFeedback"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Match review updated successfully"
-          },
-          "400": {
-            "description": "Bad request, invalid inputs"
-          }
-        }
-      }
-    },
-    "/api/count": {
-      "get": {
-        "summary": "Retrieve total user count",
-        "description": "Fetches the total count of registered users.",
-        "operationId": "getUserCount",
-        "responses": {
-          "200": {
-            "description": "Total user count",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/feedback": {
-      "post": {
-        "summary": "Update user feedback",
-        "description": "Updates user feedback and returns the updated user profile.",
-        "operationId": "updateUserFeedback",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SurveyFeedback"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "User feedback updated and profile returned",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Profile"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request or invalid session"
-          }
-        }
-      }
-    },
-    "/api/matches": {
-      "get": {
-        "summary": "Retrieve user matches",
-        "description": "Retrieves matches for the authenticated user.",
-        "operationId": "getUserMatches",
-        "responses": {
-          "200": {
-            "description": "List of user matches",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Match"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/optin": {
-      "post": {
-        "summary": "Update opt-in status",
-        "description": "Updates the user's opt-in status for receiving updates or newsletters.",
-        "operationId": "updateOptInStatus",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "optIn"
-                ],
-                "properties": {
-                  "optIn": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Opt-in status updated"
-          },
-          "400": {
-            "description": "Bad request or invalid session"
-          }
-        }
-      }
-    },
-    "/api/profile": {
-      "get": {
-        "summary": "Retrieve user profile",
-        "description": "Returns the user's profile details after authentication.",
-        "responses": {
-          "200": {
-            "description": "User profile data retrieved successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Profile"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized access."
-          }
-        }
-      },
-      "post": {
-        "summary": "Update user profile",
-        "description": "Updates the user's profile details after authentication.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Profile"
-              }
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "User profile updated successfully.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Profile"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized access."
-        }
-      }
-    },
-    "/api/restrict": {
-      "post": {
-        "summary": "Update user's restrictions",
-        "description": "Updates the user's list of crushes and forbidden users after authentication.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Restriction list updated successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized access."
-          }
-        }
-      }
-    },
-    "/api/survey": {
-      "post": {
-        "summary": "Update survey",
-        "description": "Updates the user's survey details after authentication.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Survey"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Survey updated successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Survey"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized access."
-          }
-        }
-      }
-    },
-    "/api/users": {
-      "get": {
-        "summary": "Retrieve list of users",
-        "description": "Returns a list of users after verifying admin privileges.",
-        "responses": {
-          "200": {
-            "description": "List of users retrieved successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized access."
-          },
-          "403": {
-            "description": "Access forbidden."
-          }
-        }
-      }
-    },
-    "/api/mutual/matches": {
-      "post": {
-        "summary": "Fetch mutual verified matches",
-        "description": "This endpoint fetches mutual verified matches for a user with a valid API key, email, and OTP.",
-        "operationId": "fetchMutualMatches",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "apiKey",
-                  "email",
-                  "otp"
-                ],
-                "properties": {
-                  "apiKey": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string",
-                    "format": "email"
-                  },
-                  "otp": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response with mutual matches",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Match"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request, invalid inputs"
-          }
-        }
-      }
-    },
-    "/api/mutual/otp": {
-      "post": {
-        "summary": "Request One-Time Password",
-        "description": "Requests an OTP for a given email address and validates the API token.",
-        "operationId": "requestOTP",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "email",
-                  "apiKey"
-                ],
-                "properties": {
-                  "email": {
-                    "type": "string",
-                    "format": "email"
-                  },
-                  "apiKey": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OTP request successful"
-          },
-          "400": {
-            "description": "Bad request, invalid inputs"
-          }
-        }
-      }
-    }
-  }
 }

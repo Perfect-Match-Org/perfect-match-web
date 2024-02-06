@@ -9,16 +9,16 @@ import IckLive from './live-charts/ickLive';
 import RelationshipTypeLive from './live-charts/relationshipTypeLive';
 import LoveLanguageLive from './live-charts/loveLanguageLive';
 
-
 function LiveDashboard() {
     return (
         <div className="bg-pink-100 p-1 sm:p-8 lg:py-16">
-            <h1 className="text-rose-400 font-bold text-xl sm:text-3xl mt-10 mb-4 sm:my-6 text-center">❗PM2024 Special❗ Live Dashboard</h1>
+            <h1 className="text-rose-400 font-bold text-xl sm:text-3xl mt-10 mb-4 sm:my-6 text-center">
+                ❗PM2024 Special❗ Live Dashboard
+            </h1>
             <p className="text-gray-500 sm:text-lg text-center lg:mx-[20%] sm:mb-10 mb-6 md:mx-[15%] mx-[1%]">
-                Curious about what others choose? Here are the live statistics from the responses
-                received so far, <strong>automatically refreshing every 10 minutes</strong>.
-                Try hovering over or clicking on the charts to the see the data. Remember,
-                don&#39;t follow the crowd - your matches will value your creativity.
+                Curious about what others choose? Here are the live statistics from the responses received so far,{' '}
+                <strong>automatically refreshing every 10 minutes</strong>. Try hovering over or clicking on the charts
+                to the see the data. Remember, don&#39;t follow the crowd - your matches will value your creativity.
             </p>
             <div className="shadow-2xl">
                 <div className="flex p-3 gap-4 flex-col sm:flex-row">
@@ -65,8 +65,6 @@ function LiveDashboard() {
                 </div>
             </div>
         </div>
-
-
     );
 }
 

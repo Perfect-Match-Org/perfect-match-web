@@ -58,6 +58,8 @@ const BestAlternative = () => {
             show: false,
         },
         tooltip: {
+            theme: 'dark',
+
             enabled: false,
         },
         responsive: [

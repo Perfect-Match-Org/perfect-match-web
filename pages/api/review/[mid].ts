@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { connect } from '@/database'
+import { connect } from '@/database';
 import { Session } from 'next-auth';
 import { unstable_getServerSession } from 'next-auth/next';
 import authOptions from '../auth/[...nextauth]';
-import { updateMatchReview } from '@/controllers'
+import { updateMatchReview } from '@/controllers';
 
 /**
  * API handler to update match review details.
  * It validates the user's session, ensures the request method is POST, and processes the match review update.
- * 
+ *
  * @param {NextApiRequest} req - The API request object containing the match review data and user session.
  * @param {NextApiResponse} res - The API response object used to return the operation status.
  * @returns {Promise<void>} - A promise that resolves when the response is sent.

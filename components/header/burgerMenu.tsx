@@ -17,7 +17,10 @@ const Toggle = () => {
                                 <Link href="/">Home💖</Link>
                             </li>
                             <li className="text-gray-500 text-xl font-medium mt-5">
-                                <Link href="/dashboard">Live Dashboard⏱️</Link><span className="inline-flex items-center justify-center px-2 py-1 mr-2 ml-1 text-sm font-bold leading-none text-white bg-rose-500 rounded-full">99+</span>
+                                <Link href="/dashboard">Live Dashboard⏱️</Link>
+                                <span className="inline-flex items-center justify-center px-2 py-1 mr-2 ml-1 text-sm font-bold leading-none text-white bg-rose-500 rounded-full">
+                                    99+
+                                </span>
                             </li>
                             <li className="text-gray-500 text-xl font-medium mt-5">
                                 <Link href="/profile">Profile🪪</Link>

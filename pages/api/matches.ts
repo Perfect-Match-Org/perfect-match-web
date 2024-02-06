@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import authOptions from './auth/[...nextauth]';
-import { getUser } from '@/controllers'
+import { getUser } from '@/controllers';
 import { Session } from 'next-auth';
-import { connect } from '@/database'
+import { connect } from '@/database';
 import { Matches } from '@/types/users';
 
 /**
@@ -11,7 +11,7 @@ import { Matches } from '@/types/users';
  * The function first checks the user session for authentication.
  * If authenticated, it processes a GET request to retrieve the user's matches.
  * The matches are then returned in the response.
- * 
+ *
  * @param {NextApiRequest} req - The API request object.
  * @param {NextApiResponse<Matches[] | String>} res - The API response object used to return the user's matches or an error message.
  * @returns {Promise<void>} - A promise that resolves when the response is sent.

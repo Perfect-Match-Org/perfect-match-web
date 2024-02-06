@@ -10,7 +10,7 @@ const LongestRelationship = () => {
             name: 'Median longest relationship duration',
             data: [5, 4, 4, 4, 5, 3, 6, 6, 13],
             color: '#fdba74',
-        }
+        },
     ];
     const options = {
         chart: {
@@ -34,9 +34,9 @@ const LongestRelationship = () => {
             enabled: true,
             style: {
                 fontSize: '14px',
-                colors: ['#6b7280']
+                colors: ['#6b7280'],
             },
-            offsetX: -6
+            offsetX: -6,
         },
         stroke: {
             show: true,
@@ -44,20 +44,22 @@ const LongestRelationship = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+
             shared: true,
             intersect: false,
             y: {
                 formatter: function (value: any) {
-                    return value + ' months'
-                }
-            }
+                    return value + ' months';
+                },
+            },
         },
         xaxis: {
             categories: ['AAP', 'CAS', 'CALS', 'CHE', 'Dyson', 'Engineering', 'Hotel', 'ILR', 'Grad'],
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '14px'
+                    fontSize: '14px',
                 },
             },
         },
@@ -69,32 +71,34 @@ const LongestRelationship = () => {
                 },
             },
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '10px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '10px',
-                        fontWeight: 600
-                    },
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '12px',
-                            colors: '#6b7280',
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                            },
                         },
                     },
-                }
+                    dataLabels: {
+                        style: {
+                            fontSize: '10px',
+                            fontWeight: 600,
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '12px',
+                                colors: '#6b7280',
+                            },
+                        },
+                    },
+                },
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

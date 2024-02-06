@@ -7,9 +7,9 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const SleepDuration = () => {
     const series = [
         {
-            name: "Average sleep duration",
+            name: 'Average sleep duration',
             data: [6.96, 7.66, 7.83, 7.84, 7.84, 7.86, 7.91, 8.06, 8.13, 8.28, 8.77],
-            color: '#86efac'
+            color: '#86efac',
         },
     ];
     const options = {
@@ -37,7 +37,7 @@ const SleepDuration = () => {
                 fontSize: '14px',
                 colors: ['#6b7280'],
             },
-            offsetX: -8
+            offsetX: -8,
         },
         stroke: {
             show: true,
@@ -45,20 +45,34 @@ const SleepDuration = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+
             shared: true,
             intersect: false,
             y: {
                 formatter: function (value: any) {
-                    return value + ' hours'
-                }
-            }
+                    return value + ' hours';
+                },
+            },
         },
         xaxis: {
-            categories: ['Architecture', 'ECE', 'CS', 'MechE', 'BioSci', 'InfoSci', 'AEM', 'ILR', 'Econ', 'Hotel', 'Comm'],
+            categories: [
+                'Architecture',
+                'ECE',
+                'CS',
+                'MechE',
+                'BioSci',
+                'InfoSci',
+                'AEM',
+                'ILR',
+                'Econ',
+                'Hotel',
+                'Comm',
+            ],
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '14px'
+                    fontSize: '14px',
                 },
             },
         },
@@ -70,36 +84,38 @@ const SleepDuration = () => {
                 },
             },
             min: 6.7,
-            max: 8.7
+            max: 8.7,
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '10px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '10px',
-                        fontWeight: 600
-                    },
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '12px',
-                            colors: '#6b7280',
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                            },
                         },
                     },
-                    min: 6.7,
-                    max: 8.7
-                }
+                    dataLabels: {
+                        style: {
+                            fontSize: '10px',
+                            fontWeight: 600,
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '12px',
+                                colors: '#6b7280',
+                            },
+                        },
+                        min: 6.7,
+                        max: 8.7,
+                    },
+                },
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

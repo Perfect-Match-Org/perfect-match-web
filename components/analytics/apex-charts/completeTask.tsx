@@ -9,7 +9,7 @@ const CompleteTask = () => {
         {
             name: '',
             data: [2319, 867, 539, 186],
-        }
+        },
     ];
     const options = {
         chart: {
@@ -28,8 +28,8 @@ const CompleteTask = () => {
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom'
-                }
+                    position: 'bottom',
+                },
             },
         },
         dataLabels: {
@@ -37,12 +37,12 @@ const CompleteTask = () => {
             textAnchor: 'start',
             style: {
                 fontSize: '15px',
-                colors: ['#6b7280']
+                colors: ['#6b7280'],
             },
             formatter: function (val: any, opt: any) {
-                return opt.w.globals.labels[opt.dataPointIndex]
+                return opt.w.globals.labels[opt.dataPointIndex];
             },
-            offsetX: 0
+            offsetX: 0,
         },
         stroke: {
             show: true,
@@ -50,55 +50,61 @@ const CompleteTask = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+
             y: {
                 formatter: function (value: any) {
-                    const percent = parseInt(value) / 3911 * 100
-                    return percent.toFixed(0) + '%'
-                }
+                    const percent = (parseInt(value) / 3911) * 100;
+                    return percent.toFixed(0) + '%';
+                },
             },
             x: {
-                show: false
-            }
+                show: false,
+            },
         },
         colors: ['#f9a8d4', '#fbcfe8', '#fce7f3', '#fdf2f8'],
         xaxis: {
-            categories: ['A. Kiss on the suspension bridge at midnight.',
+            categories: [
+                'A. Kiss on the suspension bridge at midnight.',
                 'B. Make the library into your bedroom and have sex in the stacks.',
                 'C. Hook up with your T.A.',
-                'D. Flirt with your professor.'],
+                'D. Flirt with your professor.',
+            ],
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '14px'
+                    fontSize: '14px',
                 },
             },
         },
         yaxis: {
             labels: {
-                show: false
-            }
+                show: false,
+            },
         },
         legend: {
-            show: false
+            show: false,
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '11px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '11px',
-                        fontWeight: 600
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                            },
+                        },
                     },
-                }
+                    dataLabels: {
+                        style: {
+                            fontSize: '11px',
+                            fontWeight: 600,
+                        },
+                    },
+                },
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

@@ -17,7 +17,7 @@ const Quality = () => {
             width: '100%',
             type: 'donut',
         },
-        labels: ["Thoughtfulness", "Reliability", "Humor", "Independence"],
+        labels: ['Thoughtfulness', 'Reliability', 'Humor', 'Independence'],
         colors: ['#fda4af', '#86efac', '#fde047', '#7dd3fc'],
         plotOptions: {
             pie: {
@@ -35,8 +35,8 @@ const Quality = () => {
                 return [name, parseInt(val).toFixed(0) + '%'];
             },
             style: {
-                fontSize: '13px'
-            }
+                fontSize: '13px',
+            },
         },
         legend: {
             show: false,

@@ -58,17 +58,19 @@ const Political = () => {
                 fontSize: '16px',
             },
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                dataLabels: {
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    dataLabels: {
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 600,
+                        },
                     },
-                }
+                },
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="pie" series={series} options={options as unknown as ApexCharts.ApexOptions} />;

@@ -4,7 +4,8 @@ import { IProfile, profileSchema } from './profile';
 import { ISurvey, surveySchema } from './survey';
 import { ISurveyFeedback, surveyFeedbackSchema } from './feedback';
 
-type Crush = { // Note: This is a recent change. Therefore, some users may have an array of strings instead of an array of objects.
+type Crush = {
+    // Note: This is a recent change. Therefore, some users may have an array of strings instead of an array of objects.
     email: string;
     reachout: boolean;
 };

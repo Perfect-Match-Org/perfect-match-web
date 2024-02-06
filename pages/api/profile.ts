@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth/next';
 import authOptions from './auth/[...nextauth]';
-import { getUser, updateProfile } from '@/controllers'
+import { getUser, updateProfile } from '@/controllers';
 import { Session } from 'next-auth';
-import { connect } from '@/database'
+import { connect } from '@/database';
 import { Profile } from '@/types/users';
 
 /**
@@ -11,7 +11,7 @@ import { Profile } from '@/types/users';
  * Supports GET for retrieving the user profile and POST for updating it.
  * The function first checks the user session for authentication.
  * Depending on the request method, it either retrieves or updates the user's profile.
- * 
+ *
  * @param {NextApiRequest} req - The API request object.
  * @param {NextApiResponse<Profile | String>} res - The API response object used to return the user profile or an error message.
  * @returns {Promise<void>} - A promise that resolves when the response is sent.

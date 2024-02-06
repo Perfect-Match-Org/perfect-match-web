@@ -23,47 +23,47 @@ const TreeMap = () => {
                 },
                 {
                     x: 'Kind',
-                    y: 10.3
+                    y: 10.3,
                 },
                 {
                     x: 'Outgoing',
-                    y: 8.6
+                    y: 8.6,
                 },
                 {
                     x: 'Thoughtful',
-                    y: 8.4
+                    y: 8.4,
                 },
                 {
                     x: 'Adventurous',
-                    y: 8.0
+                    y: 8.0,
                 },
                 {
                     x: 'Creative',
-                    y: 6.8
+                    y: 6.8,
                 },
                 {
                     x: 'Loyal',
-                    y: 6.6
+                    y: 6.6,
                 },
                 {
                     x: 'Smart',
-                    y: 6.5
+                    y: 6.5,
                 },
                 {
                     x: 'Witty',
-                    y: 5.5
+                    y: 5.5,
                 },
                 {
                     x: 'Fun',
-                    y: 5.2
+                    y: 5.2,
                 },
                 {
                     x: 'Passionate',
-                    y: 5.2
+                    y: 5.2,
                 },
                 {
                     x: 'Bubbly',
-                    y: 5.1
+                    y: 5.1,
                 },
             ],
         },
@@ -101,14 +101,14 @@ const TreeMap = () => {
             '#ffe8e9',
             '#fff0f0',
             '#fff7f8',
-            '#ffffff'
+            '#ffffff',
         ],
         plotOptions: {
             treemap: {
                 distributed: true,
                 enableShades: false,
             },
-        }
+        },
     };
 
     return <ReactApexChart type="treemap" series={series} options={options as ApexCharts.ApexOptions} />;
