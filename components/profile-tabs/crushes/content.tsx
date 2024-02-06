@@ -21,6 +21,22 @@ export const questions = {
                     isRequired: true,
                     placeHolder: 'abc123',
                 },
+                {
+                    cellType: 'radiogroup',
+                    name: 'reachout',
+                    title: 'Should we let them know that they have a secret admirer and encourage them to fill out the survey this year?',
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: 'yes',
+                            text: 'Yes, please. I am soo not sure if they are going to fill the survey out.',
+                        },
+                        {
+                            value: 'no',
+                            text: 'No, thank you. They would be able to guess who this secret admirer is and I want to keep this a secret',
+                        },
+                    ],
+                },
             ],
         },
         {
