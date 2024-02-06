@@ -57,6 +57,10 @@ const DescribePartnerLive = () => {
         },
     ];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         noData: {
             text: 'Loading...',
             align: 'center',

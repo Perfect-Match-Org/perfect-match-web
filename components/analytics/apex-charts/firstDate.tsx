@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const FirstDate = () => {
     const series = [1175, 1124, 704, 631, 108, 86, 83];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,

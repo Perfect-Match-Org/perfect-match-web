@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const RelationshipType = () => {
     const series = [2226, 1375, 310];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,

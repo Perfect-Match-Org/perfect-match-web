@@ -55,6 +55,7 @@ const IckLive = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            enabled: true,
             theme: 'dark',
 
             y: {

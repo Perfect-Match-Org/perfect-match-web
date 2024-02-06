@@ -46,7 +46,7 @@ const SleepDuration = () => {
         },
         tooltip: {
             theme: 'dark',
-
+            enabled: true,
             shared: true,
             intersect: false,
             y: {

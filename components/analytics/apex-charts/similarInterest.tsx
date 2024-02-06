@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const SimilarInterest = () => {
     const series = [1726, 2124, 61];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,

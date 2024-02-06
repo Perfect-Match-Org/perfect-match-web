@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const Political = () => {
     const series = [379, 638, 1178, 599, 615, 252, 124, 85, 25, 16];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             type: 'pie',
             toolbar: {

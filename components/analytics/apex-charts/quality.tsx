@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const Quality = () => {
     const series = [1847, 1043, 821, 200];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,

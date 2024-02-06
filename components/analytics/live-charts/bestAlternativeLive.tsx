@@ -57,7 +57,7 @@ const BestAlternativeLive = () => {
         },
         tooltip: {
             theme: 'dark',
-
+            enabled: true,
             y: {
                 formatter: function (value: any, opts: any) {
                     const sum = opts.series[0].reduce((a: any, b: any) => a + b, 0);

@@ -18,6 +18,10 @@ const WakeTime = () => {
         },
     ];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             type: 'area',
             toolbar: {
