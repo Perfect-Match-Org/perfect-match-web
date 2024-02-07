@@ -7,6 +7,7 @@ import { Header } from '@/components/header';
 import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
 
+
 const Dashboard: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/count', fetcher, {
         refreshInterval: 60000,
@@ -23,6 +24,7 @@ const Dashboard: NextPage = (props: any) => {
             <LiveDashboard />
 
             <Footer />
+
         </div>
     );
 };

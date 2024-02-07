@@ -81,6 +81,7 @@ const IckLive = () => {
         },
         yaxis: {
             labels: {
+
                 show: false,
             },
         },
