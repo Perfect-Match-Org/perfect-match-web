@@ -22,6 +22,10 @@ const SurveyComponent = (props: any) => {
         window.localStorage.setItem(storageName, JSON.stringify(data));
     }
 
+    survey.onTextMarkdown.add(function (survey: any, options: any) {
+        options.html = options.text;
+    });
+
     survey.onPartialSend.add(function (survey: any) {
         saveSurveyData(survey);
     });
