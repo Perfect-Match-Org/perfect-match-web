@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { getUser, createUser } from '../../../database/controllers';
-import { connect } from '@/database'
+import { connect } from '@/database';
 
 /**
  * Checks if the given email is a valid Cornell University email.
@@ -16,7 +16,7 @@ const isValidCornellEmail = (email: string): boolean => {
 /**
  * Configures NextAuth authentication with Google as a provider.
  * Includes custom logic for sign-in callbacks.
- * 
+ *
  * @returns {object} The NextAuth configuration object.
  */
 export default NextAuth({

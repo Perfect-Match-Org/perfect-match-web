@@ -9,7 +9,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const AgePrefMale = () => {
     const series = [
         {
-            name: "18",
+            name: '18',
             data: [99.6, 98.8, 74.1, 45, 26.3, 10, 8, 6.8, 3.6, 3.6, 3.2, 3.2, 2.8, 2.4, 2.4, 2.4, 2.4, 2.4],
         },
         {
@@ -30,7 +30,10 @@ const AgePrefMale = () => {
         },
         {
             name: '23 and over',
-            data: [20.7, 29.8, 53.7, 77.7, 89.3, 90.1, 87.6, 87.6, 77.7, 62.8, 53.7, 40.5, 33.1, 14.9, 14.9, 10.7, 9.9, 8.3],
+            data: [
+                20.7, 29.8, 53.7, 77.7, 89.3, 90.1, 87.6, 87.6, 77.7, 62.8, 53.7, 40.5, 33.1, 14.9, 14.9, 10.7, 9.9,
+                8.3,
+            ],
         },
     ];
     const options = {
@@ -44,12 +47,31 @@ const AgePrefMale = () => {
                 },
             },
             animations: {
-                enabled: false
-            }
+                enabled: false,
+            },
         },
         xaxis: {
             type: 'category',
-            categories: ['18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35'],
+            categories: [
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+                '32',
+                '33',
+                '34',
+                '35',
+            ],
             labels: {
                 style: {
                     fontSize: '14px',
@@ -62,7 +84,7 @@ const AgePrefMale = () => {
                 style: {
                     fontSize: '15px',
                     color: '#6b7280',
-                    fontWeight: 400
+                    fontWeight: 400,
                 },
             },
         },
@@ -72,7 +94,7 @@ const AgePrefMale = () => {
                 style: {
                     fontSize: '15px',
                     color: '#6b7280',
-                    fontWeight: 400
+                    fontWeight: 400,
                 },
             },
             labels: {
@@ -87,74 +109,77 @@ const AgePrefMale = () => {
         },
         colors: ['#38bdf8'],
         tooltip: {
+            theme: 'dark',
+
             y: {
                 formatter: function (value: any, { series, seriesIndex, dataPointIndex, w }: any) {
-                    var ageParticipant = seriesIndex + 18
+                    var ageParticipant = seriesIndex + 18;
                     if (ageParticipant == 23) {
-                        ageParticipant = ageParticipant + ' and over'
+                        ageParticipant = ageParticipant + ' and over';
                     }
                     return (
                         '<div className="text-orange-500">' +
                         value +
-                        "% of men aged " +
+                        '% of men aged ' +
                         ageParticipant +
-                        " would date someone aged " +
+                        ' would date someone aged ' +
                         (dataPointIndex + 17) +
-                        ".</div>"
+                        '.</div>'
                     );
                 },
                 title: {
                     formatter: function (value: any) {
-                        return ''
-                    }
-                }
+                        return '';
+                    },
+                },
             },
             style: {
-                fontSize: '13px'
-            }
-
-        },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        rotate: -90,
-                        style: {
-                            fontSize: '11px'
-                        },
-                        offsetY: -5
-                    },
-                    title: {
-                        style: {
-                            fontSize: '12px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '11px',
-                    },
-                    offsetY: -16
-                },
-                yaxis: {
-                    title: {
-                        text: 'Age of Participants',
-                        style: {
-                            fontSize: '11px',
-                            color: '#6b7280',
-                            fontWeight: 400
-                        },
-                    },
-                    labels: {
-                        style: {
-                            fontSize: '11px',
-                            colors: '#6b7280',
-                        },
-                    }
-                }
+                fontSize: '13px',
             },
-        }]
+        },
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            rotate: -90,
+                            style: {
+                                fontSize: '11px',
+                            },
+                            offsetY: -5,
+                        },
+                        title: {
+                            style: {
+                                fontSize: '12px',
+                            },
+                        },
+                    },
+                    dataLabels: {
+                        style: {
+                            fontSize: '11px',
+                        },
+                        offsetY: -16,
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Age of Participants',
+                            style: {
+                                fontSize: '11px',
+                                color: '#6b7280',
+                                fontWeight: 400,
+                            },
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                                colors: '#6b7280',
+                            },
+                        },
+                    },
+                },
+            },
+        ],
     };
 
     return <ReactApexChart type="heatmap" series={series} options={options as ApexCharts.ApexOptions} />;

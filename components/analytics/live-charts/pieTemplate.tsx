@@ -58,6 +58,8 @@ const Pie = () => {
             show: false,
         },
         tooltip: {
+            theme: 'dark',
+
             enabled: false,
         },
         responsive: [

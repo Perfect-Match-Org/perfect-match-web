@@ -9,7 +9,6 @@ import IckLive from './live-charts/ickLive';
 import RelationshipTypeLive from './live-charts/relationshipTypeLive';
 import LoveLanguageLive from './live-charts/loveLanguageLive';
 
-
 function LiveDashboard() {
     return (
         <div className="bg-pink-100 p-1 sm:p-8 lg:py-16">
@@ -65,8 +64,6 @@ function LiveDashboard() {
                 </div>
             </div>
         </div>
-
-
     );
 }
 

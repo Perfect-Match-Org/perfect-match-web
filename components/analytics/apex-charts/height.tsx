@@ -9,12 +9,17 @@ const Height = () => {
         {
             name: 'Female',
             color: '#fda4af',
-            data: [0.1, 0.3, 1.0, 3.4, 5.0, 10.5, 13.3, 15.3, 13.5, 12.4, 10.4, 5.8, 4.1, 2.8, 1.2, 0.5, 0.1, 0.2, 0.1, 0.1, 0, 0],
+            data: [
+                0.1, 0.3, 1.0, 3.4, 5.0, 10.5, 13.3, 15.3, 13.5, 12.4, 10.4, 5.8, 4.1, 2.8, 1.2, 0.5, 0.1, 0.2, 0.1,
+                0.1, 0, 0,
+            ],
         },
         {
             name: 'Male',
             color: '#7dd3fc',
-            data: [0, 0, 0, 0.2, 0, 0.2, 0.3, 1.4, 1.2, 4, 6.8, 11.8, 12.6, 14.4, 12.4, 13.3, 8.2, 6.4, 3.5, 2.2, 0.7, 0.4],
+            data: [
+                0, 0, 0, 0.2, 0, 0.2, 0.3, 1.4, 1.2, 4, 6.8, 11.8, 12.6, 14.4, 12.4, 13.3, 8.2, 6.4, 3.5, 2.2, 0.7, 0.4,
+            ],
         },
     ];
     const options = {
@@ -56,7 +61,7 @@ const Height = () => {
                 '75',
                 '76',
                 '77',
-                '78'
+                '78',
             ],
             labels: {
                 style: {
@@ -77,7 +82,7 @@ const Height = () => {
                 style: {
                     color: '#6b7280',
                     fontSize: '14px',
-                    fontWeight: 400
+                    fontWeight: 400,
                 },
             },
         },
@@ -88,41 +93,45 @@ const Height = () => {
             },
         },
         tooltip: {
+            theme: 'dark',
+
             y: {
                 formatter: function (value: any) {
-                    return value + '%'
-                }
-            }
-        },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        rotate: -90,
-                        style: {
-                            fontSize: '11px'
-                        }
-                    }
+                    return value + '%';
                 },
-                dataLabels: {
-                    style: {
-                        fontSize: '11px',
-                    },
-                },
-                yaxis: {
-                    title: {
-                        show: false
-                    },
-                    labels: {
-                        show: false
-                    }
-                },
-                legend: {
-                    fontSize: '13px',
-                }
             },
-        }]
+        },
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            rotate: -90,
+                            style: {
+                                fontSize: '11px',
+                            },
+                        },
+                    },
+                    dataLabels: {
+                        style: {
+                            fontSize: '11px',
+                        },
+                    },
+                    yaxis: {
+                        title: {
+                            show: false,
+                        },
+                        labels: {
+                            show: false,
+                        },
+                    },
+                    legend: {
+                        fontSize: '13px',
+                    },
+                },
+            },
+        ],
     };
 
     return <ReactApexChart type="area" series={series} options={options as ApexCharts.ApexOptions} />;

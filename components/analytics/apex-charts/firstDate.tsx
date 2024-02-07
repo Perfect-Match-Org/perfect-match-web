@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const FirstDate = () => {
     const series = [1175, 1124, 704, 631, 108, 86, 83];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,
@@ -24,7 +28,7 @@ const FirstDate = () => {
             'Coffee on campus',
             'Frat annex',
             'Dining Hall',
-            'Starbucks'
+            'Starbucks',
         ],
         colors: ['#fda4af', '#86efac', '#fde047', '#7dd3fc', '#fdba74', '#c4b5fd', '#f0abfc'],
         plotOptions: {
@@ -43,8 +47,8 @@ const FirstDate = () => {
                 return [name, parseInt(val).toFixed(0) + '%'];
             },
             style: {
-                fontSize: '13px'
-            }
+                fontSize: '13px',
+            },
         },
         legend: {
             show: false,

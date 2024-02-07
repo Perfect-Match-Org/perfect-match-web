@@ -18,6 +18,10 @@ const WakeTime = () => {
         },
     ];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             type: 'area',
             toolbar: {
@@ -28,7 +32,7 @@ const WakeTime = () => {
             },
         },
         dataLabels: {
-            enabled: false
+            enabled: false,
         },
         stroke: {
             curve: 'smooth',
@@ -58,7 +62,7 @@ const WakeTime = () => {
                 '11PM',
                 '12AM',
                 '1AM',
-                '2AM'
+                '2AM',
             ],
             labels: {
                 style: {
@@ -68,7 +72,7 @@ const WakeTime = () => {
                 rotate: -45,
                 rotateAlways: true,
             },
-            tickPlacement: 'on'
+            tickPlacement: 'on',
         },
         yaxis: {
             labels: {
@@ -82,7 +86,7 @@ const WakeTime = () => {
                 style: {
                     color: '#6b7280',
                     fontSize: '14px',
-                    fontWeight: 500
+                    fontWeight: 500,
                 },
             },
         },
@@ -92,37 +96,39 @@ const WakeTime = () => {
                 colors: '#6b7280',
             },
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        rotate: -90,
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            rotate: -90,
+                            style: {
+                                fontSize: '11px',
+                            },
+                        },
+                    },
+                    dataLabels: {
                         style: {
-                            fontSize: '11px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '11px',
+                            fontSize: '11px',
+                        },
+                        offsetY: -16,
                     },
-                    offsetY: -16
-                },
-                yaxis: {
-                    title: {
-                        show: false
+                    yaxis: {
+                        title: {
+                            show: false,
+                        },
+                        labels: {
+                            show: false,
+                        },
                     },
-                    labels: {
-                        show: false
-                    }
+                    legend: {
+                        fontSize: '13px',
+                        offsetY: -10,
+                    },
                 },
-                legend: {
-                    fontSize: '13px',
-                    offsetY: -10
-                }
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="area" series={series} options={options as ApexCharts.ApexOptions} />;

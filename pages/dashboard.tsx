@@ -24,7 +24,8 @@ const Dashboard: NextPage = (props: any) => {
             <LiveDashboard />
 
             <Footer />
-        </div >
+
+        </div>
     );
 };
 

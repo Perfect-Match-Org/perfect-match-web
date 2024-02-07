@@ -32,11 +32,11 @@ export const date = ['coffee', 'cinema', 'commons', 'dininghall', 'fishbowl', 'n
 
 export const whopays = ['pays', 'splits', 'youpay', 'doesntmatter'];
 
-export const ick = ['westchester', 'astrology', 'beerpongball', 'footballteam', 'gymrat']
+export const ick = ['westchester', 'astrology', 'beerpongball', 'footballteam', 'gymrat'];
 
-export const greenflag = ['gcaldate', 'petlike', 'screentime', 'smellsgood', 'gymrat']
+export const greenflag = ['gcaldate', 'petlike', 'screentime', 'smellsgood', 'gymrat'];
 
-export const lovelanguage = ['acts', 'quality', 'gifts', 'touch', 'words', 'unsure']
+export const lovelanguage = ['acts', 'quality', 'gifts', 'touch', 'words', 'unsure'];
 
 export const sleeptime = [
     '7pm',

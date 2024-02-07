@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const RelationshipType = () => {
     const series = [2226, 1375, 310];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,
@@ -35,8 +39,8 @@ const RelationshipType = () => {
                 return [name, parseInt(val).toFixed(0) + '%'];
             },
             style: {
-                fontSize: '13px'
-            }
+                fontSize: '13px',
+            },
         },
         legend: {
             show: false,
@@ -47,4 +51,3 @@ const RelationshipType = () => {
 };
 
 export default RelationshipType;
-

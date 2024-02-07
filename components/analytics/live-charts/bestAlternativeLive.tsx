@@ -15,7 +15,7 @@ const BestAlternativeLive = () => {
         {
             name: '',
             data: Object.values(alternativeCount || {}),
-        }
+        },
     ];
     const options = {
         chart: {
@@ -34,8 +34,8 @@ const BestAlternativeLive = () => {
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom'
-                }
+                    position: 'bottom',
+                },
             },
         },
         dataLabels: {
@@ -43,12 +43,12 @@ const BestAlternativeLive = () => {
             textAnchor: 'start',
             style: {
                 fontSize: '15px',
-                colors: ['#6b7280']
+                colors: ['#6b7280'],
             },
             formatter: function (val: any, opt: any) {
-                return opt.w.globals.labels[opt.dataPointIndex]
+                return opt.w.globals.labels[opt.dataPointIndex];
             },
-            offsetX: 0
+            offsetX: 0,
         },
         stroke: {
             show: true,
@@ -56,16 +56,18 @@ const BestAlternativeLive = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+            enabled: true,
             y: {
                 formatter: function (value: any, opts: any) {
                     const sum = opts.series[0].reduce((a: any, b: any) => a + b, 0);
                     const percent = (value / sum) * 100;
-                    return percent.toFixed(0) + '%'
-                }
+                    return percent.toFixed(0) + '%';
+                },
             },
             x: {
-                show: false
-            }
+                show: false,
+            },
         },
         colors: ['#fda4af', '#86efac', '#fde047', '#7dd3fc', '#fdba74'],
         xaxis: {
@@ -73,39 +75,45 @@ const BestAlternativeLive = () => {
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '14px'
+
+                    fontSize: '14px',
                 },
             },
         },
         yaxis: {
             labels: {
-                show: false
-            }
+
+                show: false,
+            },
         },
         legend: {
-            show: false
+            show: false,
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '11px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                            },
+                        },
                     },
-                }
+                    dataLabels: {
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 600,
+                        },
+                    },
+                },
             },
-        }]
+        ],
     };
 
-    return <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />;
+    return (
+        <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />
+    );
 };
 
 export default BestAlternativeLive;

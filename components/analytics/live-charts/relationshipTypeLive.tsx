@@ -80,7 +80,13 @@ const RelationshipTypeLive = () => {
         ],
     };
 
-    return <ReactApexChart type="donut" series={series as ApexAxisChartSeries} options={options as unknown as ApexCharts.ApexOptions} />;
+    return (
+        <ReactApexChart
+            type="donut"
+            series={series as ApexAxisChartSeries}
+            options={options as unknown as ApexCharts.ApexOptions}
+        />
+    );
 };
 
 export default RelationshipTypeLive;

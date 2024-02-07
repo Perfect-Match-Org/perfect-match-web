@@ -49,6 +49,8 @@ const NumDatedCollege = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+
             shared: true,
             intersect: false,
         },

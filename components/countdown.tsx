@@ -11,7 +11,6 @@ function CountDown() {
         } else {
             return (
                 <div className="gap-x-4 flex">
-
                     <span className="w-20 sm:w-36 flex flex-col">
                         <span className="text-5xl sm:text-8xl">{days}</span>
                         <span className="text-xl text-gray-600 sm:text-2xl font-extrabold mt-2">Days</span>
@@ -38,15 +37,12 @@ function CountDown() {
             <div
                 className=" max-w-screen-xl lg:px-6 lg:flex-row mx-[3%] sm:mx-[10%] lg:mx-[15%] sm:py-16 py-6 text-center
                 "
-
             >
                 <div className="font text-gray-500 sm:text-lg dark:text-gray-400">
                     <h2 className="text-xl text-gray-600 font-extrabold sm:text-3xl mb-4 mt-8">
                         Perfect Match Returns <span className="text-rose-400"> February 2024 😻 </span>
                     </h2>
-                    <h2 className="text-xl text-gray-600 font-extrabold md:text-3xl mb-4">
-                        See you in ...
-                    </h2>
+                    <h2 className="text-xl text-gray-600 font-extrabold md:text-3xl mb-4">See you in ...</h2>
                     <div className="mt-10 mb-4 text-3xl sm:text-8xl font-bold text-rose-400 flex items-center justify-center">
                         <Countdown date={countdownDate} renderer={renderer} />
                     </div>
@@ -57,10 +53,7 @@ function CountDown() {
                     </p>
                 </div>
             </div>
-
-
-        </section >
-
+        </section>
     );
 }
 

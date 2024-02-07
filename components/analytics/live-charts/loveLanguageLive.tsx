@@ -47,7 +47,7 @@ const LoveLanguageLive = () => {
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val) + "%"]
+                return [name, parseInt(val) + '%'];
             },
             style: {
                 fontSize: '15px',
@@ -80,7 +80,13 @@ const LoveLanguageLive = () => {
         ],
     };
 
-    return <ReactApexChart type="donut" series={series as ApexAxisChartSeries} options={options as unknown as ApexCharts.ApexOptions} />;
+    return (
+        <ReactApexChart
+            type="donut"
+            series={series as ApexAxisChartSeries}
+            options={options as unknown as ApexCharts.ApexOptions}
+        />
+    );
 };
 
 export default LoveLanguageLive;

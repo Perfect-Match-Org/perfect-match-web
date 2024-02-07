@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const SimilarInterest = () => {
     const series = [1726, 2124, 61];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             toolbar: {
                 show: false,
@@ -35,8 +39,8 @@ const SimilarInterest = () => {
                 return [name, parseInt(val).toFixed(0) + '%'];
             },
             style: {
-                fontSize: '13px'
-            }
+                fontSize: '13px',
+            },
         },
         legend: {
             show: false,

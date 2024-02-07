@@ -9,7 +9,7 @@ const completeTask = () => {
         {
             name: '',
             data: [1221, 1095, 1042, 553],
-        }
+        },
     ];
     const options = {
         chart: {
@@ -28,8 +28,8 @@ const completeTask = () => {
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom'
-                }
+                    position: 'bottom',
+                },
             },
         },
         dataLabels: {
@@ -37,12 +37,12 @@ const completeTask = () => {
             textAnchor: 'start',
             style: {
                 fontSize: '15px',
-                colors: ['#6b7280']
+                colors: ['#6b7280'],
             },
             formatter: function (val: any, opt: any) {
-                return opt.w.globals.labels[opt.dataPointIndex]
+                return opt.w.globals.labels[opt.dataPointIndex];
             },
-            offsetX: 0
+            offsetX: 0,
         },
         stroke: {
             show: true,
@@ -50,66 +50,72 @@ const completeTask = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+
             y: {
                 formatter: function (value: any) {
-                    const percent = parseInt(value) / 3911 * 100
-                    return percent.toFixed(0) + '%'
-                }
+                    const percent = (parseInt(value) / 3911) * 100;
+                    return percent.toFixed(0) + '%';
+                },
             },
             x: {
-                show: false
-            }
+                show: false,
+            },
         },
         colors: ['#c4b5fd', '#ddd6fe', '#ede9fe', '#f5f3ff'],
         xaxis: {
-            categories: ['A. Stress-free Dyson pupil, but claims to have a "genuine interest" in Discounted Cash Flow model.',
+            categories: [
+                'A. Stress-free Dyson pupil, but claims to have a "genuine interest" in Discounted Cash Flow model.',
                 'B. Philosophy major that can’t pay the bills but declares their love to you in a timeless sonnet.',
                 'C. Pre-med who spends all their time complaining about CHEM 2070 on Sidechat.',
-                'D. Near the top of the class for engineering talent, near the bottom for shower frequency.'],
+                'D. Near the top of the class for engineering talent, near the bottom for shower frequency.',
+            ],
             labels: {
                 style: {
                     colors: '#6b7280',
-                    fontSize: '14px'
+                    fontSize: '14px',
                 },
             },
         },
         yaxis: {
             labels: {
-                show: false
-            }
+                show: false,
+            },
         },
         legend: {
-            show: false
+            show: false,
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                            },
+                        },
+                    },
+                    dataLabels: {
                         style: {
-                            fontSize: '11px'
-                        }
-                    }
+                            fontSize: '7px',
+                            fontWeight: 600,
+                        },
+                    },
                 },
-                dataLabels: {
-                    style: {
-                        fontSize: '7px',
-                        fontWeight: 600
+            },
+            {
+                breakpoint: 1024,
+                options: {
+                    dataLabels: {
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 600,
+                        },
                     },
-                }
-            }
-        },
-        {
-            breakpoint: 1024,
-            options: {
-                dataLabels: {
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    },
-                }
-            }
-        },]
+                },
+            },
+        ],
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;

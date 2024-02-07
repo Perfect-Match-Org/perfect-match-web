@@ -7,6 +7,10 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const Political = () => {
     const series = [379, 638, 1178, 599, 615, 252, 124, 85, 25, 16];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         chart: {
             type: 'pie',
             toolbar: {
@@ -58,17 +62,19 @@ const Political = () => {
                 fontSize: '16px',
             },
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                dataLabels: {
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    dataLabels: {
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 600,
+                        },
                     },
-                }
+                },
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="pie" series={series} options={options as unknown as ApexCharts.ApexOptions} />;

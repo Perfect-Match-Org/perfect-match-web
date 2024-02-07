@@ -12,6 +12,10 @@ const Year = () => {
         },
     ];
     const options = {
+        tooltip: {
+            enabled: true,
+            theme: 'dark',
+        },
         colors: ['#fda4af', '#fdba74', '#fde047', '#86efac', '#7dd3fc', '#c4b5fd'],
         chart: {
             height: 350,
@@ -53,6 +57,8 @@ const Year = () => {
                 show: false,
             },
             tooltip: {
+                theme: 'dark',
+
                 enabled: true,
             },
             labels: {

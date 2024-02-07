@@ -11,10 +11,10 @@ const matchRevealData =
     'id email profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself survey.hookupsong profile.bio survey.contact.insta survey.contact.fb survey.contact.twitter survey.contact.linkedin survey.contact.phone survey.contact.snap';
 
 /**
-* Populates match data with specific fields from the User model.
-* @param {string} index - The index of the partner (A or B) to populate.
-* @returns An object with the path, model, and selected fields for populating match data.
-*/
+ * Populates match data with specific fields from the User model.
+ * @param {string} index - The index of the partner (A or B) to populate.
+ * @returns An object with the path, model, and selected fields for populating match data.
+ */
 const populateMatch = (index: string) => {
     return {
         path: `partner${index}Id`,

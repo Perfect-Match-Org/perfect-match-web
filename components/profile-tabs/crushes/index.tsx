@@ -4,6 +4,11 @@ import { questions } from './content'; // these are the survey questions
 import 'survey-react/modern.min.css';
 import 'survey-react/defaultV2.min.css';
 
+type Crush = {
+    email: string;
+    reachout: boolean;
+};
+
 const SurveyComponent = (props: any) => {
     Survey.StylesManager.applyTheme('modern');
     const survey = new Survey.Model(questions);
@@ -17,11 +22,18 @@ const SurveyComponent = (props: any) => {
         window.localStorage.setItem(storageName, JSON.stringify(data));
     }
 
+    survey.onTextMarkdown.add(function (survey: any, options: any) {
+        options.html = options.text;
+    });
+
     survey.onPartialSend.add(function (survey: any) {
         saveSurveyData(survey);
     });
     const dataCrushes = props.crushes.map((crush: any) => {
-        return { netid: crush.split('@')[0] };
+        if (typeof crush === 'string') {
+            return { netid: crush.split('@')[0] };
+        }
+        return { netid: crush.email.split('@')[0], reachout: crush.reachout ? 'yes' : 'no' };
     });
     const dataForbidden = props.forbidden.map((forbid: any) => {
         return { netid: forbid.split('@')[0] };
@@ -51,11 +63,11 @@ const SurveyComponent = (props: any) => {
     Survey.StylesManager.applyTheme('default');
     survey.onComplete.add(async function (survey: any, options: any) {
         saveSurveyData(survey);
-        let crushes: String[] = [];
+        let crushes: Crush[] = [];
         let forbidden: String[] = [];
         survey.data.crushes &&
             survey.data.crushes.forEach((crush: any) => {
-                crushes.push(crush.netid + '@cornell.edu');
+                crushes.push({ email: crush.netid + '@cornell.edu', reachout: crush.reachout === 'yes' });
             });
         survey.data.forbidden &&
             survey.data.forbidden.forEach((forbid: any) => {

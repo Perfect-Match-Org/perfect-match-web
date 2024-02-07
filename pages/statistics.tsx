@@ -52,7 +52,8 @@ const Statistics: any = (props: any) => {
             <div>
                 <div className="w-full flex flex-col items-center justify-center text-white bg-pink-100 sm:py-12 py-8">
                     <p className="text-center mt-4 sm:text-lg text-gray-500 font-bold mx-[5%] sm:mx-[10%] lg:mx-[20%]">
-                        See this year&apos;s statistics or travel back in time to explore statistics from past years!</p>
+                        See this year&apos;s statistics or travel back in time to explore statistics from past years!
+                    </p>
                     <div className="flex sm:mt-4 mt-2 gap-4">
                         <button
                             className="text-lg bg-rose-400 hover:bg-rose-300 text-white font-bold py-2 px-8 rounded-full m-2"

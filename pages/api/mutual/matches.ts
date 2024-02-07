@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMutualVerifiedMatches } from '@/controllers'
-import { connect } from '@/database'
+import { getMutualVerifiedMatches } from '@/controllers';
+import { connect } from '@/database';
 
 /**
  * API handler for fetching mutual verified matches.

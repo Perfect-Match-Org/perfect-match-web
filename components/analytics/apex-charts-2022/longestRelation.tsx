@@ -49,6 +49,8 @@ const LongestRelation = () => {
             colors: ['#fff'],
         },
         tooltip: {
+            theme: 'dark',
+
             shared: true,
             intersect: false,
         },

@@ -10,55 +10,55 @@ const DescribeYouFemale = () => {
             data: [
                 {
                     x: 'Funny',
-                    y: 26.8
+                    y: 26.8,
                 },
                 {
                     x: 'Caring',
-                    y: 11.5
+                    y: 11.5,
                 },
                 {
                     x: 'Kind',
-                    y: 10.3
+                    y: 10.3,
                 },
                 {
                     x: 'Outgoing',
-                    y: 8.6
+                    y: 8.6,
                 },
                 {
                     x: 'Thoughtful',
-                    y: 8.4
+                    y: 8.4,
                 },
                 {
                     x: 'Adventurous',
-                    y: 8.0
+                    y: 8.0,
                 },
                 {
                     x: 'Creative',
-                    y: 6.8
+                    y: 6.8,
                 },
                 {
                     x: 'Loyal',
-                    y: 6.6
+                    y: 6.6,
                 },
                 {
                     x: 'Smart',
-                    y: 6.5
+                    y: 6.5,
                 },
                 {
                     x: 'Witty',
-                    y: 5.5
+                    y: 5.5,
                 },
                 {
                     x: 'Fun',
-                    y: 5.2
+                    y: 5.2,
                 },
                 {
                     x: 'Passionate',
-                    y: 5.2
+                    y: 5.2,
                 },
                 {
                     x: 'Bubbly',
-                    y: 5.1
+                    y: 5.1,
                 },
             ],
         },
@@ -96,7 +96,7 @@ const DescribeYouFemale = () => {
             '#ffe8e9',
             '#fff0f0',
             '#fff7f8',
-            '#ffffff'
+            '#ffffff',
         ],
         plotOptions: {
             treemap: {
@@ -105,12 +105,14 @@ const DescribeYouFemale = () => {
             },
         },
         tooltip: {
+            theme: 'dark',
+
             y: {
                 formatter: function (value: any) {
-                    return value + "%"
-                }
-            }
-        }
+                    return value + '%';
+                },
+            },
+        },
     };
 
     return <ReactApexChart type="treemap" series={series} options={options as ApexCharts.ApexOptions} />;

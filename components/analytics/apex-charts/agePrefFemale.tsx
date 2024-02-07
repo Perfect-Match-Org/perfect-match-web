@@ -8,7 +8,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 const AgePrefFemale = () => {
     const series = [
         {
-            name: "18",
+            name: '18',
             data: [97.1, 98.7, 86.1, 52.2, 24.9, 9.2, 5.5, 3.9, 2.1, 1.3, 1.3, 1.0, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8],
         },
         {
@@ -43,16 +43,35 @@ const AgePrefFemale = () => {
                 },
             },
             animations: {
-                enabled: false
-            }
+                enabled: false,
+            },
         },
         xaxis: {
             type: 'category',
-            categories: ['18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35'],
+            categories: [
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+                '32',
+                '33',
+                '34',
+                '35',
+            ],
             labels: {
                 style: {
                     fontSize: '14px',
-                    colors: '#6b7280'
+                    colors: '#6b7280',
                 },
             },
             title: {
@@ -61,7 +80,7 @@ const AgePrefFemale = () => {
                 style: {
                     fontSize: '15px',
                     color: '#6b7280',
-                    fontWeight: 400
+                    fontWeight: 400,
                 },
             },
         },
@@ -71,7 +90,7 @@ const AgePrefFemale = () => {
                 style: {
                     fontSize: '15px',
                     color: '#6b7280',
-                    fontWeight: 400
+                    fontWeight: 400,
                 },
             },
             labels: {
@@ -86,65 +105,75 @@ const AgePrefFemale = () => {
         },
         colors: ['#fb7185'],
         tooltip: {
+            theme: 'dark',
             y: {
                 formatter: function (value: any, { series, seriesIndex, dataPointIndex, w }: any) {
-                    var ageParticipant = seriesIndex + 18
+                    var ageParticipant = seriesIndex + 18;
                     if (ageParticipant == 23) {
-                        ageParticipant = ageParticipant + ' and over'
+                        ageParticipant = ageParticipant + ' and over';
                     }
-                    return value + '% of women aged ' + ageParticipant + ' would date someone aged ' + (dataPointIndex + 17) + '.'
+                    return (
+                        value +
+                        '% of women aged ' +
+                        ageParticipant +
+                        ' would date someone aged ' +
+                        (dataPointIndex + 17) +
+                        '.'
+                    );
                 },
                 title: {
                     formatter: function (value: any) {
-                        return ''
-                    }
-                }
+                        return '';
+                    },
+                },
             },
             style: {
-                fontSize: '13px'
+                fontSize: '13px',
             },
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        rotate: -90,
-                        style: {
-                            fontSize: '11px'
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            rotate: -90,
+                            style: {
+                                fontSize: '11px',
+                            },
+                            offsetY: -5,
                         },
-                        offsetY: -5
+                        title: {
+                            style: {
+                                fontSize: '12px',
+                            },
+                        },
                     },
-                    title: {
-                        style: {
-                            fontSize: '12px'
-                        }
-                    }
-                },
-                dataLabels: {
-                    style: {
-                        fontSize: '11px',
-                    },
-                    offsetY: -16
-                },
-                yaxis: {
-                    title: {
-                        text: 'Age of Participants',
+                    dataLabels: {
                         style: {
                             fontSize: '11px',
-                            color: '#6b7280',
-                            fontWeight: 400
+                        },
+                        offsetY: -16,
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Age of Participants',
+                            style: {
+                                fontSize: '11px',
+                                color: '#6b7280',
+                                fontWeight: 400,
+                            },
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                                colors: '#6b7280',
+                            },
                         },
                     },
-                    labels: {
-                        style: {
-                            fontSize: '11px',
-                            colors: '#6b7280',
-                        },
-                    }
-                }
+                },
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="heatmap" series={series} options={options as ApexCharts.ApexOptions} />;

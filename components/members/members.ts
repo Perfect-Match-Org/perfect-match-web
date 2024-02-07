@@ -60,7 +60,8 @@ export const team = [
                 ClassYear: 2026,
                 Major: 'Information Science',
                 Img: '/members/sam.jpeg',
-                Linkedin: 'https://www.linkedin.com/in/samantha-smith-057302251/?profileId=ACoAAD4owcMBUJd9F2pVXmgf5ClwGk_KIu2gmrM/',
+                Linkedin:
+                    'https://www.linkedin.com/in/samantha-smith-057302251/?profileId=ACoAAD4owcMBUJd9F2pVXmgf5ClwGk_KIu2gmrM/',
                 Title1: 'Web Dev Subteam Member & Designer',
             },
         ],
@@ -85,14 +86,15 @@ export const team = [
                 Img: '/members/varshini.jpg',
                 Linkedin: 'https://www.linkedin.com/in/varshinimadhavan',
                 Title1: 'Business Team Member',
-            }, {
+            },
+            {
                 Name: 'Kelly Hong',
                 ClassYear: 2027,
                 Major: 'Fine Arts',
                 Img: '/members/kelly.png',
                 Linkedin: 'https://www.linkedin.com/in/kelly-hong-64666b294/ ',
                 Title1: 'Designer',
-            }
+            },
         ],
     },
 ];

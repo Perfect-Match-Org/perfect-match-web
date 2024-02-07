@@ -59,6 +59,8 @@ const NumDatedGender = () => {
             },
         },
         tooltip: {
+            theme: 'dark',
+
             shared: false,
             y: {
                 formatter: function (val: any) {
@@ -93,30 +95,32 @@ const NumDatedGender = () => {
                 colors: '#6b7280',
             },
         },
-        responsive: [{
-            breakpoint: 640,
-            options: {
-                xaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '11px'
+        responsive: [
+            {
+                breakpoint: 640,
+                options: {
+                    xaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                            },
+                            offsetY: -5,
                         },
-                        offsetY: -5
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '11px',
+                                colors: '#6b7280',
+                            },
+                        },
+                    },
+                    legend: {
+                        fontSize: '12px',
                     },
                 },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '11px',
-                            colors: '#6b7280',
-                        },
-                    }
-                },
-                legend: {
-                    fontSize: '12px'
-                }
             },
-        }]
+        ],
     };
 
     return <ReactApexChart type="bar" series={series} options={options as ApexCharts.ApexOptions} />;
