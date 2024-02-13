@@ -12,8 +12,10 @@ import Script from 'next/script';
 import Image from 'next/image';
 import BestAlternative from '@/components/analytics/apex-charts/bestAlternative';
 import demo from 'public/feedback-demo.gif';
-import Countdown from '@/components/countdown';
+import CountDownSurvey from '@/components/countdownSurvey'
 import word from 'public/wordcloud-hq.gif';
+import React from 'react';
+import Countdown, { CountdownRenderProps } from 'react-countdown';
 
 const Home: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/count', fetcher, {
@@ -33,13 +35,13 @@ const Home: NextPage = (props: any) => {
                         <div>
                             <p className="ml-2 font-lg text-gray-500 sm:text-xl pb-1">
                                 <strong>❗PM24 Special❗</strong>
-                                Let us help you{' '}
-                                <Link href="/profile#crushes">
+                                Let us help you {' '}
+                                <Link href="/profile">
                                     <strong className="text-rose-400 underline hover:text-rose-500 hover:cursor-pointer">
                                         Nudge Your Crush
                                     </strong>
-                                </Link>{' '}
-                                with an anonymous hint 💌!
+                                </Link>
+                                {' '} with an anonymous hint 💌!
                             </p>
                         </div>
                     </div>
@@ -67,27 +69,21 @@ const Home: NextPage = (props: any) => {
             */}
 
             <section className="bg-white flex flex-col pr-0 lg:pr-12 lg:flex-row">
-                <div className="pb-6 pt-8 sm:pt-20 lg:pt-56 lg:pb-36 lg:w-3/5">
-                    <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[20%] mt-8 sm:mt-0 opacity-100">
+                <div className="pb-6 pt-6 sm:pt-20 lg:pt-28 lg:pb-36 lg:w-3/5">
+                    <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                         <h1 className="text-3xl text-gray-600 font-extrabold sm:text-4xl lg:text-5xl">
                             Let us find your
                             <strong className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
                                 Perfect Match💘!
                             </strong>
                         </h1>
+                        <div>
+                            <CountDownSurvey />
+                        </div>
                         <p className="text-lg mx-2 mt-6 lg:max-w-lg sm:mx-auto lg:text-left text-center lg:text-xl text-gray-500 sm:leading-relaxed">
-                            Last year, we had over 4,200 participants. Sign in with your Cornell email and fill out the
-                            survey <strong>by noon, 13 Feb.</strong>, and get your Matches the same evening. Share the
-                            link with your friends, and help spread some joy in 2024! For updates, follow us on{' '}
-                            <a
-                                className="underline"
-                                href="https://www.instagram.com/cornellperfectmatch/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                IG
-                            </a>
-                            .
+                            It's the last chance to opt in for an unforgettable Valentine's Day with 
+                            your perfect matches! Matches are released sometime tonight, with a reminder 
+                            email sent to you. Get excited❤️‍🔥!
                         </p>
                         {!error && currentCount && (
                             <p className="text-lg mt-4 mx-2 lg:max-w-lg sm:mx-auto lg:text-left text-center lg:text-xl text-gray-500 sm:leading-relaxed">
