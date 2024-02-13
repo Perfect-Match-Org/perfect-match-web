@@ -81,7 +81,7 @@ const Home: NextPage = (props: any) => {
                             <CountDownSurvey />
                         </div>
                         <p className="text-lg mx-2 mt-6 lg:max-w-lg sm:mx-auto lg:text-left text-center lg:text-xl text-gray-500 sm:leading-relaxed">
-                            It's the last chance to opt in for an unforgettable Valentine's Day with 
+                            It&#39;s the last chance to opt in for an unforgettable Valentine&#39;s Day with 
                             your perfect matches! Matches are released sometime tonight, with a reminder 
                             email sent to you. Get excited❤️‍🔥!
                         </p>
