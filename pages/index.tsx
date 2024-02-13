@@ -29,7 +29,7 @@ const Home: NextPage = (props: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
-            <div className="bg-pink-100">
+            {/*<div className="bg-pink-100">
                 <div className="py-2 px-3 sm:py-3 flex">
                     <div className="flex flex-wrap items-center sm:mx-auto">
                         <div>
@@ -47,7 +47,7 @@ const Home: NextPage = (props: any) => {
                     </div>
                 </div>
             </div>
-            {/*
+             */}
             <div className="bg-pink-100">
                 <div className="py-2 px-3 sm:py-3 flex">
                     <div className="flex flex-wrap items-center sm:mx-auto">
@@ -66,10 +66,9 @@ const Home: NextPage = (props: any) => {
                     </div>
                 </div>
             </div>
-            */}
 
             <section className="bg-white flex flex-col pr-0 lg:pr-12 lg:flex-row">
-                <div className="pb-6 pt-6 sm:pt-20 lg:pt-28 lg:pb-36 lg:w-3/5">
+                <div className="pb-6 pt-6 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-3/5">
                     <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                         <h1 className="text-3xl text-gray-600 font-extrabold sm:text-4xl lg:text-5xl">
                             Let us find your
@@ -81,24 +80,18 @@ const Home: NextPage = (props: any) => {
                             <CountDownSurvey />
                         </div>
                         <p className="text-lg mx-2 mt-6 lg:max-w-lg sm:mx-auto lg:text-left text-center lg:text-xl text-gray-500 sm:leading-relaxed">
-                            It&#39;s the last chance to opt in for an unforgettable Valentine&#39;s Day with 
-                            your perfect matches! Matches are released sometime tonight, with a reminder 
+                            Matches are released sometime tonight, with a reminder 
                             email sent to you. Get excited❤️‍🔥!
                         </p>
                         {!error && currentCount && (
                             <p className="text-lg mt-4 mx-2 lg:max-w-lg sm:mx-auto lg:text-left text-center lg:text-xl text-gray-500 sm:leading-relaxed">
-                                Join over{' '}
+                                Over{' '}
                                 <strong className="text-xl text-rose-400 font-extrabold lg:text-2xl">
                                     {currentCount}
                                 </strong>{' '}
                                 Cornellians getting matched this year!
                             </p>
                         )}
-                        <div className="flex lg:contents">
-                            <div className="mt-8 flex flex-wrap gap-4 text-center mx-auto">
-                                <GoogleAuth login={!props.user} />
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <Image priority={true} src={word} alt="Loading..." className="lg:w-2/5"></Image>

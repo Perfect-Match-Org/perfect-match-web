@@ -7,9 +7,12 @@ import { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
+import CountDownSurvey from '@/components/countdownSurvey'
+import word from 'public/wordcloud-hq.gif';
 import CountDown from '@/components/countdown';
+import Image from 'next/image';
 
-const Profile: NextPage = (props: any) => {
+const Profile: any = (props: any) => {
     const { data, error, mutate } = useSWR('/api/profile', fetcher);
     const refresh = () => mutate();
     if (!data) return <Spinner />;
@@ -19,32 +22,33 @@ const Profile: NextPage = (props: any) => {
                 <title>Profile</title>
             </Head>
             <Header />
-            <div>
-                <section className="bg-white ">
-                    <div className="px-4 items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
-                        <h1 className="text-2xl font-bold sm:text-3xl font-extrabold text-rose-400">
-                            Welcome Back, {data.profile.firstName}!
+            <section className="bg-white flex flex-col pr-0 lg:pr-12 lg:flex-row">
+                <div className="pb-6 pt-6 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-3/5">
+                    <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
+                        <h1 className="text-3xl text-gray-600 font-extrabold sm:text-4xl lg:text-5xl">
+                            Let the magic
+                            <strong className="mt-1 lg:mt-2 lg:mt-3 block font-extrabold text-rose-400">
+                                Magic Begin🔮!
+                            </strong>
                         </h1>
-                        <p className="mt-1 text-xl  font-bold text-gray-500">Let&apos;s get matching!</p>
-                    </div>
-                </section>
-            </div>
-            <div>
-                {' '}
-                <section className="bg-white ">
-                    <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
-                        <div className="bg-white rounded-lg h-auto">
-                            <ProfileTabs user={data} refresh={refresh} />
+                        <div>
+                            <CountDownSurvey />
                         </div>
+                        <p className="text-lg mx-2 mt-6 lg:max-w-lg sm:mx-auto lg:text-left text-center lg:text-xl text-gray-500 sm:leading-relaxed">
+                            Thanks for filling out PM2024!
+                            Matches are released sometime tonight, with a reminder 
+                            email sent to you. Get excited❤️‍🔥!
+                        </p>
                     </div>
-                </section>
-            </div>
+                </div>
+                <Image priority={true} src={word} alt="Loading..." className="lg:w-2/5"></Image>
+            </section>
             <Footer />
         </div>
     );
 };
 
-export async function getServerSideProps(context: any) {
+{/*export async function getServerSideProps(context: any) {
     const session = await getSession(context);
     if (!session)
         return {
@@ -56,6 +60,6 @@ export async function getServerSideProps(context: any) {
             user: session.user,
         },
     };
-}
+}*/}
 
 export default Profile;
