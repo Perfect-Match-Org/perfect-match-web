@@ -13,10 +13,6 @@ function Footer() {
                     <a href="https://www.instagram.com/cornellperfectmatch/?hl=en" target="_blank" rel="noreferrer">
                         <img src="\ins.svg" alt="Instagram Logo" className="w-7 sm:w-9 mr-3" />
                     </a>
-
-                    <a href="https://www.facebook.com/cornellperfectmatch/" target="_blank" rel="noreferrer">
-                        <img src="\facebook.svg" alt="Facebook Logo" className="w-7 sm:w-9" />
-                    </a>
                 </div>
 
                 <div className="text-sm text-gray-500 dark:text-gray-400 flex justify-center items-center mb-3">

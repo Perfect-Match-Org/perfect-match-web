@@ -7,7 +7,7 @@ export const team = [
             {
                 Name: 'Nicholas Varela',
                 ClassYear: 2025,
-                Major: 'CS & Public Policy',
+                Major: 'CS & Government',
                 Img: '/members/nick.jpg',
                 Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
                 Title1: 'Engineering Team Co-Lead',
@@ -56,6 +56,15 @@ export const team = [
                     'https://www.linkedin.com/in/samantha-smith-057302251/?profileId=ACoAAD4owcMBUJd9F2pVXmgf5ClwGk_KIu2gmrM/',
                 Title1: 'Web Dev Subteam Member & Designer',
             },
+            {
+                Name: 'Cindy Li',
+                ClassYear: 2027,
+                Major: 'Computer Science',
+                Img: '/members/cindy.jpg',
+                Linkedin:
+                    ' https://www.linkedin.com/in/cindy-li-569a30187/',
+                Title1: 'Analytics & Web Developer Team Member',
+            }
         ],
     },
     {
@@ -79,6 +88,24 @@ export const team = [
                 Linkedin:
                     'https://www.linkedin.com/in/samantha-smith-057302251/?profileId=ACoAAD4owcMBUJd9F2pVXmgf5ClwGk_KIu2gmrM/',
                 Title1: 'Web Dev Subteam Member & Designer',
+            },
+            {
+                Name: 'Elif Yilmaz',
+                ClassYear: 2027,
+                Major: 'Economics and Government',
+                Img: '/members/elif.png',
+                Linkedin:
+                    ' https://www.linkedin.com/in/elif-naz-yilmaz/',
+                Title1: 'Business Team Member',
+            },
+            {
+                Name: 'Lucy Yang',
+                ClassYear: 2026,
+                Major: 'Psychology and Information Science',
+                Img: '/members/lucy.jpeg',
+                Linkedin:
+                    'https://www.linkedin.com/in/lucy-yang-ma21/',
+                Title1: 'Designer',
             }
         ],
     },
