@@ -32,12 +32,8 @@ function Header(props: any) {
                             <li className="hover:text-rose-400">
                                 <Link href="/">Home</Link>
                             </li>
-                            <li className="hover:text-rose-400">
-                                <Link href="/dashboard">Live Dashboard</Link>
-                            </li>
-                            <li className="hover:text-rose-400 animate-bounce">
-                                <Link href="/profile">Matches💘</Link>
-                            </li>
+
+
                             <li className="hover:text-rose-400">
                                 <Link href="/statistics"> Statistics</Link>
                             </li>
