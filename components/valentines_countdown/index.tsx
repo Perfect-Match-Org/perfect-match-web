@@ -13,15 +13,15 @@ const ValentinesCountdown = () => {
     useEffect(() => {
         const calculateTimeLeft = () => {
             // Set specific date to February 1st at 5 PM
-            const valentinesEvent = new Date(new Date().getFullYear(), 1, 1, 17, 0, 0); // February 1st, 5 PM
-            const now = new Date();
+            const valentinesEvent: any = new Date(new Date().getFullYear(), 1, 1, 17, 0, 0); // February 1st, 5 PM
+            const now: any = new Date();
 
             // If the event has passed this year, target next year
             if (now > valentinesEvent) {
                 valentinesEvent.setFullYear(valentinesEvent.getFullYear() + 1);
             }
 
-            const difference = valentinesEvent - now;
+            const difference: number = valentinesEvent - now;
 
             if (difference > 0) {
                 setTimeLeft({
