@@ -63,6 +63,33 @@ export const team = [
                 Linkedin:
                     ' https://www.linkedin.com/in/cindy-li-569a30187/',
                 Title1: 'Algorithms & Web Developer Team Member',
+            },
+            {
+                Name: 'Joyce Shen',
+                ClassYear: 2027,
+                Major: 'CS & ECE',
+                Img: '/members/joyce.png',
+                Linkedin:
+                    'https://www.linkedin.com/in/jshen127/',
+                Title1: 'Algogirthms Subteam Member',
+            },
+            {
+                Name: 'Huajie Zhong',
+                ClassYear: 2027,
+                Major: 'Computer Science',
+                Img: '/members/huajie.png',
+                Linkedin:
+                    'https://www.linkedin.com/in/huajiezhong/',
+                Title1: 'Web Dev Subteam Member',
+            },
+            {
+                Name: 'Ashlie Zhang',
+                ClassYear: 2027,
+                Major: 'Computer Science',
+                Img: '/members/ashlie.png',
+                Linkedin:
+                    'https://www.linkedin.com/in/ashlie-zhang-8982b7296/',
+                Title1: 'Web Dev Subteam Member',
             }
         ],
     },
@@ -98,6 +125,33 @@ export const team = [
                 Linkedin:
                     ' https://www.linkedin.com/in/elif-naz-yilmaz/',
                 Title1: 'Business Team Member',
+            },
+            {
+                Name: 'Connie Zhang',
+                ClassYear: 2027,
+                Major: 'Information Science',
+                Img: '/members/connie.png',
+                Linkedin:
+                    'www.linkedin.com/in/connie-zhang-profile',
+                Title1: 'Designer',
+            },
+            {
+                Name: 'Carl Hu',
+                ClassYear: 2028,
+                Major: 'CS + Cognitive Science',
+                Img: '/members/carl.png',
+                Linkedin:
+                    'www.linkedin.com/in/carl-hu/',
+                Title1: 'Business Team Member',
+            },
+            {
+                Name: 'Lydia Lin',
+                classYear: 2025,
+                Major: 'MPS Information Science',
+                Img: '/members/lydia.png',
+                Linkedin:
+                    'https://www.linkedin.com/in/lydia-lin-42a977325/',
+                Title1: 'Designer',
             }
             // {
             //     Name: 'Lucy Yang',
