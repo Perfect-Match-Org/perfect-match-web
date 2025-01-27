@@ -5,6 +5,8 @@ import DataCard from '@/components/admin/dataCard';
 import Link from 'next/link';
 import { User } from '@/types/users';
 import { set } from 'mongoose';
+import { isAdmin } from '@/utils/admins';
+import { useRouter } from 'next/router';
 
 type DisplayData = [string, number, [string, string]];
 
@@ -21,6 +23,7 @@ export default function AdminPanel() {
     const [page, setPage] = useState(1);
     const [pageInput, setPageInput] = useState('1');
     const [cachedResults, setCachedResults] = useState<{ [key: string]: User[] }>({});
+    const router = useRouter();
 
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
@@ -30,6 +33,14 @@ export default function AdminPanel() {
         ["Completed Profiles", profiledCount, ["#96d7d1", "#71d5c1"]]];
 
     const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"]];
+
+    useEffect(() => {
+        if (session) {
+            if (!isAdmin(session.user?.email!)) {
+                router.push('/');
+            }
+        }
+    }, [session, router]);
 
     useEffect(() => {
         if (status === 'authenticated') {
@@ -254,16 +265,6 @@ export default function AdminPanel() {
     };
 
     // Main component render
-    if (status === 'unauthenticated') {
-        return (
-            <div className="min-h-screen bg-gray-50 p-4">
-                <div className="bg-red-50 text-red-700 p-4 rounded-lg">
-                    Not authorized
-                </div>
-            </div>
-        );
-    }
-
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
