@@ -486,22 +486,3 @@ paths:
                                 type: integer
                 '405':
                     description: Method not allowed
-    /api/admin:
-        get:
-            summary: Verify admin status
-            description: Checks if the authenticated user has admin privileges.
-            responses:
-                200:
-                description: User is authenticated and admin status is returned. True if admin, false otherwise.
-                content:
-                    application/json:
-                    schema:
-                        type: boolean
-                        example: false
-                401:
-                description: User is not authenticated.
-                content:
-                    application/json:
-                    schema:
-                        type: boolean
-                        example: false
