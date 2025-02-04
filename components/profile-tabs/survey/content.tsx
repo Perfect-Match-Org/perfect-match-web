@@ -206,7 +206,7 @@ export const questions = {
                 {
                     type: 'radiogroup',
                     name: 'bathroom',
-                    title: 'What is your go-to bathroom?',
+                    title: 'Top-tier, shit-worthy bathroom?',
                     isRequired: true,
                     hasOther: true,
                     choices: [
