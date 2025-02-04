@@ -4,7 +4,7 @@ import authOptions from './auth/[...nextauth]';
 import { updateSurvey } from '@/controllers';
 import { Session } from 'next-auth';
 import { connect } from '@/database';
-import { Survey } from '@/types/users';
+import { User } from '@/types/users';
 
 /**
  * Handles the API request to update a survey.
@@ -12,16 +12,16 @@ import { Survey } from '@/types/users';
  * It updates the survey details of the authenticated user.
  *
  * @param {NextApiRequest} req - The incoming HTTP request.
- * @param {NextApiResponse<Survey | string>} res - The HTTP response object.
+ * @param {NextApiResponse<User | string>} res - The HTTP response object.
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Survey | String>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<User | String>) {
     const session: Session | null = await unstable_getServerSession(req, res, authOptions);
     if (!session) return res.status(401).send('Unauthorized');
     if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
     await connect();
 
-    const survey = await updateSurvey(session.user, JSON.parse(req.body));
-    return res.status(200).json(survey);
+    const user = await updateSurvey(session.user, JSON.parse(req.body));
+    return res.status(200).json(user);
 }

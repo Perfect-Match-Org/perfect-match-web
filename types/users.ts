@@ -17,6 +17,7 @@ export type Profile = {
     complete: boolean;
 };
 export type Survey = {
+    complete: boolean;
     _id: string;
 };
 export type Crushes = {

@@ -94,6 +94,15 @@ export const getProfiledUsersCount = async (): Promise<number> => {
 };
 
 /**
+ * Counts the number of User documents in the database who have completed the survey.
+ * @returns A Promise that resolves to the number of users who have completed the survey.
+ */
+export const getSurveyedUsersCount = async (): Promise<number> => {
+    const resp = await User.countDocuments({ "survey.complete": true });
+    return resp;
+};
+
+/**
  * Retrieves all users from the database by page.
  * @param {number} page - The page number to retrieve.
  * @param {number} limit - The number of users to retrieve per page. If provided as 0, all users are retrieved.

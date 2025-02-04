@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getUsersCount, getOptInUsersCount, getProfiledUsersCount } from '@/controllers';
+import { getUsersCount, getOptInUsersCount, getProfiledUsersCount, getSurveyedUsersCount } from '@/controllers';
 import { connect } from '@/database';
 
 /**
@@ -28,6 +28,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             break;
         case 'profiled':
             count = await getProfiledUsersCount();
+            break;
+        case 'surveyed':
+            count = await getSurveyedUsersCount();
             break;
         default:
             count = await getUsersCount();

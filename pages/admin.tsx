@@ -16,6 +16,7 @@ export default function AdminPanel() {
     const [userCount, setUserCount] = useState(0);
     const [optInCount, setOptInCount] = useState(0);
     const [profiledCount, setProfiledCount] = useState(0);
+    const [surveyedCount, setSurveyedCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -28,9 +29,11 @@ export default function AdminPanel() {
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
     const displayDatas: DisplayData[] = [
-        ["Users", userCount, ["#f3d1c1", "#f094ab"]],
-        ["Opted-In", optInCount, ["#99c6f5", "#5397e0"]],
-        ["Completed Profiles", profiledCount, ["#96d7d1", "#71d5c1"]]];
+        ["Users", userCount, ["#99c6f5", "#5397e0"]],
+        ["Opted-In", optInCount, ["#f3d1c1", "#f094ab"]],
+        ["Completed Profiles", profiledCount, ["#d8b5ff", "#a890fe"]],
+        ["Completed Surveys", surveyedCount, ["#96d7d1", "#71d5c1"]],
+    ];
 
     const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"]];
 
@@ -54,15 +57,17 @@ export default function AdminPanel() {
                 fetch('api/users/count'),
                 fetch('api/users/count?status=opted_in'),
                 fetch('api/users/count?status=profiled'),
+                fetch('api/users/count?status=surveyed')
             ]);
             if (!responses.every(res => res.ok)) {
                 const failedResponse = responses.find(res => !res.ok);
                 throw new Error(failedResponse?.status === 401 ? 'Unauthorized' : 'Failed to fetch users');
             }
-            const [countResponse, optInResponse, profiledResponse] = await Promise.all(responses.map(res => res.json()));
+            const [countResponse, optInResponse, profiledResponse, surveyedResponse] = await Promise.all(responses.map(res => res.json()));
             setUserCount(countResponse);
             setOptInCount(optInResponse);
             setProfiledCount(profiledResponse);
+            setSurveyedCount(surveyedResponse);
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -113,8 +118,15 @@ export default function AdminPanel() {
     const ProfileModal = ({ user, onClose }: { user: any; onClose: () => void }) => {
         if (!user) return null;
 
+        const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
+            if (e.target === e.currentTarget) {
+                onClose();
+            }
+        };
+
         return (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+                onClick={handleClickOutside}>
                 <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                     <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
                         <h2 className="text-xl text-black font-semibold">User Profile</h2>
@@ -175,6 +187,10 @@ export default function AdminPanel() {
                                                     }"`
                                                     : "N/A"}
                                             </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-black-500 font-semibold">Religion</p>
+                                            <p>{user.profile?.religion || "N/A"}</p>
                                         </div>
                                         <div>
                                             <p className="text-black-500 font-semibold">Location</p>
@@ -316,7 +332,7 @@ export default function AdminPanel() {
                 </ul>
             </nav>
             <div className='mx-auto px-4 md:px-8 lg:px-12 py-4'>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                     {/* <DataCard gradientColors={["#f3d1c1", "#f094ab"]} >
                         <div className='px-5 py-8'>
                             <div className="text-1xl md:text-3xl font-normal">Users</div>
@@ -358,9 +374,18 @@ export default function AdminPanel() {
                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                                         <div className="font-medium">
                                             {user.profile?.firstName || ''} {user.profile?.lastName || ''}
-                                            {user.profile?.complete &&
-                                                <span className="ml-2 text-green-600 text-sm">✓ Complete</span>
-                                            }
+                                            {user.profile?.complete && user.survey?.complete ? (
+                                                <span className="bg-gradient-to-r from-purple-400 to-green-500 text-sm font-bold bg-clip-text text-transparent ml-3">≛ Fully Completed ≛</span>
+                                            ) : (
+                                                <>
+                                                    {user.profile?.complete && (
+                                                        <span className="ml-2 text-purple-600 text-sm font-semibold">✦ Profile Completed</span>
+                                                    )}
+                                                    {user.survey?.complete && (
+                                                        <span className="ml-2 text-green-600 text-sm font-semibold">✓ Survey Completed</span>
+                                                    )}
+                                                </>
+                                            )}
                                         </div>
                                         <div className="text-gray-600">{user.email}</div>
                                     </div>
