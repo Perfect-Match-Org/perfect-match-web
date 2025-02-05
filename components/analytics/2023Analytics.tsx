@@ -402,14 +402,17 @@ const Stats2023 = () => {
                 <section id="privacy" className="text-black bg-pmpink2-500">
                     <div className="container px-5 sm:px-0 py-16 sm:py-24 mx-auto">
                         <div className="text-center mb-15">
-                            <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-red-500 sm:text-4xl">
+                            <h2 className="font-dela-gothic mb-12 text-2xl font-extrabold   tracking-tight font-bold text-pmblue-500 sm:text-4xl">
                                 FAQ&apos;s about User Privacy
                             </h2>
                         </div>
-                        <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+                        <div className="font-work-sans font-semibold text-pmblue-500 flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
                             <div className="w-full lg:w-1/2 px-4">
-                                <details className="mb-5">
-                                    <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                                <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
+                                    <summary className="px-6 py-2 rounded-full bg-white  text-pmred-500  border-4 border-pmblue-500 
+                                    font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px]
+                                    hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px]
+                                    active:translate-y-[6px] active:shadow-none cursor-pointer text-lg text-center">
                                         Are my survey responses visible to others?
                                     </summary>
 
@@ -419,8 +422,11 @@ const Stats2023 = () => {
                                         that is only with your matches.
                                     </p>
                                 </details>
-                                <details className="mb-5">
-                                    <summary className="font-semibold bg-white rounded-md py-2 px-4 cursor-pointer">
+                                <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
+                                    <summary className="px-6 py-2 rounded-full bg-white  text-pmred-500  border-4 border-pmblue-500 
+                                    font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px]
+                                    hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px]
+                                    active:translate-y-[6px] active:shadow-none cursor-pointer text-lg text-center">
                                         Can I be identified from these statistics?
                                     </summary>
 
@@ -433,8 +439,11 @@ const Stats2023 = () => {
                                         the data we have collected, and the resulting datasets are randomly shuffled.
                                     </p>
                                 </details>
-                                <details className="mb-5">
-                                    <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                                <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
+                                    <summary className="px-6 py-2 rounded-full bg-white  text-pmred-500  border-4 border-pmblue-500 
+                                    font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px]
+                                    hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px]
+                                    active:translate-y-[6px] active:shadow-none cursor-pointer text-lg text-center">
                                         How are these visualizations generated?
                                     </summary>
 
@@ -444,8 +453,11 @@ const Stats2023 = () => {
                                 </details>
                             </div>
                             <div className="w-full lg:w-1/2 px-4">
-                                <details className="mb-5">
-                                    <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                                <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
+                                    <summary className="px-6 py-2 rounded-full bg-white  text-pmred-500  border-4 border-pmblue-500 
+                                    font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px]
+                                    hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px]
+                                    active:translate-y-[6px] active:shadow-none cursor-pointer text-lg text-center">
                                         Is my data sold to third-party advertisers?
                                     </summary>
 
@@ -454,8 +466,11 @@ const Stats2023 = () => {
                                         any third party.
                                     </p>
                                 </details>
-                                <details className="mb-5">
-                                    <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                                <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
+                                    <summary className="px-6 py-2 rounded-full bg-white  text-pmred-500  border-4 border-pmblue-500 
+                                    font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px]
+                                    hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px]
+                                    active:translate-y-[6px] active:shadow-none cursor-pointer text-lg text-center">
                                         What happens to my data?
                                     </summary>
 
@@ -472,11 +487,14 @@ const Stats2023 = () => {
                                     </p>
                                     <p style={{ paddingTop: '10px', paddingLeft: '15px' }}>
                                         For media requests, please reach out at{' '}
-                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
+                                        <Link href="mailto:cornell.perfectmatch@gmail.com">cornell.perfectmatch@gmail.com</Link>.
                                     </p>
                                 </details>
-                                <details className="mb-5">
-                                    <summary className="font-semibold  bg-white rounded-md py-2 px-4 cursor-pointer">
+                                <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
+                                    <summary className="px-6 py-2 rounded-full bg-white  text-pmred-500  border-4 border-pmblue-500 
+                                    font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px]
+                                    hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px]
+                                    active:translate-y-[6px] active:shadow-none cursor-pointer text-lg text-center">
                                         Who can I contact if I have a privacy concern?
                                     </summary>
 
@@ -485,7 +503,7 @@ const Stats2023 = () => {
                                         you may have regarding data privacy. In fact, feedback from the Cornell
                                         community already has and will continue to be used in to improve our algorithm
                                         and measures to protect privacy. We can be reached at{' '}
-                                        <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
+                                        <Link href="mailto:cornell.perfectmatch@gmail.com">cornell.perfectmatch@gmail.com</Link>.
                                     </p>
                                 </details>
                             </div>
