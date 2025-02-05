@@ -450,6 +450,10 @@ export const questions = {
                                     value: 'unsure',
                                     text: 'Unsure',
                                 },
+                                {
+                                    value: 'platonic',
+                                    text: 'Platonic',
+                                }
                             ],
                         },
                         {
