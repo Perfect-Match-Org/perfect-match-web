@@ -191,6 +191,27 @@ function maskText(text: string): string {
     return text.split('').map(char => char === ' ' ? ' ' : char === ',' ? ',' : '♥').join('');
 }
 
+const SurveyGreenFlag = (greenFlag: string) => {
+    switch (greenFlag) {
+        case 'gcaldate':
+            return 'Sends me a GCal invite for the date';
+        case 'petlike':
+            return 'My pet likes them';
+        case 'screentime':
+            return 'Has a low screen time';
+        case 'smellsgood':
+            return 'Smells good';
+        case 'gymrat':
+            return 'Goes to the gym';
+        case 'kids':
+            return 'Is good with kids';
+        case 'gpa':
+            return 'Has a 4.0 gpa';
+        default:
+            return '';
+    }
+};
+
 function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutualCrush, superMatch, platonic, matchPoked }: any) {
     const matchEmoji = useMemo(() => {
         return emoji[Math.floor(Math.random() * emoji.length)];
@@ -242,7 +263,6 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutual
     if (contact.fb) displayCount++;
     if (contact.other) displayCount++;
     if (contact.wechat) displayCount++;
-    console.log('displayCount', displayCount);
 
     const handleFlip = (): void => {
         const selection = window.getSelection();
@@ -556,7 +576,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutual
                             <p className="text-left">My Sense of Humor is: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.humor.join(', ')}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(matchData.survey.humor.join(', '))}</span>)}</p>
                             <p className="text-left">Where I would go on a first date: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.date}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(matchData.survey.date)}</span>)}</p>
                             <p className="text-left">1 = Introvert, 10 = Extrovert, I&apos;m a: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.introvert}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(String(matchData.survey.introvert))}</span>)}</p>
-                            <p className="text-left">A green flag to me in a relationship: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.profile.greenFlag}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(matchData.profile.greenFlag)}</span>)}</p>
+                            <p className="text-left">A green flag to me in a relationship: {poked ? (<span style={{ color: '#F4001F' }}>{SurveyGreenFlag(matchData.survey.greenflag)}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(SurveyGreenFlag(matchData.survey.greenflag))}</span>)}</p>
                         </div>
                     </div>
                 </div>
