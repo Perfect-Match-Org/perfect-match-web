@@ -91,7 +91,7 @@ function Header(props: any) {
                     </div>
                 </div>
             </nav>
-            <div className="bg-pmblue-500">
+            {/* <div className="bg-pmblue-500">
                 <div className="py-2 px-3 sm:px-0 sm:py-3 md:pt-1 md:pb-0 flex">
                     <div className="flex flex-wrap justify-center items-center sm:mx-auto">
                         <div>
@@ -111,7 +111,7 @@ function Header(props: any) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </header >
     );
 }
