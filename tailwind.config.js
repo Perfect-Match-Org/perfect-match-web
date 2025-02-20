@@ -70,12 +70,14 @@ module.exports = {
                 '.transform-3d': {
                     'transform-style': 'preserve-3d',
                 },
+                '.rotate-y-0': {
+                    transform: 'rotateY(0turn)',
+                },
                 '.rotate-y-half': {
-                    transform: 'rotateY(0.5turn)',
+                    transform: 'rotateY(0.5turn) translateZ(1px)',
                 },
                 '.backface-hidden': {
                     'backface-visibility': 'hidden',
-                    '-webkit-backface-visibility': 'hidden',
                 },
             };
             addUtilities(newUtilities, ['responsive']);
