@@ -75,6 +75,7 @@ module.exports = {
                 },
                 '.backface-hidden': {
                     'backface-visibility': 'hidden',
+                    '-webkit-backface-visibility': 'hidden',
                 },
             };
             addUtilities(newUtilities, ['responsive']);
