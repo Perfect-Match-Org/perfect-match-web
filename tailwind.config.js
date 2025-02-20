@@ -5,7 +5,6 @@ module.exports = {
     content: ['./app/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
-
             colors: {
                 pmpink: {
                     500: '#fce5f3',
@@ -59,7 +58,6 @@ module.exports = {
                 flash: 'flash 1s steps(1, end) infinite',
                 flip: 'flip 1s ease-in-out infinite',
                 'pulse-glow': 'pulse-glow 1s infinite alternate',
-
             },
         },
     },
@@ -71,9 +69,6 @@ module.exports = {
                 },
                 '.transform-3d': {
                     'transform-style': 'preserve-3d',
-                },
-                '.rotate-y-half': {
-                    transform: 'rotateY(0turn)',
                 },
                 '.rotate-y-half': {
                     transform: 'rotateY(0.5turn)',
