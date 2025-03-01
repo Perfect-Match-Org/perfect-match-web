@@ -58,7 +58,7 @@ const Statistics = (props: { title: string }) => {
                     // backgroundImage: 'url("valentine.png")',
                 }}
             >
-                <div className="pb-6 pt-24 sm:pt-32 lg:pt-32 lg:pb-36">
+                <div className="pb-6 bg-pmpink-500 pt-24 sm:pt-32 lg:pt-32 lg:pb-36">
                     <div className="max-w-xl text-center sm:text-left sm:ml-[15%] mt-8 sm:mt-0 opacity-100">
                         <h1 className="text-4xl sm:text-3xl font-dela-gothic text-pmblue-500 lg:text-5xl opacity-100">
                             Can Love be Visualized?
@@ -67,6 +67,7 @@ const Statistics = (props: { title: string }) => {
                             <strong>
                                 Perhaps not without daydreaming about your crush, but your survey responses can!
                             </strong>{' '}
+                            <br />
                             Join us on this journey to learn about some of the preferences and habits we&apos;ve
                             discovered from several years of survey responses!
                         </p>
