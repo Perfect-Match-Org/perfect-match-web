@@ -47,10 +47,11 @@ const Statistics = (props: { title: string }) => {
             </div>
 
             <section
-                className="sm:mr-0"
+                className="sm:mr-0 bg-pmpink-500"
                 style={{
                     // paddingBottom: '10px',
                     // paddingTop: '10px',
+
                     height: '100%',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
@@ -67,6 +68,7 @@ const Statistics = (props: { title: string }) => {
                             <strong>
                                 Perhaps not without daydreaming about your crush, but your survey responses can!
                             </strong>{' '}
+                            <br />
                             Join us on this journey to learn about some of the preferences and habits we&apos;ve
                             discovered from several years of survey responses!
                         </p>
@@ -267,7 +269,7 @@ const Statistics = (props: { title: string }) => {
             </div>
 
             <Footer />
-        </div>
+        </div >
     );
 };
 
