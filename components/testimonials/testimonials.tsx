@@ -6,6 +6,7 @@ import { useInView } from 'framer-motion'
 
 import { Container } from '@/components/testimonials/Container'
 import Image from 'next/image'
+import Link from 'next/link';
 
 interface Review {
   title: string
@@ -216,7 +217,7 @@ function ReviewGrid() {
   return (
     <div
       ref={containerRef}
-      className="relative -mx-4 mt-4 grid h-[36rem] max-h-[70vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
+      className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
     >
       {isInView && (
         <>
@@ -246,8 +247,8 @@ function ReviewGrid() {
           />
         </>
       )}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-gray-50" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-gray-50" />
+      {/* <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-gray-50" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-gray-50" /> */}
     </div>
   )
 }
@@ -270,6 +271,34 @@ export function Reviews() {
         <p className="mt-2 text-lg text-pmblue-500 sm:text-center font-delta-gothic font-bold">
           Find the love of your life today.
         </p>
+        <div className="flex justify-center">
+          <Link href="/statistics">
+            <button
+              className="
+                mt-6
+                px-6 
+                py-2
+                rounded-full
+                bg-white 
+                text-pmred-500 
+                border-4
+                border-pmblue-500 
+                font-bold
+                shadow-[6px_6px_0px_0px_rgba(36,67,141,1)]
+                transition-all
+                hover:translate-x-[4px]
+                hover:translate-y-[4px]
+                hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)]
+                active:translate-x-[6px]
+                active:translate-y-[6px]
+                active:shadow-none
+                inline-flex 
+                items-center            "
+            >
+              Share Your Experiences
+            </button>
+          </Link>
+        </div>
         <ReviewGrid />
 
       </Container>
