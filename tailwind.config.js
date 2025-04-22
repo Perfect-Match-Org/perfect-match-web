@@ -31,6 +31,11 @@ module.exports = {
                 'press-start': ['"Press Start 2P"', 'sans-serif'],
             },
             keyframes: {
+                jiggle: {
+                    '0%, 100%': { transform: 'rotate(0deg)' },
+                    '25%': { transform: 'rotate(-5deg)' },
+                    '75%': { transform: 'rotate(5deg)' },
+                },
                 flash: {
                     '0%, 100%': { opacity: 1 },
                     '50%': { opacity: 0 },
@@ -49,6 +54,7 @@ module.exports = {
                 },
             },
             animation: {
+                jiggle: 'jiggle 0.3s ease-in-out infinite',
                 flash: 'flash 1s steps(1, end) infinite',
                 flip: 'flip 1s ease-in-out infinite',
                 'pulse-glow': 'pulse-glow 1s infinite alternate',
@@ -64,11 +70,11 @@ module.exports = {
                 '.transform-3d': {
                     'transform-style': 'preserve-3d',
                 },
-                '.rotate-y-half': {
+                '.rotate-y-0': {
                     transform: 'rotateY(0turn)',
                 },
                 '.rotate-y-half': {
-                    transform: 'rotateY(0.5turn)',
+                    transform: 'rotateY(0.5turn) translateZ(1px)',
                 },
                 '.backface-hidden': {
                     'backface-visibility': 'hidden',

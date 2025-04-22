@@ -32,7 +32,7 @@ const Profile: NextPage = (props: any) => {
                 <section className="bg-pmpink-500 ">
                     <div className="px-4 font-dela-gothic items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
                         <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
-                            <Image src="/wing.svg" alt="Wing" width={148} height={148} className="inline-block mr-2 hidden sm:block" />
+                            <Image src="/wing.svg" alt="Wing" width={148} height={148} className="inline-block mr-2 sm:block" />
                             Hey {data.profile.firstName},
                         </h1>
                         <div className="text-center mb-0">
@@ -40,9 +40,19 @@ const Profile: NextPage = (props: any) => {
                                 Your Matches are here
                             </h2>
                             <div className="max-w-screen-lg mx-auto">
-                                <p className="font-work-sans text-pmblue-500 text-lg sm:text-xl font-medium text-left">
+                                <p className="font-work-sans text-pmblue-500 text-lg ml-14 sm:text-xl font-medium text-left">
                                     <Image src="/1.svg" alt="Step One" width={32} height={32} className="inline-block mr-2" />
-                                    <strong>Click</strong> on the card to flip it and <strong>see more</strong> about your match! 💫
+                                    <strong>Click</strong> on the card to flip it and <strong>see more</strong> about your match!
+                                    <div className='pl-5 inline-block'
+                                    >
+                                        <Image
+                                            src="/flip.png"
+                                            alt="Flip One"
+                                            width={96}
+                                            height={96}
+                                            className="inline-block mr-2 animate-jiggle pl-10x ml-6"
+                                        />
+                                    </div>
                                 </p>
                                 <p className="font-work-sans text-pmblue-500 text-lg sm:text-xl ml-32 font-medium text-center mt-20">
                                     <Image src="/2.svg" alt="Step Two" width={32} height={32} className="inline-block mr-2" />
@@ -60,7 +70,7 @@ const Profile: NextPage = (props: any) => {
             </div>
             <div>
                 {' '}
-                <section className="bg-white ">
+                <section className="bg-white pt-5">
                     <div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl  ">
                         <div className="bg-white font-work-sans rounded-lg h-auto">
                             <ProfileTabs user={data} refresh={refresh} />

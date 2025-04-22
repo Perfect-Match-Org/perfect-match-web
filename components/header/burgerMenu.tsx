@@ -42,7 +42,7 @@ const Toggle = () => {
                                     <Link href="/about">About</Link>
                                 </li>
                                 <li className="text-pmred-500 text-xl font-medium mt-5 mb-5">
-                                    <Link href="/profile">Survey</Link>
+                                    <Link href="/profile">Matches</Link>
                                 </li>
                                 {status === 'authenticated' && (
                                     <li className="text-pmred-500 text-xl font-medium mt-5 mb-5 hover:text-red-500 ease-in-out transition-all duration-200">

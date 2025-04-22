@@ -21,7 +21,8 @@ export const team = [
                 Team: 'Engineering',
                 Linkedin: 'https://www.linkedin.com/in/pratyushsudhakar',
                 Title1: 'Engineering Team Lead',
-                Title2: 'Web Dev Member',
+                Title2: 'Algorithms Subteam Head',
+                Title3: 'Web Dev Member',
             },
             {
                 Name: 'Flavia Jiang',

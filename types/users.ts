@@ -17,6 +17,7 @@ export type Profile = {
     complete: boolean;
 };
 export type Survey = {
+    complete: boolean;
     _id: string;
 };
 export type Crushes = {
@@ -45,7 +46,10 @@ export type MatchReview = {
     partnerAFeedback: Review;
     partnerBFeedback: Review;
     overallStatus: 'pending' | 'complete' | 'partial';
-    poked: boolean;
+    pokedA: boolean;
+    pokedB: boolean;
     mutual: boolean;
     score: number;
+    superMatch: boolean;
+    platonic: boolean;
 };

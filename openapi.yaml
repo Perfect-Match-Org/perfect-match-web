@@ -496,17 +496,18 @@ paths:
             operationId: getUserCount
             parameters:
                 - in: query
-                  name: status
-                  schema:
-                      type: string
-                      enum: [opted_in, profiled]
-                      example: opted_in
-                  required: false
-                  description: |
-                      Filter users by status:
-                      - `opted_in`: Count of users who have opted in.
-                      - `profiled`: Count of users who have completed their profile.
-                      - Undefined: Total count of all users.
+                name: status
+                schema:
+                    type: string
+                    enum: [opted_in, profiled, surveyed]
+                    example: opted_in
+                required: false
+                description: |
+                    Filter users by status:
+                    - `opted_in`: Count of users who have opted in.
+                    - `profiled`: Count of users who have completed their profile.
+                    - `surveyed`: Count of users who have completed the survey.
+                    - Undefined: Total count of all users.
             responses:
                 '200':
                     description: Total user count
