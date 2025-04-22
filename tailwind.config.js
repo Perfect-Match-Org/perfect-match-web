@@ -52,12 +52,22 @@ module.exports = {
                         boxShadow: '0 0 0 60px rgba(0, 0, 0, 0)',
                     },
                 },
+                'fade-in': {
+                    '0%': { opacity: 0 },
+                    '100%': { opacity: 1 },
+                },
+                'vertical-marquee': {
+                    '0%': { transform: 'translateY(0)' },
+                    '100%': { transform: 'translateY(-50%)' },
+                },
             },
             animation: {
                 jiggle: 'jiggle 0.3s ease-in-out infinite',
                 flash: 'flash 1s steps(1, end) infinite',
                 flip: 'flip 1s ease-in-out infinite',
                 'pulse-glow': 'pulse-glow 1s infinite alternate',
+                'fade-in': 'fade-in 1s ease-in-out forwards',
+                'vertical-marquee': 'vertical-marquee var(--marquee-duration) linear infinite',
             },
         },
     },
@@ -78,6 +88,12 @@ module.exports = {
                 },
                 '.backface-hidden': {
                     'backface-visibility': 'hidden',
+                },
+                '.bg-linear-to-b': {
+                    'background-image': 'linear-gradient(to bottom, var(--tw-gradient-stops))',
+                },
+                '.bg-linear-to-t': {
+                    'background-image': 'linear-gradient(to top, var(--tw-gradient-stops))',
                 },
             };
             addUtilities(newUtilities, ['responsive']);

@@ -15,7 +15,7 @@ import Countdown from '@/components/countdown';
 import SpotifyPlaylist from '@/components/playlist'
 import SpotifyPlaylistNarrow from '@/components/playlist-narrow';
 import { Button } from '@/components/general';
-
+import { Reviews } from '@/components/testimonials/testimonials';
 const Home: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
         refreshInterval: 60000,
@@ -204,6 +204,9 @@ const Home: NextPage = (props: any) => {
                         ></path>
                     </svg>
                 </div>
+            </div>
+            <div className="bg-pmpink2-500 py-12">
+                <Reviews />
             </div>
             <Footer />
         </div >
