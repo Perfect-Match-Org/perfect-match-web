@@ -7,6 +7,7 @@ import { useInView } from 'framer-motion'
 import { Container } from '@/components/testimonials/Container'
 import Image from 'next/image'
 import Link from 'next/link';
+import { Button } from '../general'
 
 interface Review {
   title: string
@@ -252,6 +253,10 @@ function ReviewGrid() {
     </div>
   )
 }
+
+
+
+
 export function Reviews() {
   return (
     <section
@@ -259,14 +264,11 @@ export function Reviews() {
       aria-labelledby="reviews-title"
       className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500"
     >
-
       <Container>
-
         <h1
           id="reviews-title"
           className="text-3xl text-pmred-500 font-extrabold sm:text-3xl sm:text-center font-dela-gothic">
           This could be you
-
         </h1>
         <p className="mt-2 text-lg text-pmblue-500 sm:text-center font-delta-gothic font-bold">
           Find the love of your life today.
@@ -300,10 +302,191 @@ export function Reviews() {
           </Link>
         </div>
         <ReviewGrid />
-
       </Container>
-
     </section>
   )
 }
 
+
+interface pendingReview {
+  id: string;
+  title: string;
+  body: string;
+  author: string;
+}
+export function Approvals() {
+  // A lot of stuff is related to backend yet which hasn't been implemented
+  // So I commented out the backend related stuff and just hardcoded in
+  // Examples of what should happen and whatnot.
+  // const [pendingReviews, setPendingReviews] = useState<pendingReview[]>([]);
+
+  //Simulation code to generate a list. To be removed
+  const [pendingReviews, setPendingReviews] = useState<pendingReview[]>([
+    { id: '1', title: 'Great app!', body: 'Loved it.', author: 'John' },
+    { id: '2', title: 'Amazing experience', body: 'Found my soulmate!', author: 'Jane' },
+    { id: '3', title: 'Life changing platform', body: 'Met my perfect match in just 2 weeks. The algorithm is amazing!', author: 'Mike S.' },
+    {
+      id: '4', title: 'Best dating app ever', body: 'I was skeptical at first but now I am getting married to someone I met here!', author: 'Sarah'
+    },
+    { id: '5', title: 'Thank you Perfect Match!', body: 'After years of failed relationships, I finally found someone who truly understands me.', author: 'Alex P.' },
+  ]);
+
+  // Add state to track the current review index
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+
+  async function approveReview(id: string) {
+    console.log("Approved review with ID:", id)
+    //commented out as backend endpointis aren't set yet
+    // await fetch(`/api/approve-review?id=${id}`, { method: 'POST' });
+
+    //Simulation code to remove it from list. To be removed
+    setPendingReviews((reviews) => reviews.filter((r) => r.id !== id));
+    alert(`Review by ${pendingReviews.find(r => r.id === id)?.author} approved!`);
+
+    // Reset index if we're at the end and there are still reviews left
+    if (currentReviewIndex >= pendingReviews.length - 1 && pendingReviews.length > 1) {
+      setCurrentReviewIndex(0);
+    }
+  }
+
+  async function rejectReview(id: string) {
+    console.log("Denied review with ID:", id)
+    //commented out as backend endpointis aren't set yet
+    // await fetch(`api/reject-review?id=${id}`, {method: 'POST'});
+
+    //Removes review fromm list
+    setPendingReviews((reviews) => reviews.filter((r) => r.id !== id));
+    alert(`Review by ${pendingReviews.find(r => r.id === id)?.author} rejected.`);
+
+    if (currentReviewIndex >= pendingReviews.length - 1 && pendingReviews.length > 1) {
+      setCurrentReviewIndex(0);
+    }
+  }
+
+  // Function to navigate to next review
+  const nextReview = () => {
+    if (currentReviewIndex < pendingReviews.length - 1) {
+      setCurrentReviewIndex(currentReviewIndex + 1);
+    }
+  };
+
+  // Function to navigate to previous review
+  const previousReview = () => {
+    if (currentReviewIndex > 0) {
+      setCurrentReviewIndex(currentReviewIndex - 1);
+    }
+  };
+
+  // Ensure index is valid when reviews change
+  useEffect(() => {
+    if (currentReviewIndex >= pendingReviews.length && pendingReviews.length > 0) {
+      setCurrentReviewIndex(pendingReviews.length - 1);
+    }
+  }, [pendingReviews.length, currentReviewIndex]);
+
+  //commented out as backend endpointis aren't set yet
+  /*
+  useEffect(() => {
+    async function fetchPendingReviews() {
+      try {
+        const response = await fetch('idk-where-endpoint');
+        const data = await response.json();
+        setPendingReviews(data);
+      } catch (error) {
+        console.log("no data found")
+      }
+    }
+    fetchPendingReviews();
+  }, []);
+  */
+
+  return (
+    <section
+      id="approvals"
+      aria-labelledby="approvals-title"
+      className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500"
+    >
+      <Container>
+        <h1
+          id="approvals-title"
+          className="text-3xl text-pmred-500 font-extrabold sm:text-3xl sm:text-center font-dela-gothic"
+        >
+          Approvals
+        </h1>
+
+        <div className="flex flex-col items-center mt-8 space-y-6">
+          {pendingReviews.length === 0 ? (
+            <p className="text-lg text-gray-700">No pending reviews.</p>
+          ) : (
+            <>
+              {/* Review counter */}
+              <p className="text-lg text-gray-700 font-semibold">
+                Review {currentReviewIndex + 1} of {pendingReviews.length}
+              </p>
+
+              {/* Current review card */}
+              <div
+                key={pendingReviews[currentReviewIndex].id}
+                className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-6 border-2 border-pmblue-500"
+              >
+                <div className="mb-4">
+                  <p className="text-xl font-bold mb-2 text-gray-900">Title:</p>
+                  <p className="text-lg text-gray-800">{pendingReviews[currentReviewIndex].title}</p>
+                </div>
+
+                <div className="mb-4">
+                  <p className="text-xl font-bold mb-2 text-gray-900">Review:</p>
+                  <p className="text-lg text-gray-800">{pendingReviews[currentReviewIndex].body}</p>
+                </div>
+
+                <div className="mb-4">
+                  <p className="text-xl font-bold mb-2 text-gray-900">Name:</p>
+                  <p className="text-lg text-gray-800">{pendingReviews[currentReviewIndex].author}</p>
+                </div>
+
+                <div className="flex justify-end space-x-4 mt-4">
+                  <button
+                    className="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-600 transition"
+                    onClick={() => approveReview(pendingReviews[currentReviewIndex].id)}
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-600 transition"
+                    onClick={() => rejectReview(pendingReviews[currentReviewIndex].id)}
+                  >
+                    Reject
+                  </button>
+                </div>
+              </div>
+
+              {/* Navigation buttons */}
+              <div className="flex justify-center space-x-4 mt-4">
+                <button
+                  className={`px-4 py-2 bg-pmblue-500 text-white font-bold rounded transition ${currentReviewIndex === 0
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:bg-blue-600'
+                    }`}
+                  onClick={previousReview}
+                  disabled={currentReviewIndex === 0}
+                >
+                  Previous
+                </button>
+                <button
+                  className={`px-4 py-2 bg-pmblue-500 text-white font-bold rounded transition ${currentReviewIndex === pendingReviews.length - 1
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:bg-blue-600'
+                    }`}
+                  onClick={nextReview}
+                  disabled={currentReviewIndex === pendingReviews.length - 1}
+                >
+                  Next
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </Container>
+    </section>
+  )
+}
