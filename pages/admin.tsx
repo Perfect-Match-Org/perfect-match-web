@@ -4,8 +4,7 @@ import { Header } from '@/components/header';
 import DataCard from '@/components/admin/dataCard';
 import Link from 'next/link';
 import { User } from '@/types/users';
-import { set } from 'mongoose';
-import { isAdmin } from '@/utils/admins';
+import { isAdmin, canViewSensitiveData } from '@/utils/admins';
 import { useRouter } from 'next/router';
 
 type DisplayData = [string, number, [string, string]];
@@ -159,134 +158,138 @@ export default function AdminPanel() {
                             </div>
                         </div>
 
-                        {user.profile?.complete && (
-                            <>
-                                {/* Profile Details */}
-                                <div>
-                                    <h3 className="text-lg font-bold mb-4">Profile Details</h3>
-                                    <div className="grid grid-cols-2 gap-4">
+                        {/* Sensitive Data */}
+                        {(session && canViewSensitiveData(session.user?.email!)) && (
+                            <>{
+                                user.profile?.complete && (
+                                    <>
+                                        {/* Profile Details */}
                                         <div>
-                                            <p className="text-black-500 font-semibold">Gender</p>
-                                            <p>{user.profile?.gender || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Gender Preference</p>
-                                            <p>{user.profile?.genderPref || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Age</p>
-                                            <p>{user.profile?.age || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Height</p>
-                                            <p>
-                                                {user.profile?.height
-                                                    ? `${Math.floor(user.profile.height / 12)}' ${user.profile.height % 12
-                                                    }"`
-                                                    : "N/A"}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Religion</p>
-                                            <p>{user.profile?.religion || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Location</p>
-                                            <p>{user.profile?.city || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Year</p>
-                                            <p>{user.profile?.year || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">College</p>
-                                            <p>{user.profile?.college || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Major</p>
-                                            <p>{user.profile?.major || "N/A"}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Preferences */}
-                                <div>
-                                    <h3 className="text-lg font-bold mb-4 ">Preferences</h3>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Age Preference</p>
-                                            <p>
-                                                {user.profile?.agePref?.youngest || "N/A"} -{" "}
-                                                {user.profile?.agePref?.oldest || "N/A"} years
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Commitment Level</p>
-                                            <p>{user.profile?.commitment || "N/A"}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Relationship Type</p>
-                                            <p>{user.profile?.relationshipType || "N/A"}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Description */}
-                                <div>
-                                    <h3 className="text-lg font-bold mb-4">Personal Description</h3>
-                                    <div className="space-y-4">
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Self Description</p>
-                                            <p>
-                                                {user.profile?.describeYourself
-                                                    ? Object.values(user.profile.describeYourself).join(", ")
-                                                    : "N/A"}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Partner Description</p>
-                                            <p>
-                                                {user.profile?.describePartner
-                                                    ? Object.values(user.profile.describePartner).join(", ")
-                                                    : "N/A"}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p className="text-black-500 font-semibold">Bio</p>
-                                            <p>{user.profile?.bio || "N/A"}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {user.survey?.complete && (
-                                    <div>
-                                        <h3 className="text-lg font-bold mb-4">Survey Information</h3>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <p className="text-black-500 font-semibold">Interests</p>
-                                                <p>{user.survey?.interests?.join(", ") || "N/A"}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-black-500 font-semibold">Music Preferences</p>
-                                                <p>{user.survey?.music?.join(", ") || "N/A"}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-black-500 font-semibold">Love Languages</p>
-                                                <p>{user.survey?.lovelanguage || "N/A"}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-black-500 font-semibold">Habits</p>
-                                                <div className="text-sm">
-                                                    <p>Drinking: {user.survey?.habits?.drinking || "N/A"}</p>
-                                                    <p>Smoking: {user.survey?.habits?.smoking || "N/A"}</p>
-                                                    <p>Weed: {user.survey?.habits?.weed || "N/A"}</p>
+                                            <h3 className="text-lg font-bold mb-4">Profile Details</h3>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Gender</p>
+                                                    <p>{user.profile?.gender || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Gender Preference</p>
+                                                    <p>{user.profile?.genderPref || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Age</p>
+                                                    <p>{user.profile?.age || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Height</p>
+                                                    <p>
+                                                        {user.profile?.height
+                                                            ? `${Math.floor(user.profile.height / 12)}' ${user.profile.height % 12
+                                                            }"`
+                                                            : "N/A"}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Religion</p>
+                                                    <p>{user.profile?.religion || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Location</p>
+                                                    <p>{user.profile?.city || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Year</p>
+                                                    <p>{user.profile?.year || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">College</p>
+                                                    <p>{user.profile?.college || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Major</p>
+                                                    <p>{user.profile?.major || "N/A"}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
-                            </>
-                        )}
+
+                                        {/* Preferences */}
+                                        <div>
+                                            <h3 className="text-lg font-bold mb-4 ">Preferences</h3>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Age Preference</p>
+                                                    <p>
+                                                        {user.profile?.agePref?.youngest || "N/A"} -{" "}
+                                                        {user.profile?.agePref?.oldest || "N/A"} years
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Commitment Level</p>
+                                                    <p>{user.profile?.commitment || "N/A"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Relationship Type</p>
+                                                    <p>{user.profile?.relationshipType || "N/A"}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Description */}
+                                        <div>
+                                            <h3 className="text-lg font-bold mb-4">Personal Description</h3>
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Self Description</p>
+                                                    <p>
+                                                        {user.profile?.describeYourself
+                                                            ? Object.values(user.profile.describeYourself).join(", ")
+                                                            : "N/A"}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Partner Description</p>
+                                                    <p>
+                                                        {user.profile?.describePartner
+                                                            ? Object.values(user.profile.describePartner).join(", ")
+                                                            : "N/A"}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-black-500 font-semibold">Bio</p>
+                                                    <p>{user.profile?.bio || "N/A"}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {user.survey?.complete && (
+                                            <div>
+                                                <h3 className="text-lg font-bold mb-4">Survey Information</h3>
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <div>
+                                                        <p className="text-black-500 font-semibold">Interests</p>
+                                                        <p>{user.survey?.interests?.join(", ") || "N/A"}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-black-500 font-semibold">Music Preferences</p>
+                                                        <p>{user.survey?.music?.join(", ") || "N/A"}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-black-500 font-semibold">Love Languages</p>
+                                                        <p>{user.survey?.lovelanguage || "N/A"}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-black-500 font-semibold">Habits</p>
+                                                        <div className="text-sm">
+                                                            <p>Drinking: {user.survey?.habits?.drinking || "N/A"}</p>
+                                                            <p>Smoking: {user.survey?.habits?.smoking || "N/A"}</p>
+                                                            <p>Weed: {user.survey?.habits?.weed || "N/A"}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </>
+                                )
+                            }</>)}
                     </div>
                 </div>
             </div>
