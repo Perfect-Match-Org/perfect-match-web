@@ -38,10 +38,8 @@ export default function AdminPanel() {
     const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"]];
 
     useEffect(() => {
-        if (session) {
-            if (!isAdmin(session.user?.email!)) {
-                router.push('/');
-            }
+        if (!session || !isAdmin(session.user?.email!)) {
+            router.push('/');
         }
     }, [session, router]);
 
