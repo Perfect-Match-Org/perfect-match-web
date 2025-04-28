@@ -41,14 +41,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const { page = '1', limit = '0', searchTerm = '' } = req.query;
 
-    if (typeof page !== 'string' || typeof limit !== 'string' || typeof searchTerm !== 'string') {
+    const pageValue = Array.isArray(page) ? page[0] : page;
+    const limitValue = Array.isArray(limit) ? limit[0] : limit;
+    const searchTermValue = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+
+    if (typeof pageValue !== 'string' || typeof limitValue !== 'string' || typeof searchTermValue !== 'string') {
         return res.status(400).send('Invalid query parameters');
     }
-    if (Number(page) < 1 || Number(limit) < 0) return res.status(400).send('Invalid query parameters');
+    if (Number(pageValue) < 1 || Number(limitValue) < 0) return res.status(400).send('Invalid query parameters');
 
-    if (searchTerm.length > 100) return res.status(400).send('Search term too long');
+    if (searchTermValue.length > 100) return res.status(400).send('Search term too long');
 
-    const users = await getUsers(Number(page), Number(limit), searchTerm, includeSensitiveData);
+    const users = await getUsers(Number(pageValue), Number(limitValue), searchTermValue, includeSensitiveData);
     if (!users) return res.status(404).send('No users found');
     return res.status(200).json(users);
 }
