@@ -107,9 +107,10 @@ export const getSurveyedUsersCount = async (): Promise<number> => {
  * @param {number} page - The page number to retrieve.
  * @param {number} limit - The number of users to retrieve per page. If provided as 0, all users are retrieved.
  * @param {String} searchTerm - The search term to filter users by for matching name or email. Empty string retrieves all users.
+ * @param {boolean} includeSensitiveData - Flag to include sensitive data in the response.
  * @returns A Promise that resolves to an array of UserType.
  */
-export const getUsers = async (page: number, limit: number, searchTerm: string): Promise<UserType[]> => {
+export const getUsers = async (page: number, limit: number, searchTerm: string, includeSensitiveData: boolean): Promise<UserType[]> => {
     const filter = searchTerm ? {
         $or: [
             { $expr: { $regexMatch: { input: { $concat: ["$profile.firstName", " ", "$profile.lastName"] }, regex: searchTerm, options: "i" } } },
@@ -117,7 +118,18 @@ export const getUsers = async (page: number, limit: number, searchTerm: string):
         ]
     } : {};
 
-    const users = await User.find(filter)
+    const baseProjection = {
+        email: 1,
+        optIn: 1,
+        'profile.firstName': 1,
+        'profile.lastName': 1,
+        'profile.complete': 1,
+        'survey.complete': 1
+    };
+
+    const projection = includeSensitiveData ? {} : baseProjection;
+
+    const users = await User.find(filter, projection)
         .skip((page - 1) * limit)
         .limit(limit > 0 ? limit : 0);
     return users;
