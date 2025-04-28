@@ -4,7 +4,8 @@ import authOptions from '../auth/[...nextauth]';
 import { getUsers } from '@/controllers';
 import { Session } from 'next-auth';
 import { connect } from '@/database';
-import { isAdmin } from '@/utils/admins';
+import { isAdmin, getUserRole } from '@/utils/admins';
+import { hasPermission, Permission } from '@/utils/roles';
 import { User } from '@/types/users';
 
 /**
@@ -23,15 +24,35 @@ import { User } from '@/types/users';
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
     const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
+    const userEmail = session?.user?.email;
 
-    if (!session) return res.status(401).send('Unauthorized');
-    else if (!isAdmin(session.user?.email!)) return res.status(401).send('Unauthorized');
+    if (!session || !userEmail) return res.status(401).send('Unauthorized');
+    else if (!isAdmin(userEmail)) return res.status(401).send('Unauthorized');
     else if (req.method !== 'GET') return res.status(405).send('Method Not Allowed');
+
+    const userRole = getUserRole(userEmail);
+
+    const includeSensitiveData = hasPermission(
+        userRole,
+        Permission.VIEW_SENSITIVE_DATA
+    );
 
     await connect();
 
     const { page = '1', limit = '0', searchTerm = '' } = req.query;
 
-    const users = await getUsers(Number(page), Number(limit), searchTerm as string);
+    const pageValue = Array.isArray(page) ? page[0] : page;
+    const limitValue = Array.isArray(limit) ? limit[0] : limit;
+    const searchTermValue = Array.isArray(searchTerm) ? searchTerm[0] : searchTerm;
+
+    if (typeof pageValue !== 'string' || typeof limitValue !== 'string' || typeof searchTermValue !== 'string') {
+        return res.status(400).send('Invalid query parameters');
+    }
+    if (Number(pageValue) < 1 || Number(limitValue) < 0) return res.status(400).send('Invalid query parameters');
+
+    if (searchTermValue.length > 100) return res.status(400).send('Search term too long');
+
+    const users = await getUsers(Number(pageValue), Number(limitValue), searchTermValue, includeSensitiveData);
+    if (!users) return res.status(404).send('No users found');
     return res.status(200).json(users);
 }
