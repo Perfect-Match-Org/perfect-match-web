@@ -15,7 +15,7 @@ import Countdown from '@/components/countdown';
 import SpotifyPlaylist from '@/components/playlist'
 import SpotifyPlaylistNarrow from '@/components/playlist-narrow';
 import { Button } from '@/components/general';
-import { Approvals, Reviews, approvals } from '@/components/testimonials/testimonials';
+import { Reviews } from '@/components/testimonials/testimonials';
 const Home: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
         refreshInterval: 60000,
