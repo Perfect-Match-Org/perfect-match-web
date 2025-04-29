@@ -226,9 +226,6 @@ const Home: NextPage = (props: any) => {
                     </svg>
                 </div>
             </div>
-            <div className="bg-pmpink-500">
-                <Approvals />
-            </div>
             <Footer />
         </div >
     );

@@ -35,7 +35,7 @@ export default function AdminPanel() {
         ["Completed Surveys", surveyedCount, ["#96d7d1", "#71d5c1"]],
     ];
 
-    const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"]];
+    const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"], ["Pending Reviews", "/pending-reviews"]];
 
     useEffect(() => {
         if (session) {
