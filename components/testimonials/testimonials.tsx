@@ -271,7 +271,7 @@ export function Reviews() {
           Find the love of your life today.
         </p>
         <div className="flex justify-center">
-          <Link href="/statistics">
+          <Link href="/write-review">
             <button
               className="
                 mt-6
@@ -294,7 +294,7 @@ export function Reviews() {
                 inline-flex 
                 items-center            "
             >
-              Share Your Experiences
+              share your experiences
             </button>
           </Link>
         </div>
