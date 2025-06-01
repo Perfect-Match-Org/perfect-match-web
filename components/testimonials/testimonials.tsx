@@ -13,7 +13,7 @@ interface Review {
   // rating: 1 | 2 | 3 | 4 | 5
 }
 
-const reviews: Array<Review> = [
+const fakeReviews: Array<Review> = [
   {
     title: 'I found my soulmate!',
     body: 'I never believed in online dating until I met her on Perfect Match. We clicked instantly and now we’re planning our wedding!',
@@ -205,52 +205,91 @@ function ReviewColumn({
 }
 
 function ReviewGrid() {
+  const [reviews, setReviews] = useState<Array<Review>>(fakeReviews);
+  const [loading, setLoading] = useState(true);
+
   let containerRef = useRef<React.ElementRef<'div'>>(null)
-  let isInView = useInView(containerRef, { once: true, amount: 0.4 })
+
+  // Fetch approved reviews on component mount
+  useEffect(() => {
+    const fetchApprovedReviews = async () => {
+      try {
+        console.log("tryna fetch")
+        const response = await fetch('/api/reviews/approved');
+        console.log(response)
+        if (response.ok) {
+          const approvedReviews = await response.json();
+
+          // Only use approved reviews if we have them, otherwise use fakes
+          if (approvedReviews && approvedReviews.length > 0) {
+            setReviews(approvedReviews);
+          }
+        } else {
+          console.warn('Failed to fetch approved reviews, using fake reviews');
+        }
+      } catch (error) {
+        console.error('Error fetching approved reviews:', error);
+        // Use fake reviews in case not enough real ones
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchApprovedReviews();
+  }, []);
+
   let columns = splitArray(reviews, 3)
-  let column1 = columns[0]
-  let column2 = columns[1]
-  let column3 = splitArray(columns[2], 2)
+  let column1 = columns[0] || []
+  let column2 = columns[1] || []
+  let column3Array = columns[2] || []
+  let column3 = splitArray(column3Array, 2)
+
+
+  // Show loading state or empty state if needed
+  if (loading) {
+    return (
+      <div className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] place-items-center">
+        <div className="text-pmblue-500">Loading reviews...</div>
+      </div>
+    );
+  }
 
   return (
     <div
       ref={containerRef}
       className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
     >
-      {isInView && (
-        <>
-          <ReviewColumn
-            reviews={[...column1, ...column3.flat(), ...column2]}
-            reviewClassName={(reviewIndex) =>
-              clsx(
-                reviewIndex >= column1.length + column3[0].length &&
-                'md:hidden',
-                reviewIndex >= column1.length && 'lg:hidden',
-              )
-            }
-            msPerPixel={10}
-          />
-          <ReviewColumn
-            reviews={[...column2, ...column3[1]]}
-            className="hidden md:block"
-            reviewClassName={(reviewIndex) =>
-              reviewIndex >= column2.length ? 'lg:hidden' : ''
-            }
-            msPerPixel={15}
-          />
-          <ReviewColumn
-            reviews={column3.flat()}
-            className="hidden lg:block"
-            msPerPixel={10}
-          />
-        </>
-      )}
+
+      <ReviewColumn
+        reviews={[...column1, ...column3.flat(), ...column2]}
+        reviewClassName={(reviewIndex) =>
+          clsx(
+            reviewIndex >= column1.length + column3[0].length &&
+            'md:hidden',
+            reviewIndex >= column1.length && 'lg:hidden',
+          )
+        }
+        msPerPixel={10}
+      />
+      <ReviewColumn
+        reviews={[...column2, ...column3[1]]}
+        className="hidden md:block"
+        reviewClassName={(reviewIndex) =>
+          reviewIndex >= column2.length ? 'lg:hidden' : ''
+        }
+        msPerPixel={15}
+      />
+      <ReviewColumn
+        reviews={column3.flat()}
+        className="hidden lg:block"
+        msPerPixel={10}
+      />
+
       {/* <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-gray-50" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-gray-50" /> */}
     </div>
   )
 }
-
 
 
 

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { isAdmin } from '@/utils/admins';
 import { Container } from '@/components/testimonials/Container'
-
 interface PendingReview {
     id: string;
     title: string;
@@ -17,29 +16,11 @@ export default function PendingReviews() {
     const { data: session, status } = useSession();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [pendingReviews, setPendingReviews] = useState<PendingReview[]>([]);
+    const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+    const [actionLoading, setActionLoading] = useState(false);
     const router = useRouter();
     const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"], ["Pending Reviews", "/pending-reviews"]];
-
-    // A lot of stuff is related to backend yet which hasn't been implemented
-    // So I commented out the backend related stuff and just hardcoded in
-    // Examples of what should happen and whatnot.
-    const [pendingReviews, setPendingReviews] = useState<PendingReview[]>([
-        { id: '1', title: 'Great app!', body: 'Loved it.', author: 'John' },
-        {
-            "id": "2",
-            "title": "Amazing experience",
-            "body": "Found my soulmate on this platform after months of trying other dating apps with no success! From the moment we matched, I knew there was something different about our connection. Our first conversation flowed effortlessly for hours, discussing everything from childhood memories to future dreams. When we finally met in person at a cozy downtown café, it felt like reuniting with an old friend rather than meeting a stranger. The butterflies in my stomach confirmed what I already suspected—this was special. Six months later, we're planning our future together and I couldn't be happier. The algorithm on this app truly works! Unlike other platforms that seem to match based solely on superficial traits, this one captured something deeper about our personalities and values. What I appreciate most is how the interface encouraged meaningful conversation from the start, rather than the shallow small talk that dominates other apps. For anyone feeling discouraged in their search for genuine connection, don't give up! Sometimes the right person comes along when you least expect it. Forever grateful that I gave this platform one last try before deleting dating apps altogether. Worth every penny of the subscription fee!",
-            "author": "Jane"
-        },
-        { id: '3', title: 'Life changing platform', body: 'Met my perfect match in just 2 weeks. The algorithm is amazing!', author: 'Mike S.' },
-        {
-            id: '4', title: 'Best dating app ever', body: 'I was skeptical at first but now I am getting married to someone I met here!', author: 'Sarah'
-        },
-        { id: '5', title: 'Thank you Perfect Match!', body: 'After years of failed relationships, I finally found someone who truly understands me.', author: 'Alex P.' },
-    ]);
-
-    // Add state to track the current review index
-    const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
 
     // Admin check
     useEffect(() => {
@@ -50,42 +31,96 @@ export default function PendingReviews() {
         }
     }, [session, router]);
 
-    // Loading state
+    // Fetch pending reviews from backend
     useEffect(() => {
         if (status === 'authenticated') {
-            // In future, fetch reviews from backend here
-            setLoading(false);
+            fetchPendingReviews();
         }
     }, [status]);
 
-    async function approveReview(id: string) {
-        console.log("Approved review with ID:", id);
-        //commented out as backend endpoints aren't set yet
-        // await fetch(`/api/approve-review?id=${id}`, { method: 'POST' });
+    const fetchPendingReviews = async () => {
+        try {
+            setLoading(true);
+            setError(null);
 
-        //Simulation code to remove it from list. To be removed
-        setPendingReviews((reviews) => reviews.filter((r) => r.id !== id));
-        alert(`Review by ${pendingReviews.find(r => r.id === id)?.author} approved!`);
+            const response = await fetch('/api/reviews/pending-review');
 
-        // Reset index if we're at the end and there are still reviews left
-        if (currentReviewIndex >= pendingReviews.length - 1 && pendingReviews.length > 1) {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch reviews: ${response.statusText}`);
+            }
+
+            const reviews = await response.json();
+            setPendingReviews(reviews);
             setCurrentReviewIndex(0);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch pending reviews');
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
-    async function rejectReview(id: string) {
-        console.log("Denied review with ID:", id);
-        //commented out as backend endpoints aren't set yet
-        // await fetch(`api/reject-review?id=${id}`, {method: 'POST'});
 
-        //Removes review from list
-        setPendingReviews((reviews) => reviews.filter((r) => r.id !== id));
-        alert(`Review by ${pendingReviews.find(r => r.id === id)?.author} rejected.`);
+    const approveReview = async (id: string) => {
+        try {
+            setActionLoading(true);
+            setError(null);
 
-        if (currentReviewIndex >= pendingReviews.length - 1 && pendingReviews.length > 1) {
-            setCurrentReviewIndex(0);
+            const response = await fetch(`/api/reviews/approve-review`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to approve review: ${response.statusText}`);
+            }
+
+            // Remove the approved review from the list
+            setPendingReviews((reviews) => reviews.filter((r) => r.id !== id));
+
+            // Adjust current index if needed
+            if (currentReviewIndex >= pendingReviews.length - 1 && pendingReviews.length > 1) {
+                setCurrentReviewIndex(0);
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to approve review');
+        } finally {
+            setActionLoading(false);
         }
-    }
+    };
+
+    const rejectReview = async (id: string) => {
+        try {
+            setActionLoading(true);
+            setError(null);
+
+            const response = await fetch(`/api/reviews/reject-review`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to reject review: ${response.statusText}`);
+            }
+
+            // Remove the rejected review from the list
+            setPendingReviews((reviews) => reviews.filter((r) => r.id !== id));
+
+            // Adjust current index if needed
+            if (currentReviewIndex >= pendingReviews.length - 1 && pendingReviews.length > 1) {
+                setCurrentReviewIndex(0);
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to reject review');
+        } finally {
+            setActionLoading(false);
+        }
+    };
 
     // Function to navigate to next review
     const nextReview = () => {
@@ -122,7 +157,14 @@ export default function PendingReviews() {
         return (
             <div className="min-h-screen bg-gray-50 p-4">
                 <div className="bg-red-50 text-pmred-500 p-4 rounded-lg">
-                    {error}
+                    <p className="font-semibold">Error:</p>
+                    <p>{error}</p>
+                    <button
+                        onClick={fetchPendingReviews}
+                        className="mt-2 px-4 py-2 bg-pmred-500 text-white rounded hover:bg-red-600"
+                    >
+                        Retry
+                    </button>
                 </div>
             </div>
         );
@@ -146,7 +188,7 @@ export default function PendingReviews() {
                 </ul>
             </nav>
 
-            {/* Content section with the new background color */}
+            {/* Content section */}
             <section
                 id="approvals"
                 aria-labelledby="approvals-title"
@@ -162,7 +204,15 @@ export default function PendingReviews() {
 
                     <div className="flex flex-col items-center mt-10 space-y-8">
                         {pendingReviews.length === 0 ? (
-                            <p className="text-xl text-gray-700">No pending reviews.</p>
+                            <div className="text-center">
+                                <p className="text-xl text-gray-700 mb-4">No pending reviews.</p>
+                                <button
+                                    onClick={fetchPendingReviews}
+                                    className="px-4 py-2 bg-pmblue-500 text-white rounded-lg hover:bg-blue-600"
+                                >
+                                    Refresh
+                                </button>
+                            </div>
                         ) : (
                             <>
                                 {/* Review counter */}
@@ -189,18 +239,21 @@ export default function PendingReviews() {
                                         <p className="text-2xl font-bold mb-3 text-gray-900">Name:</p>
                                         <p className="text-xl text-gray-800">{pendingReviews[currentReviewIndex].author}</p>
                                     </div>
+
                                     <div className="flex justify-center space-x-6 mt-6">
                                         <button
-                                            className="px-6 py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition w-32"
+                                            className="px-6 py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition w-32 disabled:opacity-50 disabled:cursor-not-allowed"
                                             onClick={() => approveReview(pendingReviews[currentReviewIndex].id)}
+                                            disabled={actionLoading}
                                         >
-                                            Approve
+                                            {actionLoading ? 'Loading...' : 'Approve'}
                                         </button>
                                         <button
-                                            className="px-6 py-3 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition w-32"
+                                            className="px-6 py-3 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition w-32 disabled:opacity-50 disabled:cursor-not-allowed"
                                             onClick={() => rejectReview(pendingReviews[currentReviewIndex].id)}
+                                            disabled={actionLoading}
                                         >
-                                            Reject
+                                            {actionLoading ? 'Loading...' : 'Reject'}
                                         </button>
                                     </div>
                                 </div>
@@ -208,22 +261,22 @@ export default function PendingReviews() {
                                 {/* Navigation buttons */}
                                 <div className="flex justify-center space-x-6 mt-6">
                                     <button
-                                        className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === 0
+                                        className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === 0 || actionLoading
                                             ? 'opacity-50 cursor-not-allowed'
                                             : 'hover:bg-blue-600'
                                             }`}
                                         onClick={previousReview}
-                                        disabled={currentReviewIndex === 0}
+                                        disabled={currentReviewIndex === 0 || actionLoading}
                                     >
                                         Previous
                                     </button>
                                     <button
-                                        className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === pendingReviews.length - 1
+                                        className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === pendingReviews.length - 1 || actionLoading
                                             ? 'opacity-50 cursor-not-allowed'
                                             : 'hover:bg-blue-600'
                                             }`}
                                         onClick={nextReview}
-                                        disabled={currentReviewIndex === pendingReviews.length - 1}
+                                        disabled={currentReviewIndex === pendingReviews.length - 1 || actionLoading}
                                     >
                                         Next
                                     </button>

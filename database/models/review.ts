@@ -1,6 +1,4 @@
-import mongoose, { Schema, Document, Types } from 'mongoose';
-
-
+import mongoose, { Schema, Document } from 'mongoose';
 export interface IReview extends Document {
     id: string;
     title: string;
@@ -12,6 +10,12 @@ export interface IReview extends Document {
     updatedAt: Date;
 }
 
+export interface IReviewData {
+    title: string;
+    body: string;
+    author: string;
+    name?: string;
+}
 const ReviewSchema: Schema = new Schema({
     title: {
         type: String,
@@ -54,8 +58,9 @@ export async function getApprovedReviews() {
     return await ReviewModel.find({ status: 'approved' }).sort({ createdAt: -1 });
 }
 
+
 //For use in write-review.
-export async function submitReview(reviewData: Omit<IReview, '_id' | 'status' | 'createdAt' | 'updatedAt'>) {
+export async function submitReview(reviewData: IReviewData) {
     const review = new ReviewModel({
         ...reviewData,
         status: 'pending',
@@ -86,19 +91,3 @@ export async function getReviewById(id: string) {
     return await ReviewModel.findById(id);
 }
 
-export async function getApprovedReviewsPaginated(page: number = 1, limit: number = 10) {
-    const skip = (page - 1) * limit;
-
-    const reviews = await ReviewModel.find({ status: 'approved' })
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(limit);
-
-    const total = await ReviewModel.countDocuments({ status: 'approved' });
-
-    return {
-        reviews,
-        totalPages: Math.ceil(total / limit),
-        currentPage: page,
-    };
-}

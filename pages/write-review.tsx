@@ -27,11 +27,32 @@ const Home: NextPage = (props: any) => {
         const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             setSubmitting(true);
+            try {
+                const apiData = {
+                    title: formData.title,
+                    body: formData.review,
+                    author: formData.name
+                };
 
-            // Backend submission will be added later
-            console.log('Form submitted:', formData);
+                console.log('Submitting data:', apiData);
 
-            setTimeout(() => {
+                const response = await fetch('/api/reviews/submit-review', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(apiData)
+                });
+
+                console.log('Response status:', response.status);
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Error submitting review');
+                }
+
                 setSubmitting(false);
                 setSubmitted(true);
                 setFormData({
@@ -39,7 +60,12 @@ const Home: NextPage = (props: any) => {
                     review: '',
                     name: ''
                 });
-            }, 1000);
+
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                alert('Failed to submit your review. Please try again.');
+                setSubmitting(false);
+            }
         };
 
         const resetForm = () => {
