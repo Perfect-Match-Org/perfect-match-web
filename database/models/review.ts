@@ -5,7 +5,7 @@ export interface IReview extends Document {
     body: string;
     name: string;
     author: string;
-    status: 'pending' | 'approved' | 'rejected';
+    status: 'pending' | 'approved' | 'rejected' | 'deleted';
     createdAt: Date;
     updatedAt: Date;
 }
@@ -87,6 +87,14 @@ export async function rejectReview(id: string) {
     );
 }
 
+//For use in deleting previously approved reviews.
+export async function deleteReview(id: string) {
+    return await ReviewModel.findByIdAndUpdate(
+        id,
+        { status: 'deleted', updatedAt: new Date() },
+        { new: true }
+    );
+}
 export async function getReviewById(id: string) {
     return await ReviewModel.findById(id);
 }

@@ -20,7 +20,7 @@ export default function PendingReviews() {
     const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
     const [actionLoading, setActionLoading] = useState(false);
     const router = useRouter();
-    const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"], ["Pending Reviews", "/pending-reviews"]];
+    const navItems = [["Dashboard", "/admin"], ["API-Docs", "/api-docs"], ["Pending Reviews", "/pending-reviews"], ["Existing Reviews", "/existing-reviews"]];
 
     // Admin check
     useEffect(() => {
