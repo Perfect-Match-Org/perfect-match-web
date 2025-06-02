@@ -247,13 +247,12 @@ function ReviewGrid() {
     fetchApprovedReviews();
   }, []);
 
-  // Ensure we have at least some reviews to display
-  const displayReviews = reviews && reviews.length > 0 ? reviews : fakeReviews;
+  // Ensure we have at least 9 reviews to display.
+  // Pulls reviews from fake reviews if less than 9.
+  const displayReviews = reviews && reviews.length > 0 ? reviews : [];
 
-  // If there are less than 3 reviews, duplicate them
-  // Otherwise calling splitArray will break the website.
-  const paddedReviews = displayReviews.length < 6
-    ? [...displayReviews, ...displayReviews, ...displayReviews].slice(0, Math.max(6, displayReviews.length))
+  const paddedReviews = displayReviews.length < 9
+    ? [...displayReviews, ...fakeReviews].slice(0, 9)
     : displayReviews;
 
   let columns = splitArray(paddedReviews, 3)
