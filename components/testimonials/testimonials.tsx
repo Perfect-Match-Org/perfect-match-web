@@ -13,6 +13,7 @@ interface Review {
   // rating: 1 | 2 | 3 | 4 | 5
 }
 
+//Probably can be deleted atp
 const fakeReviews: Array<Review> = [
   {
     title: 'I found my soulmate!',
@@ -105,7 +106,6 @@ function StarIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 //     </div>
 //   )
 // }
-
 function Review({
   title,
   body,
@@ -130,7 +130,7 @@ function Review({
       {...props}
     >
       <blockquote className="text-gray-900">
-        <p className="mt-4 text-lg/6 font-semibold before:content-['“'] after:content-['”']">
+        <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["]'>
           {title}
         </p>
         <p className="mt-3 text-base/7">{body}</p>
@@ -138,20 +138,24 @@ function Review({
       <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_']">
         {author}
       </figcaption>
-    </figure>
+    </figure >
   )
 }
 
 
 function splitArray<T>(array: Array<T>, numParts: number) {
-  let result: Array<Array<T>> = []
+  // Handle empty array case
+  if (!array || array.length === 0) {
+    return Array(numParts).fill([]);
+  }
+
+  let result: Array<Array<T>> = Array(numParts).fill(null).map(() => []);
+
   for (let i = 0; i < array.length; i++) {
     let index = i % numParts
-    if (!result[index]) {
-      result[index] = []
-    }
     result[index].push(array[i])
   }
+
   return result
 }
 
@@ -185,6 +189,11 @@ function ReviewColumn({
       resizeObserver.disconnect()
     }
   }, [])
+
+  // Handle empty reviews array
+  if (!reviews || reviews.length === 0) {
+    return <div className={clsx('space-y-8 py-4', className)} />
+  }
 
   return (
     <div
@@ -238,12 +247,22 @@ function ReviewGrid() {
     fetchApprovedReviews();
   }, []);
 
-  let columns = splitArray(reviews, 3)
+  // Ensure we have at least some reviews to display
+  const displayReviews = reviews && reviews.length > 0 ? reviews : fakeReviews;
+
+  // If there are less than 3 reviews, duplicate them
+  // Otherwise calling splitArray will break the website.
+  const paddedReviews = displayReviews.length < 6
+    ? [...displayReviews, ...displayReviews, ...displayReviews].slice(0, Math.max(6, displayReviews.length))
+    : displayReviews;
+
+  let columns = splitArray(paddedReviews, 3)
   let column1 = columns[0] || []
   let column2 = columns[1] || []
   let column3Array = columns[2] || []
   let column3 = splitArray(column3Array, 2)
-
+  let column3Part1 = column3[0] || []
+  let column3Part2 = column3[1] || []
 
   // Show loading state or empty state if needed
   if (loading) {
@@ -261,10 +280,10 @@ function ReviewGrid() {
     >
 
       <ReviewColumn
-        reviews={[...column1, ...column3.flat(), ...column2]}
+        reviews={[...column1, ...column3Part1, ...column2]}
         reviewClassName={(reviewIndex) =>
           clsx(
-            reviewIndex >= column1.length + column3[0].length &&
+            reviewIndex >= column1.length + column3Part1.length &&
             'md:hidden',
             reviewIndex >= column1.length && 'lg:hidden',
           )
@@ -272,7 +291,7 @@ function ReviewGrid() {
         msPerPixel={10}
       />
       <ReviewColumn
-        reviews={[...column2, ...column3[1]]}
+        reviews={[...column2, ...column3Part2]}
         className="hidden md:block"
         reviewClassName={(reviewIndex) =>
           reviewIndex >= column2.length ? 'lg:hidden' : ''
@@ -280,7 +299,7 @@ function ReviewGrid() {
         msPerPixel={15}
       />
       <ReviewColumn
-        reviews={column3.flat()}
+        reviews={[...column3Part1, ...column3Part2]}
         className="hidden lg:block"
         msPerPixel={10}
       />
