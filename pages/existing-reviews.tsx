@@ -147,27 +147,27 @@ export default function ExistingReviews() {
                             existingReviews.map((review) => (
                                 <div
                                     key={review.id}
-                                    className="bg-white rounded-xl shadow-lg p-6 border-2 border-pmblue-500"
+                                    className="bg-white rounded-xl shadow-lg p-6 border-2 border-pmblue-500 overflow-hidden"
                                 >
                                     <div className="flex justify-between items-start">
-                                        <div className="flex-1">
+                                        <div className="flex-1 pr-4 min-w-0"> {/* Added min-w-0 to allow flex child to shrink */}
                                             <div className="mb-4">
                                                 <p className="text-lg font-bold mb-2 text-gray-900">Title:</p>
-                                                <p className="text-gray-800">{review.title}</p>
+                                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">{review.title}</p>
                                             </div>
 
                                             <div className="mb-4">
                                                 <p className="text-lg font-bold mb-2 text-gray-900">Review:</p>
-                                                <p className="text-gray-800">{review.body}</p>
+                                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">{review.body}</p>
                                             </div>
 
                                             <div className="mb-4">
                                                 <p className="text-lg font-bold mb-2 text-gray-900">Author:</p>
-                                                <p className="text-gray-800">{review.author}</p>
+                                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">{review.author}</p>
                                             </div>
                                         </div>
 
-                                        <div className="ml-6">
+                                        <div className="ml-6 flex-shrink-0">
                                             <button
                                                 className="px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                                                 onClick={() => deleteApprovedReview(review.id)}

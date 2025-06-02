@@ -227,17 +227,17 @@ export default function PendingReviews() {
                                 >
                                     <div className="mb-6">
                                         <p className="text-2xl font-bold mb-3 text-gray-900">Title:</p>
-                                        <p className="text-xl text-gray-800">{pendingReviews[currentReviewIndex].title}</p>
+                                        <p className="text-xl text-gray-800 break-words whitespace-pre-wrap">{pendingReviews[currentReviewIndex].title}</p>
                                     </div>
 
                                     <div className="mb-6">
                                         <p className="text-2xl font-bold mb-3 text-gray-900">Review:</p>
-                                        <p className="text-xl text-gray-800">{pendingReviews[currentReviewIndex].body}</p>
+                                        <p className="text-xl text-gray-800 break-words whitespace-pre-wrap">{pendingReviews[currentReviewIndex].body}</p>
                                     </div>
 
                                     <div className="mb-6">
                                         <p className="text-2xl font-bold mb-3 text-gray-900">Name:</p>
-                                        <p className="text-xl text-gray-800">{pendingReviews[currentReviewIndex].author}</p>
+                                        <p className="text-xl text-gray-800 break-words whitespace-pre-wrap">{pendingReviews[currentReviewIndex].author}</p>
                                     </div>
 
                                     <div className="flex justify-center space-x-6 mt-6">
