@@ -144,12 +144,15 @@ function Review({
 
 
 function splitArray<T>(array: Array<T>, numParts: number) {
-  // Handle empty array case
+  // Handle edge cases
+  let result: Array<Array<T>> = Array(numParts).fill(null).map(() => []);
   if (!array || array.length === 0) {
-    return Array(numParts).fill([]);
+    return result;
   }
 
-  let result: Array<Array<T>> = Array(numParts).fill(null).map(() => []);
+  if (numParts <= 0) {
+    return [array];
+  }
 
   for (let i = 0; i < array.length; i++) {
     let index = i % numParts
@@ -189,10 +192,14 @@ function ReviewColumn({
       resizeObserver.disconnect()
     }
   }, [])
-
   // Handle empty reviews array
   if (!reviews || reviews.length === 0) {
     return <div className={clsx('space-y-8 py-4', className)} />
+  }
+  // Create seamless infinite scroll by ensuring minimum 4 reviews
+  // If we have fewer than 4 reviews, duplicate them to reach at least 4
+  while (reviews.length < 4) {
+    reviews = [...reviews, ...reviews]
   }
 
   return (
@@ -201,7 +208,7 @@ function ReviewColumn({
       className={clsx('animate-vertical-marquee space-y-8 py-4', className)}
       style={{ '--marquee-duration': duration } as React.CSSProperties}
     >
-      {reviews.concat(reviews).map((review, reviewIndex) => (
+      {reviews.map((review, reviewIndex) => (
         <Review
           key={reviewIndex}
           aria-hidden={reviewIndex >= reviews.length}
@@ -214,31 +221,26 @@ function ReviewColumn({
 }
 
 function ReviewGrid() {
-  const [reviews, setReviews] = useState<Array<Review>>(fakeReviews);
+  const [reviews, setReviews] = useState<Array<Review>>([]);
   const [loading, setLoading] = useState(true);
 
   let containerRef = useRef<React.ElementRef<'div'>>(null)
-
   // Fetch approved reviews on component mount
   useEffect(() => {
     const fetchApprovedReviews = async () => {
       try {
-        console.log("tryna fetch")
         const response = await fetch('/api/reviews/approved');
-        console.log(response)
         if (response.ok) {
           const approvedReviews = await response.json();
-
-          // Only use approved reviews if we have them, otherwise use fakes
-          if (approvedReviews && approvedReviews.length > 0) {
-            setReviews(approvedReviews);
-          }
+          // Set reviews regardless of length - could be empty array
+          setReviews(approvedReviews || []);
         } else {
-          console.warn('Failed to fetch approved reviews, using fake reviews');
+          console.warn('Failed to fetch approved reviews');
+          setReviews([]);
         }
       } catch (error) {
         console.error('Error fetching approved reviews:', error);
-        // Use fake reviews in case not enough real ones
+        setReviews([]);
       } finally {
         setLoading(false);
       }
@@ -247,23 +249,9 @@ function ReviewGrid() {
     fetchApprovedReviews();
   }, []);
 
-  // Ensure we have at least 9 reviews to display.
-  // Pulls reviews from fake reviews if less than 9.
   const displayReviews = reviews && reviews.length > 0 ? reviews : [];
 
-  const paddedReviews = displayReviews.length < 9
-    ? [...displayReviews, ...fakeReviews].slice(0, 9)
-    : displayReviews;
-
-  let columns = splitArray(paddedReviews, 3)
-  let column1 = columns[0] || []
-  let column2 = columns[1] || []
-  let column3Array = columns[2] || []
-  let column3 = splitArray(column3Array, 2)
-  let column3Part1 = column3[0] || []
-  let column3Part2 = column3[1] || []
-
-  // Show loading state or empty state if needed
+  // Show loading state
   if (loading) {
     return (
       <div className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] place-items-center">
@@ -272,39 +260,64 @@ function ReviewGrid() {
     );
   }
 
+  // Handle case where there are no reviews - show encouraging message
+  if (displayReviews.length === 0) {
+    return (
+      <div className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] place-items-center">
+        <div className="text-center">
+          <div className="text-2xl text-pmred-500 font-bold mb-2">Awaiting for your review! 💕</div>
+          <div className="text-pmblue-500">Be the first to share your Perfect Match success story!</div>
+        </div>
+      </div>
+    );
+  }  // Simple and clean column distribution
+  let columns = splitArray(displayReviews, 3)
+  let column1 = columns[0] || []
+  let column2 = columns[1] || []
+  let column3 = columns[2] || []
+
+  // Count non-empty columns
+  const nonEmptyColumns = [column1, column2, column3].filter(col => col.length > 0).length
+
+  // Dynamic grid classes based on number of reviews
+  const getGridClasses = () => {
+    if (nonEmptyColumns === 1) {
+      return "grid-cols-1 justify-center"
+    } else if (nonEmptyColumns === 2) {
+      return "grid-cols-1 md:grid-cols-2 justify-center"
+    } else {
+      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+    }
+  }
+
   return (
     <div
       ref={containerRef}
-      className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
+      className={`relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] ${getGridClasses()} items-start gap-8 overflow-hidden px-4 sm:mt-20`}
     >
+      {/* Only render columns that have content */}
+      {column1.length > 0 && (
+        <ReviewColumn
+          reviews={column1}
+          msPerPixel={10}
+        />
+      )}
 
-      <ReviewColumn
-        reviews={[...column1, ...column3Part1, ...column2]}
-        reviewClassName={(reviewIndex) =>
-          clsx(
-            reviewIndex >= column1.length + column3Part1.length &&
-            'md:hidden',
-            reviewIndex >= column1.length && 'lg:hidden',
-          )
-        }
-        msPerPixel={10}
-      />
-      <ReviewColumn
-        reviews={[...column2, ...column3Part2]}
-        className="hidden md:block"
-        reviewClassName={(reviewIndex) =>
-          reviewIndex >= column2.length ? 'lg:hidden' : ''
-        }
-        msPerPixel={15}
-      />
-      <ReviewColumn
-        reviews={[...column3Part1, ...column3Part2]}
-        className="hidden lg:block"
-        msPerPixel={10}
-      />
+      {column2.length > 0 && (
+        <ReviewColumn
+          reviews={column2}
+          className={nonEmptyColumns === 2 ? "" : "hidden md:block"}
+          msPerPixel={15}
+        />
+      )}
 
-      {/* <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-gray-50" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-gray-50" /> */}
+      {column3.length > 0 && (
+        <ReviewColumn
+          reviews={column3}
+          className="hidden lg:block"
+          msPerPixel={10}
+        />
+      )}
     </div>
   )
 }
