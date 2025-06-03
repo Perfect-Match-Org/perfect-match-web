@@ -5,6 +5,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import type { User as UserType, Review, MatchReview } from '../types/users';
 import { Match } from './models/match';
+import ReviewModel, { IReviewData } from './models/review';
 import { ObjectId } from 'mongodb';
 
 const matchRevealData =
@@ -238,9 +239,92 @@ export const updateMatchReview = async (
             overallStatus: status,
         },
         { upsert: true, new: true },
-    );
+    ); return updatedMatch;
+};
 
-    return updatedMatch;
+/**
+ * Retrieves all pending reviews from the database.
+ * Used in pending-reviews page for admin review management.
+ * @returns A Promise that resolves to an array of pending reviews sorted by creation date (newest first).
+ */
+export const getPendingReviews = async () => {
+    return await ReviewModel.find({ status: 'pending' }).sort({ createdAt: -1 });
+};
+
+/**
+ * Retrieves all approved reviews from the database.
+ * Used in testimonial page for displaying customer reviews.
+ * @returns A Promise that resolves to an array of approved reviews sorted by creation date (newest first).
+ */
+export const getApprovedReviews = async () => {
+    return await ReviewModel.find({ status: 'approved' }).sort({ createdAt: -1 });
+};
+
+/**
+ * Submits a new review to the database with pending status.
+ * Used in write-review page for customers to submit new reviews.
+ * @param {IReviewData} reviewData - The review data containing title, body, author, and optional name.
+ * @returns A Promise that resolves to the saved review document.
+ */
+export const submitReview = async (reviewData: IReviewData) => {
+    const review = new ReviewModel({
+        ...reviewData,
+        status: 'pending',
+    });
+
+    return await review.save();
+};
+
+/**
+ * Approves a pending review by updating its status.
+ * Used in pending-reviews page for admin approval workflow.
+ * @param {string} id - The ID of the review to approve.
+ * @returns A Promise that resolves to the updated review document.
+ */
+export const approveReview = async (id: string) => {
+    return await ReviewModel.findByIdAndUpdate(
+        id,
+        { status: 'approved', updatedAt: new Date() },
+        { new: true }
+    );
+};
+
+/**
+ * Rejects a pending review by updating its status.
+ * Used in pending-reviews page for admin moderation workflow.
+ * @param {string} id - The ID of the review to reject.
+ * @returns A Promise that resolves to the updated review document.
+ */
+export const rejectReview = async (id: string) => {
+    return await ReviewModel.findByIdAndUpdate(
+        id,
+        { status: 'rejected', updatedAt: new Date() },
+        { new: true }
+    );
+};
+
+/**
+ * Soft deletes a previously approved review by updating its status.
+ * Used for deleting reviews that need to be removed from public display.
+ * @param {string} id - The ID of the review to delete.
+ * @returns A Promise that resolves to the updated review document.
+ */
+export const deleteReview = async (id: string) => {
+    return await ReviewModel.findByIdAndUpdate(
+        id,
+        { status: 'deleted', updatedAt: new Date() },
+        { new: true }
+    );
+};
+
+/**
+ * Retrieves a review by its ID.
+ * Used for fetching specific review details across the application.
+ * @param {string} id - The ID of the review to retrieve.
+ * @returns A Promise that resolves to the review document or null if not found.
+ */
+export const getReviewById = async (id: string) => {
+    return await ReviewModel.findById(id);
 };
 
 // Collab CRUD operations---------------------------------------------------------------------------------------------
