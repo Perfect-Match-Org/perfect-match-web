@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getApprovedReviews } from '../../../database/models/review';
+import { getApprovedReviews } from '@/controllers';
 
 export default async function handler(
     req: NextApiRequest,

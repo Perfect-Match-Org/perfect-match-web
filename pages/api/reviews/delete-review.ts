@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { deleteReview } from '@/models/review';
+import { deleteReview } from '@/controllers';
 
 export default async function handler(
     req: NextApiRequest,
