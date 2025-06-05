@@ -8,12 +8,9 @@ import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
-import Script from 'next/script';
 import Image from 'next/image';
 import demo from 'public/feedback-demo.gif';
 import Countdown from '@/components/countdown';
-import SpotifyPlaylist from '@/components/playlist'
-import SpotifyPlaylistNarrow from '@/components/playlist-narrow';
 import { Button } from '@/components/general';
 import { Reviews } from '@/components/testimonials/testimonials';
 const Home: NextPage = (props: any) => {

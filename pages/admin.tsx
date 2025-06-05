@@ -4,7 +4,6 @@ import { Header } from '@/components/header';
 import DataCard from '@/components/admin/dataCard';
 import Link from 'next/link';
 import { User } from '@/types/users';
-import { set } from 'mongoose';
 import { isAdmin } from '@/utils/admins';
 import { useRouter } from 'next/router';
 
