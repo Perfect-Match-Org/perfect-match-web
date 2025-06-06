@@ -10,10 +10,10 @@ export default async function handler(
     }
 
     try {
-        // Get approved reviews
+        // Get approved reviews (these are the "existing" reviews visible on the site)
         const approvedReviews = await getApprovedReviews();
 
-        // Transform the data
+        // Transform the data to match the expected format
         const reviews = approvedReviews.map(review => ({
             title: review.title,
             body: review.body,
@@ -24,9 +24,9 @@ export default async function handler(
         return res.status(200).json(reviews);
 
     } catch (error: any) {
-        console.error('Error fetching approved reviews:', error);
+        console.error('Error fetching existing (approved) reviews:', error);
         return res.status(500).json({
-            message: 'Error fetching approved reviews',
+            message: 'Error fetching existing reviews',
             error: error.message
         });
     }
