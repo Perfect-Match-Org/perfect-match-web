@@ -18,10 +18,21 @@ const Home: NextPage = (props: any) => {
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             const { name, value } = e.target;
-            setFormData(prev => ({
-                ...prev,
-                [name]: value
-            }));
+            
+            // Character limits
+            const limits = {
+                title: 250,
+                review: 3000,
+                name: 75
+            };
+            
+            // Enforce character limits
+            if (value.length <= limits[name as keyof typeof limits]) {
+                setFormData(prev => ({
+                    ...prev,
+                    [name]: value
+                }));
+            }
         };
 
         const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -112,7 +123,7 @@ const Home: NextPage = (props: any) => {
                             <form onSubmit={handleSubmit} className="w-full">
                                 <div className="mb-6">
                                     <label className="block text-pmred-500 text-xl font-bold mb-2" htmlFor="title">
-                                        Title:
+                                        Title: <span className="text-sm font-normal">({formData.title.length}/250 characters)</span>
                                     </label>
                                     <input
                                         className="shadow appearance-none border border-pmpink-200 bg-white rounded-full w-full py-3 px-4 text-black text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500"
@@ -123,13 +134,14 @@ const Home: NextPage = (props: any) => {
                                         value={formData.title}
                                         onChange={handleChange}
                                         required
+                                        maxLength={250}
                                         style={{ fontSize: '1.25rem' }}
                                     />
                                 </div>
 
                                 <div className="mb-6">
                                     <label className="block text-pmred-500 text-xl font-bold mb-2" htmlFor="review">
-                                        Review:
+                                        Review: <span className="text-sm font-normal">({formData.review.length}/3000 characters)</span>
                                     </label>
                                     <textarea
                                         className="shadow appearance-none border border-pmpink-200 bg-white rounded-lg w-full py-3 px-4 text-black text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500 h-40"
@@ -139,13 +151,14 @@ const Home: NextPage = (props: any) => {
                                         value={formData.review}
                                         onChange={handleChange}
                                         required
+                                        maxLength={3000}
                                         style={{ fontSize: '1.25rem' }}
                                     />
                                 </div>
 
                                 <div className="mb-6">
                                     <label className="block text-pmred-500 text-xl font-bold mb-2" htmlFor="name">
-                                        Name:
+                                        Name: <span className="text-sm font-normal">({formData.name.length}/75 characters)</span>
                                     </label>
                                     <input
                                         className="shadow appearance-none border border-pmpink-200 bg-white rounded-full w-full py-3 px-4 text-black text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500"
@@ -156,6 +169,7 @@ const Home: NextPage = (props: any) => {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
+                                        maxLength={75}
                                         style={{ fontSize: '1.25rem' }}
                                     />
                                 </div>
