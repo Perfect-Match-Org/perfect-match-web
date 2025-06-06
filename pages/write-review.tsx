@@ -34,9 +34,7 @@ const Home: NextPage = (props: any) => {
                     author: formData.name
                 };
 
-                console.log('Submitting data:', apiData);
-
-                const response = await fetch('/api/reviews/submit-review', {
+                console.log('Submitting data:', apiData); const response = await fetch('/api/reviews', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
