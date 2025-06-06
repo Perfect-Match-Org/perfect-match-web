@@ -1,11 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { unstable_getServerSession } from 'next-auth/next';
-import authOptions from '../auth/[...nextauth]';
 import { getUsers } from '@/controllers';
-import { Session } from 'next-auth';
 import { connect } from '@/database';
-import { isAdmin } from '@/utils/admins';
 import { User } from '@/types/users';
+import { withAdminAuth } from '@/utils/adminAuth';
 
 /**
  * API handler to retrieve a list of users.
@@ -21,12 +18,10 @@ import { User } from '@/types/users';
  * @param {string} [req.query.searchTerm=''] - The search term to filter users.
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
-export default async function handler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
-    const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
-
-    if (!session) return res.status(401).send('Unauthorized');
-    else if (!isAdmin(session.user?.email!)) return res.status(401).send('Unauthorized');
-    else if (req.method !== 'GET') return res.status(405).send('Method Not Allowed');
+async function getUsersHandler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
+    if (req.method !== 'GET') {
+        return res.status(405).send('Method Not Allowed');
+    }
 
     await connect();
 
@@ -35,3 +30,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const users = await getUsers(Number(page), Number(limit), searchTerm as string);
     return res.status(200).json(users);
 }
+
+export default withAdminAuth(getUsersHandler);
