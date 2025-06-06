@@ -225,11 +225,10 @@ function ReviewGrid() {
   const [loading, setLoading] = useState(true);
 
   let containerRef = useRef<React.ElementRef<'div'>>(null)
-  // Fetch approved reviews on component mount
   useEffect(() => {
     const fetchApprovedReviews = async () => {
       try {
-        const response = await fetch('/api/reviews/approved');
+        const response = await fetch('/api/reviews?status=approved');
         if (response.ok) {
           const approvedReviews = await response.json();
           // Set reviews regardless of length - could be empty array
