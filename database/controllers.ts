@@ -7,6 +7,7 @@ import type { User as UserType, Review, MatchReview } from '../types/users';
 import { Match } from './models/match';
 import ReviewModel, { IReviewData } from './models/review';
 import { ObjectId } from 'mongodb';
+import { connect } from './database';
 
 const matchRevealData =
     'id email profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself profile.describePartner profile.bio survey.hookupsong survey.hookupsongURL survey.contact survey.greenflag survey.interests profile.guiltyPleasure profile.greenFlag profile.relationshipType survey.humor survey.date survey.introvert';
@@ -248,6 +249,7 @@ export const updateMatchReview = async (
  * @returns A Promise that resolves to an array of pending reviews sorted by creation date (newest first).
  */
 export const getPendingReviews = async () => {
+    await connect();
     return await ReviewModel.find({ status: 'pending' }).sort({ createdAt: -1 });
 };
 
@@ -257,6 +259,7 @@ export const getPendingReviews = async () => {
  * @returns A Promise that resolves to an array of approved reviews sorted by creation date (newest first).
  */
 export const getApprovedReviews = async () => {
+    await connect();
     return await ReviewModel.find({ status: 'approved' }).sort({ createdAt: -1 });
 };
 
@@ -267,6 +270,7 @@ export const getApprovedReviews = async () => {
  * @returns A Promise that resolves to the saved review document.
  */
 export const submitReview = async (reviewData: IReviewData) => {
+    await connect();
     const review = new ReviewModel({
         ...reviewData,
         status: 'pending',
@@ -282,6 +286,7 @@ export const submitReview = async (reviewData: IReviewData) => {
  * @returns A Promise that resolves to the updated review document.
  */
 export const approveReview = async (id: string) => {
+    await connect();
     return await ReviewModel.findByIdAndUpdate(
         id,
         { status: 'approved', updatedAt: new Date() },
@@ -296,6 +301,7 @@ export const approveReview = async (id: string) => {
  * @returns A Promise that resolves to the updated review document.
  */
 export const rejectReview = async (id: string) => {
+    await connect();
     return await ReviewModel.findByIdAndUpdate(
         id,
         { status: 'rejected', updatedAt: new Date() },
@@ -310,6 +316,7 @@ export const rejectReview = async (id: string) => {
  * @returns A Promise that resolves to the updated review document.
  */
 export const deleteReview = async (id: string) => {
+    await connect();
     return await ReviewModel.findByIdAndUpdate(
         id,
         { status: 'deleted', updatedAt: new Date() },
@@ -324,6 +331,7 @@ export const deleteReview = async (id: string) => {
  * @returns A Promise that resolves to the review document or null if not found.
  */
 export const getReviewById = async (id: string) => {
+    await connect();
     return await ReviewModel.findById(id);
 };
 
