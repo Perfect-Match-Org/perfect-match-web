@@ -97,17 +97,6 @@ export default function ReviewManagement() {
     const handleRefreshReviews = () => {
         fetchReviews();
     };
-    if (reviewsLoading) {
-        return (
-            <section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
-                <Container>
-                    <div className="flex justify-center items-center min-h-[50vh]">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pmred-500"></div>
-                    </div>
-                </Container>
-            </section>
-        );
-    }
 
     return (
         <section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
@@ -139,6 +128,7 @@ export default function ReviewManagement() {
                         totalPages={Math.ceil(pendingTotal / reviewsPerPage)}
                         totalCount={pendingTotal}
                         onPageChange={handlePendingPageChange}
+                        loading={reviewsLoading}
                     />
                 ) : (<ExistingReviewsSection
                     existingReviews={existingReviews}
@@ -147,6 +137,7 @@ export default function ReviewManagement() {
                     totalPages={Math.ceil(existingTotal / reviewsPerPage)}
                     totalCount={existingTotal}
                     onPageChange={handleExistingPageChange}
+                    loading={reviewsLoading}
                 />
                 )}
                 </div>

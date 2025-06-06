@@ -22,4 +22,15 @@ const DataCard: React.FC<DataCardProps> = ({ gradientColors, className, children
     );
 }
 
+export const DataCardSkeleton: React.FC = () => {
+    return (
+        <div className="relative p-6 rounded-lg bg-gray-200 animate-pulse">
+            <div className="relative z-10">
+                <div className="h-5 bg-gray-300 rounded mb-2 w-3/4"></div>
+                <div className="h-8 bg-gray-300 rounded w-1/2"></div>
+            </div>
+        </div>
+    );
+};
+
 export default DataCard;

@@ -1,5 +1,44 @@
 import { useState } from 'react';
 
+const PendingReviewSkeleton: React.FC = () => {
+    return (
+        <div className="flex flex-col items-center space-y-8">
+            <div className="h-6 bg-gray-300 rounded w-32 animate-pulse"></div>
+
+            <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg p-8 border-2 border-gray-200 animate-pulse">
+                <div className="mb-6">
+                    <div className="h-6 bg-gray-300 rounded mb-3 w-16"></div>
+                    <div className="h-5 bg-gray-300 rounded w-3/4 mb-2"></div>
+                    <div className="h-5 bg-gray-300 rounded w-1/2"></div>
+                </div>
+
+                <div className="mb-6">
+                    <div className="h-6 bg-gray-300 rounded mb-3 w-20"></div>
+                    <div className="h-5 bg-gray-300 rounded w-full mb-2"></div>
+                    <div className="h-5 bg-gray-300 rounded w-5/6 mb-2"></div>
+                    <div className="h-5 bg-gray-300 rounded w-4/5 mb-2"></div>
+                    <div className="h-5 bg-gray-300 rounded w-3/4"></div>
+                </div>
+
+                <div className="mb-6">
+                    <div className="h-6 bg-gray-300 rounded mb-3 w-16"></div>
+                    <div className="h-5 bg-gray-300 rounded w-32"></div>
+                </div>
+
+                <div className="flex justify-center space-x-6 mt-6">
+                    <div className="h-12 bg-gray-300 rounded-lg w-32"></div>
+                    <div className="h-12 bg-gray-300 rounded-lg w-32"></div>
+                </div>
+            </div>
+
+            <div className="flex justify-center space-x-6">
+                <div className="h-12 bg-gray-300 rounded-lg w-32"></div>
+                <div className="h-12 bg-gray-300 rounded-lg w-32"></div>
+            </div>
+        </div>
+    );
+};
+
 interface PendingReview {
     id: string;
     title: string;
@@ -18,6 +57,7 @@ interface PendingReviewsSectionProps {
     totalPages: number;
     totalCount: number;
     onPageChange: (page: number) => void;
+    loading: boolean;
 }
 
 export default function PendingReviewsSection({
@@ -29,7 +69,8 @@ export default function PendingReviewsSection({
     currentPage,
     totalPages,
     totalCount,
-    onPageChange
+    onPageChange,
+    loading
 }: PendingReviewsSectionProps) {
     const [actionLoading, setActionLoading] = useState<string | null>(null);
 
@@ -78,6 +119,10 @@ export default function PendingReviewsSection({
             setActionLoading(null);
         }
     };
+
+    if (loading) {
+        return <PendingReviewSkeleton />;
+    }
 
     if (pendingReviews.length === 0) {
         return (

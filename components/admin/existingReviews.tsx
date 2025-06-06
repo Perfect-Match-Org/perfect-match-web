@@ -1,5 +1,44 @@
 import { useState } from 'react';
 
+const ExistingReviewsSkeleton: React.FC = () => {
+    return (
+        <div className="space-y-6">
+            {Array.from({ length: 5 }).map((_, index) => (
+                <div
+                    key={index}
+                    className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200 animate-pulse"
+                >
+                    <div className="flex justify-between items-start">
+                        <div className="flex-1 pr-4 min-w-0">
+                            <div className="mb-4">
+                                <div className="h-5 bg-gray-300 rounded mb-2 w-16"></div>
+                                <div className="h-4 bg-gray-300 rounded w-3/4 mb-1"></div>
+                                <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+                            </div>
+
+                            <div className="mb-4">
+                                <div className="h-5 bg-gray-300 rounded mb-2 w-20"></div>
+                                <div className="h-4 bg-gray-300 rounded w-full mb-1"></div>
+                                <div className="h-4 bg-gray-300 rounded w-5/6 mb-1"></div>
+                                <div className="h-4 bg-gray-300 rounded w-4/5"></div>
+                            </div>
+
+                            <div className="mb-4">
+                                <div className="h-5 bg-gray-300 rounded mb-2 w-16"></div>
+                                <div className="h-4 bg-gray-300 rounded w-32"></div>
+                            </div>
+                        </div>
+
+                        <div className="ml-6 flex-shrink-0">
+                            <div className="h-10 bg-gray-300 rounded-lg w-20"></div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
+
 interface ExistingReview {
     id: string;
     title: string;
@@ -15,6 +54,7 @@ interface ExistingReviewsSectionProps {
     totalPages: number;
     totalCount: number;
     onPageChange: (page: number) => void;
+    loading: boolean;
 }
 
 export default function ExistingReviewsSection({
@@ -23,7 +63,8 @@ export default function ExistingReviewsSection({
     currentPage,
     totalPages,
     totalCount,
-    onPageChange
+    onPageChange,
+    loading
 }: ExistingReviewsSectionProps) {
     const [actionLoading, setActionLoading] = useState<string | null>(null);
 
@@ -45,6 +86,10 @@ export default function ExistingReviewsSection({
             setActionLoading(null);
         }
     };
+
+    if (loading) {
+        return <ExistingReviewsSkeleton />;
+    }
 
     if (existingReviews.length === 0) {
         return (

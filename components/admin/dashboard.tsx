@@ -1,10 +1,53 @@
 import { useState, useEffect } from 'react';
-import DataCard from './dataCard';
+import DataCard, { DataCardSkeleton } from './dataCard';
 import { Container } from '@/components/testimonials/Container';
 import { User } from '@/types/users';
 import UserProfileModal from './userProfile';
 
 type DisplayData = [string, number, [string, string]];
+
+const UserTableSkeleton: React.FC = () => {
+    return (
+        <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+                <thead>
+                    <tr className="bg-gray-50">
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Name</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Email</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Opt In</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Profile</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Survey</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.from({ length: 10 }).map((_, index) => (
+                        <tr key={index} className="animate-pulse">
+                            <td className="px-4 py-3 border-b">
+                                <div className="h-4 bg-gray-300 rounded w-24"></div>
+                            </td>
+                            <td className="px-4 py-3 border-b">
+                                <div className="h-4 bg-gray-300 rounded w-32"></div>
+                            </td>
+                            <td className="px-4 py-3 border-b">
+                                <div className="h-6 bg-gray-300 rounded-full w-12"></div>
+                            </td>
+                            <td className="px-4 py-3 border-b">
+                                <div className="h-6 bg-gray-300 rounded-full w-16"></div>
+                            </td>
+                            <td className="px-4 py-3 border-b">
+                                <div className="h-6 bg-gray-300 rounded-full w-16"></div>
+                            </td>
+                            <td className="px-4 py-3 border-b">
+                                <div className="h-4 bg-gray-300 rounded w-20"></div>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
 
 export default function AdminDashboard() {
     const [userCount, setUserCount] = useState(0);
@@ -12,6 +55,7 @@ export default function AdminDashboard() {
     const [profiledCount, setProfiledCount] = useState(0);
     const [surveyedCount, setSurveyedCount] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [usersLoading, setUsersLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     // User list management
     const [displayUsers, setDisplayUsers] = useState<User[]>([]);
@@ -59,6 +103,7 @@ export default function AdminDashboard() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
+                setUsersLoading(true);
                 const response = await fetch(`/api/users?page=${page}&limit=10&searchTerm=${debouncedSearchTerm}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
@@ -67,6 +112,8 @@ export default function AdminDashboard() {
                 setDisplayUsers(data);
             } catch (err: any) {
                 setError(err.message);
+            } finally {
+                setUsersLoading(false);
             }
         };
 
@@ -98,17 +145,6 @@ export default function AdminDashboard() {
         ["Completed Surveys", surveyedCount, ["#96d7d1", "#71d5c1"]],
     ];
 
-    if (loading) {
-        return (
-            <section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
-                <Container>
-                    <div className="flex justify-center items-center min-h-[50vh]">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pmred-500"></div>
-                    </div>
-                </Container>
-            </section>
-        );
-    }
 
     if (error) {
         return (
@@ -130,17 +166,24 @@ export default function AdminDashboard() {
 
                 {/* Statistics Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    {displayDatas.map(([label, count, colors], index) => (
-                        <DataCard
-                            key={index}
-                            gradientColors={colors}
-                        >
-                            <div className="relative z-10">
-                                <h3 className="text-white text-lg font-semibold mb-2">{label}</h3>
-                                <p className="text-white text-3xl font-bold">{count}</p>
-                            </div>
-                        </DataCard>
-                    ))}
+                    {loading ? (
+                        // Show skeleton cards while loading
+                        Array.from({ length: 4 }).map((_, index) => (
+                            <DataCardSkeleton key={index} />
+                        ))
+                    ) : (
+                        displayDatas.map(([label, count, colors], index) => (
+                            <DataCard
+                                key={index}
+                                gradientColors={colors}
+                            >
+                                <div className="relative z-10">
+                                    <h3 className="text-white text-lg font-semibold mb-2">{label}</h3>
+                                    <p className="text-white text-3xl font-bold">{count}</p>
+                                </div>
+                            </DataCard>
+                        ))
+                    )}
                 </div>
 
                 {/* User Management Section */}
@@ -197,69 +240,75 @@ export default function AdminDashboard() {
                     </div>
 
                     {/* User List */}
-                    <div className="overflow-x-auto">
-                        <table className="w-full border-collapse">
-                            <thead>
-                                <tr className="bg-gray-50">
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Name</th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Email</th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Opt In</th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Profile</th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Survey</th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {displayUsers.map((user, index) => (
-                                    <tr key={user._id || index} className="hover:bg-gray-50">
-                                        <td className="px-4 py-3 text-sm text-gray-900 border-b">
-                                            {user.profile?.firstName} {user.profile?.lastName}
-                                        </td>
-                                        <td className="px-4 py-3 text-sm text-gray-900 border-b">
-                                            {user.email}
-                                        </td>
-                                        <td className="px-4 py-3 text-sm border-b">
-                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.optIn
-                                                ? 'bg-green-100 text-green-800'
-                                                : 'bg-red-100 text-red-800'
-                                                }`}>
-                                                {user.optIn ? 'Yes' : 'No'}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-3 text-sm border-b">
-                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.profile?.complete
-                                                ? 'bg-green-100 text-green-800'
-                                                : 'bg-yellow-100 text-yellow-800'
-                                                }`}>
-                                                {user.profile?.complete ? 'Complete' : 'Incomplete'}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-3 text-sm border-b">
-                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.survey?.complete
-                                                ? 'bg-green-100 text-green-800'
-                                                : 'bg-yellow-100 text-yellow-800'
-                                                }`}>
-                                                {user.survey?.complete ? 'Complete' : 'Incomplete'}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-3 text-sm border-b">
-                                            <button
-                                                onClick={() => setSelectedUser(user)}
-                                                className="text-pmblue-500 hover:text-pmblue-700 font-medium"
-                                            >
-                                                View Profile
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                    {usersLoading ? (
+                        <UserTableSkeleton />
+                    ) : (
+                        <>
+                            <div className="overflow-x-auto">
+                                <table className="w-full border-collapse">
+                                    <thead>
+                                        <tr className="bg-gray-50">
+                                            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Name</th>
+                                            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Email</th>
+                                            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Opt In</th>
+                                            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Profile</th>
+                                            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Survey</th>
+                                            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {displayUsers.map((user, index) => (
+                                            <tr key={user._id || index} className="hover:bg-gray-50">
+                                                <td className="px-4 py-3 text-sm text-gray-900 border-b">
+                                                    {user.profile?.firstName} {user.profile?.lastName}
+                                                </td>
+                                                <td className="px-4 py-3 text-sm text-gray-900 border-b">
+                                                    {user.email}
+                                                </td>
+                                                <td className="px-4 py-3 text-sm border-b">
+                                                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.optIn
+                                                        ? 'bg-green-100 text-green-800'
+                                                        : 'bg-red-100 text-red-800'
+                                                        }`}>
+                                                        {user.optIn ? 'Yes' : 'No'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-3 text-sm border-b">
+                                                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.profile?.complete
+                                                        ? 'bg-green-100 text-green-800'
+                                                        : 'bg-yellow-100 text-yellow-800'
+                                                        }`}>
+                                                        {user.profile?.complete ? 'Complete' : 'Incomplete'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-3 text-sm border-b">
+                                                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.survey?.complete
+                                                        ? 'bg-green-100 text-green-800'
+                                                        : 'bg-yellow-100 text-yellow-800'
+                                                        }`}>
+                                                        {user.survey?.complete ? 'Complete' : 'Incomplete'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-3 text-sm border-b">
+                                                    <button
+                                                        onClick={() => setSelectedUser(user)}
+                                                        className="text-pmblue-500 hover:text-pmblue-700 font-medium"
+                                                    >
+                                                        View Profile
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
 
-                    {displayUsers.length === 0 && !loading && (
-                        <div className="text-center py-8">
-                            <p className="text-gray-500">No users found matching your search criteria.</p>
-                        </div>
+                            {displayUsers.length === 0 && !usersLoading && (
+                                <div className="text-center py-8">
+                                    <p className="text-gray-500">No users found matching your search criteria.</p>
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
 
