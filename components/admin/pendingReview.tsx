@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface PendingReview {
     id: string;
     title: string;
@@ -8,9 +10,6 @@ interface PendingReview {
 interface PendingReviewsSectionProps {
     pendingReviews: PendingReview[];
     currentReviewIndex: number;
-    actionLoading: string | null;
-    onApprove: (id: string) => void;
-    onReject: (id: string) => void;
     onNext: () => void;
     onPrevious: () => void;
     onRefresh: () => void;
@@ -24,9 +23,6 @@ interface PendingReviewsSectionProps {
 export default function PendingReviewsSection({
     pendingReviews,
     currentReviewIndex,
-    actionLoading,
-    onApprove,
-    onReject,
     onNext,
     onPrevious,
     onRefresh,
@@ -35,6 +31,54 @@ export default function PendingReviewsSection({
     totalCount,
     onPageChange
 }: PendingReviewsSectionProps) {
+    const [actionLoading, setActionLoading] = useState<string | null>(null);
+
+    const handleApproveReview = async (id: string) => {
+        try {
+            setActionLoading(id);
+            const response = await fetch(`/api/reviews/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: 'approve' })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to approve review');
+            }
+
+            onRefresh();
+        } catch (err) {
+            console.error(err instanceof Error ? err.message : 'Failed to approve review');
+        } finally {
+            setActionLoading(null);
+        }
+    };
+
+    const handleRejectReview = async (id: string) => {
+        try {
+            setActionLoading(id);
+            const response = await fetch(`/api/reviews/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: 'reject' })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to reject review');
+            }
+
+            onRefresh();
+        } catch (err) {
+            console.error(err instanceof Error ? err.message : 'Failed to reject review');
+        } finally {
+            setActionLoading(null);
+        }
+    };
+
     if (pendingReviews.length === 0) {
         return (
             <div className="text-center">
@@ -78,14 +122,14 @@ export default function PendingReviewsSection({
                 <div className="flex justify-center space-x-6 mt-6">
                     <button
                         className="px-6 py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition w-32 disabled:opacity-50 disabled:cursor-not-allowed"
-                        onClick={() => onApprove(currentReview.id)}
+                        onClick={() => handleApproveReview(currentReview.id)}
                         disabled={!!actionLoading}
                     >
                         {actionLoading === currentReview.id ? 'Loading...' : 'Approve'}
                     </button>
                     <button
                         className="px-6 py-3 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition w-32 disabled:opacity-50 disabled:cursor-not-allowed"
-                        onClick={() => onReject(currentReview.id)}
+                        onClick={() => handleRejectReview(currentReview.id)}
                         disabled={!!actionLoading}
                     >
                         {actionLoading === currentReview.id ? 'Loading...' : 'Reject'}

@@ -24,7 +24,6 @@ export default function ReviewManagement() {
     const [reviewsLoading, setReviewsLoading] = useState(true);
     const [reviewsError, setReviewsError] = useState<string | null>(null);
     const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
-    const [actionLoading, setActionLoading] = useState<string | null>(null);
     const [reviewTab, setReviewTab] = useState<'pending' | 'existing'>('pending');
 
     // Pagination state
@@ -83,77 +82,6 @@ export default function ReviewManagement() {
     };
 
     // Handler functions
-    const handleTabChange = (tab: 'pending' | 'existing') => {
-        setReviewTab(tab);
-        setCurrentReviewIndex(0);
-    }; const handleApproveReview = async (id: string) => {
-        try {
-            setActionLoading(id);
-            const response = await fetch(`/api/reviews/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: 'approve' })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to approve review');
-            }            // Refetch data to get updated counts and possibly new page content
-            await fetchReviews();
-
-            // Adjust current index if needed
-            if (currentReviewIndex >= pendingReviews.length - 1) {
-                setCurrentReviewIndex(Math.max(0, pendingReviews.length - 2));
-            }
-        } catch (err) {
-            setReviewsError(err instanceof Error ? err.message : 'Failed to approve review');
-        } finally {
-            setActionLoading(null);
-        }
-    }; const handleRejectReview = async (id: string) => {
-        try {
-            setActionLoading(id);
-            const response = await fetch(`/api/reviews/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: 'reject' })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to reject review');
-            }            // Refetch data to get updated counts and page content
-            await fetchReviews();
-
-            // Adjust current index if needed
-            if (currentReviewIndex >= pendingReviews.length - 1) {
-                setCurrentReviewIndex(Math.max(0, pendingReviews.length - 2));
-            }
-        } catch (err) {
-            setReviewsError(err instanceof Error ? err.message : 'Failed to reject review');
-        } finally {
-            setActionLoading(null);
-        }
-    }; const handleDeleteReview = async (id: string) => {
-        try {
-            setActionLoading(id);
-            const response = await fetch(`/api/reviews/${id}`, {
-                method: 'DELETE'
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to delete review');
-            }            // Refetch data to get updated counts and page content
-            await fetchReviews();
-        } catch (err) {
-            setReviewsError(err instanceof Error ? err.message : 'Failed to delete review');
-        } finally {
-            setActionLoading(null);
-        }
-    };
-
     const handleNextReview = () => {
         if (reviewTab === 'pending' && currentReviewIndex < pendingReviews.length - 1) {
             setCurrentReviewIndex(prev => prev + 1);
@@ -194,18 +122,16 @@ export default function ReviewManagement() {
                     </div>
                 )}                <ReviewTabs
                     activeTab={reviewTab}
-                    onTabChange={handleTabChange}
+                    onTabChange={setReviewTab}
                     pendingCount={pendingTotal}
                     existingCount={existingTotal}
+                    setCurrentReviewIndex={setCurrentReviewIndex}
                 />
 
                 <div className="mt-10">                    {reviewTab === 'pending' ? (
                     <PendingReviewsSection
                         pendingReviews={pendingReviews}
                         currentReviewIndex={currentReviewIndex}
-                        actionLoading={actionLoading}
-                        onApprove={handleApproveReview}
-                        onReject={handleRejectReview}
                         onNext={handleNextReview}
                         onPrevious={handlePreviousReview}
                         onRefresh={handleRefreshReviews}
@@ -216,8 +142,6 @@ export default function ReviewManagement() {
                     />
                 ) : (<ExistingReviewsSection
                     existingReviews={existingReviews}
-                    actionLoading={actionLoading}
-                    onDelete={handleDeleteReview}
                     onRefresh={handleRefreshReviews}
                     currentPage={existingPage}
                     totalPages={Math.ceil(existingTotal / reviewsPerPage)}

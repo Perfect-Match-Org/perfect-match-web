@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface ExistingReview {
     id: string;
     title: string;
@@ -7,8 +9,6 @@ interface ExistingReview {
 
 interface ExistingReviewsSectionProps {
     existingReviews: ExistingReview[];
-    actionLoading: string | null;
-    onDelete: (id: string) => void;
     onRefresh: () => void;
     // Pagination props
     currentPage: number;
@@ -19,14 +19,33 @@ interface ExistingReviewsSectionProps {
 
 export default function ExistingReviewsSection({
     existingReviews,
-    actionLoading,
-    onDelete,
     onRefresh,
     currentPage,
     totalPages,
     totalCount,
     onPageChange
 }: ExistingReviewsSectionProps) {
+    const [actionLoading, setActionLoading] = useState<string | null>(null);
+
+    const handleDeleteReview = async (id: string) => {
+        try {
+            setActionLoading(id);
+            const response = await fetch(`/api/reviews/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete review');
+            }
+
+            onRefresh();
+        } catch (err) {
+            console.error(err instanceof Error ? err.message : 'Failed to delete review');
+        } finally {
+            setActionLoading(null);
+        }
+    };
+
     if (existingReviews.length === 0) {
         return (
             <div className="text-center">
@@ -76,7 +95,7 @@ export default function ExistingReviewsSection({
                         <div className="ml-6 flex-shrink-0">
                             <button
                                 className="px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                                onClick={() => onDelete(review.id)}
+                                onClick={() => handleDeleteReview(review.id)}
                                 disabled={actionLoading === review.id}
                             >
                                 {actionLoading === review.id ? 'Deleting...' : 'Delete'}
