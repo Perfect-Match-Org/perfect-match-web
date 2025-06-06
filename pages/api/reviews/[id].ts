@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getReviewById, approveReview, rejectReview, deleteReview } from '@/controllers';
+import { withAdminAuth } from '@/utils/adminAuth';
 
 export default async function handler(
     req: NextApiRequest,
@@ -15,9 +16,9 @@ export default async function handler(
         case 'GET':
             return handleGetReview(req, res, id);
         case 'PATCH':
-            return handleUpdateReview(req, res, id);
+            return handleUpdateReview(req, res);
         case 'DELETE':
-            return handleDeleteReview(req, res, id);
+            return handleDeleteReview(req, res);
         default:
             return res.status(405).json({ message: `Method ${req.method} not allowed` });
     }
@@ -43,7 +44,12 @@ async function handleGetReview(req: NextApiRequest, res: NextApiResponse, id: st
     }
 }
 
-async function handleUpdateReview(req: NextApiRequest, res: NextApiResponse, id: string) {
+const handleUpdateReview = withAdminAuth(async (req: NextApiRequest, res: NextApiResponse) => {
+    const { id } = req.query;
+    if (!id || typeof id !== 'string') {
+        return res.status(400).json({ message: 'Invalid review ID' });
+    }
+
     try {
         const { action } = req.body;
 
@@ -87,9 +93,14 @@ async function handleUpdateReview(req: NextApiRequest, res: NextApiResponse, id:
             error: error.message
         });
     }
-}
+});
 
-async function handleDeleteReview(req: NextApiRequest, res: NextApiResponse, id: string) {
+const handleDeleteReview = withAdminAuth(async (req: NextApiRequest, res: NextApiResponse) => {
+    const { id } = req.query;
+    if (!id || typeof id !== 'string') {
+        return res.status(400).json({ message: 'Invalid review ID' });
+    }
+
     try {
         const deletedReview = await deleteReview(id);
 
@@ -109,4 +120,4 @@ async function handleDeleteReview(req: NextApiRequest, res: NextApiResponse, id:
             error: error.message
         });
     }
-}
+});
