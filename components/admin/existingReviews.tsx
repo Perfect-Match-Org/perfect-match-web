@@ -10,13 +10,22 @@ interface ExistingReviewsSectionProps {
     actionLoading: string | null;
     onDelete: (id: string) => void;
     onRefresh: () => void;
+    // Pagination props
+    currentPage: number;
+    totalPages: number;
+    totalCount: number;
+    onPageChange: (page: number) => void;
 }
 
 export default function ExistingReviewsSection({
     existingReviews,
     actionLoading,
     onDelete,
-    onRefresh
+    onRefresh,
+    currentPage,
+    totalPages,
+    totalCount,
+    onPageChange
 }: ExistingReviewsSectionProps) {
     if (existingReviews.length === 0) {
         return (
@@ -74,8 +83,38 @@ export default function ExistingReviewsSection({
                             </button>
                         </div>
                     </div>
+                </div>))}
+
+            {/* Pagination controls */}
+            {totalPages > 1 && (
+                <div className="flex justify-center items-center space-x-4 mt-8">
+                    <button
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === 1 || !!actionLoading
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'hover:bg-blue-600'
+                            }`}
+                        onClick={() => onPageChange(currentPage - 1)}
+                        disabled={currentPage === 1 || !!actionLoading}
+                    >
+                        Previous Page
+                    </button>
+
+                    <span className="text-gray-700 font-medium">
+                        Page {currentPage} of {totalPages} ({totalCount} total reviews)
+                    </span>
+
+                    <button
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === totalPages || !!actionLoading
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'hover:bg-blue-600'
+                            }`}
+                        onClick={() => onPageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || !!actionLoading}
+                    >
+                        Next Page
+                    </button>
                 </div>
-            ))}
+            )}
         </div>
     );
 }

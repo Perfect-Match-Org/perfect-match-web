@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Container } from '@/components/testimonials/Container';
 import ReviewTabs from './reviewTabs';
 import PendingReviewsSection from './pendingReview';
@@ -25,38 +25,62 @@ export default function ReviewManagement() {
     const [reviewsError, setReviewsError] = useState<string | null>(null);
     const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
     const [actionLoading, setActionLoading] = useState<string | null>(null);
-    const [reviewTab, setReviewTab] = useState<'pending' | 'existing'>('pending');    // Fetch reviews data
-    const fetchReviews = async () => {
+    const [reviewTab, setReviewTab] = useState<'pending' | 'existing'>('pending');
+
+    // Pagination state
+    const [pendingPage, setPendingPage] = useState(1);
+    const [existingPage, setExistingPage] = useState(1);
+    const [pendingTotal, setPendingTotal] = useState(0);
+    const [existingTotal, setExistingTotal] = useState(0);
+    const reviewsPerPage = 10;    // Fetch reviews data
+    const fetchReviews = useCallback(async (pendingPageNum?: number, existingPageNum?: number) => {
         try {
             setReviewsLoading(true);
             setReviewsError(null);
 
-            const [pendingRes, existingRes] = await Promise.all([
-                fetch('/api/reviews?status=pending'),
-                fetch('/api/reviews?status=existing')
+            const pendingPageToFetch = pendingPageNum ?? pendingPage;
+            const existingPageToFetch = existingPageNum ?? existingPage;
+
+            const [pendingRes, existingRes, pendingCountRes, existingCountRes] = await Promise.all([
+                fetch(`/api/reviews?status=pending&page=${pendingPageToFetch}&limit=${reviewsPerPage}`),
+                fetch(`/api/reviews?status=existing&page=${existingPageToFetch}&limit=${reviewsPerPage}`),
+                fetch('/api/reviews/count?status=pending'),
+                fetch('/api/reviews/count?status=approved')
             ]);
 
-            if (!pendingRes.ok || !existingRes.ok) {
+            if (!pendingRes.ok || !existingRes.ok || !pendingCountRes.ok || !existingCountRes.ok) {
                 throw new Error('Failed to fetch reviews');
             }
 
-            const [pendingData, existingData] = await Promise.all([
+            const [pendingData, existingData, pendingCount, existingCount] = await Promise.all([
                 pendingRes.json(),
-                existingRes.json()
+                existingRes.json(),
+                pendingCountRes.json(),
+                existingCountRes.json()
             ]);
 
             setPendingReviews(pendingData);
             setExistingReviews(existingData);
+            setPendingTotal(pendingCount);
+            setExistingTotal(existingCount);
         } catch (err) {
             setReviewsError(err instanceof Error ? err.message : 'Unknown error occurred');
         } finally {
             setReviewsLoading(false);
         }
+    }, [pendingPage, existingPage, reviewsPerPage]); useEffect(() => {
+        fetchReviews();
+    }, [fetchReviews]);
+
+    // Pagination handlers
+    const handlePendingPageChange = (newPage: number) => {
+        setPendingPage(newPage);
+        setCurrentReviewIndex(0); // Reset to first review on page change
     };
 
-    useEffect(() => {
-        fetchReviews();
-    }, []);
+    const handleExistingPageChange = (newPage: number) => {
+        setExistingPage(newPage);
+    };
 
     // Handler functions
     const handleTabChange = (tab: 'pending' | 'existing') => {
@@ -75,18 +99,12 @@ export default function ReviewManagement() {
 
             if (!response.ok) {
                 throw new Error('Failed to approve review');
-            }
+            }            // Refetch data to get updated counts and possibly new page content
+            await fetchReviews();
 
-            // Remove from pending and add to existing
-            const approvedReview = pendingReviews.find(r => r.id === id);
-            if (approvedReview) {
-                setPendingReviews(prev => prev.filter(r => r.id !== id));
-                setExistingReviews(prev => [...prev, approvedReview]);
-
-                // Adjust current index if needed
-                if (currentReviewIndex >= pendingReviews.length - 1) {
-                    setCurrentReviewIndex(Math.max(0, pendingReviews.length - 2));
-                }
+            // Adjust current index if needed
+            if (currentReviewIndex >= pendingReviews.length - 1) {
+                setCurrentReviewIndex(Math.max(0, pendingReviews.length - 2));
             }
         } catch (err) {
             setReviewsError(err instanceof Error ? err.message : 'Failed to approve review');
@@ -106,10 +124,8 @@ export default function ReviewManagement() {
 
             if (!response.ok) {
                 throw new Error('Failed to reject review');
-            }
-
-            // Remove from pending
-            setPendingReviews(prev => prev.filter(r => r.id !== id));
+            }            // Refetch data to get updated counts and page content
+            await fetchReviews();
 
             // Adjust current index if needed
             if (currentReviewIndex >= pendingReviews.length - 1) {
@@ -129,10 +145,8 @@ export default function ReviewManagement() {
 
             if (!response.ok) {
                 throw new Error('Failed to delete review');
-            }
-
-            // Remove from existing
-            setExistingReviews(prev => prev.filter(r => r.id !== id));
+            }            // Refetch data to get updated counts and page content
+            await fetchReviews();
         } catch (err) {
             setReviewsError(err instanceof Error ? err.message : 'Failed to delete review');
         } finally {
@@ -181,30 +195,36 @@ export default function ReviewManagement() {
                 )}                <ReviewTabs
                     activeTab={reviewTab}
                     onTabChange={handleTabChange}
-                    pendingCount={pendingReviews.length}
-                    existingCount={existingReviews.length}
+                    pendingCount={pendingTotal}
+                    existingCount={existingTotal}
                 />
 
-                <div className="mt-10">
-                    {reviewTab === 'pending' ? (
-                        <PendingReviewsSection
-                            pendingReviews={pendingReviews}
-                            currentReviewIndex={currentReviewIndex}
-                            actionLoading={actionLoading}
-                            onApprove={handleApproveReview}
-                            onReject={handleRejectReview}
-                            onNext={handleNextReview}
-                            onPrevious={handlePreviousReview}
-                            onRefresh={handleRefreshReviews}
-                        />
-                    ) : (
-                        <ExistingReviewsSection
-                            existingReviews={existingReviews}
-                            actionLoading={actionLoading}
-                            onDelete={handleDeleteReview}
-                            onRefresh={handleRefreshReviews}
-                        />
-                    )}
+                <div className="mt-10">                    {reviewTab === 'pending' ? (
+                    <PendingReviewsSection
+                        pendingReviews={pendingReviews}
+                        currentReviewIndex={currentReviewIndex}
+                        actionLoading={actionLoading}
+                        onApprove={handleApproveReview}
+                        onReject={handleRejectReview}
+                        onNext={handleNextReview}
+                        onPrevious={handlePreviousReview}
+                        onRefresh={handleRefreshReviews}
+                        currentPage={pendingPage}
+                        totalPages={Math.ceil(pendingTotal / reviewsPerPage)}
+                        totalCount={pendingTotal}
+                        onPageChange={handlePendingPageChange}
+                    />
+                ) : (<ExistingReviewsSection
+                    existingReviews={existingReviews}
+                    actionLoading={actionLoading}
+                    onDelete={handleDeleteReview}
+                    onRefresh={handleRefreshReviews}
+                    currentPage={existingPage}
+                    totalPages={Math.ceil(existingTotal / reviewsPerPage)}
+                    totalCount={existingTotal}
+                    onPageChange={handleExistingPageChange}
+                />
+                )}
                 </div>
             </Container>
         </section>

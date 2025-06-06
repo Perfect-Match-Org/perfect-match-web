@@ -14,6 +14,11 @@ interface PendingReviewsSectionProps {
     onNext: () => void;
     onPrevious: () => void;
     onRefresh: () => void;
+    // Pagination props
+    currentPage: number;
+    totalPages: number;
+    totalCount: number;
+    onPageChange: (page: number) => void;
 }
 
 export default function PendingReviewsSection({
@@ -24,7 +29,11 @@ export default function PendingReviewsSection({
     onReject,
     onNext,
     onPrevious,
-    onRefresh
+    onRefresh,
+    currentPage,
+    totalPages,
+    totalCount,
+    onPageChange
 }: PendingReviewsSectionProps) {
     if (pendingReviews.length === 0) {
         return (
@@ -80,16 +89,46 @@ export default function PendingReviewsSection({
                         disabled={!!actionLoading}
                     >
                         {actionLoading === currentReview.id ? 'Loading...' : 'Reject'}
+                    </button>                </div>
+            </div>
+
+            {/* Pagination controls */}
+            {totalPages > 1 && (
+                <div className="flex justify-center items-center space-x-4 my-6">
+                    <button
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === 1 || !!actionLoading
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'hover:bg-blue-600'
+                            }`}
+                        onClick={() => onPageChange(currentPage - 1)}
+                        disabled={currentPage === 1 || !!actionLoading}
+                    >
+                        Previous Page
+                    </button>
+
+                    <span className="text-gray-700 font-medium">
+                        Page {currentPage} of {totalPages} ({totalCount} total reviews)
+                    </span>
+
+                    <button
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === totalPages || !!actionLoading
+                                ? 'opacity-50 cursor-not-allowed'
+                                : 'hover:bg-blue-600'
+                            }`}
+                        onClick={() => onPageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || !!actionLoading}
+                    >
+                        Next Page
                     </button>
                 </div>
-            </div>
+            )}
 
             {/* Navigation buttons */}
             <div className="flex justify-center space-x-6">
                 <button
                     className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === 0 || !!actionLoading
-                            ? 'opacity-50 cursor-not-allowed'
-                            : 'hover:bg-blue-600'
+                        ? 'opacity-50 cursor-not-allowed'
+                        : 'hover:bg-blue-600'
                         }`}
                     onClick={onPrevious}
                     disabled={currentReviewIndex === 0 || !!actionLoading}
@@ -98,8 +137,8 @@ export default function PendingReviewsSection({
                 </button>
                 <button
                     className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === pendingReviews.length - 1 || !!actionLoading
-                            ? 'opacity-50 cursor-not-allowed'
-                            : 'hover:bg-blue-600'
+                        ? 'opacity-50 cursor-not-allowed'
+                        : 'hover:bg-blue-600'
                         }`}
                     onClick={onNext}
                     disabled={currentReviewIndex === pendingReviews.length - 1 || !!actionLoading}

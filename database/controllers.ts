@@ -246,21 +246,57 @@ export const updateMatchReview = async (
 /**
  * Retrieves all pending reviews from the database.
  * Used in pending-reviews page for admin review management.
+ * @param {number} page - The page number to retrieve.
+ * @param {number} limit - The number of reviews to retrieve per page. If provided as 0, all reviews are retrieved.
  * @returns A Promise that resolves to an array of pending reviews sorted by creation date (newest first).
  */
-export const getPendingReviews = async () => {
+export const getPendingReviews = async (page: number = 1, limit: number = 0) => {
     await connect();
-    return await ReviewModel.find({ status: 'pending' }).sort({ createdAt: -1 });
+    const query = ReviewModel.find({ status: 'pending' }).sort({ createdAt: -1 });
+
+    if (limit > 0) {
+        return await query.skip((page - 1) * limit).limit(limit);
+    }
+
+    return await query;
 };
 
 /**
  * Retrieves all approved reviews from the database.
  * Used in testimonial page for displaying customer reviews.
+ * @param {number} page - The page number to retrieve.
+ * @param {number} limit - The number of reviews to retrieve per page. If provided as 0, all reviews are retrieved.
  * @returns A Promise that resolves to an array of approved reviews sorted by creation date (newest first).
  */
-export const getApprovedReviews = async () => {
+export const getApprovedReviews = async (page: number = 1, limit: number = 0) => {
     await connect();
-    return await ReviewModel.find({ status: 'approved' }).sort({ createdAt: -1 });
+    const query = ReviewModel.find({ status: 'approved' }).sort({ createdAt: -1 });
+
+    if (limit > 0) {
+        return await query.skip((page - 1) * limit).limit(limit);
+    }
+
+    return await query;
+};
+
+/**
+ * Counts the number of pending reviews in the database.
+ * @returns A Promise that resolves to the number of pending reviews.
+ */
+export const getPendingReviewsCount = async (): Promise<number> => {
+    await connect();
+    const resp = await ReviewModel.countDocuments({ status: 'pending' });
+    return resp;
+};
+
+/**
+ * Counts the number of approved reviews in the database.
+ * @returns A Promise that resolves to the number of approved reviews.
+ */
+export const getApprovedReviewsCount = async (): Promise<number> => {
+    await connect();
+    const resp = await ReviewModel.countDocuments({ status: 'approved' });
+    return resp;
 };
 
 /**

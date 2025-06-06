@@ -17,22 +17,24 @@ export default async function handler(
 
 async function handleGetReviews(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const { status } = req.query;
+        const { status, page = '1', limit = '0' } = req.query;
+        const pageNum = Number(page);
+        const limitNum = Number(limit);
 
         let reviews;
         switch (status) {
             case 'pending':
-                reviews = await getPendingReviews();
+                reviews = await getPendingReviews(pageNum, limitNum);
                 break;
             case 'approved':
             case 'existing':
-                reviews = await getApprovedReviews();
+                reviews = await getApprovedReviews(pageNum, limitNum);
                 break;
             default:
                 // If no status specified, return all reviews (you might want to combine pending + approved)
                 const [pendingReviews, approvedReviews] = await Promise.all([
-                    getPendingReviews(),
-                    getApprovedReviews()
+                    getPendingReviews(pageNum, limitNum),
+                    getApprovedReviews(pageNum, limitNum)
                 ]);
                 reviews = [...pendingReviews, ...approvedReviews];
                 break;

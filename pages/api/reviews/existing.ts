@@ -10,8 +10,12 @@ export default async function handler(
     }
 
     try {
+        const { page = '1', limit = '0' } = req.query;
+        const pageNum = Number(page);
+        const limitNum = Number(limit);
+
         // Get approved reviews (these are the "existing" reviews visible on the site)
-        const approvedReviews = await getApprovedReviews();
+        const approvedReviews = await getApprovedReviews(pageNum, limitNum);
 
         // Transform the data to match the expected format
         const reviews = approvedReviews.map(review => ({
