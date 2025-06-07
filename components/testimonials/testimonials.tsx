@@ -133,7 +133,7 @@ function Review({
         <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["] break-all overflow-wrap-anywhere whitespace-pre-wrap'>
           {title}
         </p>
-        <p className="mt-3 text-base/7 break-all overflow-wrap-anywhere whitespace-pre-wrap">{body}</p>
+        <p className="mt-3 text-base/7 break-words overflow-wrap-anywhere whitespace-pre-wrap">{body}</p>
       </blockquote>
       <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_'] break-all overflow-wrap-anywhere whitespace-pre-wrap">
         {author}
