@@ -127,7 +127,7 @@ function ReviewColumn({
     return <div className={clsx('space-y-8 py-4', className)} />
   }
 
-  const duplicatedReviews = [...reviews, ...reviews]
+  reviews = [...reviews, ...reviews]
 
 
   return (
@@ -136,9 +136,9 @@ function ReviewColumn({
       className={clsx('animate-vertical-marquee space-y-8 py-4', className)}
       style={{ '--marquee-duration': duration } as React.CSSProperties}
     >
-      {duplicatedReviews.map((review, reviewIndex) => (
+      {reviews.map((review, reviewIndex) => (
         <Review
-          key={`${reviewIndex}-${review.title}-${review.author}`} // More unique key
+          key={reviewIndex}
           aria-hidden={reviewIndex >= reviews.length}
           className={reviewClassName?.(reviewIndex % reviews.length)}
           {...review}
