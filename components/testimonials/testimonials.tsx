@@ -13,76 +13,6 @@ interface Review {
   // rating: 1 | 2 | 3 | 4 | 5
 }
 
-//Probably can be deleted atp
-const fakeReviews: Array<Review> = [
-  {
-    title: 'I found my soulmate!',
-    body: 'I never believed in online dating until I met her on Perfect Match. We clicked instantly and now we’re planning our wedding!',
-    author: 'HopelessRomantic23',
-  },
-  {
-    title: 'Love at first swipe!',
-    body: 'I thought it was all just a game, but Perfect Match made me realize that true love can be found with the right person. I’m engaged now!',
-    author: 'LoveIsReal',
-  },
-  {
-    title: 'Perfect match, perfect life.',
-    body: 'I’ve been using dating apps for years, but I never met someone like him. Thanks to Perfect Match, I finally found my other half.',
-    author: 'LookingForMyPerson',
-  },
-  {
-    title: 'The one I was waiting for!',
-    body: 'After a few weeks on Perfect Match, I met the person I had been dreaming about. We share everything in common and can’t wait for the future together!',
-    author: 'MatchMadeInHeaven',
-  },
-  {
-    title: 'Changed my life.',
-    body: 'Perfect Match helped me find love when I wasn’t even looking for it. I feel like I’ve known my partner for a lifetime!',
-    author: 'UnexpectedlyHappy',
-  },
-  {
-    title: 'I didn’t think it was possible!',
-    body: 'We met on Perfect Match, and from the first date, I knew we were meant to be. It’s crazy how fast everything clicked!',
-    author: 'SoulmateFinder',
-  },
-  {
-    title: 'True love exists!',
-    body: 'I never thought I would find someone who understands me so completely. Thanks to Perfect Match, I now have the love of my life!',
-    author: 'EverAfterDreamer',
-  },
-  {
-    title: 'A fairytale come true.',
-    body: 'Perfect Match turned my doubts into faith. We’ve been inseparable since we met and our relationship is everything I’ve ever wanted.',
-    author: 'FairytaleRomance',
-  },
-  {
-    title: 'Found my forever!',
-    body: 'We both swiped right at the same time and now we’re planning our future together. I never thought I’d find someone so perfect!',
-    author: 'HappilyEverAfter',
-  },
-  {
-    title: 'A new beginning.',
-    body: 'I had given up on finding true love until I found her on Perfect Match. Now, we’re inseparable and have a love I never thought possible.',
-    author: 'LoveRestored',
-  },
-  {
-    title: 'The perfect person for me.',
-    body: 'We started talking on Perfect Match and instantly hit it off. I feel like I’ve known them forever. Thank you for making my dreams come true!',
-    author: 'DreamCouple',
-  },
-  {
-    title: 'Love is real, and so is Perfect Match.',
-    body: 'I was skeptical at first, but I’ve never been more grateful for giving Perfect Match a try. I found my one and only.',
-    author: 'HeartfeltConnection',
-  },
-  {
-    title: 'Finally met the one.',
-    body: 'I was ready to give up on dating until I met him on Perfect Match. It feels like everything just fell into place!',
-    author: 'DestinedForYou',
-  },
-]
-
-
 function StarIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" {...props}>
@@ -133,7 +63,7 @@ function Review({
         <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["] break-all overflow-wrap-anywhere whitespace-pre-wrap'>
           {title}
         </p>
-        <p className="mt-3 text-base/7 break-all overflow-wrap-anywhere whitespace-pre-wrap">{body}</p>
+        <p className="mt-3 text-base/7 break-words overflow-wrap-anywhere whitespace-pre-wrap">{body}</p>
       </blockquote>
       <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_'] break-all overflow-wrap-anywhere whitespace-pre-wrap">
         {author}
@@ -196,11 +126,9 @@ function ReviewColumn({
   if (!reviews || reviews.length === 0) {
     return <div className={clsx('space-y-8 py-4', className)} />
   }
-  // Create seamless infinite scroll by ensuring minimum 4 reviews
-  // If we have fewer than 4 reviews, duplicate them to reach at least 4
-  while (reviews.length < 4) {
-    reviews = [...reviews, ...reviews]
-  }
+
+  reviews = [...reviews, ...reviews]
+
 
   return (
     <div
