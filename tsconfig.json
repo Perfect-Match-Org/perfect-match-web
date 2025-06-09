@@ -2,7 +2,11 @@
     "compilerOptions": {
         "baseUrl": ".",
         "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
@@ -16,15 +20,36 @@
         "jsx": "preserve",
         "incremental": true,
         "paths": {
-            "@/components/*": ["components/*"],
-            "@/controllers": ["database/controllers.ts"],
-            "@/models/*": ["database/models/*"],
-            "@/utils/*": ["utils/*"],
-            "@/types/*": ["types/*"],
-            "@/database": ["database/database.ts"],
-            "@/styles/*": ["styles/*"]
+            "@/components/*": [
+                "components/*"
+            ],
+            "@/controllers": [
+                "database/controllers.ts"
+            ],
+            "@/models/*": [
+                "database/models/*"
+            ],
+            "@/utils/*": [
+                "utils/*"
+            ],
+            "@/types/*": [
+                "types/*"
+            ],
+            "@/database": [
+                "database/database.ts"
+            ],
+            "@/styles/*": [
+                "styles/*"
+            ]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules", "reminders"]
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "reminders"
+    ]
 }
