@@ -52,13 +52,6 @@ export const team = [
                 Title1: 'Algorithms & Web Dev Subteam Member',
             },
             {
-                Name: 'Flavia Jiang',
-                ClassYear: 2025,
-                Major: 'Info Sci & Stats',
-                Img: '/members/flavia.jpg',
-                Title2: 'Web Dev Subteam Member',
-            },
-            {
                 Name: 'Ashlie Zhang',
                 ClassYear: 2027,
                 Major: 'CS',
