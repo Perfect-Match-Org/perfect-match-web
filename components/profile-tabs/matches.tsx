@@ -1,7 +1,6 @@
 import MatchTile from './matchTile';
 import styles from '/styles/Matches.module.css';
 import React from 'react';
-import Iframe from 'react-iframe';
 
 function Matches({ matches, userId, refresh, matchCount }: any) {
     const [visible, setVisible] = React.useState(false);
