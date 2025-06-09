@@ -66,7 +66,15 @@ export const team = [
                 Linkedin:
                     'https://www.linkedin.com/in/ashlie-zhang-8982b7296/',
                 Title1: 'Web Dev Subteam Member',
-            }
+            },
+            {
+                Name: 'Evan Wang',
+                ClassYear: 2028,
+                Major: 'Computer Science',
+                Img: '/members/evan.jpg',
+                Linkedin: 'https://www.linkedin.com/in/evan-wang-938b73274/',
+                Title1: 'Web Dev Subteam Member',
+            },
         ],
     },
     {
