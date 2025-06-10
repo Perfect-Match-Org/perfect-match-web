@@ -16,6 +16,31 @@ const Home: NextPage = (props: any) => {
         const [submitting, setSubmitting] = useState(false);
         const [submitted, setSubmitted] = useState(false);
 
+        const firstInitial = [
+            "Mighty", "Ferocious", "Rapid", "Sweet", "Passionate", "Tender", "Wild", "Gentle",
+            "Fierce", "Loving", "Bold", "Dreamy", "Speedy", "Charming", "Smooth", "Dashing", "Sultry",
+            "Blazing", "Magnetic", "Steamy", "Divine", "Silky", "Electric", "Velvet", "Golden",
+            "Sparkling", "Enchanting", "Quickshot", "Shit-Worthy",
+        ];
+
+        const lastInitial = [
+            "Lover", "Mistress", "Partner", "Sweetheart", "Darling", "Beau", "Flame", "Cupid",
+            "Romeo", "Juliet", "Valentine", "Heartthrob", "Soulmate", "Casanova", "Goddess",
+            "Charmer", "Temptress", "Seducer", "Enchantress", "Dreamboat", "Hottie", "Stunner",
+            "Knockout", "Bombshell", "Heartbreaker", "Dazzler", "Aphrodite", "Venus"
+        ];
+
+        const generateRandomName = () => {
+            const firstName = firstInitial[Math.floor(Math.random() * firstInitial.length)];
+            const lastName = lastInitial[Math.floor(Math.random() * lastInitial.length)];
+
+            const combinedName = `${firstName} ${lastName}`;
+
+            setFormData(prev => ({
+                ...prev,
+                name: combinedName
+            }));
+        };
         const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             const { name, value } = e.target;
 
@@ -159,17 +184,28 @@ const Home: NextPage = (props: any) => {
                                     <label className="block text-pmred-500 text-lg sm:text-xl font-bold mb-2" htmlFor="name">
                                         Name: <span className="text-xs sm:text-sm font-normal">({formData.name.length}/75 characters)</span>
                                     </label>
-                                    <input
-                                        className="shadow appearance-none border border-pmpink-200 bg-white rounded-full w-full py-2 sm:py-3 px-3 sm:px-4 text-black text-lg sm:text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500 min-h-[44px]"
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        placeholder="Your name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                        maxLength={75}
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            className="shadow appearance-none border border-pmpink-200 bg-white rounded-full w-full py-2 sm:py-3 px-3 sm:px-4 pr-12 sm:pr-14 text-black text-lg sm:text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500 min-h-[44px]"
+                                            id="name"
+                                            name="name"
+                                            type="text"
+                                            placeholder="Your name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            maxLength={75}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={generateRandomName}
+                                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-pmred-500 hover:bg-red-600 text-white rounded-full px-3 py-1.5 sm:px-4 sm:py-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pmred-300 shadow-md text-xs sm:text-sm font-semibold whitespace-nowrap"
+                                            title="Generate random name"
+                                        >
+                                            Random Name
+
+                                        </button>
+                                    </div>
                                 </div>
 
                                 {/* Responsive consent notice */}
@@ -221,7 +257,7 @@ const Home: NextPage = (props: any) => {
                         ></path>
                     </svg>
                 </div>
-            </section>
+            </section >
         );
     };
 
