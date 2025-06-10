@@ -12,7 +12,7 @@ const About: any = (props: any) => {
                 <title>About</title>
             </Head>
             <Header />
-            <div className="absolute left-0 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
+            <div className="absolute -left-5 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
                 <Image src="/left_hearts_2.svg" alt="left hearts" layout='fill' priority={true} draggable='false' />
             </div>
             <div className="absolute right-0 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
@@ -25,7 +25,7 @@ const About: any = (props: any) => {
                         <div
                             className="flex gap-6 lg:gap-10 items-center px-4 max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-0 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
                         >
-                            <div className="font-dela-gothic sm:text-lg ml-4 sm:ml-10 lg:ml-15">
+                            <div className="font-dela-gothic sm:text-lg">
                                 <h2 className="mb-6 text-2xl sm:text-3xl tracking-tigh text-pmred-500">
                                     Cupid just got smarter!
                                 </h2>
