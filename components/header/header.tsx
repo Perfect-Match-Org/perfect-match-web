@@ -60,7 +60,7 @@ function Header(props: any) {
                                 <Link href="/about"> About</Link>
                             </li>
                             <li className="text-pmred-500">
-                                <Link href="/write-review"> Reviews</Link>
+                                <Link href="/write-review"> Testimonial</Link>
                             </li>
                             <li className="text-pmred-500 border-2 border-pmred-500 rounded-3xl px-2 py-1 hover:bg-pmred-500 hover:text-white transition-all duration-200 ease-in-out">
                                 <Link href="/profile"> Matches &lt;3</Link>
