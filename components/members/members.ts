@@ -5,56 +5,24 @@ export const team = [
             'There are three subteams of Engineering: Web Development, Algorithms, and Data Analysis. The <strong>Web Dev</strong> subteam builds the front-end and back-end of the Perfect Match website. The <strong>Algorithms</strong> subteam improves the matching algorithm that matches students based on their preferences. The <strong>Data Analysis</strong> subteam analyzes and visualizes the data collected from the Perfect Match survey.',
         Members: [
             {
-                Name: 'Nicholas Varela',
-                ClassYear: 2025,
-                Major: 'CS & Gov',
-                Img: '/members/nick.jpg',
-                Linkedin: 'https://www.linkedin.com/in/nicholas-varela',
-                Title1: 'Engineering Team Lead',
-                Title2: 'Web Dev Subteam Head',
-            },
-            {
-                Name: 'Pratyush Sudhakar',
-                ClassYear: 2025,
-                Major: 'CS & Math',
-                Img: '/members/pratyush.jpg',
-                Team: 'Engineering',
-                Linkedin: 'https://www.linkedin.com/in/pratyushsudhakar',
-                Title1: 'Engineering Team Lead',
-                Title2: 'Algorithms Subteam Head',
-                Title3: 'Web Dev Member',
-            },
-            {
-                Name: 'Flavia Jiang',
-                ClassYear: 2025,
-                Major: 'Info Sci & Stats',
-                Img: '/members/flavia.jpg',
-                Title2: 'Web Dev Member',
-            },
-            {
-                Name: 'Vipin Gunda',
-                ClassYear: 2025,
-                Major: 'CS & Math',
-                Img: '/members/vipin.jpg',
-                Linkedin: 'https://www.linkedin.com/in/vipin-gunda',
-                Title1: 'Algorithms Subteam Member',
-            },
-            {
                 Name: 'Daniel Chuang',
                 ClassYear: 2026,
                 Major: 'CS & Math & Gov',
                 Img: '/members/daniel.png',
                 Linkedin: 'https://www.linkedin.com/in/daniel-chuang-7a1bb920b/',
-                Title1: 'Data Analysis Subteam Head',
+                Title1: 'Engineering Team Lead',
+                Title2: 'Data Analysis Subteam Head',
             },
             {
                 Name: 'Cindy Li',
                 ClassYear: 2027,
-                Major: 'Computer Science',
+                Major: 'CS',
                 Img: '/members/cindy.jpg',
                 Linkedin:
                     ' https://www.linkedin.com/in/cindy-li-569a30187/',
-                Title1: 'Algorithms & Web Developer Team Member',
+                Title1: 'Engineering Team Lead',
+                Title2: 'Algorithms & Web Dev Subteam Member',
+
             },
             {
                 Name: 'Joyce Shen',
@@ -63,21 +31,30 @@ export const team = [
                 Img: '/members/joyce.png',
                 Linkedin:
                     'https://www.linkedin.com/in/jshen127/',
-                Title1: 'Algorithms Subteam Member',
+                Title1: 'Algorithms Subteam Head',
             },
             {
                 Name: 'Huajie Zhong',
                 ClassYear: 2027,
-                Major: 'Computer Science',
+                Major: 'CS',
                 Img: '/members/huajie.png',
                 Linkedin:
                     'https://www.linkedin.com/in/huajiezhong/',
-                Title1: 'Web Dev Subteam Member',
+                Title1: 'Web Dev Subteam Head',
+            },
+            {
+                Name: 'Pratyush Sudhakar',
+                ClassYear: 2025,
+                Major: 'CS & Math',
+                Img: '/members/pratyush.jpg',
+                Team: 'Engineering',
+                Linkedin: 'https://www.linkedin.com/in/pratyushsudhakar',
+                Title1: 'Algorithms & Web Dev Subteam Member',
             },
             {
                 Name: 'Ashlie Zhang',
                 ClassYear: 2027,
-                Major: 'Computer Science',
+                Major: 'CS',
                 Img: '/members/ashlie.png',
                 Linkedin:
                     'https://www.linkedin.com/in/ashlie-zhang-8982b7296/',
@@ -86,11 +63,21 @@ export const team = [
             {
                 Name: 'Evan Wang',
                 ClassYear: 2028,
-                Major: 'Computer Science',
+                Major: 'CS',
                 Img: '/members/evan.jpg',
-                Linkedin: 'https://www.linkedin.com/in/evan-wang-938b73274/',
+                Linkedin:
+                    'https://www.linkedin.com/in/evan-wang-938b73274/',
                 Title1: 'Web Dev Subteam Member',
             },
+            {
+                Name: 'Eunice Son',
+                ClassYear: 2028,
+                Major: 'ORIE',
+                Img: '/members/eunice.jpg',
+                Linkedin:
+                    'https://www.linkedin.com/in/eunice-son-015148248',
+                Title1: 'Data Analytics Subteam Member',
+            }
         ],
     },
     {
@@ -124,7 +111,7 @@ export const team = [
                 Img: '/members/elif.png',
                 Linkedin:
                     ' https://www.linkedin.com/in/elif-naz-yilmaz/',
-                Title1: 'Business Team Member',
+                Title1: 'Business Team Lead',
             },
             {
                 Name: 'Connie Zhang',
@@ -147,8 +134,8 @@ export const team = [
             {
                 Name: 'Carl Hu',
                 ClassYear: 2028,
-                Major: 'CS & Cog Sci',
-                Img: '/members/carl.png',
+                Major: 'CS',
+                Img: '/members/carl.jpg',
                 Linkedin:
                     'https://www.linkedin.com/in/carl-hu/',
                 Title1: 'Business Team Member',

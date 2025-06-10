@@ -192,7 +192,7 @@ function ReviewGrid() {
     return (
       <div className="relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] place-items-center">
         <div className="text-center">
-          <div className="text-2xl text-pmred-500 font-bold mb-2">Awaiting for your review! 💕</div>
+          <div className="text-2xl text-pmred-500 font-bold mb-2">Awaiting your review! 💕</div>
           <div className="text-pmblue-500">Be the first to share your Perfect Match success story!</div>
         </div>
       </div>

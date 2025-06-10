@@ -12,7 +12,7 @@ const About: any = (props: any) => {
                 <title>About</title>
             </Head>
             <Header />
-            <div className="absolute left-0 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
+            <div className="absolute -left-5 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
                 <Image src="/left_hearts_2.svg" alt="left hearts" layout='fill' priority={true} draggable='false' />
             </div>
             <div className="absolute right-0 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
@@ -36,7 +36,7 @@ const About: any = (props: any) => {
 
                                     <p className="sm:mb-4 mb-0">  This year, we are back with <strong> fun survey questions, whole new branding, special “nudge your crush” feature, and more</strong> surprises to discover! Don&apos;t hesitate to get in for a Valentine&apos;s Day you won&apos;t forget!
                                     </p>
-                                    <p className='text-right font-semibold mx-auto'>Happy matching, xoxo, <br /> The Cupids💝</p>
+                                    <p className='text-right font-semibold mx-auto sm:mr-2'>Happy matching, xoxo, <br /> The Cupids💝</p>
                                     {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
                                 </div>
                             </div>
@@ -229,7 +229,7 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p className='pt-3 pl-4'>
-                                        There are currently 15 members in the team. It is a small team; every member has
+                                        There are currently 19 members in the team. It is a small team; every member has
                                         their unique strengths and responsibilities. We typically meet every month to
                                         decide on tasks and assign them. However, every January is still a super busy
                                         time!
@@ -314,17 +314,8 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p className='pt-3 pl-4'>
-                                        We welcome new members and new ideas! If you are interested in joining the team,
-                                        please fill out this{' '}
-                                        <a
-                                            href="https://forms.gle/Jv5th8zbajVF6qN6A"
-                                            className="underline"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            form
-                                        </a>{' '}
-                                        at any time. We will contact you soon.
+                                        We typically recruit at the start of each semester, though this is subject to
+                                        the needs of the team. Keep an eye out for the application form on our website!
                                     </p>
                                 </details>
                             </div>
