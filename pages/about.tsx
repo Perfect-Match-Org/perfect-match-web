@@ -36,7 +36,7 @@ const About: any = (props: any) => {
 
                                     <p className="sm:mb-4 mb-0">  This year, we are back with <strong> fun survey questions, whole new branding, special “nudge your crush” feature, and more</strong> surprises to discover! Don&apos;t hesitate to get in for a Valentine&apos;s Day you won&apos;t forget!
                                     </p>
-                                    <p className='text-right font-semibold mx-auto sm:mr-2 lg:mr-2'>Happy matching, xoxo, <br /> The Cupids💝</p>
+                                    <p className='text-right font-semibold mx-auto sm:mr-2'>Happy matching, xoxo, <br /> The Cupids💝</p>
                                     {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
                                 </div>
                             </div>
@@ -314,7 +314,7 @@ const About: any = (props: any) => {
                                     </summary>
 
                                     <p className='pt-3 pl-4'>
-                                        We typically recruit at the start of each semester, though this is subject to 
+                                        We typically recruit at the start of each semester, though this is subject to
                                         the needs of the team. Keep an eye out for the application form on our website!
                                     </p>
                                 </details>
