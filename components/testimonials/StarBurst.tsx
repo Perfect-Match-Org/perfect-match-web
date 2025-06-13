@@ -10,6 +10,7 @@ interface Star {
 }
 
 export function StarBurst({ show }: { show: boolean }) {
+  const MAX_STARS = 100;
   const [stars, setStars] = useState<Star[]>([]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const hoveringRef = useRef<boolean>(false);
@@ -28,7 +29,7 @@ export function StarBurst({ show }: { show: boolean }) {
           rotation: Math.random() * 520,
           delay: Math.random() * 0.1,
         }));
-        setStars((prev) => [...prev, ...newStars]);
+        setStars((prev) => [...prev.slice(-MAX_STARS + 10), ...newStars]);
       }, 300);
     } else {
       if (intervalRef.current) {

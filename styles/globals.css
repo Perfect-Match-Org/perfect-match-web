@@ -56,20 +56,6 @@ a {
     font-family: 'Work Sans'
 }
 
-@keyframes starburst {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--x), var(--y)) scale(1.5) rotate(var(--rotation));
-  }
-}
-
-.animate-starburst {
-  animation: starburst 0.8s ease-out forwards;
-}
 
 
 
