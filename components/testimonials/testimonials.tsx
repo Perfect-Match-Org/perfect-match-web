@@ -54,7 +54,7 @@ function Review({
   return (
     <figure
       className={clsx(
-        'animate-fade-in rounded-3xl p-6 opacity-0 bg-white border-2 border-blue-800 shadow-md shadow-blue-800 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-900 hover:z-20 relative cursor-pointer',
+        'animate-fade-in rounded-3xl p-6 opacity-0 bg-white border-2 border-blue-800 shadow-md shadow-blue-800 transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_10px_rgba(36,67,141,0.8)] hover:z-69 relative cursor-pointer',
         className,
       )}
       style={{ animationDelay }}
@@ -226,7 +226,7 @@ function ReviewGrid() {
   return (
     <div
       ref={containerRef}
-      className={`relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] ${getGridClasses()} items-start gap-8 overflow-hidden px-4 sm:mt-20`}
+      className={`relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] ${getGridClasses()} items-start gap-8 overflow-hidden px-8 sm:px-12 lg:px-16 xl:px-20 sm:mt-20`}
     >
       {/* Only render columns that have content */}
       {column1.length > 0 && (
@@ -263,7 +263,7 @@ export function Reviews() {
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="pt-6 pb-8 sm:pt-2 sm:pb-12 bg-pmpink2-500"
+      className="pt-6 pb-8 sm:pt-2 sm:pb-12 bg-pmpink2-500 overflow-hidden"
     >
       <Container>
         <div className="relative h-[175px]">
@@ -304,10 +304,10 @@ export function Reviews() {
                 py-4
                 text-[20px]
                 rounded-full
-                bg-white 
-                text-pmred-500 
+                bg-white
+                text-pmred-500
                 border-4
-                border-pmblue-500 
+                border-pmblue-500
                 font-bold
                 shadow-[6px_6px_0px_0px_rgba(36,67,141,1)]
                 transition-all
@@ -317,7 +317,7 @@ export function Reviews() {
                 active:translate-x-[6px]
                 active:translate-y-[6px]
                 active:shadow-none
-                inline-flex 
+                inline-flex
                 items-center"
             >
               testimonials
