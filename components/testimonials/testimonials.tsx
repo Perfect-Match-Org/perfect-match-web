@@ -5,6 +5,7 @@ import { useInView } from 'framer-motion'
 import { Container } from '@/components/testimonials/Container'
 import Image from 'next/image'
 import Link from 'next/link';
+import { StarBurst } from './StarBurst'
 
 interface Review {
   title: string
@@ -252,28 +253,51 @@ function ReviewGrid() {
 
 
 export function Reviews() {
+  const [hovering, setHovering] = useState(false);
   return (
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500"
+      className="pt-6 pb-8 sm:pt-2 sm:pb-12 bg-pmpink2-500"
     >
       <Container>
+        <div className="relative h-[175px]">
+          <div className="absolute top-[-25px] right-[-4%] sm:top-[-40px] sm:right-[18%] z-0 pointer-events-none w-[250px] md:w-[300px]">
+            <Image
+              src="/six-hearts.svg"
+              alt="six hearts"
+              width={300}
+              height={300}
+            />
+          </div>
+          <div className="absolute top-[60px] right-[72%] sm:top-[40px] sm:right-[61.25%] z-0 pointer-events-none w-[100px] md:w-[125px]">
+            <Image
+              src="/big-quote.svg"
+              alt="big quote"
+              width={125}
+              height={125}
+            />
+          </div>
+        </div>
         <h1
           id="reviews-title"
-          className="text-3xl text-pmred-500 font-extrabold sm:text-3xl sm:text-center font-dela-gothic">
-          This could be you
+          className="text-3xl text-pmred-500 sm:text-4xl text-center font-dela-gothic">
+          Found the love of your life <br className="hidden sm:block" /> through Perfect Match?
         </h1>
-        <p className="mt-2 text-lg text-pmblue-500 sm:text-center font-delta-gothic font-bold">
-          Find the love of your life today.
+        <p className="text-3xl mt-4 text-pmblue-500 text-center font-delta-gothic font-bold">
+          We want to hear about it!
         </p>
-        <div className="flex justify-center">
+        <div className="relative flex justify-center">
+          <StarBurst show={hovering} />
           <Link href="/write-review">
             <button
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
               className="
                 mt-6
-                px-6 
-                py-2
+                px-[30px]
+                py-4
+                text-[20px]
                 rounded-full
                 bg-white 
                 text-pmred-500 
@@ -289,9 +313,9 @@ export function Reviews() {
                 active:translate-y-[6px]
                 active:shadow-none
                 inline-flex 
-                items-center            "
+                items-center"
             >
-              share your experiences
+              testimonials
             </button>
           </Link>
         </div>

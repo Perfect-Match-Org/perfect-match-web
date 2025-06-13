@@ -60,6 +60,16 @@ module.exports = {
                     '0%': { transform: 'translateY(0)' },
                     '100%': { transform: 'translateY(-50%)' },
                 },
+                starburst: {
+                    '0%': {
+                        opacity: '1',
+                        transform: 'translate(0, 0) scale(1) rotate(0deg)',
+                    },
+                    '100%': {
+                        opacity: '0',
+                        transform: 'translate(var(--x), var(--y)) scale(1.5) rotate(var(--rotation))',
+                    },
+                },
             },
             animation: {
                 jiggle: 'jiggle 0.3s ease-in-out infinite',
@@ -68,6 +78,7 @@ module.exports = {
                 'pulse-glow': 'pulse-glow 1s infinite alternate',
                 'fade-in': 'fade-in 1s ease-in-out forwards',
                 'vertical-marquee': 'vertical-marquee var(--marquee-duration) linear infinite',
+                starburst: 'starburst 0.8s ease-out forwards',
             },
         },
     },
