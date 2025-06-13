@@ -13,12 +13,18 @@ export function StarBurst({ show }: { show: boolean }) {
   const MAX_STARS = 100;
   const [stars, setStars] = useState<Star[]>([]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const clearTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hoveringRef = useRef<boolean>(false);
 
   useEffect(() => {
     hoveringRef.current = show;
 
     if (show) {
+      if (clearTimeoutRef.current) {
+        clearTimeout(clearTimeoutRef.current);
+        clearTimeoutRef.current = null;
+      }
+
       intervalRef.current = setInterval(() => {
         if (!hoveringRef.current) return;
 
@@ -37,8 +43,14 @@ export function StarBurst({ show }: { show: boolean }) {
         intervalRef.current = null;
       }
 
-      setTimeout(() => {
-        setStars([]);
+      if (clearTimeoutRef.current) {
+        clearTimeout(clearTimeoutRef.current);
+      }
+
+      clearTimeoutRef.current = setTimeout(() => {
+        if (!hoveringRef.current) {
+          setStars([]);
+        }
       }, 1000);
     }
 
@@ -46,6 +58,10 @@ export function StarBurst({ show }: { show: boolean }) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
+      }
+      if (clearTimeoutRef.current) {
+        clearTimeout(clearTimeoutRef.current);
+        clearTimeoutRef.current = null;
       }
     };
   }, [show]);
