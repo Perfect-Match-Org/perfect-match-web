@@ -54,19 +54,19 @@ function Review({
   return (
     <figure
       className={clsx(
-        'animate-fade-in rounded-3xl p-6 opacity-0 bg-white border-2 border-blue-800 shadow-md shadow-blue-800',
+        'animate-fade-in rounded-3xl p-6 opacity-0 bg-white border-2 border-blue-800 shadow-md shadow-blue-800 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-900 hover:z-20 relative cursor-pointer',
         className,
       )}
       style={{ animationDelay }}
       {...props}
     >
       <blockquote className="text-gray-900">
-        <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["] break-all overflow-wrap-anywhere whitespace-pre-wrap'>
+        <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["] break-words overflow-wrap-anywhere whitespace-pre-wrap'>
           {title}
         </p>
         <p className="mt-3 text-base/7 break-words overflow-wrap-anywhere whitespace-pre-wrap">{body}</p>
       </blockquote>
-      <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_'] break-all overflow-wrap-anywhere whitespace-pre-wrap">
+      <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_'] break-words overflow-wrap-anywhere whitespace-pre-wrap">
         {author}
       </figcaption>
     </figure >
@@ -107,7 +107,7 @@ function ReviewColumn({
   let columnRef = useRef<React.ElementRef<'div'>>(null)
   let [columnHeight, setColumnHeight] = useState(0)
   let duration = `${columnHeight * msPerPixel}ms`
-
+  let [isPaused, setIsPaused] = useState(false)
   useEffect(() => {
     if (!columnRef.current) {
       return
@@ -135,7 +135,12 @@ function ReviewColumn({
     <div
       ref={columnRef}
       className={clsx('animate-vertical-marquee space-y-8 py-4', className)}
-      style={{ '--marquee-duration': duration } as React.CSSProperties}
+      style={{
+        '--marquee-duration': duration,
+        animationPlayState: isPaused ? 'paused' : 'running'
+      } as React.CSSProperties}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
       {reviews.map((review, reviewIndex) => (
         <Review
