@@ -84,7 +84,7 @@ const Home: NextPage = (props: any) => {
                 console.log('Response data:', data);
 
                 if (!response.ok) {
-                    throw new Error(data.message || 'Error submitting review');
+                    throw new Error(data.message || 'Error submitting testimonial');
                 }
 
                 setSubmitting(false);
@@ -96,8 +96,8 @@ const Home: NextPage = (props: any) => {
                 });
 
             } catch (error) {
-                console.error('Error submitting review:', error);
-                alert('Failed to submit your review. Please try again.');
+                console.error('Error submitting testimonial:', error);
+                alert('Failed to submit your testimonial. Please try again.');
                 setSubmitting(false);
             }
         };
@@ -230,7 +230,7 @@ const Home: NextPage = (props: any) => {
                                         type="submit"
                                         disabled={submitting}
                                     >
-                                        {submitting ? 'Submitting...' : 'Submit Review'}
+                                        {submitting ? 'Submitting...' : 'Submit Testimonial'}
                                     </button>
                                 </div>
                             </form>
