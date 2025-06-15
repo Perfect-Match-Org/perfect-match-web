@@ -42,7 +42,7 @@ const Toggle = () => {
                                     <Link href="/about">About</Link>
                                 </li>
                                 <li className="text-pmred-500 text-xl font-medium mt-5 mb-5">
-                                    <Link href="/write-review">Testimonials</Link>
+                                    <Link href="/testimonials">Testimonials</Link>
                                 </li>
                                 <li className="text-pmred-500 text-xl font-medium mt-5 mb-5">
                                     <Link href="/profile">Matches</Link>

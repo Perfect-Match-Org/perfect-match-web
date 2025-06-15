@@ -301,7 +301,7 @@ export const getApprovedReviewsCount = async (): Promise<number> => {
 
 /**
  * Submits a new review to the database with pending status.
- * Used in write-review page for customers to submit new reviews.
+ * Used in testimonials page for customers to submit new reviews.
  * @param {IReviewData} reviewData - The review data containing title, body, author, and optional name.
  * @returns A Promise that resolves to the saved review document.
  */
