@@ -51,17 +51,7 @@ const Profile: NextPage = (props: any) => {
 
                 <section className="bg-pmpink-500">
                     <div className="px-4 font-dela-gothic items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
-                        {matches.length === 0 ? (
-                            <>
-                                <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center mb-10">
-                                    Looking for your matches?
-                                </h1>
-                                <h2 className="font-dela-gothic text-2xl tracking-tight text-pmblue-500 mb-6 sm:text-3xl">
-                                    If you were expecting to see your matches but do not, make sure to opt in, fill out
-                                    your profile, AND complete the survey next cycle!
-                                </h2>
-                            </>
-                        ) : (
+                        {matches.length > 0 ? (                           
                             <>
                                 <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
                                     <Image
@@ -117,6 +107,61 @@ const Profile: NextPage = (props: any) => {
                                                 className="inline-block mr-2"
                                             />
                                             <strong>Ask</strong> your match for a cute date on Valentines day ❤️
+                                        </p>
+                                    </div>
+                                </div>
+                            </>                 
+                        ) : (
+                            <>
+                                <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
+                                    <Image
+                                        src="/wing.svg"
+                                        alt="Wing"
+                                        width={148}
+                                        height={148}
+                                        className="inline-block mr-2 sm:block"
+                                    />
+                                    Hey {data.profile.firstName},
+                                </h1>
+
+                                <div className="text-center mb-0">
+                                    <h2 className="font-dela-gothic text-2xl tracking-tight text-pmblue-500 mb-6 sm:text-5xl">
+                                        Looking for your matches?
+                                    </h2>
+                                    <h3 className="font-work-sans text-2xl font-medium text-pmblue-500 mb-6 sm:text-2xl">
+                                        Make sure to complete these steps next cycle!
+                                    </h3>
+                                    <div className="max-w-screen-lg mx-auto">
+                                        <p className="font-work-sans text-pmblue-500 text-lg ml-14 sm:text-xl font-medium text-left mt-20">
+                                            <Image
+                                                src="/1.svg"
+                                                alt="Step One"
+                                                width={32}
+                                                height={32}
+                                                className="inline-block mr-2"
+                                            />
+                                            <strong>Opt in</strong> to the matching cycle to participate ✅
+    
+                                        </p>
+                                        <p className="font-work-sans text-pmblue-500 text-lg sm:text-xl ml-32 font-medium text-center mt-20">
+                                            <Image
+                                                src="/2.svg"
+                                                alt="Step Two"
+                                                width={32}
+                                                height={32}
+                                                className="inline-block mr-2"
+                                            />
+                                            <strong>Complete your profile</strong> with details about yourself 📝
+                                        </p>
+                                        <p className="font-work-sans text-pmblue-500 text-base sm:text-xl ml-16 font-medium text-left mb-20 mt-20">
+                                            <Image
+                                                src="/3.svg"
+                                                alt="Step Three"
+                                                width={32}
+                                                height={32}
+                                                className="inline-block mr-2"
+                                            />
+                                            <strong>Fill out the matching survey</strong> to help us find your Perfect Match 💞
                                         </p>
                                     </div>
                                 </div>
