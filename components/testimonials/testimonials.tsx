@@ -61,7 +61,7 @@ function Review({
       {...props}
     >
       <blockquote className="text-gray-900">
-        <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["] break-all overflow-wrap-anywhere whitespace-pre-wrap'>
+        <p className='mt-4 text-lg/6 font-semibold before:content-["] after:content-["] break-words overflow-wrap-anywhere whitespace-pre-wrap'>
           {title}
         </p>
         <p className="mt-3 text-base/7 break-words overflow-wrap-anywhere whitespace-pre-wrap">{body}</p>
@@ -226,7 +226,7 @@ function ReviewGrid() {
   return (
     <div
       ref={containerRef}
-      className={`relative -mx-4 mt-4 grid h-[26rem] max-h-[70vh] ${getGridClasses()} items-start gap-8 overflow-hidden px-8 sm:px-12 lg:px-16 xl:px-20 sm:mt-20`}
+      className={`relative -mx-4 mt-4 grid h-[34rem] max-h-[70vh] ${getGridClasses()} items-start gap-8 overflow-hidden px-8 sm:px-12 lg:px-16 xl:px-20 sm:mt-10`}
     >
       {/* Only render columns that have content */}
       {column1.length > 0 && (
