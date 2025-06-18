@@ -7,7 +7,6 @@ import { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
-import CountDown from '@/components/countdown';
 import Image from 'next/image';
 
 const Profile: NextPage = (props: any) => {
@@ -51,7 +50,7 @@ const Profile: NextPage = (props: any) => {
 
                 <section className="bg-pmpink-500">
                     <div className="px-4 font-dela-gothic items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
-                        {matches.length > 0 ? (                           
+                        {matches.length > 0 ? (
                             <>
                                 <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
                                     <Image
@@ -110,7 +109,7 @@ const Profile: NextPage = (props: any) => {
                                         </p>
                                     </div>
                                 </div>
-                            </>                 
+                            </>
                         ) : (
                             <>
                                 <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
@@ -141,7 +140,7 @@ const Profile: NextPage = (props: any) => {
                                                 className="inline-block mr-2"
                                             />
                                             <strong>Opt in</strong> to the matching cycle to participate ✅
-    
+
                                         </p>
                                         <p className="font-work-sans text-pmblue-500 text-lg sm:text-xl ml-32 font-medium text-center mt-20">
                                             <Image
@@ -177,7 +176,7 @@ const Profile: NextPage = (props: any) => {
                     </div>
                 </div>
             </section>)}
-            
+
 
             <Footer />
         </div>
