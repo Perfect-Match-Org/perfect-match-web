@@ -15,6 +15,7 @@ const Profile: NextPage = (props: any) => {
 
     const refresh = () => mutate();
 
+
     if (!data || !matches) return <Spinner />;
 
     return (
@@ -48,21 +49,21 @@ const Profile: NextPage = (props: any) => {
                     </>
                 )}
 
+
                 <section className="bg-pmpink-500">
                     <div className="px-4 font-dela-gothic items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
+                        <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
+                            <Image
+                                src="/wing.svg"
+                                alt="Wing"
+                                width={148}
+                                height={148}
+                                className="inline-block mr-2 sm:block"
+                            />
+                            Hey {data.profile.firstName},
+                        </h1>
                         {matches.length > 0 ? (
                             <>
-                                <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
-                                    <Image
-                                        src="/wing.svg"
-                                        alt="Wing"
-                                        width={148}
-                                        height={148}
-                                        className="inline-block mr-2 sm:block"
-                                    />
-                                    Hey {data.profile.firstName},
-                                </h1>
-
                                 <div className="text-center mb-0">
                                     <h2 className="font-dela-gothic text-2xl tracking-tight text-pmblue-500 mb-6 sm:text-5xl">
                                         Your Matches are here
@@ -109,20 +110,9 @@ const Profile: NextPage = (props: any) => {
                                         </p>
                                     </div>
                                 </div>
-                            </>
+                            </>                 
                         ) : (
                             <>
-                                <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
-                                    <Image
-                                        src="/wing.svg"
-                                        alt="Wing"
-                                        width={148}
-                                        height={148}
-                                        className="inline-block mr-2 sm:block"
-                                    />
-                                    Hey {data.profile.firstName},
-                                </h1>
-
                                 <div className="text-center mb-0">
                                     <h2 className="font-dela-gothic text-2xl tracking-tight text-pmblue-500 mb-6 sm:text-5xl">
                                         Looking for your matches?
@@ -176,8 +166,6 @@ const Profile: NextPage = (props: any) => {
                     </div>
                 </div>
             </section>)}
-
-
             <Footer />
         </div>
     );
