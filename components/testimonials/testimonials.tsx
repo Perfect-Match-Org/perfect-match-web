@@ -294,7 +294,7 @@ export function Reviews() {
         </p>
         <div className="relative flex justify-center">
           <StarBurst show={hovering} />
-          <Link href="/write-review">
+          <Link href="/testimonials">
             <button
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
