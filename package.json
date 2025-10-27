@@ -12,7 +12,7 @@
         "seed": "dotenv -e .env.local -- tsx utils/seed.ts"
     },
     "engines": {
-        "node": ">=16.0.0 <20.0.0"
+        "node": "22.x"
     },
     "dependencies": {
         "@aws-sdk/client-ses": "^3.723.0",
