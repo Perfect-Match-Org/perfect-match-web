@@ -77,7 +77,35 @@ export const team = [
                 Linkedin:
                     'https://www.linkedin.com/in/eunice-son-015148248',
                 Title1: 'Data Analytics Subteam Member',
-            }
+            },
+            {
+                Name: 'Ashir Rao',
+                ClassYear: 2028,
+                Major: 'CS',
+                Img: '/members/ashir.png',
+                Linkedin:
+                    'https://www.linkedin.com/in/ashir-rao-82a66a225/',
+                Title1: 'Web Dev Subteam Member',
+            },
+            {
+                Name: 'Alex Saccone',
+                ClassYear: 2028,
+                Major: 'CS',
+                Img: '/members/alex.jpg',
+                Linkedin:
+                    'https://linkedin.com/in/alexander-saccone',
+                Title1: 'Web Dev Subteam Member',
+            },
+            {
+                Name: 'Aileen Huang',
+                ClassYear: 2026,
+                Major: 'CS',
+                Img: '/members/stockMember.jpg',
+                Linkedin:
+                    'https://www.linkedin.com/in/aileen-huang-802a04260/',
+                Title1: 'Data Analytics Subteam Member',
+            },
+
         ],
     },
     {
@@ -139,7 +167,25 @@ export const team = [
                 Linkedin:
                     'https://www.linkedin.com/in/carl-hu/',
                 Title1: 'Business Team Member',
-            }
+            },
+            {
+                Name: 'Seojin Park',
+                ClassYear: 2028,
+                Major: 'Fine Arts',
+                Img: '/members/seojin.jpg',
+                Linkedin:
+                    'https://www.linkedin.com/in/seojinparkart',
+                Title1: 'Designer',
+            },
+            {
+                Name: 'Diya Lavu',
+                ClassYear: 2026,
+                Major: 'Econ',
+                Img: '/members/stockMember.jpg',
+                Linkedin:
+                    'https://www.linkedin.com/in/diyalavu/',
+                Title1: 'Business Team Member',
+            },
             // {
             //     Name: 'Lucy Yang',
             //     ClassYear: 2026,
