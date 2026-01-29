@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>💘 Happy Valentine's Day - Did You Make Your Move?</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family:
+					"DM Sans",
+					-apple-system,
+					BlinkMacSystemFont,
+					sans-serif;
+				background: #000000;
+				color: #ffffff;
+				line-height: 1.6;
+			}
+
+			.container {
+				max-width: 600px;
+				margin: 0 auto;
+				background: linear-gradient(180deg, #2d0a1f 0%, #000000 100%);
+			}
+
+			.header {
+				background: linear-gradient(135deg, #ff006e 0%, #fb5607 100%);
+				padding: 60px 30px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hearts-bg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0.1;
+				font-size: 60px;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				align-items: center;
+			}
+
+			.announcement {
+				font-size: 14px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 3px;
+				color: #ffffff;
+				margin-bottom: 20px;
+				position: relative;
+				z-index: 2;
+			}
+
+			.logo {
+				font-family: "Bebas Neue", sans-serif;
+				font-size: 64px;
+				letter-spacing: 3px;
+				text-transform: uppercase;
+				color: #ffffff;
+				text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+				margin: 0;
+				line-height: 1;
+				position: relative;
+				z-index: 2;
+			}
+
+			.header-subtitle {
+				font-size: 18px;
+				margin-top: 15px;
+				opacity: 0.95;
+				font-weight: 500;
+				letter-spacing: 1px;
+				position: relative;
+				z-index: 2;
+			}
+
+			.content {
+				padding: 50px 30px;
+			}
+
+			.headline {
+				font-family: "Bebas Neue", sans-serif;
+				font-size: 46px;
+				line-height: 1.1;
+				background: linear-gradient(135deg, #ff006e 0%, #fb5607 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 25px;
+				letter-spacing: 1px;
+				text-align: center;
+			}
+
+			p {
+				font-size: 16px;
+				margin-bottom: 20px;
+				color: #e0e0e0;
+				line-height: 1.7;
+			}
+
+			.highlight {
+				color: #ff006e;
+				font-weight: 700;
+			}
+
+			.orange-highlight {
+				color: #fb5607;
+				font-weight: 700;
+			}
+
+			.vday-message {
+				background: linear-gradient(
+					135deg,
+					#ff006e20 0%,
+					#fb560720 100%
+				);
+				border: 2px solid #ff006e;
+				border-radius: 20px;
+				padding: 35px;
+				margin: 40px 0;
+				text-align: center;
+			}
+
+			.vday-message h3 {
+				font-family: "Bebas Neue", sans-serif;
+				font-size: 32px;
+				color: #ff006e;
+				margin-bottom: 20px;
+				letter-spacing: 2px;
+			}
+
+			.scenarios {
+				margin: 40px 0;
+				background: #1a0a14;
+				border-radius: 16px;
+				padding: 30px;
+			}
+
+			.scenario-title {
+				font-family: "Bebas Neue", sans-serif;
+				font-size: 24px;
+				color: #fb5607;
+				margin-bottom: 20px;
+				letter-spacing: 1px;
+				text-align: center;
+			}
+
+			.scenario {
+				margin-bottom: 25px;
+				padding: 20px;
+				background: #0a0005;
+				border-left: 4px solid #ff006e;
+				border-radius: 8px;
+			}
+
+			.scenario:last-child {
+				margin-bottom: 0;
+			}
+
+			.scenario-label {
+				font-weight: 700;
+				color: #ff006e;
+				margin-bottom: 10px;
+				text-transform: uppercase;
+				font-size: 14px;
+				letter-spacing: 1px;
+			}
+
+			.scenario p {
+				margin: 0;
+				color: #ccc;
+				font-size: 15px;
+			}
+
+			.reality-check {
+				background: #2d0a1f;
+				border: 2px solid #fb5607;
+				padding: 30px;
+				margin: 35px 0;
+				border-radius: 12px;
+				text-align: center;
+			}
+
+			.reality-check p {
+				font-size: 18px;
+				font-weight: 600;
+				color: #ffffff;
+				margin: 0;
+				line-height: 1.6;
+			}
+
+			.cta-button {
+				display: block;
+				background: linear-gradient(135deg, #ff006e 0%, #fb5607 100%);
+				color: #ffffff;
+				text-decoration: none;
+				padding: 22px 45px;
+				border-radius: 50px;
+				font-size: 20px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				text-align: center;
+				margin: 40px 0;
+				transition: all 0.3s ease;
+				box-shadow: 0 10px 40px rgba(255, 0, 110, 0.5);
+			}
+
+			.cta-button:hover {
+				transform: translateY(-3px) scale(1.02);
+				box-shadow: 0 15px 50px rgba(255, 0, 110, 0.7);
+			}
+
+			.stats {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 20px;
+				margin: 40px 0;
+			}
+
+			.stat-box {
+				background: #1a0a14;
+				border: 2px solid #ff006e40;
+				border-radius: 12px;
+				padding: 25px;
+				text-align: center;
+			}
+
+			.stat-emoji {
+				font-size: 36px;
+				margin-bottom: 10px;
+			}
+
+			.stat-text {
+				font-size: 14px;
+				color: #aaa;
+				line-height: 1.5;
+			}
+
+			.footer {
+				background: #000000;
+				padding: 35px 30px;
+				text-align: center;
+				border-top: 2px solid #ff006e40;
+			}
+
+			.footer-text {
+				font-size: 13px;
+				color: #666;
+				margin-bottom: 15px;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.header {
+					padding: 40px 20px;
+				}
+
+				.logo {
+					font-size: 48px;
+				}
+
+				.content {
+					padding: 35px 20px;
+				}
+
+				.headline {
+					font-size: 36px;
+				}
+
+				.stats {
+					grid-template-columns: 1fr;
+				}
+
+				.cta-button {
+					padding: 18px 35px;
+					font-size: 18px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<div class="hearts-bg">💘💘💘💘💘💘💘💘</div>
+				<div class="announcement">💘 VALENTINE'S DAY 2026 💘</div>
+				<h1 class="logo">PERFECT MATCH</h1>
+				<div class="header-subtitle">
+					Love Is In The Air (Or At Least In Your DMs)
+				</div>
+			</div>
+
+			<div class="content">
+				<h2 class="headline">SO... DID YOU TEXT THEM? 💭</h2>
+
+				<p>Happy Valentine's Day, Cornell! 🎉</p>
+
+				<p>
+					It's February 14th. The day of love, romance, overpriced
+					chocolate, and finding out whether you actually had the
+					courage to message your match.
+				</p>
+
+				<div class="vday-message">
+					<h3>HERE'S THE REAL QUESTION</h3>
+					<p style="font-size: 18px; margin: 0">
+						Did you reach out, or are you still overthinking that
+						opening line?
+					</p>
+				</div>
+
+				<p>
+					We gave you the matches. We gave you the
+					<span class="highlight">poke feature</span>. We basically
+					handed you a roadmap to potential romance on a silver
+					platter.
+				</p>
+
+				<p>
+					Now we're checking in because
+					<span class="orange-highlight"
+						>today is literally THE day.</span
+					>
+					If you haven't made your move yet, what are you waiting for?
+				</p>
+
+				<div class="scenarios">
+					<div class="scenario-title">
+						LET'S BE HONEST ABOUT YOUR SITUATION:
+					</div>
+
+					<div class="scenario">
+						<div class="scenario-label">
+							✅ If you already texted them:
+						</div>
+						<p>
+							Legend behavior. You're living the rom-com life.
+							We're proud of you. Go make those V-Day plans.
+						</p>
+					</div>
+
+					<div class="scenario">
+						<div class="scenario-label">
+							⏳ If you're still "planning to text them":
+						</div>
+						<p>
+							Bro. It's Valentine's Day. The perfect excuse to
+							reach out is RIGHT NOW. Today. This minute. Stop
+							overthinking.
+						</p>
+					</div>
+
+					<div class="scenario">
+						<div class="scenario-label">
+							😬 If you haven't even looked at your matches:
+						</div>
+						<p>
+							We're not mad, just disappointed. But there's still
+							time to turn this around. Your matches aren't going
+							anywhere.
+						</p>
+					</div>
+				</div>
+
+				<div class="stats">
+					<div class="stat-box">
+						<div class="stat-emoji">💬</div>
+						<div class="stat-text">
+							Thousands of messages being sent between matches
+							today
+						</div>
+					</div>
+					<div class="stat-box">
+						<div class="stat-emoji">📅</div>
+						<div class="stat-text">
+							Actual dates being planned right now
+						</div>
+					</div>
+				</div>
+
+				<p>
+					Look, Valentine's Day isn't about grand gestures or perfect
+					timing. It's about
+					<span class="highlight">actually trying.</span> About
+					sending that message. About being brave for like 30 seconds.
+				</p>
+
+				<div class="reality-check">
+					<p>
+						The worst thing that can happen? They don't respond.<br />
+						The best thing that can happen? Everything changes.
+					</p>
+					<p style="margin-top: 15px; font-size: 15px; color: #888">
+						Worth the risk? We think so.
+					</p>
+				</div>
+
+				<a href="https://perfectmatch.ai/profile" class="cta-button"
+					>💘 VIEW MY MATCHES</a
+				>
+
+				<p
+					style="
+						text-align: center;
+						font-size: 17px;
+						font-weight: 600;
+						margin-top: 40px;
+					"
+				>
+					Don't let this Valentine's Day pass by without at least
+					trying.<br />
+					<span class="orange-highlight"
+						>Your future self will thank you.</span
+					>
+				</p>
+
+				<p
+					style="
+						text-align: center;
+						font-size: 14px;
+						color: #888;
+						margin-top: 30px;
+					"
+				>
+					P.S. - If you DO end up going on a date, tag us in your
+					stories. We love seeing our matches in the wild. 💕
+				</p>
+			</div>
+
+			<div class="footer">
+				<p class="footer-text">
+					Perfect Match 2026 • Cornell University
+				</p>
+				<p class="footer-text">
+					Share your success stories:
+					<a
+						href="mailto:perfectmatch@cornell.edu"
+						style="color: #ff006e"
+						>perfectmatch@cornell.edu</a
+					>
+				</p>
+				<p class="footer-text">
+					Tag us:
+					<a
+						href="https://www.instagram.com/cornellperfectmatch/"
+						style="color: #fb5607"
+						>@cornellperfectmatch</a
+					>
+				</p>
+				<p
+					class="footer-text"
+					style="margin-top: 25px; font-size: 11px"
+				>
+					This organization is a registered student organization of
+					Cornell University.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
