@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Perfect Match 2026 - Email Preview</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family:
+					"DM Sans",
+					-apple-system,
+					BlinkMacSystemFont,
+					sans-serif;
+				background: linear-gradient(135deg, #f8f9fc 0%, #eef1f5 100%);
+				color: #1a1a2e;
+				min-height: 100vh;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			/* Header */
+			.header {
+				padding: 60px 24px 50px;
+				text-align: center;
+			}
+
+			.logo {
+				font-size: 13px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				color: #e63946;
+				margin-bottom: 12px;
+			}
+
+			.header h1 {
+				font-size: 28px;
+				font-weight: 600;
+				letter-spacing: -0.5px;
+				color: #1a1a2e;
+			}
+
+			.header p {
+				color: #6b7280;
+				font-size: 15px;
+				margin-top: 8px;
+			}
+
+			/* Main */
+			.main {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 24px 80px;
+			}
+
+			/* Section */
+			.section {
+				margin-bottom: 48px;
+			}
+
+			.section-header {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				margin-bottom: 20px;
+			}
+
+			.section-title {
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				color: #9ca3af;
+			}
+
+			.section-line {
+				flex: 1;
+				height: 1px;
+				background: linear-gradient(
+					90deg,
+					#e5e7eb 0%,
+					transparent 100%
+				);
+			}
+
+			/* Timeline Grid */
+			.timeline {
+				display: flex;
+				gap: 14px;
+				overflow-x: auto;
+				padding: 4px 0 12px;
+				scroll-behavior: smooth;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			.timeline::-webkit-scrollbar {
+				display: none;
+			}
+
+			/* Card */
+			.card {
+				flex-shrink: 0;
+				width: 150px;
+				background: white;
+				border-radius: 12px;
+				padding: 20px 16px;
+				cursor: pointer;
+				border: 1px solid rgba(0, 0, 0, 0.06);
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+				transition: all 0.2s ease;
+			}
+
+			.card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+				border-color: rgba(0, 0, 0, 0.08);
+			}
+
+			.card-date {
+				font-size: 11px;
+				font-weight: 500;
+				color: #e63946;
+				margin-bottom: 8px;
+				letter-spacing: 0.3px;
+			}
+
+			.card-title {
+				font-size: 14px;
+				font-weight: 500;
+				line-height: 1.4;
+				color: #1a1a2e;
+			}
+
+			/* Modal Overlay */
+			.modal {
+				display: none;
+				position: fixed;
+				inset: 0;
+				background: rgba(15, 15, 25, 0.7);
+				z-index: 1000;
+				align-items: center;
+				justify-content: center;
+				padding: 24px;
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+			}
+
+			.modal.open {
+				display: flex;
+				animation: fadeIn 0.15s ease-out;
+			}
+
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+
+			.modal-content {
+				background: white;
+				border-radius: 16px;
+				width: 100%;
+				max-width: 620px;
+				max-height: 90vh;
+				overflow: hidden;
+				box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+				animation: slideUp 0.2s ease-out;
+			}
+
+			@keyframes slideUp {
+				from {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.modal-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px 24px;
+				border-bottom: 1px solid #f3f4f6;
+			}
+
+			.modal-title {
+				font-size: 16px;
+				font-weight: 600;
+				color: #1a1a2e;
+			}
+
+			.modal-date {
+				font-size: 13px;
+				color: #e63946;
+				margin-top: 4px;
+				font-weight: 500;
+			}
+
+			.modal-close {
+				width: 36px;
+				height: 36px;
+				border: none;
+				background: #f3f4f6;
+				border-radius: 10px;
+				cursor: pointer;
+				font-size: 20px;
+				color: #6b7280;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.15s;
+			}
+
+			.modal-close:hover {
+				background: #e5e7eb;
+				color: #1a1a2e;
+			}
+
+			.modal-preview {
+				height: 460px;
+				background: #f9fafb;
+			}
+
+			.modal-preview iframe {
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+
+			.modal-footer {
+				padding: 16px 24px;
+				border-top: 1px solid #f3f4f6;
+				display: flex;
+				justify-content: flex-end;
+				background: #fafbfc;
+			}
+
+			.btn {
+				padding: 11px 22px;
+				background: #1a1a2e;
+				color: white;
+				border: none;
+				border-radius: 10px;
+				font-size: 14px;
+				font-weight: 500;
+				text-decoration: none;
+				cursor: pointer;
+				transition: all 0.15s;
+				font-family: inherit;
+			}
+
+			.btn:hover {
+				background: #2d2d44;
+				transform: translateY(-1px);
+			}
+
+			/* Footer */
+			.footer {
+				text-align: center;
+				padding: 24px;
+				color: #9ca3af;
+				font-size: 12px;
+				letter-spacing: 0.3px;
+			}
+
+			@media (max-width: 600px) {
+				.header {
+					padding: 40px 20px 36px;
+				}
+				.header h1 {
+					font-size: 24px;
+				}
+				.main {
+					padding: 0 16px 60px;
+				}
+				.card {
+					width: 140px;
+					padding: 16px 14px;
+				}
+				.modal {
+					padding: 16px;
+				}
+				.modal-preview {
+					height: 360px;
+				}
+				.modal-header {
+					padding: 16px 20px;
+				}
+				.modal-footer {
+					padding: 14px 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="logo">Perfect Match</div>
+			<h1>Email Campaign 2026</h1>
+			<p>Preview and review all campaign emails</p>
+		</header>
+
+		<main class="main">
+			<section class="section">
+				<div class="section-header">
+					<h2 class="section-title">First Iteration</h2>
+					<div class="section-line"></div>
+				</div>
+				<div class="timeline">
+					<div
+						class="card"
+						data-title="Survey Release"
+						data-date="Feb 2"
+						data-src="gemeni/survey-release.html"
+					>
+						<div class="card-date">Feb 2</div>
+						<div class="card-title">Survey Release</div>
+					</div>
+					<div
+						class="card"
+						data-title="Party + Last Call"
+						data-date="Feb 12"
+						data-src="gemeni/party.html"
+					>
+						<div class="card-date">Feb 12</div>
+						<div class="card-title">Party + Last Call</div>
+					</div>
+					<div
+						class="card"
+						data-title="Matches Released"
+						data-date="Feb 13"
+						data-src="gemeni/matches-release.html"
+					>
+						<div class="card-date">Feb 13</div>
+						<div class="card-title">Matches Released</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-header">
+					<h2 class="section-title">Second Iteration</h2>
+					<div class="section-line"></div>
+				</div>
+				<div class="timeline">
+					<div
+						class="card"
+						data-title="Survey Release"
+						data-date="Feb 2"
+						data-src="claude/survey-release.html"
+					>
+						<div class="card-date">Feb 2</div>
+						<div class="card-title">Survey Release</div>
+					</div>
+					<div
+						class="card"
+						data-title="Secret Crush"
+						data-date="Feb 5-9"
+						data-src="claude/crush.html"
+					>
+						<div class="card-date">Feb 5-9</div>
+						<div class="card-title">Secret Crush</div>
+					</div>
+					<div
+						class="card"
+						data-title="Incomplete Reminder"
+						data-date="Feb 8-10"
+						data-src="claude/incomplete.html"
+					>
+						<div class="card-date">Feb 8-10</div>
+						<div class="card-title">Incomplete Reminder</div>
+					</div>
+					<div
+						class="card"
+						data-title="Party Teaser"
+						data-date="Feb 9"
+						data-src="claude/party-teaser.html"
+					>
+						<div class="card-date">Feb 9</div>
+						<div class="card-title">Party Teaser</div>
+					</div>
+					<div
+						class="card"
+						data-title="Party Details"
+						data-date="Feb 10"
+						data-src="claude/party-reveal.html"
+					>
+						<div class="card-date">Feb 10</div>
+						<div class="card-title">Party Details</div>
+					</div>
+					<div
+						class="card"
+						data-title="Last Call"
+						data-date="Feb 12"
+						data-src="claude/last-call.html"
+					>
+						<div class="card-date">Feb 12</div>
+						<div class="card-title">Last Call</div>
+					</div>
+					<div
+						class="card"
+						data-title="Matches Released"
+						data-date="Feb 13"
+						data-src="claude/matches-released.html"
+					>
+						<div class="card-date">Feb 13</div>
+						<div class="card-title">Matches Released</div>
+					</div>
+					<div
+						class="card"
+						data-title="Valentine's Day"
+						data-date="Feb 14"
+						data-src="claude/valentines-day.html"
+					>
+						<div class="card-date">Feb 14</div>
+						<div class="card-title">Valentine's Day</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer">Internal Preview</footer>
+
+		<!-- Modal -->
+		<div class="modal" id="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div>
+						<div class="modal-title" id="modalTitle"></div>
+						<div class="modal-date" id="modalDate"></div>
+					</div>
+					<button class="modal-close" onclick="closeModal()">
+						×
+					</button>
+				</div>
+				<div class="modal-preview">
+					<iframe id="modalFrame"></iframe>
+				</div>
+				<div class="modal-footer">
+					<a id="modalLink" href="" target="_blank" class="btn"
+						>Open Full Preview</a
+					>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var modal = document.getElementById("modal");
+			var modalTitle = document.getElementById("modalTitle");
+			var modalDate = document.getElementById("modalDate");
+			var modalFrame = document.getElementById("modalFrame");
+			var modalLink = document.getElementById("modalLink");
+
+			document.querySelectorAll(".card").forEach(function (card) {
+				card.addEventListener("click", function () {
+					var title = this.getAttribute("data-title");
+					var date = this.getAttribute("data-date");
+					var src = this.getAttribute("data-src");
+
+					modalTitle.textContent = title;
+					modalDate.textContent = date;
+					modalFrame.src = src;
+					modalLink.href = src;
+					modal.classList.add("open");
+				});
+			});
+
+			function closeModal() {
+				modal.classList.remove("open");
+				modalFrame.src = "";
+			}
+
+			modal.addEventListener("click", function (e) {
+				if (e.target === modal) closeModal();
+			});
+
+			document.addEventListener("keydown", function (e) {
+				if (e.key === "Escape") closeModal();
+			});
+		</script>
+	</body>
+</html>
