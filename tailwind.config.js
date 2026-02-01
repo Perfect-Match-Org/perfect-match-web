@@ -89,7 +89,7 @@ module.exports = {
                 'fade-in': 'fade-in 1s ease-in-out forwards',
                 'vertical-marquee': 'vertical-marquee var(--marquee-duration) linear infinite',
                 starburst: 'starburst 0.8s ease-out forwards',
-                marquee: 'marquee 45s linear infinite',
+                marquee: 'marquee var(--marquee-duration, 45s) linear infinite',
             },
         },
     },

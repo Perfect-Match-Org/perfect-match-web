@@ -8,7 +8,7 @@ import Stats2023 from '@/components/analytics/2023Analytics';
 import Stats2022 from '@/components/analytics/2022Analytics';
 import Stats2024 from '@/components/analytics/2024Analytics';
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/general';
+import { Button, MarqueeBanner } from '@/components/general';
 
 const Statistics = (props: { title: string }) => {
     const [year, setYear] = useState(2024); // Default year
@@ -19,13 +19,6 @@ const Statistics = (props: { title: string }) => {
                 <title>{props.title}</title>
             </Head>
             <Header />
-
-            <div className="absolute left-[-3vw] top-12 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
-                <Image src="/left_hearts.svg" alt="left hearts" layout="fill" priority={true} draggable="false" />
-            </div>
-            <div className="absolute right-0 top-0 translate-y-[200px] h-screen w-[8vw] hidden lg:block z-20 pointer-events-none">
-                <Image src="/right_hearts.svg" alt="right hearts" layout="fill" priority={true} draggable="false" />
-            </div>
 
             <section
                 className="sm:mr-0 bg-pmpink-500"
@@ -42,8 +35,10 @@ const Statistics = (props: { title: string }) => {
             >
                 <div className="pb-6 pt-24 sm:pt-32 lg:pt-32 lg:pb-36">
                     <div className="max-w-xl text-center sm:text-left sm:ml-[15%] mt-8 sm:mt-0 opacity-100">
-                        <h1 className="text-4xl sm:text-3xl font-dela-gothic text-pmblue-500 lg:text-5xl opacity-100">
-                            Can Love be Visualized?
+                        <h1 className="text-4xl sm:text-3xl font-dm-sans font-extrabold text-white lg:text-5xl opacity-100">
+                            <span className="bg-pmblue2-800 box-decoration-clone px-2 leading-[1.2]">
+                                Can Love be Visualized?
+                            </span>
                         </h1>
                         <p className="font:semibold mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-pmblue-500 sm:leading-relaxed">
                             <strong>
@@ -57,12 +52,10 @@ const Statistics = (props: { title: string }) => {
                 </div>
             </section>
 
+            <MarqueeBanner text="TRAVEL BACK IN TIME TO EXPLORE STATS FROM PAST YEARS" />
             <div>
                 <div className="w-full bg-pmpink2-500 py-8 sm:py-12">
-                    <div className="w-full max-w-screen-lg mx-auto flex flex-col md:flex-row items-center md:justify-between text-white px-6 sm:px-12">
-                        <p className="hidden lg:block text-center sm:text-left sm:text-2xl text-pmblue-500 font-bold sm:mx-0 max-w-none sm:max-w-lg">
-                            Travel back in time to explore statistics from past years!
-                        </p>
+                    <div className="w-full max-w-screen-lg mx-auto flex flex-col md:flex-row items-center justify-center text-white px-6 sm:px-12">
 
                         <div className="md:flex flex-wrap justify-center md:justify-start gap-4 mt-4 md:mt-0">
                             {[2022, 2023, 2024].map((y) => (
