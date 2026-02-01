@@ -12,6 +12,10 @@ module.exports = {
                 pmpink2: {
                     500: '#FFC8E3',
                 },
+                retropink: {
+                    200: '#FFC8E3',
+                    500: '#FF328F',
+                },
                 pmred: {
                     500: '#f30020',
                 },

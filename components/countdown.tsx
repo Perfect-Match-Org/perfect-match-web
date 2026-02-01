@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { emojiBlast } from "emoji-blast";
 
 const CountDown: React.FC = () => {
-    const countdownDate = new Date('Feb 12, 2025 12:00:00 EST');
+    const countdownDate = new Date('Feb 12, 2026 12:00:00 EST');
     const [hasMounted, setHasMounted] = useState(false);
 
     type RemainingTime = {
@@ -177,11 +177,11 @@ const CountDown: React.FC = () => {
         <div className='z-10 max-w-[85vw] w-full min-w-fit h-full relative'>
             <div className="w-full relative h-2 -z-10">
                 {/* Alarm Top buttons */}
-                <div className='absolute mx-[5%] my-[0.2%] bg-red-600 w-[10%] h-3 border-2 border-blue-900 rounded-xl' />
-                <div className='absolute mx-[18%] my-[0.2%] bg-red-600 w-[10%] h-3 border-2 border-blue-900 rounded-xl' />
-                <div className='absolute mx-[31%] my-[0.2%] bg-red-600 w-[20%] h-3 border-2 border-blue-900 rounded-xl' />
+                <div className='absolute mx-[5%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl' />
+                <div className='absolute mx-[18%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl' />
+                <div className='absolute mx-[31%] my-[0.2%] bg-retropink-500 w-[20%] h-3 border-2 border-blue-900 rounded-xl' />
             </div>
-            <div className="bg-[#FBE7F3] min-h-fit h-full rounded-lg p-5 border-blue-900 border-4 z-10 ">
+            <div className="bg-[#FBE7F3] min-h-fit h-full rounded-3xl p-5 border-blue-900 border-4 z-10 ">
                 <div className="flex flex-grid w-full h-full">
                     <div className="flex items-center justify-center h-full w-[90%] bg-[#00162F] text-white text-3xl rounded-lg lg:p-2">
                         <div className="flex items-center text-3xl sm:text-4xl space-x-2 px-4 md:px-2 font-press-start lg:text-6xl w-full justify-center">
@@ -205,7 +205,7 @@ const CountDown: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-[10%] relative flex flex-col justify-end'>
+                    <div className='w-[12%] relative flex flex-col justify-end'>
                         <div className='h-1/2'>
                             <div className='absolute top-0 -right-[5%]'>
                                 <div className='grid grid-cols-2 gap-2'>
@@ -214,11 +214,18 @@ const CountDown: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
+                            <div className='absolute top-[30%] left-2'>
+                                {Array(3).fill(0).map((_, i) => (
+                                    <div key={i} className='flex items-center justify-center'>
+                                        <span className='text-blue-900 pt-2'>❤︎</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div className="my-1 flex flex-col space-y-2 items-center mt-auto">
+                        <div className="my-1 flex flex-col space-y-2 items-end mt-auto">
                             <button
                                 className="
-                                w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-red-500 border-2 border-blue-600 font-semibold
+                                w-3 h-2 sm:w-8 sm:h-5 rounded-full bg-retropink-200 border-2 border-blue-600 font-semibold
                                 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.5)] transition-all
                                 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(59,130,246,0.5)]
                                 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
@@ -226,7 +233,7 @@ const CountDown: React.FC = () => {
                             ></button>
                             <button
                                 className="
-                                w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-blue-500 border-2 border-blue-600 font-semibold
+                                w-3 h-2 sm:w-8 sm:h-5 rounded-full bg-retropink-200 border-2 border-blue-600 font-semibold
                                 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.5)] transition-all
                                 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(59,130,246,0.5)]
                                 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
@@ -234,7 +241,7 @@ const CountDown: React.FC = () => {
                             ></button>
                             <button
                                 className="
-                                w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-red-500 border-2 border-blue-600 font-semibold
+                                w-3 h-2 sm:w-8 sm:h-5 rounded-full bg-retropink-200 border-2 border-blue-600 font-semibold
                                 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.5)] transition-all
                                 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(59,130,246,0.5)]
                                 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
@@ -244,7 +251,7 @@ const CountDown: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className='bg-pmred-500 w-full h-full -z-20 absolute top-[6%] left-[4%] rounded-lg' />
+            <div className='bg-retropink-500 w-full h-full -z-20 absolute top-[6%] left-[2%] rounded-3xl' />
             <div className='absolute -top-[60%] w-full h-[85%] flex justify-end'><Image src='/scream_bubble.svg' alt='scream bubble' height={200} width={300} priority={true} draggable='false' /></div>
         </div>
     );
