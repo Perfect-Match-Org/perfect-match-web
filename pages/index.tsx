@@ -118,12 +118,11 @@ const Home: NextPage = (props: any) => {
 
                     <div className="pb-6 pt-8 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-1/2 lg:pr-3 lg:left-0">
                         <div className="text-center lg:text-left sm:mx-auto mt-8 sm:mt-0 opacity-100 space-y-6">
-                            <h1 className="text-3xl text-pmred-500 font-extrabold sm:text-3xl font-dela-gothic">
-                                Captivating hearts since 2019
-
+                            <h1 className="text-3xl text-pmpink font-extrabold sm:text-5xl font-dm-sans">
+                                <span className="bg-pmblue2-800 box-decoration-clone px-2 leading-[1.2]">CAPTIVATING HEARTS SINCE 2019</span>
                             </h1>
                             <div className=''>
-                                <div className='text-lg text-pmred-500 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed font-work-sans space-y-4'>
+                                <div className='text-lg text-pmblue-500 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed font-work-sans space-y-4'>
                                     <p className="">
                                         Perfect Match is Cornell&#39;s very own <strong>match making survey</strong> that pairs students with potential partners with our comprehensive algorithm.
                                     </p>
@@ -160,31 +159,11 @@ const Home: NextPage = (props: any) => {
 
                     </div>
                     <div className="lg:w-1/2 flex justify-center items-center">
-                        <Image src="/bear.svg" alt="bear" height={396} width={504} loading='lazy' draggable='false' />
+                        <Image src="/pm2026.png" alt="pm2026" height={396} width={504} loading='lazy' draggable='false' />
                     </div>
                 </section >
             </div >
-            <div className="bg-pmpink-500">
-                <div className="left-0 w-full relative h-[60px]">
-                    <svg className="absolute top-1 w-full h-[60px] z-100 md:hidden" // Adjust height as needed
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                            fill="#f7a4af"
-                        ></path>
-                    </svg>
-                    <svg className="relative hidden w-full h-[60px] md:block" // Adjust height as needed
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                            fill="#f7a4af"
-                        ></path>
-                    </svg>
-                </div>
-            </div>
-            <div className="bg-pmpink2-500">
+            <div className="bg-pmred-500">
                 <Reviews />
                 <div className="left-0 w-full overflow-hidden">
                     <svg className="relative block w-full h-[60px] md:hidden" // Adjust height as needed
@@ -192,14 +171,6 @@ const Home: NextPage = (props: any) => {
                         preserveAspectRatio="none">
                         <path
                             d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                            fill="#fce5f3"
-                        ></path>
-                    </svg>
-                    <svg className="relative hidden w-full h-[60px] md:block" // Adjust height as needed
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
                             fill="#fce5f3"
                         ></path>
                     </svg>
