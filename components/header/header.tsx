@@ -27,8 +27,8 @@ function Header(props: any) {
                     gtag('config', 'G-4RWCJT2EZV');
                 `}
             </Script>
-            <nav className="bg-pmpink-500  pr-4 lg:px-6 py-2.5 light:bg-gray-800 main-nav">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <nav className="bg-pmpink-500 py-8 light:bg-gray-800 main-nav">
+                <div className="flex flex-wrap justify-between items-center w-full px-4 sm:px-8">
                     <Link href="/" className="flex items-center">
                         <img
                             src="logo.png"
@@ -44,12 +44,10 @@ function Header(props: any) {
                             <li className="text-pmred-500">
                                 <Link href="/">Home</Link>
                             </li>
-                            {/* <li className="text-pmred-500">
+                            <li className="text-pmred-500">
                                 <Link href="/dashboard">Live Dashboard</Link>
-                            </li> */}
-                            {/* <li className="text-pmred-500">
-                                <Link href="/profile">Matches</Link>
-                            </li> */}<div className="flex w-full justify-end sm:hidden">
+                            </li>
+                            <div className="flex w-full justify-end sm:hidden">
                                 <Toggle />
                             </div>
 
@@ -58,9 +56,6 @@ function Header(props: any) {
                             </li>
                             <li className="text-pmred-500">
                                 <Link href="/about"> About</Link>
-                            </li>
-                            <li className="text-pmred-500">
-                                <Link href="/testimonials"> Testimonials</Link>
                             </li>
                             <li className="text-pmred-500 border-2 border-pmred-500 rounded-3xl px-2 py-1 hover:bg-pmred-500 hover:text-white transition-all duration-200 ease-in-out">
                                 <Link href="/profile"> Matches &lt;3</Link>
