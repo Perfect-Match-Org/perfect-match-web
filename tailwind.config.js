@@ -27,6 +27,7 @@ module.exports = {
                 },
                 pmblue2: {
                     500: '#C5E1EF',
+                    800: '#07154b',
                 },
             },
             fontFamily: {
