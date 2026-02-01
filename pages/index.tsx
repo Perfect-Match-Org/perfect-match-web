@@ -69,7 +69,7 @@ const Home: NextPage = (props: any) => {
                         <div className="lg:w-1/2">
                             <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                                 <div className="">
-                                    <h1 className="text-4xl text-pmpink font-dm-sans font-extrabold sm:text-3xl lg:text-6xl sm:mt-5 ">
+                                    <h1 className="text-2xl text-pmpink font-dm-sans font-extrabold sm:text-3xl lg:text-4xl 2xl:text-6xl sm:mt-5 ">
                                         <span className="bg-[#07154b] box-decoration-clone px-2 leading-[1.2]">WE KNOW YOU'VE BEEN WAITING</span>
                                     </h1>
                                 </div>
