@@ -2,7 +2,7 @@ import Head from 'next/head';
 import type { NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { Footer } from '@/components/footer';
-import { GoogleAuth } from '@/components/general';
+import { GoogleAuth, MarqueeBanner } from '@/components/general';
 import { Header } from '@/components/header';
 import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
@@ -47,19 +47,7 @@ const Home: NextPage = (props: any) => {
             */}
 
             {/* Scrolling Marquee Banner - Top */}
-            <div className="bg-pmred-500 overflow-hidden whitespace-nowrap py-1">
-                <div className="animate-marquee inline-flex">
-                    {/* First copy */}
-                    {Array(2).fill(0).map((_, i) => (
-                        Array(10).fill(0).map((_, i) => (
-                            <span key={`a-${i}`} className="inline-flex items-center text-white font-dm-sans font-bold text-2xl ml-2">
-                                <span>PERFECT MATCH IS OPEN</span>
-                                <span className="text-white font-dm-sans font-bold text-sm ml-2">❤︎</span>
-                            </span>
-                        ))
-                    ))}
-                </div>
-            </div>
+            <MarqueeBanner text="PERFECT MATCH IS OPEN" />
 
             <div className="relative z-0 overflow-hidden">
 
@@ -100,19 +88,7 @@ const Home: NextPage = (props: any) => {
                 </section >
 
                 {/* Scrolling Marquee Banner - Bottom */}
-                <div className="bg-pmred-500 overflow-hidden whitespace-nowrap py-1">
-                    <div className="animate-marquee inline-flex">
-                        {/* First copy */}
-                        {Array(2).fill(0).map((_, i) => (
-                            Array(10).fill(0).map((_, i) => (
-                                <span key={`a-${i}`} className="inline-flex items-center text-white font-dm-sans font-bold text-2xl ml-2">
-                                    <span>PERFECT MATCH IS OPEN</span>
-                                    <span className="text-white font-dm-sans font-bold text-sm ml-2">❤︎</span>
-                                </span>
-                            ))
-                        ))}
-                    </div>
-                </div>
+                <MarqueeBanner text="PERFECT MATCH IS OPEN" />
 
                 <section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
 
