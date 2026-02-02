@@ -33,18 +33,19 @@ const Statistics = (props: { title: string }) => {
                     // backgroundImage: 'url("valentine.png")',
                 }}
             >
-                <div className="pb-6 pt-24 sm:pt-32 lg:pt-32 lg:pb-36">
-                    <div className="max-w-xl text-center sm:text-left sm:ml-[15%] mt-8 sm:mt-0 opacity-100">
-                        <h1 className="text-4xl sm:text-3xl font-dm-sans font-extrabold text-white lg:text-5xl opacity-100">
-                            <span className="bg-pmblue2-800 box-decoration-clone px-2 leading-[1.2]">
+                <div className="pb-8 sm:pb-16 sm:pt-16 lg:pt-32 lg:pb-36">
+                    <div className="max-w-xl text-center sm:text-left sm:ml-[15%] lg:mt-8 sm:mt-0 opacity-100">
+                        <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
+                            <span className="bg-[#07154b] box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">
                                 Can Love be Visualized?
                             </span>
                         </h1>
-                        <p className="font:semibold mt-4 mx-[10%] sm:mx-0 max-w-lg sm:text-lg text-pmblue-500 sm:leading-relaxed">
+                        <p className="font:semibold mt-8 mx-[10%] sm:mx-0 lg:text-xl sm:text-lg text-pmblue-500 sm:leading-relaxed">
                             <strong>
                                 Perhaps not without daydreaming about your crush, but your survey responses can!
                             </strong>{' '}
-                            <br />
+                        </p>
+                        <p className="font:semibold mt-3 mx-[10%] sm:mx-0 lg:text-lg sm:text-md text-pmblue-500 sm:leading-relaxed">
                             Join us on this journey to learn about some of the preferences and habits we&apos;ve
                             discovered from several years of survey responses!
                         </p>
@@ -52,34 +53,18 @@ const Statistics = (props: { title: string }) => {
                 </div>
             </section>
 
-            <MarqueeBanner text="TRAVEL BACK IN TIME TO EXPLORE STATS FROM PAST YEARS" />
+            <MarqueeBanner text="Travel Back in Time to Explore Stats From Past Years" />
             <div>
                 <div className="w-full bg-pmpink2-500 py-8 sm:py-12">
                     <div className="w-full max-w-screen-lg mx-auto flex flex-col md:flex-row items-center justify-center text-white px-6 sm:px-12">
 
-                        <div className="md:flex flex-wrap justify-center md:justify-start gap-4 mt-4 md:mt-0">
+                        <div className="md:flex flex-wrap justify-center align-center md:justify-start gap-4 mb-6 md:mt-0">
                             {[2022, 2023, 2024].map((y) => (
                                 <Button key={y} onClick={() => setYear(y)} bold={true}>
                                     {y}
                                 </Button>
                             ))}
                         </div>
-                    </div>
-                </div>
-
-                <div className="bg-pmpink-500">
-                    <div className="w-full bg-pmpink-500"></div>
-                    <div className="left-0 w-full overflow-hidden">
-                        <svg
-                            className="relative block w-full h-[60px] scale-y-[-1]" // Adjust height as needed
-                            viewBox="0 0 1200 120"
-                            preserveAspectRatio="none"
-                        >
-                            <path
-                                d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                                fill="#f7a4af"
-                            ></path>
-                        </svg>
                     </div>
                 </div>
 

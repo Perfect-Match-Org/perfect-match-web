@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <div className="bg-pmpink-500 p-4">
+        <div className="bg-pmpink2-500 p-4">
             <footer className="max-w-screen-xl mx-auto">
                 {/* Social Links & Contact Info */}
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-5 lg:px-6">
