@@ -22,6 +22,14 @@ function StarIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+function QuoteIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg viewBox="0 0 231 184" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M98.0957 132.766C98.0957 143.182 93.8639 152.297 85.4004 160.109C77.0996 167.922 67.2526 171.828 55.8594 171.828C37.9557 171.828 24.2025 165.887 14.5996 154.006C4.99674 142.124 0.195312 125.686 0.195312 104.689C0.195312 85.1582 8.41471 65.4642 24.8535 45.6074C41.4551 25.7507 61.3932 10.6953 84.668 0.441406L95.4102 17.7754C77.0182 26.7272 62.6139 37.1439 52.1973 49.0254C41.7806 60.9069 35.7585 75.3112 34.1309 92.2383H47.8027C57.8939 92.2383 66.1133 93.3776 72.4609 95.6562C78.8086 97.9349 83.9355 101.109 87.8418 105.178C91.5853 109.084 94.1895 113.397 95.6543 118.117C97.2819 122.837 98.0957 127.72 98.0957 132.766ZM218.457 132.766C218.457 143.182 214.225 152.297 205.762 160.109C197.461 167.922 187.614 171.828 176.221 171.828C158.317 171.828 144.564 165.887 134.961 154.006C125.358 142.124 120.557 125.686 120.557 104.689C120.557 85.1582 128.776 65.4642 145.215 45.6074C161.816 25.7507 181.755 10.6953 205.029 0.441406L215.771 17.7754C197.38 26.7272 182.975 37.1439 172.559 49.0254C162.142 60.9069 156.12 75.3112 154.492 92.2383H168.164C178.255 92.2383 186.475 93.3776 192.822 95.6562C199.17 97.9349 204.297 101.109 208.203 105.178C211.947 109.084 214.551 113.397 216.016 118.117C217.643 122.837 218.457 127.72 218.457 132.766Z" fill="currentColor" />
+    </svg>
+  )
+}
+
 // function StarRating({ rating }: { rating: Review['rating'] }) {
 //   return (
 //     <div className="flex">
@@ -263,52 +271,50 @@ export function Reviews() {
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="pt-6 pb-8 sm:pt-2 sm:pb-12 bg-pmpink2-500 overflow-hidden"
+      className="pt-12 pb-8 sm:pt-16 sm:pb-12 bg-pmred-500 overflow-hidden"
     >
       <Container>
-        <div className="relative h-[175px]">
-          <div className="absolute top-[-25px] right-[-4%] sm:top-[-40px] sm:right-[18%] z-0 pointer-events-none w-[250px] md:w-[300px]">
-            <Image
-              src="/six-hearts.svg"
-              alt="six hearts"
-              width={300}
-              height={300}
-            />
+
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:items-center">
+          <div className="flex items-start gap-4">
+            <div className="hidden shrink-0 md:block">
+              <QuoteIcon
+                className="h-20 w-20 text-white drop-shadow-[4px_4px_0px_rgba(36,67,141,1)]"
+              />
+            </div>
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <h1
+                id="reviews-title"
+                className="font-dm-sans text-3xl font-bold text-white sm:text-4xl"
+              >
+                <span className="box-decoration-clone bg-pmblue2-800 px-2 leading-[1.4] text-pmpink-500">
+                  Found the love of your life <br className="hidden sm:block" /> through Perfect Match?
+                </span>
+              </h1>
+              <p className="mt-4 font-dm-sans text-xl font-medium text-white">
+                We want to hear about it!
+              </p>
+            </div>
           </div>
-          <div className="absolute top-[60px] right-[72%] sm:top-[40px] sm:right-[61.25%] z-0 pointer-events-none w-[100px] md:w-[125px]">
-            <Image
-              src="/big-quote.svg"
-              alt="big quote"
-              width={125}
-              height={125}
-            />
-          </div>
-        </div>
-        <h1
-          id="reviews-title"
-          className="text-3xl text-pmred-500 sm:text-4xl text-center font-dela-gothic">
-          Found the love of your life <br className="hidden sm:block" /> through Perfect Match?
-        </h1>
-        <p className="text-3xl mt-4 text-pmblue-500 text-center font-delta-gothic font-bold">
-          We want to hear about it!
-        </p>
-        <div className="relative flex justify-center">
-          <StarBurst show={hovering} />
-          <Link href="/testimonials">
-            <button
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              className="
-                mt-6
+
+          <div className="relative flex justify-center pb-2">
+            <StarBurst show={hovering} />
+            <Link href="/testimonials">
+              <button
+                onMouseEnter={() => setHovering(true)}
+                onMouseLeave={() => setHovering(false)}
+                className="
+                inline-flex
+                items-center
+                rounded-full
+                border-4
+                border-pmblue-500
+                bg-white
                 px-[30px]
                 py-4
                 text-[20px]
-                rounded-full
-                bg-white
-                text-pmred-500
-                border-4
-                border-pmblue-500
                 font-bold
+                text-pmred-500
                 shadow-[6px_6px_0px_0px_rgba(36,67,141,1)]
                 transition-all
                 hover:translate-x-[4px]
@@ -316,14 +322,14 @@ export function Reviews() {
                 hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)]
                 active:translate-x-[6px]
                 active:translate-y-[6px]
-                active:shadow-none
-                inline-flex
-                items-center"
-            >
-              testimonials
-            </button>
-          </Link>
+                active:shadow-none"
+              >
+                spill the tea
+              </button>
+            </Link>
+          </div>
         </div>
+        <div className="mt-8 h-1.5 w-full bg-white sm:mt-12" />
         <ReviewGrid />
       </Container>
     </section>

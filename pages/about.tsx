@@ -12,12 +12,6 @@ const About: any = (props: any) => {
                 <title>About</title>
             </Head>
             <Header />
-            <div className="absolute -left-5 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
-                <Image src="/left_hearts_2.svg" alt="left hearts" layout='fill' priority={true} draggable='false' />
-            </div>
-            <div className="absolute right-0 top-0 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
-                <Image src="/right_hearts_2.svg" alt="right hearts" layout='fill' priority={true} draggable='false' />
-            </div>
 
             <div>
                 <div>
@@ -25,18 +19,17 @@ const About: any = (props: any) => {
                         <div
                             className="flex gap-6 lg:gap-10 items-center px-4 max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-0 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
                         >
-                            <div className="font-dela-gothic sm:text-lg">
-                                <h2 className="mb-6 text-2xl sm:text-3xl tracking-tigh text-pmred-500">
-                                    Cupid just got smarter!
+                            <div className="sm:text-lg">
+                                <h2 className="mb-6 text-3xl sm:text-5xl font-dm-sans font-extrabold text-white">
+                                    <span className="bg-pmblue2-800 box-decoration-clone p-2 leading-[1.4]">CUPID JUST GOT SMARTER!</span>
                                 </h2>
 
-                                <div className='font-work-sans text-pmred-500 text-base sm:text-lg font-medium'>
+                                <div className='font-work-sans text-pmblue2-800 text-base sm:text-lg font-medium'>
                                     <p className="sm:mb-4 mb-0 ">
                                         Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning algorithm uses your survey to pair you with other Cornell students — your Perfect Matches!</p>
 
                                     <p className="sm:mb-4 mb-0">  This year, we are back with <strong> fun survey questions, whole new branding, special “nudge your crush” feature, and more</strong> surprises to discover! Don&apos;t hesitate to get in for a Valentine&apos;s Day you won&apos;t forget!
                                     </p>
-                                    <p className='text-right font-semibold mx-auto sm:mr-2'>Happy matching, xoxo, <br /> The Cupids💝</p>
                                     {/* <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p> */}
                                 </div>
                             </div>
@@ -48,36 +41,20 @@ const About: any = (props: any) => {
                 </div>
 
 
-                <section className="bg-pmpink2-500">
+                <section className="bg-pmpink2-500 py-6 sm:py-8">
                     <div className="hidden sm:block ">
-                        <div className="left-0 w-full overflow-hidden bg-pmpink-500">
-                            <svg className="relative block w-full h-[60px] md:hidden"
-                                viewBox="0 0 1200 120"
-                                preserveAspectRatio="none">
-                                <path
-                                    d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                                    fill="#f7a4af"
-                                ></path>
-                            </svg>
-                            <svg className="relative hidden w-full h-[60px] md:block"
-                                viewBox="0 0 1200 120"
-                                preserveAspectRatio="none">
-                                <path
-                                    d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                                    fill="#f7a4af"
-                                ></path>
-                            </svg>
+                        <div className="left-0 w-full overflow-hidden">
                         </div>
-                        <ol className="sm:border-xl-0 sm:border-t-0 border-pmpink2-500 flex sm:gap-6 mx-[10%] lg:mx-[15%] sm:-mt-7 sm:-mb-4">
+                        <ol className="sm:border-xl-0 sm:border-t-0 border-pmpink2-500 flex sm:gap-6 mx-[10%] lg:mx-[15%] sm:-mb-4">
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="relative z-10 sm:-mt-5 text-3xl -ml-1">💓</div>
-                                    <p className="work-sans text-white text-l my-2 font-bold mt-4">Feb. 3rd @ 5 PM</p>
+                                    <div className="relative z-10 text-3xl -ml-1">💓</div>
+                                    <p className="font-work-sans text-pmred-500 text-l my-2 font-bold mt-4">Feb. 2nd, Monday, @ 5 PM</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
-                                    <h4 className="font-dela-gothic text-pmblue-500 font-bold text-lg mb-1.5">PM25 is Launched!</h4>
+                                    <h4 className="font-dela-gothic text-pmblue-500 font-bold text-lg mb-1.5">PM26 is Launched!</h4>
                                     <p className="font-work-sans text-pmblue-500 mb-3">
-                                        Start filling out your profile and the survey! For updates on PM25, follow us on{' '}
+                                        Start filling out your profile and the survey! For updates on PM26, follow us on{' '}
                                         <a
                                             className="underline"
                                             href="https://www.instagram.com/perfectmatch.at.cornell/"
@@ -92,11 +69,11 @@ const About: any = (props: any) => {
                             </li>
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="relative z-10 sm:-mt-5 text-3xl">💘</div>
-                                    <p className="work-sans text-white text-l my-2 font-bold mt-4">Feb. 13th @ Noon</p>
+                                    <div className="relative z-10 text-3xl">💘</div>
+                                    <p className="font-work-sans text-pmred-500 text-l my-2 font-bold mt-4">Feb. 12th, @ Noon</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
-                                    <h4 className="font-dela-gothic text-pmblue-500 font-bold text-lg mb-1.5"> PM25 Closes!</h4>
+                                    <h4 className="font-dela-gothic text-pmblue-500 font-bold text-lg mb-1.5">PM26 Closes!</h4>
                                     <p className="font-work-sans text-pmblue-500 mb-3">
                                         Hurry up! Cupid is flying away! Make sure to submit your response on time.
                                     </p>
@@ -104,8 +81,8 @@ const About: any = (props: any) => {
                             </li>
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="relative z-10 sm:-mt-5 text-3xl">💞</div>
-                                    <p className="work-sans text-white my-2 font-bold mt-4"> Feb. 13th @ Night</p>
+                                    <div className="relative z-10 text-3xl">💞</div>
+                                    <p className="font-work-sans text-pmred-500 my-2 font-bold mt-4">Feb. 12th, @ Night</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
                                     <h4 className="font-dela-gothic text-pmblue-500 font-bold text-lg mb-1.5">Matches Out!</h4>
@@ -117,8 +94,8 @@ const About: any = (props: any) => {
                             </li>
                             <li>
                                 <div className="flex sm:block flex-start items-center pt-2 sm:pt-0">
-                                    <div className="relative z-10 sm:-mt-5 text-3xl">❤️‍🔥</div>
-                                    <p className="work-sans text-white text-l my-2 font-bold mt-4">Feb. 14th</p>
+                                    <div className="relative z-10 text-3xl">❤️‍🔥</div>
+                                    <p className="font-work-sans text-pmred-500 text-l my-2 font-bold mt-4">Feb. 14th</p>
                                 </div>
                                 <div className="mt-0.5 ml-4 sm:ml-0 pb-5">
                                     <h4 className="font-dela-gothic text-pmblue-500 font-bold text-lg mb-1.5">Valentine&apos;s Day!</h4>
@@ -130,22 +107,6 @@ const About: any = (props: any) => {
                         </ol>
 
                         <div className="left-0 w-full overflow-hidden">
-                            <svg className="relative block w-full h-[60px] md:hidden" // Adjust height as needed
-                                viewBox="0 0 1200 120"
-                                preserveAspectRatio="none">
-                                <path
-                                    d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                                    fill="#fce5f3"
-                                ></path>
-                            </svg>
-                            <svg className="relative hidden w-full h-[60px] md:block" // Adjust height as needed
-                                viewBox="0 0 1200 120"
-                                preserveAspectRatio="none">
-                                <path
-                                    d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                                    fill="#fce5f3"
-                                ></path>
-                            </svg>
                         </div>
                     </div>
                 </section>
@@ -154,24 +115,6 @@ const About: any = (props: any) => {
                     <Members />
                 </section>
                 <section className="text-gray-500 bg-pmpink2-500">
-                    <div className="left-0 w-full overflow-hidden bg-pmpink-500">
-                        <svg className="relative block w-full h-[60px] md:hidden"
-                            viewBox="0 0 1200 120"
-                            preserveAspectRatio="none">
-                            <path
-                                d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                                fill="#f7a4af"
-                            ></path>
-                        </svg>
-                        <svg className="relative hidden w-full h-[60px] md:block"
-                            viewBox="0 0 1200 120"
-                            preserveAspectRatio="none">
-                            <path
-                                d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                                fill="#f7a4af"
-                            ></path>
-                        </svg>
-                    </div>
                     <div className="container px-5 sm:px-0 py-8 sm:py-10 mx-auto">
                         <div className="font-dela-gothic text-center mb-15">
                             <h2 className="mb-12 text-2xl tracking-tight font-extrabold text-pmblue-500 sm:text-4xl">
@@ -320,24 +263,6 @@ const About: any = (props: any) => {
                                 </details>
                             </div>
                         </div>
-                    </div>
-                    <div className="left-0 w-full overflow-hidden">
-                        <svg className="relative block w-full h-[60px] md:hidden" // Adjust height as needed
-                            viewBox="0 0 1200 120"
-                            preserveAspectRatio="none">
-                            <path
-                                d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                                fill="#fce5f3"
-                            ></path>
-                        </svg>
-                        <svg className="relative hidden w-full h-[60px] md:block" // Adjust height as needed
-                            viewBox="0 0 1200 120"
-                            preserveAspectRatio="none">
-                            <path
-                                d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                                fill="#fce5f3"
-                            ></path>
-                        </svg>
                     </div>
                 </section>
             </div >
