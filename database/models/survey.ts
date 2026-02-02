@@ -135,8 +135,12 @@ export const surveySchema: Schema = new Schema<ISurvey>(
         sexualPartners: { type: Number, min: 0, max: 300, required: false },
         longestrelationship: { type: Number, min: 0, max: 300, required: true },
         ricePurity: { type: String, enum: survey.ricePurity, required: true },
-        politics: { type: Number, min: 1, max: 10, required: true },
-        politically_active: { type: Number, min: 1, max: 5, required: true },
+        politicalViews: {
+            view: { type: Number, min: 1, max: 10, required: true },
+            social: { type: Number, min: 1, max: 10, required: true },
+            activity: { type: Number, min: 1, max: 10, required: true },
+            cornellImpact: { type: Number, min: 1, max: 10, required: true },
+        },
         habits: {
             drinking: { type: String, enum: survey.habits, required: true },
             smoking: { type: String, enum: survey.habits, required: true },
