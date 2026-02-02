@@ -311,8 +311,8 @@ export function Reviews() {
                 border-pmblue-500
                 bg-white
                 px-[30px]
-                py-4
-                text-[20px]
+                py-2
+                text-lg
                 font-bold
                 text-pmred-500
                 shadow-[6px_6px_0px_0px_rgba(36,67,141,1)]
@@ -329,7 +329,6 @@ export function Reviews() {
             </Link>
           </div>
         </div>
-        <div className="mt-8 h-1.5 w-full bg-white sm:mt-12" />
         <ReviewGrid />
       </Container>
     </section>
