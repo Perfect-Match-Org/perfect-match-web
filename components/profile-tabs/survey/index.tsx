@@ -79,7 +79,7 @@ const SurveyComponent = (props: any) => {
                     Review answers
                 </button>
                 <p className="mt-10 text-pmblue-500 text-lg font-bold">Psst…want an extra shot at finding your soulmate?</p>
-                <p className="text-pmblue-500">Try Dating with Data, a research study on dating apps run by a research team at the University of Chicago.<br />It's like a dating app…except you get paid $20 just for using it!</p>
+                <p className="text-pmblue-500">Try Dating with Data, a research study on dating apps run by a research team at the University of Chicago.<br />It&apos;s like a dating app…except you get paid $20 just for using it!</p>
                 <p className="text-pmblue-500">Learn more at <a className="underline" href="https://datingwithdata.com">DatingWithData.com</a>, and sign up <a className="underline" href="https://uchicago.co1.qualtrics.com/jfe/form/SV_08qzg4aRgjVWxJY">here</a>!</p>
             </div>
         );
