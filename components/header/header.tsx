@@ -44,9 +44,9 @@ function Header(props: any) {
                             <li className="text-pmred-500">
                                 <Link href="/">Home</Link>
                             </li>
-                            <li className="text-pmred-500">
+                            {/* <li className="text-pmred-500">
                                 <Link href="/dashboard">Live Dashboard</Link>
-                            </li>
+                            </li> */}
                             <div className="flex w-full justify-end sm:hidden">
                                 <Toggle />
                             </div>
