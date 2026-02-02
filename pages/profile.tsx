@@ -8,6 +8,7 @@ import { getSession } from 'next-auth/react';
 import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
 import Image from 'next/image';
+import SurveyComponent from '@/components/profile-tabs/survey';
 
 const Profile: NextPage = (props: any) => {
     const { data, error, mutate } = useSWR('/api/profile', fetcher);
@@ -25,7 +26,8 @@ const Profile: NextPage = (props: any) => {
             </Head>
             <Header />
 
-            <div>
+            <SurveyComponent />
+            {/* <div>
                 {matches.length > 0 && (
                     <>
                         <div className="absolute left-[-3vw] top-12 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
@@ -165,7 +167,7 @@ const Profile: NextPage = (props: any) => {
                         <ProfileTabs user={data} refresh={refresh} />
                     </div>
                 </div>
-            </section>)}
+            </section>)} */}
             <Footer />
         </div>
     );
