@@ -73,7 +73,7 @@ const Home: NextPage = (props: any) => {
                                     {!props.user ? (
                                         <GoogleAuth login={!props.user} />
                                     ) : (
-                                        <Link href="/survey">
+                                        <Link href="/profile">
                                             <Button bold={true} >
                                                 fill out Perfect Match
                                             </Button>
