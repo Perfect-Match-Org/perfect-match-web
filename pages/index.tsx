@@ -101,7 +101,7 @@ const Home: NextPage = (props: any) => {
                                     ) : (
                                         <Link href="/profile">
                                             <Button bold={true} >
-                                                see my matches!
+                                                Fill Out the Form!
                                             </Button>
                                         </Link>
                                     )}
