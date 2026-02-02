@@ -12,6 +12,7 @@ export interface IProfile extends Document {
     city?: string;
     race: string[];
     year: string;
+    graduating: string;
     college: string;
     major?: [string];
     commitment: string;
@@ -25,6 +26,7 @@ export interface IProfile extends Document {
     guiltyPleasure: string;
     bio?: string;
     religion?: string[];
+    languages: string[];
 }
 
 export const profileSchema: Schema = new Schema<IProfile>(
