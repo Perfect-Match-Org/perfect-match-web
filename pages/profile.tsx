@@ -4,7 +4,7 @@ import { Header } from '@/components/header';
 import { ProfileTabs } from '@/components/profile-tabs';
 import { Spinner } from '@/components/general';
 import { NextPage } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession, signOut } from 'next-auth/react';
 import { fetcher } from '@/utils/fetch';
 import useSWR from 'swr';
 import Image from 'next/image';
@@ -16,6 +16,11 @@ const Profile: NextPage = (props: any) => {
 
     const refresh = () => mutate();
     console.log('Profile data:', data);
+
+    if (error || matchesError) {
+        signOut({ callbackUrl: '/api/auth/signin' });
+        return <Spinner />;
+    }
 
     if (!data || !matches) return <Spinner />;
 
