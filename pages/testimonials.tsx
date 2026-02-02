@@ -107,11 +107,11 @@ const Home: NextPage = (props: any) => {
         };
 
         return (
-            <section className="py-12 px-4 bg-pmpink2-500">
+            <section className="py-12 px-4 bg-pmpink-500">
                 <div className="max-w-4xl mx-auto">
 
-                    <div className="text-center mb-10">
-                        <h2 className="text-4xl sm:text-3xl font-dela-gothic text-pmblue-500 lg:text-5xl opacity-100">Share Your Perfect Match Story</h2>
+                    <div className="text-center mb-10 mx-20">
+                        <h2 className="text-4xl sm:text-3xl font-dm-sans font-extrabold text-white lg:text-5xl opacity-100 bg-pmblue2-800 box-decoration-clone p-2 leading-[1.2]">Share Your Perfect Match Story</h2>
                         <p className="font:semibold mt-4 mx-[10%] sm:mx-0 sm:text-lg text-pmblue-500 sm:leading-relaxed">
                             Your experience matters! By sharing your Perfect Match journey, you help others
                             find their special someone too. Each testimonial brings our community closer together
@@ -123,7 +123,7 @@ const Home: NextPage = (props: any) => {
                         </p>
                     </div>
 
-                    <div className="bg-pmpink2-500 rounded-lg p-4 sm:p-6 lg:p-8 min-h-[400px] sm:min-h-[500px] flex items-center justify-center">
+                    <div className="bg-pmpink-500 rounded-lg p-4 sm:p-6 lg:p-8 min-h-[400px] sm:min-h-[500px] flex items-center justify-center">
                         {submitted ? (
                             <div className="text-center">
                                 <div className="mb-6">
@@ -226,7 +226,7 @@ const Home: NextPage = (props: any) => {
 
                                 <div className="flex items-center justify-center">
                                     <button
-                                        className="bg-pmpink-500 hover:bg-pmpink-600 text-pmred-500 font-bold py-3 sm:py-4 px-6 sm:px-8 text-lg sm:text-xl rounded-full focus:outline-none focus:ring focus:ring-pmpink-300 transition-colors duration-200 w-full sm:w-auto max-w-sm min-h-[48px]"
+                                        className="bg-retropink-500 hover:bg-pmpink-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 text-lg sm:text-xl rounded-full focus:outline-none focus:ring focus:ring-pmpink-300 transition-colors duration-200 w-full sm:w-auto max-w-sm min-h-[48px]"
                                         type="submit"
                                         disabled={submitting}
                                     >
@@ -238,25 +238,6 @@ const Home: NextPage = (props: any) => {
                     </div>
                 </div>
 
-                {/* Add the wavy separator that matches your existing design */}
-                <div className="left-0 w-full overflow-hidden mt-12">
-                    <svg className="relative block w-full h-[60px] md:hidden"
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                            fill="#f7a4af"
-                        ></path>
-                    </svg>
-                    <svg className="relative hidden w-full h-[60px] md:block"
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                            fill="#f7a4af"
-                        ></path>
-                    </svg>
-                </div>
             </section >
         );
     };
@@ -271,56 +252,12 @@ const Home: NextPage = (props: any) => {
             <Header />
             <div className="bg-pmpink-500">
                 <div className="w-full bg-pmpink-500"></div>
-                <div className="left-0 w-full overflow-hidden">
-                    <svg className="relative block w-full h-[60px] md:hidden" // Adjust height as needed
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                            fill="#f7a4af"
-                        ></path>
-                    </svg>
-                    <svg className="relative hidden w-full h-[60px] md:block" // Adjust height as needed
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none">
-                        <path
-                            d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                            fill="#f7a4af"
-                        ></path>
-                    </svg>
-                </div>
             </div>
-            <div className="absolute left-[-3vw] top-12 h-screen w-[18vw] hidden lg:block z-20 pointer-events-none">
-                <Image src="/left_hearts.svg" alt="left hearts" layout='fill' priority={true} draggable='false' />
-            </div>
-            <div className="absolute right-0 top-0 translate-y-[200px] h-screen w-[8vw] hidden lg:block z-20 pointer-events-none">
-                <Image src="/right_hearts.svg" alt="right hearts" layout='fill' priority={true} draggable='false' />
-            </div>
-
-
 
             <div className="min-h-screen mt-0">
                 <ReviewSection />
             </div>
 
-            <div className="w-full overflow-hidden bg-pmpink2-500 mt-[-1px]">
-                <svg className="w-full h-[60px] md:hidden block"
-                    viewBox="0 0 1200 120"
-                    preserveAspectRatio="none">
-                    <path
-                        d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                        fill="#fce5f3"
-                    ></path>
-                </svg>
-                <svg className="hidden w-full h-[60px] md:block"
-                    viewBox="0 0 1200 120"
-                    preserveAspectRatio="none">
-                    <path
-                        d="M0,60 C16.67,40 33.33,40 50,60 C66.67,80 83.33,80 100,60 C116.67,40 133.33,40 150,60 C166.67,80 183.33,80 200,60 C216.67,40 233.33,40 250,60 C266.67,80 283.33,80 300,60 C316.67,40 333.33,40 350,60 C366.67,80 383.33,80 400,60 C416.67,40 433.33,40 450,60 C466.67,80 483.33,80 500,60 C516.67,40 533.33,40 550,60 C566.67,80 583.33,80 600,60 C616.67,40 633.33,40 650,60 C666.67,80 683.33,80 700,60 C716.67,40 733.33,40 750,60 C766.67,80 783.33,80 800,60 C816.67,40 833.33,40 850,60 C866.67,80 883.33,80 900,60 C916.67,40 933.33,40 950,60 C966.67,80 983.33,80 1000,60 C1016.67,40 1033.33,40 1050,60 C1066.67,80 1083.33,80 1100,60 C1116.67,40 1133.33,40 1150,60 C1166.67,80 1183.33,80 1200,60 V120 H0 Z"
-                        fill="#fce5f3"
-                    ></path>
-                </svg>
-            </div>
 
             <div className="bg-[#fce5f3]">
                 <Footer />
