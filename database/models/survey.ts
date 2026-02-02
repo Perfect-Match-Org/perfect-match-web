@@ -101,7 +101,7 @@ export const surveySchema: Schema = new Schema<ISurvey>(
         biggestRedFlag: { type: String, enum: survey.biggestRedFlag, required: true },
         interests: [{ type: String, enum: survey.interests, required: true }],
         music: [{ type: String, enum: survey.music, required: true }],
-        favSong: { type: String, required: true },
+        favSong: { type: String, required: false },
         tv: { type: String, enum: survey.tv, required: true },
         date: { type: String, enum: survey.date, required: true },
         whopays: { type: String, enum: survey.whopays, required: true },
