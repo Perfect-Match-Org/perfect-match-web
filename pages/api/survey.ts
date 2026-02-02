@@ -22,6 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     await connect();
 
-    const user = await updateSurvey(session.user, JSON.parse(req.body));
+    const user = await updateSurvey(session.user, req.body);
     return res.status(200).json(user);
 }

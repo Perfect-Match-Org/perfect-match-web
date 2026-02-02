@@ -41,6 +41,7 @@ export const profileSchema: Schema = new Schema<IProfile>(
         city: { type: String },
         race: [{ type: String }],
         year: { type: String, enum: profile.classYear },
+        graduating: { type: String },
         college: { type: String, enum: profile.college },
         major: [{ type: String }],
         commitment: { type: String, enum: profile.commitment },
@@ -54,6 +55,7 @@ export const profileSchema: Schema = new Schema<IProfile>(
         guiltyPleasure: { type: String },
         bio: { type: String },
         religion: [{ type: String }],
+        languages: [{ type: String }],
     },
     { _id: false },
 );
