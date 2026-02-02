@@ -26,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     switch (method) {
         case 'GET': {
             const user = await getUser(session.user);
+            if (!user) return res.status(404).send('User not found');
             return res.status(200).json(user);
         }
         case 'POST': {

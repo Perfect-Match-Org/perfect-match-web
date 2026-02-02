@@ -23,6 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     await connect();
 
-    const matches: Matches[] = (await getUser(session.user)).matches;
+    const user = await getUser(session.user);
+    if (!user) return res.status(404).send('User not found');
+    const matches: Matches[] = user.matches;
     return res.status(200).json(matches);
 }

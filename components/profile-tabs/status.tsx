@@ -71,8 +71,8 @@ const Status: any = (props: any) => {
                             <section id="opt" className={props.optIn ? 'text-green-500' : 'text-red-400'}>
                                 <p>
                                     {props.optIn
-                                        ? 'You are currently opted-in to our 2025 matching process.'
-                                        : 'You are currently opted-out to our 2025 matching process.'}
+                                        ? 'You are currently opted-in to our 2026 matching process.'
+                                        : 'You are currently opted-out to our 2026 matching process.'}
                                 </p>
                                 {/* Preview Link
                                 {props.surveyComplete && (
