@@ -12,30 +12,27 @@ export interface ISurvey extends Document {
         email: string;
         other: string;
     };
+    nicheRedFlag: string;
     lockIn: string;
-    redFlagClub: string;
-    worstFirstKiss: string;
+    greenFlagClub: string;
+    cornellIck: string;
     task: string;
     hill: string;
-    bathroom: string;
-    olinVsUris: string;
-    northVsWest: string;
-    trilliumOrTerrace: string;
-    celsiusOrCoffee: string;
-    walkOrBus: string;
-    fallOrSpring: string;
+    favActivity: string[];
+    biggestRedFlag: string;
     interests: string[];
     music: string[];
-    hookupsong: string;
+    favSong: string;
     tv: string;
     date: string;
     whopays: string;
-    ick: string;
     greenflag: string;
     lovelanguage: string;
+    showlovelanguage: string;
+    romanceTrope: string;
+    lastRelationship: string;
     sleeptime: string;
     waketime: string;
-    plans: string;
     humor: string[];
     sociability: string[];
     p1: string;
@@ -56,10 +53,15 @@ export interface ISurvey extends Document {
     easygoing_same: string;
     whySingle: string;
     numdated: number;
+    sexualPartners: number;
     longestrelationship: number;
     ricePurity: string;
-    politics: number;
-    politically_active: number;
+    politicalViews: {
+        view: number;
+        social: number;
+        activity: number;
+        cornellImpact: number;
+    };
     habits: {
         drinking: string;
         smoking: string;
@@ -89,30 +91,27 @@ export const surveySchema: Schema = new Schema<ISurvey>(
             email: { type: String },
             other: { type: String },
         },
+        nicheRedFlag: { type: String, enum: survey.nicheRedFlag, required: true },
         lockIn: { type: String, enum: survey.lockIn, required: true },
-        redFlagClub: { type: String, enum: survey.redFlagClub, required: true },
-        worstFirstKiss: { type: String, enum: survey.worstFirstKiss, required: true },
+        greenFlagClub: { type: String, enum: survey.greenFlagClub, required: true },
+        cornellIck: { type: String, enum: survey.cornellIck, required: true },
         task: { type: String, enum: survey.task, required: true },
         hill: { type: String, enum: survey.hill, required: true },
-        bathroom: { type: String, required: true },
-        olinVsUris: { type: String, enum: survey.olinVsUris, required: true },
-        northVsWest: { type: String, enum: survey.northVsWest, required: true },
-        trilliumOrTerrace: { type: String, enum: survey.trilliumOrTerrace, required: true },
-        celsiusOrCoffee: { type: String, enum: survey.celsiusOrCoffee, required: true },
-        walkOrBus: { type: String, enum: survey.walkOrBus, required: true },
-        fallOrSpring: { type: String, enum: survey.fallOrSpring, required: true },
+        favActivity: [{ type: String, enum: survey.favActivity, required: true }],
+        biggestRedFlag: { type: String, enum: survey.biggestRedFlag, required: true },
         interests: [{ type: String, enum: survey.interests, required: true }],
         music: [{ type: String, enum: survey.music, required: true }],
-        hookupsong: { type: String, required: true },
+        favSong: { type: String, required: true },
         tv: { type: String, enum: survey.tv, required: true },
         date: { type: String, enum: survey.date, required: true },
         whopays: { type: String, enum: survey.whopays, required: true },
-        ick: { type: String, enum: survey.ick, required: true },
         greenflag: { type: String, enum: survey.greenflag, required: true },
         lovelanguage: { type: String, enum: survey.lovelanguage, required: true },
+        showlovelanguage: { type: String, enum: survey.showlovelanguage, required: true },
+        romanceTrope: { type: String, enum: survey.romanceTrope, required: true },
+        lastRelationship: { type: String, enum: survey.lastRelationship, required: true },
         sleeptime: { type: String, enum: survey.sleeptime, required: true },
         waketime: { type: String, enum: survey.waketime, required: true },
-        plans: { type: String, enum: survey.plans, required: true },
         humor: [{ type: String, enum: survey.humor, required: true }],
         sociability: [{ type: String, enum: survey.sociability, required: true }],
         p1: { type: String, enum: survey.range, required: true },
@@ -133,6 +132,7 @@ export const surveySchema: Schema = new Schema<ISurvey>(
         easygoing_same: { type: String, enum: survey.easygoing_same, required: true },
         whySingle: { type: String, enum: survey.whySingle, required: true },
         numdated: { type: Number, min: 0, max: 200, required: true },
+        sexualPartners: { type: Number, min: 0, max: 300, required: false },
         longestrelationship: { type: Number, min: 0, max: 300, required: true },
         ricePurity: { type: String, enum: survey.ricePurity, required: true },
         politics: { type: Number, min: 1, max: 10, required: true },

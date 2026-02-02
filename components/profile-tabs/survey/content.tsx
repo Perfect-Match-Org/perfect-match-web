@@ -26,33 +26,33 @@ export const questions = {
                                     type: 'expression',
                                     text: 'Please enter at least one method of contact',
                                     expression:
-                                        '{contact.phone} notempty or {contact.insta} notempty or {contact.snapchat} notempty or {contact.wechat} notempty or {contact.fb} notempty or {contact.email} notempty or {contact.other} notempty',
+                                        '{contact.phone} notempty or {contact.insta} notempty or {contact.snapchat} notempty or {contact.wechat} notempty or {contact.text} notempty or {contact.whatsapp} notempty or {contact.other} notempty',
                                 },
                             ],
                             items: [
                                 {
                                     name: 'phone',
-                                    title: 'Phone number',
+                                    title: 'Phone',
+                                },
+                                {
+                                    name: 'text',
+                                    title: 'Text',
                                 },
                                 {
                                     name: 'insta',
-                                    title: 'Instagram handle',
+                                    title: 'Instagram',
                                 },
                                 {
                                     name: 'snapchat',
-                                    title: 'Snapchat username',
+                                    title: 'Snapchat',
                                 },
                                 {
                                     name: 'wechat',
-                                    title: 'WeChat username',
+                                    title: 'WeChat',
                                 },
                                 {
-                                    name: 'fb',
-                                    title: 'Facebook profile link',
-                                },
-                                {
-                                    name: 'email',
-                                    title: 'Email / GCal Invite',
+                                    name: 'whatsapp',
+                                    title: 'WhatsApp'
                                 },
                                 {
                                     name: 'other',
@@ -71,6 +71,30 @@ export const questions = {
             description: 'Elements marked <> will be shared with your matches.',
 
             elements: [
+                {
+                    type: 'radiogroup',
+                    name: 'nicheRedFlag',
+                    title: 'Biggest niche Cornell red flag?',
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: 'zeus',
+                            text: 'Only hangs out at Zeus',
+                        },
+                        {
+                            value: 'perfmale',
+                            text: 'Attended the performative male contest',
+                        },
+                        {
+                            value: 'moonclub',
+                            text: 'Runs the Moon Club',
+                        },
+                        {
+                            value: 'bouncers',
+                            text: 'Knows all the CTown bouncers by name',
+                        },
+                    ],
+                },
                 {
                     type: 'radiogroup',
                     name: 'lockIn',
@@ -95,14 +119,14 @@ export const questions = {
                         },
                         {
                             value: 'dorm',
-                            text: 'My cozy dorm'
+                            text: 'My cozy room'
                         },
                     ],
                 },
                 {
                     type: 'radiogroup',
-                    name: 'redFlagClub',
-                    title: 'What club is the biggest red flag?',
+                    name: 'greenFlagClub',
+                    title: 'What club is the biggest green flag?',
                     isRequired: true,
                     choices: [
                         {
@@ -129,29 +153,25 @@ export const questions = {
                 },
                 {
                     type: 'radiogroup',
-                    name: 'worstFirstKiss',
-                    title: 'Worst place to have your first kiss?',
+                    name: 'cornellIck',
+                    title: 'Which sentence would give you the ick immediately?',
                     isRequired: true,
                     choices: [
                         {
-                            value: 'uris',
-                            text: 'Uris G01 in a full lecture',
+                            value: 'busy',
+                            text: '“I’m just really busy this week with prelims(?)”',
                         },
                         {
-                            value: 'okenshields',
-                            text: 'Okenshields wok line',
+                            value: 'coffeechat',
+                            text: '“Let’s move our date, I have a coffee chat”',
                         },
                         {
-                            value: 'duffield',
-                            text: 'Duffield during project team fest',
+                            value: 'labels',
+                            text: '“I don’t really believe in labels”',
                         },
                         {
-                            value: '7/11',
-                            text: '7/11 after Level B',
-                        },
-                        {
-                            value: 'barton',
-                            text: 'Barton Hall during career fair'
+                            value: 'outofhere',
+                            text: '“I can’t wait to get out of here”',
                         },
                     ],
                 },
@@ -170,8 +190,8 @@ export const questions = {
                             text: '“Have sex in the stacks.”',
                         },
                         {
-                            value: 'picnic',
-                            text: '“Have a midnight picnic in the Ag Quad”',
+                            value: 'prof',
+                            text: '“Flirt with your professor”',
                         },
                         {
                             value: 'ra',
@@ -204,128 +224,67 @@ export const questions = {
                     ],
                 },
                 {
-                    type: 'radiogroup',
-                    name: 'bathroom',
-                    title: 'Top-tier, shit-worthy bathroom?',
-                    isRequired: true,
-                    hasOther: true,
-                    choices: [
-                        {
-                            value: 'uris',
-                            text: 'Uris'
-                        },
-                        {
-                            value: 'psb',
-                            text: 'PSB'
-                        },
-                        {
-                            value: 'tang',
-                            text: 'Tang'
-                        },
-                        {
-                            value: 'mvr',
-                            text: "MVR"
-                        },
-                        {
-                            value: 'own',
-                            text: 'My own...'
-                        }
-                    ]
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'olinVsUris',
-                    title: 'Olin or Uris?',
+                    type: 'checkbox',
+                    name: 'favActivity',
+                    title: 'Favorite activities on campus?',
                     isRequired: true,
                     choices: [
                         {
-                            value: 'olin',
-                            text: 'Olin',
+                            value: 'climbing',
+                            text: '🧗 at Lindseth Climbing Center',
                         },
                         {
-                            value: 'uris',
-                            text: 'Uris',
+                            value: 'badminton',
+                            text: '🏸 at Helen Newman',
+                        },
+                        {
+                            value: 'skating',
+                            text: 'Ice ⛸️ at Lynah Rink',
+                        },
+                        {
+                            value: 'tennis',
+                            text: '🎾 on McClintock Courts',
+                        },
+                        {
+                            value: 'bowling',
+                            text: '🎳 at Helen Newman'
+                        },
+                        {
+                            value: 'volleyball',
+                            text: 'Beach 🏐on Dickson courts'
+                        },
+                        {
+                            value: 'movie',
+                            text: 'I’d rather stay in the lounge and watch a movie!'
                         }
                     ],
                 },
                 {
                     type: 'radiogroup',
-                    name: 'northVsWest',
-                    title: 'North or West?',
+                    name: 'biggestRedFlag',
+                    title: 'Biggest red flag?',
                     isRequired: true,
                     choices: [
                         {
-                            value: 'north',
-                            text: 'North',
+                            value: 'latenight',
+                            text: 'Only texts after 11pm',
                         },
                         {
-                            value: 'west',
-                            text: 'West',
-                        }
-                    ],
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'trilliumOrTerrace',
-                    title: 'Trillium or Terrace?',
-                    isRequired: true,
-                    choices: [
-                        {
-                            value: 'trillium',
-                            text: 'Trillium',
+                            value: 'ex',
+                            text: 'Mentions their ex on the first date',
                         },
                         {
-                            value: 'terrace',
-                            text: 'Terrace',
-                        }
-                    ],
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'celciusOrCoffee',
-                    title: 'Celsius or Coffee?',
-                    isRequired: true,
-                    choices: [
-                        {
-                            value: 'celsius',
-                            text: 'Celsius',
+                            value: 'friends',
+                            text: '“Forgets” to introduce you to friends',
                         },
                         {
-                            value: 'coffee',
-                            text: 'Coffee',
-                        }
-                    ],
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'walkOrBus',
-                    title: 'Walk or Bus?',
-                    isRequired: true,
-                    choices: [
-                        {
-                            value: 'walk',
-                            text: 'Walk',
+                            value: 'disappears',
+                            text: 'Disappears during prelim week',
                         },
                         {
-                            value: 'bus',
-                            text: 'Bus',
-                        }
-                    ],
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'fallOrSpring',
-                    title: 'Fall Semester or Spring Semester?',
-                    isRequired: true,
-                    choices: [
-                        {
-                            value: 'fall',
-                            text: 'Fall',
+                            value: 'public',
+                            text: 'Sees you in public and pretends not to'
                         },
-                        {
-                            value: 'spring',
-                            text: 'Spring',
-                        }
                     ],
                 },
             ],
@@ -452,11 +411,11 @@ export const questions = {
                     ],
                 },
                 {
-                    name: 'hookupsong',
+                    name: 'favSong',
                     isRequired: false,
 
                     type: 'text',
-                    title: 'The most recent song on my hook-up playlist is…',
+                    title: 'My favorite song right now is…',
                 },
             ],
         },
@@ -470,32 +429,28 @@ export const questions = {
                     isRequired: true,
                     choices: [
                         {
-                            value: 'squid',
-                            text: 'Squid Game',
+                            value: 'stranger',
+                            text: 'Stranger Things',
+                        },
+                        {
+                            value: 'severance',
+                            text: 'Severance',
                         },
                         {
                             value: 'singlesInferno',
-                            text: 'Singles Inferno',
+                            text: 'Single’s Inferno',
                         },
                         {
-                            value: 'xoKitty',
-                            text: 'XO Kitty',
+                            value: 'knight',
+                            text: 'A Knight of the Seven Kingdoms',
                         },
                         {
-                            value: 'himym',
-                            text: 'How I Met Your Mother',
+                            value: 'office',
+                            text: 'The Office',
                         },
                         {
-                            value: 'breakingBad',
-                            text: 'Breaking Bad',
-                        },
-                        {
-                            value: 'gameOfThrones',
-                            text: 'Game of Thrones',
-                        },
-                        {
-                            value: 'jjk',
-                            text: 'Jujutsu Kaisen',
+                            value: 'rivalry',
+                            text: 'Heated Rivalry',
                         },
                     ],
                 },
@@ -529,58 +484,33 @@ export const questions = {
                             value: 'levelb',
                             text: 'Level B',
                         },
+                        {
+                            value: 'greekpeak',
+                            text: 'Greek Peak',
+                        }
                     ],
                 },
                 {
                     type: 'radiogroup',
                     name: 'whopays',
-                    title: 'Would you prefer that your match ___ on the first date',
+                    title: 'Who pays on the first date?',
                     isRequired: true,
                     choices: [
                         {
                             value: 'pays',
-                            text: 'Pays',
+                            text: 'Your date',
                         },
                         {
                             value: 'splits',
-                            text: 'Splits',
+                            text: 'Split',
                         },
                         {
                             value: 'youpay',
-                            text: 'Lets you pay',
+                            text: 'You',
                         },
                         {
                             value: 'doesntmatter',
                             text: "It doesn't matter",
-                        },
-                    ],
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'ick',
-                    title: 'What’s your biggest ick in a relationship?',
-                    isRequired: true,
-                    choices: [
-                        //Owns Spiritual Crystals, Bad Tipper, From Westchester, Claps when the plane lands, Calls their favorite sports team ‘we’
-                        {
-                            value: 'crystals',
-                            text: 'Owns Spiritual Crystals',
-                        },
-                        {
-                            value: 'tipper',
-                            text: 'Bad Tipper',
-                        },
-                        {
-                            value: 'westchester',
-                            text: 'From Westchester',
-                        },
-                        {
-                            value: 'plane',
-                            text: 'Claps when the plane lands',
-                        },
-                        {
-                            value: 'sportsteam',
-                            text: 'Calls their favorite sports team \'we\'',
                         },
                     ],
                 },
@@ -591,39 +521,31 @@ export const questions = {
                     isRequired: true,
                     choices: [
                         {
-                            value: 'gcaldate',
-                            text: 'Send you a GCal invite for the date',
+                            value: 'details',
+                            text: 'Remembers the small details about you',
                         },
                         {
-                            value: 'petlike',
-                            text: 'Your pet likes them',
+                            value: 'friends',
+                            text: 'Gets along with your friends',
                         },
                         {
-                            value: 'screentime',
-                            text: 'Low screen time',
+                            value: 'ambitions',
+                            text: 'Has goals and ambitions',
                         },
                         {
-                            value: 'smellsgood',
-                            text: 'Smells good',
+                            value: 'stupid',
+                            text: 'Not afraid of looking stupid',
                         },
                         {
-                            value: 'gymrat',
-                            text: 'Gym goer',
-                        },
-                        {
-                            value: 'kids',
-                            text: 'Good with kids',
-                        },
-                        {
-                            value: 'gpa',
-                            text: '4.0 GPA',
+                            value: 'strangers',
+                            text: 'Kind to strangers',
                         },
                     ],
                 },
                 {
                     type: 'radiogroup',
                     name: 'lovelanguage',
-                    title: 'What\'s your most important love language?',
+                    title: 'How do you like to receive affection?',
                     isRequired: true,
                     choices: [
                         {
@@ -649,6 +571,94 @@ export const questions = {
                         {
                             value: 'unsure',
                             text: 'Not sure',
+                        },
+                    ],
+                },
+                {
+                    type: 'radiogroup',
+                    name: 'showlovelanguage',
+                    title: 'How do you like to show affection? ',
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: 'acts',
+                            text: 'Acts of service',
+                        },
+                        {
+                            value: 'quality',
+                            text: 'Quality time',
+                        },
+                        {
+                            value: 'gifts',
+                            text: 'Receiving gifts',
+                        },
+                        {
+                            value: 'touch',
+                            text: 'Physical touch',
+                        },
+                        {
+                            value: 'words',
+                            text: 'Words of affirmation',
+                        },
+                        {
+                            value: 'unsure',
+                            text: 'Not sure',
+                        },
+                    ],
+                },
+                {
+                    type: 'radiogroup',
+                    name: 'romanceTrope',
+                    title: 'What’s your favorite romance trope?',
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: 'enemies',
+                            text: 'Enemies to lovers',
+                        },
+                        {
+                            value: 'fake',
+                            text: 'Fake dating',
+                        },
+                        {
+                            value: 'triangle',
+                            text: 'Love triangle',
+                        },
+                        {
+                            value: 'childhood',
+                            text: 'Childhood friends to lovers',
+                        },
+                        {
+                            value: 'step',
+                            text: 'Step siblings',
+                        },
+                        {
+                            value: 'vanilla',
+                            text: 'Vanilla romance',
+                        },
+                    ],
+                },
+                {
+                    type: 'radiogroup',
+                    name: 'lastRelationship',
+                    title: 'How did your last relationship go?',
+                    isRequired: true,
+                    choices: [
+                        {
+                            value: 'longterm',
+                            text: 'We broke up because of long term incompatibility',
+                        },
+                        {
+                            value: 'toxic',
+                            text: 'We hate each other',
+                        },
+                        {
+                            value: 'casual',
+                            text: 'It wasn’t that deep',
+                        },
+                        {
+                            value: 'neverdated',
+                            text: 'I’ve never dated',
                         },
                     ],
                 },
@@ -683,30 +693,6 @@ export const questions = {
                         '1pm',
                         '2pm',
                         '3pm',
-                    ],
-                },
-                {
-                    type: 'radiogroup',
-                    name: 'plans',
-                    title: 'Your plans get messed up for the day. You would...?',
-                    isRequired: true,
-                    choices: [
-                        {
-                            value: 'shift',
-                            text: 'Shift your day’s schedule',
-                        },
-                        {
-                            value: 'flow',
-                            text: 'Go with the flow',
-                        },
-                        {
-                            value: 'cancel',
-                            text: 'Cancel all your plans',
-                        },
-                        {
-                            value: 'new',
-                            text: 'Contact someone to make entirely new plans',
-                        },
                     ],
                 },
                 {
@@ -985,6 +971,10 @@ export const questions = {
                         {
                             value: 'idk',
                             text: 'Idk man'
+                        },
+                        {
+                            value: "notsingle",
+                            text: "I'm not single"
                         }
                     ]
                 }
@@ -1010,6 +1000,21 @@ export const questions = {
                 },
                 {
                     type: 'text',
+                    name: 'sexualPartners',
+                    title: 'How many sexual partners have you had?',
+                    requiredErrorText: 'You answer must be between 0 and 300',
+                    isRequired: false,
+                    validators: [
+                        {
+                            type: 'numeric',
+                            text: '',
+                            minValue: 0,
+                            maxValue: 300,
+                        },
+                    ],
+                },
+                {
+                    type: 'text',
                     name: 'longestrelationship',
                     title: 'How many months was your longest relationship? (put 0 if not applicable)',
                     requiredErrorText: 'You answer must be between 0 and 300',
@@ -1030,48 +1035,40 @@ export const questions = {
                     isRequired: true,
                     choices: ['0-20', '21-40', '41-60', '61-80', '81-100', 'Skip'],
                 },
-                // {
-                //     type: 'checkbox',
-                //     name: 'apps',
-                //     title: 'What dating apps do you use',
-                //     hasNone: true,
-
-                //     isRequired: true,
-                //     choices: [
-                //         {
-                //             value: 'tinder',
-                //             text: 'Tinder',
-                //         },
-                //         {
-                //             value: 'bumble',
-                //             text: 'Bumble',
-                //         },
-                //         {
-                //             value: 'grindr',
-                //             text: 'Grindr',
-                //         },
-                //         {
-                //             value: 'hinge',
-                //             text: 'Hinge',
-                //         },
-                //     ],
-                // },
                 {
-                    type: 'rating',
-                    name: 'politics',
-                    title: 'What are your political tendencies?',
-                    rateMax: 10,
-                    isRequired: true,
-                    minRateDescription: 'Left',
-                    maxRateDescription: 'Right',
-                },
-                {
-                    type: 'rating',
-                    name: 'politically_active',
-                    title: 'I consider myself politically active.',
-                    isRequired: true,
-                    minRateDescription: 'Very inactive',
-                    maxRateDescription: 'Very active',
+                    type: 'matrix',
+                    name: 'politicalViews',
+                    title: 'Rate your political tendencies (1-10)',
+                    columns: [
+                        { value: 1, text: '1' },
+                        { value: 2, text: '2' },
+                        { value: 3, text: '3' },
+                        { value: 4, text: '4' },
+                        { value: 5, text: '5' },
+                        { value: 6, text: '6' },
+                        { value: 7, text: '7' },
+                        { value: 8, text: '8' },
+                        { value: 9, text: '9' },
+                        { value: 10, text: '10' },
+                    ],
+                    rows: [
+                        {
+                            value: 'view',
+                            text: 'Left (1) to Right (10)',
+                        },
+                        {
+                            value: 'social',
+                            text: 'Socially liberal (1) to conservative (10)',
+                        },
+                        {
+                            value: 'activity',
+                            text: 'How politically active are you (1 is lowest, 10 is highest)?',
+                        },
+                        {
+                            value: 'cornellImpact',
+                            text: 'How much has Cornell affected your political opinions (1 is lowest, 10 is highest)?',
+                        },
+                    ],
                 },
                 {
                     type: 'matrix',
@@ -1188,6 +1185,30 @@ export const questions = {
                         {
                             value: 'social',
                             text: 'Difference in social habits',
+                        },
+                        {
+                            value: 'intimate',
+                            text: 'Number of intimate partners',
+                        },
+                        {
+                            value: 'broke',
+                            text: 'Being financially broke',
+                        },
+                        {
+                            value: 'height',
+                            text: 'Height',
+                        },
+                        {
+                            value: 'fitness',
+                            text: 'Fitness level',
+                        },
+                        {
+                            value: 'distance',
+                            text: 'Long distance',
+                        },
+                        {
+                            value: 'porn',
+                            text: 'Watches porn',
                         },
                     ],
                     hasNone: true,
