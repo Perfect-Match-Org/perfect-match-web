@@ -51,7 +51,7 @@ const Home: NextPage = (props: any) => {
                 <p className="text-sm sm:text-base font-work-sans">
                     Be the face of Perfect Match. {' '}
                     <a
-                        href="https://forms.gle/perfectmatch"
+                        href="https://forms.gle/zMU4HtEwTyha1Ct68"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline font-bold hover:text-pmpink-500 transition-colors"
