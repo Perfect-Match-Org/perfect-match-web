@@ -57,7 +57,7 @@ const Home: NextPage = (props: any) => {
                         <div className="lg:w-1/2">
                             <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                                 <div className="">
-                                    <h1 className="text-2xl text-pmpink font-dm-sans font-extrabold sm:text-3xl lg:text-4xl 2xl:text-6xl sm:mt-5 ">
+                                    <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-4xl 2xl:text-6xl sm:mt-5 ">
                                         <span className="bg-[#07154b] box-decoration-clone px-2 leading-[1.2]">WE KNOW YOU&apos;VE BEEN WAITING</span>
                                     </h1>
                                 </div>
@@ -94,7 +94,7 @@ const Home: NextPage = (props: any) => {
 
                     <div className="pb-6 pt-8 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-1/2 lg:pr-3 lg:left-0">
                         <div className="text-center lg:text-left sm:mx-auto mt-8 sm:mt-0 opacity-100 space-y-6">
-                            <h1 className="text-3xl text-pmpink font-extrabold sm:text-5xl font-dm-sans">
+                            <h1 className="text-3xl text-pmpink-500 font-extrabold sm:text-5xl font-dm-sans">
                                 <span className="bg-pmblue2-800 box-decoration-clone px-2 leading-[1.2]">CAPTIVATING HEARTS SINCE 2019</span>
                             </h1>
                             <div className=''>

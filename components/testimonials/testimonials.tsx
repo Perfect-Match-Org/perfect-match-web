@@ -287,7 +287,7 @@ export function Reviews() {
                 id="reviews-title"
                 className="font-dm-sans text-3xl font-bold text-white sm:text-4xl"
               >
-                <span className="box-decoration-clone bg-pmblue2-800 px-2 leading-[1.4]">
+                <span className="box-decoration-clone bg-pmblue2-800 px-2 leading-[1.4] text-pmpink-500">
                   Found the love of your life <br className="hidden sm:block" /> through Perfect Match?
                 </span>
               </h1>
