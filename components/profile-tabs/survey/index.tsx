@@ -79,9 +79,20 @@ const SurveyComponent = (props: any) => {
                         active:shadow-none" >
                     Review answers
                 </button>
-                <p className="mt-10 text-pmblue-500 text-lg font-bold">Psst…want an extra shot at finding your soulmate?</p>
-                <p className="text-pmblue-500">Try Dating with Data, a research study on dating apps run by a research team at the University of Chicago.<br />It&apos;s like a dating app…except you get paid $20 just for using it!</p>
-                <p className="text-pmblue-500">Learn more at <a className="underline" href="https://datingwithdata.com">DatingWithData.com</a>, and sign up <a className="underline" href="https://uchicago.co1.qualtrics.com/jfe/form/SV_08qzg4aRgjVWxJY">here</a>!</p>
+                <div className="
+                        mt-10
+                        px-2
+                        py-6
+                        bg-white
+                        text-pmred-500
+                        border-4
+                        border-pmblue-500
+                        shadow-[10px_10px_0px_0px_rgba(36,67,141,1)]" >
+                    <p className="text-pmred-500 text-xl font-bold">Psst…want an extra shot at finding your soulmate?</p>
+                    <p className="text-pmblue-500">Try Dating with Data, a research study on dating apps run by researchers at the University of Chicago.</p>
+                    <p className="text-pmblue-500 font-semibold">It&apos;s like a dating app…except you get paid $20 just for using it!</p>
+                    <p className="text-pmblue-500">Learn more at <a className="underline" href="https://datingwithdata.com">DatingWithData.com</a>, and sign up <a className="underline" href="https://uchicago.co1.qualtrics.com/jfe/form/SV_08qzg4aRgjVWxJY">here</a>!</p>
+                </div>
             </div>
         );
     };
