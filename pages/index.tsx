@@ -46,6 +46,21 @@ const Home: NextPage = (props: any) => {
             </div>
             */}
 
+            {/* Application Banner */}
+            <div className="bg-pmblue-500 text-white text-center py-2 px-3">
+                <p className="text-sm sm:text-base font-work-sans">
+                    Be the face of Perfect Match. {' '}
+                    <a
+                        href="https://forms.gle/perfectmatch"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline font-bold hover:text-pmpink-500 transition-colors"
+                    >
+                        Apply to become our video content creator! &rarr;
+                    </a>
+                </p>
+            </div>
+
             {/* Scrolling Marquee Banner - Top */}
             <MarqueeBanner text="PERFECT MATCH IS OPEN" />
 
