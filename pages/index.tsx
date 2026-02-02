@@ -58,14 +58,14 @@ const Home: NextPage = (props: any) => {
                             <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                                 <div className="">
                                     <h1 className="text-2xl text-pmpink font-dm-sans font-extrabold sm:text-3xl lg:text-4xl 2xl:text-6xl sm:mt-5 ">
-                                        <span className="bg-[#07154b] box-decoration-clone px-2 leading-[1.2]">WE KNOW YOU'VE BEEN WAITING</span>
+                                        <span className="bg-[#07154b] box-decoration-clone px-2 leading-[1.2]">WE KNOW YOU&apos;VE BEEN WAITING</span>
                                     </h1>
                                 </div>
                                 <div className='font-work-sans'>
                                     <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
                                         The form closes <strong>February 12th</strong>
                                         <br />
-                                        Be sure to fill it in time so you're not alone on Valentine's Day ;&#41;
+                                        Be sure to fill it in time so you&apos;re not alone on Valentine&apos;s Day ;&#41;
                                         <br />
                                         <br />
                                         <strong>{currentCount?.count || '2243'}</strong> Cornellians have already filled it out
