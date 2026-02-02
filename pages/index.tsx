@@ -68,7 +68,7 @@ const Home: NextPage = (props: any) => {
                                         Be sure to fill it in time so you&apos;re not alone on Valentine&apos;s Day ;&#41;
                                         <br />
                                         <br />
-                                        <strong>{currentCount?.count || '2243'}</strong> Cornellians have already filled it out
+                                        <strong>{currentCount ?? '...'}</strong> Cornellians have already filled it out
                                     </p>
                                     {!props.user ? (
                                         <GoogleAuth login={!props.user} />
