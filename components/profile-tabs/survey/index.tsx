@@ -48,6 +48,7 @@ const SurveyComponent = (props: any) => {
         window.localStorage.removeItem(storageName);
         await fetch('/api/survey', {
             method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...survey.data, complete: true })
         });
         setDone(true);
