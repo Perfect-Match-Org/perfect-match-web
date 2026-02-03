@@ -1,3 +1,5 @@
+import { classYear } from '@/types/profileEnums';
+
 export const team = [
     {
         Name: 'Engineering',
@@ -7,7 +9,7 @@ export const team = [
             {
                 Name: 'Daniel Chuang',
                 ClassYear: 2026,
-                Major: 'CS & Math & Gov',
+                Major: 'CS & Math',
                 Img: '/members/daniel.png',
                 Linkedin: 'https://www.linkedin.com/in/daniel-chuang-7a1bb920b/',
                 Title1: 'Engineering Team Lead',
@@ -18,19 +20,16 @@ export const team = [
                 ClassYear: 2027,
                 Major: 'CS',
                 Img: '/members/cindy.jpg',
-                Linkedin:
-                    ' https://www.linkedin.com/in/cindy-li-569a30187/',
+                Linkedin: ' https://www.linkedin.com/in/cindy-li-569a30187/',
                 Title1: 'Engineering Team Lead',
                 Title2: 'Algorithms & Web Dev Subteam Member',
-
             },
             {
                 Name: 'Joyce Shen',
                 ClassYear: 2027,
                 Major: 'CS & ECE',
                 Img: '/members/joyce.png',
-                Linkedin:
-                    'https://www.linkedin.com/in/jshen127/',
+                Linkedin: 'https://www.linkedin.com/in/jshen127/',
                 Title1: 'Algorithms Subteam Head',
             },
             {
@@ -38,8 +37,7 @@ export const team = [
                 ClassYear: 2027,
                 Major: 'CS',
                 Img: '/members/huajie.png',
-                Linkedin:
-                    'https://www.linkedin.com/in/huajiezhong/',
+                Linkedin: 'https://www.linkedin.com/in/huajiezhong/',
                 Title1: 'Web Dev Subteam Head',
             },
             {
@@ -56,8 +54,7 @@ export const team = [
                 ClassYear: 2027,
                 Major: 'CS',
                 Img: '/members/ashlie.png',
-                Linkedin:
-                    'https://www.linkedin.com/in/ashlie-zhang-8982b7296/',
+                Linkedin: 'https://www.linkedin.com/in/ashlie-zhang-8982b7296/',
                 Title1: 'Web Dev Subteam Member',
             },
             {
@@ -65,8 +62,7 @@ export const team = [
                 ClassYear: 2028,
                 Major: 'CS',
                 Img: '/members/evan.jpg',
-                Linkedin:
-                    'https://www.linkedin.com/in/evan-wang-938b73274/',
+                Linkedin: 'https://www.linkedin.com/in/evan-wang-938b73274/',
                 Title1: 'Web Dev Subteam Member',
             },
             {
@@ -74,10 +70,17 @@ export const team = [
                 ClassYear: 2028,
                 Major: 'ORIE',
                 Img: '/members/eunice.jpg',
-                Linkedin:
-                    'https://www.linkedin.com/in/eunice-son-015148248',
+                Linkedin: 'https://www.linkedin.com/in/eunice-son-015148248',
                 Title1: 'Data Analytics Subteam Member',
-            }
+            },
+            {
+                Name: 'Alex Saccone',
+                classYear: 2028,
+                Major: 'CS & Math',
+                Img: '/members/alex.png',
+                Linkedin: 'https://www.linkedin.com/in/alex-saccone-3b9679234/',
+                Title1: 'Data Analytics Subteam Member',
+            },
         ],
     },
     {
@@ -109,8 +112,7 @@ export const team = [
                 ClassYear: 2027,
                 Major: 'Econ & Gov',
                 Img: '/members/elif.png',
-                Linkedin:
-                    ' https://www.linkedin.com/in/elif-naz-yilmaz/',
+                Linkedin: ' https://www.linkedin.com/in/elif-naz-yilmaz/',
                 Title1: 'Business Team Lead',
             },
             {
@@ -118,17 +120,15 @@ export const team = [
                 ClassYear: 2027,
                 Major: 'Information Science',
                 Img: '/members/connie.png',
-                Linkedin:
-                    'https://www.linkedin.com/in/connie-zhang-profile',
+                Linkedin: 'https://www.linkedin.com/in/connie-zhang-profile',
                 Title1: 'Designer',
             },
             {
-                Name: 'Lydia Lin',
-                ClassYear: 2025,
-                Major: 'MPS Info Sci',
-                Img: '/members/lydia.png',
-                Linkedin:
-                    'https://www.linkedin.com/in/lydia-lin-42a977325/',
+                Name: 'Seojin Park',
+                ClassYear: 2028,
+                Major: 'Fine/Studio Arts',
+                Img: '/members/seojin.png',
+                Linkedin: 'https://www.linkedin.com/in/seojinparkart/',
                 Title1: 'Designer',
             },
             {
@@ -136,10 +136,9 @@ export const team = [
                 ClassYear: 2028,
                 Major: 'CS',
                 Img: '/members/carl.jpg',
-                Linkedin:
-                    'https://www.linkedin.com/in/carl-hu/',
+                Linkedin: 'https://www.linkedin.com/in/carl-hu/',
                 Title1: 'Business Team Member',
-            }
+            },
             // {
             //     Name: 'Lucy Yang',
             //     ClassYear: 2026,
