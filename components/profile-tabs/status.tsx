@@ -11,7 +11,7 @@ const Status: any = (props: any) => {
             <div className="px-4 sm:py-20 bg-lightblue">
                 <div className="fle max-w-6xl mx-auto text-gray-600">
                     <dl className="w-full md:w-full">
-                        <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-gray-500 font-extrabold leading-9 md:w-1/3">
+                        <h2 className="pt-12 pb-6 w-full sm:py-4 mr-8 text-3xl text-pmred-500 font-extrabold leading-9 md:w-1/3">
                             Status
                         </h2>
                         <p className={props?.optIn ? 'mb-4 font-bold text-green-500' : 'mb-4 font-bold text-red-400'}>
@@ -42,7 +42,7 @@ const Status: any = (props: any) => {
                                 'You have completed all the steps! Matchmaking will begin soon🎉🥳!'}
                         </p>
                         <dt className="mb-4">
-                            <h3 className="text-xl font-semibold">❗Tasks❗</h3>
+                            <h3 className="text-xl font-bold text-pmred-500">❗Tasks❗</h3>
                         </dt>
                         <ol className="mb-8 list-decimal list-inside">
                             Please complete all required steps to be included to this year&apos;s matching.
@@ -65,7 +65,7 @@ const Status: any = (props: any) => {
                             </li>
                         </ol>
                         <dt className="mb-4">
-                            <h3 className="text-xl font-semibold">Opt-Out</h3>
+                            <h3 className="text-xl font-bold text-pmred-500">Opt-Out</h3>
                         </dt>
                         <dd className="mb-8">
                             <section id="opt" className={props.optIn ? 'text-green-500' : 'text-red-400'}>

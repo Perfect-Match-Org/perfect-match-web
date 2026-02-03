@@ -19,16 +19,16 @@ const MarqueeBanner = ({
     const duration = totalWidth / speed;
 
     return (
-        <div className="bg-pmred-500 overflow-hidden whitespace-nowrap py-1">
+        <div className="bg-pmred-500 overflow-hidden whitespace-nowrap pt-0 pb-2">
             <div
                 className="animate-marquee inline-flex"
                 style={{ '--marquee-duration': `${duration}s` } as React.CSSProperties}
             >
                 {Array(2).fill(0).map((_, i) => (
                     Array(repeatCount).fill(0).map((_, j) => (
-                        <span key={`${i}-${j}`} className="inline-flex items-center text-white font-dm-sans font-bold text-2xl ml-2">
+                        <span key={`${i}-${j}`} className="inline-flex items-center text-white font-swirly-canalope font-bold text-3xl ml-2">
                             <span>{text}</span>
-                            <span className="text-white font-dm-sans font-bold text-sm ml-2">{separator}</span>
+                            <span className="text-white font-bold text-sm ml-2 mt-3">{separator}</span>
                         </span>
                     ))
                 ))}

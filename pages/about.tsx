@@ -20,11 +20,11 @@ const About: any = (props: any) => {
                             className="flex gap-6 lg:gap-10 items-center px-4 max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-0 flex-col lg:flex-row mx-[5%] sm:mx-[10%] lg:mx-[15%] sm:py-16 lg:py-20 py-12"
                         >
                             <div className="sm:text-lg">
-                                <h2 className="mb-6 text-3xl sm:text-5xl font-dm-sans font-extrabold text-white">
-                                    <span className="bg-pmblue2-800 box-decoration-clone p-2 leading-[1.4]">CUPID JUST GOT SMARTER!</span>
+                                <h2 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
+                                    <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">CUPID JUST GOT SMARTER!</span>
                                 </h2>
 
-                                <div className='font-work-sans text-pmblue2-800 text-base sm:text-lg font-medium'>
+                                <div className='font-work-sans text-pmblue2-800 text-base sm:text-lg font-medium mt-6'>
                                     <p className="sm:mb-4 mb-0 ">
                                         Perfect Match is a matchmaking survey ideated in February 2019. Our machine learning algorithm uses your survey to pair you with other Cornell students — your Perfect Matches!</p>
 
