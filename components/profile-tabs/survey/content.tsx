@@ -159,7 +159,7 @@ export const questions = {
                     choices: [
                         {
                             value: 'busy',
-                            text: '“I’m just really busy this week with prelims(?)”',
+                            text: '“I’m just really busy this week with prelims”',
                         },
                         {
                             value: 'coffeechat',
