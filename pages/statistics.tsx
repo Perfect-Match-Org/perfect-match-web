@@ -36,16 +36,16 @@ const Statistics = (props: { title: string }) => {
                 <div className="pb-8 sm:pb-16 sm:pt-16 lg:pt-32 lg:pb-36">
                     <div className="max-w-xl text-center sm:text-left sm:ml-[15%] lg:mt-8 sm:mt-0 opacity-100">
                         <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                            <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">
+                            <span className="bg-[#07154b] box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">
                                 Can Love be Visualized?
                             </span>
                         </h1>
-                        <p className="font-semibold mt-8 mx-[10%] sm:mx-0 lg:text-xl sm:text-lg text-pmblue-500 sm:leading-relaxed">
+                        <p className="font:semibold mt-8 mx-[10%] sm:mx-0 lg:text-xl sm:text-lg text-pmblue-500 sm:leading-relaxed">
                             <strong>
                                 Perhaps not without daydreaming about your crush, but your survey responses can!
                             </strong>{' '}
                         </p>
-                        <p className="font-semibold mt-3 mx-[10%] sm:mx-0 lg:text-lg sm:text-md text-pmblue-500 sm:leading-relaxed">
+                        <p className="font:semibold mt-3 mx-[10%] sm:mx-0 lg:text-lg sm:text-md text-pmblue-500 sm:leading-relaxed">
                             Join us on this journey to learn about some of the preferences and habits we&apos;ve
                             discovered from several years of survey responses!
                         </p>
@@ -58,7 +58,7 @@ const Statistics = (props: { title: string }) => {
                 <div className="w-full bg-pmpink2-500 py-8 sm:py-12">
                     <div className="w-full max-w-screen-lg mx-auto flex flex-col md:flex-row items-center justify-center text-white px-6 sm:px-12">
 
-                        <div className="md:flex flex-wrap justify-center items-center md:justify-start gap-4 mb-6 md:mt-0">
+                        <div className="hidden md:flex flex-wrap justify-center align-center gap-4 mb-6 md:mt-0">
                             {[2022, 2023, 2024].map((y) => (
                                 <Button key={y} onClick={() => setYear(y)} bold={true}>
                                     {y}
@@ -68,7 +68,13 @@ const Statistics = (props: { title: string }) => {
                     </div>
                 </div>
 
-                {year === 2022 ? <Stats2022 /> : year === 2023 ? <Stats2023 /> : <Stats2024 />}
+                {year === 2022 ? (
+                    <Stats2022 />
+                ) : year === 2023 ? (
+                    <Stats2023 />
+                ) : (
+                    <Stats2024 />
+                )}
             </div>
 
             <section className="bg-pmpink-500">
