@@ -1,13 +1,11 @@
 import React from 'react';
-import Bar from './live-charts-2025/barTemplate';
-import Pie from './live-charts-2025/pieTemplate';
-import TreeMap from './live-charts-2024/treeMapTemplate';
-import DescribeSelfLive from './live-charts-2024/describeSelfLive';
-import BestAlternativeLive from './live-charts-2024/bestAlternativeLive';
-import DescribePartnerLive from './live-charts-2024/describePartnerLive';
-import IckLive from './live-charts-2024/ickLive';
-import RelationshipTypeLive from './live-charts-2024/relationshipTypeLive';
-import LoveLanguageLive from './live-charts-2024/loveLanguageLive';
+import TreeMap from './live-charts-2025/treeMapTemplate';
+import DescribeSelfLive from './live-charts-2025/describeSelfLive';
+import BestAlternativeLive from './live-charts-2025/bestAlternativeLive';
+import DescribePartnerLive from './live-charts-2025/describePartnerLive';
+import IckLive from './live-charts-2025/ickLive';
+import RelationshipTypeLive from './live-charts-2025/relationshipTypeLive';
+import LoveLanguageLive from './live-charts-2025/loveLanguageLive';
 
 function LiveDashboard() {
     return (

@@ -1,7 +1,6 @@
 import useSWR from 'swr';
 import { fetcher, analysisURL } from '@/utils/fetch';
 import dynamic from 'next/dynamic';
-import { SurveyModel } from 'survey-react';
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
@@ -19,7 +18,7 @@ const IckLive = () => {
     ];
     const options = {
         chart: {
-            type: 'pie',
+            type: 'bar',
             toolbar: {
                 show: false,
                 tools: {
