@@ -21,7 +21,7 @@ const About: any = (props: any) => {
                         >
                             <div className="sm:text-lg">
                                 <h2 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                    <span className="bg-[#07154b] box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">CUPID JUST GOT SMARTER!</span>
+                                    <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">CUPID JUST GOT SMARTER!</span>
                                 </h2>
 
                                 <div className='font-work-sans text-pmblue2-800 text-base sm:text-lg font-medium mt-6'>

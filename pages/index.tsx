@@ -73,7 +73,7 @@ const Home: NextPage = (props: any) => {
                             <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                                 <div className="">
                                     <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                        <span className="bg-[#07154b] box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">WE KNOW YOU&apos;VE BEEN WAITING</span>
+                                        <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">WE KNOW YOU&apos;VE BEEN WAITING</span>
                                     </h1>
                                 </div>
                                 <div className='font-work-sans'>
@@ -110,7 +110,7 @@ const Home: NextPage = (props: any) => {
                     <div className="pb-6 pt-8 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-1/2 lg:pr-3 lg:left-0">
                         <div className="text-center lg:text-left sm:mx-auto mt-8 sm:mt-0 opacity-100 space-y-6">
                             <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                <span className="bg-[#07154b] box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">CAPTIVATING HEARTS SINCE 2019</span>
+                                <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">CAPTIVATING HEARTS SINCE 2019</span>
                             </h1>
                             <div className=''>
                                 <div className='text-lg text-pmblue-500 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed font-work-sans space-y-4'>
