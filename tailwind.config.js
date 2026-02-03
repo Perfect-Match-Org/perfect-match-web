@@ -35,7 +35,7 @@ module.exports = {
                 'work-sans': ['Work Sans', 'sans-serif'],
                 'press-start': ['"Press Start 2P"', 'sans-serif'],
                 'dm-sans': ['DM Sans', 'sans-serif'],
-                'swirly-canalope': ['"Swirly Canalope"', 'cursive'],
+                'swirly-canalope': ['"Pinyon Script"', 'cursive'],
             },
             keyframes: {
                 jiggle: {
