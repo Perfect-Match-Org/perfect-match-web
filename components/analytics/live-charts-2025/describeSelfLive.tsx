@@ -12,48 +12,10 @@ const DescribeSelfLive = () => {
 
     const series = [
         {
-            data: [
-                {
-                    x: Object.keys(describeselfCount)[0],
-                    y: Object.values(describeselfCount)[0],
-                },
-                {
-                    x: Object.keys(describeselfCount)[1],
-                    y: Object.values(describeselfCount)[1],
-                },
-                {
-                    x: Object.keys(describeselfCount)[2],
-                    y: Object.values(describeselfCount)[2],
-                },
-                {
-                    x: Object.keys(describeselfCount)[3],
-                    y: Object.values(describeselfCount)[3],
-                },
-                {
-                    x: Object.keys(describeselfCount)[4],
-                    y: Object.values(describeselfCount)[4],
-                },
-                {
-                    x: Object.keys(describeselfCount)[5],
-                    y: Object.values(describeselfCount)[5],
-                },
-                {
-                    x: Object.keys(describeselfCount)[6],
-                    y: Object.values(describeselfCount)[6],
-                },
-                {
-                    x: Object.keys(describeselfCount)[7],
-                    y: Object.values(describeselfCount)[7],
-                },
-                {
-                    x: Object.keys(describeselfCount)[8],
-                    y: Object.values(describeselfCount)[8],
-                },
-                {
-                    x: Object.keys(describeselfCount)[9],
-                    y: Object.values(describeselfCount)[9],
-                },
-            ],
+            data: Object.entries(describeselfCount || {}).slice(0, 10).map(([key, value]) => ({
+                x: key,
+                y: value as number,
+            })),
         },
     ];
     const options = {

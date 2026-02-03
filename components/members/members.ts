@@ -1,5 +1,3 @@
-import { classYear } from '@/types/profileEnums';
-
 export const team = [
     {
         Name: 'Engineering',
@@ -75,7 +73,7 @@ export const team = [
             },
             {
                 Name: 'Alex Saccone',
-                classYear: 2028,
+                ClassYear: 2028,
                 Major: 'CS & Math',
                 Img: '/members/alex.png',
                 Linkedin: 'https://www.linkedin.com/in/alex-saccone-3b9679234/',
