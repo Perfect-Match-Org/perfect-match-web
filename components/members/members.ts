@@ -81,6 +81,25 @@ export const team = [
                 Linkedin: 'https://www.linkedin.com/in/alex-saccone-3b9679234/',
                 Title1: 'Data Analytics Subteam Member',
             },
+            {
+                Name: 'Ashir Rao',
+                ClassYear: 2028,
+                Major: 'CS',
+                Img: '/members/ashir.png',
+                Linkedin:
+                    'https://www.linkedin.com/in/ashir-rao-82a66a225/',
+                Title1: 'Web Dev Subteam Member',
+            },
+            {
+                Name: 'Aileen Huang',
+                ClassYear: 2026,
+                Major: 'CS',
+                Img: '/members/aileen.jpg',
+                Linkedin:
+                    'https://www.linkedin.com/in/aileen-huang-802a04260/',
+                Title1: 'Data Analytics Subteam Member',
+            },
+
         ],
     },
     {
@@ -137,6 +156,15 @@ export const team = [
                 Major: 'CS',
                 Img: '/members/carl.jpg',
                 Linkedin: 'https://www.linkedin.com/in/carl-hu/',
+                Title1: 'Business Team Member',
+            },
+            {
+                Name: 'Diya Lavu',
+                ClassYear: 2026,
+                Major: 'Econ',
+                Img: '/members/diya.jpg',
+                Linkedin:
+                    'https://www.linkedin.com/in/diyalavu/',
                 Title1: 'Business Team Member',
             },
             // {
