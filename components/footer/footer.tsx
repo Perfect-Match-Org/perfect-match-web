@@ -70,7 +70,7 @@ function Footer() {
                             rel="noreferrer"
                             className="hover:underline transition-all duration-200 hover:text-pmblue-400"
                         >
-                            Perfect Match 2025
+                            Perfect Match 2026
                         </a>. All Rights Reserved.</p>
                     <p>This organization is a registered student organization of Cornell University.</p>
                     <p>
