@@ -28,7 +28,7 @@ const MarqueeBanner = ({
                     Array(repeatCount).fill(0).map((_, j) => (
                         <span key={`${i}-${j}`} className="inline-flex items-center text-white font-swirly-canalope font-bold text-3xl ml-2">
                             <span>{text}</span>
-                            <span className="text-white font-swirly-canalope font-bold text-sm ml-2 mt-3">{separator}</span>
+                            <span className="text-white font-bold text-sm ml-2 mt-3">{separator}</span>
                         </span>
                     ))
                 ))}
