@@ -3,6 +3,7 @@ import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { ProfileTabs } from '@/components/profile-tabs';
 import { Spinner } from '@/components/general';
+import React from 'react';
 import { NextPage } from 'next';
 import { getSession, signOut } from 'next-auth/react';
 import { fetcher } from '@/utils/fetch';
@@ -17,8 +18,13 @@ const Profile: NextPage = (props: any) => {
     const refresh = () => mutate();
     console.log('Profile data:', data);
 
+    React.useEffect(() => {
+        if (error || matchesError) {
+            signOut({ callbackUrl: '/api/auth/signin' });
+        }
+    }, [error, matchesError]);
+
     if (error || matchesError) {
-        signOut({ callbackUrl: '/api/auth/signin' });
         return <Spinner />;
     }
 
