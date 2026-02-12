@@ -17,11 +17,6 @@ import { User } from '@/types/users';
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User | String>) {
-    // SURVEY CLOSED — short-circuit to prevent early data leaks
-    // Remove this line and uncomment the logic below for next year's cycle
-    return res.status(403).send('Survey is currently closed. Check back on Valentine\'s Day!');
-
-    /* SURVEY OPEN — uncomment for next year's cycle
     const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
     if (!session) return res.status(401).send('Unauthorized');
 
@@ -41,5 +36,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         default:
             return res.status(405).send('Method Not Allowed');
     }
-    */
 }

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { emojiBlast } from "emoji-blast";
 
 const CountDown: React.FC = () => {
-    const countdownDate = new Date('Feb 12, 2026 19:00:00 EST');
+    const countdownDate = new Date('Feb 12, 2026 12:00:00 EST');
     const [hasMounted, setHasMounted] = useState(false);
 
     type RemainingTime = {
