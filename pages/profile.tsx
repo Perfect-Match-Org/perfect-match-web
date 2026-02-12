@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import DatingWithDataBanner from '@/components/DatingWithDataBanner';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { ProfileTabs } from '@/components/profile-tabs';
@@ -37,11 +38,6 @@ const Profile: NextPage = (props: any) => {
             <Header />
 
             <div>
-                {matches.length > 0 && (
-                    <>
-                    </>
-                )}
-
                 <section className="bg-pmpink2-500">
 
                     <div className="px-4 font-dela-gothic items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
@@ -160,6 +156,13 @@ const Profile: NextPage = (props: any) => {
                     </div>
                 </section>
             )}
+
+
+            <div className="w-screen-xl py-10 bg-pmpink-500">
+                <div className="relative sm:w-3/4 lg:w-2/3 lg:max-w-3xl mx-[2%] sm:mx-auto">
+                    <DatingWithDataBanner />
+                </div>
+            </div>
             <Footer />
         </div>
     );
