@@ -1,11 +1,7 @@
 import MatchTile from './matchTile';
-import styles from '/styles/Matches.module.css';
 import React from 'react';
-import Image from 'next/image';
-import UChicagoCard from '../general/uchicagoCard';
 
 function Matches({ matches, userId, refresh, matchCount }: any) {
-    const [visible, setVisible] = React.useState(false);
     const showNote = matchCount > 8 ? "" : "hidden"
     return (
         <div className='grid grid-cols-1g gap-20 pt-8 [grid-auto-rows:900px] sm:[grid-auto-rows:500px] '>
@@ -31,7 +27,6 @@ function Matches({ matches, userId, refresh, matchCount }: any) {
                     />
                 );
             })}
-            <UChicagoCard />
         </div >
     );
 }
