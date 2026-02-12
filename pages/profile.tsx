@@ -50,6 +50,14 @@ const Profile: NextPage = (props: any) => {
 };
 
 export async function getServerSideProps(context: any) {
+    // SURVEY CLOSED — redirect all users to home page
+    // Remove this block and uncomment the original logic below for next year's cycle
+    return {
+        redirect: { permanent: false, destination: '/' },
+        props: {},
+    };
+
+    /* SURVEY OPEN — uncomment for next year's cycle
     const session = await getSession(context);
     if (!session)
         return {
@@ -61,6 +69,7 @@ export async function getServerSideProps(context: any) {
             user: session.user,
         },
     };
+    */
 }
 
 export default Profile;
