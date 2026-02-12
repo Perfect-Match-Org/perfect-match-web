@@ -21,7 +21,7 @@ function Matches({ matches, userId, refresh, matchCount }: any) {
                         key={match._id}
                         matchID={match._id}
                         matchData={matchData}
-                        contact={matchData.survey.contact}
+                        contact={matchData.survey}
                         matchFeedback={matchFeedback}
                         refresh={refresh}
                         mutualCrush={mutualCrush}
