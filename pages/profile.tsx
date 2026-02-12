@@ -42,7 +42,8 @@ const Profile: NextPage = (props: any) => {
                     </>
                 )}
 
-                <section className="bg-pmpink-500">
+                <section className="bg-pmpink2-500">
+
                     <div className="px-4 font-dela-gothic items-center sm:pt-16 sm:pb-10 py-10 sm:px-14 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1">
                         <h1 className="text-3xl sm:text-5xl text-pmred-500 flex items-center">
                             <Image
