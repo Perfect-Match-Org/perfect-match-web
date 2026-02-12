@@ -62,8 +62,7 @@ const Home: NextPage = (props: any) => {
             </div>
 
             {/* Scrolling Marquee Banner - Top */}
-            {/* <MarqueeBanner text="Perfect Match is Open" /> */}
-            <MarqueeBanner text="Cupid's Taking Notes" />
+            <MarqueeBanner text="Perfect Match is Open" />
 
             <div className="relative z-0 overflow-hidden">
 
@@ -78,7 +77,6 @@ const Home: NextPage = (props: any) => {
                                     </h1>
                                 </div>
                                 <div className='font-work-sans'>
-                                    {/* SURVEY OPEN TEXT — uncomment for next year's cycle
                                     <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
                                         The form closes <strong>February 12th</strong>
                                         <br />
@@ -96,13 +94,6 @@ const Home: NextPage = (props: any) => {
                                             </Button>
                                         </Link>
                                     )}
-                                    */}
-                                    <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
-                                        The survey is now <strong>closed</strong>. Thank you to all <strong>{currentCount ?? '...'}</strong> Cornellians who filled it out!
-                                        <br />
-                                        <br />
-                                        Stay tuned for your matches!
-                                    </p>
 
                                 </div>
                             </div>
@@ -112,8 +103,7 @@ const Home: NextPage = (props: any) => {
                 </section >
 
                 {/* Scrolling Marquee Banner - Bottom */}
-                {/* <MarqueeBanner text="Perfect Match is Open" /> */}
-                <MarqueeBanner text="Results Coming Soon" />
+                <MarqueeBanner text="Perfect Match is Open" />
 
                 <section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
 
