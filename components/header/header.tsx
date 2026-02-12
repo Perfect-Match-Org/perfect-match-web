@@ -60,11 +60,9 @@ function Header(props: any) {
                             <li className="text-pmred-500">
                                 <Link href="/testimonials">Testimonials</Link>
                             </li>
-                            {/* SURVEY OPEN — uncomment for next year's cycle
                             <li className="text-pmred-500 border-2 border-pmred-500 rounded-3xl px-2 py-1 hover:bg-pmred-500 hover:text-white transition-all duration-200 ease-in-out">
-                                <Link href="/profile"> Form &lt;3</Link>
+                                <Link href="/profile">Results</Link>
                             </li>
-                            */}
                             {status === 'authenticated' && (
                                 <li className="text-pmred-500 hover:text-red-500 ease-in-out transition-all duration-200">
                                     <button className="inline-flex items-center justify-center " onClick={() => signOut()}>
