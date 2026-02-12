@@ -1,6 +1,8 @@
 import MatchTile from './matchTile';
 import styles from '/styles/Matches.module.css';
 import React from 'react';
+import Image from 'next/image';
+import UChicagoCard from '../general/uchicagoCard';
 
 function Matches({ matches, userId, refresh, matchCount }: any) {
     const [visible, setVisible] = React.useState(false);
@@ -29,7 +31,7 @@ function Matches({ matches, userId, refresh, matchCount }: any) {
                     />
                 );
             })}
-
+            <UChicagoCard />
         </div >
     );
 }
