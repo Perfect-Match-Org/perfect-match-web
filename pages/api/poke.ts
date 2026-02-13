@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import type { Session } from "next-auth";
 import * as postmark from "postmark";
 import authOptions from "./auth/[...nextauth]";
@@ -57,7 +57,7 @@ function parseMatchEmail(body: unknown): string | null {
  * @param {NextApiResponse} res - The API response object.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<string>) {
-    const session: Session | null = await unstable_getServerSession(req, res, authOptions);
+    const session: Session | null = await getServerSession(req, res, authOptions);
     if (!session) return res.status(401).send("Unauthorized");
     if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
 

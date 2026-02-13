@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { unstable_getServerSession } from 'next-auth/next';
+import { getServerSession } from 'next-auth/next';
 import authOptions from './auth/[...nextauth]';
 import { getUser, updateProfile } from '@/controllers';
 import { Session } from 'next-auth';
@@ -17,7 +17,7 @@ import { User } from '@/types/users';
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User | String>) {
-    const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
+    const session: Session = (await getServerSession(req, res, authOptions))!;
     if (!session) return res.status(401).send('Unauthorized');
 
     await connect();
