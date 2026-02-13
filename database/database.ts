@@ -1,5 +1,4 @@
-// @ts-nocheck
-import mongoose from 'mongoose';
+import mongoose, { type ConnectOptions, type Mongoose } from "mongoose";
 
 /**
  * This module manages the connection to the MongoDB database.
@@ -7,11 +6,45 @@ import mongoose from 'mongoose';
  * which avoids the overhead of establishing a new connection with each request.
  */
 
-const MONGODB_URI = process.env.MONGODB_URI;
-let cached = global.mongoose;
+type MongooseCache = {
+    connection: Mongoose | null;
+    promise: Promise<Mongoose> | null;
+};
 
-if (!cached) {
-    cached = global.mongoose = { connection: null, promise: null };
+const mongoUri = process.env.MONGODB_URI;
+
+if (!mongoUri || mongoUri.trim() === "") {
+    throw new Error("Missing required environment variable: MONGODB_URI");
+}
+const MONGODB_URI: string = mongoUri;
+
+const globalWithMongoose = globalThis as typeof globalThis & {
+    mongoose?: MongooseCache;
+};
+
+const cached: MongooseCache = globalWithMongoose.mongoose ?? { connection: null, promise: null };
+globalWithMongoose.mongoose = cached;
+
+/**
+ * Builds a fresh mongoose connection promise.
+ * If the handshake fails (including transient TLS errors), the cached promise
+ * is cleared so the next request can retry instead of reusing a rejected promise.
+ */
+function createConnectionPromise(): Promise<Mongoose> {
+    const options: ConnectOptions = {
+        bufferCommands: false,
+        serverSelectionTimeoutMS: 10000,
+        socketTimeoutMS: 45000,
+        maxPoolSize: 10,
+        minPoolSize: 1,
+    };
+
+    mongoose.set("strictQuery", false);
+
+    return mongoose.connect(MONGODB_URI, options).catch((error: unknown) => {
+        cached.promise = null;
+        throw error;
+    });
 }
 
 /**
@@ -27,15 +60,15 @@ export async function connect() {
     }
 
     if (!cached.promise) {
-        const opts: MongooseOptions = {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            bufferCommands: false,
-        };
-        mongoose.set('strictQuery', false);
-        cached.promise = mongoose.connect(MONGODB_URI, opts);
+        cached.promise = createConnectionPromise();
     }
 
-    cached.connection = await cached.promise;
-    return cached.connection;
+    try {
+        cached.connection = await cached.promise;
+        return cached.connection;
+    } catch (error) {
+        cached.promise = null;
+        cached.connection = null;
+        throw error;
+    }
 }
