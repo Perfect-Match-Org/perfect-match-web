@@ -4,7 +4,7 @@ import authOptions from './auth/[...nextauth]';
 import { getUser } from '@/controllers';
 import { Session } from 'next-auth';
 import { connect } from '@/database';
-import { Matches } from '@/types/users';
+import { Matches, MatchReview } from '@/types/users';
 
 /**
  * API handler to retrieve matches for the authenticated user.
@@ -16,12 +16,7 @@ import { Matches } from '@/types/users';
  * @param {NextApiResponse<Matches[] | String>} res - The API response object used to return the user's matches or an error message.
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Matches[] | String>) {
-    // SURVEY CLOSED — short-circuit to prevent early match leaks
-    // Remove this line and uncomment the logic below for next year's cycle
-    return res.status(403).send('Survey is currently closed. Check back on Valentine\'s Day!');
-
-    /* SURVEY OPEN — uncomment for next year's cycle
+export default async function handler(req: NextApiRequest, res: NextApiResponse<MatchReview[] | String>) {
     const session: Session = (await unstable_getServerSession(req, res, authOptions))!;
     if (!session) return res.status(401).send('Unauthorized');
     if (req.method !== 'GET') return res.status(405).send('Method Not Allowed');
@@ -30,7 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const user = await getUser(session.user);
     if (!user) return res.status(404).send('User not found');
-    const matches: Matches[] = user.matches;
+    const matches: MatchReview[] = user.matchReviews;
     return res.status(200).json(matches);
-    */
 }

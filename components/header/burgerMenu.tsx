@@ -46,7 +46,7 @@ const Toggle = () => {
                                 </li>
                                 {/* SURVEY OPEN — uncomment for next year's cycle
                                 <li className="text-pmred-500 text-xl font-medium mt-5 mb-5">
-                                    <Link href="/profile">Form</Link>
+                                    <Link href="/profile">Results 💌</Link>
                                 </li>
                                 */}
                                 {status === 'authenticated' && (

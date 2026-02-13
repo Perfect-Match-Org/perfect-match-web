@@ -62,8 +62,7 @@ const Home: NextPage = (props: any) => {
             </div>
 
             {/* Scrolling Marquee Banner - Top */}
-            {/* <MarqueeBanner text="Perfect Match is Open" /> */}
-            <MarqueeBanner text="Cupid's Taking Notes" />
+            <MarqueeBanner text="Your Results Are Here" />
 
             <div className="relative z-0 overflow-hidden">
 
@@ -74,36 +73,26 @@ const Home: NextPage = (props: any) => {
                             <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                                 <div className="">
                                     <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                        <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">WE KNOW YOU&apos;VE BEEN WAITING</span>
+                                        <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">THE WAIT IS OVER!</span>
                                     </h1>
                                 </div>
                                 <div className='font-work-sans'>
-                                    {/* SURVEY OPEN TEXT — uncomment for next year's cycle
+                                    {/* SURVEY OPEN TEXT — uncomment for next year's cycle*/}
                                     <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
-                                        The form closes <strong>February 12th</strong>
-                                        <br />
-                                        Be sure to fill it in time so you&apos;re not alone on Valentine&apos;s Day ;&#41;
+                                        Your matches are here! Thank you to all <strong>{currentCount ?? '...'}</strong> Cornellians who participated.
                                         <br />
                                         <br />
-                                        <strong>{currentCount ?? '...'}</strong> Cornellians have already filled it out
+                                        Sign in to view your results and find your Perfect Match 💕
                                     </p>
                                     {!props.user ? (
                                         <GoogleAuth login={!props.user} />
                                     ) : (
                                         <Link href="/profile">
                                             <Button bold={true} >
-                                                fill out Perfect Match
+                                                View Your Matches
                                             </Button>
                                         </Link>
                                     )}
-                                    */}
-                                    <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
-                                        The survey is now <strong>closed</strong>. Thank you to all <strong>{currentCount ?? '...'}</strong> Cornellians who filled it out!
-                                        <br />
-                                        <br />
-                                        Stay tuned for your matches!
-                                    </p>
-
                                 </div>
                             </div>
 
@@ -112,8 +101,7 @@ const Home: NextPage = (props: any) => {
                 </section >
 
                 {/* Scrolling Marquee Banner - Bottom */}
-                {/* <MarqueeBanner text="Perfect Match is Open" /> */}
-                <MarqueeBanner text="Results Coming Soon" />
+                <MarqueeBanner text="Your Results Are Here" />
 
                 <section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
 

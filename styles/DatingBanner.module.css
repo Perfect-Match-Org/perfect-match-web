@@ -1,0 +1,204 @@
+/* Dating with Data promotional banner */
+.banner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #5A1A35 0%, #8B2D52 50%, #C44569 100%);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25), 18px 12px 0px 0px #5A1A35;
+}
+
+/* Decorative circles */
+.circle1 {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    top: -110px;
+    right: -110px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.circle2 {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    bottom: -80px;
+    left: -80px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+.heartPattern {
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    font-size: 65px;
+    opacity: 0.1;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.1); opacity: 0.15; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+
+/* Content wrapper */
+.content {
+    position: relative;
+    z-index: 10;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.headline {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 2.75rem;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.8s ease-out;
+}
+
+.subheadline {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.15rem;
+    color: #F9EDF3;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.highlight {
+    color: #FFD93D;
+    font-weight: 700;
+}
+
+.staggeredText {
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+}
+
+.staggerLeft {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #FFE4ED;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.staggerRight {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #FFE4ED;
+    font-weight: 600;
+    text-align: right;
+    line-height: 1.4;
+}
+
+/* CTA buttons */
+.ctaButtons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.ctaButton {
+    background: rgba(255, 255, 255, 0.95);
+    color: #5A1A35;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+.ctaButton:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: #5A1A35;
+}
+
+/* IRB footer */
+.irb {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.emoji {
+    display: inline-block;
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .banner {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .headline {
+        font-size: 2rem;
+    }
+
+    .subheadline {
+        font-size: 1rem;
+    }
+
+    .staggerLeft,
+    .staggerRight {
+        font-size: 1rem;
+    }
+
+    .ctaButton {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
+    .circle1 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .heartPattern {
+        font-size: 40px;
+        right: 20px;
+    }
+}
