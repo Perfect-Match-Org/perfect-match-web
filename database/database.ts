@@ -24,111 +24,6 @@ const globalWithMongoose = globalThis as typeof globalThis & {
 
 const cached: MongooseCache = globalWithMongoose.mongoose ?? { connection: null, promise: null };
 globalWithMongoose.mongoose = cached;
-const MAX_CONNECT_ATTEMPTS = 4;
-const RETRY_BACKOFF_MS = 750;
-
-/**
- * Converts an unknown error into a consistent, log-safe structure.
- * This avoids `any` usage while preserving useful diagnostics for production.
- */
-function normalizeError(error: unknown): { name: string; message: string; stack?: string } {
-    if (error instanceof Error) {
-        return {
-            name: error.name,
-            message: error.message,
-            stack: error.stack,
-        };
-    }
-
-    return {
-        name: "UnknownError",
-        message: typeof error === "string" ? error : "Unknown connection error",
-    };
-}
-
-/**
- * Returns true when an error message suggests a temporary network/TLS issue.
- * These cases are safe to retry once with a short delay.
- */
-function isTransientMongoError(error: unknown): boolean {
-    const normalizedError = normalizeError(error);
-    const message = normalizedError.message.toLowerCase();
-    const name = normalizedError.name.toLowerCase();
-
-    const transientSignals = [
-        "mongonetworkerror",
-        "tls",
-        "ssl",
-        "econnreset",
-        "etimedout",
-        "timed out",
-        "connection closed",
-        "server selection",
-    ];
-
-    return transientSignals.some((signal) => name.includes(signal) || message.includes(signal));
-}
-
-/**
- * Small async delay helper used for retry backoff.
- */
-function wait(milliseconds: number): Promise<void> {
-    return new Promise((resolve) => {
-        setTimeout(resolve, milliseconds);
-    });
-}
-
-/**
- * Emits structured logs for MongoDB connection attempts.
- * The payload is JSON so production log processing tools can parse fields.
- */
-function logMongoAttempt(level: "warn" | "error", context: { attempt: number; maxAttempts: number; willRetry: boolean; error: unknown }): void {
-    const normalizedError = normalizeError(context.error);
-    const payload = {
-        scope: "database.connect",
-        attempt: context.attempt,
-        maxAttempts: context.maxAttempts,
-        willRetry: context.willRetry,
-        errorName: normalizedError.name,
-        errorMessage: normalizedError.message,
-        errorStack: normalizedError.stack,
-    };
-
-    const serializedPayload = JSON.stringify(payload);
-    if (level === "warn") {
-        console.warn(serializedPayload);
-        return;
-    }
-
-    console.error(serializedPayload);
-}
-
-/**
- * Connects to MongoDB with one retry for transient TLS/network failures.
- */
-async function connectWithRetry(options: ConnectOptions): Promise<Mongoose> {
-    for (let attempt = 1; attempt <= MAX_CONNECT_ATTEMPTS; attempt += 1) {
-        try {
-            return await mongoose.connect(MONGODB_URI, options);
-        } catch (error) {
-            const shouldRetry = attempt < MAX_CONNECT_ATTEMPTS && isTransientMongoError(error);
-            logMongoAttempt(shouldRetry ? "warn" : "error", {
-                attempt,
-                maxAttempts: MAX_CONNECT_ATTEMPTS,
-                willRetry: shouldRetry,
-                error,
-            });
-
-            if (!shouldRetry) {
-                throw error;
-            }
-
-            await wait(RETRY_BACKOFF_MS);
-        }
-    }
-
-    throw new Error("MongoDB connection failed after retry attempts");
-}
 
 /**
  * Builds a fresh mongoose connection promise.
@@ -146,7 +41,7 @@ function createConnectionPromise(): Promise<Mongoose> {
 
     mongoose.set("strictQuery", false);
 
-    return connectWithRetry(options).catch((error: unknown) => {
+    return mongoose.connect(MONGODB_URI, options).catch((error: unknown) => {
         cached.promise = null;
         throw error;
     });
