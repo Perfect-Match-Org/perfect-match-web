@@ -187,7 +187,6 @@ export async function getServerSideProps(context: any) {
             user: session.user,
         },
     };
-    */
 }
 
 export default Profile;

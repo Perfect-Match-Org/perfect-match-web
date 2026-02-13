@@ -55,7 +55,7 @@ const Home: NextPage = (props: any) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline font-bold hover:text-pmpink-500 transition-colors"
-        https://github.com/Perfect-Match-Org/perfect-match-web/pull/120/conflict?name=pages%252Fprofile.tsx&ancestor_oid=9f569d05ef84a316da24e9949090fffd29f76640&base_oid=14dd70ca0f45f2640b78bcd5dbb11a6562c0e43d&head_oid=6cda90fdbe799d88f4478fadcc1decaf90aa64fb            >
+                    >
                         Apply to become our video content creator! &rarr;
                     </a>
                 </p>
@@ -77,7 +77,7 @@ const Home: NextPage = (props: any) => {
                                     </h1>
                                 </div>
                                 <div className='font-work-sans'>
-                                    {/* SURVEY OPEN TEXT — uncomment for next year's cycle
+                                    {/* SURVEY OPEN TEXT — uncomment for next year's cycle*/}
                                     <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
                                         Your matches are here! Thank you to all <strong>{currentCount ?? '...'}</strong> Cornellians who participated.
                                         <br />
