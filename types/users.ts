@@ -19,6 +19,10 @@ export type Profile = {
 export type Survey = {
     complete: boolean;
     _id: string;
+    favSong: string;
+    romanceTrope: string;
+    date: string;
+    introvert: number;
 };
 export type Crushes = {
     _id: string;
