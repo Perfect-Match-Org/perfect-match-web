@@ -5,6 +5,7 @@ import Button from '@/components/general/button';
 import Popup from '@/components/general/popup';
 import Image from 'next/image';
 import Link from 'next/link';
+import { romanceTrope } from '@/types/surveyEnums';
 
 
 const emoji = ['😃', '😆', '😄', '😆', '😊', '😎', '😳', '🤗'];
@@ -46,6 +47,15 @@ const ratingOptions = [
     'It’s a match! Their profile’s got personality and brains',
     'A+ profile – love the academic flair and personal touch',
 ];
+
+const romanceTropeStrings: { [key: string]: string } = {
+    'enemies': 'Enemies to lovers',
+    'fake': 'Fake dating',
+    'triangle': 'Love triangle',
+    'childhood': 'Childhood friends to lovers',
+    'step': 'Step siblings',
+    'vanilla': 'Vanilla romance'
+}
 
 function MatchFeedback({ matchID, matchFeedback, refresh }: any) {
     const [review, setReview] = useState<Review>({
@@ -188,6 +198,7 @@ function MatchFeedback({ matchID, matchFeedback, refresh }: any) {
 }
 
 function maskText(text: string): string {
+    if (!text) return '';
     return text.split('').map(char => char === ' ' ? ' ' : char === ',' ? ',' : '♥').join('');
 }
 
@@ -574,10 +585,10 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutual
                             {!poked && <div className="absolute top-0 right-[40px] h-[100px] w-[90px] hidden lg:block pointer-events-none">
                                 <Image src="/pokelock.svg" alt="pm logo" layout='fill' priority={true} draggable='false' />
                             </div>}
-                            <p className="text-left">My Sense of Humor is: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.humor?.join(', ') ?? ''}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(matchData.survey.humor?.join(', ') ?? '')}</span>)}</p>
+                            <p className="text-left">Favorite romance trope: {poked ? (<span style={{ color: '#F4001F' }}>{romanceTropeStrings[String(matchData.survey.romanceTrope)]}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(romanceTropeStrings[String(matchData.survey.romanceTrope)])}</span>)}</p>
                             <p className="text-left">Where I would go on a first date: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.date}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(matchData.survey.date)}</span>)}</p>
-                            <p className="text-left">1 = Introvert, 10 = Extrovert, I&apos;m a: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.introvert}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(String(matchData.survey.introvert))}</span>)}</p>
-                            <p className="text-left">A green flag to me in a relationship: {poked ? (<span style={{ color: '#F4001F' }}>{SurveyGreenFlag(matchData.survey.greenflag)}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(SurveyGreenFlag(matchData.survey.greenflag))}</span>)}</p>
+                            <p className="text-left">1 = Introvert, 10 = Extrovert, I&apos;m a: {poked ? (<span style={{ color: '#F4001F' }}>{String(matchData.survey.introvert)}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(String(matchData.survey.introvert))}</span>)}</p>
+                            <p className="text-left">Favorite song: {poked ? (<span style={{ color: '#F4001F' }}>{matchData.survey.favSong}</span>) : (<span className="select-none" style={{ color: '#F4001F', filter: 'blur(5px)' }}>{maskText(matchData.survey.favSong)}</span>)}</p>
                         </div>
                     </div>
                 </div>
