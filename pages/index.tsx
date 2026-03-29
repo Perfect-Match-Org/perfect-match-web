@@ -75,9 +75,11 @@ const Home: NextPage = (props: any) => {
                                         <strong>xxxx</strong> Cornellians got called out already {/* Update me with variable */}
                                     </p>
                                     <Link href="https://SampleTestLink.com">
-                                        <Button bold={true} >
-                                            judge my playlist
-                                        </Button>
+                                        <a>
+                                            <Button bold={true}>
+                                                judge my playlist
+                                            </Button>
+                                        </a>
                                     </Link>
                                 </div>
                             </div>

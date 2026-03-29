@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-
+import Link from 'next/link';
 const CuffedOrNotImage: React.FC = () => {
     return (
-        <div className='z-10 max-w-[85vw] w-full min-w-fit h-full relative flex items-center justify-center'>
+        <div className='relative z-10 max-w-[85vw] w-full min-w-fit h-full flex items-center justify-center'>
             <Image
                 src="/CuffedOrNot.svg"
                 alt="Cuffed or Not"
@@ -13,15 +13,21 @@ const CuffedOrNotImage: React.FC = () => {
                 draggable='false'
                 className="object-contain"
             />
-            <div className='absolute -top-[-30%] w-full h-[50%] flex justify-end'>
-                <Image
-                    src='/PressPlayToReveal.svg'
-                    alt='Press Play to Reveal'
-                    height={200}
-                    width={300}
-                    priority={true}
-                    draggable='false'
-                />
+            {/* Overlay positioned relative to the parent */}
+            <div className='absolute top-[25%] right-[4%] z-20'>
+                <Link href="https://SampleTestLink.com">
+                    <a className='block'>
+                        <Image
+                            src='/PressPlayToReveal.svg'
+                            alt='Press Play to Reveal'
+                            height={200}
+                            width={300}
+                            priority={true}
+                            draggable='false'
+                            className='cursor-pointer hover:opacity-90 transition-opacity'
+                        />
+                    </a>
+                </Link>
             </div>
         </div>
     );
