@@ -15,7 +15,7 @@ const CuffedOrNotImage: React.FC = () => {
             />
             {/* Overlay positioned relative to the parent */}
             <div className='absolute top-[25%] right-[4%] z-20'>
-                <Link href="https://SampleTestLink.com">
+                <Link href="https://cuffedornot.perfectmatch.ai">
                     <a className='block'>
                         <Image
                             src='/PressPlayToReveal.svg'

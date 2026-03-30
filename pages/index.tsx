@@ -14,6 +14,8 @@ import CuffedOrNotImage from '@/components/CuffedOrNotImage';
 import { Button } from '@/components/general';
 import { Reviews } from '@/components/testimonials/testimonials';
 
+{/* Delete this index.tsx + components/CuffedOrNotImage.tsx 
+    and rename original-index.tsx to revert back to default page*/}
 const Home: NextPage = (props: any) => {
     const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
         refreshInterval: 60000,
@@ -74,7 +76,7 @@ const Home: NextPage = (props: any) => {
                                     <p className="text-pmblue-500 text-center lg:text-left mt-4">
                                         <strong>xxxx</strong> Cornellians got called out already {/* Update me with variable */}
                                     </p>
-                                    <Link href="https://SampleTestLink.com">
+                                    <Link href="https://cuffedornot.perfectmatch.ai">
                                         <a>
                                             <Button bold={true}>
                                                 judge my playlist
