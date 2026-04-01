@@ -14,10 +14,12 @@ import CuffedOrNotImage from '@/components/CuffedOrNotImage';
 import { Button } from '@/components/general';
 import { Reviews } from '@/components/testimonials/testimonials';
 
-{/* Delete this index.tsx + components/CuffedOrNotImage.tsx 
-    and rename original-index.tsx to revert back to default page*/}
+{/* Revert this commit to restore the original landing page (removes CuffedOrNotImage + this index.tsx) */}
 const Home: NextPage = (props: any) => {
-    const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
+    // const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
+    //     refreshInterval: 60000,
+    // });
+    const { data: cuffedCount } = useSWR('/api/cuffedornot/count', fetcher, {
         refreshInterval: 60000,
     });
     return (
@@ -28,6 +30,22 @@ const Home: NextPage = (props: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
+
+            {/* Application Banner */}
+            <div className="bg-pmblue-500 text-white text-center py-2 px-3">
+                <p className="text-sm sm:text-base font-work-sans">
+                    Be the face of Perfect Match. {' '}
+                    <a
+                        href="https://forms.gle/zMU4HtEwTyha1Ct68"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline font-bold hover:text-pmpink-500 transition-colors"
+                    >
+                        Apply to become our video content creator! &rarr;
+                    </a>
+                </p>
+            </div>
+
             {/*
             <div className="bg-pink-100">
                 <div className="py-2 px-3 sm:py-3 flex">
@@ -57,7 +75,7 @@ const Home: NextPage = (props: any) => {
 
                 <section className="bg-pmpink2-500">
                     <div className='flex flex-col justify-center align-middle items-center h-full lg:h-[70vh] lg:flex-row lg:px-[12vw] z-20'>
-                        <div className='h-[50%] w-full lg:w-1/2 lg:mr-16 xl:mr-0 items-center justify-center hidden md:flex '><CuffedOrNotImage /></div>
+                        <div className='w-full lg:w-1/2 lg:mr-16 xl:mr-0 flex items-center justify-center py-4 md:py-0 md:h-[50%]'><CuffedOrNotImage /></div>
                         <div className="lg:w-1/2">
                             <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
                                 <div className="">
@@ -67,20 +85,18 @@ const Home: NextPage = (props: any) => {
                                 </div>
                                 <div className='font-work-sans'>
                                     <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
-                                        <strong>Perfect Match</strong> partnered with <strong>Cuffed or not </strong> to answer one important question:
+                                        <strong>Perfect Match</strong> partnered with <strong>Unserious Ventures</strong> to answer one important question:
                                         <br />
                                         <strong>Are you actually single... or just pretending?</strong>
                                         <br />
                                         Drop your playlist and we&#39;ll analyze your taste 👀 (yes your music choices are that revealing)
                                     </p>
                                     <p className="text-pmblue-500 text-center lg:text-left mt-4">
-                                        <strong>xxxx</strong> Cornellians got called out already {/* Update me with variable */}
+                                        <strong>{cuffedCount?.toLocaleString() ?? '...'}</strong> Cornellians got called out already
                                     </p>
                                     <Link href="https://cuffedornot.perfectmatch.ai">
-                                        <a>
-                                            <Button bold={true}>
-                                                judge my playlist
-                                            </Button>
+                                        <a className="inline-block mt-6 px-6 py-2 rounded-full bg-white text-pmred-500 border-4 border-pmblue-500 font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none">
+                                            Judge My Playlist
                                         </a>
                                     </Link>
                                 </div>
@@ -91,7 +107,7 @@ const Home: NextPage = (props: any) => {
                 </section >
 
                 {/* Scrolling Marquee Banner - Bottom */}
-                <MarqueeBanner text="Your Results Are Here" />
+                <MarqueeBanner text="Drop Your Playlist" />
 
                 <section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
 
