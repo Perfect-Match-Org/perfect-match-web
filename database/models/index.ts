@@ -1,6 +1,7 @@
 // Export models
 export { User } from './user';
 export { OTP } from './otp';
+export { CuffedOrNotUser } from './cuffedornotUser';
 
 // Export subdocument schemas
 export { profileSchema } from './profile';

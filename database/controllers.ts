@@ -1,4 +1,4 @@
-import { User, OTP } from './models';
+import { User, OTP, CuffedOrNotUser } from './models';
 import AWS from 'aws-sdk';
 import crypto from 'crypto';
 import { promises as fs } from 'fs';
@@ -74,6 +74,11 @@ export const getUser = async (user: any): Promise<UserType> => {
  */
 export const getUsersCount = async (): Promise<number> => {
     const resp = await User.countDocuments();
+    return resp;
+};
+
+export const getCuffedOrNotUsersCount = async (): Promise<number> => {
+    const resp = await CuffedOrNotUser.countDocuments();
     return resp;
 };
 
