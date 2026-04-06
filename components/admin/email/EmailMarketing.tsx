@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { theme } from '@/styles/themes';
 import { Template, Campaign } from '@/types/email';
 import EmailDashboard from './EmailDashboard';
-import TemplateEditor from './TemplateEditor';
+import HybridTemplateEditor from './HybridTemplateEditor';
 import TemplateList from './TemplateList';
 import CampaignBuilder from './CampaignBuilder';
 import CampaignHistory from './CampaignHistory';
@@ -115,7 +115,7 @@ export default function EmailMarketing() {
 
       case 'template-editor':
         return (
-          <TemplateEditor
+          <HybridTemplateEditor
             template={editingTemplate}
             onSave={handleSaveTemplate}
             onCancel={() => setCurrentView('templates')}
