@@ -51,7 +51,7 @@ const Stats2023 = () => {
 							In total, we had 3,687 undergrad participants, which was{" "}
 							<strong className="text-rose-400">1/4 of the Cornell undergrad student population</strong>.
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[3%] text-pmblue-500 text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
 								PM23 Participants by Year
 							</h3>
@@ -81,7 +81,7 @@ const Stats2023 = () => {
 						<p className="my-2 lg:my-4 max-w-4xl sm:text-lg text-black mx-[3%] sm:mx-[10%] lg:mx-[20%]">
 							❗Try hovering over the curve or clicking it to see the data❗
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-lg px-3">
+						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-md px-3">
 							<div className="sm:w-1/2 w-full sm:mx-0">
 								<h3 className="text-pmblue-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
 									Cornellian&#39;s Sleep Schedules
@@ -108,7 +108,7 @@ const Stats2023 = () => {
 							<strong className="text-rose-400"> 65 inches</strong> for female participants and{" "}
 							<strong className="text-rose-400">70 inches</strong> for male participants, the same as last year.
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="text-pmblue-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
 								Cornellians&#39; Height by Gender
 							</h3>
@@ -176,7 +176,7 @@ const Stats2023 = () => {
 							<strong className="text-sky-400">&quot;funny,&quot; &quot;smart,&quot; and &quot;thoughtful.&quot; </strong>{" "}
 							Huh, how did gender stereotypes shape your self-presentation to your matches?
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-lg px-3">
+						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-md px-3">
 							<div className="sm:w-1/2 w-full sm:mx-0">
 								<h3 className="text-pmblue-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-2 sm:text-xs sm:mt-8 sm:mb-0">
 									Top Adjectives Used by <span className="text-rose-400">Female Participants</span> to Describe Themselves
@@ -207,7 +207,7 @@ const Stats2023 = () => {
 							</strong>
 							?
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<AgePrefToggle />
 							<p className="mx-[3%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
 								*Participants who gave their gender as non-binary individual or other are excluded due to small sample size.
@@ -228,7 +228,7 @@ const Stats2023 = () => {
 							We also asked participants to give the length of their longest relationship. The results indicate that{" "}
 							<strong className="text-rose-400">grads, hotelies, and ILRers </strong> tend to be in longer relationships.
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-lg px-3">
+						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-md px-3">
 							<div className="sm:w-1/2 w-full sm:mx-0">
 								<h3 className="text-pmblue-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-xs sm:mt-8 sm:mb-0">
 									Number of People one had Dated, by Gender
@@ -259,7 +259,7 @@ const Stats2023 = () => {
 							Are these results in your expectations? Are you the same or different from the majority?
 						</p>
 
-						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-lg px-3">
+						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-md px-3">
 							<div className="sm:w-1/2 w-full sm:mx-0">
 								<h3 className="text-pmblue-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-xs sm:mt-8 sm:mb-0">
 									1. Choose the <span className="text-lime-500">best alternative</span>. Your match is a 10, but they
@@ -275,7 +275,7 @@ const Stats2023 = () => {
 								<CompleteTask />
 							</div>
 						</div>
-						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-lg px-3">
+						<div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4 flex sm:flex-row flex-col gap-x-4 bg-white rounded-md px-3">
 							<div className="sm:w-1/2 w-full sm:mx-0">
 								<h3 className="text-pmblue-500 mx-[3%] text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-xs sm:mt-8 sm:mb-0">
 									3. What&#39;s the <span className="text-violet-400">least traumatizing Cornell faction</span> your
@@ -307,7 +307,7 @@ const Stats2023 = () => {
 							farthest left and 10 being the most right. The graph looks very similar to last year&apos;s.
 						</p>
 
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[3%] text-pmblue-500 text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
 								Political Tendency
 							</h3>
@@ -316,7 +316,7 @@ const Stats2023 = () => {
 					</div>
 					{/* <hr className="border-1 border-solid border-rose-300 mx-[3%] sm:mx-[10%] lg:mx-[20%]" /> */}
 
-					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] bg-white px-3 rounded-lg py-1">
+					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] bg-white px-3 rounded-md py-1">
 						<div className="mt-6 sm:mt-0 sm:w-[50%]">
 							<div className="justify-center sm:h-20">
 								<p className="mt-8 mb-2 sm:my-10 max-w-4xl lg:text-lg text-pmblue-500 mx-[3%] sm:mx-0 font-semibold text-center">
@@ -339,7 +339,7 @@ const Stats2023 = () => {
 							</div>
 						</div>
 					</div>
-					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] sm:mt-2 lg:mt-4 px-3 rounded-lg py-1 bg-white">
+					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] sm:mt-2 lg:mt-4 px-3 rounded-md py-1 bg-white">
 						<div className="mt-4 sm:mt-0 sm:w-[50%]">
 							<div className="justify-center sm:h-14">
 								<p className="mt-8 mb-2 sm:my-10 max-w-4xl lg:text-lg text-pmblue-500 mx-[3%] sm:mx-0 font-semibold text-center">

@@ -44,7 +44,7 @@ const Stats2022 = () => {
 							interesting to notice is that
 							<strong className="text-rose-400"> 5 faculty members </strong>filled out the survey!
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[3%] text-pmblue-500 text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
 								PM23 Participants by Year
 							</h3>
@@ -61,7 +61,7 @@ const Stats2022 = () => {
 							<strong className="text-rose-400">70 inches</strong>. Interested to see how your height compares to other
 							students&apos;?
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<Height />
 							<p className="mx-[5%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
 								*Participants who gave their gender as non-binary individual or other are excluded due to small sample size.
@@ -113,7 +113,7 @@ const Stats2022 = () => {
 							<strong className="text-rose-400">AAP and ILR </strong>
 							students tend to be in longer relationships.
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-4 text-pmblue-500 sm:mb-0 sm:mt-8 sm:text-base">
 								Longest Relationship (in Months), by College
 							</h3>
@@ -126,7 +126,7 @@ const Stats2022 = () => {
 							We also asked participants to give the number of people they had dated in the last five years. It is interesting
 							to observe how female and male participants, and students in different colleges, gave different numbers.
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-4 text-pmblue-500 sm:mb-0 sm:mt-8 sm:text-base">
 								Number of People one had Dated, by Gender
 							</h3>
@@ -135,7 +135,7 @@ const Stats2022 = () => {
 								*Participants who gave their gender as non-binary individual or other are excluded due to small sample size.
 							</p>
 						</div>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-4 text-pmblue-500 sm:mb-0 sm:mt-8 sm:text-base">
 								Number of People one Had Dated, by College
 							</h3>
@@ -151,7 +151,7 @@ const Stats2022 = () => {
 							<strong className="text-rose-400">&quot;Smart&quot; and &quot;caring&quot;</strong> were also popular options.
 						</p>
 
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-2 text-pmblue-500 sm:text-base sm:mt-8 sm:mb-0">
 								Top Adjectives Used to Describe Oneself
 							</h3>
@@ -164,7 +164,7 @@ const Stats2022 = () => {
 							(describing an ideal partner) but not in the previous question (describing yourself).
 						</p>
 
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-2 text-pmblue-500 sm:text-base sm:mt-8 sm:mb-0">
 								Top Adjectives Used to Describe Ideal Partner
 							</h3>
@@ -178,14 +178,14 @@ const Stats2022 = () => {
 							few of them said they preferred to be paired with someone who is less easygoing or extroverted than themselves.
 						</p>
 
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-2 text-pmblue-500 sm:text-base sm:mt-8 sm:mb-0">
 								Extroverted or Introverted
 							</h3>
 							<Extroverted />
 						</div>
 
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-2 text-pmblue-500 sm:text-base sm:mt-8 sm:mb-0">
 								Easygoing or Assertive
 							</h3>
@@ -198,7 +198,7 @@ const Stats2022 = () => {
 							38.5% of participants thought that differences in political views were a deal breaker. Here is how people rated
 							their political tendencies on a scale of 1 to 10, with 1 being the farthest left and 10 being the most right.
 						</p>
-						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
+						<div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-md">
 							<h3 className="mx-[3%] text-pmblue-500 text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
 								Political Tendency
 							</h3>
@@ -209,7 +209,7 @@ const Stats2022 = () => {
 					<p className="mt-8 mb-4 sm:mt-12 sm:mb-0 lg:mb-4 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
 						Answers to our controversial questions remained pretty consistent between 2021 and 2022.
 					</p>
-					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] bg-white px-3 rounded-lg py-1">
+					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] bg-white px-3 rounded-md py-1">
 						<div className="mt-6 sm:mt-0 sm:w-[50%]">
 							<div className="justify-center sm:h-20">
 								<p className="mt-6 sm:my-10 max-w-4xl lg:text-lg text-pmblue-500 mx-[5%] sm:mx-0 font-semibold text-center">
@@ -232,7 +232,7 @@ const Stats2022 = () => {
 							</div>
 						</div>
 					</div>
-					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] sm:mt-2 lg:mt-4 px-3 rounded-lg py-1 bg-white">
+					<div className="sm:flex sm:mx-[10%] lg:mx-[20%] sm:mt-2 lg:mt-4 px-3 rounded-md py-1 bg-white">
 						<div className="mt-4 sm:mt-0 sm:w-[50%]">
 							<div className="justify-center sm:h-14">
 								<p className="mt-8 mb-2 sm:my-10 max-w-4xl lg:text-lg text-pmblue-500 mx-[3%] sm:mx-0 font-semibold text-center">

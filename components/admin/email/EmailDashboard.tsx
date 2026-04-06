@@ -167,21 +167,6 @@ export default function EmailDashboard({ onCreateTemplate, onCreateCampaign, onV
         }
     }, []);
 
-    if (loading) {
-        return (
-            <div className="p-8">
-                <div className="animate-pulse space-y-6">
-                    <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {[...Array(4)].map((_, i) => (
-                            <div key={i} className="h-24 bg-gray-200 rounded"></div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className="p-8 bg-gray-50 min-h-screen">
             <div className="max-w-7xl mx-auto">
@@ -216,153 +201,166 @@ export default function EmailDashboard({ onCreateTemplate, onCreateCampaign, onV
                     </div>
                 </div>
 
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div className="bg-white rounded-lg shadow-sm border p-6 transition-all hover:shadow-md">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500 mb-1">Total Templates</p>
-                                <p className="text-3xl font-bold text-gray-900">{stats.totalTemplates}</p>
-                            </div>
-                            <div
-                                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                                style={{ backgroundColor: `${theme.colors.primary}10` }}
-                            >
-                                <Mail className="w-6 h-6" style={{ color: theme.colors.primary }} />
+                <div className="relative min-h-[500px]">
+                    {loading && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-50/60 backdrop-blur-sm transition-all duration-300">
+                            <div className="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-xl">
+                                <Loader2 className="mb-4 h-10 w-10 animate-spin text-pink-500" />
+                                <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Loading Overview...</span>
                             </div>
                         </div>
-                    </div>
+                    )}
 
-                    <div className="bg-white rounded-lg shadow-sm border p-6 transition-all hover:shadow-md">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500 mb-1">Total Campaigns</p>
-                                <p className="text-3xl font-bold text-gray-900">{stats.totalCampaigns}</p>
+                    <div className={`space-y-8 transition-opacity duration-300 ${loading && recentCampaigns.length === 0 ? "opacity-0" : "opacity-100"}`}>
+                        {/* Stats Cards */}
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+                            <div className="rounded-md border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="mb-1 text-sm font-medium text-gray-500">Total Templates</p>
+                                        <p className="text-3xl font-bold text-gray-900">{stats.totalTemplates}</p>
+                                    </div>
+                                    <div
+                                        className="flex h-12 w-12 items-center justify-center rounded-md"
+                                        style={{ backgroundColor: `${theme.colors.primary}10` }}
+                                    >
+                                        <Mail className="h-6 w-6" style={{ color: theme.colors.primary }} />
+                                    </div>
+                                </div>
                             </div>
-                            <div
-                                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                                style={{ backgroundColor: `${theme.colors.primary}10` }}
-                            >
-                                <Send className="w-6 h-6" style={{ color: theme.colors.primary }} />
+
+                            <div className="rounded-md border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="mb-1 text-sm font-medium text-gray-500">Total Campaigns</p>
+                                        <p className="text-3xl font-bold text-gray-900">{stats.totalCampaigns}</p>
+                                    </div>
+                                    <div
+                                        className="flex h-12 w-12 items-center justify-center rounded-md"
+                                        style={{ backgroundColor: `${theme.colors.primary}10` }}
+                                    >
+                                        <Send className="h-6 w-6" style={{ color: theme.colors.primary }} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="rounded-md border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="mb-1 text-sm font-medium text-gray-500">Total Sent</p>
+                                        <p className="text-3xl font-bold text-gray-900">{stats.totalSent.toLocaleString()}</p>
+                                    </div>
+                                    <div
+                                        className="flex h-12 w-12 items-center justify-center rounded-md"
+                                        style={{ backgroundColor: `${theme.colors.primary}10` }}
+                                    >
+                                        <BarChart3 className="h-6 w-6" style={{ color: theme.colors.primary }} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="rounded-md border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="mb-1 text-sm font-medium text-gray-500">Avg Open Rate</p>
+                                        <p className={`text-3xl font-bold ${stats.averageOpenRate === 0 ? "text-gray-400" : "text-gray-900"}`}>
+                                            {stats.averageOpenRate}%
+                                        </p>
+                                    </div>
+                                    <div
+                                        className="flex h-12 w-12 items-center justify-center rounded-md"
+                                        style={{ backgroundColor: `${theme.colors.primary}10` }}
+                                    >
+                                        <TrendingUp className="h-6 w-6" style={{ color: theme.colors.primary }} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border p-6 transition-all hover:shadow-md">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500 mb-1">Total Sent</p>
-                                <p className="text-3xl font-bold text-gray-900">{stats.totalSent.toLocaleString()}</p>
+                        {/* Quick Actions */}
+                        <div className="rounded-md border bg-white p-6 shadow-sm">
+                            <div className="mb-6 flex items-center justify-between">
+                                <h2 className="text-lg font-semibold text-gray-900" style={{ fontFamily: theme.fonts.main }}>
+                                    Navigation & Quick Links
+                                </h2>
                             </div>
-                            <div
-                                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                                style={{ backgroundColor: `${theme.colors.primary}10` }}
-                            >
-                                <BarChart3 className="w-6 h-6" style={{ color: theme.colors.primary }} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-white rounded-lg shadow-sm border p-6 transition-all hover:shadow-md">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500 mb-1">Avg Open Rate</p>
-                                <p className={`text-3xl font-bold ${stats.averageOpenRate === 0 ? "text-gray-400" : "text-gray-900"}`}>
-                                    {stats.averageOpenRate}%
-                                </p>
-                            </div>
-                            <div
-                                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                                style={{ backgroundColor: `${theme.colors.primary}10` }}
-                            >
-                                <TrendingUp className="w-6 h-6" style={{ color: theme.colors.primary }} />
+                            <div className="flex flex-wrap gap-4">
+                                <button
+                                    onClick={onViewCampaigns}
+                                    className="inline-flex items-center rounded-md bg-gray-100 px-5 py-2.5 font-medium text-gray-700 transition-all duration-200 hover:bg-gray-200"
+                                    style={{ fontFamily: theme.fonts.main }}
+                                >
+                                    <History className="mr-2 h-4 w-4" />
+                                    Campaign History
+                                </button>
+                                <button
+                                    onClick={onViewAnalytics}
+                                    className="inline-flex items-center rounded-md bg-gray-100 px-5 py-2.5 font-medium text-gray-700 transition-all duration-200 hover:bg-gray-200"
+                                    style={{ fontFamily: theme.fonts.main }}
+                                >
+                                    <BarChart3 className="mr-2 h-4 w-4" />
+                                    Detailed Analytics
+                                </button>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* Quick Actions */}
-                <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-lg text-gray-900 font-semibold" style={{ fontFamily: theme.fonts.main }}>
-                            Navigation & Quick Links
-                        </h2>
-                    </div>
-                    <div className="flex flex-wrap gap-4">
-                        <button
-                            onClick={onViewCampaigns}
-                            className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gray-100 text-gray-700 font-medium transition-all duration-200 hover:bg-gray-200"
-                            style={{ fontFamily: theme.fonts.main }}
-                        >
-                            <History className="w-4 h-4 mr-2" />
-                            Campaign History
-                        </button>
-                        <button
-                            onClick={onViewAnalytics}
-                            className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gray-100 text-gray-700 font-medium transition-all duration-200 hover:bg-gray-200"
-                            style={{ fontFamily: theme.fonts.main }}
-                        >
-                            <BarChart3 className="w-4 h-4 mr-2" />
-                            Detailed Analytics
-                        </button>
-                    </div>
-                </div>
-
-                {/* Recent Campaigns */}
-                <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-                    <div className="p-6 border-b flex justify-between items-center">
-                        <h2 className="text-lg font-semibold text-gray-900" style={{ fontFamily: theme.fonts.main }}>
-                            Recent Activity
-                        </h2>
-                        <button
-                            onClick={onViewCampaigns}
-                            className="text-sm font-medium text-pink-600 hover:text-pink-700 inline-flex items-center"
-                        >
-                            View all campaigns
-                            <ChevronRight className="w-4 h-4 ml-1" />
-                        </button>
-                    </div>
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead className="bg-gray-50">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Campaign
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sent</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Open Rate
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Created
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-200">
-                                {recentCampaigns.map((campaign) => (
-                                    <tr key={campaign.id} className="hover:bg-gray-50">
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="font-medium text-gray-900">{campaign.name}</div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(campaign.status)}`}
-                                            >
-                                                {campaign.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-gray-900">{campaign.sentCount.toLocaleString()}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-gray-900">{campaign.openRate}%</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            {new Date(campaign.createdAt).toLocaleDateString()}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        {/* Recent Campaigns */}
+                        <div className="overflow-hidden rounded-md border bg-white shadow-sm">
+                            <div className="flex items-center justify-between border-b p-6">
+                                <h2 className="text-lg font-semibold text-gray-900" style={{ fontFamily: theme.fonts.main }}>
+                                    Recent Activity
+                                </h2>
+                                <button
+                                    onClick={onViewCampaigns}
+                                    className="inline-flex items-center text-sm font-medium text-pink-600 hover:text-pink-700"
+                                >
+                                    View all campaigns
+                                    <ChevronRight className="ml-1 h-4 w-4" />
+                                </button>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Campaign
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Status
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Sent</th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Open Rate
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                                Created
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200">
+                                        {recentCampaigns.map((campaign) => (
+                                            <tr key={campaign.id} className="hover:bg-gray-50">
+                                                <td className="whitespace-nowrap px-6 py-4">
+                                                    <div className="font-medium text-gray-900">{campaign.name}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-6 py-4">
+                                                    <span
+                                                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-md ${getStatusColor(campaign.status)}`}
+                                                    >
+                                                        {campaign.status}
+                                                    </span>
+                                                </td>
+                                                <td className="whitespace-nowrap px-6 py-4 text-gray-900">{campaign.sentCount.toLocaleString()}</td>
+                                                <td className="whitespace-nowrap px-6 py-4 text-gray-900">{campaign.openRate}%</td>
+                                                <td className="whitespace-nowrap px-6 py-4 text-gray-500">
+                                                    {new Date(campaign.createdAt).toLocaleDateString()}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

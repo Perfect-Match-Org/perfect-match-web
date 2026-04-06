@@ -76,7 +76,7 @@ const Stats2024 = () => {
 							id="viz-select-gender"
 							value={selectedVizGender}
 							onChange={(e) => setSelectedVizGender(e.target.value)}
-							className="border bg-white rounded-lg px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
+							className="border bg-white rounded-md px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
 						>
 							{Object.keys(by_gender_visualizations).map((key) => (
 								<option key={key} value={key}>
@@ -120,7 +120,7 @@ const Stats2024 = () => {
 							id="viz-select-state"
 							value={selectedVizState}
 							onChange={(e) => setSelectedVizState(e.target.value)}
-							className="border bg-white rounded-lg px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
+							className="border bg-white rounded-md px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
 						>
 							{Object.keys(by_state_visualizations).map((key) => (
 								<option key={key} value={key}>
@@ -142,7 +142,7 @@ const Stats2024 = () => {
 							id="viz-select-college"
 							value={selectedVizCollege}
 							onChange={(e) => setSelectedVizCollege(e.target.value)}
-							className="border bg-white rounded-lg px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
+							className="border bg-white rounded-md px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
 						>
 							{Object.keys(by_college_visualizations).map((key) => (
 								<option key={key} value={key}>
@@ -196,7 +196,7 @@ const Stats2024 = () => {
 							id="viz-select-year"
 							value={selectedVizYear}
 							onChange={(e) => setSelectedVizYear(e.target.value)}
-							className="border bg-white rounded-lg px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
+							className="border bg-white rounded-md px-4 py-2 text-pmred-500 font-dela-gothic text-lg border-2 border-pmpink2-500"
 						>
 							{Object.keys(by_year_visualizations).map((key) => (
 								<option key={key} value={key}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { theme } from "@/styles/themes";
-import { Template, Campaign, FilterCriteria } from "@/types/email";
+import { Template, Campaign, CampaignSaveAction, FilterCriteria } from "@/types/email";
 import UserSelector from "./UserSelector";
 import {
     ChevronRight,
@@ -22,33 +22,34 @@ import {
 
 interface CampaignBuilderProps {
     campaign?: Campaign;
-    onSave: (campaign: Campaign, action: string) => void;
+    onSave: (campaign: Campaign, action: CampaignSaveAction) => Promise<void> | void;
     onCancel: () => void;
 }
 
 export default function CampaignBuilder({ campaign, onSave, onCancel }: CampaignBuilderProps) {
+    const defaultCriteria = useMemo<FilterCriteria>(
+        () =>
+            campaign?.user_filters ?? {
+                year: "2025",
+                natural_query: "",
+                filters: {},
+            },
+        [campaign?.user_filters]
+    );
     const [campaignData, setCampaignData] = useState<Campaign>({
         name: "",
         description: "",
         template_id: "",
-        user_filters: {
-            year: "2025",
-            natural_query: "",
-            filters: {},
-        },
+        user_filters: defaultCriteria,
         campaign_type: "bulk",
         status: "draft",
         ...campaign,
     });
 
     const [templates, setTemplates] = useState<Template[]>([]);
-    const [selectedUsers, setSelectedUsers] = useState({
+    const [selectedUsers, setSelectedUsers] = useState<{ count: number; criteria: FilterCriteria }>({
         count: 0,
-        criteria: {
-            year: "2025",
-            natural_query: "",
-            filters: {},
-        } as FilterCriteria,
+        criteria: defaultCriteria,
     });
     const [currentStep, setCurrentStep] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -70,6 +71,21 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
     useEffect(() => {
         fetchTemplates();
     }, [fetchTemplates]);
+
+    useEffect(() => {
+        setCampaignData({
+            name: "",
+            description: "",
+            template_id: "",
+            user_filters: defaultCriteria,
+            campaign_type: "bulk",
+            status: "draft",
+            ...campaign,
+        });
+        setSelectedUsers({ count: 0, criteria: defaultCriteria });
+        setCurrentStep(1);
+        setErrors([]);
+    }, [campaign, defaultCriteria]);
 
     const validateStep = useCallback(
         (step: number): string[] => {
@@ -122,12 +138,13 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
 
         setLoading(true);
         try {
-            const finalCampaign = {
+            const finalCampaign: Campaign = {
                 ...campaignData,
                 user_filters: selectedUsers.criteria,
             };
-            const action = campaignData.status === "draft" ? "draft" : campaignData.status === "scheduled" ? "schedule" : "send";
-            onSave(finalCampaign, action);
+            const action: CampaignSaveAction =
+                campaignData.status === "draft" ? "draft" : campaignData.status === "scheduled" ? "schedule" : "send";
+            await Promise.resolve(onSave(finalCampaign, action));
         } catch (error) {
             setErrors(["Failed to save campaign. Please try again."]);
         } finally {
@@ -137,11 +154,34 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
 
     const handleUserSelection = useCallback((criteria: FilterCriteria, count: number) => {
         setSelectedUsers({ criteria, count });
+        setCampaignData((prev) => ({ ...prev, user_filters: criteria }));
     }, []);
 
     const selectedTemplate = useMemo(() => {
         return templates.find((t) => t._id === campaignData.template_id);
     }, [templates, campaignData.template_id]);
+
+    const audienceSummary = useMemo(() => {
+        const query = selectedUsers.criteria.natural_query.trim();
+
+        if (query) {
+            return query;
+        }
+
+        const activeFilterCount = Object.values(selectedUsers.criteria.filters).filter((value) => {
+            if (Array.isArray(value)) {
+                return value.length > 0;
+            }
+
+            return value !== undefined && value !== null && value !== "" && value !== false;
+        }).length;
+
+        if (activeFilterCount > 0) {
+            return `${activeFilterCount} manual filter${activeFilterCount === 1 ? "" : "s"} applied`;
+        }
+
+        return `All users in Perfect Match ${selectedUsers.criteria.year}`;
+    }, [selectedUsers.criteria]);
 
     const renderStepContent = () => {
         switch (currentStep) {
@@ -159,7 +199,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                     type="text"
                                     value={campaignData.name}
                                     onChange={(e) => setCampaignData((prev) => ({ ...prev, name: e.target.value }))}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
                                     placeholder="e.g., Welcome Series March 2026"
                                 />
                             </div>
@@ -168,8 +208,13 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Campaign Type</label>
                                 <select
                                     value={campaignData.campaign_type}
-                                    onChange={(e) => setCampaignData((prev) => ({ ...prev, campaign_type: e.target.value as any }))}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
+                                    onChange={(e) =>
+                                        setCampaignData((prev) => ({
+                                            ...prev,
+                                            campaign_type: e.target.value as Campaign["campaign_type"],
+                                        }))
+                                    }
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
                                 >
                                     <option value="bulk">Bulk Campaign</option>
                                     <option value="personalized">Personalized Campaign</option>
@@ -184,7 +229,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                 value={campaignData.description}
                                 onChange={(e) => setCampaignData((prev) => ({ ...prev, description: e.target.value }))}
                                 rows={3}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
                                 placeholder="Brief description of this campaign"
                             />
                         </div>
@@ -199,21 +244,27 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {templates.map((template) => (
                                     <div
-                                        key={template._id}
-                                        onClick={() => setCampaignData((prev) => ({ ...prev, template_id: template._id }))}
-                                        className={`group relative border-2 rounded-lg p-4 cursor-pointer transition-all duration-300 ${
-                                            campaignData.template_id === template._id
-                                                ? "border-pink-500 bg-pink-50/50 shadow-lg shadow-pink-100"
-                                                : "border-gray-100 bg-white hover:border-gray-300 hover:shadow-md"
-                                        }`}
+                                        key={template._id || template.name}
+                                        onClick={() => {
+                                            const templateId = template._id;
+                                            if (!templateId) {
+                                                return;
+                                            }
+
+                                            setCampaignData((prev) => ({ ...prev, template_id: templateId }));
+                                        }}
+                                        className={`group relative border-2 rounded-md p-4 cursor-pointer transition-all duration-300 ${campaignData.template_id === template._id
+                                            ? "border-pink-500 bg-pink-50/50 shadow-lg shadow-pink-100"
+                                            : "border-gray-100 bg-white hover:border-gray-300 hover:shadow-md"
+                                            }`}
                                     >
                                         {campaignData.template_id === template._id && (
-                                            <div className="absolute -top-3 -right-3 bg-pink-500 text-white p-1.5 rounded-full shadow-lg z-20">
+                                            <div className="absolute -top-3 -right-3 bg-pink-500 text-white p-1.5 rounded-md shadow-lg z-20">
                                                 <Check className="w-4 h-4 stroke-[3]" />
                                             </div>
                                         )}
 
-                                        <div className="h-40 bg-gray-100 rounded-lg mb-4 overflow-hidden relative">
+                                        <div className="h-40 bg-gray-100 rounded-md mb-4 overflow-hidden relative">
                                             {template.thumbnail ? (
                                                 <img
                                                     src={template.thumbnail}
@@ -257,13 +308,13 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: theme.fonts.main }}>
                                 Select Target Audience
                             </h2>
-                            <div className="flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold border border-blue-100">
+                            <div className="flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-md text-xs font-bold border border-blue-100">
                                 <Info className="w-3.5 h-3.5 mr-1.5" />
                                 AI-powered segmentation
                             </div>
                         </div>
 
-                        <div className="bg-amber-50/50 border border-amber-100 rounded-lg p-4 mb-6 flex items-start">
+                        <div className="bg-amber-50/50 border border-amber-100 rounded-md p-4 mb-6 flex items-start">
                             <AlertCircle className="w-5 h-5 text-amber-500 mr-3 shrink-0 mt-0.5" />
                             <p className="text-sm text-amber-800 leading-relaxed font-medium">
                                 AI filters are automatically converted into the manual criteria shown below. You can fine-tune any
@@ -272,7 +323,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                         </div>
 
                         {/* UserSelector Component */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div className="bg-white rounded-md shadow-sm border border-gray-200 p-6">
                             <UserSelector onSelectionChange={handleUserSelection} initialCriteria={campaignData.user_filters} />
                         </div>
                     </div>
@@ -285,7 +336,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             Final Review & Schedule
                         </h2>
 
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div className="bg-white border border-gray-200 rounded-md shadow-sm overflow-hidden">
                             <div className="p-5 border-b bg-gray-50/50 flex items-center">
                                 <FileText className="w-5 h-5 text-pink-500 mr-2" />
                                 <h3 className="font-bold text-gray-900">Campaign Summary</h3>
@@ -330,6 +381,12 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                                     <span className="text-[10px] text-gray-400 ml-2 font-medium">Total users</span>
                                                 </div>
 
+                                                <div className="text-gray-500 font-medium">Database</div>
+                                                <div className="text-gray-900 font-bold">Perfect Match {selectedUsers.criteria.year}</div>
+
+                                                <div className="text-gray-500 font-medium">Segment</div>
+                                                <div className="text-gray-900 font-bold leading-relaxed">{audienceSummary}</div>
+
                                                 <div className="text-gray-500 font-medium">Cost Est.</div>
                                                 <div className="text-gray-900 font-bold">${(selectedUsers.count * 0.001).toFixed(2)}</div>
                                             </div>
@@ -339,7 +396,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             </div>
                         </div>
 
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div className="bg-white border border-gray-200 rounded-md shadow-sm overflow-hidden">
                             <div className="p-5 border-b bg-gray-50/50 flex items-center">
                                 <Clock className="w-5 h-5 text-pink-500 mr-2" />
                                 <h3 className="font-bold text-gray-900">Delivery Schedule</h3>
@@ -348,7 +405,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             <div className="p-6 space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <label
-                                        className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all ${!campaignData.scheduled_at && campaignData.status === "sending" ? "border-pink-500 bg-pink-50/50" : "border-gray-100 hover:border-gray-200"}`}
+                                        className={`relative flex flex-col p-4 border-2 rounded-md cursor-pointer transition-all ${!campaignData.scheduled_at && campaignData.status === "sending" ? "border-pink-500 bg-pink-50/50" : "border-gray-100 hover:border-gray-200"}`}
                                     >
                                         <input
                                             type="radio"
@@ -366,16 +423,16 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         <span className="font-bold text-gray-900 text-sm">Send Now</span>
                                         <span className="text-[11px] text-gray-500 mt-1 leading-relaxed">
                                             Start delivery immediately after saving {" "}
-                                            {!campaign ? 
-                                            <span className="text-[11px] text-gray-250 font-bold leading-relaxed">
-                                            (Can't send the campaign without saving first)
-                                            </span>
-                                            : ""}
+                                            {!campaign ?
+                                                <span className="text-[11px] text-amber-600 font-bold leading-relaxed">
+                                                    (Can't send the campaign without saving first)
+                                                </span>
+                                                : ""}
                                         </span>
                                     </label>
 
                                     <label
-                                        className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all ${campaignData.scheduled_at ? "border-pink-500 bg-pink-50/50" : "border-gray-100 hover:border-gray-200"}`}
+                                        className={`relative flex flex-col p-4 border-2 rounded-md cursor-pointer transition-all ${campaignData.scheduled_at ? "border-pink-500 bg-pink-50/50" : "border-gray-100 hover:border-gray-200"}`}
                                     >
                                         <input
                                             type="radio"
@@ -397,17 +454,17 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         <span className="font-bold text-gray-900 text-sm">Schedule Later</span>
                                         <span className="text-[11px] text-gray-500 mt-1 leading-relaxed">
                                             Pick a specific date and time for delivery {" "}
-                                            {!campaign ? 
-                                            <span className="text-[11px] text-gray-250 font-bold leading-relaxed">
-                                            (Can't schedule the campaign without saving first)
-                                            </span>
-                                            : ""}
+                                            {!campaign ?
+                                                <span className="text-[11px] text-amber-600 font-bold leading-relaxed">
+                                                    (Can't schedule the campaign without saving first)
+                                                </span>
+                                                : ""}
 
                                         </span>
                                     </label>
 
                                     <label
-                                        className={`relative flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all ${campaignData.status === "draft" ? "border-pink-500 bg-pink-50/50" : "border-gray-100 hover:border-gray-200"}`}
+                                        className={`relative flex flex-col p-4 border-2 rounded-md cursor-pointer transition-all ${campaignData.status === "draft" ? "border-pink-500 bg-pink-50/50" : "border-gray-100 hover:border-gray-200"}`}
                                     >
                                         <input
                                             type="radio"
@@ -439,7 +496,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                                 type="datetime-local"
                                                 value={campaignData.scheduled_at.split(".")[0]}
                                                 onChange={(e) => setCampaignData((prev) => ({ ...prev, scheduled_at: e.target.value }))}
-                                                className="w-full pl-10 bg-white pr-4 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
+                                                className="w-full pl-10 bg-white pr-4 py-2.5 border-2 border-gray-200 rounded-md focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all"
                                             />
                                         </div>
                                         <p className="mt-3 text-[11px] text-gray-500 flex items-center">
@@ -473,7 +530,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                     <div className="flex gap-3">
                         <button
                             onClick={onCancel}
-                            className="inline-flex items-center px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-semibold"
+                            className="inline-flex items-center px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm font-semibold"
                         >
                             <X className="w-4 h-4 mr-2" />
                             Cancel
@@ -483,7 +540,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             <button
                                 onClick={handleSave}
                                 disabled={loading}
-                                className="inline-flex items-center px-6 py-2 text-white rounded-lg font-bold transition-all disabled:opacity-50 hover:shadow-lg shadow-pink-200 active:scale-95"
+                                className="inline-flex items-center px-6 py-2 text-white rounded-md font-bold transition-all disabled:opacity-50 hover:shadow-lg shadow-pink-200 active:scale-95"
                                 style={{ backgroundColor: theme.colors.primary }}
                             >
                                 {loading ? "Saving..." : "Save Campaign"}
@@ -492,7 +549,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                         ) : (
                             <button
                                 onClick={handleNext}
-                                className="inline-flex items-center px-6 py-2 text-white rounded-lg font-bold transition-all hover:shadow-lg shadow-pink-200 active:scale-95"
+                                className="inline-flex items-center px-6 py-2 text-white rounded-md font-bold transition-all hover:shadow-lg shadow-pink-200 active:scale-95"
                                 style={{ backgroundColor: theme.colors.primary }}
                             >
                                 Next Step
@@ -519,20 +576,18 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                             return (
                                 <div key={step} className="relative z-10 flex flex-col items-center">
                                     <div
-                                        className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300 ${
-                                            isCompleted
-                                                ? "bg-pink-500 border-pink-500 text-white shadow-lg shadow-pink-200"
-                                                : isActive
-                                                  ? "bg-white border-pink-500 text-pink-500 shadow-md ring-4 ring-pink-50"
-                                                  : "bg-white border-gray-200 text-gray-400"
-                                        }`}
+                                        className={`flex items-center justify-center w-10 h-10 rounded-md border-2 transition-all duration-300 ${isCompleted
+                                            ? "bg-pink-500 border-pink-500 text-white shadow-lg shadow-pink-200"
+                                            : isActive
+                                                ? "bg-white border-pink-500 text-pink-500 shadow-md ring-4 ring-pink-50"
+                                                : "bg-white border-gray-200 text-gray-400"
+                                            }`}
                                     >
                                         {isCompleted ? <Check className="w-5 h-5 stroke-[3]" /> : step}
                                     </div>
                                     <div
-                                        className={`absolute -bottom-7 whitespace-nowrap text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${
-                                            isActive ? "text-pink-600" : "text-gray-400"
-                                        }`}
+                                        className={`absolute -bottom-7 whitespace-nowrap text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isActive ? "text-pink-600" : "text-gray-400"
+                                            }`}
                                     >
                                         {step === 1 ? "Campaign Details" : step === 2 ? "Target Users" : "Review & Schedule"}
                                     </div>
@@ -546,7 +601,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
             {/* Content */}
             <div className="max-w-4xl mx-auto p-6">
                 {errors.length > 0 && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
                         <ul className="text-sm text-red-600">
                             {errors.map((error, index) => (
                                 <li key={index}>• {error}</li>
@@ -558,11 +613,11 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                 {renderStepContent()}
 
                 {/* Navigation */}
-                <div className="mt-8 flex justify-between items-center bg-white p-4 border border-gray-200 rounded-lg shadow-sm">
+                <div className="mt-8 flex justify-between items-center bg-white p-4 border border-gray-200 rounded-md shadow-sm">
                     {currentStep > 1 ? (
                         <button
                             onClick={handlePrevious}
-                            className="inline-flex items-center px-5 py-2.5 text-gray-700 font-bold border border-gray-200 rounded-lg hover:bg-gray-50 transition-all active:scale-95"
+                            className="inline-flex items-center px-5 py-2.5 text-gray-700 font-bold border border-gray-200 rounded-md hover:bg-gray-50 transition-all active:scale-95"
                         >
                             <ChevronLeft className="w-5 h-5 mr-1" />
                             Previous Step
@@ -576,7 +631,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                     {currentStep < 3 ? (
                         <button
                             onClick={handleNext}
-                            className="inline-flex items-center px-6 py-2.5 text-white rounded-lg font-bold transition-all shadow-md shadow-pink-100 hover:shadow-lg active:scale-95"
+                            className="inline-flex items-center px-6 py-2.5 text-white rounded-md font-bold transition-all shadow-md shadow-pink-100 hover:shadow-lg active:scale-95"
                             style={{ backgroundColor: theme.colors.primary }}
                         >
                             Continue
@@ -586,7 +641,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                         <button
                             onClick={handleSave}
                             disabled={loading}
-                            className="inline-flex items-center px-8 py-2.5 text-white rounded-lg font-bold transition-all shadow-md shadow-pink-100 hover:shadow-xl active:scale-95 disabled:opacity-50"
+                            className="inline-flex items-center px-8 py-2.5 text-white rounded-md font-bold transition-all shadow-md shadow-pink-100 hover:shadow-xl active:scale-95 disabled:opacity-50"
                             style={{ backgroundColor: theme.colors.primary }}
                         >
                             {loading ? "Finalizing..." : "Launch Campaign"}

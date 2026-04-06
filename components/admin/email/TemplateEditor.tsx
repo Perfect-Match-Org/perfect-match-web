@@ -311,14 +311,14 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 				<div className="flex gap-3">
 					<button
 						onClick={onCancel}
-						className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+						className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
 					>
 						Cancel
 					</button>
 					<button
 						onClick={handleSave}
 						disabled={saving}
-						className="px-6 py-2 text-white rounded-lg font-medium transition-colors disabled:opacity-50 bg-[#FF328F] hover:bg-[#E02B7A]"
+						className="px-6 py-2 text-white rounded-md font-medium transition-colors disabled:opacity-50 bg-[#FF328F] hover:bg-[#E02B7A]"
 					>
 						{saving ? "Saving..." : "Save Template"}
 					</button>
@@ -334,7 +334,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 							type="text"
 							value={templateData.name}
 							onChange={(e) => setTemplateData((prev) => ({ ...prev, name: e.target.value }))}
-							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+							className="w-full bg-white px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-500 focus:border-transparent"
 							placeholder="e.g., Welcome Series 2026"
 						/>
 					</div>
@@ -344,14 +344,14 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 							type="text"
 							value={templateData.description}
 							onChange={(e) => setTemplateData((prev) => ({ ...prev, description: e.target.value }))}
-							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+							className="w-full bg-white px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-500 focus:border-transparent"
 							placeholder="Brief description of this template"
 						/>
 					</div>
 				</div>
 
 				{errors.length > 0 && (
-					<div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+					<div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
 						<ul className="text-sm text-red-600">
 							{errors.map((error, index) => (
 								<li key={index}>• {error}</li>
@@ -368,9 +368,8 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 						<button
 							key={tab}
 							onClick={() => setActiveTab(tab)}
-							className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
-								activeTab === tab ? "border-pink-500 text-pink-600" : "border-transparent text-gray-500 hover:text-gray-700"
-							}`}
+							className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${activeTab === tab ? "border-pink-500 text-pink-600" : "border-transparent text-gray-500 hover:text-gray-700"
+								}`}
 						>
 							{tab.toUpperCase()}
 						</button>
@@ -383,9 +382,8 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 								<button
 									key={mode}
 									onClick={() => setPreviewMode(mode)}
-									className={`px-3 py-1 text-xs rounded-full transition-colors ${
-										previewMode === mode ? "bg-pink-100 text-pink-700" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-									}`}
+									className={`px-3 py-1 text-xs rounded-md transition-colors ${previewMode === mode ? "bg-pink-100 text-pink-700" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+										}`}
 								>
 									{mode}
 								</button>
@@ -467,7 +465,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 
 				{activeTab === "preview" && (
 					<div className="flex-1 bg-gray-100 p-4">
-						<div className="mx-auto bg-white rounded-lg shadow-sm overflow-hidden" style={{ width: getPreviewWidth() }}>
+						<div className="mx-auto bg-white rounded-md shadow-sm overflow-hidden" style={{ width: getPreviewWidth() }}>
 							<iframe
 								ref={previewRef}
 								className="w-full h-full min-h-96"

@@ -1,26 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { theme } from "@/styles/themes";
-import { Campaign } from "@/types/email";
+import { Campaign, CampaignActionResponse, CampaignListResponse } from "@/types/email";
+import {
+	AlertTriangle,
+	BarChart3,
+	CheckCircle2,
+	Clock3,
+	Edit2,
+	FileText,
+	Loader2,
+	Pause,
+	Play,
+	Send,
+	Target,
+	Trash2,
+	TrendingUp,
+	Users,
+} from "lucide-react";
 
 interface CampaignHistoryProps {
 	onEditCampaign?: (campaign: Campaign) => void;
 	onViewAnalytics?: (campaign: Campaign) => void;
 }
 
+type CampaignFilter = "all" | Campaign["status"];
+
 export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: CampaignHistoryProps) {
 	const [campaigns, setCampaigns] = useState<Campaign[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [filter, setFilter] = useState<string>("all");
+	const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
+	const [error, setError] = useState<string>("");
+	const [filter, setFilter] = useState<CampaignFilter>("all");
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
 
-	useEffect(() => {
-		fetchCampaigns();
-	}, [page, filter]);
+	const filterOptions = useMemo(
+		(): Array<{ value: CampaignFilter; label: string }> => [
+			{ value: "all", label: "All Campaigns" },
+			{ value: "draft", label: "Drafts" },
+			{ value: "scheduled", label: "Scheduled" },
+			{ value: "sending", label: "Sending" },
+			{ value: "completed", label: "Completed" },
+			{ value: "paused", label: "Paused" },
+			{ value: "failed", label: "Failed" },
+		],
+		[]
+	);
 
-	const fetchCampaigns = async () => {
+	const fetchCampaigns = useCallback(async () => {
 		try {
 			setLoading(true);
+			setError("");
 
 			const params = new URLSearchParams({
 				page: page.toString(),
@@ -31,361 +61,383 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
 				params.append("status", filter);
 			}
 
-			const response = await fetch(`/api/admin/email/campaigns?${params}`);
-			const data = await response.json();
+			const response = await fetch(`/api/admin/email/campaigns?${params.toString()}`);
+			const data = (await response.json()) as CampaignListResponse;
 
-			if (response.ok) {
-				setCampaigns(data.campaigns);
-				setTotalPages(data.pagination.pages);
+			if (!response.ok) {
+				throw new Error(data.error || "Failed to fetch campaigns");
 			}
+
+			setCampaigns(data.campaigns ?? []);
+			setTotalPages(data.pagination?.pages ?? 1);
 		} catch (error) {
 			console.error("Failed to fetch campaigns:", error);
+			setError(error instanceof Error ? error.message : "Failed to load campaigns");
+			setCampaigns([]);
+			setTotalPages(1);
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, [filter, page]);
 
-	const getStatusColor = (status: string) => {
+	useEffect(() => {
+		fetchCampaigns();
+	}, [fetchCampaigns]);
+
+	const getStatusColor = useCallback((status: Campaign["status"]) => {
 		switch (status) {
 			case "completed":
-				return "text-green-600 bg-green-100";
+				return "border-emerald-100 bg-emerald-50 text-emerald-700";
 			case "sending":
-				return "text-blue-600 bg-blue-100";
+				return "border-sky-100 bg-sky-50 text-sky-700";
 			case "scheduled":
-				return "text-yellow-600 bg-yellow-100";
+				return "border-amber-100 bg-amber-50 text-amber-700";
 			case "draft":
-				return "text-gray-600 bg-gray-100";
+				return "border-gray-200 bg-gray-100 text-gray-700";
 			case "paused":
-				return "text-orange-600 bg-orange-100";
+				return "border-orange-100 bg-orange-50 text-orange-700";
 			case "failed":
-				return "text-red-600 bg-red-100";
+				return "border-rose-100 bg-rose-50 text-rose-700";
 			default:
-				return "text-gray-600 bg-gray-100";
+				return "border-gray-200 bg-gray-100 text-gray-700";
 		}
-	};
+	}, []);
 
-	const getStatusIcon = (status: string) => {
+	const getStatusIcon = useCallback((status: Campaign["status"]) => {
 		switch (status) {
 			case "completed":
-				return "✓";
+				return <CheckCircle2 className="h-3.5 w-3.5" />;
 			case "sending":
-				return "⟳";
+				return <Send className="h-3.5 w-3.5" />;
 			case "scheduled":
-				return "⏰";
+				return <Clock3 className="h-3.5 w-3.5" />;
 			case "draft":
-				return "📝";
+				return <FileText className="h-3.5 w-3.5" />;
 			case "paused":
-				return "⏸";
+				return <Pause className="h-3.5 w-3.5" />;
 			case "failed":
-				return "⚠";
+				return <AlertTriangle className="h-3.5 w-3.5" />;
 			default:
-				return "•";
+				return <FileText className="h-3.5 w-3.5" />;
 		}
-	};
+	}, []);
 
-	const calculateOpenRate = (campaign: Campaign) => {
-		if (!campaign.analytics || campaign.analytics.delivered_count === 0) return 0;
+	const calculateOpenRate = useCallback((campaign: Campaign) => {
+		if (!campaign.analytics || campaign.analytics.delivered_count === 0) {
+			return 0;
+		}
+
 		return Math.round((campaign.analytics.opened_count / campaign.analytics.delivered_count) * 100);
-	};
+	}, []);
 
-	const calculateClickRate = (campaign: Campaign) => {
-		if (!campaign.analytics || campaign.analytics.delivered_count === 0) return 0;
-		return Math.round((campaign.analytics.clicked_count / campaign.analytics.delivered_count) * 100);
-	};
-
-	const handleAction = async (campaignId: string, action: string) => {
-		try {
-			let endpoint = "";
-			let method = "POST";
-			let body = {};
-			
-			switch (action) {
-				case "send":
-					endpoint = `/api/admin/email/campaigns/${campaignId}/send`;
-					method = "POST";
-					body = { send_immediately: true };
-					break;
-				case "pause":
-					endpoint = `/api/admin/email/campaigns/${campaignId}/pause`;
-					method = "POST";
-					break;
-				case "resume":
-					endpoint = `/api/admin/email/campaigns/${campaignId}/resume`;
-					method = "POST";
-					break;
-				case "delete":
-					endpoint = `/api/admin/email/campaigns/${campaignId}`;
-					method = "DELETE";
-					break;
-			}
-
-			const response = await fetch(endpoint, { method, body: JSON.stringify(body), headers: { "Content-Type": "application/json" } });
-
-			if (response.ok) {
-				fetchCampaigns(); // Refresh the list
-			}
-		} catch (error) {
-			console.error(`Failed to ${action} campaign:`, error);
+	const calculateClickRate = useCallback((campaign: Campaign) => {
+		if (!campaign.analytics || campaign.analytics.delivered_count === 0) {
+			return 0;
 		}
-	};
 
-	if (loading) {
-		return (
-			<div className="p-8">
-				<div className="animate-pulse space-y-6">
-					<div className="h-8 bg-gray-200 rounded w-1/3"></div>
-					{[...Array(5)].map((_, i) => (
-						<div key={i} className="h-16 bg-gray-200 rounded"></div>
-					))}
-				</div>
-			</div>
-		);
-	}
+		return Math.round((campaign.analytics.clicked_count / campaign.analytics.delivered_count) * 100);
+	}, []);
+
+	const handleAction = useCallback(
+		async (campaignId: string, action: "send" | "pause" | "resume" | "delete") => {
+			if (action === "delete" && !window.confirm("Delete this campaign? This action cannot be undone.")) {
+				return;
+			}
+
+			try {
+				setActionLoadingId(campaignId);
+
+				const endpoint =
+					action === "send"
+						? `/api/admin/email/campaigns/${campaignId}/send`
+						: action === "pause"
+							? `/api/admin/email/campaigns/${campaignId}/pause`
+							: action === "resume"
+								? `/api/admin/email/campaigns/${campaignId}/resume`
+								: `/api/admin/email/campaigns/${campaignId}`;
+
+				const method = action === "delete" ? "DELETE" : "POST";
+				// Send both keys so the UI works with either backend payload shape.
+				const body = action === "send" ? JSON.stringify({ send_immediately: true, status: true }) : undefined;
+
+				const response = await fetch(endpoint, {
+					method,
+					headers: body ? { "Content-Type": "application/json" } : undefined,
+					body,
+				});
+
+				if (!response.ok) {
+					const data = (await response.json()) as CampaignActionResponse;
+					throw new Error(data.error || `Failed to ${action} campaign`);
+				}
+
+				await fetchCampaigns();
+			} catch (error) {
+				console.error(`Failed to ${action} campaign:`, error);
+				window.alert(error instanceof Error ? error.message : `Failed to ${action} campaign`);
+			} finally {
+				setActionLoadingId(null);
+			}
+		},
+		[fetchCampaigns]
+	);
 
 	return (
-		<div className="p-8 bg-gray-50 min-h-screen">
-			<div className="max-w-7xl mx-auto">
-				{/* Header */}
-				<div className="mb-8">
-					<h1 className="text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: theme.fonts.heading }}>
-						Campaign History
-					</h1>
-					<p className="text-gray-600">View and manage your email marketing campaigns</p>
-				</div>
+		<div className="min-h-screen bg-gray-50 p-8">
+			<div className="mx-auto max-w-7xl">
+				<div className="mb-8 flex flex-col gap-4 lg:flex-col lg:items-end lg:justify-between">
+					<div>
+						<h1 className="mb-2 text-3xl font-bold text-gray-900" style={{ fontFamily: theme.fonts.heading }}>
+							Campaign History
+						</h1>
+						<p className="text-gray-600">Track delivery status, performance, and next actions for every send</p>
+					</div>
 
-				{/* Filters */}
-				<div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
 					<div className="flex flex-wrap gap-2">
-						{[
-							{ value: "all", label: "All Campaigns" },
-							{ value: "draft", label: "Drafts" },
-							{ value: "scheduled", label: "Scheduled" },
-							{ value: "sending", label: "Sending" },
-							{ value: "completed", label: "Completed" },
-							{ value: "paused", label: "Paused" },
-							{ value: "failed", label: "Failed" },
-						].map((filterOption) => (
+						{filterOptions.map((option) => (
 							<button
-								key={filterOption.value}
+								key={option.value}
 								onClick={() => {
-									setFilter(filterOption.value);
+									setFilter(option.value);
 									setPage(1);
 								}}
-								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-									filter === filterOption.value
-										? "bg-pink-100 text-pink-700"
-										: "bg-gray-100 text-gray-600 hover:bg-gray-200"
-								}`}
+								className={`rounded-md border px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${filter === option.value
+									? "border-pink-200 bg-pink-50 text-pink-600 shadow-sm"
+									: "border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-900"
+									}`}
 							>
-								{filterOption.label}
+								{option.label}
 							</button>
 						))}
 					</div>
 				</div>
 
-				{/* Campaigns Table */}
-				<div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-					<div className="overflow-x-auto">
-						<table className="w-full">
-							<thead className="bg-gray-50">
-								<tr>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Campaign
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Status
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Recipients
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Performance
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Created
-									</th>
-									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-										Actions
-									</th>
-								</tr>
-							</thead>
-							<tbody className="divide-y divide-gray-200">
-								{campaigns.map((campaign) => (
-									<tr key={campaign._id} className="hover:bg-gray-50">
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div>
-												<div className="font-medium text-gray-900">{campaign.name}</div>
-												<div className="text-sm text-gray-500">
-													{campaign.template?.name || "Template not found"}
-												</div>
-												<div className="text-xs text-gray-400 capitalize">
-													{campaign.campaign_type.replace("_", " ")}
-												</div>
-											</div>
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap">
-											<span
-												className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(campaign.status)}`}
-											>
-												<span className="mr-1">{getStatusIcon(campaign.status)}</span>
-												{campaign.status}
-											</span>
-											{campaign.scheduled_at && campaign.status === "scheduled" && (
-												<div className="text-xs text-gray-500 mt-1">
-													{new Date(campaign.scheduled_at).toLocaleString()}
-												</div>
-											)}
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">
-												{campaign.analytics && campaign.analytics.sent_count > 0 ? (
-													<>
-														<div className="font-medium">{campaign.analytics.sent_count.toLocaleString()}</div>
-														<div className="text-xs text-gray-500">
-															{campaign.analytics.delivered_count.toLocaleString()} delivered
-														</div>
-													</>
-												) : (
-													<span className="text-gray-500">Not sent</span>
-												)}
-											</div>
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap">
-											{campaign.analytics && campaign.analytics.delivered_count > 0 ? (
-												<div className="text-sm">
-													<div className="flex items-center space-x-4">
-														<div>
-															<span className="font-medium text-gray-900">
-																{calculateOpenRate(campaign)}%
-															</span>
-															<span className="text-xs text-gray-500 ml-1">open</span>
-														</div>
-														<div>
-															<span className="font-medium text-gray-900">
-																{calculateClickRate(campaign)}%
-															</span>
-															<span className="text-xs text-gray-500 ml-1">click</span>
-														</div>
-													</div>
-													{campaign.analytics && campaign.analytics.bounced_count > 0 && (
-														<div className="text-xs text-red-600 mt-1">
-															{campaign.analytics.bounced_count} bounced
-														</div>
-													)}
-												</div>
-											) : (
-												<span className="text-sm text-gray-500">-</span>
-											)}
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-											{campaign.created_at && new Date(campaign.created_at).toLocaleDateString()}
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap text-sm">
-											<div className="flex space-x-2">
-												{campaign.status === "draft" && (
-													<>
-														<button
-															onClick={() => onEditCampaign?.(campaign)}
-															className="text-blue-600 hover:text-blue-800"
-														>
-															Edit
-														</button>
-														<button
-															onClick={() => handleAction(campaign._id!, "send")}
-															className="text-green-600 hover:text-green-800"
-														>
-															Send
-														</button>
-														<button
-															onClick={() => handleAction(campaign._id!, "delete")}
-															className="text-red-600 hover:text-red-800"
-														>
-															Delete
-														</button>
-													</>
-												)}
-
-												{campaign.status === "sending" && (
-													<button
-														onClick={() => handleAction(campaign._id!, "pause")}
-														className="text-orange-600 hover:text-orange-800"
-													>
-														Pause
-													</button>
-												)}
-
-												{campaign.status === "paused" && (
-													<button
-														onClick={() => handleAction(campaign._id!, "resume")}
-														className="text-green-600 hover:text-green-800"
-													>
-														Resume
-													</button>
-												)}
-
-												{campaign.status === "completed" && (
-													<button
-														onClick={() => onViewAnalytics?.(campaign)}
-														className="text-blue-600 hover:text-blue-800"
-													>
-														Analytics
-													</button>
-												)}
-											</div>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
+				{error && (
+					<div className="mb-6 flex items-start gap-3 rounded-xl border border-rose-100 bg-rose-50 p-4">
+						<AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-rose-600" />
+						<div>
+							<p className="text-sm font-bold text-rose-700">Campaign data could not be refreshed</p>
+							<p className="mt-1 text-sm font-medium text-rose-600">{error}</p>
+						</div>
 					</div>
+				)}
 
-					{campaigns.length === 0 && (
-						<div className="text-center py-12">
-							<div className="text-gray-500 mb-4">
-								<svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m13-8l-4 4m0 0l-4-4m4 4V3"
-									/>
-								</svg>
+				<div className="relative min-h-[420px]">
+					{loading && (
+						<div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-50/60 backdrop-blur-sm transition-all duration-300">
+							<div className="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-xl">
+								<Loader2 className="mb-4 h-10 w-10 animate-spin text-pink-500" />
+								<span className="text-xs font-bold uppercase tracking-widest text-gray-400">Loading Campaigns...</span>
 							</div>
-							<h3 className="text-lg font-medium text-gray-900 mb-2">No campaigns found</h3>
-							<p className="text-gray-500">
-								{filter === "all"
-									? "You haven't created any campaigns yet."
-									: `No campaigns found with status "${filter}".`}
-							</p>
 						</div>
 					)}
-				</div>
 
-				{/* Pagination */}
-				{totalPages > 1 && (
-					<div className="mt-6 flex items-center justify-between">
-						<div className="text-sm text-gray-700">
-							Page {page} of {totalPages}
+					<div className={`overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-opacity duration-300 ${loading && campaigns.length === 0 ? "opacity-0" : "opacity-100"}`}>
+						<div className="overflow-x-auto">
+							<table className="w-full">
+								<thead className="bg-gray-50/80">
+									<tr>
+										<th className="px-6 py-4 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400">Campaign</th>
+										<th className="px-6 py-4 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400">Status</th>
+										<th className="px-6 py-4 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400">Reach</th>
+										<th className="px-6 py-4 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400">Performance</th>
+										<th className="px-6 py-4 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400">Created</th>
+										<th className="px-6 py-4 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400">Actions</th>
+									</tr>
+								</thead>
+								<tbody className="divide-y divide-gray-100">
+									{campaigns.map((campaign) => {
+										const openRate = calculateOpenRate(campaign);
+										const clickRate = calculateClickRate(campaign);
+										const campaignId = campaign._id;
+										const isBusy = actionLoadingId === campaignId;
+
+										return (
+											<tr key={campaign._id ?? campaign.name} className="align-top transition-colors hover:bg-gray-50/70">
+												<td className="px-6 py-5">
+													<div className="space-y-1">
+														<div className="font-bold text-gray-900">{campaign.name}</div>
+														<div className="text-sm font-medium text-gray-500">{campaign.template?.name || "Template not found"}</div>
+														<div className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+															{campaign.campaign_type.replace("_", " ")}
+														</div>
+													</div>
+												</td>
+
+												<td className="px-6 py-5">
+													<div className={`inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest ${getStatusColor(campaign.status)}`}>
+														{getStatusIcon(campaign.status)}
+														<span>{campaign.status}</span>
+													</div>
+													{campaign.scheduled_at && campaign.status === "scheduled" && (
+														<div className="mt-2 text-xs font-medium text-gray-500">
+															{new Date(campaign.scheduled_at).toLocaleString()}
+														</div>
+													)}
+												</td>
+
+												<td className="px-6 py-5">
+													<div className="space-y-2 text-sm">
+														<div className="flex items-center gap-2 font-bold text-gray-900">
+															<Users className="h-4 w-4 text-gray-400" />
+															<span>{campaign.analytics?.sent_count?.toLocaleString() ?? "0"}</span>
+														</div>
+														<div className="text-xs font-medium text-gray-500">
+															{campaign.analytics?.delivered_count
+																? `${campaign.analytics.delivered_count.toLocaleString()} delivered`
+																: "Delivery has not started"}
+														</div>
+													</div>
+												</td>
+
+												<td className="px-6 py-5">
+													{campaign.analytics && campaign.analytics.delivered_count > 0 ? (
+														<div className="space-y-2">
+															<div className="flex items-center gap-4 text-sm">
+																<div className="flex items-center gap-2 font-bold text-gray-900">
+																	<TrendingUp className="h-4 w-4 text-emerald-500" />
+																	<span>{openRate}% open</span>
+																</div>
+																<div className="flex items-center gap-2 font-bold text-gray-900">
+																	<Target className="h-4 w-4 text-pink-500" />
+																	<span>{clickRate}% click</span>
+																</div>
+															</div>
+															{campaign.analytics.bounced_count > 0 && (
+																<div className="text-xs font-medium text-rose-600">
+																	{campaign.analytics.bounced_count} bounced
+																</div>
+															)}
+														</div>
+													) : (
+														<span className="text-sm font-medium text-gray-400">No analytics yet</span>
+													)}
+												</td>
+
+												<td className="px-6 py-5 text-sm font-medium text-gray-500">
+													{campaign.created_at ? new Date(campaign.created_at).toLocaleDateString() : "Recently"}
+												</td>
+
+												<td className="px-6 py-5">
+													<div className="flex flex-wrap gap-2">
+														{(campaign.status === "draft" || campaign.status === "scheduled") && (
+															<button
+																onClick={() => onEditCampaign?.(campaign)}
+																disabled={isBusy}
+																className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 transition-all hover:border-pink-200 hover:text-pink-600 disabled:opacity-40"
+															>
+																<Edit2 className="h-3.5 w-3.5" />
+																Edit
+															</button>
+														)}
+
+														{campaign.status === "draft" && campaignId && (
+															<button
+																onClick={() => handleAction(campaignId, "send")}
+																disabled={isBusy}
+																className="inline-flex items-center gap-2 rounded-md bg-pink-600 px-3 py-2 text-xs font-bold uppercase tracking-widest text-white transition-all hover:bg-pink-700 disabled:opacity-40"
+															>
+																<Send className="h-3.5 w-3.5" />
+																Send
+															</button>
+														)}
+
+														{(campaign.status === "draft" || campaign.status === "scheduled") && campaignId && (
+															<button
+																onClick={() => handleAction(campaignId, "delete")}
+																disabled={isBusy}
+																className="inline-flex items-center gap-2 rounded-md border border-rose-100 bg-rose-50 px-3 py-2 text-xs font-bold uppercase tracking-widest text-rose-600 transition-all hover:bg-rose-100 disabled:opacity-40"
+															>
+																{isBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />}
+																Delete
+															</button>
+														)}
+
+														{campaign.status === "sending" && campaignId && (
+															<button
+																onClick={() => handleAction(campaignId, "pause")}
+																disabled={isBusy}
+																className="inline-flex items-center gap-2 rounded-md border border-orange-100 bg-orange-50 px-3 py-2 text-xs font-bold uppercase tracking-widest text-orange-700 transition-all hover:bg-orange-100 disabled:opacity-40"
+															>
+																<Pause className="h-3.5 w-3.5" />
+																Pause
+															</button>
+														)}
+
+														{campaign.status === "paused" && campaignId && (
+															<button
+																onClick={() => handleAction(campaignId, "resume")}
+																disabled={isBusy}
+																className="inline-flex items-center gap-2 rounded-md border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 transition-all hover:bg-emerald-100 disabled:opacity-40"
+															>
+																<Play className="h-3.5 w-3.5" />
+																Resume
+															</button>
+														)}
+
+														{campaign.status === "completed" && (
+															<button
+																onClick={() => onViewAnalytics?.(campaign)}
+																className="inline-flex items-center gap-2 rounded-md border border-sky-100 bg-sky-50 px-3 py-2 text-xs font-bold uppercase tracking-widest text-sky-700 transition-all hover:bg-sky-100"
+															>
+																<BarChart3 className="h-3.5 w-3.5" />
+																Analytics
+															</button>
+														)}
+													</div>
+												</td>
+											</tr>
+										);
+									})}
+								</tbody>
+							</table>
 						</div>
 
-						<div className="flex space-x-2">
+						{campaigns.length === 0 && !loading && (
+							<div className="py-20 text-center">
+								<div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gray-50">
+									<FileText className="h-8 w-8 text-gray-300" />
+								</div>
+								<h3 className="mb-2 text-lg font-bold text-gray-900">No campaigns found</h3>
+								<p className="text-sm font-medium text-gray-500">
+									{filter === "all" ? "You have not created any campaigns yet." : `No campaigns found for the "${filter}" status.`}
+								</p>
+								{filter !== "all" && (
+									<div className="mt-6 flex justify-center gap-3">
+										<button
+											onClick={() => {
+												setFilter("all");
+												setPage(1);
+											}}
+											className="rounded-md border border-gray-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 transition-all hover:border-gray-300 hover:bg-gray-50"
+										>
+											Clear Filters
+										</button>
+									</div>
+								)}
+							</div>
+						)}
+					</div>
+				</div>
+
+				{totalPages > 1 && (
+					<div className="mt-6 flex items-center justify-between rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm">
+						<div className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+							Page <span className="text-pink-600">{page}</span> of {totalPages}
+						</div>
+
+						<div className="flex gap-2">
 							<button
 								onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-								disabled={page === 1}
-								className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+								disabled={page === 1 || loading}
+								className="rounded-md border border-gray-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 transition-all hover:border-gray-300 hover:bg-gray-50 disabled:opacity-40"
 							>
 								Previous
 							</button>
-
 							<button
 								onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-								disabled={page === totalPages}
-								className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+								disabled={page === totalPages || loading}
+								className="rounded-md border border-gray-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 transition-all hover:border-gray-300 hover:bg-gray-50 disabled:opacity-40"
 							>
 								Next
 							</button>

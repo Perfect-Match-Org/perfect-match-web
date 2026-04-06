@@ -32,13 +32,13 @@ const UserTableSkeleton: React.FC = () => {
                                 <div className="h-4 bg-gray-300 rounded w-32"></div>
                             </td>
                             <td className="px-4 py-3 border-b">
-                                <div className="h-6 bg-gray-300 rounded-lg w-12"></div>
+                                <div className="h-6 bg-gray-300 rounded-md w-12"></div>
                             </td>
                             <td className="px-4 py-3 border-b">
-                                <div className="h-6 bg-gray-300 rounded-lg w-16"></div>
+                                <div className="h-6 bg-gray-300 rounded-md w-16"></div>
                             </td>
                             <td className="px-4 py-3 border-b">
-                                <div className="h-6 bg-gray-300 rounded-lg w-16"></div>
+                                <div className="h-6 bg-gray-300 rounded-md w-16"></div>
                             </td>
                             <td className="px-4 py-3 border-b">
                                 <div className="h-4 bg-gray-300 rounded w-20"></div>
@@ -152,7 +152,7 @@ export default function AdminDashboard() {
         return (
             <section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
                 <Container>
-                    <div className="bg-red-50 text-pmred-500 p-4 rounded-lg">
+                    <div className="bg-red-50 text-pmred-500 p-4 rounded-md">
                         <p className="font-semibold">Error:</p>
                         <p>{error}</p>
                     </div>
@@ -174,19 +174,19 @@ export default function AdminDashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     {loading
                         ? // Show skeleton cards while loading
-                          Array.from({ length: 4 }).map((_, index) => <DataCardSkeleton key={index} />)
+                        Array.from({ length: 4 }).map((_, index) => <DataCardSkeleton key={index} />)
                         : displayDatas.map(([label, count, colors], index) => (
-                              <DataCard key={index} gradientColors={colors}>
-                                  <div className="relative z-10">
-                                      <h3 className="text-white text-lg font-semibold mb-2">{label}</h3>
-                                      <p className="text-white text-3xl font-bold">{count}</p>
-                                  </div>
-                              </DataCard>
-                          ))}
+                            <DataCard key={index} gradientColors={colors}>
+                                <div className="relative z-10">
+                                    <h3 className="text-white text-lg font-semibold mb-2">{label}</h3>
+                                    <p className="text-white text-3xl font-bold">{count}</p>
+                                </div>
+                            </DataCard>
+                        ))}
                 </div>
 
                 {/* User Management Section */}
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden">
                     <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <h2 className="text-xl font-bold text-gray-900">User Management</h2>
 
@@ -198,7 +198,7 @@ export default function AdminDashboard() {
                                     placeholder="Search users in the database..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 min-w-[400px] py-2 bg-white border-2 text-gray-900 border-gray-100 rounded-lg text-sm focus:border-pink-500/20 focus:ring-4 focus:ring-pink-500/5 transition-all outline-none"
+                                    className="pl-10 pr-4 min-w-[400px] py-2 bg-white border-2 text-gray-900 border-gray-100 rounded-md text-sm focus:border-pink-500/20 focus:ring-4 focus:ring-pink-500/5 transition-all outline-none"
                                 />
                             </div>
                             <div className="flex gap-2">
@@ -207,11 +207,11 @@ export default function AdminDashboard() {
                                     placeholder="Page"
                                     value={pageInput}
                                     onChange={(e) => setPageInput(e.target.value)}
-                                    className="w-20 px-3 py-2 bg-white border-2 border-gray-100 text-gray-900 rounded-lg text-sm focus:border-pink-500/20 focus:ring-4 focus:ring-pink-500/5 transition-all outline-none"
+                                    className="w-20 px-3 py-2 bg-white border-2 border-gray-100 text-gray-900 rounded-md text-sm focus:border-pink-500/20 focus:ring-4 focus:ring-pink-500/5 transition-all outline-none"
                                 />
                                 <button
                                     onClick={jumpToPage}
-                                    className="px-4 py-2 bg-pink-600 text-white rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-pink-700 transition-all active:scale-95 shadow-lg shadow-pink-100"
+                                    className="px-4 py-2 bg-pink-600 text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-pink-700 transition-all active:scale-95 shadow-lg shadow-pink-100"
                                 >
                                     Go
                                 </button>
@@ -228,7 +228,7 @@ export default function AdminDashboard() {
                             <button
                                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                                 disabled={page === 1}
-                                className="p-2 text-gray-400 hover:text-pink-600 hover:bg-pink-50 rounded-lg disabled:opacity-20 transition-all"
+                                className="p-2 text-gray-400 hover:text-pink-600 hover:bg-pink-50 rounded-md disabled:opacity-20 transition-all"
                                 title="Previous Page"
                             >
                                 <ChevronLeft className="w-5 h-5" />
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
                             <button
                                 onClick={() => setPage((p) => p + 1)}
                                 disabled={displayUsers.length < 10}
-                                className="p-2 text-gray-400 hover:text-pink-600 hover:bg-pink-50 rounded-lg disabled:opacity-20 transition-all"
+                                className="p-2 text-gray-400 hover:text-pink-600 hover:bg-pink-50 rounded-md disabled:opacity-20 transition-all"
                                 title="Next Page"
                             >
                                 <ChevronRight className="w-5 h-5" />
@@ -248,7 +248,7 @@ export default function AdminDashboard() {
                     <div className="relative min-h-[400px]">
                         {usersLoading && (
                             <div className="absolute inset-0 bg-white/60 backdrop-blur-sm z-10 flex items-center justify-center transition-all duration-300">
-                                <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                                <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-xl border border-gray-100">
                                     <div className="w-10 h-10 border-4 border-pink-100 border-t-pink-500 rounded-full animate-spin mb-4" />
                                     <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loading Users...</span>
                                 </div>
@@ -289,33 +289,30 @@ export default function AdminDashboard() {
                                             <td className="px-6 py-4 text-sm font-medium text-gray-600">{user.email}</td>
                                             <td className="px-6 py-4 text-sm">
                                                 <span
-                                                    className={`inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-lg ${
-                                                        user.optIn
-                                                            ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                                            : "bg-rose-50 text-rose-600 border border-rose-100"
-                                                    }`}
+                                                    className={`inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md ${user.optIn
+                                                        ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
+                                                        : "bg-rose-50 text-rose-600 border border-rose-100"
+                                                        }`}
                                                 >
                                                     {user.optIn ? "Yes" : "No"}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-sm">
                                                 <span
-                                                    className={`inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-lg ${
-                                                        user.profile?.complete
-                                                            ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                                            : "bg-amber-50 text-amber-600 border border-amber-100"
-                                                    }`}
+                                                    className={`inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md ${user.profile?.complete
+                                                        ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
+                                                        : "bg-amber-50 text-amber-600 border border-amber-100"
+                                                        }`}
                                                 >
                                                     {user.profile?.complete ? "Complete" : "Pending"}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-sm">
                                                 <span
-                                                    className={`inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-lg ${
-                                                        user.survey?.complete
-                                                            ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                                            : "bg-amber-50 text-amber-600 border border-amber-100"
-                                                    }`}
+                                                    className={`inline-flex px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md ${user.survey?.complete
+                                                        ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
+                                                        : "bg-amber-50 text-amber-600 border border-amber-100"
+                                                        }`}
                                                 >
                                                     {user.survey?.complete ? "Complete" : "Pending"}
                                                 </span>
@@ -336,7 +333,7 @@ export default function AdminDashboard() {
 
                         {displayUsers.length === 0 && !usersLoading && (
                             <div className="text-center py-20 flex flex-col items-center">
-                                <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4 border-2 border-white shadow-sm">
+                                <div className="w-16 h-16 bg-gray-50 rounded-md flex items-center justify-center mb-4 border-2 border-white shadow-sm">
                                     <Search className="w-8 h-8 text-gray-300" />
                                 </div>
                                 <h3 className="text-lg font-bold text-gray-900 mb-1">No users found</h3>

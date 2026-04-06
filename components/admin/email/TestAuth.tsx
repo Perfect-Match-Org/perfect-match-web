@@ -28,25 +28,25 @@ export default function TestAuth() {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
+        <div className="bg-white rounded-md shadow-sm border p-6 mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Email API Authentication Test</h3>
 
             <button
                 onClick={testAuth}
                 disabled={loading}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
             >
                 {loading ? "Testing..." : "Test Authentication"}
             </button>
 
             {error && (
-                <div className="mt-4 p-3 rounded-lg bg-gray-50">
+                <div className="mt-4 p-3 rounded-md bg-gray-50">
                     <pre className="text-sm text-red-500">{error}</pre>
                 </div>
             )}
 
             {result && (
-                <div className="mt-4 p-3 rounded-lg bg-gray-50">
+                <div className="mt-4 p-3 rounded-md bg-gray-50">
                     <pre className="text-sm text-green-500">{result}</pre>
                 </div>
             )}

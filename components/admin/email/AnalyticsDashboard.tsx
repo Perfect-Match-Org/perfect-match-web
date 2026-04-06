@@ -98,27 +98,27 @@ export default function AnalyticsDashboard() {
             <div className="space-y-8">
                 {/* Key Metrics - Consolidated Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-                    <div className="bg-white rounded-lg shadow-sm border p-5 transition-all hover:shadow-md">
+                    <div className="bg-white rounded-md shadow-sm border p-5 transition-all hover:shadow-md">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Campaigns</p>
                         <div className="flex items-end justify-between">
                             <h3 className="text-2xl font-bold text-gray-900">{formatNumber(analytics.totals.campaigns)}</h3>
-                            <div className="p-2 bg-blue-50 rounded-lg">
+                            <div className="p-2 bg-blue-50 rounded-md">
                                 <Target className="w-5 h-5 text-blue-600" />
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border p-5 transition-all hover:shadow-md">
+                    <div className="bg-white rounded-md shadow-sm border p-5 transition-all hover:shadow-md">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Total Sent</p>
                         <div className="flex items-end justify-between">
                             <h3 className="text-2xl font-bold text-gray-900">{formatNumber(analytics.totals.sent)}</h3>
-                            <div className="p-2 bg-indigo-50 rounded-lg">
+                            <div className="p-2 bg-indigo-50 rounded-md">
                                 <Mail className="w-5 h-5 text-indigo-600" />
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border p-5 transition-all hover:shadow-md">
+                    <div className="bg-white rounded-md shadow-sm border p-5 transition-all hover:shadow-md">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Open Rate</p>
                         <div className="flex items-end justify-between">
                             <h3
@@ -126,13 +126,13 @@ export default function AnalyticsDashboard() {
                             >
                                 {analytics.rates.open_rate}%
                             </h3>
-                            <div className="p-2 bg-emerald-50 rounded-lg">
+                            <div className="p-2 bg-emerald-50 rounded-md">
                                 <Eye className="w-5 h-5 text-emerald-600" />
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border p-5 transition-all hover:shadow-md">
+                    <div className="bg-white rounded-md shadow-sm border p-5 transition-all hover:shadow-md">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Click Rate</p>
                         <div className="flex items-end justify-between">
                             <h3
@@ -140,13 +140,13 @@ export default function AnalyticsDashboard() {
                             >
                                 {analytics.rates.click_rate}%
                             </h3>
-                            <div className="p-2 bg-amber-50 rounded-lg">
+                            <div className="p-2 bg-amber-50 rounded-md">
                                 <MousePointer2 className="w-5 h-5 text-amber-600" />
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border p-5 transition-all hover:shadow-md">
+                    <div className="bg-white rounded-md shadow-sm border p-5 transition-all hover:shadow-md">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Bounce Rate</p>
                         <div className="flex items-end justify-between">
                             <h3
@@ -154,17 +154,17 @@ export default function AnalyticsDashboard() {
                             >
                                 {analytics.rates.bounce_rate}%
                             </h3>
-                            <div className="p-2 bg-rose-50 rounded-lg">
+                            <div className="p-2 bg-rose-50 rounded-md">
                                 <TrendingDown className="w-5 h-5 text-rose-600" />
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border p-5 transition-all hover:shadow-md">
+                    <div className="bg-white rounded-md shadow-sm border p-5 transition-all hover:shadow-md">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Unsubscribes</p>
                         <div className="flex items-end justify-between">
                             <h3 className="text-2xl font-bold text-gray-900">{analytics.rates.unsubscribe_rate}%</h3>
-                            <div className="p-2 bg-gray-50 rounded-lg">
+                            <div className="p-2 bg-gray-50 rounded-md">
                                 <Users className="w-5 h-5 text-gray-600" />
                             </div>
                         </div>
@@ -173,7 +173,7 @@ export default function AnalyticsDashboard() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Top Performing Campaigns */}
-                    <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+                    <div className="bg-white rounded-md shadow-sm border overflow-hidden">
                         <div className="p-6 border-b flex justify-between items-center">
                             <h3 className="text-lg font-bold text-gray-900">Top Performing Campaigns</h3>
                             <button className="text-sm font-medium text-pink-600 hover:text-pink-700 flex items-center">
@@ -230,11 +230,11 @@ export default function AnalyticsDashboard() {
                     </div>
 
                     {/* Daily Performance Chart */}
-                    <div className="bg-white rounded-lg shadow-sm border p-6 flex flex-col">
+                    <div className="bg-white rounded-md shadow-sm border p-6 flex flex-col">
                         <h3 className="text-lg font-bold text-gray-900 mb-6">Performance Trends</h3>
-                        <div className="flex-1 bg-gray-50 rounded-lg border border-dashed border-gray-300 flex items-center justify-center min-h-[300px]">
+                        <div className="flex-1 bg-gray-50 rounded-md border border-dashed border-gray-300 flex items-center justify-center min-h-[300px]">
                             <div className="text-center p-8">
-                                <div className="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mx-auto mb-4">
+                                <div className="w-16 h-16 bg-white rounded-md shadow-sm flex items-center justify-center mx-auto mb-4">
                                     <TrendingUp className="w-8 h-8 text-gray-300" />
                                 </div>
                                 <h4 className="font-semibold text-gray-900 mb-2">Performance Chart</h4>
@@ -263,7 +263,7 @@ export default function AnalyticsDashboard() {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-sm focus-within:ring-2 focus-within:ring-pink-500/20 transition-all">
+                            <div className="flex items-center bg-white border border-gray-200 rounded-md px-3 py-2 shadow-sm focus-within:ring-2 focus-within:ring-pink-500/20 transition-all">
                                 <Calendar className="w-4 h-4 text-gray-400 mr-2" />
                                 <select
                                     value={timeRange}
@@ -277,7 +277,7 @@ export default function AnalyticsDashboard() {
                                 </select>
                             </div>
 
-                            <button className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors shadow-sm active:scale-95">
+                            <button className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-md hover:bg-gray-50 transition-colors shadow-sm active:scale-95">
                                 <Download className="w-4 h-4 mr-2" />
                                 Export
                             </button>
@@ -289,7 +289,7 @@ export default function AnalyticsDashboard() {
                 <div className="relative min-h-[500px]">
                     {loading && (
                         <div className="absolute inset-0 bg-gray-50/60 backdrop-blur-sm z-10 flex items-center justify-center transition-all duration-300">
-                            <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                            <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-xl border border-gray-100">
                                 <Loader2 className="w-10 h-10 text-pink-500 animate-spin mb-4" />
                                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loading Analytics...</span>
                             </div>

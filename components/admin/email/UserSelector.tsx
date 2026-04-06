@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { theme } from "@/styles/themes";
-import { User, FilterCriteria } from "@/types/email";
+import {
+    AvailableYearsResponse,
+    FilterCriteria,
+    User,
+    UserCountResponse,
+    UserFilterResponse,
+    UserFilters,
+    UserPreviewResponse,
+    UserSelectionStats,
+} from "@/types/email";
 import {
     Database,
     Sparkles,
@@ -17,8 +25,6 @@ import {
     Mail,
     Eye,
     GraduationCap,
-    Clock,
-    Calendar,
 } from "lucide-react";
 
 interface UserSelectorProps {
@@ -27,16 +33,26 @@ interface UserSelectorProps {
 }
 
 export default function UserSelector({ onSelectionChange, initialCriteria }: UserSelectorProps) {
+    const defaultCriteria = useMemo<FilterCriteria>(
+        () => ({
+            year: "2025",
+            natural_query: "",
+            filters: {},
+        }),
+        []
+    );
     const [availableYears, setAvailableYears] = useState<string[]>([]);
     const [criteria, setCriteria] = useState<FilterCriteria>({
-        year: "2025",
-        natural_query: "",
-        filters: {},
+        ...defaultCriteria,
         ...initialCriteria,
+        filters: {
+            ...defaultCriteria.filters,
+            ...initialCriteria?.filters,
+        },
     });
 
     const [previewUsers, setPreviewUsers] = useState<User[]>([]);
-    const [userCount, setUserCount] = useState({ count: 0, total: 0, percentage: 0 });
+    const [userCount, setUserCount] = useState<UserSelectionStats>({ count: 0, total: 0, percentage: 0 });
     const [loading, setLoading] = useState(false);
     const [aiProcessing, setAiProcessing] = useState(false);
     const [error, setError] = useState<string>("");
@@ -44,12 +60,13 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
     const fetchAvailableYears = useCallback(async () => {
         try {
             const response = await fetch("/api/admin/email/users/available-years");
-            const data = await response.json();
+            const data = (await response.json()) as AvailableYearsResponse;
 
             if (response.ok) {
-                setAvailableYears(data.years);
-                if (data.default_year && !initialCriteria?.year) {
-                    setCriteria((prev) => ({ ...prev, year: data.default_year }));
+                setAvailableYears(data.years ?? []);
+                const defaultYear = data.default_year;
+                if (defaultYear && !initialCriteria?.year) {
+                    setCriteria((prev) => ({ ...prev, year: defaultYear }));
                 }
             }
         } catch (error) {
@@ -60,6 +77,21 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
     useEffect(() => {
         fetchAvailableYears();
     }, [fetchAvailableYears]);
+
+    useEffect(() => {
+        if (!initialCriteria) {
+            return;
+        }
+
+        setCriteria((prev) => ({
+            ...prev,
+            ...initialCriteria,
+            filters: {
+                ...prev.filters,
+                ...initialCriteria.filters,
+            },
+        }));
+    }, [initialCriteria]);
 
     const updateUserCount = useCallback(async () => {
         try {
@@ -72,11 +104,16 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                 body: JSON.stringify(criteria),
             });
 
-            const data = await response.json();
+            const data = (await response.json()) as UserCountResponse;
 
             if (response.ok) {
-                setUserCount(data);
-                onSelectionChange(criteria, data.count);
+                const nextCount: UserSelectionStats = {
+                    count: data.count ?? 0,
+                    total: data.total ?? 0,
+                    percentage: data.percentage ?? 0,
+                };
+                setUserCount(nextCount);
+                onSelectionChange(criteria, nextCount.count);
             } else {
                 setError(data.error || "Failed to count users");
             }
@@ -104,10 +141,10 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                 body: JSON.stringify(criteria),
             });
 
-            const data = await response.json();
+            const data = (await response.json()) as UserPreviewResponse;
 
             if (response.ok) {
-                setPreviewUsers(data.preview_users);
+                setPreviewUsers(data.preview_users ?? []);
             } else {
                 setError(data.error || "Failed to preview users");
             }
@@ -135,24 +172,26 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                 }),
             });
 
-            const data = await response.json();
+            const data = (await response.json()) as UserFilterResponse;
 
             if (response.ok) {
                 // Update criteria with AI-generated filters
                 const updatedCriteria = {
                     ...criteria,
-                    filters: { ...criteria.filters, ...data.applied_filters },
+                    filters: { ...criteria.filters, ...(data.applied_filters ?? {}) },
                 };
                 setCriteria(updatedCriteria);
 
-                setPreviewUsers(data.preview_users);
-                setUserCount({
-                    count: data.filtered_count,
-                    total: data.total_users,
-                    percentage: Math.round((data.filtered_count / data.total_users) * 100),
-                });
+                setPreviewUsers(data.preview_users ?? []);
+                const nextCount: UserSelectionStats = {
+                    count: data.filtered_count ?? 0,
+                    total: data.total_users ?? 0,
+                    percentage:
+                        data.total_users && data.total_users > 0 ? Math.round(((data.filtered_count ?? 0) / data.total_users) * 100) : 0,
+                };
+                setUserCount(nextCount);
 
-                onSelectionChange(updatedCriteria, data.filtered_count);
+                onSelectionChange(updatedCriteria, nextCount.count);
             } else {
                 setError(data.error || "Failed to process natural language query");
             }
@@ -163,17 +202,19 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
         }
     }, [criteria, onSelectionChange]);
 
-    const updateFilter = useCallback((key: string, value: any) => {
+    const updateFilter = useCallback(<K extends keyof UserFilters>(key: K, value: UserFilters[K] | undefined) => {
         setCriteria((prev) => ({
             ...prev,
             filters: {
                 ...prev.filters,
-                [key]: value || undefined,
+                [key]: value ?? undefined,
             },
         }));
     }, []);
 
     const clearFilters = useCallback(() => {
+        setPreviewUsers([]);
+        setError("");
         setCriteria((prev) => ({
             ...prev,
             natural_query: "",
@@ -190,28 +231,25 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                 newFilters = {};
                 query = "";
                 break;
-            case "opted_in":
-                newFilters = { opt_in: true };
-                query = "All opted-in users";
-                break;
             case "incomplete":
-                newFilters = { opt_in: true, profile_complete: false };
-                query = "Opted-in users with incomplete profiles";
-                break;
-            case "no_survey":
-                newFilters = { opt_in: true, profile_complete: true, survey_complete: false };
-                query = "Users with complete profiles but missing survey";
+                newFilters = { is_incomplete: true };
+                query = "Users missing profile, survey, or opt-in completion";
                 break;
             case "ready":
-                newFilters = { profile_complete: true, survey_complete: true, opt_in: true };
-                query = "Users who have finished everything and are ready for matches";
+                newFilters = { opt_in: true, profile_complete: true, survey_complete: true };
+                query = "Users ready for the next match release";
                 break;
-            case "no_matches":
-                newFilters = { opt_in: true, profile_complete: true, match_count_max: 0 };
-                query = "Ready users who haven't received any matches yet";
+            case "matches":
+                newFilters = { has_matches: true };
+                query = "Users with active matches";
+                break;
+            case "opted_in":
+                newFilters = { opt_in: true };
+                query = "Opted-in users for announcements, events, and partnerships";
                 break;
         }
 
+        setPreviewUsers([]);
         setCriteria((prev) => ({
             ...prev,
             natural_query: query,
@@ -219,22 +257,55 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
         }));
     }, []);
 
+    const activeFilterChips = useMemo(() => {
+        const chips: string[] = [];
+        const { filters, natural_query } = criteria;
+
+        if (natural_query.trim()) {
+            chips.push(`Query: ${natural_query.trim()}`);
+        }
+        if (filters.is_incomplete) chips.push("Incomplete users");
+        if (filters.opt_in) chips.push("Opted in");
+        if (filters.profile_complete) chips.push("Profile complete");
+        if (filters.survey_complete) chips.push("Survey complete");
+        if (filters.has_matches) chips.push("Has matches");
+
+        if (typeof filters.class_year === "string" && filters.class_year) {
+            chips.push(`Class year: ${filters.class_year}`);
+        }
+        if (filters.gender) {
+            chips.push(`Gender: ${filters.gender}`);
+        }
+        if (typeof filters.match_count_min === "number" || typeof filters.match_count_max === "number") {
+            const min = filters.match_count_min ?? 0;
+            const max = filters.match_count_max;
+            chips.push(max != null ? `Matches: ${min}-${max}` : `Matches: ${min}+`);
+        }
+        if (typeof filters.age_min === "number" || typeof filters.age_max === "number") {
+            const min = filters.age_min ?? 16;
+            const max = filters.age_max ?? 99;
+            chips.push(`Age: ${min}-${max}`);
+        }
+
+        return chips;
+    }, [criteria]);
+
     return (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6 border-b border-gray-100 bg-gray-50/50">
                 <div className="flex items-center gap-3 mb-1">
-                    <div className="p-2 bg-pink-100 rounded-lg">
+                    <div className="p-2 bg-pink-100 rounded-md">
                         <Users className="w-5 h-5 text-pink-600" />
                     </div>
                     <h2 className="text-xl font-bold text-gray-900">Define Audience</h2>
                 </div>
-                <p className="text-gray-500 text-sm font-medium">Narrow down who will receive this campaign</p>
+                <p className="text-gray-500 text-sm font-medium">Build clear, PM-friendly segments for reminders, releases, and event campaigns</p>
             </div>
 
             <div className="p-8 space-y-10">
                 {/* Database Year Selection */}
                 <div className="max-w-xs">
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
                         <Database className="w-3 h-3 mr-1.5" />
                         Target Database
                     </label>
@@ -242,7 +313,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                         <select
                             value={criteria.year}
                             onChange={(e) => setCriteria((prev) => ({ ...prev, year: e.target.value }))}
-                            className="w-full pl-4 pr-10 py-2.5 bg-white border-2 border-gray-100 rounded-lg focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all appearance-none cursor-pointer group-hover:border-gray-200"
+                            className="w-full pl-4 pr-10 py-2.5 bg-white border-2 border-gray-100 rounded-md focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all appearance-none cursor-pointer group-hover:border-gray-200"
                         >
                             {availableYears.map((year) => (
                                 <option key={year} value={year}>
@@ -256,7 +327,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 
                 {/* AI Natural Language Query */}
                 <div className="bg-gradient-to-br from-pink-500/5 to-purple-500/5 p-6 rounded-xl border border-pink-100 shadow-inner">
-                    <label className="block text-[10px] font-bold text-pink-500 uppercase tracking-widest mb-4 flex items-center">
+                    <label className="text-[10px] font-bold text-pink-500 uppercase tracking-widest mb-4 flex items-center">
                         <Sparkles className="w-3 h-3 mr-1.5" />
                         Quick Segments & AI
                     </label>
@@ -265,21 +336,24 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                         {(
                             [
                                 { id: "all", label: "All Users" },
-                                { id: "opted_in", label: "Opted In", icon: <CheckCircle2 className="w-4 h-4" /> },
-                                { id: "incomplete", label: "Incomplete Profile" },
-                                { id: "no_survey", label: "Missing Survey" },
+                                { id: "incomplete", label: "Incomplete Profiles" },
                                 { id: "ready", label: "Ready for Matches" },
-                                { id: "no_matches", label: "No Matches Yet" },
+                                { id: "matches", label: "With Active Matches" },
+                                { id: "opted_in", label: "Opted In" },
                             ] as const
                         ).map((preset) => (
                             <button
                                 key={preset.id}
                                 onClick={() => applyPreset(preset.id)}
-                                className="px-3 py-1.5 bg-white border border-pink-100 rounded-lg text-[10px] font-bold text-pink-600 uppercase tracking-wider hover:bg-pink-50 transition-all shadow-sm"
+                                className="px-3 py-1.5 bg-white border border-pink-100 rounded-md text-[10px] font-bold text-pink-600 uppercase tracking-wider hover:bg-pink-50 transition-all shadow-sm"
                             >
                                 {preset.label}
                             </button>
                         ))}
+                    </div>
+
+                    <div className="mb-4 rounded-md border border-pink-100 bg-white/80 px-4 py-3 text-xs font-medium text-pink-700">
+                        Use quick segments for the common sends we discussed, then fine-tune below if the campaign needs more targeting.
                     </div>
 
                     <div className="flex gap-3">
@@ -291,13 +365,13 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                 // Add a debounce to prevent excessive API calls
                                 onChange={(e) => setCriteria((prev) => ({ ...prev, natural_query: e.target.value }))}
                                 placeholder="Or describe your audience... (e.g., users who haven't matched yet)"
-                                className="w-full pl-10 pr-4 py-3 bg-white border-2 border-pink-100 rounded-lg focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-medium text-gray-700 transition-all placeholder:text-pink-200 shadow-sm"
+                                className="w-full pl-10 pr-4 py-3 bg-white border-2 border-pink-100 rounded-md focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-medium text-gray-700 transition-all placeholder:text-pink-200 shadow-sm"
                             />
                         </div>
                         <button
                             onClick={processNaturalLanguage}
                             disabled={!criteria.natural_query.trim() || aiProcessing}
-                            className="px-6 py-3 bg-pink-600 text-white rounded-lg font-bold text-sm transition-all disabled:opacity-50 hover:shadow-lg shadow-pink-200 active:scale-95 flex items-center gap-2"
+                            className="px-6 py-3 bg-pink-600 text-white rounded-md font-bold text-sm transition-all disabled:opacity-50 hover:shadow-lg shadow-pink-200 active:scale-95 flex items-center gap-2"
                         >
                             {aiProcessing ? (
                                 <>
@@ -331,14 +405,15 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 
                             {(
                                 [
-                                    { key: "opt_in", label: "Opted In", icon: <CheckCircle2 className="w-4 h-4" /> },
+                                    { key: "opt_in", label: "Opted In" },
                                     { key: "profile_complete", label: "Profile Complete" },
                                     { key: "survey_complete", label: "Survey Complete" },
+                                    { key: "has_matches", label: "Has Active Matches" },
                                 ] as const
                             ).map(({ key, label }) => (
                                 <div
                                     key={key}
-                                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100"
+                                    className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-100"
                                 >
                                     <span className="text-xs font-bold text-gray-600">{label}</span>
                                     <input
@@ -349,6 +424,15 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                     />
                                 </div>
                             ))}
+
+                            <div className="rounded-md border border-amber-100 bg-amber-50 p-3">
+                                <div className="flex items-start gap-2">
+                                    <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+                                    <p className="text-xs font-medium text-amber-800">
+                                        The Incomplete Profiles preset is the broad reminder segment. It captures users missing any required step.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Class Year & Gender */}
@@ -364,7 +448,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                                 : (criteria.filters.class_year as string | undefined) ?? ""
                                         }
                                         onChange={(e) => updateFilter("class_year", e.target.value || undefined)}
-                                        className="w-full pl-10 pr-10 py-2.5 bg-gray-50/50 border border-gray-200 rounded-lg focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all appearance-none cursor-pointer group-hover:border-gray-300"
+                                        className="w-full pl-10 pr-10 py-2.5 bg-gray-50/50 border border-gray-200 rounded-md focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all appearance-none cursor-pointer group-hover:border-gray-300"
                                     >
                                         <option value="">Any Year</option>
                                         <option value="freshman">Freshman</option>
@@ -384,7 +468,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                     <select
                                         value={(criteria.filters.gender as string | undefined) ?? ""}
                                         onChange={(e) => updateFilter("gender", e.target.value || undefined)}
-                                        className="w-full pl-10 pr-10 py-2.5 bg-gray-50/50 border border-gray-200 rounded-lg focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all appearance-none cursor-pointer group-hover:border-gray-300"
+                                        className="w-full pl-10 pr-10 py-2.5 bg-gray-50/50 border border-gray-200 rounded-md focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all appearance-none cursor-pointer group-hover:border-gray-300"
                                     >
                                         <option value="">Any Gender</option>
                                         <option value="male">Male</option>
@@ -415,7 +499,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                                 )
                                             }
                                             placeholder="Min"
-                                            className="w-full pl-10 pr-2 py-2.5 bg-gray-50/50 border border-gray-200 rounded-lg focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all group-hover:border-gray-300"
+                                            className="w-full pl-10 pr-2 py-2.5 bg-gray-50/50 border border-gray-200 rounded-md focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all group-hover:border-gray-300"
                                         />
                                     </div>
                                     <div className="relative group flex-1">
@@ -430,7 +514,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                                 )
                                             }
                                             placeholder="Max"
-                                            className="w-full px-3 py-2.5 bg-gray-50/50 border border-gray-200 rounded-lg focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all group-hover:border-gray-300"
+                                            className="w-full px-3 py-2.5 bg-gray-50/50 border border-gray-200 rounded-md focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all group-hover:border-gray-300"
                                         />
                                     </div>
                                 </div>
@@ -451,7 +535,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                             )
                                         }
                                         placeholder="Min age"
-                                        className="flex-1 px-3 py-2.5 bg-gray-50/50 border border-gray-200 rounded-lg focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all hover:border-gray-300"
+                                        className="flex-1 px-3 py-2.5 bg-gray-50/50 border border-gray-200 rounded-md focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all hover:border-gray-300"
                                     />
                                     <input
                                         type="number"
@@ -465,13 +549,39 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                                             )
                                         }
                                         placeholder="Max age"
-                                        className="flex-1 px-3 py-2.5 bg-gray-50/50 border border-gray-200 rounded-lg focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all hover:border-gray-300"
+                                        className="flex-1 px-3 py-2.5 bg-gray-50/50 border border-gray-200 rounded-md focus:bg-white focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-gray-700 transition-all hover:border-gray-300"
                                     />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {activeFilterChips.length > 0 && (
+                    <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
+                        <div className="mb-3 flex items-center justify-between gap-4">
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Current Segment</p>
+                                <p className="mt-1 text-xs font-medium text-gray-500">
+                                    AI and manual filters combine into the audience below.
+                                </p>
+                            </div>
+                            <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gray-500 shadow-sm">
+                                {activeFilterChips.length} active
+                            </span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            {activeFilterChips.map((chip) => (
+                                <span
+                                    key={chip}
+                                    className="rounded-full border border-pink-100 bg-white px-3 py-1.5 text-xs font-bold text-gray-700 shadow-sm"
+                                >
+                                    {chip}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* Status Bar */}
                 <div className="flex items-center justify-between pt-6 border-t border-gray-100">
@@ -505,14 +615,14 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                     <div className="flex items-center gap-3">
                         <button
                             onClick={clearFilters}
-                            className="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-gray-50 transition-all active:scale-95"
+                            className="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-gray-50 transition-all active:scale-95"
                         >
                             Reset All
                         </button>
                         <button
                             onClick={previewUsersAction}
                             disabled={loading || userCount.count === 0}
-                            className="px-6 py-2.5 bg-pink-600 text-white rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-pink-700 transition-all active:scale-95 shadow-lg shadow-pink-100 disabled:opacity-20 flex items-center gap-2"
+                            className="px-6 py-2.5 bg-pink-600 text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-pink-700 transition-all active:scale-95 shadow-lg shadow-pink-100 disabled:opacity-20 flex items-center gap-2"
                         >
                             <Eye className="w-4 h-4" />
                             Preview Sample
@@ -522,7 +632,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 
                 {/* Error Display */}
                 {error && (
-                    <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-100 rounded-lg animate-in fade-in duration-300">
+                    <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-100 rounded-md animate-in fade-in duration-300">
                         <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
                         <p className="text-sm font-bold text-red-700">{error}</p>
                     </div>
@@ -544,9 +654,9 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
                             {previewUsers.map((user) => (
                                 <div
                                     key={user.id}
-                                    className="group flex items-center gap-4 p-3 bg-gray-50 rounded-lg border border-transparent hover:border-pink-100 hover:bg-white transition-all"
+                                    className="group flex items-center gap-4 p-3 bg-gray-50 rounded-md border border-transparent hover:border-pink-100 hover:bg-white transition-all"
                                 >
-                                    <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center font-black text-pink-500 text-sm shadow-sm group-hover:scale-110 transition-transform">
+                                    <div className="w-10 h-10 rounded-md bg-white border border-gray-100 flex items-center justify-center font-black text-pink-500 text-sm shadow-sm group-hover:scale-110 transition-transform">
                                         {user.first_name?.charAt(0).toUpperCase() || "U"}
                                     </div>
                                     <div className="flex-1 min-w-0">

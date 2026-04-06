@@ -171,7 +171,7 @@ const Home: NextPage = (props: any) => {
 						</p>
 					</div>
 
-					<div className="bg-pmpink-500 rounded-lg p-4 sm:p-6 lg:p-8 min-h-[400px] sm:min-h-[500px] flex items-center justify-center">
+					<div className="bg-pmpink-500 rounded-md p-4 sm:p-6 lg:p-8 min-h-[400px] sm:min-h-[500px] flex items-center justify-center">
 						{submitted ? (
 							<div className="text-center">
 								<div className="mb-6">
@@ -224,7 +224,7 @@ const Home: NextPage = (props: any) => {
 										<span className="text-xs sm:text-sm font-normal">({formData.review.length}/3000 characters)</span>
 									</label>
 									<textarea
-										className="shadow appearance-none border border-pmpink-200 bg-white rounded-lg w-full py-2 sm:py-3 px-3 sm:px-4 text-black text-lg sm:text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500 h-32 sm:h-40 min-h-[120px] resize-y"
+										className="shadow appearance-none border border-pmpink-200 bg-white rounded-md w-full py-2 sm:py-3 px-3 sm:px-4 text-black text-lg sm:text-xl leading-relaxed focus:outline-none focus:ring focus:ring-pmpink-300 focus:border-pmpink-500 h-32 sm:h-40 min-h-[120px] resize-y"
 										id="review"
 										name="review"
 										placeholder="Tell us about your experience with Perfect Match"

@@ -70,7 +70,7 @@ function Review({
 	return (
 		<figure
 			className={clsx(
-				"animate-fade-in rounded-3xl p-6 opacity-0 bg-white border-2 border-blue-800 shadow-md shadow-blue-800 transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_10px_rgba(36,67,141,0.8)] hover:z-69 relative cursor-pointer",
+				"animate-fade-in rounded-xl p-6 opacity-0 bg-white border-2 border-blue-800 shadow-md shadow-blue-800 transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_10px_rgba(36,67,141,0.8)] hover:z-69 relative cursor-pointer",
 				className,
 			)}
 			style={{ animationDelay }}

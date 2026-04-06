@@ -29,16 +29,16 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
     const [templates, setTemplates] = useState<Template[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleting, setDeleting] = useState<string>("");
-    
+
     // Filtering state
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [selectedYear, setSelectedYear] = useState<string>("");
-    
+
     // Preview modal state
     const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
     const [allTags, setAllTags] = useState<string[]>([
-        "notification", "reminder", "release", 
+        "notification", "reminder", "release",
         "auth", "crush", "survey", "matches", "announcement"
     ]);
 
@@ -50,19 +50,19 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
             if (search) params.append("search", search);
             if (year) params.append("year", year);
             tags.forEach(tag => params.append("tags", tag));
-            
+
             const response = await fetch(`/api/admin/email/templates?${params.toString()}`);
             const data = await response.json();
 
             if (response.ok) {
                 setTemplates(data.templates);
-                
+
                 // Extract unique tags from fetched templates to update our filter list dynamically
                 const extractedTags = new Set<string>();
                 data.templates.forEach((t: Template) => {
                     t.tags?.forEach(tag => extractedTags.add(tag));
                 });
-                
+
                 if (extractedTags.size > 0) {
                     setAllTags(prev => {
                         const combined = new Set([...prev, ...Array.from(extractedTags)]);
@@ -125,7 +125,7 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
 
                     <button
                         onClick={onCreateTemplate}
-                        className="inline-flex items-center px-5 py-2.5 rounded-lg text-white font-medium transition-all duration-200 hover:shadow-lg"
+                        className="inline-flex items-center px-5 py-2.5 rounded-md text-white font-medium transition-all duration-200 hover:shadow-lg"
                         style={{
                             backgroundColor: theme.colors.primary,
                             fontFamily: theme.fonts.main,
@@ -148,20 +148,20 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                 placeholder="Search templates..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="block w-full pl-10 pr-3 bg-white text-gray-900 py-2 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 text-sm"
+                                className="block w-full pl-10 pr-3 bg-white text-gray-900 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500 text-sm"
                             />
                         </div>
                         <select
                             value={selectedYear}
                             onChange={(e) => setSelectedYear(e.target.value)}
-                            className="block w-32 text-gray-900 px-3 py-2 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 text-sm bg-white"
+                            className="block w-32 text-gray-900 px-3 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500 text-sm bg-white"
                         >
                             <option value="">All Years</option>
                             <option value="2026">2026</option>
                             <option value="2025">2025</option>
                         </select>
                     </div>
-                    
+
                     <div className="flex-1 overflow-x-auto pb-2 md:pb-0">
                         <div className="flex gap-2 min-w-max">
                             <div className="flex items-center text-gray-500 text-sm mr-2 font-medium">
@@ -172,17 +172,16 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                 <button
                                     key={tag}
                                     onClick={() => {
-                                        setSelectedTags(prev => 
-                                            prev.includes(tag) 
+                                        setSelectedTags(prev =>
+                                            prev.includes(tag)
                                                 ? prev.filter(t => t !== tag)
                                                 : [...prev, tag]
                                         );
                                     }}
-                                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                                        selectedTags.includes(tag)
-                                            ? "bg-pink-100 text-pink-700 border-pink-200 border"
-                                            : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-transparent border"
-                                    }`}
+                                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${selectedTags.includes(tag)
+                                        ? "bg-pink-100 text-pink-700 border-pink-200 border"
+                                        : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-transparent border"
+                                        }`}
                                 >
                                     {tag}
                                 </button>
@@ -195,7 +194,7 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                 <div className="relative min-h-[400px]">
                     {loading && (
                         <div className="absolute inset-0 bg-gray-50/60 backdrop-blur-sm z-10 flex items-center justify-center transition-all duration-300">
-                            <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                            <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-xl border border-gray-100">
                                 <div className="w-10 h-10 border-4 border-pink-100 border-t-pink-500 rounded-full animate-spin mb-4" />
                                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loading Templates...</span>
                             </div>
@@ -204,8 +203,8 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
 
                     <div className={`transition-opacity duration-300 ${loading && templates.length === 0 ? "opacity-0" : "opacity-100"}`}>
                         {templates.length === 0 && !loading ? (
-                            <div className="text-center py-20 bg-white rounded-lg border border-dashed border-gray-300">
-                                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div className="text-center py-20 bg-white rounded-md border border-dashed border-gray-300">
+                                <div className="w-20 h-20 bg-gray-50 rounded-md flex items-center justify-center mx-auto mb-6">
                                     <Inbox className="w-10 h-10 text-gray-300" />
                                 </div>
                                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No templates found</h3>
@@ -214,7 +213,7 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                 </p>
                                 <button
                                     onClick={onCreateTemplate}
-                                    className="inline-flex items-center px-6 py-3 text-white rounded-lg font-medium transition-all hover:shadow-md"
+                                    className="inline-flex items-center px-6 py-3 text-white rounded-md font-medium transition-all hover:shadow-md"
                                     style={{ backgroundColor: theme.colors.primary }}
                                 >
                                     <PlusCircle className="w-5 h-5 mr-2" />
@@ -226,7 +225,7 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                 {templates.map((template) => (
                                     <div
                                         key={template._id}
-                                        className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                                        className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group"
                                     >
                                         {/* Template Thumbnail */}
                                         <div className="h-48 bg-gray-50 flex items-center justify-center relative overflow-hidden">
@@ -254,14 +253,14 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                             <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <button
                                                     onClick={() => onEditTemplate(template)}
-                                                    className="p-3 bg-white rounded-full text-gray-900 hover:bg-pink-500 hover:text-white transition-colors"
+                                                    className="p-3 bg-white rounded-md text-gray-900 hover:bg-pink-500 hover:text-white transition-colors"
                                                     title="Edit Template"
                                                 >
                                                     <Edit2 className="w-5 h-5" />
                                                 </button>
                                                 <button
                                                     onClick={() => setPreviewTemplate(template)}
-                                                    className="p-3 bg-white rounded-full text-gray-900 hover:bg-pink-500 hover:text-white transition-colors"
+                                                    className="p-3 bg-white rounded-md text-gray-900 hover:bg-pink-500 hover:text-white transition-colors"
                                                     title="Preview Template"
                                                 >
                                                     <Eye className="w-5 h-5" />
@@ -279,7 +278,7 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                             <p className="text-sm text-gray-500 mb-4 line-clamp-2 min-h-[40px]">
                                                 {template.description || "No description provided for this template."}
                                             </p>
-                                            
+
                                             {(template.year || (template.tags && template.tags.length > 0)) && (
                                                 <div className="flex flex-wrap gap-1.5 mb-4">
                                                     {template.year && (
@@ -306,16 +305,16 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                                     <Calendar className="w-3.5 h-3.5 mr-1" />
                                                     {template.created_at
                                                         ? new Date(template.created_at).toLocaleDateString("en-US", {
-                                                              month: "short",
-                                                              day: "numeric",
-                                                          })
+                                                            month: "short",
+                                                            day: "numeric",
+                                                        })
                                                         : "Recently"}
                                                 </div>
 
                                                 <div className="flex gap-1">
                                                     <button
                                                         onClick={() => onEditTemplate(template)}
-                                                        className="p-2 text-gray-500 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all"
+                                                        className="p-2 text-gray-500 hover:text-pink-600 hover:bg-pink-50 rounded-md transition-all"
                                                         title="Edit"
                                                     >
                                                         <Edit2 className="w-4 h-4" />
@@ -323,11 +322,11 @@ export default function TemplateList({ onEditTemplate, onCreateTemplate }: Templ
                                                     <button
                                                         onClick={() => handleDeleteTemplate(template._id!)}
                                                         disabled={deleting === template._id}
-                                                        className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all disabled:opacity-50"
+                                                        className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-md transition-all disabled:opacity-50"
                                                         title="Delete"
                                                     >
                                                         {deleting === template._id ? (
-                                                            <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
+                                                            <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-md animate-spin" />
                                                         ) : (
                                                             <Trash2 className="w-4 h-4" />
                                                         )}

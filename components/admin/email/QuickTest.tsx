@@ -73,7 +73,7 @@ export default function QuickTest() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
+    <div className="bg-white rounded-md shadow-sm border p-6 mb-6">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">
         Email Marketing API Tests
       </h3>
@@ -82,7 +82,7 @@ export default function QuickTest() {
         <button
           onClick={testTemplateCreation}
           disabled={loading}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50"
+          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:opacity-50"
         >
           {loading ? 'Testing...' : 'Test Template Creation'}
         </button>
@@ -90,14 +90,14 @@ export default function QuickTest() {
         <button
           onClick={testUserFiltering}
           disabled={loading}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
         >
           {loading ? 'Testing...' : 'Test User Filtering'}
         </button>
       </div>
 
       {result && (
-        <div className="p-3 rounded-lg bg-gray-50">
+        <div className="p-3 rounded-md bg-gray-50">
           <pre className="text-sm whitespace-pre-wrap">{result}</pre>
         </div>
       )}

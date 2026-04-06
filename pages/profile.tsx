@@ -109,7 +109,7 @@ const Profile: NextPage = (props: any) => {
 			{matches.length > 0 && (
 				<section className="bg-white pt-5">
 					<div className="gap-10 pb-5 sm:px-14 items-center mx-auto max-w-screen-xl">
-						<div className="bg-white font-work-sans rounded-lg h-auto">
+						<div className="bg-white font-work-sans rounded-md h-auto">
 							<ProfileTabs user={data} refresh={refresh} />
 						</div>
 					</div>

@@ -1,688 +1,1060 @@
-// components/admin/email/HybridTemplateEditor.tsx
-import React, { useState, useEffect, useRef } from 'react';
-import Editor from '@monaco-editor/react';
-import { theme } from '@/styles/themes';
-import { Template } from '@/types/email';
-import DOMPurify from 'dompurify';
-import BlockEditor from './BlockEditor';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import Editor from "@monaco-editor/react";
+import DOMPurify from "dompurify";
+import {
+	AlertCircle,
+	ArrowDown,
+	ArrowUp,
+	Code2,
+	Eye,
+	GripVertical,
+	Heading,
+	Heart,
+	ImageIcon,
+	Loader2,
+	Minus,
+	Monitor,
+	MousePointer2,
+	PencilRuler,
+	Smartphone,
+	Square,
+	Tablet,
+	Trash2,
+	Type,
+	X,
+} from "lucide-react";
+import { theme } from "@/styles/themes";
+import { Template, TemplateComponentBlock } from "@/types/email";
+import BlockEditor from "./BlockEditor";
 
-interface Block {
-  id: string;
-  type: 'text' | 'heading' | 'image' | 'button' | 'divider' | 'spacer' | 'logo';
-  content: any;
-  styles: any;
+type BlockType = "heading" | "text" | "image" | "button" | "divider" | "spacer" | "logo";
+type EditorMode = "visual" | "code" | "preview";
+type PreviewMode = "desktop" | "tablet" | "mobile";
+
+interface EmailBlockContent {
+	text?: string;
+	subtitle?: string;
+	link?: string;
+	src?: string;
+	alt?: string;
+	height?: string;
+}
+
+interface EmailBlockStyles {
+	textAlign?: "left" | "center" | "right";
+	marginBottom?: string;
+	fontSize?: string;
+	color?: string;
+	lineHeight?: string;
+	fontWeight?: string;
+	backgroundColor?: string;
+	padding?: string;
+	borderRadius?: string;
+}
+
+interface EmailBlock {
+	id: string;
+	type: BlockType;
+	content: EmailBlockContent;
+	styles: EmailBlockStyles;
 }
 
 interface TemplateEditorProps {
-  template?: Template;
-  onSave: (template: Template) => void;
-  onCancel: () => void;
+	template?: Template;
+	onSave: (template: Template) => void | Promise<void>;
+	onCancel: () => void;
 }
 
+interface CodeEditorRange {
+	startLineNumber: number;
+	startColumn: number;
+	endLineNumber: number;
+	endColumn: number;
+}
+
+interface CodeEditorInstance {
+	getSelection: () => CodeEditorRange | null;
+	executeEdits: (
+		source: string,
+		edits: Array<{
+			range: CodeEditorRange;
+			text: string;
+			forceMoveMarkers: boolean;
+		}>
+	) => void;
+	focus: () => void;
+}
+
+interface BlockDefinition {
+	type: BlockType;
+	label: string;
+	description: string;
+	icon: React.ComponentType<{ className?: string }>;
+}
+
+const DEFAULT_TEMPLATE_CSS = `
+body {
+	margin: 0;
+	padding: 0;
+	background: #f5f5f7;
+	font-family: "Work Sans", Arial, sans-serif;
+	color: #161616;
+}
+
+.email-shell {
+	padding: 40px 16px;
+}
+
+.email-card {
+	max-width: 600px;
+	margin: 0 auto;
+	background: #ffffff;
+	border-radius: 24px;
+	padding: 40px;
+	box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
+.email-footer {
+	margin-top: 40px;
+	padding-top: 20px;
+	border-top: 1px solid #ececec;
+	font-size: 12px;
+	line-height: 1.6;
+	text-align: center;
+	color: #7a7a7a;
+}
+
+.cta-button {
+	display: inline-block;
+	text-decoration: none;
+	font-weight: 700;
+}
+
+@media (max-width: 640px) {
+	.email-shell {
+		padding: 24px 12px;
+	}
+
+	.email-card {
+		padding: 24px;
+		border-radius: 20px;
+	}
+}
+`.trim();
+
+const PERSONALIZATION_TOKENS = [
+	{ token: "firstName", label: "First Name" },
+	{ token: "lastName", label: "Last Name" },
+	{ token: "email", label: "Email Address" },
+	{ token: "matchCount", label: "Match Count" },
+	{ token: "joinDate", label: "Join Date" },
+	{ token: "ctaLink", label: "CTA Link" },
+	{ token: "unsubscribeLink", label: "Unsubscribe Link" },
+] as const;
+
+const serializeStyles = (styles: EmailBlockStyles): string => {
+	return Object.entries(styles)
+		.filter(([, value]) => value !== undefined && value !== "")
+		.map(([key, value]) => `${key.replace(/([A-Z])/g, "-$1").toLowerCase()}: ${value}`)
+		.join("; ");
+};
+
+const normalizeBlockType = (value: string): BlockType => {
+	if (value === "heading" || value === "text" || value === "image" || value === "button" || value === "divider" || value === "spacer" || value === "logo") {
+		return value;
+	}
+
+	return "text";
+};
+
 export default function HybridTemplateEditor({ template, onSave, onCancel }: TemplateEditorProps) {
-  const [templateData, setTemplateData] = useState<Template>({
-    _id: template?._id || '',
-    name: template?.name || '',
-    description: template?.description || '',
-    html_content: template?.html_content || '',
-    css_content: template?.css_content || '',
-    tags: template?.tags || []
-  });
+	const blockTypes = useMemo<BlockDefinition[]>(
+		() => [
+			{ type: "heading", label: "Heading", description: "Large title text", icon: Heading },
+			{ type: "text", label: "Text Block", description: "Paragraph copy", icon: Type },
+			{ type: "image", label: "Image", description: "Hero or content image", icon: ImageIcon },
+			{ type: "button", label: "CTA Button", description: "Primary action", icon: MousePointer2 },
+			{ type: "divider", label: "Divider", description: "Visual separator", icon: Minus },
+			{ type: "spacer", label: "Spacer", description: "Add breathing room", icon: Square },
+			{ type: "logo", label: "Brand Mark", description: "Perfect Match logo block", icon: Heart },
+		],
+		[]
+	);
 
-  const [editorMode, setEditorMode] = useState<'visual' | 'code' | 'preview'>('visual');
-  const [blocks, setBlocks] = useState<Block[]>([]);
-  const [previewMode, setPreviewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
-  const [saving, setSaving] = useState(false);
-  const [errors, setErrors] = useState<string[]>([]);
-  const [draggedBlock, setDraggedBlock] = useState<string | null>(null);
-  const [editingBlock, setEditingBlock] = useState<Block | null>(null);
-  
-  const editorRef = useRef<any>(null);
-  const previewRef = useRef<HTMLIFrameElement>(null);
+	const defaultBlocks = useMemo<EmailBlock[]>(
+		() => [
+			{
+				id: "logo-block",
+				type: "logo",
+				content: {
+					text: "Perfect Match",
+					subtitle: "Find your perfect match",
+				},
+				styles: {
+					textAlign: "center",
+					marginBottom: "28px",
+				},
+			},
+			{
+				id: "heading-block",
+				type: "heading",
+				content: {
+					text: "Hello {{firstName}}",
+				},
+				styles: {
+					fontSize: "30px",
+					color: "#161616",
+					fontWeight: "800",
+					marginBottom: "18px",
+					textAlign: "left",
+				},
+			},
+			{
+				id: "body-block",
+				type: "text",
+				content: {
+					text: "You are getting this email because we have an update worth opening. Keep the message sharp, clear, and action-oriented.",
+				},
+				styles: {
+					fontSize: "16px",
+					color: "#4b5563",
+					lineHeight: "1.7",
+					marginBottom: "20px",
+				},
+			},
+			{
+				id: "button-block",
+				type: "button",
+				content: {
+					text: "Open Perfect Match",
+					link: "{{ctaLink}}",
+				},
+				styles: {
+					backgroundColor: "#FF328F",
+					color: "#ffffff",
+					padding: "14px 28px",
+					borderRadius: "999px",
+					textAlign: "center",
+					marginBottom: "12px",
+				},
+			},
+		],
+		[]
+	);
 
-  // Available block types for drag-and-drop
-  const blockTypes = [
-    { type: 'heading', label: 'Heading', icon: '📝', description: 'Large title text' },
-    { type: 'text', label: 'Text Block', icon: '📄', description: 'Paragraph text' },
-    { type: 'image', label: 'Image', icon: '🖼️', description: 'Upload or link image' },
-    { type: 'button', label: 'CTA Button', icon: '🔘', description: 'Call-to-action button' },
-    { type: 'divider', label: 'Divider', icon: '➖', description: 'Horizontal line' },
-    { type: 'spacer', label: 'Spacer', icon: '⬜', description: 'Empty space' },
-    { type: 'logo', label: 'Perfect Match Logo', icon: '💝', description: 'Brand logo' }
-  ];
+	const createBaseTemplate = useCallback(
+		(value?: Template): Template => ({
+			_id: value?._id,
+			name: value?.name || "",
+			description: value?.description || "",
+			html_content: value?.html_content || "",
+			css_content: value?.css_content || DEFAULT_TEMPLATE_CSS,
+			tags: value?.tags || [],
+			thumbnail: value?.thumbnail,
+			year: value?.year,
+			created_at: value?.created_at,
+			updated_at: value?.updated_at,
+			created_by: value?.created_by,
+			version: value?.version,
+			is_shared: value?.is_shared,
+			components: value?.components,
+		}),
+		[]
+	);
 
-  // Default template structure
-  const defaultBlocks: Block[] = [
-    {
-      id: 'header',
-      type: 'logo',
-      content: { text: 'Perfect Match', subtitle: 'Find Your Perfect Match' },
-      styles: { textAlign: 'center', marginBottom: '30px' }
-    },
-    {
-      id: 'greeting',
-      type: 'heading',
-      content: { text: 'Hello {{firstName}}!' },
-      styles: { fontSize: '28px', color: '#161616', marginBottom: '20px' }
-    },
-    {
-      id: 'content',
-      type: 'text',
-      content: { text: 'Welcome to Perfect Match! We\'re excited to help you find meaningful connections.' },
-      styles: { fontSize: '16px', lineHeight: '1.6', color: '#161616', marginBottom: '20px' }
-    },
-    {
-      id: 'cta',
-      type: 'button',
-      content: { text: 'Get Started', link: '{{ctaLink}}' },
-      styles: { backgroundColor: '#FF328F', color: '#ffffff', padding: '12px 30px', borderRadius: '6px' }
-    }
-  ];
+	const hydrateSavedBlocks = useCallback(
+		(value?: Template): EmailBlock[] => {
+			const savedBlocks = value?.components?.blocks;
+			if (!savedBlocks || savedBlocks.length === 0) {
+				return value?.html_content ? [] : defaultBlocks;
+			}
 
-  useEffect(() => {
-    if (!template && blocks.length === 0) {
-      setBlocks(defaultBlocks);
-      generateHtmlFromBlocks(defaultBlocks);
-    } else if (template && template.html_content) {
-      // Try to parse existing HTML into blocks (simplified)
-      setBlocks(defaultBlocks); // For now, use default blocks
-    }
-  }, [template]);
+			return savedBlocks.map((block: TemplateComponentBlock, index: number) => ({
+				id: `saved-block-${index + 1}`,
+				type: normalizeBlockType(block.type),
+				content: {
+					text: typeof block.content.text === "string" ? block.content.text : "",
+					subtitle: typeof block.content.subtitle === "string" ? block.content.subtitle : "",
+					link: typeof block.content.link === "string" ? block.content.link : "",
+					src: typeof block.content.src === "string" ? block.content.src : "",
+					alt: typeof block.content.alt === "string" ? block.content.alt : "",
+					height: typeof block.content.height === "string" ? block.content.height : "",
+				},
+				styles: {
+					textAlign:
+						block.styling.textAlign === "left" || block.styling.textAlign === "center" || block.styling.textAlign === "right"
+							? block.styling.textAlign
+							: undefined,
+					marginBottom: typeof block.styling.marginBottom === "string" ? block.styling.marginBottom : undefined,
+					fontSize: typeof block.styling.fontSize === "string" ? block.styling.fontSize : undefined,
+					color: typeof block.styling.color === "string" ? block.styling.color : undefined,
+					lineHeight: typeof block.styling.lineHeight === "string" ? block.styling.lineHeight : undefined,
+					fontWeight: typeof block.styling.fontWeight === "string" ? block.styling.fontWeight : undefined,
+					backgroundColor: typeof block.styling.backgroundColor === "string" ? block.styling.backgroundColor : undefined,
+					padding: typeof block.styling.padding === "string" ? block.styling.padding : undefined,
+					borderRadius: typeof block.styling.borderRadius === "string" ? block.styling.borderRadius : undefined,
+				},
+			}));
+		},
+		[defaultBlocks]
+	);
 
-  const generateHtmlFromBlocks = (currentBlocks: Block[]) => {
-    const htmlParts = [
-      '<!DOCTYPE html>',
-      '<html lang="en">',
-      '<head>',
-      '    <meta charset="UTF-8">',
-      '    <meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      '    <title>{{subject}}</title>',
-      '    <style>',
-      '        body { margin: 0; padding: 0; font-family: \'Work Sans\', sans-serif; background-color: #f3f3f3; }',
-      '        .email-container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 40px; }',
-      '        .block { margin-bottom: 20px; }',
-      '        .cta-button { display: inline-block; text-decoration: none; font-weight: 600; }',
-      '        .divider { height: 1px; background-color: #e5e5e5; margin: 20px 0; }',
-      '        .spacer { height: 20px; }',
-      '        .logo { font-family: \'Dela Gothic One\', cursive; font-size: 24px; color: #FF328F; }',
-      '        @media only screen and (max-width: 600px) {',
-      '            .email-container { padding: 20px !important; }',
-      '            .cta-button { display: block !important; text-align: center !important; }',
-      '        }',
-      '    </style>',
-      '</head>',
-      '<body>',
-      '    <div class="email-container">'
-    ];
+	const [templateData, setTemplateData] = useState<Template>(() => createBaseTemplate(template));
+	const [editorMode, setEditorMode] = useState<EditorMode>("visual");
+	const [blocks, setBlocks] = useState<EmailBlock[]>(() => hydrateSavedBlocks(template));
+	const [previewMode, setPreviewMode] = useState<PreviewMode>("desktop");
+	const [saving, setSaving] = useState(false);
+	const [editorReady, setEditorReady] = useState(false);
+	const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+	const [errors, setErrors] = useState<string[]>([]);
+	const [editingBlock, setEditingBlock] = useState<EmailBlock | null>(null);
 
-    currentBlocks.forEach(block => {
-      htmlParts.push('        <div class="block">');
-      
-      switch (block.type) {
-        case 'logo':
-          htmlParts.push(`            <div class="logo" style="text-align: ${block.styles.textAlign};">`);
-          htmlParts.push(`                <div>${block.content.text}</div>`);
-          if (block.content.subtitle) {
-            htmlParts.push(`                <p style="font-size: 14px; color: #666; margin: 5px 0 0 0;">${block.content.subtitle}</p>`);
-          }
-          htmlParts.push('            </div>');
-          break;
-          
-        case 'heading':
-          const headingStyles = Object.entries(block.styles).map(([key, value]) => 
-            `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value}`
-          ).join('; ');
-          htmlParts.push(`            <h1 style="${headingStyles}">${block.content.text}</h1>`);
-          break;
-          
-        case 'text':
-          const textStyles = Object.entries(block.styles).map(([key, value]) => 
-            `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value}`
-          ).join('; ');
-          htmlParts.push(`            <p style="${textStyles}">${block.content.text}</p>`);
-          break;
-          
-        case 'button':
-          const buttonStyles = Object.entries(block.styles).map(([key, value]) => 
-            `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value}`
-          ).join('; ');
-          htmlParts.push(`            <div style="text-align: center;">`);
-          htmlParts.push(`                <a href="${block.content.link}" class="cta-button" style="${buttonStyles}">${block.content.text}</a>`);
-          htmlParts.push('            </div>');
-          break;
-          
-        case 'image':
-          htmlParts.push(`            <div style="text-align: center;">`);
-          htmlParts.push(`                <img src="${block.content.src}" alt="${block.content.alt}" style="max-width: 100%; height: auto;" />`);
-          htmlParts.push('            </div>');
-          break;
-          
-        case 'divider':
-          htmlParts.push('            <div class="divider"></div>');
-          break;
-          
-        case 'spacer':
-          htmlParts.push(`            <div class="spacer" style="height: ${block.content.height || '20px'};"></div>`);
-          break;
-      }
-      
-      htmlParts.push('        </div>');
-    });
+	const editorRef = useRef<CodeEditorInstance | null>(null);
+	const previewRef = useRef<HTMLIFrameElement>(null);
 
-    htmlParts.push(
-      '        <div class="block" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e5e5; font-size: 12px; color: #666666; text-align: center;">',
-      '            <p>Perfect Match | <a href="{{unsubscribeLink}}">Unsubscribe</a></p>',
-      '            <p>© 2026 Perfect Match. All rights reserved.</p>',
-      '        </div>',
-      '    </div>',
-      '</body>',
-      '</html>'
-    );
+	useEffect(() => {
+		setTemplateData(createBaseTemplate(template));
+		setBlocks(hydrateSavedBlocks(template));
+		setHasUnsavedChanges(false);
+		setErrors([]);
+	}, [template, createBaseTemplate, hydrateSavedBlocks]);
 
-    const generatedHtml = htmlParts.join('\n');
-    setTemplateData(prev => ({ ...prev, html_content: generatedHtml }));
-  };
+	const serializeBlocks = useCallback((currentBlocks: EmailBlock[]): TemplateComponentBlock[] => {
+		return currentBlocks.map((block) => ({
+			type: block.type,
+			content: {
+				text: block.content.text,
+				subtitle: block.content.subtitle,
+				link: block.content.link,
+				src: block.content.src,
+				alt: block.content.alt,
+				height: block.content.height,
+			},
+			styling: {
+				textAlign: block.styles.textAlign,
+				marginBottom: block.styles.marginBottom,
+				fontSize: block.styles.fontSize,
+				color: block.styles.color,
+				lineHeight: block.styles.lineHeight,
+				fontWeight: block.styles.fontWeight,
+				backgroundColor: block.styles.backgroundColor,
+				padding: block.styles.padding,
+				borderRadius: block.styles.borderRadius,
+			},
+			custom_html: "",
+		}));
+	}, []);
 
-  const addBlock = (blockType: string) => {
-    const newBlock: Block = {
-      id: `block_${Date.now()}`,
-      type: blockType as any,
-      content: getDefaultContent(blockType),
-      styles: getDefaultStyles(blockType)
-    };
+	const generateHtmlFromBlocks = useCallback((currentBlocks: EmailBlock[]) => {
+		const htmlParts = [
+			"<!DOCTYPE html>",
+			"<html lang=\"en\">",
+			"<head>",
+			"    <meta charset=\"UTF-8\" />",
+			"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+			"    <title>{{subject}}</title>",
+			"</head>",
+			"<body>",
+			"    <div class=\"email-shell\">",
+			"        <div class=\"email-card\">",
+		];
 
-    const updatedBlocks = [...blocks, newBlock];
-    setBlocks(updatedBlocks);
-    generateHtmlFromBlocks(updatedBlocks);
-  };
+		currentBlocks.forEach((block) => {
+			const styles = serializeStyles(block.styles);
 
-  const getDefaultContent = (blockType: string) => {
-    switch (blockType) {
-      case 'heading': return { text: 'Your Heading Here' };
-      case 'text': return { text: 'Your text content goes here. You can add personalization tokens like {{firstName}}.' };
-      case 'button': return { text: 'Click Here', link: '{{ctaLink}}' };
-      case 'image': return { src: 'https://via.placeholder.com/400x200', alt: 'Image description' };
-      case 'logo': return { text: 'Perfect Match', subtitle: 'Find Your Perfect Match' };
-      case 'spacer': return { height: '20px' };
-      default: return {};
-    }
-  };
+			if (block.type === "logo") {
+				htmlParts.push(`            <div style="${styles}">`);
+				htmlParts.push(`                <div style="font-size: 24px; font-weight: 800; color: #FF328F;">${block.content.text || "Perfect Match"}</div>`);
+				if (block.content.subtitle) {
+					htmlParts.push(`                <div style="margin-top: 6px; font-size: 14px; color: #6b7280;">${block.content.subtitle}</div>`);
+				}
+				htmlParts.push("            </div>");
+				return;
+			}
 
-  const getDefaultStyles = (blockType: string) => {
-    switch (blockType) {
-      case 'heading': return { fontSize: '24px', color: '#161616', marginBottom: '15px', fontWeight: 'bold' };
-      case 'text': return { fontSize: '16px', color: '#161616', lineHeight: '1.6', marginBottom: '15px' };
-      case 'button': return { backgroundColor: '#FF328F', color: '#ffffff', padding: '12px 24px', borderRadius: '6px', textAlign: 'center' };
-      case 'image': return { maxWidth: '100%', height: 'auto', marginBottom: '15px' };
-      case 'logo': return { textAlign: 'center', marginBottom: '20px' };
-      case 'divider': return { height: '1px', backgroundColor: '#e5e5e5', margin: '20px 0' };
-      case 'spacer': return { height: '20px' };
-      default: return {};
-    }
-  };
+			if (block.type === "heading") {
+				htmlParts.push(`            <h1 style="${styles}">${block.content.text || ""}</h1>`);
+				return;
+			}
 
-  const updateBlock = (blockId: string, updates: Partial<Block>) => {
-    const updatedBlocks = blocks.map(block => 
-      block.id === blockId ? { ...block, ...updates } : block
-    );
-    setBlocks(updatedBlocks);
-    generateHtmlFromBlocks(updatedBlocks);
-  };
+			if (block.type === "text") {
+				htmlParts.push(`            <p style="${styles}">${block.content.text || ""}</p>`);
+				return;
+			}
 
-  const deleteBlock = (blockId: string) => {
-    const updatedBlocks = blocks.filter(block => block.id !== blockId);
-    setBlocks(updatedBlocks);
-    generateHtmlFromBlocks(updatedBlocks);
-  };
+			if (block.type === "button") {
+				htmlParts.push(`            <div style="text-align: ${block.styles.textAlign || "center"}; margin-bottom: ${block.styles.marginBottom || "20px"};">`);
+				htmlParts.push(`                <a class="cta-button" href="${block.content.link || "{{ctaLink}}"}" style="${styles}">${block.content.text || "Call to action"}</a>`);
+				htmlParts.push("            </div>");
+				return;
+			}
 
-  const moveBlock = (fromIndex: number, toIndex: number) => {
-    const updatedBlocks = [...blocks];
-    const [movedBlock] = updatedBlocks.splice(fromIndex, 1);
-    updatedBlocks.splice(toIndex, 0, movedBlock);
-    setBlocks(updatedBlocks);
-    generateHtmlFromBlocks(updatedBlocks);
-  };
+			if (block.type === "image") {
+				htmlParts.push(`            <div style="text-align: ${block.styles.textAlign || "center"}; margin-bottom: ${block.styles.marginBottom || "20px"};">`);
+				htmlParts.push(`                <img src="${block.content.src || "https://via.placeholder.com/640x320"}" alt="${block.content.alt || "Email image"}" style="max-width: 100%; height: auto; border-radius: 18px;" />`);
+				htmlParts.push("            </div>");
+				return;
+			}
 
-  const insertPersonalizationToken = (token: string) => {
-    if (editorMode === 'code') {
-      const editor = editorRef.current;
-      if (editor) {
-        const selection = editor.getSelection();
-        const range = selection || {
-          startLineNumber: 1,
-          startColumn: 1,
-          endLineNumber: 1,
-          endColumn: 1
-        };
-        
-        const tokenText = `{{${token}}}`;
-        
-        editor.executeEdits('insert-token', [
-          {
-            range: range,
-            text: tokenText,
-            forceMoveMarkers: true
-          }
-        ]);
-        
-        editor.focus();
-      }
-    } else {
-      // In visual mode, show a dialog to select which block to add token to
-      alert('Switch to Code view to insert personalization tokens, or edit individual blocks in Visual mode.');
-    }
-  };
+			if (block.type === "divider") {
+				htmlParts.push(`            <hr style="border: none; border-top: 1px solid #ececec; margin: ${block.styles.marginBottom || "24px"} 0;" />`);
+				return;
+			}
 
-  const handleSave = async () => {
-    const validationErrors = validateTemplate();
-    setErrors(validationErrors);
-    
-    if (validationErrors.length > 0) {
-      return;
-    }
-    
-    setSaving(true);
-    try {
-      await onSave(templateData);
-    } catch (error) {
-      setErrors(['Failed to save template. Please try again.']);
-    } finally {
-      setSaving(false);
-    }
-  };
+			if (block.type === "spacer") {
+				htmlParts.push(`            <div style="height: ${block.content.height || "20px"};"></div>`);
+			}
+		});
 
-  const validateTemplate = (): string[] => {
-    const errors: string[] = [];
-    
-    if (!templateData.name.trim()) {
-      errors.push('Template name is required');
-    }
-    
-    if (!templateData.html_content.trim()) {
-      errors.push('Template content is required');
-    }
-    
-    return errors;
-  };
+		htmlParts.push(
+			"            <div class=\"email-footer\">",
+			"                <p>Perfect Match | <a href=\"{{unsubscribeLink}}\">Unsubscribe</a></p>",
+			"                <p>© 2026 Perfect Match. All rights reserved.</p>",
+			"            </div>",
+			"        </div>",
+			"    </div>",
+			"</body>",
+			"</html>"
+		);
 
-  const generatePreviewHtml = () => {
-    const combinedHtml = templateData.html_content.replace(
-      '</head>',
-      `<style>${templateData.css_content}</style></head>`
-    );
-    
-    return combinedHtml
-      .replace(/\{\{firstName\}\}/g, 'John')
-      .replace(/\{\{lastName\}\}/g, 'Doe')
-      .replace(/\{\{subject\}\}/g, templateData.name)
-      .replace(/\{\{ctaLink\}\}/g, 'https://perfectmatch.ai')
-      .replace(/\{\{unsubscribeLink\}\}/g, 'https://perfectmatch.ai/unsubscribe');
-  };
+		return htmlParts.join("\n");
+	}, []);
 
-  const updatePreview = () => {
-    if (previewRef.current) {
-      const previewHtml = generatePreviewHtml();
-      const sanitizedHtml = DOMPurify.sanitize(previewHtml);
-      
-      const previewDoc = previewRef.current.contentDocument;
-      if (previewDoc) {
-        previewDoc.open();
-        previewDoc.write(sanitizedHtml);
-        previewDoc.close();
-      }
-    }
-  };
+	useEffect(() => {
+		if (blocks.length === 0) {
+			return;
+		}
 
-  useEffect(() => {
-    if (editorMode === 'preview') {
-      updatePreview();
-    }
-  }, [editorMode, templateData.html_content, templateData.css_content]);
+		const generatedHtml = generateHtmlFromBlocks(blocks);
+		setTemplateData((prev) => ({
+			...prev,
+			html_content: generatedHtml,
+			components: {
+				blocks: serializeBlocks(blocks),
+			},
+		}));
+	}, [blocks, generateHtmlFromBlocks, serializeBlocks]);
 
-  const getPreviewWidth = () => {
-    switch (previewMode) {
-      case 'mobile': return '375px';
-      case 'tablet': return '768px';
-      case 'desktop': return '100%';
-      default: return '100%';
-    }
-  };
+	const previewWidth = useMemo(() => {
+		if (previewMode === "mobile") {
+			return "375px";
+		}
 
-  const renderVisualEditor = () => (
-    <div className="flex h-full">
-      {/* Block Library */}
-      <div className="w-64 bg-gray-50 border-r p-4">
-        <h3 className="font-medium text-gray-900 mb-4">Add Blocks</h3>
-        <div className="space-y-2">
-          {blockTypes.map((blockType) => (
-            <button
-              key={blockType.type}
-              onClick={() => addBlock(blockType.type)}
-              className="w-full text-left p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <div className="flex items-center">
-                <span className="text-xl mr-3">{blockType.icon}</span>
-                <div>
-                  <div className="font-medium text-sm">{blockType.label}</div>
-                  <div className="text-xs text-gray-500">{blockType.description}</div>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
+		if (previewMode === "tablet") {
+			return "768px";
+		}
 
-        <div className="mt-6">
-          <h3 className="font-medium text-gray-900 mb-3">Personalization</h3>
-          <div className="space-y-1">
-            {[
-              { token: 'firstName', label: 'First Name' },
-              { token: 'lastName', label: 'Last Name' },
-              { token: 'matchCount', label: 'Match Count' },
-              { token: 'ctaLink', label: 'CTA Link' }
-            ].map((item) => (
-              <button
-                key={item.token}
-                onClick={() => insertPersonalizationToken(item.token)}
-                className="w-full text-left px-2 py-1 text-xs bg-white border border-gray-200 rounded hover:bg-gray-50"
-              >
-                <div className="font-medium">{item.label}</div>
-                <div className="text-gray-500">{`{${item.token}}`}</div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+		return "100%";
+	}, [previewMode]);
 
-      {/* Visual Builder */}
-      <div className="flex-1 p-4">
-        <div className="bg-white rounded-lg border min-h-96 p-6" style={{ maxWidth: '600px', margin: '0 auto' }}>
-          {blocks.map((block, index) => (
-            <div
-              key={block.id}
-              className="relative group mb-4 p-2 border border-transparent hover:border-gray-300 rounded"
-            >
-              {/* Block Controls */}
-              <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 flex gap-1 bg-white shadow-sm rounded border">
-                <button
-                  onClick={() => setEditingBlock(block)}
-                  className="p-1 text-xs text-blue-600 hover:bg-blue-50"
-                  title="Edit"
-                >
-                  ✏️
-                </button>
-                <button
-                  onClick={() => deleteBlock(block.id)}
-                  className="p-1 text-xs text-red-600 hover:bg-red-50"
-                  title="Delete"
-                >
-                  🗑️
-                </button>
-              </div>
+	const addBlock = useCallback((type: BlockType) => {
+		const newBlock: EmailBlock = {
+			id: `block-${Date.now()}`,
+			type,
+			content:
+				type === "heading"
+					? { text: "New heading" }
+					: type === "text"
+						? { text: "Add your message here." }
+						: type === "button"
+							? { text: "Learn more", link: "{{ctaLink}}" }
+							: type === "image"
+								? { src: "https://via.placeholder.com/640x320", alt: "Campaign image" }
+								: type === "logo"
+									? { text: "Perfect Match", subtitle: "Find your perfect match" }
+									: type === "spacer"
+										? { height: "20px" }
+										: {},
+			styles:
+				type === "heading"
+					? { fontSize: "28px", fontWeight: "800", color: "#161616", marginBottom: "18px", textAlign: "left" }
+					: type === "text"
+						? { fontSize: "16px", color: "#4b5563", lineHeight: "1.7", marginBottom: "18px" }
+						: type === "button"
+							? { backgroundColor: "#FF328F", color: "#ffffff", padding: "14px 28px", borderRadius: "999px", textAlign: "center", marginBottom: "18px" }
+							: type === "image"
+								? { textAlign: "center", marginBottom: "18px" }
+								: type === "logo"
+									? { textAlign: "center", marginBottom: "28px" }
+									: type === "divider"
+										? { marginBottom: "24px" }
+										: { marginBottom: "20px" },
+		};
 
-              {/* Block Content */}
-              {renderBlockContent(block)}
-            </div>
-          ))}
-          
-          {blocks.length === 0 && (
-            <div className="text-center py-12 text-gray-500">
-              <div className="text-4xl mb-4">📧</div>
-              <p>Start building your email by adding blocks from the left panel</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+		setBlocks((prev) => [...prev, newBlock]);
+		setHasUnsavedChanges(true);
+	}, []);
 
-  const renderBlockContent = (block: Block) => {
-    const styles = Object.entries(block.styles).map(([key, value]) => 
-      `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${value}`
-    ).join('; ');
+	const updateBlock = useCallback((updatedBlock: EmailBlock) => {
+		setBlocks((prev) => prev.map((block) => (block.id === updatedBlock.id ? updatedBlock : block)));
+		setHasUnsavedChanges(true);
+	}, []);
 
-    switch (block.type) {
-      case 'logo':
-        return (
-          <div style={{ textAlign: block.styles.textAlign }}>
-            <div className="font-bold text-xl" style={{ color: '#FF328F', fontFamily: theme.fonts.heading }}>
-              {block.content.text}
-            </div>
-            {block.content.subtitle && (
-              <p className="text-sm text-gray-600 mt-1">{block.content.subtitle}</p>
-            )}
-          </div>
-        );
-        
-      case 'heading':
-        return <h1 style={{ ...block.styles }}>{block.content.text}</h1>;
-        
-      case 'text':
-        return <p style={{ ...block.styles }}>{block.content.text}</p>;
-        
-      case 'button':
-        return (
-          <div style={{ textAlign: 'center' }}>
-            <a
-              href={block.content.link}
-              className="inline-block px-6 py-3 rounded font-medium text-white no-underline"
-              style={{ ...block.styles }}
-            >
-              {block.content.text}
-            </a>
-          </div>
-        );
-        
-      case 'image':
-        return (
-          <div style={{ textAlign: 'center' }}>
-            <img
-              src={block.content.src}
-              alt={block.content.alt}
-              style={{ maxWidth: '100%', height: 'auto' }}
-            />
-          </div>
-        );
-        
-      case 'divider':
-        return <hr style={{ border: 'none', height: '1px', backgroundColor: '#e5e5e5', margin: '20px 0' }} />;
-        
-      case 'spacer':
-        return <div style={{ height: block.content.height || '20px' }}></div>;
-        
-      default:
-        return <div>Unknown block type</div>;
-    }
-  };
+	const deleteBlock = useCallback((blockId: string) => {
+		setBlocks((prev) => prev.filter((block) => block.id !== blockId));
+		setHasUnsavedChanges(true);
+	}, []);
 
-  const renderCodeEditor = () => (
-    <div className="flex h-full">
-      <div className="flex-1">
-        <div className="flex h-full">
-          <div className="flex-1">
-            <Editor
-              height="100%"
-              defaultLanguage="html"
-              value={templateData.html_content}
-              onChange={(value) => setTemplateData(prev => ({ ...prev, html_content: value || '' }))}
-              onMount={(editor) => { editorRef.current = editor; }}
-              theme="vs-light"
-              options={{
-                minimap: { enabled: false },
-                fontSize: 14,
-                lineNumbers: 'on',
-                wordWrap: 'on',
-                automaticLayout: true,
-                scrollBeyondLastLine: false,
-              }}
-            />
-          </div>
-          <div className="w-64 bg-gray-50 border-l p-4">
-            <h3 className="font-medium text-gray-900 mb-3">Personalization Tokens</h3>
-            <div className="space-y-2">
-              {[
-                { token: 'firstName', label: 'First Name' },
-                { token: 'lastName', label: 'Last Name' },
-                { token: 'email', label: 'Email Address' },
-                { token: 'matchCount', label: 'Match Count' },
-                { token: 'joinDate', label: 'Join Date' },
-                { token: 'ctaLink', label: 'CTA Link' },
-                { token: 'unsubscribeLink', label: 'Unsubscribe Link' }
-              ].map((item) => (
-                <button
-                  key={item.token}
-                  onClick={() => insertPersonalizationToken(item.token)}
-                  className="w-full text-left px-3 py-2 text-sm bg-white border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                >
-                  <div className="font-medium">{item.label}</div>
-                  <div className="text-gray-500 text-xs">{`{{${item.token}}}`}</div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+	const moveBlock = useCallback((fromIndex: number, toIndex: number) => {
+		if (toIndex < 0 || toIndex >= blocks.length) {
+			return;
+		}
 
-  const renderPreview = () => (
-    <div className="flex-1 bg-gray-100 p-4">
-      <div className="mx-auto bg-white rounded-lg shadow-sm overflow-hidden" style={{ width: getPreviewWidth() }}>
-        <iframe
-          ref={previewRef}
-          className="w-full h-full min-h-96"
-          style={{ height: 'calc(100vh - 300px)' }}
-          title="Email Preview"
-        />
-      </div>
-    </div>
-  );
+		setBlocks((prev) => {
+			const nextBlocks = [...prev];
+			const [movedBlock] = nextBlocks.splice(fromIndex, 1);
+			nextBlocks.splice(toIndex, 0, movedBlock);
+			return nextBlocks;
+		});
+		setHasUnsavedChanges(true);
+	}, [blocks.length]);
 
-  return (
-    <div className="h-screen bg-gray-50 flex flex-col">
-      {/* Header */}
-      <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: theme.fonts.heading }}>
-            {template ? 'Edit Template' : 'Create New Template'}
-          </h1>
-          <p className="text-gray-600">Design with visual blocks or edit HTML directly</p>
-        </div>
-        <div className="flex gap-3">
-          <button
-            onClick={onCancel}
-            className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-6 py-2 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
-            style={{ backgroundColor: theme.colors.primary }}
-          >
-            {saving ? 'Saving...' : 'Save Template'}
-          </button>
-        </div>
-      </div>
+	const insertPersonalizationToken = useCallback((token: string) => {
+		if (editorMode !== "code") {
+			window.alert("Switch to the code editor to insert personalization tokens.");
+			return;
+		}
 
-      {/* Template Info */}
-      <div className="bg-white border-b px-6 py-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Template Name *
-            </label>
-            <input
-              type="text"
-              value={templateData.name}
-              onChange={(e) => setTemplateData(prev => ({ ...prev, name: e.target.value }))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-              placeholder="e.g., Welcome Series 2026"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description
-            </label>
-            <input
-              type="text"
-              value={templateData.description}
-              onChange={(e) => setTemplateData(prev => ({ ...prev, description: e.target.value }))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-              placeholder="Brief description of this template"
-            />
-          </div>
-        </div>
-        
-        {errors.length > 0 && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <ul className="text-sm text-red-600">
-              {errors.map((error, index) => (
-                <li key={index}>• {error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+		const editorInstance = editorRef.current;
+		if (!editorInstance) {
+			return;
+		}
 
-      {/* Editor Mode Tabs */}
-      <div className="bg-white border-b">
-        <div className="flex">
-          {(['visual', 'code', 'preview'] as const).map((mode) => (
-            <button
-              key={mode}
-              onClick={() => setEditorMode(mode)}
-              className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
-                editorMode === mode
-                  ? 'border-pink-500 text-pink-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              {mode === 'visual' && '🎨 Visual Builder'}
-              {mode === 'code' && '💻 HTML/CSS Code'}
-              {mode === 'preview' && '👁️ Preview'}
-            </button>
-          ))}
-          
-          {editorMode === 'preview' && (
-            <div className="ml-auto flex items-center gap-2 px-6">
-              <span className="text-sm text-gray-600">Preview:</span>
-              {(['desktop', 'tablet', 'mobile'] as const).map((mode) => (
-                <button
-                  key={mode}
-                  onClick={() => setPreviewMode(mode)}
-                  className={`px-3 py-1 text-xs rounded-full transition-colors ${
-                    previewMode === mode
-                      ? 'bg-pink-100 text-pink-700'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                >
-                  {mode}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+		const range = editorInstance.getSelection() || {
+			startLineNumber: 1,
+			startColumn: 1,
+			endLineNumber: 1,
+			endColumn: 1,
+		};
 
-      {/* Editor Content */}
-      <div className="flex-1 flex">
-        {editorMode === 'visual' && renderVisualEditor()}
-        {editorMode === 'code' && renderCodeEditor()}
-        {editorMode === 'preview' && renderPreview()}
-      </div>
+		editorInstance.executeEdits("insert-token", [
+			{
+				range,
+				text: `{{${token}}}`,
+				forceMoveMarkers: true,
+			},
+		]);
+		editorInstance.focus();
+		setHasUnsavedChanges(true);
+	}, [editorMode]);
 
-      {/* Block Editor Modal */}
-      {editingBlock && (
-        <BlockEditor
-          block={editingBlock}
-          onUpdate={(updatedBlock) => {
-            updateBlock(updatedBlock.id, updatedBlock);
-            setEditingBlock(null);
-          }}
-          onClose={() => setEditingBlock(null)}
-        />
-      )}
-    </div>
-  );
+	const validateTemplate = useCallback(() => {
+		const nextErrors: string[] = [];
+
+		if (!templateData.name.trim()) {
+			nextErrors.push("Template name is required.");
+		}
+
+		if (!templateData.html_content.trim()) {
+			nextErrors.push("Template content is required.");
+		}
+
+		return nextErrors;
+	}, [templateData.html_content, templateData.name]);
+
+	const handleSave = useCallback(async () => {
+		const validationErrors = validateTemplate();
+		setErrors(validationErrors);
+
+		if (validationErrors.length > 0) {
+			return;
+		}
+
+		setSaving(true);
+		try {
+			const nextTemplate: Template = {
+				...templateData,
+				components:
+					blocks.length > 0
+						? {
+							blocks: serializeBlocks(blocks),
+						}
+						: templateData.components,
+			};
+
+			await onSave(nextTemplate);
+			setHasUnsavedChanges(false);
+		} catch (error) {
+			setErrors(["Failed to save template. Please try again."]);
+		} finally {
+			setSaving(false);
+		}
+	}, [blocks, onSave, serializeBlocks, templateData, validateTemplate]);
+
+	const generatePreviewHtml = useCallback(() => {
+		const htmlWithStyles = templateData.html_content.includes("</head>")
+			? templateData.html_content.replace("</head>", `<style>${templateData.css_content}</style></head>`)
+			: `<!DOCTYPE html><html><head><style>${templateData.css_content}</style></head><body>${templateData.html_content}</body></html>`;
+
+		return htmlWithStyles
+			.replace(/\{\{firstName\}\}/g, "Jordan")
+			.replace(/\{\{lastName\}\}/g, "Lee")
+			.replace(/\{\{email\}\}/g, "jordan.lee@example.com")
+			.replace(/\{\{matchCount\}\}/g, "4")
+			.replace(/\{\{joinDate\}\}/g, "March 15, 2026")
+			.replace(/\{\{subject\}\}/g, templateData.name || "Perfect Match Update")
+			.replace(/\{\{ctaLink\}\}/g, "https://perfectmatch.ai")
+			.replace(/\{\{unsubscribeLink\}\}/g, "https://perfectmatch.ai/unsubscribe");
+	}, [templateData.css_content, templateData.html_content, templateData.name]);
+
+	const updatePreview = useCallback(() => {
+		const previewDoc = previewRef.current?.contentDocument;
+		if (!previewDoc) {
+			return;
+		}
+
+		const sanitizedHtml = DOMPurify.sanitize(generatePreviewHtml());
+		previewDoc.open();
+		previewDoc.write(sanitizedHtml);
+		previewDoc.close();
+	}, [generatePreviewHtml]);
+
+	useEffect(() => {
+		if (editorMode === "preview") {
+			updatePreview();
+		}
+	}, [editorMode, updatePreview]);
+
+	useEffect(() => {
+		if (!hasUnsavedChanges) {
+			return;
+		}
+
+		const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+			event.preventDefault();
+			event.returnValue = "";
+		};
+
+		window.addEventListener("beforeunload", handleBeforeUnload);
+		return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+	}, [hasUnsavedChanges]);
+
+	const renderBlockContent = useCallback((block: EmailBlock) => {
+		if (block.type === "logo") {
+			return (
+				<div className="flex flex-col gap-2" style={{ textAlign: block.styles.textAlign || "center" }}>
+					<div className="inline-flex items-center gap-2 self-center text-pink-600">
+						<Heart className="h-5 w-5 fill-pink-100" />
+						<span className="text-xl font-black" style={{ fontFamily: theme.fonts.heading }}>
+							{block.content.text || "Perfect Match"}
+						</span>
+					</div>
+					{block.content.subtitle ? <p className="text-sm text-gray-500">{block.content.subtitle}</p> : null}
+				</div>
+			);
+		}
+
+		if (block.type === "heading") {
+			return <h1 style={block.styles}>{block.content.text}</h1>;
+		}
+
+		if (block.type === "text") {
+			return <p style={block.styles}>{block.content.text}</p>;
+		}
+
+		if (block.type === "button") {
+			return (
+				<div style={{ textAlign: block.styles.textAlign || "center" }}>
+					<span
+						className="inline-block no-underline"
+						style={{
+							backgroundColor: block.styles.backgroundColor,
+							color: block.styles.color,
+							padding: block.styles.padding,
+							borderRadius: block.styles.borderRadius,
+							fontWeight: 700,
+						}}
+					>
+						{block.content.text || "Call to action"}
+					</span>
+				</div>
+			);
+		}
+
+		if (block.type === "image") {
+			return (
+				<div style={{ textAlign: block.styles.textAlign || "center" }}>
+					<img
+						src={block.content.src || "https://via.placeholder.com/640x320"}
+						alt={block.content.alt || "Email image"}
+						className="mx-auto rounded-xl"
+						style={{ maxWidth: "100%", height: "auto" }}
+					/>
+				</div>
+			);
+		}
+
+		if (block.type === "divider") {
+			return <hr className="border-0 border-t border-gray-200" style={{ marginBottom: block.styles.marginBottom || "24px" }} />;
+		}
+
+		if (block.type === "spacer") {
+			return <div style={{ height: block.content.height || "20px" }} />;
+		}
+
+		return null;
+	}, []);
+
+	const visualModeContent = useMemo(() => {
+		return (
+			<div className="flex h-full">
+				<div className="w-80 shrink-0 border-r border-gray-200 bg-gray-50/70 p-5">
+					<div className="mb-5">
+						<h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">Add Blocks</h3>
+						<p className="mt-2 text-sm text-gray-500">Build the structure visually, then fine-tune the final HTML if needed.</p>
+					</div>
+
+					<div className="space-y-2">
+						{blockTypes.map((blockType) => {
+							const Icon = blockType.icon;
+							return (
+								<button
+									key={blockType.type}
+									onClick={() => addBlock(blockType.type)}
+									className="w-full rounded-xl border border-gray-200 bg-white p-4 text-left transition-all hover:border-pink-200 hover:bg-pink-50/40"
+								>
+									<div className="flex items-start gap-3">
+										<div className="rounded-md bg-gray-50 p-2 text-pink-600">
+											<Icon className="h-4 w-4" />
+										</div>
+										<div>
+											<div className="text-sm font-bold text-gray-900">{blockType.label}</div>
+											<div className="mt-1 text-xs font-medium text-gray-500">{blockType.description}</div>
+										</div>
+									</div>
+								</button>
+							);
+						})}
+					</div>
+
+					<div className="mt-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
+						<div className="flex items-start gap-3">
+							<AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+							<div>
+								<div className="text-xs font-bold uppercase tracking-widest text-amber-700">Visual note</div>
+								<p className="mt-1 text-sm font-medium text-amber-900">
+									The visual editor keeps your layout clean and fast. Use the code tab when you need exact markup control.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="flex-1 overflow-y-auto p-6">
+					<div className="mx-auto max-w-[680px] rounded-[12px] border border-gray-200 bg-white p-8 shadow-[0_20px_70px_rgba(17,24,39,0.08)]">
+						{blocks.length === 0 ? (
+							<div className="rounded-xl border border-dashed border-gray-200 bg-gray-50/60 px-8 py-16 text-center">
+								<div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-md bg-white shadow-sm">
+									<PencilRuler className="h-6 w-6 text-pink-500" />
+								</div>
+								<h3 className="text-lg font-bold text-gray-900">Start with a block</h3>
+								<p className="mt-2 text-sm font-medium text-gray-500">
+									Add a heading, body copy, CTA, or divider from the left panel to start building the template.
+								</p>
+							</div>
+						) : (
+							<div className="space-y-4">
+								{blocks.map((block, index) => (
+									<div key={block.id} className="group rounded-xl border border-transparent p-3 transition-all hover:border-gray-200 hover:bg-gray-50/70">
+										<div className="mb-3 flex items-center justify-between opacity-0 transition-opacity group-hover:opacity-100">
+											<div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400">
+												<GripVertical className="h-3.5 w-3.5" />
+												{block.type}
+											</div>
+											<div className="flex items-center gap-2">
+												<button
+													onClick={() => moveBlock(index, index - 1)}
+													disabled={index === 0}
+													className="rounded-md border border-gray-200 bg-white p-2 text-gray-500 transition-all hover:text-gray-900 disabled:opacity-30"
+												>
+													<ArrowUp className="h-4 w-4" />
+												</button>
+												<button
+													onClick={() => moveBlock(index, index + 1)}
+													disabled={index === blocks.length - 1}
+													className="rounded-md border border-gray-200 bg-white p-2 text-gray-500 transition-all hover:text-gray-900 disabled:opacity-30"
+												>
+													<ArrowDown className="h-4 w-4" />
+												</button>
+												<button
+													onClick={() => setEditingBlock(block)}
+													className="rounded-md border border-gray-200 bg-white px-3 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 transition-all hover:border-pink-200 hover:text-pink-600"
+												>
+													Edit
+												</button>
+												<button
+													onClick={() => deleteBlock(block.id)}
+													className="rounded-md border border-rose-100 bg-rose-50 p-2 text-rose-600 transition-all hover:bg-rose-100"
+												>
+													<Trash2 className="h-4 w-4" />
+												</button>
+											</div>
+										</div>
+										<div style={{ marginBottom: block.styles.marginBottom }}>{renderBlockContent(block)}</div>
+									</div>
+								))}
+							</div>
+						)}
+					</div>
+				</div>
+			</div>
+		);
+	}, [addBlock, blockTypes, blocks, deleteBlock, moveBlock, renderBlockContent]);
+
+	const codeModeContent = useMemo(() => {
+		return (
+			<div className="flex h-full">
+				<div className="flex-1 border-r border-gray-200 bg-white">
+					<Editor
+						height="100%"
+						defaultLanguage="html"
+						value={templateData.html_content}
+						onChange={(value) => {
+							setTemplateData((prev) => ({
+								...prev,
+								html_content: value || "",
+							}));
+							setHasUnsavedChanges(true);
+						}}
+						onMount={(editorInstance) => {
+							const typedEditor: CodeEditorInstance = editorInstance;
+							editorRef.current = typedEditor;
+							setEditorReady(true);
+						}}
+						loading={
+							<div className="flex h-full items-center justify-center bg-gray-50">
+								<div className="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-xl">
+									<Loader2 className="mb-4 h-10 w-10 animate-spin text-pink-500" />
+									<span className="text-xs font-bold uppercase tracking-widest text-gray-400">Loading Editor...</span>
+								</div>
+							</div>
+						}
+						theme="vs-light"
+						options={{
+							minimap: { enabled: false },
+							fontSize: 14,
+							lineNumbers: "on",
+							wordWrap: "on",
+							automaticLayout: true,
+							scrollBeyondLastLine: false,
+						}}
+					/>
+				</div>
+
+				<div className="w-[320px] shrink-0 bg-gray-50/70 p-5">
+					<div className="rounded-xl border border-gray-200 bg-white p-4">
+						<div className="text-xs font-bold uppercase tracking-widest text-gray-400">Quick Tip</div>
+						<p className="mt-2 text-sm font-medium text-gray-600">
+							Use the visual tab for layout and this tab for precision. Tokens can be inserted directly into the HTML.
+						</p>
+					</div>
+
+					<div className="mt-5">
+						<h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">Personalization Tokens</h3>
+						<div className="mt-3 space-y-2">
+							{PERSONALIZATION_TOKENS.map((item) => (
+								<button
+									key={item.token}
+									onClick={() => insertPersonalizationToken(item.token)}
+									className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-left transition-all hover:border-pink-200 hover:bg-pink-50/40"
+								>
+									<div className="text-sm font-bold text-gray-900">{item.label}</div>
+									<div className="mt-1 text-xs font-medium text-gray-500">{`{{${item.token}}}`}</div>
+								</button>
+							))}
+						</div>
+					</div>
+
+					<div className="mt-5">
+						<label className="mb-2 block text-sm font-bold uppercase tracking-widest text-gray-500">CSS</label>
+						<textarea
+							value={templateData.css_content}
+							onChange={(event) => {
+								setTemplateData((prev) => ({
+									...prev,
+									css_content: event.target.value,
+								}));
+								setHasUnsavedChanges(true);
+							}}
+							rows={14}
+							className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 shadow-sm focus:border-pink-300 focus:outline-none focus:ring-4 focus:ring-pink-500/10"
+						/>
+					</div>
+
+					{!editorReady && (
+						<div className="mt-5 text-xs font-bold uppercase tracking-widest text-gray-400">Editor is booting...</div>
+					)}
+				</div>
+			</div>
+		);
+	}, [editorReady, insertPersonalizationToken, templateData.css_content, templateData.html_content]);
+
+	const previewModeContent = useMemo(() => {
+		return (
+			<div className="flex h-full flex-col bg-gray-50/80">
+				<div className="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
+					<div>
+						<h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">Preview</h3>
+						<p className="mt-1 text-sm text-gray-500">Simulated data is used for names, CTAs, and unsubscribe links.</p>
+					</div>
+
+					<div className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 p-1">
+						{[
+							{ value: "desktop", label: "Desktop", icon: Monitor },
+							{ value: "tablet", label: "Tablet", icon: Tablet },
+							{ value: "mobile", label: "Mobile", icon: Smartphone },
+						].map((modeOption) => {
+							const Icon = modeOption.icon;
+							return (
+								<button
+									key={modeOption.value}
+									onClick={() => setPreviewMode(modeOption.value as PreviewMode)}
+									className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-widest transition-all ${previewMode === modeOption.value ? "bg-pink-600 text-white shadow-lg shadow-pink-200" : "text-gray-500 hover:text-gray-900"
+										}`}
+								>
+									<Icon className="h-3.5 w-3.5" />
+									{modeOption.label}
+								</button>
+							);
+						})}
+					</div>
+				</div>
+
+				<div className="flex-1 overflow-auto p-8">
+					<div className="mx-auto h-full rounded-[12px] border border-gray-200 bg-white shadow-[0_20px_70px_rgba(17,24,39,0.08)] transition-all duration-300" style={{ maxWidth: previewWidth }}>
+						<iframe ref={previewRef} title="Email preview" className="h-full min-h-[680px] w-full rounded-[12px]" />
+					</div>
+				</div>
+			</div>
+		);
+	}, [previewMode, previewWidth]);
+
+	return (
+		<div className="flex h-screen flex-col bg-gray-50">
+			<div className="border-b border-gray-200 bg-white px-6 py-4">
+				<div className="flex items-start justify-between gap-4">
+					<div>
+						<h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: theme.fonts.heading }}>
+							{template ? "Edit Template" : "Create New Template"}
+						</h1>
+						<p className="mt-1 text-gray-600">Design visually, edit the HTML directly, and preview the final send in one workflow.</p>
+					</div>
+
+					<div className="flex items-center gap-3">
+						{hasUnsavedChanges && (
+							<div className="inline-flex items-center gap-2 rounded-md border border-amber-100 bg-amber-50 px-3 py-2 text-xs font-bold uppercase tracking-widest text-amber-700">
+								<AlertCircle className="h-3.5 w-3.5" />
+								Unsaved Changes
+							</div>
+						)}
+
+						<button
+							onClick={onCancel}
+							className="inline-flex items-center gap-2 rounded-md border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 transition-all hover:bg-gray-50"
+						>
+							<X className="h-4 w-4" />
+							Cancel
+						</button>
+						<button
+							onClick={handleSave}
+							disabled={saving}
+							className="rounded-md px-6 py-2 text-sm font-bold text-white transition-all hover:shadow-lg disabled:opacity-50"
+							style={{ backgroundColor: theme.colors.primary }}
+						>
+							{saving ? "Saving..." : "Save Template"}
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div className="border-b border-gray-200 bg-white px-6 py-4">
+				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+					<div>
+						<label className="mb-2 block text-sm font-bold text-gray-700">Template Name</label>
+						<input
+							type="text"
+							value={templateData.name}
+							onChange={(event) => {
+								setTemplateData((prev) => ({
+									...prev,
+									name: event.target.value,
+								}));
+								setHasUnsavedChanges(true);
+							}}
+							placeholder="e.g. Matches Release 2026"
+							className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-900 shadow-sm focus:border-pink-300 focus:outline-none focus:ring-4 focus:ring-pink-500/10"
+						/>
+					</div>
+					<div>
+						<label className="mb-2 block text-sm font-bold text-gray-700">Description</label>
+						<input
+							type="text"
+							value={templateData.description}
+							onChange={(event) => {
+								setTemplateData((prev) => ({
+									...prev,
+									description: event.target.value,
+								}));
+								setHasUnsavedChanges(true);
+							}}
+							placeholder="Short internal note about this template"
+							className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-900 shadow-sm focus:border-pink-300 focus:outline-none focus:ring-4 focus:ring-pink-500/10"
+						/>
+					</div>
+				</div>
+
+				{errors.length > 0 && (
+					<div className="mt-4 rounded-xl border border-rose-100 bg-rose-50 p-4">
+						<ul className="space-y-1 text-sm font-medium text-rose-700">
+							{errors.map((error) => (
+								<li key={error}>{error}</li>
+							))}
+						</ul>
+					</div>
+				)}
+			</div>
+
+			<div className="border-b border-gray-200 bg-white">
+				<div className="flex items-center">
+					{[
+						{ id: "visual", label: "Visual Builder", icon: PencilRuler },
+						{ id: "code", label: "HTML & CSS", icon: Code2 },
+						{ id: "preview", label: "Preview", icon: Eye },
+					].map((tab) => {
+						const Icon = tab.icon;
+						return (
+							<button
+								key={tab.id}
+								onClick={() => setEditorMode(tab.id as EditorMode)}
+								className={`inline-flex items-center gap-2 border-b-2 px-6 py-4 text-sm font-bold transition-all ${editorMode === tab.id
+									? "border-pink-500 text-pink-600"
+									: "border-transparent text-gray-500 hover:text-gray-900"
+									}`}
+							>
+								<Icon className="h-4 w-4" />
+								{tab.label}
+							</button>
+						);
+					})}
+				</div>
+			</div>
+
+			<div className="min-h-0 flex-1">
+				{editorMode === "visual" ? visualModeContent : null}
+				{editorMode === "code" ? codeModeContent : null}
+				{editorMode === "preview" ? previewModeContent : null}
+			</div>
+
+			{editingBlock && (
+				<BlockEditor
+					block={editingBlock}
+					onUpdate={(updatedBlock) => {
+						updateBlock(updatedBlock);
+						setEditingBlock(null);
+					}}
+					onClose={() => setEditingBlock(null)}
+				/>
+			)}
+		</div>
+	);
 }

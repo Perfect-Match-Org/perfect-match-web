@@ -181,9 +181,9 @@ const CountDown: React.FC = () => {
 				<div className="absolute mx-[18%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl" />
 				<div className="absolute mx-[31%] my-[0.2%] bg-retropink-500 w-[20%] h-3 border-2 border-blue-900 rounded-xl" />
 			</div>
-			<div className="bg-[#FBE7F3] min-h-fit h-full rounded-3xl p-5 border-blue-900 border-4 z-10 ">
+			<div className="bg-[#FBE7F3] min-h-fit h-full rounded-xl p-5 border-blue-900 border-4 z-10 ">
 				<div className="flex flex-grid w-full h-full">
-					<div className="flex items-center justify-center h-full w-[90%] bg-[#00162F] text-white text-3xl rounded-lg lg:p-2">
+					<div className="flex items-center justify-center h-full w-[90%] bg-[#00162F] text-white text-3xl rounded-md lg:p-2">
 						<div className="flex items-center text-3xl sm:text-4xl space-x-2 px-4 md:px-2 font-press-start lg:text-6xl w-full justify-center">
 							<div className="flex flex-col items-center">
 								<span className={completed ? "animate-flash" : ""}>
@@ -267,7 +267,7 @@ const CountDown: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<div className="bg-retropink-500 w-full h-full -z-20 absolute top-[6%] left-[2%] rounded-3xl" />
+			<div className="bg-retropink-500 w-full h-full -z-20 absolute top-[6%] left-[2%] rounded-xl" />
 			<div className="absolute -top-[60%] w-full h-[85%] flex justify-end">
 				<Image src="/scream_bubble.svg" alt="scream bubble" height={200} width={300} priority={true} draggable="false" />
 			</div>

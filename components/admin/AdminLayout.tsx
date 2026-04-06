@@ -57,20 +57,19 @@ export default function AdminLayout({ children, activeSection, onSectionChange }
             {/* Accessibility: skip to main content */}
             <a
                 href="#main-content"
-                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-pink-600 focus:font-bold focus:rounded-lg focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-500"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-pink-600 focus:font-bold focus:rounded-md focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-500"
             >
                 Skip to main content
             </a>
 
             {/* ── Sidebar ── */}
             <aside
-                className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out z-30 ${
-                    isSidebarCollapsed ? "w-20" : "w-64"
-                }`}
+                className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out z-30 ${isSidebarCollapsed ? "w-20" : "w-64"
+                    }`}
             >
                 {/* Logo */}
                 <div className="h-16 flex items-center px-5 border-b border-gray-100 shrink-0">
-                    <div className="w-8 h-8 bg-pink-600 rounded-lg flex items-center justify-center shrink-0 shadow-lg shadow-pink-200">
+                    <div className="w-8 h-8 bg-pink-600 rounded-md flex items-center justify-center shrink-0 shadow-lg shadow-pink-200">
                         <span className="text-white font-bold text-lg leading-none">P</span>
                     </div>
                     {!isSidebarCollapsed && (
@@ -91,22 +90,20 @@ export default function AdminLayout({ children, activeSection, onSectionChange }
                                 key={item.id}
                                 onClick={() => onSectionChange(item.id)}
                                 title={isSidebarCollapsed ? item.name : undefined}
-                                className={`w-full flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 group ${
-                                    isActive
-                                        ? "bg-pink-50 text-pink-600 shadow-sm"
-                                        : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-                                }`}
+                                className={`w-full flex items-center px-3 py-2.5 rounded-xl transition-all duration-200 group ${isActive
+                                    ? "bg-pink-50 text-pink-600 shadow-sm"
+                                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                                    }`}
                             >
                                 <Icon
-                                    className={`w-5 h-5 shrink-0 transition-colors ${
-                                        isActive ? "text-pink-600" : "text-gray-400 group-hover:text-gray-600"
-                                    }`}
+                                    className={`w-5 h-5 shrink-0 transition-colors ${isActive ? "text-pink-600" : "text-gray-400 group-hover:text-gray-600"
+                                        }`}
                                 />
                                 {!isSidebarCollapsed && (
                                     <span className="ml-3 font-semibold text-sm">{item.name}</span>
                                 )}
                                 {!isSidebarCollapsed && isActive && (
-                                    <div className="ml-auto w-1.5 h-1.5 bg-pink-600 rounded-full" />
+                                    <div className="ml-auto w-1.5 h-1.5 bg-pink-600 rounded-md" />
                                 )}
                             </button>
                         );
@@ -118,7 +115,7 @@ export default function AdminLayout({ children, activeSection, onSectionChange }
                     <button
                         onClick={toggleSidebar}
                         aria-label={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-                        className="w-full flex items-center justify-center p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-all"
+                        className="w-full flex items-center justify-center p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-md transition-all"
                     >
                         {isSidebarCollapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
                     </button>
@@ -145,7 +142,7 @@ export default function AdminLayout({ children, activeSection, onSectionChange }
                     <div className="flex items-center gap-4">
                         <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-xl relative transition-all">
                             <Bell className="w-5 h-5" />
-                            <span className="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full border-2 border-white" />
+                            <span className="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-md border-2 border-white" />
                         </button>
 
                         <div className="h-8 w-px bg-gray-200" />

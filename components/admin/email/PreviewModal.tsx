@@ -69,7 +69,7 @@ export default function PreviewModal({ isOpen, onClose, htmlContent, cssContent,
                 {/* Header */}
                 <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between shrink-0">
                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-md bg-pink-100 flex items-center justify-center">
                             <Eye className="w-5 h-5 text-pink-600" />
                         </div>
                         <div>
@@ -78,7 +78,7 @@ export default function PreviewModal({ isOpen, onClose, htmlContent, cssContent,
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-1.5 p-1 bg-white rounded-lg border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-1.5 p-1 bg-white rounded-md border border-gray-100 shadow-sm">
                         {[
                             { id: 'desktop', icon: Monitor, label: 'Desktop' },
                             { id: 'tablet', icon: Tablet, label: 'Tablet' },
@@ -87,7 +87,7 @@ export default function PreviewModal({ isOpen, onClose, htmlContent, cssContent,
                             <button
                                 key={mode.id}
                                 onClick={() => setViewMode(mode.id as any)}
-                                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all ${viewMode === mode.id
+                                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all ${viewMode === mode.id
                                     ? "bg-pink-600 text-white shadow-lg shadow-pink-200"
                                     : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
                                     }`}
@@ -100,7 +100,7 @@ export default function PreviewModal({ isOpen, onClose, htmlContent, cssContent,
 
                     <button
                         onClick={onClose}
-                        className="p-2 text-gray-400 hover:text-gray-900 hover:bg-white rounded-lg transition-all shadow-sm border border-transparent hover:border-gray-100"
+                        className="p-2 text-gray-400 hover:text-gray-900 hover:bg-white rounded-md transition-all shadow-sm border border-transparent hover:border-gray-100"
                     >
                         <X className="w-6 h-6" />
                     </button>
@@ -109,7 +109,7 @@ export default function PreviewModal({ isOpen, onClose, htmlContent, cssContent,
                 {/* Preview Content */}
                 <div className="flex-1 p-8 bg-gray-100/50 overflow-hidden flex flex-col items-center">
                     <div
-                        className="bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-100 transition-all duration-500 flex-1 w-full"
+                        className="bg-white rounded-md shadow-2xl overflow-hidden border border-gray-100 transition-all duration-500 flex-1 w-full"
                         style={{ maxWidth: getPreviewWidth() }}
                     >
                         <iframe ref={previewRef} className="w-full h-full border-0" title="Email Preview" />

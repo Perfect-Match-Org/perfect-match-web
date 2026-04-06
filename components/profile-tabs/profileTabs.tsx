@@ -128,7 +128,7 @@ function GeneralFeedback(props: any) {
 
 	return (
 		<div className="my-14 mx-[2%] sm:mx-[15%] lg:mx-[22%] text-sm sm:text-base">
-			<details className="text-gray-500 border rounded-lg">
+			<details className="text-gray-500 border rounded-md">
 				<summary className="text-lg cursor-pointer my-4 text-center text-rose-400 font-extrabold sm:text-xl">
 					General Feedback (Click to expand)📝
 				</summary>
@@ -320,25 +320,25 @@ function ProfileTabs(props: any) {
 //             <Tab.Group>
 //                 <Tab.List className="flex space-x-1 px-0 rounded-xl">
 //                     <Tab
-//                         className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
+//                         className="text-sm p-2 w-full rounded-md py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
 //                         style={{ background: '#ffebed' }}
 //                     >
 //                         Status
 //                     </Tab>
 //                     <Tab
-//                         className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
+//                         className="text-sm p-2 w-full rounded-md py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
 //                         style={{ background: '#ffd8db' }}
 //                     >
 //                         Profile
 //                     </Tab>
 //                     <Tab
-//                         className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
+//                         className="text-sm p-2 w-full rounded-md py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
 //                         style={{ background: '#ffc4c9' }}
 //                     >
 //                         Survey
 //                     </Tab>
 //                     <Tab
-//                         className="text-sm p-2 w-full rounded-lg py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
+//                         className="text-sm p-2 w-full rounded-md py-2.5 sm:text-lg font-bold leading-5 text-pmred-500 hover:bg-gray-300"
 //                         style={{ background: '#ffb1b7' }}
 //                     >
 //                         Crushes & Forbidden

@@ -15,7 +15,7 @@ export default function ApiDocs() {
                     <p className="text-gray-600">Technical reference for developers and integrations</p>
                 </div>
 
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden">
                     <SwaggerUI spec={spec} />
                 </div>
             </Container>

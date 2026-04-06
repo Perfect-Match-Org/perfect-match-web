@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { theme } from "@/styles/themes";
-import { Template, Campaign } from "@/types/email";
+import { Template, Campaign, CampaignSaveAction } from "@/types/email";
 import EmailDashboard from "./EmailDashboard";
 import HybridTemplateEditor from "./HybridTemplateEditor";
 import TemplateList from "./TemplateList";
@@ -61,15 +61,22 @@ export default function EmailMarketing() {
 		setCurrentView("campaign-builder");
 	}, []);
 
-	const handleSaveCampaign = useCallback(async (campaign: Campaign, action: string) => {
+	const handleSaveCampaign = useCallback(async (campaign: Campaign, action: CampaignSaveAction) => {
 		try {
 			const method = campaign._id && action === "draft" ? "PUT" : "POST";
 			const url = campaign._id
-				? `/api/admin/email/campaigns/${campaign._id}/${["send", "schedule"].includes(action) ? "send" : ""}`
+				? action === "draft"
+					? `/api/admin/email/campaigns/${campaign._id}`
+					: `/api/admin/email/campaigns/${campaign._id}/send`
 				: "/api/admin/email/campaigns";
-            
-            const body = action === "send" ? { ...campaign, send_immediately: true } : campaign;
-            const response = await fetch(url, {
+
+			const body =
+				action === "send"
+					? { ...campaign, send_immediately: true, status: true }
+					: action === "schedule"
+						? { ...campaign, send_immediately: false }
+						: campaign;
+			const response = await fetch(url, {
 				method,
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body),
@@ -82,7 +89,7 @@ export default function EmailMarketing() {
 				alert(`Failed to save campaign: ${error.error}`);
 			}
 		} catch (error) {
-			alert(`Network error: ${error}`);
+			alert(`Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
 		}
 	}, []);
 
@@ -160,44 +167,40 @@ export default function EmailMarketing() {
 						<div className="flex space-x-8">
 							<button
 								onClick={() => setCurrentView("dashboard")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
-									currentView === "dashboard"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "dashboard"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-								}`}
+									}`}
 							>
 								Overview
 							</button>
 
 							<button
 								onClick={() => setCurrentView("templates")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
-									currentView === "templates"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "templates"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-								}`}
+									}`}
 							>
 								Templates
 							</button>
 
 							<button
 								onClick={() => setCurrentView("campaigns")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
-									currentView === "campaigns"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "campaigns"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-								}`}
+									}`}
 							>
 								Campaigns
 							</button>
 
 							<button
 								onClick={() => setCurrentView("analytics")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
-									currentView === "analytics"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "analytics"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-								}`}
+									}`}
 							>
 								Analytics
 							</button>
@@ -206,7 +209,7 @@ export default function EmailMarketing() {
 							<div className="ml-auto flex items-center space-x-3">
 								<button
 									onClick={handleCreateTemplate}
-									className="inline-flex items-center px-4 py-1.5 border border-transparent text-xs font-bold uppercase tracking-widest rounded-lg text-white hover:shadow-lg transition-all active:scale-95"
+									className="inline-flex items-center px-4 py-1.5 border border-transparent text-xs font-bold uppercase tracking-widest rounded-md text-white hover:shadow-lg transition-all active:scale-95"
 									style={{ backgroundColor: theme.colors.primary }}
 								>
 									+ Template
@@ -214,7 +217,7 @@ export default function EmailMarketing() {
 
 								<button
 									onClick={handleCreateCampaign}
-									className="inline-flex items-center px-4 py-1.5 border-2 text-xs font-bold uppercase tracking-widest rounded-lg hover:shadow-lg transition-all active:scale-95"
+									className="inline-flex items-center px-4 py-1.5 border-2 text-xs font-bold uppercase tracking-widest rounded-md hover:shadow-lg transition-all active:scale-95"
 									style={{
 										borderColor: theme.colors.primary,
 										color: theme.colors.primary,

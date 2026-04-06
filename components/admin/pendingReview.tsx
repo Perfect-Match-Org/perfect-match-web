@@ -1,40 +1,6 @@
 import { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle2, XCircle, Loader2 } from "lucide-react";
 
-const PendingReviewSkeleton: React.FC = () => {
-    return (
-        <div className="flex flex-col space-y-4">
-            <div className="h-6 bg-gray-300 rounded w-32 animate-pulse"></div>
-
-            <div className="w-full bg-white rounded-lg shadow-lg py-8 px-6 border-2 border-gray-200 animate-pulse">
-                <div className="mb-6">
-                    <div className="h-6 bg-gray-300 rounded mb-3 w-16"></div>
-                    <div className="h-5 bg-gray-300 rounded w-3/4 mb-2"></div>
-                    <div className="h-5 bg-gray-300 rounded w-1/2"></div>
-                </div>
-
-                <div className="mb-6">
-                    <div className="h-6 bg-gray-300 rounded mb-3 w-20"></div>
-                    <div className="h-5 bg-gray-300 rounded w-full mb-2"></div>
-                    <div className="h-5 bg-gray-300 rounded w-5/6 mb-2"></div>
-                    <div className="h-5 bg-gray-300 rounded w-4/5 mb-2"></div>
-                    <div className="h-5 bg-gray-300 rounded w-3/4"></div>
-                </div>
-
-                <div className="mb-6">
-                    <div className="h-6 bg-gray-300 rounded mb-3 w-16"></div>
-                    <div className="h-5 bg-gray-300 rounded w-32"></div>
-                </div>
-
-                <div className="flex justify-center space-x-6 mt-6">
-                    <div className="h-12 bg-gray-300 rounded-lg w-32"></div>
-                    <div className="h-12 bg-gray-300 rounded-lg w-32"></div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
 interface PendingReview {
     id: string;
     title: string;
@@ -118,15 +84,11 @@ export default function PendingReviewsSection({
         }
     }, [onRefresh]);
 
-    if (loading) {
-        return <PendingReviewSkeleton />;
-    }
-
-    if (pendingReviews.length === 0) {
+    if (pendingReviews.length === 0 && !loading) {
         return (
             <div className="text-center">
                 <p className="text-xl text-gray-700 mb-4">No pending reviews.</p>
-                <button onClick={onRefresh} className="px-4 py-2 bg-pmblue-500 text-white rounded-lg hover:bg-blue-600">
+                <button onClick={onRefresh} className="px-4 py-2 bg-pmblue-500 text-white rounded-md hover:bg-blue-600">
                     Refresh
                 </button>
             </div>
@@ -136,94 +98,107 @@ export default function PendingReviewsSection({
     const currentReview = pendingReviews[currentReviewIndex];
 
     return (
-        <div className="flex flex-col space-y-4">
-            {/* Review counter */}
-            <div className="flex justify-start items-center space-x-8">
-                <p className="text-xl text-gray-700 font-semibold">
-                    Review {currentReviewIndex + 1} of {pendingReviews.length}
-                </p>
-                {/* Pagination controls */}
-                {totalPages > 1 && (
-                    <div className="flex justify-center items-center space-x-6 my-10 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+        <div className="relative flex min-h-[420px] flex-col space-y-4">
+            {loading && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-sm transition-all duration-300">
+                    <div className="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-xl">
+                        <Loader2 className="mb-4 h-10 w-10 animate-spin text-pink-500" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Refreshing Reviews...</span>
+                    </div>
+                </div>
+            )}
+
+            <div className={`space-y-4 transition-opacity duration-300 ${loading && pendingReviews.length === 0 ? "opacity-0" : "opacity-100"}`}>
+                {/* Review counter */}
+                <div className="flex items-center justify-start space-x-8">
+                    <p className="text-xl font-semibold text-gray-700">
+                        Review {currentReviewIndex + 1} of {pendingReviews.length}
+                    </p>
+                    {/* Pagination controls */}
+                    {totalPages > 1 && (
+                        <div className="my-10 flex items-center justify-center space-x-6 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+                            <button
+                                className={`rounded-md border-2 border-gray-100 bg-gray-50/80 px-6 py-2 text-xs font-bold uppercase tracking-widest text-gray-700 transition-all ${currentPage === 1 || !!actionLoading ? "cursor-not-allowed opacity-30" : "active:scale-95 hover:bg-gray-100"
+                                    }`}
+                                onClick={() => onPageChange(currentPage - 1)}
+                                disabled={currentPage === 1 || !!actionLoading}
+                            >
+                                Previous Page
+                            </button>
+
+                            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                Page <span className="text-pink-600">{currentPage}</span> of {totalPages}
+                            </span>
+
+                            <button
+                                className={`rounded-md border-2 border-gray-100 bg-gray-50/80 px-6 py-2 text-xs font-bold uppercase tracking-widest text-gray-700 transition-all ${currentPage === totalPages || !!actionLoading ? "cursor-not-allowed opacity-30" : "active:scale-95 hover:bg-gray-100"
+                                    }`}
+                                onClick={() => onPageChange(currentPage + 1)}
+                                disabled={currentPage === totalPages || !!actionLoading}
+                            >
+                                Next Page
+                            </button>
+                        </div>
+                    )}
+                    {/* Navigation buttons */}
+                    <div className="flex items-center justify-center gap-4">
                         <button
-                            className={`py-1 px-6 bg-gray-50/80 border-2 border-gray-100 text-gray-700 font-bold text-xs uppercase tracking-widest rounded-lg transition-all ${currentPage === 1 || !!actionLoading ? "opacity-30 cursor-not-allowed" : "hover:bg-gray-100 active:scale-95"
+                            className={`rounded-xl border-2 border-pink-100 bg-pink-600/80 px-6 py-2 text-white shadow-sm transition-all ${currentReviewIndex === 0 || !!actionLoading ? "cursor-not-allowed opacity-30" : "active:scale-95 hover:bg-pink-700"
                                 }`}
-                            onClick={() => onPageChange(currentPage - 1)}
-                            disabled={currentPage === 1 || !!actionLoading}
+                            onClick={onPrevious}
+                            disabled={currentReviewIndex === 0 || !!actionLoading}
+                            title="Previous Testimonial"
                         >
-                            Previous Page
+                            <ChevronLeft className="h-6 w-6" />
                         </button>
-
-                        <span className="text-gray-400 font-bold text-xs uppercase tracking-widest">
-                            Page <span className="text-pink-600">{currentPage}</span> of {totalPages}
-                        </span>
-
                         <button
-                            className={`py-1 px-6 bg-gray-50/80 border-2 border-gray-100 text-gray-700 font-bold text-xs uppercase tracking-widest rounded-lg transition-all ${currentPage === totalPages || !!actionLoading ? "opacity-30 cursor-not-allowed" : "hover:bg-gray-100 active:scale-95"
+                            className={`rounded-xl border-2 border-pink-100 bg-pink-600/80 px-6 py-2 text-white shadow-sm transition-all ${currentReviewIndex === pendingReviews.length - 1 || !!actionLoading
+                                ? "cursor-not-allowed opacity-30"
+                                : "active:scale-95 hover:bg-pink-700"
                                 }`}
-                            onClick={() => onPageChange(currentPage + 1)}
-                            disabled={currentPage === totalPages || !!actionLoading}
+                            onClick={onNext}
+                            disabled={currentReviewIndex === pendingReviews.length - 1 || !!actionLoading}
+                            title="Next Testimonial"
                         >
-                            Next Page
+                            <ChevronRight className="h-6 w-6" />
                         </button>
                     </div>
-                )}
-                {/* Navigation buttons */}
-                <div className="flex justify-center items-center gap-4">
-                    <button
-                        className={`py-1 px-6 bg-pink-600/80 border-2 border-pink-100 text-white rounded-xl transition-all shadow-sm ${currentReviewIndex === 0 || !!actionLoading ? "opacity-30 cursor-not-allowed" : "hover:bg-pink-700 active:scale-95"
-                            }`}
-                        onClick={onPrevious}
-                        disabled={currentReviewIndex === 0 || !!actionLoading}
-                        title="Previous Testimonial"
-                    >
-                        <ChevronLeft className="w-6 h-6" />
-                    </button>
-                    <button
-                        className={`py-1 px-6 bg-pink-600/80 border-2 border-pink-100 text-white rounded-xl transition-all shadow-sm ${currentReviewIndex === pendingReviews.length - 1 || !!actionLoading
-                            ? "opacity-30 cursor-not-allowed"
-                            : "hover:bg-pink-700 active:scale-95"
-                            }`}
-                        onClick={onNext}
-                        disabled={currentReviewIndex === pendingReviews.length - 1 || !!actionLoading}
-                        title="Next Testimonial"
-                    >
-                        <ChevronRight className="w-6 h-6" />
-                    </button>
-                </div>
-            </div>
-
-            <div className="w-full bg-white rounded-xl shadow-xl py-8 px-6 border-2 border-pink-500">
-                <div className="mb-6">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Subject</p>
-                    <p className="text-2xl font-black text-gray-900 break-words whitespace-pre-wrap">{currentReview.title}</p>
                 </div>
 
-                <div className="mb-6">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Testimonial</p>
-                    <p className="text-lg font-medium text-gray-700 break-words whitespace-pre-wrap leading-relaxed">{currentReview.body}</p>
-                </div>
+                <div className="w-full rounded-xl border-2 border-pink-500 bg-white px-6 py-8 shadow-xl">
+                    <div className="mb-6">
+                        <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">Subject</p>
+                        <p className="whitespace-pre-wrap break-words text-2xl font-black text-gray-900">{currentReview?.title}</p>
+                    </div>
 
-                <div className="mb-6">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Author</p>
-                    <p className="text-lg font-bold text-pink-600">{currentReview.author}</p>
-                </div>
+                    <div className="mb-6">
+                        <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">Testimonial</p>
+                        <p className="whitespace-pre-wrap break-words text-lg font-medium leading-relaxed text-gray-700">{currentReview?.body}</p>
+                    </div>
 
-                <div className="flex justify-center gap-4 mt-4">
-                    <button
-                        className="px-8 py-3 bg-emerald-400 text-white font-bold rounded-lg hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-100 active:scale-95 disabled:opacity-50"
-                        onClick={() => handleApproveReview(currentReview.id)}
-                        disabled={!!actionLoading}
-                    >
-                        {actionLoading === currentReview.id ? "Working..." : "Approve"}
-                    </button>
-                    <button
-                        className="px-8 py-3 bg-rose-400 text-white font-bold rounded-lg hover:bg-rose-600 transition-all shadow-lg shadow-rose-100 active:scale-95 disabled:opacity-50"
-                        onClick={() => handleRejectReview(currentReview.id)}
-                        disabled={!!actionLoading}
-                    >
-                        {actionLoading === currentReview.id ? "Working..." : "Reject"}
-                    </button>
+                    <div className="mb-6">
+                        <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">Author</p>
+                        <p className="text-lg font-bold text-pink-600">{currentReview?.author}</p>
+                    </div>
+
+                    <div className="mt-4 flex justify-center gap-4">
+                        <button
+                            className="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-8 py-3 font-bold text-white shadow-lg shadow-emerald-100 transition-all hover:bg-emerald-600 active:scale-95 disabled:opacity-50"
+                            onClick={() => handleApproveReview(currentReview?.id)}
+                            disabled={!!actionLoading}
+                        >
+                            {actionLoading === currentReview?.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
+                            {actionLoading === currentReview?.id ? "Working..." : "Approve"}
+                        </button>
+                        <button
+                            className="inline-flex items-center gap-2 rounded-md bg-rose-500 px-8 py-3 font-bold text-white shadow-lg shadow-rose-100 transition-all hover:bg-rose-600 active:scale-95 disabled:opacity-50"
+                            onClick={() => handleRejectReview(currentReview?.id)}
+                            disabled={!!actionLoading}
+                        >
+                            {actionLoading === currentReview?.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <XCircle className="h-4 w-4" />}
+                            {actionLoading === currentReview?.id ? "Working..." : "Reject"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

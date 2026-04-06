@@ -83,7 +83,7 @@ function MatchFeedback({ matchID, matchFeedback, refresh }: any) {
 			;
 			{isModalOpen && (
 				<div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex items-center justify-center">
-					<div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+					<div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md">
 						<h2 className="text-2xl mb-4 mt-2 font-extrabold text-rose-400">Match Feedback</h2>
 
 						{/* Feedback form */}
@@ -313,12 +313,12 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutual
 			<div
 				className={`h-full w-full absolute top-0 bottom-0 left-0 right-0
             shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25),18px_12px_0px_0px_rgba(36,67,141,1)] 
-            rounded-lg border-2 border-pmblue-500
+            rounded-md border-2 border-pmblue-500
             sm:flex backface-hidden 
             ${showBack ? "pointer-events-none" : "pointer-events-auto"}`}
 			>
 				<div
-					className={`flex flex-col bg-white rounded-lg mx-auto w-full h-full
+					className={`flex flex-col bg-white rounded-md mx-auto w-full h-full
                         ${mutualCrush ? "animate-pulse-glow" : ""}
                     `}
 				>
@@ -602,12 +602,12 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutual
 			<div
 				className={`h-full w-full absolute top-0 bottom-0 left-0 right-0
             shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25),18px_12px_0px_0px_rgba(36,67,141,1)] 
-            rounded-lg border-2 border-pmblue-500 rotate-y-half
+            rounded-md border-2 border-pmblue-500 rotate-y-half
             sm:flex backface-hidden 
             ${showBack ? "pointer-events-auto" : "pointer-events-none"}`}
 			>
 				<div
-					className={`flex flex-col bg-white rounded-lg mx-auto w-full h-full
+					className={`flex flex-col bg-white rounded-md mx-auto w-full h-full
                         ${mutualCrush ? "animate-pulse-glow" : ""}
                     `}
 				>
@@ -834,7 +834,7 @@ function MatchTile({ matchID, matchData, contact, matchFeedback, refresh, mutual
 										<Popup triggerRef={buttonRef} placement="top" open={showPopup} arrowHeight={35} arrowWidth={30}>
 											<div
 												className="max-w-[40vw] lg:max-w-[30vw] min-w-64 font-work-sans text-center text-sm md:text-base
-                                            bg-pmblue-500 border border-[#ccc] p-3 rounded-3xl shadow 
+                                            bg-pmblue-500 border border-[#ccc] p-3 rounded-xl shadow 
                                              "
 											>
 												<div className="flex flex-col items-center justify-center mx-6 my-3">
