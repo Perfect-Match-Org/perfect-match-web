@@ -1,26 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { theme } from "@/styles/themes";
-
-interface Campaign {
-    _id: string;
-    name: string;
-    description: string;
-    status: "draft" | "scheduled" | "sending" | "completed" | "failed" | "paused";
-    campaign_type: string;
-    created_at: string;
-    scheduled_at?: string;
-    analytics: {
-        sent_count: number;
-        delivered_count: number;
-        opened_count: number;
-        clicked_count: number;
-        bounced_count: number;
-        unsubscribed_count: number;
-    };
-    template?: {
-        name: string;
-    };
-}
+import { Campaign } from "@/types/email";
 
 interface CampaignHistoryProps {
     onEditCampaign?: (campaign: Campaign) => void;

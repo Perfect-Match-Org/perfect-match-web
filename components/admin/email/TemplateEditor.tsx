@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
+import { theme } from "@/styles/themes";
+import { Template } from "@/types/email";
 import DOMPurify from "dompurify";
-
-interface Template {
-    id?: string;
-    name: string;
-    description: string;
-    html_content: string;
-    css_content: string;
-    tags: string[];
-}
 
 interface TemplateEditorProps {
     template?: Template;
@@ -274,10 +267,36 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
         }
     };
 
+    const editorRef = useRef<any>(null);
+
     const insertPersonalizationToken = (token: string) => {
-        // This would integrate with Monaco Editor to insert tokens at cursor position
-        const newHtml = templateData.html_content + `{{${token}}}`;
-        setTemplateData((prev) => ({ ...prev, html_content: newHtml }));
+        const editor = editorRef.current;
+        if (editor) {
+            const selection = editor.getSelection();
+            const range = selection || {
+                startLineNumber: 1,
+                startColumn: 1,
+                endLineNumber: 1,
+                endColumn: 1
+            };
+            
+            const tokenText = `{{${token}}}`;
+            
+            editor.executeEdits('insert-token', [
+                {
+                    range: range,
+                    text: tokenText,
+                    forceMoveMarkers: true
+                }
+            ]);
+            
+            // Focus back to editor
+            editor.focus();
+        } else {
+            // Fallback if editor ref not available
+            const newHtml = templateData.html_content + `{{${token}}}`;
+            setTemplateData((prev) => ({ ...prev, html_content: newHtml }));
+        }
     };
 
     return (
@@ -385,6 +404,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
                                 defaultLanguage="html"
                                 value={templateData.html_content}
                                 onChange={(value) => setTemplateData((prev) => ({ ...prev, html_content: value || "" }))}
+                                onMount={(editor) => { editorRef.current = editor; }}
                                 theme="vs-light"
                                 options={{
                                     minimap: { enabled: false },

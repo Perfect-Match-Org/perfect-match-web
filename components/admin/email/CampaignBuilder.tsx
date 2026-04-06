@@ -1,26 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { theme } from "@/styles/themes";
+import { Template, Campaign, FilterCriteria } from "@/types/email";
 import UserSelector from "./UserSelector";
 
-interface Template {
-    _id: string;
-    name: string;
-    description: string;
-    html_content: string;
-    thumbnail?: string;
-    created_at: string;
-}
-
-interface Campaign {
-    _id?: string;
-    name: string;
-    description: string;
-    template_id: string;
-    user_filters: any;
-    campaign_type: "bulk" | "personalized" | "ab_test";
-    scheduled_at?: string;
-    status: string;
-}
+// Using shared types from @/types/email
 
 interface CampaignBuilderProps {
     campaign?: Campaign;
@@ -40,7 +23,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
     });
 
     const [templates, setTemplates] = useState<Template[]>([]);
-    const [selectedUsers, setSelectedUsers] = useState({ count: 0, filters: {} });
+    const [selectedUsers, setSelectedUsers] = useState({ count: 0, criteria: {} as FilterCriteria });
     const [currentStep, setCurrentStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
@@ -112,7 +95,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
         try {
             const finalCampaign = {
                 ...campaignData,
-                user_filters: selectedUsers.filters,
+                user_filters: selectedUsers.criteria,
             };
 
             await onSave(finalCampaign);
@@ -123,8 +106,8 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
         }
     };
 
-    const handleUserSelection = (filters: any, count: number) => {
-        setSelectedUsers({ filters, count });
+    const handleUserSelection = (criteria: FilterCriteria, count: number) => {
+        setSelectedUsers({ criteria, count });
     };
 
     const getSelectedTemplate = () => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { theme } from "@/styles/themes";
 import TestAuth from "./TestAuth";
+import QuickTest from "./QuickTest";
 
 interface DashboardStats {
     totalTemplates: number;
@@ -154,8 +155,11 @@ export default function EmailDashboard({
                     <p className="text-gray-600">Manage your email campaigns and templates</p>
                 </div>
 
-                {/* Authentication Test */}
-                <TestAuth />
+        {/* Authentication Test */}
+        <TestAuth />
+        
+        {/* Quick API Tests */}
+        <QuickTest />
 
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">

@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-interface User {
-    id: string;
-    first_name: string;
-    email: string;
-    created_at: string;
-    match_count: number;
-    last_active: string;
-    engagement_score: number;
-}
-
-interface FilterCriteria {
-    year: string;
-    natural_query: string;
-    filters: {
-        activity_days?: number;
-        match_count_min?: number;
-        match_count_max?: number;
-        registered_after?: string;
-        registered_before?: string;
-        engagement_level?: "high" | "medium" | "low";
-    };
-}
+import { theme } from "@/styles/themes";
+import { User, FilterCriteria } from "@/types/email";
 
 interface UserSelectorProps {
     onSelectionChange: (criteria: FilterCriteria, count: number) => void;
