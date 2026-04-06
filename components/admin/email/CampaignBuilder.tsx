@@ -127,9 +127,6 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                 user_filters: selectedUsers.criteria,
             };
             const action = campaignData.status === "draft" ? "draft" : campaignData.status === "scheduled" ? "schedule" : "send";
-            console.log(`finalCampaign: ${JSON.stringify(finalCampaign)}`);
-            if (action === "send") finalCampaign.send_immediately = true;
-            console.log(`action: ${action}`);
             onSave(finalCampaign, action);
         } catch (error) {
             setErrors(["Failed to save campaign. Please try again."]);
@@ -356,6 +353,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         <input
                                             type="radio"
                                             name="send"
+                                            disabled={loading || !campaign}
                                             className="absolute top-4 right-4 text-pink-500 focus:ring-pink-500"
                                             checked={!campaignData.scheduled_at && campaignData.status === "sending"}
                                             onChange={() =>
@@ -367,7 +365,12 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         />
                                         <span className="font-bold text-gray-900 text-sm">Send Now</span>
                                         <span className="text-[11px] text-gray-500 mt-1 leading-relaxed">
-                                            Start delivery immediately after saving
+                                            Start delivery immediately after saving {" "}
+                                            {!campaign ? 
+                                            <span className="text-[11px] text-gray-250 font-bold leading-relaxed">
+                                            (Can't send the campaign without saving first)
+                                            </span>
+                                            : ""}
                                         </span>
                                     </label>
 
@@ -377,6 +380,7 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         <input
                                             type="radio"
                                             name="scheduling"
+                                            disabled={loading || !campaign}
                                             className="absolute top-4 right-4 text-pink-500 focus:ring-pink-500"
                                             checked={!!campaignData.scheduled_at}
                                             onChange={() =>
@@ -392,7 +396,13 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         />
                                         <span className="font-bold text-gray-900 text-sm">Schedule Later</span>
                                         <span className="text-[11px] text-gray-500 mt-1 leading-relaxed">
-                                            Pick a specific date and time for delivery
+                                            Pick a specific date and time for delivery {" "}
+                                            {!campaign ? 
+                                            <span className="text-[11px] text-gray-250 font-bold leading-relaxed">
+                                            (Can't schedule the campaign without saving first)
+                                            </span>
+                                            : ""}
+
                                         </span>
                                     </label>
 

@@ -68,6 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // Add body for POST/PUT/PATCH requests
         if (req.method !== "GET" && req.method !== "DELETE") {
+            console.log(req.body);
             fetchOptions.body = JSON.stringify(req.body);
         }
 

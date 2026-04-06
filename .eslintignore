@@ -42,10 +42,3 @@ reminders
 
 # python
 venv
-
-# agents
-.agents
-
-scripts/
-screenshots/
-.playwright-auth/

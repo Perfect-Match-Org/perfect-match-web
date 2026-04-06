@@ -97,16 +97,21 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
 		try {
 			let endpoint = "";
 			let method = "POST";
-
+			let body = {};
+			
 			switch (action) {
 				case "send":
 					endpoint = `/api/admin/email/campaigns/${campaignId}/send`;
+					method = "POST";
+					body = { send_immediately: true };
 					break;
 				case "pause":
 					endpoint = `/api/admin/email/campaigns/${campaignId}/pause`;
+					method = "POST";
 					break;
 				case "resume":
 					endpoint = `/api/admin/email/campaigns/${campaignId}/resume`;
+					method = "POST";
 					break;
 				case "delete":
 					endpoint = `/api/admin/email/campaigns/${campaignId}`;
@@ -114,7 +119,7 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
 					break;
 			}
 
-			const response = await fetch(endpoint, { method });
+			const response = await fetch(endpoint, { method, body: JSON.stringify(body), headers: { "Content-Type": "application/json" } });
 
 			if (response.ok) {
 				fetchCampaigns(); // Refresh the list
