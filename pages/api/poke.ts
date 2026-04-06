@@ -52,7 +52,7 @@ function parseMatchEmail(body: unknown): string | null {
 
 /**
  * API handler for sending "pokes" via email.
- * 
+ *
  * @param {NextApiRequest} req -  The API request object containing the match email.
  * @param {NextApiResponse} res - The API response object.
  */

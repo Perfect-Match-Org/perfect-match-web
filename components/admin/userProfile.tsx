@@ -13,15 +13,11 @@ export default function UserProfileModal({ user, onClose }: UserProfileModalProp
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-            onClick={handleClickOutside}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={handleClickOutside}>
             <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
                     <h2 className="text-xl text-black font-semibold">User Profile</h2>
-                    <button
-                        onClick={onClose}
-                        className="p-2 text-black hover:bg-gray-100 rounded-full"
-                    >
+                    <button onClick={onClose} className="p-2 text-black hover:bg-gray-100 rounded-full">
                         ✕
                     </button>
                 </div>
@@ -32,7 +28,9 @@ export default function UserProfileModal({ user, onClose }: UserProfileModalProp
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <p className="text-black-500 font-semibold">Name</p>
-                                <p>{user.profile?.firstName || "N/A"} {user.profile?.lastName || ""}</p>
+                                <p>
+                                    {user.profile?.firstName || "N/A"} {user.profile?.lastName || ""}
+                                </p>
                             </div>
                             <div>
                                 <p className="text-black-500 font-semibold">Email</p>
@@ -105,8 +103,7 @@ export default function UserProfileModal({ user, onClose }: UserProfileModalProp
                                     <div>
                                         <p className="text-black-500 font-semibold">Age Preference</p>
                                         <p>
-                                            {user.profile?.agePref?.youngest || "N/A"} -{" "}
-                                            {user.profile?.agePref?.oldest || "N/A"} years
+                                            {user.profile?.agePref?.youngest || "N/A"} - {user.profile?.agePref?.oldest || "N/A"} years
                                         </p>
                                     </div>
                                     <div>
@@ -135,9 +132,7 @@ export default function UserProfileModal({ user, onClose }: UserProfileModalProp
                                     <div>
                                         <p className="text-black-500 font-semibold">Partner Description</p>
                                         <p>
-                                            {user.profile?.describePartner
-                                                ? Object.values(user.profile.describePartner).join(", ")
-                                                : "N/A"}
+                                            {user.profile?.describePartner ? Object.values(user.profile.describePartner).join(", ") : "N/A"}
                                         </p>
                                     </div>
                                     <div>

@@ -1,19 +1,19 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const completeTask = () => {
     const series = [
         {
-            name: '',
+            name: "",
             data: [1221, 1095, 1042, 553],
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             height: 380,
             toolbar: {
                 show: false,
@@ -24,20 +24,20 @@ const completeTask = () => {
         },
         plotOptions: {
             bar: {
-                barHeight: '100%',
+                barHeight: "100%",
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom',
+                    position: "bottom",
                 },
             },
         },
         dataLabels: {
             enabled: true,
-            textAnchor: 'start',
+            textAnchor: "start",
             style: {
-                fontSize: '15px',
-                colors: ['#6b7280'],
+                fontSize: "15px",
+                colors: ["#6b7280"],
             },
             formatter: function (val: any, opt: any) {
                 return opt.w.globals.labels[opt.dataPointIndex];
@@ -47,33 +47,33 @@ const completeTask = () => {
         stroke: {
             show: true,
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             y: {
                 formatter: function (value: any) {
                     const percent = (parseInt(value) / 3911) * 100;
-                    return percent.toFixed(0) + '%';
+                    return percent.toFixed(0) + "%";
                 },
             },
             x: {
                 show: false,
             },
         },
-        colors: ['#c4b5fd', '#ddd6fe', '#ede9fe', '#f5f3ff'],
+        colors: ["#c4b5fd", "#ddd6fe", "#ede9fe", "#f5f3ff"],
         xaxis: {
             categories: [
                 'A. Stress-free Dyson pupil, but claims to have a "genuine interest" in Discounted Cash Flow model.',
-                'B. Philosophy major that can’t pay the bills but declares their love to you in a timeless sonnet.',
-                'C. Pre-med who spends all their time complaining about CHEM 2070 on Sidechat.',
-                'D. Near the top of the class for engineering talent, near the bottom for shower frequency.',
+                "B. Philosophy major that can’t pay the bills but declares their love to you in a timeless sonnet.",
+                "C. Pre-med who spends all their time complaining about CHEM 2070 on Sidechat.",
+                "D. Near the top of the class for engineering talent, near the bottom for shower frequency.",
             ],
             labels: {
                 style: {
-                    colors: '#6b7280',
-                    fontSize: '14px',
+                    colors: "#6b7280",
+                    fontSize: "14px",
                 },
             },
         },
@@ -92,13 +92,13 @@ const completeTask = () => {
                     xaxis: {
                         labels: {
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                         },
                     },
                     dataLabels: {
                         style: {
-                            fontSize: '7px',
+                            fontSize: "7px",
                             fontWeight: 600,
                         },
                     },
@@ -109,7 +109,7 @@ const completeTask = () => {
                 options: {
                     dataLabels: {
                         style: {
-                            fontSize: '12px',
+                            fontSize: "12px",
                             fontWeight: 600,
                         },
                     },

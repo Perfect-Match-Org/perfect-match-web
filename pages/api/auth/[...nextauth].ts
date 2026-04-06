@@ -1,7 +1,7 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import { getUser, createUser } from '../../../database/controllers';
-import { connect } from '@/database';
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import { getUser, createUser } from "../../../database/controllers";
+import { connect } from "@/database";
 
 /**
  * Checks if the given email is a valid Cornell University email.
@@ -9,8 +9,8 @@ import { connect } from '@/database';
  * @returns {boolean} - True if it's a Cornell email, false otherwise.
  */
 const isValidCornellEmail = (email: string): boolean => {
-    const domain = email.split('@')[1];
-    return domain === 'cornell.edu' || email === 'cornell.perfectmatch@gmail.com';
+    const domain = email.split("@")[1];
+    return domain === "cornell.edu" || email === "cornell.perfectmatch@gmail.com";
 };
 
 /**
@@ -24,10 +24,10 @@ export default NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-            checks: ['none'],
+            checks: ["none"],
         }),
     ],
-    pages: { error: '/auth/error' },
+    pages: { error: "/auth/error" },
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async signIn({ profile }) {
@@ -40,7 +40,7 @@ export default NextAuth({
                 const user = await getUser(profile);
                 if (!user) await createUser(profile);
             } catch (err) {
-                console.error('Error in signIn callback', err);
+                console.error("Error in signIn callback", err);
                 return false;
             }
 

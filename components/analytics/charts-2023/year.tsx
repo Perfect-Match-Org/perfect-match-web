@@ -1,25 +1,25 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const Year = () => {
     const series = [
         {
-            name: 'Percent in total',
+            name: "Percent in total",
             data: [954, 1095, 835, 803, 117, 61, 40, 6],
         },
     ];
     const options = {
         tooltip: {
             enabled: true,
-            theme: 'dark',
+            theme: "dark",
         },
-        colors: ['#fb7185', '#fb923c', '#facc15', '#4ade80', '#38bdf8', '#c4b5fd'],
+        colors: ["#fb7185", "#fb923c", "#facc15", "#4ade80", "#38bdf8", "#c4b5fd"],
         chart: {
             height: 350,
-            type: 'bar',
+            type: "bar",
             toolbar: {
                 show: false,
                 tools: {
@@ -31,7 +31,7 @@ const Year = () => {
             bar: {
                 borderRadius: 10,
                 dataLabels: {
-                    position: 'top', // top, center, bottom
+                    position: "top", // top, center, bottom
                 },
                 distributed: true,
             },
@@ -43,13 +43,13 @@ const Year = () => {
             },
             offsetY: -22,
             style: {
-                fontSize: '14px',
-                colors: ['#6b7280'],
+                fontSize: "14px",
+                colors: ["#6b7280"],
             },
         },
         xaxis: {
-            categories: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Masters', 'PhD', 'Alumni', 'Faculty'],
-            position: 'bottom',
+            categories: ["Freshman", "Sophomore", "Junior", "Senior", "Masters", "PhD", "Alumni", "Faculty"],
+            position: "bottom",
             axisBorder: {
                 show: false,
             },
@@ -57,14 +57,14 @@ const Year = () => {
                 show: false,
             },
             tooltip: {
-                theme: 'dark',
+                theme: "dark",
 
                 enabled: true,
             },
             labels: {
                 style: {
-                    colors: '#6b7280',
-                    fontSize: '14px',
+                    colors: "#6b7280",
+                    fontSize: "14px",
                 },
             },
         },
@@ -79,7 +79,7 @@ const Year = () => {
                 show: false,
                 formatter: function (val: any) {
                     var percent = (val / 3911) * 100;
-                    return percent.toFixed(1) + '%';
+                    return percent.toFixed(1) + "%";
                 },
             },
         },
@@ -94,13 +94,13 @@ const Year = () => {
                         labels: {
                             rotate: -90,
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                         },
                     },
                     dataLabels: {
                         style: {
-                            fontSize: '11px',
+                            fontSize: "11px",
                         },
                         offsetY: -16,
                     },
@@ -109,9 +109,7 @@ const Year = () => {
         ],
     };
 
-    return (
-        <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />
-    );
+    return <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />;
 };
 
 export default Year;

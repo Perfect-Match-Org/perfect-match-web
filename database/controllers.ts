@@ -1,16 +1,16 @@
-import { User, OTP, CuffedOrNotUser } from './models';
-import AWS from 'aws-sdk';
-import crypto from 'crypto';
-import { promises as fs } from 'fs';
-import path from 'path';
-import type { User as UserType, Review, MatchReview } from '../types/users';
-import { Match } from './models/match';
-import ReviewModel, { IReviewData } from './models/review';
-import { ObjectId } from 'mongodb';
-import { connect } from './database';
+import { User, OTP, CuffedOrNotUser } from "./models";
+import AWS from "aws-sdk";
+import crypto from "crypto";
+import { promises as fs } from "fs";
+import path from "path";
+import type { User as UserType, Review, MatchReview } from "../types/users";
+import { Match } from "./models/match";
+import ReviewModel, { IReviewData } from "./models/review";
+import { ObjectId } from "mongodb";
+import { connect } from "./database";
 
 const matchRevealData =
-    'id email profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself profile.describePartner profile.bio survey.hookupsong survey.hookupsongURL survey.contact survey.greenflag survey.interests profile.guiltyPleasure profile.greenFlag profile.relationshipType survey.humor survey.date survey.introvert survey.favSong survey.romanceTrope';
+    "id email profile.name profile.firstName profile.year profile.major profile.firstName profile.city profile.describeYourself profile.describePartner profile.bio survey.hookupsong survey.hookupsongURL survey.contact survey.greenflag survey.interests profile.guiltyPleasure profile.greenFlag profile.relationshipType survey.humor survey.date survey.introvert survey.favSong survey.romanceTrope";
 
 /**
  * Populates match data with specific fields from the User model.
@@ -20,7 +20,7 @@ const matchRevealData =
 const populateMatch = (index: string) => {
     return {
         path: `partner${index}Id`,
-        model: 'User',
+        model: "User",
         select: matchRevealData,
     };
 };
@@ -50,10 +50,10 @@ export const createUser = async (user: any): Promise<UserType> => {
  */
 export const getUser = async (user: any): Promise<UserType> => {
     const doc = await User.findOne({ email: user.email }).populate({
-        path: 'matchReviews',
-        model: 'Match',
-        options: { sort: { 'score': -1 } },
-        populate: [populateMatch('A'), populateMatch('B')],
+        path: "matchReviews",
+        model: "Match",
+        options: { sort: { score: -1 } },
+        populate: [populateMatch("A"), populateMatch("B")],
     });
     // remove the match's feedback from the user for security reasons
     if (doc) {
@@ -117,12 +117,22 @@ export const getSurveyedUsersCount = async (): Promise<number> => {
  * @returns A Promise that resolves to an array of UserType.
  */
 export const getUsers = async (page: number, limit: number, searchTerm: string): Promise<UserType[]> => {
-    const filter = searchTerm ? {
-        $or: [
-            { $expr: { $regexMatch: { input: { $concat: ["$profile.firstName", " ", "$profile.lastName"] }, regex: searchTerm, options: "i" } } },
-            { email: { $regex: searchTerm, $options: "i" } },
-        ]
-    } : {};
+    const filter = searchTerm
+        ? {
+              $or: [
+                  {
+                      $expr: {
+                          $regexMatch: {
+                              input: { $concat: ["$profile.firstName", " ", "$profile.lastName"] },
+                              regex: searchTerm,
+                              options: "i",
+                          },
+                      },
+                  },
+                  { email: { $regex: searchTerm, $options: "i" } },
+              ],
+          }
+        : {};
 
     const users = await User.find(filter)
         .skip((page - 1) * limit)
@@ -141,7 +151,6 @@ export const updateCrushes = async (user: any, crushes: any): Promise<UserType> 
     return doc;
 };
 
-
 /**
  * This function updates a match document in a database with new values for pokedA and pokedB fields.
  * @param {any} match - The match object containing the _id to match.
@@ -150,7 +159,7 @@ export const updateCrushes = async (user: any, crushes: any): Promise<UserType> 
 export const updateMatchPoked = async (matchId: any, pokedA: boolean, pokedB: boolean): Promise<MatchReview | any> => {
     const doc = await Match.findOneAndUpdate({ _id: new ObjectId(matchId) }, { pokedA, pokedB }, { new: true });
     return doc;
-}
+};
 
 /**
  * Updates the forbidden list for a specific user.
@@ -218,11 +227,7 @@ export const updateFeedback = async (user: any, feedback: any): Promise<UserType
  * @param {Review} review - The review data to update.
  * @returns A Promise that resolves to the updated MatchReview or null if not valid.
  */
-export const updateMatchReview = async (
-    userEmail: string,
-    matchId: string,
-    review: Review,
-): Promise<MatchReview | null> => {
+export const updateMatchReview = async (userEmail: string, matchId: string, review: Review): Promise<MatchReview | null> => {
     const user = await User.findOne({ email: userEmail });
     if (!user) return null;
 
@@ -234,9 +239,9 @@ export const updateMatchReview = async (
     // IMPORTANT SECURITY CHECK
     if (!userId.equals(partnerAId) && !userId.equals(partnerBId)) return null;
 
-    const partnerField = userId.equals(partnerAId) ? 'partnerAFeedback' : 'partnerBFeedback';
-    const oppositeField = userId.equals(partnerAId) ? 'partnerBFeedback' : 'partnerAFeedback';
-    const status = match[oppositeField].dateSubmitted !== null ? 'reviewed' : 'partial';
+    const partnerField = userId.equals(partnerAId) ? "partnerAFeedback" : "partnerBFeedback";
+    const oppositeField = userId.equals(partnerAId) ? "partnerBFeedback" : "partnerAFeedback";
+    const status = match[oppositeField].dateSubmitted !== null ? "reviewed" : "partial";
 
     const updatedMatch = await Match.findOneAndUpdate(
         { _id: new ObjectId(matchId) },
@@ -245,7 +250,8 @@ export const updateMatchReview = async (
             overallStatus: status,
         },
         { upsert: true, new: true },
-    ); return updatedMatch;
+    );
+    return updatedMatch;
 };
 
 /**
@@ -257,7 +263,7 @@ export const updateMatchReview = async (
  */
 export const getPendingReviews = async (page: number = 1, limit: number = 0) => {
     await connect();
-    const query = ReviewModel.find({ status: 'pending' }).sort({ createdAt: -1 });
+    const query = ReviewModel.find({ status: "pending" }).sort({ createdAt: -1 });
 
     if (limit > 0) {
         return await query.skip((page - 1) * limit).limit(limit);
@@ -275,7 +281,7 @@ export const getPendingReviews = async (page: number = 1, limit: number = 0) => 
  */
 export const getApprovedReviews = async (page: number = 1, limit: number = 0) => {
     await connect();
-    const query = ReviewModel.find({ status: 'approved' }).sort({ createdAt: -1 });
+    const query = ReviewModel.find({ status: "approved" }).sort({ createdAt: -1 });
 
     if (limit > 0) {
         return await query.skip((page - 1) * limit).limit(limit);
@@ -290,7 +296,7 @@ export const getApprovedReviews = async (page: number = 1, limit: number = 0) =>
  */
 export const getPendingReviewsCount = async (): Promise<number> => {
     await connect();
-    const resp = await ReviewModel.countDocuments({ status: 'pending' });
+    const resp = await ReviewModel.countDocuments({ status: "pending" });
     return resp;
 };
 
@@ -300,7 +306,7 @@ export const getPendingReviewsCount = async (): Promise<number> => {
  */
 export const getApprovedReviewsCount = async (): Promise<number> => {
     await connect();
-    const resp = await ReviewModel.countDocuments({ status: 'approved' });
+    const resp = await ReviewModel.countDocuments({ status: "approved" });
     return resp;
 };
 
@@ -314,7 +320,7 @@ export const submitReview = async (reviewData: IReviewData) => {
     await connect();
     const review = new ReviewModel({
         ...reviewData,
-        status: 'pending',
+        status: "pending",
     });
 
     return await review.save();
@@ -328,11 +334,7 @@ export const submitReview = async (reviewData: IReviewData) => {
  */
 export const approveReview = async (id: string) => {
     await connect();
-    return await ReviewModel.findByIdAndUpdate(
-        id,
-        { status: 'approved', updatedAt: new Date() },
-        { new: true }
-    );
+    return await ReviewModel.findByIdAndUpdate(id, { status: "approved", updatedAt: new Date() }, { new: true });
 };
 
 /**
@@ -343,11 +345,7 @@ export const approveReview = async (id: string) => {
  */
 export const rejectReview = async (id: string) => {
     await connect();
-    return await ReviewModel.findByIdAndUpdate(
-        id,
-        { status: 'rejected', updatedAt: new Date() },
-        { new: true }
-    );
+    return await ReviewModel.findByIdAndUpdate(id, { status: "rejected", updatedAt: new Date() }, { new: true });
 };
 
 /**
@@ -358,11 +356,7 @@ export const rejectReview = async (id: string) => {
  */
 export const deleteReview = async (id: string) => {
     await connect();
-    return await ReviewModel.findByIdAndUpdate(
-        id,
-        { status: 'deleted', updatedAt: new Date() },
-        { new: true }
-    );
+    return await ReviewModel.findByIdAndUpdate(id, { status: "deleted", updatedAt: new Date() }, { new: true });
 };
 
 /**
@@ -391,7 +385,7 @@ export const requestOTP = async (email: string) => {
     let otpValue;
 
     if (!existingOTP) {
-        otpValue = crypto.randomBytes(3).toString('hex');
+        otpValue = crypto.randomBytes(3).toString("hex");
         const newOTP = new OTP({ email, otp: otpValue });
         await newOTP.save();
     } else otpValue = existingOTP.otp;
@@ -410,40 +404,38 @@ export const getMutualVerifiedMatches = async (email: string, otp: number) => {
 
     if (!registeredOTP || registeredOTP.otp !== otp) return null;
 
-    const user = await User.findOneAndUpdate({ email }, { 'collab.mutual': true }, { new: true }).populate('matches');
+    const user = await User.findOneAndUpdate({ email }, { "collab.mutual": true }, { new: true }).populate("matches");
 
     if (!user) return [];
 
-    const verifiedMatches = user.matches
-        .map((match: any) => (match?.collab?.mutual ? match.email : null))
-        .filter((email: string) => email);
+    const verifiedMatches = user.matches.map((match: any) => (match?.collab?.mutual ? match.email : null)).filter((email: string) => email);
 
     return verifiedMatches;
 };
 
 async function sendOTP(user: any, otp: string) {
-    const emailsDirectory = path.join(process.cwd(), 'reminders/emails');
-    const html = await fs.readFile(emailsDirectory + '/otp.html', 'utf8').then((data) => data);
-    const message = html.replace('{name}', user.profile.firstName).replace('{otp}', otp);
+    const emailsDirectory = path.join(process.cwd(), "reminders/emails");
+    const html = await fs.readFile(emailsDirectory + "/otp.html", "utf8").then((data) => data);
+    const message = html.replace("{name}", user.profile.firstName).replace("{otp}", otp);
 
     const params = {
         Destination: { ToAddresses: [user.email] },
         Message: {
-            Body: { Html: { Charset: 'UTF-8', Data: message } },
+            Body: { Html: { Charset: "UTF-8", Data: message } },
             Subject: {
-                Charset: 'UTF-8',
-                Data: 'Your OTP for Mutual X Perfect Match Verification',
+                Charset: "UTF-8",
+                Data: "Your OTP for Mutual X Perfect Match Verification",
             },
         },
-        Source: ' Perfect Match <noreply@perfectmatch.ai>',
+        Source: " Perfect Match <noreply@perfectmatch.ai>",
     };
 
     AWS.config.update({
-        region: 'us-east-1',
+        region: "us-east-1",
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     });
 
-    await new AWS.SES({ apiVersion: 'latest' }).sendEmail(params).promise();
+    await new AWS.SES({ apiVersion: "latest" }).sendEmail(params).promise();
     return otp;
 }

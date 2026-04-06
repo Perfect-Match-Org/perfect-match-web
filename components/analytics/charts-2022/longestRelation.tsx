@@ -1,25 +1,25 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const LongestRelation = () => {
     const series = [
         {
-            name: 'Median',
+            name: "Median",
             data: [6, 4, 5, 4, 5, 5, 6],
-            color: '#bae6fd',
+            color: "#bae6fd",
         },
         {
-            name: 'Mean',
+            name: "Mean",
             data: [10.8, 9.2, 10.0, 9.1, 9.5, 8.8, 10.0],
-            color: '#fecdd3',
+            color: "#fecdd3",
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             height: 430,
             toolbar: {
                 show: false,
@@ -32,48 +32,48 @@ const LongestRelation = () => {
             bar: {
                 horizontal: true,
                 dataLabels: {
-                    position: 'top',
+                    position: "top",
                 },
             },
         },
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '12px',
-                colors: ['#6b7280'],
+                fontSize: "12px",
+                colors: ["#6b7280"],
             },
         },
         stroke: {
             show: true,
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             shared: true,
             intersect: false,
         },
         xaxis: {
-            categories: ['AAP', 'CAS', 'CALS', 'Engineering', 'Hotel', 'CHE', 'ILR'],
+            categories: ["AAP", "CAS", "CALS", "Engineering", "Hotel", "CHE", "ILR"],
             labels: {
                 style: {
-                    colors: '#6b7280',
+                    colors: "#6b7280",
                 },
             },
         },
         yaxis: {
             labels: {
                 style: {
-                    fontSize: '12px',
-                    colors: '#6b7280',
+                    fontSize: "12px",
+                    colors: "#6b7280",
                 },
             },
         },
         legend: {
-            fontSize: '12px',
+            fontSize: "12px",
             labels: {
-                colors: '#6b7280',
+                colors: "#6b7280",
             },
         },
     };

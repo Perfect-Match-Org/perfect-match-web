@@ -84,12 +84,12 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
     };
 
     const calculateOpenRate = (campaign: Campaign) => {
-        if (campaign.analytics.delivered_count === 0) return 0;
+        if (!campaign.analytics || campaign.analytics.delivered_count === 0) return 0;
         return Math.round((campaign.analytics.opened_count / campaign.analytics.delivered_count) * 100);
     };
 
     const calculateClickRate = (campaign: Campaign) => {
-        if (campaign.analytics.delivered_count === 0) return 0;
+        if (!campaign.analytics || campaign.analytics.delivered_count === 0) return 0;
         return Math.round((campaign.analytics.clicked_count / campaign.analytics.delivered_count) * 100);
     };
 
@@ -234,22 +234,22 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
                                         </td>
 
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm text-gray-900">
-                                                {campaign.analytics.sent_count > 0 ? (
-                                                    <>
-                                                        <div className="font-medium">{campaign.analytics.sent_count.toLocaleString()}</div>
-                                                        <div className="text-xs text-gray-500">
-                                                            {campaign.analytics.delivered_count.toLocaleString()} delivered
-                                                        </div>
-                                                    </>
-                                                ) : (
-                                                    <span className="text-gray-500">Not sent</span>
-                                                )}
-                                            </div>
+                                        <div className="text-sm text-gray-900">
+                                            {campaign.analytics && campaign.analytics.sent_count > 0 ? (
+                                                <>
+                                                    <div className="font-medium">{campaign.analytics.sent_count.toLocaleString()}</div>
+                                                    <div className="text-xs text-gray-500">
+                                                        {campaign.analytics.delivered_count.toLocaleString()} delivered
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                <span className="text-gray-500">Not sent</span>
+                                            )}
+                                        </div>
                                         </td>
 
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {campaign.analytics.delivered_count > 0 ? (
+                                            {campaign.analytics && campaign.analytics.delivered_count > 0 ? (
                                                 <div className="text-sm">
                                                     <div className="flex items-center space-x-4">
                                                         <div>
@@ -265,7 +265,7 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
                                                             <span className="text-xs text-gray-500 ml-1">click</span>
                                                         </div>
                                                     </div>
-                                                    {campaign.analytics.bounced_count > 0 && (
+                                                    {campaign.analytics && campaign.analytics.bounced_count > 0 && (
                                                         <div className="text-xs text-red-600 mt-1">
                                                             {campaign.analytics.bounced_count} bounced
                                                         </div>
@@ -277,7 +277,7 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
                                         </td>
 
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {new Date(campaign.created_at).toLocaleDateString()}
+                                            {campaign.created_at && new Date(campaign.created_at).toLocaleDateString()}
                                         </td>
 
                                         <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -291,13 +291,13 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
                                                             Edit
                                                         </button>
                                                         <button
-                                                            onClick={() => handleAction(campaign._id, "send")}
+                                                            onClick={() => handleAction(campaign._id!, "send")}
                                                             className="text-green-600 hover:text-green-800"
                                                         >
                                                             Send
                                                         </button>
                                                         <button
-                                                            onClick={() => handleAction(campaign._id, "delete")}
+                                                            onClick={() => handleAction(campaign._id!, "delete")}
                                                             className="text-red-600 hover:text-red-800"
                                                         >
                                                             Delete
@@ -307,7 +307,7 @@ export default function CampaignHistory({ onEditCampaign, onViewAnalytics }: Cam
 
                                                 {campaign.status === "sending" && (
                                                     <button
-                                                        onClick={() => handleAction(campaign._id, "pause")}
+                                                        onClick={() => handleAction(campaign._id!, "pause")}
                                                         className="text-orange-600 hover:text-orange-800"
                                                     >
                                                         Pause

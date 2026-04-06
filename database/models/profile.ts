@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import * as profile from '../../types/profileEnums';
+import { Schema } from "mongoose";
+import * as profile from "../../types/profileEnums";
 
 export interface IProfile extends Document {
     complete: boolean;

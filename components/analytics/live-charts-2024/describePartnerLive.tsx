@@ -1,8 +1,8 @@
-import useSWR from 'swr';
-import { fetcher, analysisURL } from '@/utils/fetch';
-import dynamic from 'next/dynamic';
+import useSWR from "swr";
+import { fetcher, analysisURL } from "@/utils/fetch";
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -59,17 +59,17 @@ const DescribePartnerLive = () => {
     const options = {
         tooltip: {
             enabled: true,
-            theme: 'dark',
+            theme: "dark",
         },
         noData: {
-            text: 'Loading...',
-            align: 'center',
-            verticalAlign: 'middle',
+            text: "Loading...",
+            align: "center",
+            verticalAlign: "middle",
             offsetX: 0,
             offsetY: 0,
             style: {
-                color: '#6b7280',
-                fontSize: '14px',
+                color: "#6b7280",
+                fontSize: "14px",
             },
         },
         legend: {
@@ -77,7 +77,7 @@ const DescribePartnerLive = () => {
         },
         chart: {
             height: 350,
-            type: 'treemap',
+            type: "treemap",
             toolbar: {
                 show: false,
                 tools: {
@@ -87,22 +87,11 @@ const DescribePartnerLive = () => {
         },
         dataLabels: {
             style: {
-                fontSize: '20px',
-                colors: ['#6b7280'],
+                fontSize: "20px",
+                colors: ["#6b7280"],
             },
         },
-        colors: [
-            '#f59f0a',
-            '#f9a833',
-            '#fdb24d',
-            '#ffbb64',
-            '#ffc47b',
-            '#ffce91',
-            '#ffd8a6',
-            '#ffe1bc',
-            '#ffebd2',
-            '#fff5e9',
-        ],
+        colors: ["#f59f0a", "#f9a833", "#fdb24d", "#ffbb64", "#ffc47b", "#ffce91", "#ffd8a6", "#ffe1bc", "#ffebd2", "#fff5e9"],
         plotOptions: {
             treemap: {
                 distributed: true,

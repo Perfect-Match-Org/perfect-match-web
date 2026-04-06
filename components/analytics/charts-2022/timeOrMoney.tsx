@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -14,25 +14,25 @@ const TimeOrMoney = () => {
                     download: false,
                 },
             },
-            width: '100%',
-            type: 'donut',
+            width: "100%",
+            type: "donut",
         },
-        labels: ['Time', 'Money', 'Influence'],
-        colors: ['#fb7185', '#4ade80', '#facc15'],
+        labels: ["Time", "Money", "Influence"],
+        colors: ["#fb7185", "#4ade80", "#facc15"],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: "50%",
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(1) + "%"];
             },
         },
         legend: {

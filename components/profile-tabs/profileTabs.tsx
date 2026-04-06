@@ -1,19 +1,19 @@
-import { Tab } from '@headlessui/react';
-import Status from './status';
-import SurveyComponent from './survey';
-import ProfileComponent from './profile-section';
-import Crushes from './crushes';
-import Matches from './matches';
-import { useRouter } from 'next/router';
-import { useState, DragEvent } from 'react';
-import { ISurveyFeedback } from '../../database/models';
+import { Tab } from "@headlessui/react";
+import Status from "./status";
+import SurveyComponent from "./survey";
+import ProfileComponent from "./profile-section";
+import Crushes from "./crushes";
+import Matches from "./matches";
+import { useRouter } from "next/router";
+import { useState, DragEvent } from "react";
+import { ISurveyFeedback } from "../../database/models";
 
 const MapRankDescription: Record<string, string> = {
-    Interest: 'Personal interests (shared hobbies etc.)',
-    Lifestyle: 'Lifestyle (work/life balance, drinking habits etc.)',
-    Beliefs: 'Core values and beliefs (religious beliefs, political views etc.)',
-    Goal: 'Long-term goals (careers, academic paths etc.)',
-    Vibe: 'Overall vibes (personalities etc.)',
+    Interest: "Personal interests (shared hobbies etc.)",
+    Lifestyle: "Lifestyle (work/life balance, drinking habits etc.)",
+    Beliefs: "Core values and beliefs (religious beliefs, political views etc.)",
+    Goal: "Long-term goals (careers, academic paths etc.)",
+    Vibe: "Overall vibes (personalities etc.)",
 };
 
 interface DraggableListProps {
@@ -90,10 +90,10 @@ function GeneralFeedback(props: any) {
     const [loading, setLoading] = useState(false);
 
     const [feedback, setFeedback] = useState<ISurveyFeedback>({
-        surveyFeedback: props.user?.feedback?.surveyFeedback || '',
-        otherValentinesDayImpact: props.user?.feedback?.otherValentinesDayImpact || '',
-        comments: props.user?.feedback?.comments || '',
-        categoryRanking: props.user?.feedback?.categoryRanking || ['Interest', 'Lifestyle', 'Beliefs', 'Goal', 'Vibe'],
+        surveyFeedback: props.user?.feedback?.surveyFeedback || "",
+        otherValentinesDayImpact: props.user?.feedback?.otherValentinesDayImpact || "",
+        comments: props.user?.feedback?.comments || "",
+        categoryRanking: props.user?.feedback?.categoryRanking || ["Interest", "Lifestyle", "Beliefs", "Goal", "Vibe"],
         anticipation: props.user?.feedback?.anticipation || false,
         memories: props.user?.feedback?.memories || false,
         joy: props.user?.feedback?.joy || false,
@@ -105,19 +105,19 @@ function GeneralFeedback(props: any) {
     const handleFeedbackSubmit = async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/feedback', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const response = await fetch("/api/feedback", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(feedback),
             });
             if (response.ok) {
-                alert('Feedback submitted successfully!');
+                alert("Feedback submitted successfully!");
                 props.refresh();
             } else {
-                alert('Failed to submit feedback. Please try again and contact us if the problem persists.');
+                alert("Failed to submit feedback. Please try again and contact us if the problem persists.");
             }
         } catch (error) {
-            alert('Failed to submit feedback. Please try again and contact us if the problem persists.');
+            alert("Failed to submit feedback. Please try again and contact us if the problem persists.");
         }
         setLoading(false);
     };
@@ -135,16 +135,12 @@ function GeneralFeedback(props: any) {
                 {/* Feedback content */}
                 <div className="pt-4 pb-6 sm:px-6 px-3">
                     {/* Category Ranking */}
-                    <p className="mb-4">
-                        1. Rank the following categories by importance in matching (topmost is most important)
-                    </p>
+                    <p className="mb-4">1. Rank the following categories by importance in matching (topmost is most important)</p>
                     <DraggableList initialItems={feedback.categoryRanking} onRankChange={handleRankChange} />
 
                     {/* Survey Feedback */}
                     <div className="my-14">
-                        <label htmlFor="surveyFeedback">
-                            2. Provide any feedback on the 2023 Perfect Match survey questions:
-                        </label>
+                        <label htmlFor="surveyFeedback">2. Provide any feedback on the 2023 Perfect Match survey questions:</label>
                         <textarea
                             id="surveyFeedback"
                             rows={4}
@@ -289,7 +285,7 @@ function GeneralFeedback(props: any) {
 function ProfileTabs(props: any) {
     const router = useRouter();
     const user = props.user;
-    const section = router.asPath.split('#')[1];
+    const section = router.asPath.split("#")[1];
     const tabIndex: Record<string, number> = {
         status: 0,
         profile: 1,

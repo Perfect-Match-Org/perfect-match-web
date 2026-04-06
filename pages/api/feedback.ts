@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import authOptions from './auth/[...nextauth]';
-import { updateFeedback } from '@/controllers';
-import { Session } from 'next-auth';
-import { connect } from '@/database';
-import { User } from '@/types/users';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import authOptions from "./auth/[...nextauth]";
+import { updateFeedback } from "@/controllers";
+import { Session } from "next-auth";
+import { connect } from "@/database";
+import { User } from "@/types/users";
 
 /**
  * API handler to update user feedback and return the updated user.
@@ -17,17 +17,17 @@ import { User } from '@/types/users';
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User | String>) {
     const session: Session = (await getServerSession(req, res, authOptions))!;
-    if (!session) return res.status(401).send('Unauthorized');
+    if (!session) return res.status(401).send("Unauthorized");
 
     await connect();
 
     const { method } = req;
     switch (method) {
-        case 'POST': {
+        case "POST": {
             const user = await updateFeedback(session.user, req.body);
             return res.status(200).json(user);
         }
         default:
-            return res.status(405).send('Method Not Allowed');
+            return res.status(405).send("Method Not Allowed");
     }
 }

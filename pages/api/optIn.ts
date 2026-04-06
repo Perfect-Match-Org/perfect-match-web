@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import authOptions from './auth/[...nextauth]';
-import { updateUserOptIn } from '@/controllers';
-import { Session } from 'next-auth';
-import { connect } from '@/database';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import authOptions from "./auth/[...nextauth]";
+import { updateUserOptIn } from "@/controllers";
+import { Session } from "next-auth";
+import { connect } from "@/database";
 
 /**
  * API handler to update the user's opt-in status.
@@ -17,8 +17,8 @@ import { connect } from '@/database';
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Boolean | String>) {
     const session: Session | null = await getServerSession(req, res, authOptions);
-    if (!session) return res.status(401).send('Unauthorized');
-    if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
+    if (!session) return res.status(401).send("Unauthorized");
+    if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
 
     await connect();
 

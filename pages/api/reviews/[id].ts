@@ -1,23 +1,20 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getReviewById, approveReview, rejectReview, deleteReview } from '@/controllers';
-import { withAdminAuth } from '@/utils/adminAuth';
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getReviewById, approveReview, rejectReview, deleteReview } from "@/controllers";
+import { withAdminAuth } from "@/utils/adminAuth";
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.query;
 
-    if (!id || typeof id !== 'string') {
-        return res.status(400).json({ message: 'Invalid review ID' });
+    if (!id || typeof id !== "string") {
+        return res.status(400).json({ message: "Invalid review ID" });
     }
 
     switch (req.method) {
-        case 'GET':
+        case "GET":
             return handleGetReview(req, res, id);
-        case 'PATCH':
+        case "PATCH":
             return handleUpdateReview(req, res);
-        case 'DELETE':
+        case "DELETE":
             return handleDeleteReview(req, res);
         default:
             return res.status(405).json({ message: `Method ${req.method} not allowed` });
@@ -29,25 +26,24 @@ async function handleGetReview(req: NextApiRequest, res: NextApiResponse, id: st
         const review = await getReviewById(id);
 
         if (!review) {
-            return res.status(404).json({ message: 'Review not found' });
+            return res.status(404).json({ message: "Review not found" });
         }
 
         const { _id, ...rest } = review.toObject ? review.toObject() : review;
         return res.status(200).json({ id: _id.toString(), ...rest });
-
     } catch (error: any) {
-        console.error('Error fetching review:', error);
+        console.error("Error fetching review:", error);
         return res.status(500).json({
-            message: 'Error fetching review',
-            error: error.message
+            message: "Error fetching review",
+            error: error.message,
         });
     }
 }
 
 const handleUpdateReview = withAdminAuth(async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
-    if (!id || typeof id !== 'string') {
-        return res.status(400).json({ message: 'Invalid review ID' });
+    if (!id || typeof id !== "string") {
+        return res.status(400).json({ message: "Invalid review ID" });
     }
 
     try {
@@ -55,7 +51,7 @@ const handleUpdateReview = withAdminAuth(async (req: NextApiRequest, res: NextAp
 
         if (!action) {
             return res.status(400).json({
-                message: 'Missing action. Use "approve" or "reject"'
+                message: 'Missing action. Use "approve" or "reject"',
             });
         }
 
@@ -63,61 +59,59 @@ const handleUpdateReview = withAdminAuth(async (req: NextApiRequest, res: NextAp
         let message;
 
         switch (action) {
-            case 'approve':
+            case "approve":
                 updatedReview = await approveReview(id);
-                message = 'Review approved successfully';
+                message = "Review approved successfully";
                 break;
-            case 'reject':
+            case "reject":
                 updatedReview = await rejectReview(id);
-                message = 'Review rejected successfully';
+                message = "Review rejected successfully";
                 break;
             default:
                 return res.status(400).json({
-                    message: 'Invalid action. Use "approve" or "reject"'
+                    message: 'Invalid action. Use "approve" or "reject"',
                 });
         }
 
         if (!updatedReview) {
-            return res.status(404).json({ message: 'Review not found' });
+            return res.status(404).json({ message: "Review not found" });
         }
 
         return res.status(200).json({
             message,
-            review: updatedReview
+            review: updatedReview,
         });
-
     } catch (error: any) {
-        console.error('Error updating review:', error);
+        console.error("Error updating review:", error);
         return res.status(500).json({
-            message: 'Error updating review',
-            error: error.message
+            message: "Error updating review",
+            error: error.message,
         });
     }
 });
 
 const handleDeleteReview = withAdminAuth(async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
-    if (!id || typeof id !== 'string') {
-        return res.status(400).json({ message: 'Invalid review ID' });
+    if (!id || typeof id !== "string") {
+        return res.status(400).json({ message: "Invalid review ID" });
     }
 
     try {
         const deletedReview = await deleteReview(id);
 
         if (!deletedReview) {
-            return res.status(404).json({ message: 'Review not found' });
+            return res.status(404).json({ message: "Review not found" });
         }
 
         return res.status(200).json({
-            message: 'Review deleted successfully',
-            review: deletedReview
+            message: "Review deleted successfully",
+            review: deletedReview,
         });
-
     } catch (error: any) {
-        console.error('Error deleting review:', error);
+        console.error("Error deleting review:", error);
         return res.status(500).json({
-            message: 'Error deleting review',
-            error: error.message
+            message: "Error deleting review",
+            error: error.message,
         });
     }
 });

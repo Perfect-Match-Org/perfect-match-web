@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -14,25 +14,25 @@ const FridayNight = () => {
                     download: false,
                 },
             },
-            width: '100%',
-            type: 'donut',
+            width: "100%",
+            type: "donut",
         },
-        labels: ["Netflix & PJ's", 'Mixer or date night', 'Frat party', 'Bar hopping', 'Netflix & chill', 'Studying'],
-        colors: ['#fb7185', '#fb923c', '#facc15', '#4ade80', '#38bdf8', '#c4b5fd'],
+        labels: ["Netflix & PJ's", "Mixer or date night", "Frat party", "Bar hopping", "Netflix & chill", "Studying"],
+        colors: ["#fb7185", "#fb923c", "#facc15", "#4ade80", "#38bdf8", "#c4b5fd"],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: "50%",
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(1) + "%"];
             },
         },
         legend: {

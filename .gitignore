@@ -42,3 +42,6 @@ reminders
 
 # python
 venv
+
+# agents
+.agents

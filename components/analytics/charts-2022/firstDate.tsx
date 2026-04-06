@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -14,33 +14,25 @@ const FirstDate = () => {
                     download: false,
                 },
             },
-            width: '100%',
-            type: 'donut',
+            width: "100%",
+            type: "donut",
         },
-        labels: [
-            'Restaurant in the Commons',
-            'Bubble tea',
-            'CTB',
-            'Coffee on campus',
-            'Starbucks',
-            'Dining Hall',
-            'Frat annex',
-        ],
-        colors: ['#fb7185', '#fb923c', '#facc15', '#4ade80', '#38bdf8', '#c4b5fd', '#f0abfc'],
+        labels: ["Restaurant in the Commons", "Bubble tea", "CTB", "Coffee on campus", "Starbucks", "Dining Hall", "Frat annex"],
+        colors: ["#fb7185", "#fb923c", "#facc15", "#4ade80", "#38bdf8", "#c4b5fd", "#f0abfc"],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '50%',
+                    size: "50%",
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(1) + "%"];
             },
         },
         legend: {

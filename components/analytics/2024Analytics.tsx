@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Script from 'next/script';
-import ByGenderHeight2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_height_2024';
-import ByGenderRicePurity2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_rice_purity_2024';
-import ByGenderNumDated2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_numDated_2024';
-import ByStateRicePurity2024 from '@/components/analytics/charts-2024/d3-charts/by_state_rice_purity_2024';
-import ByStateDrinkOften2024 from '@/components/analytics/charts-2024/d3-charts/by_state_drinking_2024';
-import ByStatePolitics2024 from '@/components/analytics/charts-2024/d3-charts/by_state_politics_2024';
-import ByGenderWhoPays2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_who_pays_2024';
-import ByGenderIck2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_ick_2024';
-import ByGenderGreenflag2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_greenflag_2024';
-import ByCollegeSleepDuration2024 from '@/components/analytics/charts-2024/apex-charts/by_college_sleep_duration_2024';
-import ByCollegeRicePurity2024 from '@/components/analytics/charts-2024/apex-charts/by_college_rice_purity_2024';
-import ByCollegeSleepTime2024 from '@/components/analytics/charts-2024/apex-charts/by_college_sleep_time_2024';
-import ByGenderLoveLanguage2024 from '@/components/analytics/charts-2024/apex-charts/by_gender_love_language_2024';
-import ByYearNumParticipants2024 from '@/components/analytics/charts-2024/apex-charts/by_year_num_participants_2024';
-import ByYearNumDated2024 from '@/components/analytics/charts-2024/apex-charts/by_year_num_dated_2024';
-import ByYearRicePurity2024 from '@/components/analytics/charts-2024/apex-charts/by_year_rice_purity_2024';
+import React, { useState } from "react";
+import Link from "next/link";
+import Script from "next/script";
+import ByGenderHeight2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_height_2024";
+import ByGenderRicePurity2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_rice_purity_2024";
+import ByGenderNumDated2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_numDated_2024";
+import ByStateRicePurity2024 from "@/components/analytics/charts-2024/d3-charts/by_state_rice_purity_2024";
+import ByStateDrinkOften2024 from "@/components/analytics/charts-2024/d3-charts/by_state_drinking_2024";
+import ByStatePolitics2024 from "@/components/analytics/charts-2024/d3-charts/by_state_politics_2024";
+import ByGenderWhoPays2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_who_pays_2024";
+import ByGenderIck2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_ick_2024";
+import ByGenderGreenflag2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_greenflag_2024";
+import ByCollegeSleepDuration2024 from "@/components/analytics/charts-2024/apex-charts/by_college_sleep_duration_2024";
+import ByCollegeRicePurity2024 from "@/components/analytics/charts-2024/apex-charts/by_college_rice_purity_2024";
+import ByCollegeSleepTime2024 from "@/components/analytics/charts-2024/apex-charts/by_college_sleep_time_2024";
+import ByGenderLoveLanguage2024 from "@/components/analytics/charts-2024/apex-charts/by_gender_love_language_2024";
+import ByYearNumParticipants2024 from "@/components/analytics/charts-2024/apex-charts/by_year_num_participants_2024";
+import ByYearNumDated2024 from "@/components/analytics/charts-2024/apex-charts/by_year_num_dated_2024";
+import ByYearRicePurity2024 from "@/components/analytics/charts-2024/apex-charts/by_year_rice_purity_2024";
 
 const Stats2024 = () => {
-    const by_state_visualizations: Record<string, JSX.Element> = {
-        'What is your Rice Purity Score?': <ByStateRicePurity2024 />,
+    const by_state_visualizations: Record<string, React.ReactElement> = {
+        "What is your Rice Purity Score?": <ByStateRicePurity2024 />,
         "How 'juice head' are you?": <ByStateDrinkOften2024 />,
-        'What are your political tendencies?': <ByStatePolitics2024 />,
+        "What are your political tendencies?": <ByStatePolitics2024 />,
     };
 
-    const by_gender_visualizations: Record<string, JSX.Element> = {
-        'What is your most important love language?': <ByGenderLoveLanguage2024 />,
-        'What is your Rice Purity Score?': <ByGenderRicePurity2024 />,
-        'Would you prefer that your match ___ on the first date?': <ByGenderWhoPays2024 />,
-        'What is your biggest ick in a relationship?': <ByGenderIck2024 />,
-        'What is your biggest green flag in a relationship?': <ByGenderGreenflag2024 />,
-        'Your height?': <ByGenderHeight2024 />,
+    const by_gender_visualizations: Record<string, React.ReactElement> = {
+        "What is your most important love language?": <ByGenderLoveLanguage2024 />,
+        "What is your Rice Purity Score?": <ByGenderRicePurity2024 />,
+        "Would you prefer that your match ___ on the first date?": <ByGenderWhoPays2024 />,
+        "What is your biggest ick in a relationship?": <ByGenderIck2024 />,
+        "What is your biggest green flag in a relationship?": <ByGenderGreenflag2024 />,
+        "Your height?": <ByGenderHeight2024 />,
     };
 
-    const by_college_visualizations: Record<string, JSX.Element> = {
-        'Daily sleep duration?': <ByCollegeSleepDuration2024 />,
-        'What is your Rice Purity Score?': <ByCollegeRicePurity2024 />,
-        'What time do you go to bed?': <ByCollegeSleepTime2024 />,
+    const by_college_visualizations: Record<string, React.ReactElement> = {
+        "Daily sleep duration?": <ByCollegeSleepDuration2024 />,
+        "What is your Rice Purity Score?": <ByCollegeRicePurity2024 />,
+        "What time do you go to bed?": <ByCollegeSleepTime2024 />,
     };
 
-    const by_year_visualizations: Record<string, JSX.Element> = {
-        'How many people have you dated in the last 5 years?': <ByYearNumDated2024 />,
-        'What is your Rice Purity Score?': <ByYearRicePurity2024 />,
-        'Number of participants?': <ByYearNumParticipants2024 />,
+    const by_year_visualizations: Record<string, React.ReactElement> = {
+        "How many people have you dated in the last 5 years?": <ByYearNumDated2024 />,
+        "What is your Rice Purity Score?": <ByYearRicePurity2024 />,
+        "Number of participants?": <ByYearNumParticipants2024 />,
     };
 
     const [selectedVizState, setSelectedVizState] = useState(Object.keys(by_state_visualizations)[0]);
@@ -53,16 +53,16 @@ const Stats2024 = () => {
 
     return (
         <div className="bg-pmpink-500 font-work-sans">
-            {' '}
+            {" "}
             <Script src="https://d3js.org/d3.v7.min.js" />
             <Script src="https://d3js.org/topojson.v3.min.js" />
             <div>
                 <section className="pt-12 sm:pt-16 lg:pt-20 sm:pb-5 pb-1 text-pmblue-500">
                     <p className="my-8 sm:lg-8 lg:my-10 sm:text-lg mx-[3%] sm:mx-[10%] lg:mx-[20%]">
                         In 2024, we received <strong className="text-pmred-500"> 3,983 </strong>
-                        valid responses — representing <strong className="text-pmred-500">1/4</strong> of Cornell&#39;s
-                        undergraduate student body! Thank you all for filling out the survey and helping spread love at
-                        Cornell🫶! Here is a look at the results of the survey.
+                        valid responses — representing <strong className="text-pmred-500">1/4</strong> of Cornell&#39;s undergraduate
+                        student body! Thank you all for filling out the survey and helping spread love at Cornell🫶! Here is a look at the
+                        results of the survey.
                     </p>
                     <hr className="border-1 border-solid border-pmpink2-500 mx-[3%] sm:mx-[10%] lg:mx-[20%]" />
                 </section>
@@ -86,30 +86,27 @@ const Stats2024 = () => {
                         </select>
                     </div>
 
-                    {selectedVizGender === 'What is your Rice Purity Score?' && (
+                    {selectedVizGender === "What is your Rice Purity Score?" && (
                         <div className="text-center">
                             <p className="text-pmblue-500 sm:mx-[10%] lg:mx-[10%] mt-6">
-                                The lower your score, the more &apos;corrupt&apos; or rebellious you are; the higher the
-                                number, the purer you are.
+                                The lower your score, the more &apos;corrupt&apos; or rebellious you are; the higher the number, the purer
+                                you are.
                             </p>
                         </div>
                     )}
 
-                    <div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4">
-                        {by_gender_visualizations[selectedVizGender]}
-                    </div>
+                    <div className="sm:mx-[10%] lg:mx-[20%] -mb-4 sm:my-4">{by_gender_visualizations[selectedVizGender]}</div>
 
                     <div className="text-center text-pmblue-500">
                         <p
                             style={{
-                                marginTop: '-10px',
-                                fontSize: '14px',
-                                marginBottom: '0px',
-                                fontFamily: 'Work Sans',
+                                marginTop: "-10px",
+                                fontSize: "14px",
+                                marginBottom: "0px",
+                                fontFamily: "Work Sans",
                             }}
                         >
-                            Participants who gave their gender as non-binary individual or other are not included due to
-                            small sample size.
+                            Participants who gave their gender as non-binary individual or other are not included due to small sample size.
                         </p>
                     </div>
 
@@ -153,38 +150,36 @@ const Stats2024 = () => {
                                 </option>
                             ))}
                         </select>
-                        {selectedVizCollege === 'What is your Rice Purity Score?' && (
+                        {selectedVizCollege === "What is your Rice Purity Score?" && (
                             <div className="text-center">
                                 <p className="text-pmblue-500 sm:mx-[10%] lg:mx-[10%] mt-6">
-                                    The lower your score, the more &apos;corrupt&apos; or rebellious you are; the higher
-                                    the number, the purer you are.
+                                    The lower your score, the more &apos;corrupt&apos; or rebellious you are; the higher the number, the
+                                    purer you are.
                                 </p>
                             </div>
                         )}
                         <div className="text-center text-pmblue-500">
                             <p
                                 style={{
-                                    marginTop: '24px',
-                                    fontSize: '16px',
-                                    marginBottom: '0px',
-                                    fontFamily: 'Work Sans',
+                                    marginTop: "24px",
+                                    fontSize: "16px",
+                                    marginBottom: "0px",
+                                    fontFamily: "Work Sans",
                                 }}
                             >
                                 ❗Hover over the college names below to explore the distributions❗
                             </p>
                         </div>
                     </div>
-                    <div className="sm:mx-[8%] lg:mx-[16%] -mb-4 sm:my-4">
-                        {by_college_visualizations[selectedVizCollege]}
-                    </div>
+                    <div className="sm:mx-[8%] lg:mx-[16%] -mb-4 sm:my-4">{by_college_visualizations[selectedVizCollege]}</div>
 
                     <div className="text-center text-pmblue-500">
                         <p
                             style={{
-                                marginTop: '-10px',
-                                fontSize: '14px',
-                                marginBottom: '0px',
-                                fontFamily: 'Work Sans',
+                                marginTop: "-10px",
+                                fontSize: "14px",
+                                marginBottom: "0px",
+                                fontFamily: "Work Sans",
                             }}
                         >
                             Participants from other colleges or divisions are not included due to a small sample size.
@@ -210,9 +205,7 @@ const Stats2024 = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="sm:mx-[8%] lg:mx-[18%] -mb-4 sm:my-4">
-                        {by_year_visualizations[selectedVizYear]}
-                    </div>
+                    <div className="sm:mx-[8%] lg:mx-[18%] -mb-4 sm:my-4">{by_year_visualizations[selectedVizYear]}</div>
                 </section>
 
                 <div className="bg-pmpink-500">
@@ -245,28 +238,25 @@ const Stats2024 = () => {
                     </h2>
                     <div className="mx-[3%] sm:mx-[10%] lg:mx-[20%]">
                         <p>
-                            💌 PM lets you secretly list your crush&#40;es&#41;, boosting your chances of matching with
-                            them! 💘 In PM24, we introduced a fun new feature -{' '}
-                            <strong className="text-pmblue-500">&quot;Nudge Your Crush&quot;</strong> - where we sent a
-                            mystery love email to your crush&#40;es&#41;, letting them know someone &#40;👀&#41; had
-                            listed them and encouraging them to join PM. Hope we helped spark some connections! ✨💕
+                            💌 PM lets you secretly list your crush&#40;es&#41;, boosting your chances of matching with them! 💘 In PM24, we
+                            introduced a fun new feature - <strong className="text-pmblue-500">&quot;Nudge Your Crush&quot;</strong> - where
+                            we sent a mystery love email to your crush&#40;es&#41;, letting them know someone &#40;👀&#41; had listed them
+                            and encouraging them to join PM. Hope we helped spark some connections! ✨💕
                         </p>
                         <ul className="list-disc mb-8 sm:mb-12 ml-4">
                             <li className="my-3 lg:my-5 max-w-4xl">
-                                <strong className="text-pmblue-500 text-xl">18.9%</strong> of you listed at least one
-                                crush in your response. 💘
+                                <strong className="text-pmblue-500 text-xl">18.9%</strong> of you listed at least one crush in your
+                                response. 💘
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl">
-                                <strong className="text-pmblue-500 text-xl">47.8%</strong> of those who listed a crush
-                                opted for Nudge Your Crush ✉️✨
+                                <strong className="text-pmblue-500 text-xl">47.8%</strong> of those who listed a crush opted for Nudge Your
+                                Crush ✉️✨
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl">
-                                <strong className="text-pmblue-500 text-xl">72</strong> pairs of crush matches were
-                                made! 💞
+                                <strong className="text-pmblue-500 text-xl">72</strong> pairs of crush matches were made! 💞
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl">
-                                <strong className="text-pmblue-500 text-xl">16</strong> mutual crushes found their
-                                match! 😍💕
+                                <strong className="text-pmblue-500 text-xl">16</strong> mutual crushes found their match! 😍💕
                             </li>
                         </ul>
                     </div>
@@ -295,7 +285,7 @@ const Stats2024 = () => {
                         </svg>
                     </div>
                 </div>
-            </div>{' '}
+            </div>{" "}
         </div>
     );
 };

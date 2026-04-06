@@ -1,6 +1,6 @@
 // types/email.ts
 export interface Template {
-  _id?: string;
+  _id: string;
   name: string;
   description: string;
   html_content: string;

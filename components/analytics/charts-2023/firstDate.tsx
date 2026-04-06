@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -9,7 +9,7 @@ const FirstDate = () => {
     const options = {
         tooltip: {
             enabled: true,
-            theme: 'dark',
+            theme: "dark",
         },
         chart: {
             toolbar: {
@@ -18,36 +18,28 @@ const FirstDate = () => {
                     download: false,
                 },
             },
-            width: '100%',
-            type: 'donut',
+            width: "100%",
+            type: "donut",
         },
-        labels: [
-            'Restaurant in the Commons',
-            'Bubble tea',
-            'CTB',
-            'Coffee on campus',
-            'Frat annex',
-            'Dining Hall',
-            'Starbucks',
-        ],
-        colors: ['#fb7185', '#4ade80', '#facc15', '#38bdf8', '#fb923c', '#c4b5fd', '#f0abfc'],
+        labels: ["Restaurant in the Commons", "Bubble tea", "CTB", "Coffee on campus", "Frat annex", "Dining Hall", "Starbucks"],
+        colors: ["#fb7185", "#4ade80", "#facc15", "#38bdf8", "#fb923c", "#c4b5fd", "#f0abfc"],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '40%',
+                    size: "40%",
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(0) + '%'];
+                return [name, parseInt(val).toFixed(0) + "%"];
             },
             style: {
-                fontSize: '13px',
+                fontSize: "13px",
             },
         },
         legend: {

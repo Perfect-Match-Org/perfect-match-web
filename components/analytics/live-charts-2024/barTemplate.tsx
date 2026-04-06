@@ -1,19 +1,19 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const Bar = () => {
     const series = [
         {
-            name: '',
+            name: "",
             data: [2319, 867, 539, 186],
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             height: 380,
             toolbar: {
                 show: false,
@@ -24,20 +24,20 @@ const Bar = () => {
         },
         plotOptions: {
             bar: {
-                barHeight: '100%',
+                barHeight: "100%",
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom',
+                    position: "bottom",
                 },
             },
         },
         dataLabels: {
             enabled: true,
-            textAnchor: 'start',
+            textAnchor: "start",
             style: {
-                fontSize: '15px',
-                colors: ['#6b7280'],
+                fontSize: "15px",
+                colors: ["#6b7280"],
             },
             formatter: function (val: any, opt: any) {
                 return opt.w.globals.labels[opt.dataPointIndex];
@@ -47,33 +47,33 @@ const Bar = () => {
         stroke: {
             show: true,
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             y: {
                 formatter: function (value: any) {
                     const percent = (parseInt(value) / 3911) * 100;
-                    return percent.toFixed(0) + '%';
+                    return percent.toFixed(0) + "%";
                 },
             },
             x: {
                 show: false,
             },
         },
-        colors: ['#f9a8d4', '#fbcfe8', '#fce7f3', '#fdf2f8'],
+        colors: ["#f9a8d4", "#fbcfe8", "#fce7f3", "#fdf2f8"],
         xaxis: {
             categories: [
-                'A. Kiss on the suspension bridge at midnight.',
-                'B. Make the library into your bedroom and have sex in the stacks.',
-                'C. Hook up with your T.A.',
-                'D. Flirt with your professor.',
+                "A. Kiss on the suspension bridge at midnight.",
+                "B. Make the library into your bedroom and have sex in the stacks.",
+                "C. Hook up with your T.A.",
+                "D. Flirt with your professor.",
             ],
             labels: {
                 style: {
-                    colors: '#6b7280',
-                    fontSize: '14px',
+                    colors: "#6b7280",
+                    fontSize: "14px",
                 },
             },
         },
@@ -92,13 +92,13 @@ const Bar = () => {
                     xaxis: {
                         labels: {
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                         },
                     },
                     dataLabels: {
                         style: {
-                            fontSize: '11px',
+                            fontSize: "11px",
                             fontWeight: 600,
                         },
                     },

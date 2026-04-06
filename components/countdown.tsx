@@ -1,10 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import React from "react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 import { emojiBlast } from "emoji-blast";
 
 const CountDown: React.FC = () => {
-    const countdownDate = new Date('Feb 12, 2026 19:00:00 EST');
+    const countdownDate = new Date("Feb 12, 2026 19:00:00 EST");
     const [hasMounted, setHasMounted] = useState(false);
 
     type RemainingTime = {
@@ -12,7 +12,7 @@ const CountDown: React.FC = () => {
         hours: number;
         minutes: number;
         seconds: number;
-        total: number
+        total: number;
     };
 
     const calculateTimeRemaining = (launchDate: Date): RemainingTime => {
@@ -76,7 +76,7 @@ const CountDown: React.FC = () => {
             [630, 365],
             [650, 385],
             [660, 410],
-            [660, 430]
+            [660, 430],
         ];
         const randXVelocity = Math.random() * 15 * (Math.round(Math.random()) ? 1 : -1);
         const randYVelocity = Math.random() * -15 - 3;
@@ -91,15 +91,15 @@ const CountDown: React.FC = () => {
                     gravity: 0.15,
                     initialVelocities: {
                         x: randXVelocity,
-                        y: randYVelocity
+                        y: randYVelocity,
                     },
                     rotation: 0,
-                    rotationDeceleration: 0
+                    rotationDeceleration: 0,
                 },
                 position: {
                     x: xCoordinate + randStartXCoord,
-                    y: yCoordinate + randStartYCoord
-                }
+                    y: yCoordinate + randStartYCoord,
+                },
             });
         }
     }
@@ -114,13 +114,13 @@ const CountDown: React.FC = () => {
                     gravity: 0.05,
                     initialVelocities: {
                         x: 45,
-                        y: -10
-                    }
+                        y: -10,
+                    },
                 },
                 position: {
                     x: 0,
-                    y: yPos
-                }
+                    y: yPos,
+                },
             });
         };
         const sparkles = (yPos: number, size: number): void => {
@@ -133,13 +133,13 @@ const CountDown: React.FC = () => {
                     initialVelocities: {
                         rotation: 0,
                         x: 45,
-                        y: -10
-                    }
+                        y: -10,
+                    },
                 },
                 position: {
                     x: 0,
-                    y: yPos
-                }
+                    y: yPos,
+                },
             });
         };
         const shootingStar = () => {
@@ -174,52 +174,68 @@ const CountDown: React.FC = () => {
     }, []);
 
     return (
-        <div className='z-10 max-w-[85vw] w-full min-w-fit h-full relative'>
+        <div className="z-10 max-w-[85vw] w-full min-w-fit h-full relative">
             <div className="w-full relative h-2 -z-10">
                 {/* Alarm Top buttons */}
-                <div className='absolute mx-[5%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl' />
-                <div className='absolute mx-[18%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl' />
-                <div className='absolute mx-[31%] my-[0.2%] bg-retropink-500 w-[20%] h-3 border-2 border-blue-900 rounded-xl' />
+                <div className="absolute mx-[5%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl" />
+                <div className="absolute mx-[18%] my-[0.2%] bg-retropink-500 w-[10%] h-3 border-2 border-blue-900 rounded-xl" />
+                <div className="absolute mx-[31%] my-[0.2%] bg-retropink-500 w-[20%] h-3 border-2 border-blue-900 rounded-xl" />
             </div>
             <div className="bg-[#FBE7F3] min-h-fit h-full rounded-3xl p-5 border-blue-900 border-4 z-10 ">
                 <div className="flex flex-grid w-full h-full">
                     <div className="flex items-center justify-center h-full w-[90%] bg-[#00162F] text-white text-3xl rounded-lg lg:p-2">
                         <div className="flex items-center text-3xl sm:text-4xl space-x-2 px-4 md:px-2 font-press-start lg:text-6xl w-full justify-center">
                             <div className="flex flex-col items-center">
-                                <span className={completed ? 'animate-flash' : ''}>{hasMounted ? (easterEggTextDisplay ? '0' : (days > 0 ? days : hours)) : '0'}</span>
-                                <span className="text-[10px] leading-5 sm:text-sm lg:text-base tracking-wider">{easterEggTextDisplay ? 'I' : (days > 0 ? 'days' : 'hours')}</span>
+                                <span className={completed ? "animate-flash" : ""}>
+                                    {hasMounted ? (easterEggTextDisplay ? "0" : days > 0 ? days : hours) : "0"}
+                                </span>
+                                <span className="text-[10px] leading-5 sm:text-sm lg:text-base tracking-wider">
+                                    {easterEggTextDisplay ? "I" : days > 0 ? "days" : "hours"}
+                                </span>
                             </div>
                             <div className="flex flex-col items-center text-center w-fit">
-                                <span className='text-lg lg:text-3xl -mx-3'>:</span>
+                                <span className="text-lg lg:text-3xl -mx-3">:</span>
                             </div>
                             <div className="flex flex-col items-center">
-                                <span className={completed ? 'animate-flash' : ''}>{hasMounted ? (easterEggTextDisplay ? '-' : (days > 0 ? hours : minutes)) : '0'}</span>
-                                <span className="text-[10px] leading-5 sm:text-sm lg:text-base tracking-wider">{easterEggTextDisplay ? "Can't" : (days > 0 ? 'hours' : 'minutes')}</span>
+                                <span className={completed ? "animate-flash" : ""}>
+                                    {hasMounted ? (easterEggTextDisplay ? "-" : days > 0 ? hours : minutes) : "0"}
+                                </span>
+                                <span className="text-[10px] leading-5 sm:text-sm lg:text-base tracking-wider">
+                                    {easterEggTextDisplay ? "Can't" : days > 0 ? "hours" : "minutes"}
+                                </span>
                             </div>
                             <div className="flex flex-col items-center text-center w-fit">
-                                <span className='text-lg lg:text-3xl -mx-3'>:</span>
+                                <span className="text-lg lg:text-3xl -mx-3">:</span>
                             </div>
                             <div className="flex flex-col items-center">
-                                <span className={completed ? 'animate-flash' : ''}>{hasMounted ? (easterEggTextDisplay ? '0' : (days > 0 ? minutes : seconds)) : '0'}</span>
-                                <span className="text-[10px] leading-5 sm:text-sm lg:text-base tracking-wider">{easterEggTextDisplay ? "Wait" : (days > 0 ? 'minutes' : 'seconds')}</span>
+                                <span className={completed ? "animate-flash" : ""}>
+                                    {hasMounted ? (easterEggTextDisplay ? "0" : days > 0 ? minutes : seconds) : "0"}
+                                </span>
+                                <span className="text-[10px] leading-5 sm:text-sm lg:text-base tracking-wider">
+                                    {easterEggTextDisplay ? "Wait" : days > 0 ? "minutes" : "seconds"}
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div className='w-[12%] relative flex flex-col justify-end'>
-                        <div className='h-1/2'>
-                            <div className='absolute top-0 -right-[5%]'>
-                                <div className='grid grid-cols-2 gap-2'>
-                                    {Array(6).fill(0).map((_, i) => (
-                                        <div key={i} className='w-2 h-2 rounded-full bg-pmblue-500' />
-                                    ))}
+                    <div className="w-[12%] relative flex flex-col justify-end">
+                        <div className="h-1/2">
+                            <div className="absolute top-0 -right-[5%]">
+                                <div className="grid grid-cols-2 gap-2">
+                                    {Array(6)
+                                        .fill(0)
+                                        .map((_, i) => (
+                                            <div key={i} className="w-2 h-2 rounded-full bg-pmblue-500" />
+                                        ))}
                                 </div>
                             </div>
-                            <div className='absolute top-[30%] left-2'>
-                                {Array(3).fill(0).map((_, i) => (
-                                    <div key={i} className='flex items-center justify-center'>
-                                        <span className='text-blue-900 pt-2'>❤︎</span>
-                                    </div>
-                                ))}
+                            <div className="absolute top-[30%] left-2">
+                                {Array(3)
+                                    .fill(0)
+                                    .map((_, i) => (
+                                        <div key={i} className="flex items-center justify-center">
+                                            <span className="text-blue-900 pt-2">❤︎</span>
+                                        </div>
+                                    ))}
                             </div>
                         </div>
                         <div className="my-1 flex flex-col space-y-2 items-end mt-auto">
@@ -251,10 +267,12 @@ const CountDown: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className='bg-retropink-500 w-full h-full -z-20 absolute top-[6%] left-[2%] rounded-3xl' />
-            <div className='absolute -top-[60%] w-full h-[85%] flex justify-end'><Image src='/scream_bubble.svg' alt='scream bubble' height={200} width={300} priority={true} draggable='false' /></div>
+            <div className="bg-retropink-500 w-full h-full -z-20 absolute top-[6%] left-[2%] rounded-3xl" />
+            <div className="absolute -top-[60%] w-full h-[85%] flex justify-end">
+                <Image src="/scream_bubble.svg" alt="scream bubble" height={200} width={300} priority={true} draggable="false" />
+            </div>
         </div>
     );
-}
+};
 
 export default CountDown;

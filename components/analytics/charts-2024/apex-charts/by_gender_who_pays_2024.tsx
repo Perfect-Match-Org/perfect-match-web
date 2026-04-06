@@ -1,27 +1,27 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const ByGenderWhoPays2024 = () => {
     const series = [
         {
-            name: 'Female',
+            name: "Female",
             data: [-55.2, -17.7, -0.9, -26.3],
-            color: '#fb7185',
+            color: "#fb7185",
         },
         {
-            name: 'Male',
+            name: "Male",
             data: [2.1, 17.6, 41.8, 38.6],
-            color: '#38bdf8',
+            color: "#38bdf8",
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             stacked: true,
-            fontFamily: 'Work Sans, sans-serif',
+            fontFamily: "Work Sans, sans-serif",
             toolbar: {
                 show: false,
                 tools: {
@@ -32,7 +32,7 @@ const ByGenderWhoPays2024 = () => {
         plotOptions: {
             bar: {
                 horizontal: true,
-                barHeight: '80%',
+                barHeight: "80%",
             },
         },
         dataLabels: {
@@ -40,7 +40,7 @@ const ByGenderWhoPays2024 = () => {
         },
         stroke: {
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         grid: {
             xaxis: {
@@ -54,47 +54,42 @@ const ByGenderWhoPays2024 = () => {
             max: 60,
             labels: {
                 style: {
-                    fontSize: '15px',
-                    colors: '#24438d',
-                    fontFamily: 'Work Sans, sans-serif',
+                    fontSize: "15px",
+                    colors: "#24438d",
+                    fontFamily: "Work Sans, sans-serif",
                 },
-            }
+            },
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
             style: {
-                fontFamily: 'Work Sans, sans-serif',
+                fontFamily: "Work Sans, sans-serif",
             },
             shared: false,
             y: {
                 formatter: function (val: any) {
-                    return Math.abs(val) + '%';
+                    return Math.abs(val) + "%";
                 },
             },
         },
         xaxis: {
-            categories: [
-                'Pays',
-                'Splits',
-                'Lets you pay',
-                "Doesn't matter"
-            ],
+            categories: ["Pays", "Splits", "Lets you pay", "Doesn't matter"],
             labels: {
                 formatter: function (val: any) {
-                    return Math.abs(Math.round(val)) + '%';
+                    return Math.abs(Math.round(val)) + "%";
                 },
                 style: {
-                    fontSize: '15px',
-                    colors: '#24438d',
-                    fontFamily: 'Work Sans, sans-serif',
+                    fontSize: "15px",
+                    colors: "#24438d",
+                    fontFamily: "Work Sans, sans-serif",
                 },
-            }
+            },
         },
         legend: {
-            fontSize: '16px',
+            fontSize: "16px",
             labels: {
-                colors: '#24438d',
-                fontFamily: 'Work Sans, sans-serif',
+                colors: "#24438d",
+                fontFamily: "Work Sans, sans-serif",
             },
         },
         responsive: [
@@ -104,33 +99,33 @@ const ByGenderWhoPays2024 = () => {
                     xaxis: {
                         labels: {
                             style: {
-                                fontSize: '14px',
-                                fontFamily: 'Work Sans, sans-serif',
+                                fontSize: "14px",
+                                fontFamily: "Work Sans, sans-serif",
                             },
                             offsetY: -5,
                         },
                         title: {
                             style: {
-                                fontSize: '14px',
+                                fontSize: "14px",
                             },
                         },
                     },
                     yaxis: {
                         labels: {
                             style: {
-                                fontSize: '14px',
-                                colors: '#24438d',
-                                fontFamily: 'Work Sans, sans-serif',
+                                fontSize: "14px",
+                                colors: "#24438d",
+                                fontFamily: "Work Sans, sans-serif",
                             },
                         },
                         title: {
                             style: {
-                                fontSize: '14px',
+                                fontSize: "14px",
                             },
                         },
                     },
                     legend: {
-                        fontSize: '14px',
+                        fontSize: "14px",
                     },
                 },
             },

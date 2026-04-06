@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         // Check authentication
         const session: any = await getServerSession(req, res, authOptions);
-        
+
         if (!session) {
             return res.status(401).json({ error: "Unauthorized - No session" });
         }
@@ -30,29 +30,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // Extract path from query
         const { path } = req.query;
-        const pathString = Array.isArray(path) ? path.join('/') : path || '';
-        
+        const pathString = Array.isArray(path) ? path.join("/") : path || "";
+
         // Construct Flask backend URL
         const backendUrl = `${FLASK_BACKEND_URL}/admin/email/${pathString}`;
-        
+
         // Forward request to Flask backend
         const forwardedHeaders: HeadersInit = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${email}`, // Pass email as auth token
-            'X-Admin-Email': email,
-            'X-Forwarded-For': req.headers['x-forwarded-for'] as string || 'unknown',
-            'User-Agent': req.headers['user-agent'] || 'NextJS-Middleware'
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${email}`, // Pass email as auth token
+            "X-Admin-Email": email,
+            "X-Forwarded-For": (req.headers["x-forwarded-for"] as string) || "unknown",
+            "User-Agent": req.headers["user-agent"] || "NextJS-Middleware",
         };
 
         // Add query parameters if they exist
         const url = new URL(backendUrl);
-        Object.keys(req.query).forEach(key => {
-            if (key !== 'path') {
+        Object.keys(req.query).forEach((key) => {
+            if (key !== "path") {
                 const value = req.query[key];
-                if (typeof value === 'string') {
+                if (typeof value === "string") {
                     url.searchParams.append(key, value);
                 } else if (Array.isArray(value)) {
-                    value.forEach(v => url.searchParams.append(key, v));
+                    value.forEach((v) => url.searchParams.append(key, v));
                 }
             }
         });
@@ -63,18 +63,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         // Add body for POST/PUT/PATCH requests
-        if (req.method !== 'GET' && req.method !== 'DELETE') {
+        if (req.method !== "GET" && req.method !== "DELETE") {
             fetchOptions.body = JSON.stringify(req.body);
         }
 
         // Make request to Flask backend
         const backendResponse = await fetch(url.toString(), fetchOptions);
-        
+
         // Get response data
         let responseData;
-        const contentType = backendResponse.headers.get('content-type');
-        
-        if (contentType && contentType.includes('application/json')) {
+        const contentType = backendResponse.headers.get("content-type");
+
+        if (contentType && contentType.includes("application/json")) {
             responseData = await backendResponse.json();
         } else {
             responseData = await backendResponse.text();
@@ -82,10 +82,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // Forward response status and data
         res.status(backendResponse.status);
-        
+
         // Forward relevant headers
-        const headersToForward = ['content-type', 'cache-control', 'etag'];
-        headersToForward.forEach(header => {
+        const headersToForward = ["content-type", "cache-control", "etag"];
+        headersToForward.forEach((header) => {
             const value = backendResponse.headers.get(header);
             if (value) {
                 res.setHeader(header, value);
@@ -93,21 +93,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
 
         return res.json(responseData);
-
     } catch (error) {
-        console.error('Email API middleware error:', error);
-        
+        console.error("Email API middleware error:", error);
+
         // Handle network errors
-        if (error instanceof TypeError && error.message.includes('fetch')) {
-            return res.status(503).json({ 
+        if (error instanceof TypeError && error.message.includes("fetch")) {
+            return res.status(503).json({
                 error: "Backend service unavailable",
-                details: "Unable to connect to email service backend"
+                details: "Unable to connect to email service backend",
             });
         }
 
-        return res.status(500).json({ 
+        return res.status(500).json({
             error: "Internal server error",
-            details: error instanceof Error ? error.message : "Unknown error"
+            details: error instanceof Error ? error.message : "Unknown error",
         });
     }
 }
@@ -115,7 +114,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '10mb', // Increase limit for email templates
+            sizeLimit: "10mb", // Increase limit for email templates
         },
     },
-}
+};

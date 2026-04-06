@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import Toggle from './burgerMenu';
-import Script from 'next/script';
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { isAdmin } from '@/utils/admins';
-import { signOut } from 'next-auth/react';
+import Link from "next/link";
+import Toggle from "./burgerMenu";
+import Script from "next/script";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { isAdmin } from "@/utils/admins";
+import { signOut } from "next-auth/react";
 
 function Header(props: any) {
     const { data: sessions, status } = useSession();
@@ -12,7 +12,7 @@ function Header(props: any) {
 
     useEffect(() => {
         if (sessions) {
-            setIsAdminUser(isAdmin(sessions?.user?.email || ''));
+            setIsAdminUser(isAdmin(sessions?.user?.email || ""));
         }
     }, [sessions]);
     return (
@@ -30,11 +30,7 @@ function Header(props: any) {
             <nav className="bg-pmpink-500 py-8 light:bg-gray-800 main-nav">
                 <div className="flex flex-wrap justify-between items-center w-full px-4 sm:px-8">
                     <Link href="/" className="flex items-center">
-                        <img
-                            src="logo.png"
-                            className="mr-3 h-7 sm:h-9 cursor-pointer ml-4 sm:ml-8"
-                            alt="Perfect Match"
-                        />
+                        <img src="logo.png" className="mr-3 h-7 sm:h-9 cursor-pointer ml-4 sm:ml-8" alt="Perfect Match" />
                     </Link>
                     <div className="sm:hidden">
                         <Toggle />
@@ -65,7 +61,7 @@ function Header(props: any) {
                                 <Link href="/profile">Results</Link>
                             </li>
                             */}
-                            {status === 'authenticated' && (
+                            {status === "authenticated" && (
                                 <li className="text-pmred-500 hover:text-red-500 ease-in-out transition-all duration-200">
                                     <button className="inline-flex items-center justify-center " onClick={() => signOut()}>
                                         <svg
@@ -82,7 +78,9 @@ function Header(props: any) {
                                                 fill="currentColor"
                                                 d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
                                             ></path>
-                                        </svg>Sign Out</button>
+                                        </svg>
+                                        Sign Out
+                                    </button>
                                 </li>
                             )}
                             {isAdminUser && (
@@ -115,7 +113,7 @@ function Header(props: any) {
                     </div>
                 </div>
             </div> */}
-        </header >
+        </header>
     );
 }
 

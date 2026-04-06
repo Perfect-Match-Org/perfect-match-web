@@ -1,8 +1,8 @@
-import useSWR from 'swr';
-import { fetcher, analysisURL } from '@/utils/fetch';
-import dynamic from 'next/dynamic';
+import useSWR from "swr";
+import { fetcher, analysisURL } from "@/utils/fetch";
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -22,47 +22,47 @@ const TreeMap = () => {
                     y: Object.values(describeselfCount)[1],
                 },
                 {
-                    x: 'Kind',
+                    x: "Kind",
                     y: 10.3,
                 },
                 {
-                    x: 'Outgoing',
+                    x: "Outgoing",
                     y: 8.6,
                 },
                 {
-                    x: 'Thoughtful',
+                    x: "Thoughtful",
                     y: 8.4,
                 },
                 {
-                    x: 'Adventurous',
+                    x: "Adventurous",
                     y: 8.0,
                 },
                 {
-                    x: 'Creative',
+                    x: "Creative",
                     y: 6.8,
                 },
                 {
-                    x: 'Loyal',
+                    x: "Loyal",
                     y: 6.6,
                 },
                 {
-                    x: 'Smart',
+                    x: "Smart",
                     y: 6.5,
                 },
                 {
-                    x: 'Witty',
+                    x: "Witty",
                     y: 5.5,
                 },
                 {
-                    x: 'Fun',
+                    x: "Fun",
                     y: 5.2,
                 },
                 {
-                    x: 'Passionate',
+                    x: "Passionate",
                     y: 5.2,
                 },
                 {
-                    x: 'Bubbly',
+                    x: "Bubbly",
                     y: 5.1,
                 },
             ],
@@ -74,7 +74,7 @@ const TreeMap = () => {
         },
         chart: {
             height: 350,
-            type: 'treemap',
+            type: "treemap",
             toolbar: {
                 show: false,
                 tools: {
@@ -84,24 +84,24 @@ const TreeMap = () => {
         },
         dataLabels: {
             style: {
-                fontSize: '20px',
-                colors: ['#6b7280'],
+                fontSize: "20px",
+                colors: ["#6b7280"],
             },
         },
         colors: [
-            '#fb7185',
-            '#ff8b98',
-            '#ff9fa8',
-            '#ffafb6',
-            '#ffbdc2',
-            '#ffc8cc',
-            '#ffd1d4',
-            '#ffd9db',
-            '#ffe0e2',
-            '#ffe8e9',
-            '#fff0f0',
-            '#fff7f8',
-            '#ffffff',
+            "#fb7185",
+            "#ff8b98",
+            "#ff9fa8",
+            "#ffafb6",
+            "#ffbdc2",
+            "#ffc8cc",
+            "#ffd1d4",
+            "#ffd9db",
+            "#ffe0e2",
+            "#ffe8e9",
+            "#fff0f0",
+            "#fff7f8",
+            "#ffffff",
         ],
         plotOptions: {
             treemap: {

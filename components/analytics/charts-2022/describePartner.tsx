@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -9,59 +9,59 @@ const DescribePartner = () => {
         {
             data: [
                 {
-                    x: 'Funny',
+                    x: "Funny",
                     y: 1775,
                 },
                 {
-                    x: 'Smart',
+                    x: "Smart",
                     y: 750,
                 },
                 {
-                    x: 'Kind',
+                    x: "Kind",
                     y: 704,
                 },
                 {
-                    x: 'Caring',
+                    x: "Caring",
                     y: 512,
                 },
                 {
-                    x: 'Thoughtful',
+                    x: "Thoughtful",
                     y: 456,
                 },
                 {
-                    x: 'Outgoing',
+                    x: "Outgoing",
                     y: 247,
                 },
                 {
-                    x: 'Adventurous',
+                    x: "Adventurous",
                     y: 230,
                 },
                 {
-                    x: 'Loyal',
+                    x: "Loyal",
                     y: 228,
                 },
                 {
-                    x: 'Honest',
+                    x: "Honest",
                     y: 199,
                 },
                 {
-                    x: 'Charming',
+                    x: "Charming",
                     y: 193,
                 },
                 {
-                    x: 'Chill',
+                    x: "Chill",
                     y: 179,
                 },
                 {
-                    x: 'Intelligent',
+                    x: "Intelligent",
                     y: 167,
                 },
                 {
-                    x: 'Ambitious',
+                    x: "Ambitious",
                     y: 162,
                 },
                 {
-                    x: 'Passionate',
+                    x: "Passionate",
                     y: 156,
                 },
             ],
@@ -73,7 +73,7 @@ const DescribePartner = () => {
         },
         chart: {
             height: 350,
-            type: 'treemap',
+            type: "treemap",
             toolbar: {
                 show: false,
                 tools: {
@@ -83,25 +83,25 @@ const DescribePartner = () => {
         },
         dataLabels: {
             style: {
-                fontSize: '20px',
-                colors: ['#6b7280'],
+                fontSize: "20px",
+                colors: ["#6b7280"],
             },
         },
         colors: [
-            '#fb7185',
-            '#fc848c',
-            '#fc8495',
-            '#fc979e',
-            '#fc97a6',
-            '#fdaab6',
-            '#fdbdc7',
-            '#fdbdc1',
-            '#fed0d7',
-            '#fee3e7',
-            '#fee3e5',
-            '#fff7f8',
-            '#fff7f7',
-            '#ffffff',
+            "#fb7185",
+            "#fc848c",
+            "#fc8495",
+            "#fc979e",
+            "#fc97a6",
+            "#fdaab6",
+            "#fdbdc7",
+            "#fdbdc1",
+            "#fed0d7",
+            "#fee3e7",
+            "#fee3e5",
+            "#fff7f8",
+            "#fff7f7",
+            "#ffffff",
         ],
         plotOptions: {
             treemap: {

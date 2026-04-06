@@ -3,8 +3,8 @@ import React from "react";
 interface ButtonProps {
     children?: React.ReactNode;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    bgColor?: 'bg-pmred-500' | 'bg-red-500' | 'bg-blue-500' | 'bg-white' | string;
-    textColor?: 'text-white' | 'text-black' | 'text-red' | 'text-pmred-500' | string;
+    bgColor?: "bg-pmred-500" | "bg-red-500" | "bg-blue-500" | "bg-white" | string;
+    textColor?: "text-white" | "text-black" | "text-red" | "text-pmred-500" | string;
     px?: number;
     py?: number;
     mt?: number;
@@ -16,13 +16,20 @@ interface ButtonProps {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     (
-        { children = '', onClick,
-            bgColor = 'bg-white', textColor = 'text-pmred-500',
-            px = 6, py = 2, mt = 6,
-            border = 4, shadowWidth = 6,
+        {
+            children = "",
+            onClick,
+            bgColor = "bg-white",
+            textColor = "text-pmred-500",
+            px = 6,
+            py = 2,
+            mt = 6,
+            border = 4,
+            shadowWidth = 6,
             bold = true,
-            className = '' },
-        ref
+            className = "",
+        },
+        ref,
     ) => {
         return (
             <button
@@ -37,7 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                     ${textColor}
                     border-${border}
                     border-pmblue-500 
-                    ${bold ? 'font-bold' : 'font-medium'}
+                    ${bold ? "font-bold" : "font-medium"}
                     shadow-[${shadowWidth}px_${shadowWidth}px_0px_0px_rgba(36,67,141,1)]
                     transition-all
                     hover:translate-x-[4px]
@@ -52,9 +59,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {children}
             </button>
         );
-    }
+    },
 );
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 export default Button;

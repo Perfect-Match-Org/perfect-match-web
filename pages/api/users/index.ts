@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getUsers } from '@/controllers';
-import { connect } from '@/database';
-import { User } from '@/types/users';
-import { withAdminAuth } from '@/utils/adminAuth';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getUsers } from "@/controllers";
+import { connect } from "@/database";
+import { User } from "@/types/users";
+import { withAdminAuth } from "@/utils/adminAuth";
 
 /**
  * API handler to retrieve a list of users.
@@ -19,13 +19,13 @@ import { withAdminAuth } from '@/utils/adminAuth';
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 async function getUsersHandler(req: NextApiRequest, res: NextApiResponse<User[] | String>) {
-    if (req.method !== 'GET') {
-        return res.status(405).send('Method Not Allowed');
+    if (req.method !== "GET") {
+        return res.status(405).send("Method Not Allowed");
     }
 
     await connect();
 
-    const { page = '1', limit = '0', searchTerm = '' } = req.query;
+    const { page = "1", limit = "0", searchTerm = "" } = req.query;
 
     const users = await getUsers(Number(page), Number(limit), searchTerm as string);
     return res.status(200).json(users);

@@ -1,19 +1,19 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const DateWear = () => {
     const series = [
         {
-            name: '',
+            name: "",
             data: [1468, 1016, 889, 538],
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             height: 380,
             toolbar: {
                 show: false,
@@ -24,20 +24,20 @@ const DateWear = () => {
         },
         plotOptions: {
             bar: {
-                barHeight: '100%',
+                barHeight: "100%",
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom',
+                    position: "bottom",
                 },
             },
         },
         dataLabels: {
             enabled: true,
-            textAnchor: 'start',
+            textAnchor: "start",
             style: {
-                fontSize: '15px',
-                colors: ['#6b7280'],
+                fontSize: "15px",
+                colors: ["#6b7280"],
             },
             formatter: function (val: any, opt: any) {
                 return opt.w.globals.labels[opt.dataPointIndex];
@@ -47,33 +47,33 @@ const DateWear = () => {
         stroke: {
             show: true,
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             y: {
                 formatter: function (value: any) {
                     const percent = (parseInt(value) / 3911) * 100;
-                    return percent.toFixed(0) + '%';
+                    return percent.toFixed(0) + "%";
                 },
             },
             x: {
                 show: false,
             },
         },
-        colors: ['#fcd34d', '#fde68a', '#fef3c7', '#fffbeb'],
+        colors: ["#fcd34d", "#fde68a", "#fef3c7", "#fffbeb"],
         xaxis: {
             categories: [
-                'A. Cornell Hockey Jersey with some residual fish guts from the Cornell-Harvard game.',
-                'B. David Gries 73 Years of Programming Experience T-Shirt.',
-                'C. Patagonia Vest from their past internship.',
-                'D. Scarsdale High School T-Shirt.',
+                "A. Cornell Hockey Jersey with some residual fish guts from the Cornell-Harvard game.",
+                "B. David Gries 73 Years of Programming Experience T-Shirt.",
+                "C. Patagonia Vest from their past internship.",
+                "D. Scarsdale High School T-Shirt.",
             ],
             labels: {
                 style: {
-                    colors: '#6b7280',
-                    fontSize: '14px',
+                    colors: "#6b7280",
+                    fontSize: "14px",
                 },
             },
         },
@@ -92,13 +92,13 @@ const DateWear = () => {
                     xaxis: {
                         labels: {
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                         },
                     },
                     dataLabels: {
                         style: {
-                            fontSize: '8px',
+                            fontSize: "8px",
                             fontWeight: 600,
                         },
                     },
@@ -109,7 +109,7 @@ const DateWear = () => {
                 options: {
                     dataLabels: {
                         style: {
-                            fontSize: '13px',
+                            fontSize: "13px",
                             fontWeight: 600,
                         },
                     },

@@ -1,5 +1,5 @@
 // TaskNextsBlogPost.js
-import React from 'react';
+import React from "react";
 
 const samplepost = () => {
     return (
@@ -15,18 +15,17 @@ const samplepost = () => {
                     </div>
                     <div className="mt-4 text-gray-500">
                         <p>
-                            Perfect Match, a student-run matchmaking service at Cornell University. Founded in 2019, it
-                            uses a survey and machine learning algorithm to match Cornell students and alumni with
-                            potential dates or friends. The service runs annually, typically around Valentines Day. It
-                            was founded by Jamal Hashim in 2019 and has since helped match over 5,600 participants. The
-                            latest event, PM23, matched over 3,900 Cornellians, resulting in more than 22,000 potential
-                            connections.
+                            Perfect Match, a student-run matchmaking service at Cornell University. Founded in 2019, it uses a survey and
+                            machine learning algorithm to match Cornell students and alumni with potential dates or friends. The service
+                            runs annually, typically around Valentines Day. It was founded by Jamal Hashim in 2019 and has since helped
+                            match over 5,600 participants. The latest event, PM23, matched over 3,900 Cornellians, resulting in more than
+                            22,000 potential connections.
                         </p>
                     </div>
                     <div>
                         <p className="text-rose-400 p-4">
-                            About the Author: Kavita Bala is a Junior Computer Science major in the College of
-                            Engineering. She is an analyst on the Perfect Match Engineering Team.
+                            About the Author: Kavita Bala is a Junior Computer Science major in the College of Engineering. She is an
+                            analyst on the Perfect Match Engineering Team.
                         </p>
                     </div>
                 </article>

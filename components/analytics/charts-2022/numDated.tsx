@@ -1,25 +1,25 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const NumDatedGender = () => {
     const series = [
         {
-            name: 'Male',
+            name: "Male",
             data: [-29.5, -30.7, -21.5, -11.3, -2.8, -2.0, -1.4, -0.0],
-            color: '#bae6fd',
+            color: "#bae6fd",
         },
         {
-            name: 'Female',
+            name: "Female",
             data: [37.1, 27.7, 19.5, 10.7, 2.5, 1.4, 0.8, 0.5],
-            color: '#fecdd3',
+            color: "#fecdd3",
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             height: 350,
             stacked: true,
             toolbar: {
@@ -32,7 +32,7 @@ const NumDatedGender = () => {
         plotOptions: {
             bar: {
                 horizontal: true,
-                barHeight: '80%',
+                barHeight: "80%",
             },
         },
         dataLabels: {
@@ -40,7 +40,7 @@ const NumDatedGender = () => {
         },
         stroke: {
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         grid: {
             xaxis: {
@@ -54,46 +54,37 @@ const NumDatedGender = () => {
             max: 40,
             labels: {
                 style: {
-                    fontSize: '12px',
-                    colors: '#6b7280',
+                    fontSize: "12px",
+                    colors: "#6b7280",
                 },
             },
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             shared: false,
             y: {
                 formatter: function (val: any) {
-                    return Math.abs(val) + '%';
+                    return Math.abs(val) + "%";
                 },
             },
         },
         xaxis: {
-            categories: [
-                '0 person',
-                '1 person',
-                '2 people',
-                '3 people',
-                '4 people',
-                '5 people',
-                '6-10 people',
-                '10+ people',
-            ],
+            categories: ["0 person", "1 person", "2 people", "3 people", "4 people", "5 people", "6-10 people", "10+ people"],
             labels: {
                 formatter: function (val: any) {
-                    return Math.abs(Math.round(val)) + '%';
+                    return Math.abs(Math.round(val)) + "%";
                 },
                 style: {
-                    fontSize: '12px',
-                    colors: '#6b7280',
+                    fontSize: "12px",
+                    colors: "#6b7280",
                 },
             },
         },
         legend: {
-            fontSize: '13px',
+            fontSize: "13px",
             labels: {
-                colors: '#6b7280',
+                colors: "#6b7280",
             },
         },
     };

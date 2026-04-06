@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import authOptions from './auth/[...nextauth]';
-import { getUser, updateProfile } from '@/controllers';
-import { Session } from 'next-auth';
-import { connect } from '@/database';
-import { User } from '@/types/users';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import authOptions from "./auth/[...nextauth]";
+import { getUser, updateProfile } from "@/controllers";
+import { Session } from "next-auth";
+import { connect } from "@/database";
+import { User } from "@/types/users";
 
 /**
  * API handler to manage user profiles.
@@ -18,22 +18,22 @@ import { User } from '@/types/users';
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User | String>) {
     const session: Session = (await getServerSession(req, res, authOptions))!;
-    if (!session) return res.status(401).send('Unauthorized');
+    if (!session) return res.status(401).send("Unauthorized");
 
     await connect();
 
     const { method } = req;
     switch (method) {
-        case 'GET': {
+        case "GET": {
             const user = await getUser(session.user);
-            if (!user) return res.status(404).send('User not found');
+            if (!user) return res.status(404).send("User not found");
             return res.status(200).json(user);
         }
-        case 'POST': {
+        case "POST": {
             const user = await updateProfile(session.user, JSON.parse(req.body));
             return res.status(200).json(user);
         }
         default:
-            return res.status(405).send('Method Not Allowed');
+            return res.status(405).send("Method Not Allowed");
     }
 }

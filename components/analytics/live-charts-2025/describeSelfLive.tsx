@@ -1,8 +1,8 @@
-import useSWR from 'swr';
-import { fetcher, analysisURL } from '@/utils/fetch';
-import dynamic from 'next/dynamic';
+import useSWR from "swr";
+import { fetcher, analysisURL } from "@/utils/fetch";
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -12,26 +12,28 @@ const DescribeSelfLive = () => {
 
     const series = [
         {
-            data: Object.entries(describeselfCount || {}).slice(0, 10).map(([key, value]) => ({
-                x: key,
-                y: value as number,
-            })),
+            data: Object.entries(describeselfCount || {})
+                .slice(0, 10)
+                .map(([key, value]) => ({
+                    x: key,
+                    y: value as number,
+                })),
         },
     ];
     const options = {
         tooltip: {
             enabled: true,
-            theme: 'dark',
+            theme: "dark",
         },
         noData: {
-            text: 'Loading...',
-            align: 'center',
-            verticalAlign: 'middle',
+            text: "Loading...",
+            align: "center",
+            verticalAlign: "middle",
             offsetX: 0,
             offsetY: 0,
             style: {
-                color: '#6b7280',
-                fontSize: '14px',
+                color: "#6b7280",
+                fontSize: "14px",
             },
         },
         legend: {
@@ -39,7 +41,7 @@ const DescribeSelfLive = () => {
         },
         chart: {
             height: 350,
-            type: 'treemap',
+            type: "treemap",
             toolbar: {
                 show: false,
                 tools: {
@@ -49,22 +51,11 @@ const DescribeSelfLive = () => {
         },
         dataLabels: {
             style: {
-                fontSize: '20px',
-                colors: ['#6b7280'],
+                fontSize: "20px",
+                colors: ["#6b7280"],
             },
         },
-        colors: [
-            '#fb7185',
-            '#fe7f90',
-            '#ff8e9b',
-            '#ff9da7',
-            '#ffabb3',
-            '#ffbac0',
-            '#ffc8cc',
-            '#ffd5d8',
-            '#ffe3e5',
-            '#fff1f2',
-        ],
+        colors: ["#fb7185", "#fe7f90", "#ff8e9b", "#ff9da7", "#ffabb3", "#ffbac0", "#ffc8cc", "#ffd5d8", "#ffe3e5", "#fff1f2"],
         plotOptions: {
             treemap: {
                 distributed: true,

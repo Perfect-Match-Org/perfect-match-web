@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function Footer() {
     return (
@@ -41,7 +41,7 @@ function Footer() {
                         <div className="dela-gothic-one">
                             <h1 className="text-pmblue-500 text-lg font-bold">Questions for the Cupids?</h1>
                             <h3 className="text-pmblue-500 work-sans text-sm">
-                                Reach out to us at{' '}
+                                Reach out to us at{" "}
                                 <a
                                     href="mailto:perfectmatch@cornell.edu"
                                     className="underline hover:no-underline transition-all duration-200 hover:text-pmblue-400"
@@ -63,7 +63,8 @@ function Footer() {
 
                 {/* Footer Text */}
                 <div className="work-sans text-center text-pmblue-500 text-xs sm:text-sm space-y-1">
-                    <p>©
+                    <p>
+                        ©
                         <a
                             href="/"
                             target="_blank"
@@ -71,7 +72,9 @@ function Footer() {
                             className="hover:underline transition-all duration-200 hover:text-pmblue-400"
                         >
                             Perfect Match 2026
-                        </a>. All Rights Reserved.</p>
+                        </a>
+                        . All Rights Reserved.
+                    </p>
                     <p>This organization is a registered student organization of Cornell University.</p>
                     <p>
                         <a
@@ -84,14 +87,15 @@ function Footer() {
                         </a>
                     </p>
                     <p>
-                        If you have a disability and are having trouble accessing information on this website
-                        or need materials in an alternate format, please contact us at{' '}
+                        If you have a disability and are having trouble accessing information on this website or need materials in an
+                        alternate format, please contact us at{" "}
                         <a
                             href="mailto:perfectmatch@cornell.edu"
                             className="hover:underline transition-all duration-200 hover:text-pmblue-400"
                         >
                             perfectmatch@cornell.edu
-                        </a>.
+                        </a>
+                        .
                     </p>
                 </div>
             </footer>

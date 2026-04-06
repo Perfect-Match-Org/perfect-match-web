@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getPendingReviewsCount, getApprovedReviewsCount } from '@/controllers';
-import { connect } from '@/database';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getPendingReviewsCount, getApprovedReviewsCount } from "@/controllers";
+import { connect } from "@/database";
 
 /**
  * API handler to retrieve the total count of reviews.
@@ -15,7 +15,7 @@ import { connect } from '@/database';
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<number>) {
-    if (req.method !== 'GET') return res.status(405).json(0);
+    if (req.method !== "GET") return res.status(405).json(0);
 
     await connect();
 
@@ -23,18 +23,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     let count: number;
 
     switch (status) {
-        case 'pending':
+        case "pending":
             count = await getPendingReviewsCount();
             break;
-        case 'approved':
+        case "approved":
             count = await getApprovedReviewsCount();
             break;
         default:
             // Return total count of both pending and approved
-            const [pendingCount, approvedCount] = await Promise.all([
-                getPendingReviewsCount(),
-                getApprovedReviewsCount()
-            ]);
+            const [pendingCount, approvedCount] = await Promise.all([getPendingReviewsCount(), getApprovedReviewsCount()]);
             count = pendingCount + approvedCount;
             break;
     }

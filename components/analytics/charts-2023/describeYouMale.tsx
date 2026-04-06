@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -9,55 +9,55 @@ const DescribeYouMale = () => {
         {
             data: [
                 {
-                    x: 'Funny',
+                    x: "Funny",
                     y: 28.9,
                 },
                 {
-                    x: 'Smart',
+                    x: "Smart",
                     y: 11.1,
                 },
                 {
-                    x: 'Thoughtful',
+                    x: "Thoughtful",
                     y: 10,
                 },
                 {
-                    x: 'Caring',
+                    x: "Caring",
                     y: 8.1,
                 },
                 {
-                    x: 'Adventurous',
+                    x: "Adventurous",
                     y: 7.5,
                 },
                 {
-                    x: 'Charming',
+                    x: "Charming",
                     y: 7,
                 },
                 {
-                    x: 'Kind',
+                    x: "Kind",
                     y: 6.7,
                 },
                 {
-                    x: 'Witty',
+                    x: "Witty",
                     y: 6.2,
                 },
                 {
-                    x: 'Chill',
+                    x: "Chill",
                     y: 5.8,
                 },
                 {
-                    x: 'Passionate',
+                    x: "Passionate",
                     y: 4.9,
                 },
                 {
-                    x: 'Outgoing',
+                    x: "Outgoing",
                     y: 4.7,
                 },
                 {
-                    x: 'Loyal',
+                    x: "Loyal",
                     y: 4.3,
                 },
                 {
-                    x: 'Goofy',
+                    x: "Goofy",
                     y: 4.2,
                 },
             ],
@@ -69,7 +69,7 @@ const DescribeYouMale = () => {
         },
         chart: {
             height: 350,
-            type: 'treemap',
+            type: "treemap",
             toolbar: {
                 show: false,
                 tools: {
@@ -79,24 +79,24 @@ const DescribeYouMale = () => {
         },
         dataLabels: {
             style: {
-                fontSize: '20px',
-                colors: ['#6b7280'],
+                fontSize: "20px",
+                colors: ["#6b7280"],
             },
         },
         colors: [
-            '#0ea5e9',
-            '#38bdf8',
-            '#4bc3f9',
-            '#71d0fa',
-            '#84d6fb',
-            '#97dcfb',
-            '#aae3fc',
-            '#bde9fd',
-            '#d0effd',
-            '#e3f6fe',
-            '#e3f4fe',
-            '#f5fcff',
-            '#ffffff',
+            "#0ea5e9",
+            "#38bdf8",
+            "#4bc3f9",
+            "#71d0fa",
+            "#84d6fb",
+            "#97dcfb",
+            "#aae3fc",
+            "#bde9fd",
+            "#d0effd",
+            "#e3f6fe",
+            "#e3f4fe",
+            "#f5fcff",
+            "#ffffff",
         ],
         plotOptions: {
             treemap: {
@@ -105,11 +105,11 @@ const DescribeYouMale = () => {
             },
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             y: {
                 formatter: function (value: any) {
-                    return value + '%';
+                    return value + "%";
                 },
             },
         },

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const PendingReviewSkeleton: React.FC = () => {
     return (
@@ -70,7 +70,7 @@ export default function PendingReviewsSection({
     totalPages,
     totalCount,
     onPageChange,
-    loading
+    loading,
 }: PendingReviewsSectionProps) {
     const [actionLoading, setActionLoading] = useState<string | null>(null);
 
@@ -78,20 +78,20 @@ export default function PendingReviewsSection({
         try {
             setActionLoading(id);
             const response = await fetch(`/api/reviews/${id}`, {
-                method: 'PATCH',
+                method: "PATCH",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ action: 'approve' })
+                body: JSON.stringify({ action: "approve" }),
             });
 
             if (!response.ok) {
-                throw new Error('Failed to approve review');
+                throw new Error("Failed to approve review");
             }
 
             onRefresh();
         } catch (err) {
-            console.error(err instanceof Error ? err.message : 'Failed to approve review');
+            console.error(err instanceof Error ? err.message : "Failed to approve review");
         } finally {
             setActionLoading(null);
         }
@@ -101,20 +101,20 @@ export default function PendingReviewsSection({
         try {
             setActionLoading(id);
             const response = await fetch(`/api/reviews/${id}`, {
-                method: 'PATCH',
+                method: "PATCH",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ action: 'reject' })
+                body: JSON.stringify({ action: "reject" }),
             });
 
             if (!response.ok) {
-                throw new Error('Failed to reject review');
+                throw new Error("Failed to reject review");
             }
 
             onRefresh();
         } catch (err) {
-            console.error(err instanceof Error ? err.message : 'Failed to reject review');
+            console.error(err instanceof Error ? err.message : "Failed to reject review");
         } finally {
             setActionLoading(null);
         }
@@ -128,10 +128,7 @@ export default function PendingReviewsSection({
         return (
             <div className="text-center">
                 <p className="text-xl text-gray-700 mb-4">No pending reviews.</p>
-                <button
-                    onClick={onRefresh}
-                    className="px-4 py-2 bg-pmblue-500 text-white rounded-lg hover:bg-blue-600"
-                >
+                <button onClick={onRefresh} className="px-4 py-2 bg-pmblue-500 text-white rounded-lg hover:bg-blue-600">
                     Refresh
                 </button>
             </div>
@@ -170,25 +167,25 @@ export default function PendingReviewsSection({
                         onClick={() => handleApproveReview(currentReview.id)}
                         disabled={!!actionLoading}
                     >
-                        {actionLoading === currentReview.id ? 'Loading...' : 'Approve'}
+                        {actionLoading === currentReview.id ? "Loading..." : "Approve"}
                     </button>
                     <button
                         className="px-6 py-3 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition w-32 disabled:opacity-50 disabled:cursor-not-allowed"
                         onClick={() => handleRejectReview(currentReview.id)}
                         disabled={!!actionLoading}
                     >
-                        {actionLoading === currentReview.id ? 'Loading...' : 'Reject'}
-                    </button>                </div>
+                        {actionLoading === currentReview.id ? "Loading..." : "Reject"}
+                    </button>{" "}
+                </div>
             </div>
 
             {/* Pagination controls */}
             {totalPages > 1 && (
                 <div className="flex justify-center items-center space-x-4 my-6">
                     <button
-                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === 1 || !!actionLoading
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'hover:bg-blue-600'
-                            }`}
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${
+                            currentPage === 1 || !!actionLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+                        }`}
                         onClick={() => onPageChange(currentPage - 1)}
                         disabled={currentPage === 1 || !!actionLoading}
                     >
@@ -200,10 +197,9 @@ export default function PendingReviewsSection({
                     </span>
 
                     <button
-                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === totalPages || !!actionLoading
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'hover:bg-blue-600'
-                            }`}
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${
+                            currentPage === totalPages || !!actionLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+                        }`}
                         onClick={() => onPageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || !!actionLoading}
                     >
@@ -215,20 +211,20 @@ export default function PendingReviewsSection({
             {/* Navigation buttons */}
             <div className="flex justify-center space-x-6">
                 <button
-                    className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === 0 || !!actionLoading
-                        ? 'opacity-50 cursor-not-allowed'
-                        : 'hover:bg-blue-600'
-                        }`}
+                    className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${
+                        currentReviewIndex === 0 || !!actionLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+                    }`}
                     onClick={onPrevious}
                     disabled={currentReviewIndex === 0 || !!actionLoading}
                 >
                     Previous
                 </button>
                 <button
-                    className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${currentReviewIndex === pendingReviews.length - 1 || !!actionLoading
-                        ? 'opacity-50 cursor-not-allowed'
-                        : 'hover:bg-blue-600'
-                        }`}
+                    className={`px-6 py-3 bg-pmblue-500 text-white font-bold rounded-lg transition w-32 ${
+                        currentReviewIndex === pendingReviews.length - 1 || !!actionLoading
+                            ? "opacity-50 cursor-not-allowed"
+                            : "hover:bg-blue-600"
+                    }`}
                     onClick={onNext}
                     disabled={currentReviewIndex === pendingReviews.length - 1 || !!actionLoading}
                 >

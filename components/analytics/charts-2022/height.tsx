@@ -1,25 +1,25 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const Height = () => {
     const series = [
         {
-            name: 'Female',
-            color: '#fb7185',
+            name: "Female",
+            color: "#fb7185",
             data: [1, 2, 5, 17, 64, 97, 191, 257, 289, 257, 242, 187, 130, 82, 39, 29, 7, 5, 1, 0, 0, 0],
         },
         {
-            name: 'Male',
-            color: '#38bdf8',
+            name: "Male",
+            color: "#38bdf8",
             data: [1, 0, 0, 0, 0, 0, 2, 9, 17, 16, 49, 131, 168, 180, 237, 152, 187, 102, 74, 49, 21, 6],
         },
     ];
     const options = {
         chart: {
-            type: 'area',
+            type: "area",
             toolbar: {
                 show: false,
                 tools: {
@@ -31,59 +31,59 @@ const Height = () => {
             enabled: false,
         },
         stroke: {
-            curve: 'smooth',
+            curve: "smooth",
         },
         xaxis: {
             categories: [
-                '56',
-                '57',
-                '58',
-                '59',
-                '60',
-                '61',
-                '62',
-                '63',
-                '64',
-                '65',
-                '66',
-                '67',
-                '68',
-                '69',
-                '70',
-                '71',
-                '72',
-                '73',
-                '74',
-                '75',
-                '76',
-                '77',
+                "56",
+                "57",
+                "58",
+                "59",
+                "60",
+                "61",
+                "62",
+                "63",
+                "64",
+                "65",
+                "66",
+                "67",
+                "68",
+                "69",
+                "70",
+                "71",
+                "72",
+                "73",
+                "74",
+                "75",
+                "76",
+                "77",
             ],
             labels: {
                 style: {
-                    fontSize: '12px',
-                    colors: '#6b7280',
+                    fontSize: "12px",
+                    colors: "#6b7280",
                 },
             },
         },
         yaxis: {
             labels: {
                 style: {
-                    fontSize: '12px',
-                    colors: '#6b7280',
+                    fontSize: "12px",
+                    colors: "#6b7280",
                 },
             },
             title: {
-                text: 'Number of Participants',
+                text: "Number of Participants",
                 style: {
-                    color: '#6b7280',
-                    fontSize: '12px',
+                    color: "#6b7280",
+                    fontSize: "12px",
                 },
             },
         },
         legend: {
-            fontSize: '13px',
+            fontSize: "13px",
             labels: {
-                colors: '#6b7280',
+                colors: "#6b7280",
             },
         },
     };

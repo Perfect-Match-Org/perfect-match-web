@@ -1,5 +1,5 @@
 // @ts-nocheck
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 /**
  * This module manages the connection to the MongoDB database.
@@ -22,17 +22,17 @@ if (!cached) {
  */
 export async function connect() {
     if (cached.connection) {
-        console.log('Found connection in cache!');
+        console.log("Found connection in cache!");
         return cached.connection;
     }
-    console.log('Initiating new connection...');
+    console.log("Initiating new connection...");
     const opts: MongooseOptions = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         bufferCommands: false,
     };
-    mongoose.set('strictQuery', false);
+    mongoose.set("strictQuery", false);
     cached.connection = await mongoose.connect(MONGODB_URI, opts).then((mongoose) => mongoose);
-    console.log('Connected to MongoDB!');
+    console.log("Connected to MongoDB!");
     return cached.connection;
 }

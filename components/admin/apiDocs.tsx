@@ -1,9 +1,9 @@
-import dynamic from 'next/dynamic';
-import { Container } from '@/components/testimonials/Container';
-import 'swagger-ui-react/swagger-ui.css';
-import spec from 'public/swagger.json';
+import dynamic from "next/dynamic";
+import { Container } from "@/components/testimonials/Container";
+import "swagger-ui-react/swagger-ui.css";
+import spec from "public/swagger.json";
 
-const SwaggerUI = dynamic(() => import('swagger-ui-react'), { ssr: false });
+const SwaggerUI = dynamic(() => import("swagger-ui-react"), { ssr: false });
 
 export default function ApiDocs() {
     return (

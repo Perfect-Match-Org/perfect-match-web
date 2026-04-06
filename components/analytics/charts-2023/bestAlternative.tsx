@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -14,8 +14,8 @@ const BestAlternative = () => {
                     download: false,
                 },
             },
-            width: '100%',
-            type: 'donut',
+            width: "100%",
+            type: "donut",
             animations: {
                 speed: 1400,
                 animateGradually: {
@@ -27,38 +27,38 @@ const BestAlternative = () => {
             },
         },
         labels: [
-            'Enjoy studying in the Olin Basement',
-            'Live in the Gothics',
-            'Eat at Okenshields everyday',
-            'Drunk texted their ex last night',
-            'Matched with your roommate on Hinge',
+            "Enjoy studying in the Olin Basement",
+            "Live in the Gothics",
+            "Eat at Okenshields everyday",
+            "Drunk texted their ex last night",
+            "Matched with your roommate on Hinge",
         ],
-        colors: ['#fb7185', '#fb923c', '#facc15', '#4ade80', '#38bdf8'],
+        colors: ["#fb7185", "#fb923c", "#facc15", "#4ade80", "#38bdf8"],
         plotOptions: {
             pie: {
                 dataLabels: {
                     offset: -3,
                 },
                 donut: {
-                    size: '40%',
+                    size: "40%",
                 },
             },
         },
         dataLabels: {
             formatter(val: string, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val).toFixed(1) + '%'];
+                return [name, parseInt(val).toFixed(1) + "%"];
             },
             style: {
-                fontSize: '15px',
-                fontWeight: 'bold',
+                fontSize: "15px",
+                fontWeight: "bold",
             },
         },
         legend: {
             show: false,
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             enabled: false,
         },
@@ -68,7 +68,7 @@ const BestAlternative = () => {
                 options: {
                     dataLabels: {
                         style: {
-                            fontSize: '12px',
+                            fontSize: "12px",
                         },
                     },
                 },

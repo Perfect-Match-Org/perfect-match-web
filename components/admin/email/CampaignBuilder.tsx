@@ -16,14 +16,25 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
         name: "",
         description: "",
         template_id: "",
-        user_filters: {},
+        user_filters: {
+            year: "2025",
+            natural_query: "",
+            filters: {}
+        },
         campaign_type: "bulk",
         status: "draft",
         ...campaign,
     });
 
     const [templates, setTemplates] = useState<Template[]>([]);
-    const [selectedUsers, setSelectedUsers] = useState({ count: 0, criteria: {} as FilterCriteria });
+    const [selectedUsers, setSelectedUsers] = useState({ 
+        count: 0, 
+        criteria: {
+            year: "2025",
+            natural_query: "",
+            filters: {}
+        } as FilterCriteria 
+    });
     const [currentStep, setCurrentStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
@@ -182,9 +193,9 @@ export default function CampaignBuilder({ campaign, onSave, onCancel }: Campaign
                                         )}
                                         <h3 className="font-medium text-gray-900 mb-1">{template.name}</h3>
                                         <p className="text-sm text-gray-500 mb-2">{template.description}</p>
-                                        <p className="text-xs text-gray-400">
-                                            Created {new Date(template.created_at).toLocaleDateString()}
-                                        </p>
+                                    <p className="text-xs text-gray-400">
+                                        {template.created_at && `Created ${new Date(template.created_at).toLocaleDateString()}`}
+                                    </p>
                                     </div>
                                 ))}
                             </div>

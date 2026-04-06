@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import DataCard, { DataCardSkeleton } from './dataCard';
-import { Container } from '@/components/testimonials/Container';
-import { User } from '@/types/users';
-import UserProfileModal from './userProfile';
+import { useState, useEffect } from "react";
+import DataCard, { DataCardSkeleton } from "./dataCard";
+import { Container } from "@/components/testimonials/Container";
+import { User } from "@/types/users";
+import UserProfileModal from "./userProfile";
 
 type DisplayData = [string, number, [string, string]];
 
@@ -59,32 +59,33 @@ export default function AdminDashboard() {
     const [error, setError] = useState<string | null>(null);
     // User list management
     const [displayUsers, setDisplayUsers] = useState<User[]>([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState("");
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
     const [page, setPage] = useState(1);
-    const [pageInput, setPageInput] = useState('1');
-    const [selectedUser, setSelectedUser] = useState<User | null>(null); useEffect(() => {
+    const [pageInput, setPageInput] = useState("1");
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    useEffect(() => {
         const fetchDashboardData = async () => {
             try {
                 setLoading(true);
                 setError(null);
 
                 const [userRes, optInRes, profiledRes, surveyedRes] = await Promise.all([
-                    fetch('/api/users/count'),
-                    fetch('/api/users/count?status=opted_in'),
-                    fetch('/api/users/count?status=profiled'),
-                    fetch('/api/users/count?status=surveyed')
+                    fetch("/api/users/count"),
+                    fetch("/api/users/count?status=opted_in"),
+                    fetch("/api/users/count?status=profiled"),
+                    fetch("/api/users/count?status=surveyed"),
                 ]);
 
                 if (!userRes.ok || !optInRes.ok || !profiledRes.ok || !surveyedRes.ok) {
-                    throw new Error('Failed to fetch dashboard data');
+                    throw new Error("Failed to fetch dashboard data");
                 }
 
                 const [userCount, optInCount, profiledCount, surveyedCount] = await Promise.all([
                     userRes.json(),
                     optInRes.json(),
                     profiledRes.json(),
-                    surveyedRes.json()
+                    surveyedRes.json(),
                 ]);
 
                 setUserCount(userCount);
@@ -92,21 +93,21 @@ export default function AdminDashboard() {
                 setProfiledCount(profiledCount);
                 setSurveyedCount(surveyedCount);
             } catch (err) {
-                setError(err instanceof Error ? err.message : 'Unknown error occurred');
+                setError(err instanceof Error ? err.message : "Unknown error occurred");
             } finally {
                 setLoading(false);
             }
         };
 
         fetchDashboardData();
-    }, []);    // Fetch users with search and pagination
+    }, []); // Fetch users with search and pagination
     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 setUsersLoading(true);
                 const response = await fetch(`/api/users?page=${page}&limit=10&searchTerm=${debouncedSearchTerm}`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch users');
+                    throw new Error("Failed to fetch users");
                 }
                 const data = await response.json();
                 setDisplayUsers(data);
@@ -145,7 +146,6 @@ export default function AdminDashboard() {
         ["Completed Surveys", surveyedCount, ["#96d7d1", "#71d5c1"]],
     ];
 
-
     if (error) {
         return (
             <section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
@@ -157,33 +157,25 @@ export default function AdminDashboard() {
                 </Container>
             </section>
         );
-    } return (
+    }
+    return (
         <section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
             <Container>
-                <h1 className="text-4xl text-pmred-500 font-extrabold sm:text-4xl sm:text-center font-dela-gothic mb-8">
-                    Admin Dashboard
-                </h1>
+                <h1 className="text-4xl text-pmred-500 font-extrabold sm:text-4xl sm:text-center font-dela-gothic mb-8">Admin Dashboard</h1>
 
                 {/* Statistics Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    {loading ? (
-                        // Show skeleton cards while loading
-                        Array.from({ length: 4 }).map((_, index) => (
-                            <DataCardSkeleton key={index} />
-                        ))
-                    ) : (
-                        displayDatas.map(([label, count, colors], index) => (
-                            <DataCard
-                                key={index}
-                                gradientColors={colors}
-                            >
-                                <div className="relative z-10">
-                                    <h3 className="text-white text-lg font-semibold mb-2">{label}</h3>
-                                    <p className="text-white text-3xl font-bold">{count}</p>
-                                </div>
-                            </DataCard>
-                        ))
-                    )}
+                    {loading
+                        ? // Show skeleton cards while loading
+                          Array.from({ length: 4 }).map((_, index) => <DataCardSkeleton key={index} />)
+                        : displayDatas.map(([label, count, colors], index) => (
+                              <DataCard key={index} gradientColors={colors}>
+                                  <div className="relative z-10">
+                                      <h3 className="text-white text-lg font-semibold mb-2">{label}</h3>
+                                      <p className="text-white text-3xl font-bold">{count}</p>
+                                  </div>
+                              </DataCard>
+                          ))}
                 </div>
 
                 {/* User Management Section */}
@@ -223,14 +215,14 @@ export default function AdminDashboard() {
                         <span className="text-gray-600">Page {page}</span>
                         <div className="flex gap-2">
                             <button
-                                onClick={() => setPage(p => Math.max(1, p - 1))}
+                                onClick={() => setPage((p) => Math.max(1, p - 1))}
                                 disabled={page === 1}
                                 className="px-3 py-1 bg-gray-200 text-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors"
                             >
                                 Previous
                             </button>
                             <button
-                                onClick={() => setPage(p => p + 1)}
+                                onClick={() => setPage((p) => p + 1)}
                                 disabled={displayUsers.length < 10}
                                 className="px-3 py-1 bg-gray-200 text-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors"
                             >
@@ -262,31 +254,36 @@ export default function AdminDashboard() {
                                                 <td className="px-4 py-3 text-sm text-gray-900 border-b">
                                                     {user.profile?.firstName} {user.profile?.lastName}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-gray-900 border-b">
-                                                    {user.email}
-                                                </td>
+                                                <td className="px-4 py-3 text-sm text-gray-900 border-b">{user.email}</td>
                                                 <td className="px-4 py-3 text-sm border-b">
-                                                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.optIn
-                                                        ? 'bg-green-100 text-green-800'
-                                                        : 'bg-red-100 text-red-800'
-                                                        }`}>
-                                                        {user.optIn ? 'Yes' : 'No'}
+                                                    <span
+                                                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                                                            user.optIn ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                                        }`}
+                                                    >
+                                                        {user.optIn ? "Yes" : "No"}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3 text-sm border-b">
-                                                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.profile?.complete
-                                                        ? 'bg-green-100 text-green-800'
-                                                        : 'bg-yellow-100 text-yellow-800'
-                                                        }`}>
-                                                        {user.profile?.complete ? 'Complete' : 'Incomplete'}
+                                                    <span
+                                                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                                                            user.profile?.complete
+                                                                ? "bg-green-100 text-green-800"
+                                                                : "bg-yellow-100 text-yellow-800"
+                                                        }`}
+                                                    >
+                                                        {user.profile?.complete ? "Complete" : "Incomplete"}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3 text-sm border-b">
-                                                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.survey?.complete
-                                                        ? 'bg-green-100 text-green-800'
-                                                        : 'bg-yellow-100 text-yellow-800'
-                                                        }`}>
-                                                        {user.survey?.complete ? 'Complete' : 'Incomplete'}
+                                                    <span
+                                                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                                                            user.survey?.complete
+                                                                ? "bg-green-100 text-green-800"
+                                                                : "bg-yellow-100 text-yellow-800"
+                                                        }`}
+                                                    >
+                                                        {user.survey?.complete ? "Complete" : "Incomplete"}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 py-3 text-sm border-b">
@@ -313,12 +310,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* User Profile Modal */}
-                {selectedUser && (
-                    <UserProfileModal
-                        user={selectedUser}
-                        onClose={() => setSelectedUser(null)}
-                    />
-                )}
+                {selectedUser && <UserProfileModal user={selectedUser} onClose={() => setSelectedUser(null)} />}
             </Container>
         </section>
     );

@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getUsersCount, getOptInUsersCount, getProfiledUsersCount, getSurveyedUsersCount } from '@/controllers';
-import { connect } from '@/database';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getUsersCount, getOptInUsersCount, getProfiledUsersCount, getSurveyedUsersCount } from "@/controllers";
+import { connect } from "@/database";
 
 /**
  * API handler to retrieve the total count of users.
@@ -15,7 +15,7 @@ import { connect } from '@/database';
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<number>) {
-    if (req.method !== 'GET') return res.status(405).json(0);
+    if (req.method !== "GET") return res.status(405).json(0);
 
     await connect();
 
@@ -23,13 +23,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     let count: number;
 
     switch (status) {
-        case 'opted_in':
+        case "opted_in":
             count = await getOptInUsersCount();
             break;
-        case 'profiled':
+        case "profiled":
             count = await getProfiledUsersCount();
             break;
-        case 'surveyed':
+        case "surveyed":
             count = await getSurveyedUsersCount();
             break;
         default:

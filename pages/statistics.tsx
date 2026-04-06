@@ -1,14 +1,14 @@
-import styles from '@/styles/Home.module.css';
-import Image from 'next/image';
-import Head from 'next/head';
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
-import Link from 'next/link';
-import Stats2023 from '@/components/analytics/2023Analytics';
-import Stats2022 from '@/components/analytics/2022Analytics';
-import Stats2024 from '@/components/analytics/2024Analytics';
-import { useState, useEffect } from 'react';
-import { Button, MarqueeBanner } from '@/components/general';
+import styles from "@/styles/Home.module.css";
+import Image from "next/image";
+import Head from "next/head";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import Link from "next/link";
+import Stats2023 from "@/components/analytics/2023Analytics";
+import Stats2022 from "@/components/analytics/2022Analytics";
+import Stats2024 from "@/components/analytics/2024Analytics";
+import { useState, useEffect } from "react";
+import { Button, MarqueeBanner } from "@/components/general";
 
 const Statistics = (props: { title: string }) => {
     const [year, setYear] = useState(2024); // Default year
@@ -26,10 +26,10 @@ const Statistics = (props: { title: string }) => {
                     // paddingBottom: '10px',
                     // paddingTop: '10px',
 
-                    height: '100%',
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right top',
+                    height: "100%",
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "right top",
                     // backgroundImage: 'url("valentine.png")',
                 }}
             >
@@ -41,13 +41,11 @@ const Statistics = (props: { title: string }) => {
                             </span>
                         </h1>
                         <p className="font-semibold mt-8 mx-[10%] sm:mx-0 lg:text-xl sm:text-lg text-pmblue-500 sm:leading-relaxed">
-                            <strong>
-                                Perhaps not without daydreaming about your crush, but your survey responses can!
-                            </strong>{' '}
+                            <strong>Perhaps not without daydreaming about your crush, but your survey responses can!</strong>{" "}
                         </p>
                         <p className="font-semibold mt-3 mx-[10%] sm:mx-0 lg:text-lg sm:text-md text-pmblue-500 sm:leading-relaxed">
-                            Join us on this journey to learn about some of the preferences and habits we&apos;ve
-                            discovered from several years of survey responses!
+                            Join us on this journey to learn about some of the preferences and habits we&apos;ve discovered from several
+                            years of survey responses!
                         </p>
                     </div>
                 </div>
@@ -57,14 +55,9 @@ const Statistics = (props: { title: string }) => {
             <div>
                 <div className="w-full bg-pmpink2-500 py-8 sm:py-12">
                     <div className="w-full max-w-screen-lg mx-auto flex flex-col md:flex-row items-center justify-center text-white px-6 sm:px-12">
-
                         <div className="flex flex-wrap justify-center items-center gap-4 mb-6 md:mt-0">
                             {[2022, 2023, 2024].map((y) => (
-                                <Button
-                                    key={y}
-                                    onClick={() => setYear(y)}
-                                    bold={true}
-                                >
+                                <Button key={y} onClick={() => setYear(y)} bold={true}>
                                     {y}
                                 </Button>
                             ))}
@@ -72,13 +65,7 @@ const Statistics = (props: { title: string }) => {
                     </div>
                 </div>
 
-                {year === 2022 ? (
-                    <Stats2022 />
-                ) : year === 2023 ? (
-                    <Stats2023 />
-                ) : (
-                    <Stats2024 />
-                )}
+                {year === 2022 ? <Stats2022 /> : year === 2023 ? <Stats2023 /> : <Stats2024 />}
             </div>
 
             <section className="bg-pmpink-500">
@@ -101,9 +88,8 @@ const Statistics = (props: { title: string }) => {
                                 </summary>
 
                                 <p className="pt-3 pl-4">
-                                    Absolutely not! All user data collected from our surveys is anonymized, and then
-                                    privately stored. Only your name and provided contact information is shared, and
-                                    that is only with your matches.
+                                    Absolutely not! All user data collected from our surveys is anonymized, and then privately stored. Only
+                                    your name and provided contact information is shared, and that is only with your matches.
                                 </p>
                             </details>
                             <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
@@ -118,11 +104,11 @@ const Statistics = (props: { title: string }) => {
 
                                 <p className="pt-3 pl-4">
                                     <strong>
-                                        Preserving the privacy of our participants is our utmost concern and is rooted
-                                        behind every decision made in crafting these visualizations.
-                                    </strong>{' '}
-                                    We have taken several measures to remove any identifiable characteristics from the
-                                    data we have collected, and the resulting datasets are randomly shuffled.
+                                        Preserving the privacy of our participants is our utmost concern and is rooted behind every decision
+                                        made in crafting these visualizations.
+                                    </strong>{" "}
+                                    We have taken several measures to remove any identifiable characteristics from the data we have
+                                    collected, and the resulting datasets are randomly shuffled.
                                 </p>
                             </details>
                             <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
@@ -136,8 +122,7 @@ const Statistics = (props: { title: string }) => {
                                 </summary>
 
                                 <p className="pt-3 pl-4">
-                                    These visualizations were generated using the ApexCharts and d3 JavaScript
-                                    libraries.
+                                    These visualizations were generated using the ApexCharts and d3 JavaScript libraries.
                                 </p>
                             </details>
                         </div>
@@ -153,8 +138,7 @@ const Statistics = (props: { title: string }) => {
                                 </summary>
 
                                 <p className="pt-3 pl-4">
-                                    Absolutely not! All of your data is stored privately and will not be viewed by any
-                                    third party.
+                                    Absolutely not! All of your data is stored privately and will not be viewed by any third party.
                                 </p>
                             </details>
                             <details className="mb-5 [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden">
@@ -168,18 +152,17 @@ const Statistics = (props: { title: string }) => {
                                 </summary>
 
                                 <p className="pt-3 pl-4">
-                                    Your data is safe with us! We will never share your data with a third party
-                                    advertisers, and we will only interact with your information as needed to resolve
-                                    user issues. We may collect anonymous statistics to improve our algorithm, but your
-                                    identity will always be separated from such reports.
+                                    Your data is safe with us! We will never share your data with a third party advertisers, and we will
+                                    only interact with your information as needed to resolve user issues. We may collect anonymous
+                                    statistics to improve our algorithm, but your identity will always be separated from such reports.
                                 </p>
                                 <p className="pt-3 pl-4">
-                                    Anonymized statistics are published each year on our website and provided to media
-                                    and student groups for publications. In the past, these are included Cornell Daily
-                                    Sun, Big Red Heads, Cornell Chronicle, etc.
+                                    Anonymized statistics are published each year on our website and provided to media and student groups
+                                    for publications. In the past, these are included Cornell Daily Sun, Big Red Heads, Cornell Chronicle,
+                                    etc.
                                 </p>
                                 <p className="pt-3 pl-4">
-                                    For media requests, please reach out at{' '}
+                                    For media requests, please reach out at{" "}
                                     <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
                                 </p>
                             </details>
@@ -194,10 +177,9 @@ const Statistics = (props: { title: string }) => {
                                 </summary>
 
                                 <p className="pt-3 pl-4">
-                                    We greatly encourage you to reach out to us with any questions or concerns that you
-                                    may have regarding data privacy. In fact, feedback from the Cornell community
-                                    already has and will continue to be used in to improve our algorithm and measures to
-                                    protect privacy. We can be reached at{' '}
+                                    We greatly encourage you to reach out to us with any questions or concerns that you may have regarding
+                                    data privacy. In fact, feedback from the Cornell community already has and will continue to be used in
+                                    to improve our algorithm and measures to protect privacy. We can be reached at{" "}
                                     <Link href="mailto:perfectmatch@cornell.edu">perfectmatch@cornell.edu</Link>.
                                 </p>
                             </details>
@@ -214,7 +196,7 @@ const Statistics = (props: { title: string }) => {
 export async function getStaticProps() {
     return {
         props: {
-            title: 'Statistics',
+            title: "Statistics",
         },
     };
 }

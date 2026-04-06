@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema } from "mongoose";
 
 export interface IMatchFeedback {
     overallRating: number;
@@ -41,7 +41,7 @@ export const surveyFeedbackSchema: Schema = new Schema<ISurveyFeedback>(
         categoryRanking: {
             type: [String],
             required: true,
-            default: ['Interest', 'Lifestyle', 'Beliefs', 'Goal', 'Vibe'],
+            default: ["Interest", "Lifestyle", "Beliefs", "Goal", "Vibe"],
         },
         surveyFeedback: { type: String, required: true },
         otherValentinesDayImpact: { type: String, required: false },

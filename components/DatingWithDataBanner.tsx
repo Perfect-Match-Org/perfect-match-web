@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from '@/styles/DatingBanner.module.css';
+import React from "react";
+import styles from "@/styles/DatingBanner.module.css";
 
 const DatingWithDataBanner: React.FC = () => {
     return (
@@ -13,8 +13,8 @@ const DatingWithDataBanner: React.FC = () => {
                 <h2 className={styles.headline}>Want More Matches?</h2>
 
                 <p className={styles.subheadline}>
-                    Try <span className={styles.highlight}>Dating with Data</span>, a research study on dating apps run by researchers at the{' '}
-                    <span className={styles.highlight}>University of Chicago</span>.
+                    Try <span className={styles.highlight}>Dating with Data</span>, a research study on dating apps run by researchers at
+                    the <span className={styles.highlight}>University of Chicago</span>.
                 </p>
 
                 <div className={styles.staggeredText}>

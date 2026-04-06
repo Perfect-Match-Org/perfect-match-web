@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -9,10 +9,10 @@ const Political = () => {
     const options = {
         tooltip: {
             enabled: true,
-            theme: 'dark',
+            theme: "dark",
         },
         chart: {
-            type: 'pie',
+            type: "pie",
             toolbar: {
                 show: false,
                 tools: {
@@ -20,28 +20,17 @@ const Political = () => {
                 },
             },
         },
-        colors: [
-            '#0ea5e9',
-            '#38bdf8',
-            '#38bdf8',
-            '#bae6fd',
-            '#e0f2fe',
-            '#fff1f2',
-            '#ffe4e6',
-            '#fecdd3',
-            '#fb7185',
-            '#f43f5e',
-        ],
+        colors: ["#0ea5e9", "#38bdf8", "#38bdf8", "#bae6fd", "#e0f2fe", "#fff1f2", "#ffe4e6", "#fecdd3", "#fb7185", "#f43f5e"],
         legend: {
             show: false,
         },
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         plotOptions: {
             pie: {
                 startAngle: -90,
                 endAngle: 90,
                 donut: {
-                    size: '0%',
+                    size: "0%",
                 },
                 dataLabels: {
                     minAngleToShowLabel: 10,
@@ -56,10 +45,10 @@ const Political = () => {
         dataLabels: {
             formatter(val: any, opts: any) {
                 const name = opts.w.globals.labels[opts.seriesIndex];
-                return [name, parseInt(val) + '%'];
+                return [name, parseInt(val) + "%"];
             },
             style: {
-                fontSize: '16px',
+                fontSize: "16px",
             },
         },
         responsive: [
@@ -68,7 +57,7 @@ const Political = () => {
                 options: {
                     dataLabels: {
                         style: {
-                            fontSize: '12px',
+                            fontSize: "12px",
                             fontWeight: 600,
                         },
                     },

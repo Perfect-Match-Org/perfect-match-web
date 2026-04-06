@@ -1,38 +1,38 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const ByYearNumParticipants2024 = () => {
     const series = [
         {
-            name: 'Percent in total',
+            name: "Percent in total",
             data: [915, 1097, 1003, 824, 69, 52, 21, 2],
         },
     ];
     const options = {
         tooltip: {
             enabled: true,
-            theme: 'dark',
+            theme: "dark",
         },
-        colors: ['#fb7185', '#fb923c', '#facc15', '#4ade80', '#38bdf8', '#c4b5fd'],
+        colors: ["#fb7185", "#fb923c", "#facc15", "#4ade80", "#38bdf8", "#c4b5fd"],
         chart: {
             height: 100,
-            type: 'bar',
+            type: "bar",
             toolbar: {
                 show: false,
                 tools: {
                     download: false,
                 },
             },
-            fontFamily: 'Work Sans, sans-serif'
+            fontFamily: "Work Sans, sans-serif",
         },
         plotOptions: {
             bar: {
                 borderRadius: 10,
                 dataLabels: {
-                    position: 'top', // top, center, bottom
+                    position: "top", // top, center, bottom
                 },
                 distributed: true,
             },
@@ -44,14 +44,14 @@ const ByYearNumParticipants2024 = () => {
             },
             offsetY: -22,
             style: {
-                fontSize: '16px',
-                colors: ['#24438d'],
+                fontSize: "16px",
+                colors: ["#24438d"],
                 fontWeight: 400,
             },
         },
         xaxis: {
-            categories: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Masters', 'PhD', 'Alumni', 'Faculty'],
-            position: 'bottom',
+            categories: ["Freshman", "Sophomore", "Junior", "Senior", "Masters", "PhD", "Alumni", "Faculty"],
+            position: "bottom",
             axisBorder: {
                 show: false,
             },
@@ -59,13 +59,13 @@ const ByYearNumParticipants2024 = () => {
                 show: false,
             },
             tooltip: {
-                theme: 'dark',
-                enabled: true
+                theme: "dark",
+                enabled: true,
             },
             labels: {
                 style: {
-                    colors: '#24438d',
-                    fontSize: '15px',
+                    colors: "#24438d",
+                    fontSize: "15px",
                 },
             },
         },
@@ -81,7 +81,7 @@ const ByYearNumParticipants2024 = () => {
                 show: false,
                 formatter: function (val: any) {
                     var percent = (val / 3983) * 100;
-                    return percent.toFixed(1) + '%';
+                    return percent.toFixed(1) + "%";
                 },
             },
         },
@@ -96,13 +96,13 @@ const ByYearNumParticipants2024 = () => {
                         labels: {
                             rotate: -90,
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                         },
                     },
                     dataLabels: {
                         style: {
-                            fontSize: '11px',
+                            fontSize: "11px",
                         },
                         offsetY: -16,
                     },
@@ -111,9 +111,7 @@ const ByYearNumParticipants2024 = () => {
         ],
     };
 
-    return (
-        <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />
-    );
+    return <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />;
 };
 
 export default ByYearNumParticipants2024;

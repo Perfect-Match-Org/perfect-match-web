@@ -1,13 +1,10 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const ExistingReviewsSkeleton: React.FC = () => {
     return (
         <div className="space-y-6">
             {Array.from({ length: 5 }).map((_, index) => (
-                <div
-                    key={index}
-                    className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200 animate-pulse"
-                >
+                <div key={index} className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200 animate-pulse">
                     <div className="flex justify-between items-start">
                         <div className="flex-1 pr-4 min-w-0">
                             <div className="mb-4">
@@ -64,7 +61,7 @@ export default function ExistingReviewsSection({
     totalPages,
     totalCount,
     onPageChange,
-    loading
+    loading,
 }: ExistingReviewsSectionProps) {
     const [actionLoading, setActionLoading] = useState<string | null>(null);
 
@@ -72,16 +69,16 @@ export default function ExistingReviewsSection({
         try {
             setActionLoading(id);
             const response = await fetch(`/api/reviews/${id}`, {
-                method: 'DELETE'
+                method: "DELETE",
             });
 
             if (!response.ok) {
-                throw new Error('Failed to delete review');
+                throw new Error("Failed to delete review");
             }
 
             onRefresh();
         } catch (err) {
-            console.error(err instanceof Error ? err.message : 'Failed to delete review');
+            console.error(err instanceof Error ? err.message : "Failed to delete review");
         } finally {
             setActionLoading(null);
         }
@@ -96,10 +93,7 @@ export default function ExistingReviewsSection({
             <div className="text-center">
                 <p className="text-xl text-gray-700 mb-4">No approved reviews found.</p>
                 <p className="text-gray-600 mb-4">Approved reviews are visible on the testimonials page.</p>
-                <button
-                    onClick={onRefresh}
-                    className="px-4 py-2 bg-pmblue-500 text-white rounded-lg hover:bg-blue-600"
-                >
+                <button onClick={onRefresh} className="px-4 py-2 bg-pmblue-500 text-white rounded-lg hover:bg-blue-600">
                     Refresh
                 </button>
             </div>
@@ -109,31 +103,22 @@ export default function ExistingReviewsSection({
     return (
         <div className="space-y-6">
             {existingReviews.map((review) => (
-                <div
-                    key={review.id}
-                    className="bg-white rounded-xl shadow-lg p-6 border-2 border-pmblue-500 overflow-hidden"
-                >
+                <div key={review.id} className="bg-white rounded-xl shadow-lg p-6 border-2 border-pmblue-500 overflow-hidden">
                     <div className="flex justify-between items-start">
                         <div className="flex-1 pr-4 min-w-0">
                             <div className="mb-4">
                                 <p className="text-lg font-bold mb-2 text-gray-900">Title:</p>
-                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">
-                                    {review.title}
-                                </p>
+                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">{review.title}</p>
                             </div>
 
                             <div className="mb-4">
                                 <p className="text-lg font-bold mb-2 text-gray-900">Review:</p>
-                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">
-                                    {review.body}
-                                </p>
+                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">{review.body}</p>
                             </div>
 
                             <div className="mb-4">
                                 <p className="text-lg font-bold mb-2 text-gray-900">Author:</p>
-                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">
-                                    {review.author}
-                                </p>
+                                <p className="text-gray-800 break-all overflow-wrap-anywhere whitespace-pre-wrap">{review.author}</p>
                             </div>
                         </div>
 
@@ -143,20 +128,20 @@ export default function ExistingReviewsSection({
                                 onClick={() => handleDeleteReview(review.id)}
                                 disabled={actionLoading === review.id}
                             >
-                                {actionLoading === review.id ? 'Deleting...' : 'Delete'}
+                                {actionLoading === review.id ? "Deleting..." : "Delete"}
                             </button>
                         </div>
                     </div>
-                </div>))}
+                </div>
+            ))}
 
             {/* Pagination controls */}
             {totalPages > 1 && (
                 <div className="flex justify-center items-center space-x-4 mt-8">
                     <button
-                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === 1 || !!actionLoading
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'hover:bg-blue-600'
-                            }`}
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${
+                            currentPage === 1 || !!actionLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+                        }`}
                         onClick={() => onPageChange(currentPage - 1)}
                         disabled={currentPage === 1 || !!actionLoading}
                     >
@@ -168,10 +153,9 @@ export default function ExistingReviewsSection({
                     </span>
 
                     <button
-                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${currentPage === totalPages || !!actionLoading
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'hover:bg-blue-600'
-                            }`}
+                        className={`px-4 py-2 bg-pmblue-500 text-white rounded-lg transition ${
+                            currentPage === totalPages || !!actionLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+                        }`}
                         onClick={() => onPageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || !!actionLoading}
                     >

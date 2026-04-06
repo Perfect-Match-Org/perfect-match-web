@@ -33,7 +33,7 @@
 }
 
 .layer1::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fecdd3;
@@ -43,7 +43,7 @@
 }
 
 .layer1::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fecdd3;
@@ -72,7 +72,7 @@
 }
 
 .layer2::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -82,7 +82,7 @@
 }
 
 .layer2::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -106,7 +106,7 @@
 }
 
 .layer3::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -116,7 +116,7 @@
 }
 
 .layer3::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -144,7 +144,7 @@
 }
 
 .layer4::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #f43f5e;
@@ -154,7 +154,7 @@
 }
 
 .layer4::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #f43f5e;
@@ -187,7 +187,7 @@
 }
 
 .layer1_fading::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fecdd3;
@@ -197,7 +197,7 @@
 }
 
 .layer1_fading::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fecdd3;
@@ -221,7 +221,7 @@
 }
 
 .layer2_fading::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -231,7 +231,7 @@
 }
 
 .layer2_fading::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -255,7 +255,7 @@
 }
 
 .layer3_fading::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -265,7 +265,7 @@
 }
 
 .layer3_fading::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #fb7185;
@@ -289,7 +289,7 @@
 }
 
 .layer4_fading::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #f43f5e;
@@ -299,7 +299,7 @@
 }
 
 .layer4_fading::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     background-color: #f43f5e;
@@ -486,7 +486,6 @@
 }
 
 @media screen and (max-width: 1024px) {
-
     .layer4_fading,
     .layer3_fading,
     .layer1_fading,

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dela+Gothic+One&family=Press+Start+2P&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dela+Gothic+One&family=Press+Start+2P&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 html,
 body {
@@ -17,7 +17,6 @@ body {
     background-color: whitesmoke;
 }
 
-
 a {
     color: inherit;
     text-decoration: none;
@@ -28,7 +27,7 @@ a {
 }
 
 #surveyElement {
-    --primary: #FF328F;
+    --primary: #ff328f;
     --background: #ffffff;
     --background-dim: #f3f3f3;
     --background-dim-light: #f9f9f9;
@@ -53,5 +52,5 @@ a {
 }
 
 .main {
-    font-family: 'Work Sans'
+    font-family: "Work Sans";
 }

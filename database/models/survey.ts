@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import * as survey from '../../types/surveyEnums';
+import { Schema } from "mongoose";
+import * as survey from "../../types/surveyEnums";
 
 export interface ISurvey extends Document {
     complete: boolean;

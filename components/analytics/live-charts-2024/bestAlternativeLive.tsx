@@ -1,9 +1,9 @@
-import useSWR from 'swr';
-import { fetcher, analysisURL } from '@/utils/fetch';
-import dynamic from 'next/dynamic';
-import { SurveyModel } from 'survey-react';
+import useSWR from "swr";
+import { fetcher, analysisURL } from "@/utils/fetch";
+import dynamic from "next/dynamic";
+import { SurveyModel } from "survey-react";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
@@ -13,13 +13,13 @@ const BestAlternativeLive = () => {
 
     const series = [
         {
-            name: '',
+            name: "",
             data: Object.values(alternativeCount || {}),
         },
     ];
     const options = {
         chart: {
-            type: 'pie',
+            type: "pie",
             height: 380,
             toolbar: {
                 show: false,
@@ -30,20 +30,20 @@ const BestAlternativeLive = () => {
         },
         plotOptions: {
             bar: {
-                barHeight: '100%',
+                barHeight: "100%",
                 horizontal: true,
                 distributed: true,
                 dataLabels: {
-                    position: 'bottom',
+                    position: "bottom",
                 },
             },
         },
         dataLabels: {
             enabled: true,
-            textAnchor: 'start',
+            textAnchor: "start",
             style: {
-                fontSize: '15px',
-                colors: ['#6b7280'],
+                fontSize: "15px",
+                colors: ["#6b7280"],
             },
             formatter: function (val: any, opt: any) {
                 return opt.w.globals.labels[opt.dataPointIndex];
@@ -53,29 +53,29 @@ const BestAlternativeLive = () => {
         stroke: {
             show: true,
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
             enabled: true,
             y: {
                 formatter: function (value: any, opts: any) {
                     const sum = opts.series[0].reduce((a: any, b: any) => a + b, 0);
                     const percent = (value / sum) * 100;
-                    return percent.toFixed(0) + '%';
+                    return percent.toFixed(0) + "%";
                 },
             },
             x: {
                 show: false,
             },
         },
-        colors: ['#fb7185', '#4ade80', '#facc15', '#38bdf8', '#fb923c'],
+        colors: ["#fb7185", "#4ade80", "#facc15", "#38bdf8", "#fb923c"],
         xaxis: {
             categories: Object.keys(alternativeCount || {}),
             labels: {
                 style: {
-                    colors: '#6b7280',
-                    fontSize: '14px',
+                    colors: "#6b7280",
+                    fontSize: "14px",
                 },
             },
         },
@@ -94,13 +94,13 @@ const BestAlternativeLive = () => {
                     xaxis: {
                         labels: {
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                         },
                     },
                     dataLabels: {
                         style: {
-                            fontSize: '12px',
+                            fontSize: "12px",
                             fontWeight: 600,
                         },
                     },
@@ -109,9 +109,7 @@ const BestAlternativeLive = () => {
         ],
     };
 
-    return (
-        <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />
-    );
+    return <ReactApexChart type="bar" series={series as ApexAxisChartSeries} options={options as ApexCharts.ApexOptions} />;
 };
 
 export default BestAlternativeLive;

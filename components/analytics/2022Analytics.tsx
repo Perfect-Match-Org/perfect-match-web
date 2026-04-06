@@ -1,21 +1,21 @@
-import React from 'react';
-import Script from 'next/script';
+import React from "react";
+import Script from "next/script";
 
-import Link from 'next/link';
-import DescribeYou from '@/components/analytics/charts-2022/describeYou';
-import DescribePartner from '@/components/analytics/charts-2022/describePartner';
-import Year from '@/components/analytics/charts-2022/year';
-import Height from '@/components/analytics/charts-2022/height';
-import LongestRelation from '@/components/analytics/charts-2022/longestRelation';
-import NumDatedGender from '@/components/analytics/charts-2022/numDated';
-import NumDatedCollege from '@/components/analytics/charts-2022/numDatedCollege';
-import Extroverted from '@/components/analytics/charts-2022/extroverted';
-import Easygoing from '@/components/analytics/charts-2022/easygoing';
-import Political from '@/components/analytics/charts-2022/political';
-import TimeOrMoney from '@/components/analytics/charts-2022/timeOrMoney';
-import SimilarInterest from '@/components/analytics/charts-2022/similarInterest';
-import FirstDate from '@/components/analytics/charts-2022/firstDate';
-import FridayNight from '@/components/analytics/charts-2022/fridayNight';
+import Link from "next/link";
+import DescribeYou from "@/components/analytics/charts-2022/describeYou";
+import DescribePartner from "@/components/analytics/charts-2022/describePartner";
+import Year from "@/components/analytics/charts-2022/year";
+import Height from "@/components/analytics/charts-2022/height";
+import LongestRelation from "@/components/analytics/charts-2022/longestRelation";
+import NumDatedGender from "@/components/analytics/charts-2022/numDated";
+import NumDatedCollege from "@/components/analytics/charts-2022/numDatedCollege";
+import Extroverted from "@/components/analytics/charts-2022/extroverted";
+import Easygoing from "@/components/analytics/charts-2022/easygoing";
+import Political from "@/components/analytics/charts-2022/political";
+import TimeOrMoney from "@/components/analytics/charts-2022/timeOrMoney";
+import SimilarInterest from "@/components/analytics/charts-2022/similarInterest";
+import FirstDate from "@/components/analytics/charts-2022/firstDate";
+import FridayNight from "@/components/analytics/charts-2022/fridayNight";
 
 const Stats2022 = () => {
     const [show, toggleShow] = React.useState(true);
@@ -34,15 +34,14 @@ const Stats2022 = () => {
                     </p>
                     {/* <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" /> */}
                     <p className="my-8 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                        <strong className="text-rose-400">CS</strong> students seem to really need our help; 519 of them
-                        participated in PM22. The second place went to{' '}
-                        <strong className="text-rose-400">Biological Science</strong> with 258 participants.
+                        <strong className="text-rose-400">CS</strong> students seem to really need our help; 519 of them participated in
+                        PM22. The second place went to <strong className="text-rose-400">Biological Science</strong> with 258 participants.
                     </p>
                     {/* <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" /> */}
                     <div className="my-8">
                         <p className="my-4 sm:lg-8 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            <strong className="text-rose-400">Juniors</strong> made up the highest proportion of the
-                            PM22 client body. Also interesting to notice is that
+                            <strong className="text-rose-400">Juniors</strong> made up the highest proportion of the PM22 client body. Also
+                            interesting to notice is that
                             <strong className="text-rose-400"> 5 faculty members </strong>filled out the survey!
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
@@ -56,20 +55,18 @@ const Stats2022 = () => {
                     <div className="my-8">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
                             For better or worse, <strong className="text-rose-400">height </strong>
-                            is one of the first qualities that people evaluate when looking for a significant other. For
-                            female participants, the median height is
-                            <strong className="text-rose-400"> 65 inches</strong>, and for male participants, it is{' '}
-                            <strong className="text-rose-400">70 inches</strong>. Interested to see how your height
-                            compares to other students&apos;?
+                            is one of the first qualities that people evaluate when looking for a significant other. For female
+                            participants, the median height is
+                            <strong className="text-rose-400"> 65 inches</strong>, and for male participants, it is{" "}
+                            <strong className="text-rose-400">70 inches</strong>. Interested to see how your height compares to other
+                            students&apos;?
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
                             <Height />
                             <p className="mx-[5%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
-                                *Participants who gave their gender as non-binary individual or other are excluded due to
-                                small sample size.
+                                *Participants who gave their gender as non-binary individual or other are excluded due to small sample size.
                             </p>
                         </div>
-
                     </div>
                 </section>
                 <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
@@ -82,19 +79,18 @@ const Stats2022 = () => {
                         <ul className="list-disc mb-8 sm:mb-12">
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-black">
                                 Don&apos;t sweat if you have never been in a relationship before.
-                                <strong className="text-rose-400"> 30%</strong> of participants said they had never been
-                                in a relationship.
+                                <strong className="text-rose-400"> 30%</strong> of participants said they had never been in a relationship.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-black">
-                                Only <strong className="text-rose-400">50%</strong> of CS students had their longest
-                                relationship &gt;= 3 months.
+                                Only <strong className="text-rose-400">50%</strong> of CS students had their longest relationship &gt;= 3
+                                months.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-black">
-                                <strong className="text-rose-400">AAP</strong> students tended to have the most
-                                long-lasting relationship. They also had dated the most people in the last five years.
+                                <strong className="text-rose-400">AAP</strong> students tended to have the most long-lasting relationship.
+                                They also had dated the most people in the last five years.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-black">
-                                The median number of people that the participants had dated in the last five years was{' '}
+                                The median number of people that the participants had dated in the last five years was{" "}
                                 <strong className="text-rose-400">1</strong>.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-black">
@@ -105,16 +101,16 @@ const Stats2022 = () => {
                                 Only 6.5% of participants said they spent their typical Friday night studying.
                             </li>
                             <li className="my-3 lg:my-5 max-w-4xl sm:text-lg text-black">
-                                Only a few people said they preferred to be paired with someone who is less easygoing or
-                                extroverted than themselves.
+                                Only a few people said they preferred to be paired with someone who is less easygoing or extroverted than
+                                themselves.
                             </li>
                         </ul>
                     </div>
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            We asked participants to give the length of their longest relationship. The results indicate
-                            that <strong className="text-rose-400">AAP and ILR </strong>
+                            We asked participants to give the length of their longest relationship. The results indicate that{" "}
+                            <strong className="text-rose-400">AAP and ILR </strong>
                             students tend to be in longer relationships.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
@@ -127,9 +123,8 @@ const Stats2022 = () => {
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            We also asked participants to give the number of people they had dated in the last five
-                            years. It is interesting to observe how female and male participants, and students in
-                            different colleges, gave different numbers.
+                            We also asked participants to give the number of people they had dated in the last five years. It is interesting
+                            to observe how female and male participants, and students in different colleges, gave different numbers.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
                             <h3 className="mx-[5%] text-sm sm:mx-0 font-bold mt-6 -mb-4 text-pmblue-500 sm:mb-0 sm:mt-8 sm:text-base">
@@ -137,8 +132,7 @@ const Stats2022 = () => {
                             </h3>
                             <NumDatedGender />
                             <p className="mx-[5%] sm:mx-[10%] lg:mx-[20%] text-xs sm:text-sm text-gray-400 mb-4">
-                                *Participants who gave their gender as non-binary individual or other are excluded due to
-                                small sample size.
+                                *Participants who gave their gender as non-binary individual or other are excluded due to small sample size.
                             </p>
                         </div>
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
@@ -151,11 +145,10 @@ const Stats2022 = () => {
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            Participants used surprisingly similar words when asked to describe themselves in three
-                            adjectives. <strong className="text-rose-400">&quot;Funny&quot; </strong>
-                            took the first place, without a doubt.{' '}
-                            <strong className="text-rose-400">&quot;Smart&quot; and &quot;caring&quot;</strong> were
-                            also popular options.
+                            Participants used surprisingly similar words when asked to describe themselves in three adjectives.{" "}
+                            <strong className="text-rose-400">&quot;Funny&quot; </strong>
+                            took the first place, without a doubt.{" "}
+                            <strong className="text-rose-400">&quot;Smart&quot; and &quot;caring&quot;</strong> were also popular options.
                         </p>
 
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
@@ -165,13 +158,10 @@ const Stats2022 = () => {
                             <DescribeYou />
                         </div>
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            <strong className="text-rose-400">
-                                &quot;Funny,&quot; &quot;smart,&quot; and &quot;caring&quot;{' '}
-                            </strong>
-                            were also the top adjectives used to describe an ideal partner by the participants.{' '}
-                            <strong className="text-rose-400">&quot;Loyal&quot;</strong> was the only word popular in
-                            this question (describing an ideal partner) but not in the previous question (describing
-                            yourself).
+                            <strong className="text-rose-400">&quot;Funny,&quot; &quot;smart,&quot; and &quot;caring&quot; </strong>
+                            were also the top adjectives used to describe an ideal partner by the participants.{" "}
+                            <strong className="text-rose-400">&quot;Loyal&quot;</strong> was the only word popular in this question
+                            (describing an ideal partner) but not in the previous question (describing yourself).
                         </p>
 
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
@@ -184,9 +174,8 @@ const Stats2022 = () => {
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            People also rated whether they were more extroverted or introverted, easygoing or assertive.
-                            Notice that only a few of them said they preferred to be paired with someone who is less
-                            easygoing or extroverted than themselves.
+                            People also rated whether they were more extroverted or introverted, easygoing or assertive. Notice that only a
+                            few of them said they preferred to be paired with someone who is less easygoing or extroverted than themselves.
                         </p>
 
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
@@ -206,9 +195,8 @@ const Stats2022 = () => {
                     <hr className="border-1 border-solid border-rose-300 mx-[5%] sm:mx-[10%] lg:mx-[20%]" />
                     <div className="my-8 sm:my-12">
                         <p className="my-4 sm:lg-7 lg:my-10 max-w-4xl sm:text-lg black mx-[5%] sm:mx-[10%] lg:mx-[20%] text-black">
-                            38.5% of participants thought that differences in political views were a deal breaker. Here
-                            is how people rated their political tendencies on a scale of 1 to 10, with 1 being the
-                            farthest left and 10 being the most right.
+                            38.5% of participants thought that differences in political views were a deal breaker. Here is how people rated
+                            their political tendencies on a scale of 1 to 10, with 1 being the farthest left and 10 being the most right.
                         </p>
                         <div className="sm:mx-[10%] lg:mx-[25%] -mb-12 sm:my-4 bg-white px-3 py-1 rounded-lg">
                             <h3 className="mx-[3%] text-pmblue-500 text-base sm:mx-0 font-bold mt-6 -mb-4 sm:text-lg sm:mt-8 sm:mb-0">
@@ -235,7 +223,7 @@ const Stats2022 = () => {
                         <div className="sm:w-[50%]">
                             <div className="justify-center sm:h-20">
                                 <p className="mt-8 mb-2 sm:my-10 max-w-4xl lg:text-lg text-pmblue-500 mx-[3%] sm:mx-4 font-semibold text-center ">
-                                    Would you like to be paired with someone who has mostly{' '}
+                                    Would you like to be paired with someone who has mostly{" "}
                                     <span className="text-rose-400">similar or different interests</span> to you?
                                 </p>
                             </div>

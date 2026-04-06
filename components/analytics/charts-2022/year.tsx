@@ -1,21 +1,21 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const Year = () => {
     const series = [
         {
-            name: 'Percent in total',
+            name: "Percent in total",
             data: [690, 877, 971, 882, 130, 81, 41, 5],
         },
     ];
     const options = {
-        colors: ['#fb7185', '#fb923c', '#facc15', '#4ade80', '#38bdf8', '#c4b5fd'],
+        colors: ["#fb7185", "#fb923c", "#facc15", "#4ade80", "#38bdf8", "#c4b5fd"],
         chart: {
             height: 350,
-            type: 'bar',
+            type: "bar",
             toolbar: {
                 show: false,
                 tools: {
@@ -27,7 +27,7 @@ const Year = () => {
             bar: {
                 borderRadius: 10,
                 dataLabels: {
-                    position: 'top', // top, center, bottom
+                    position: "top", // top, center, bottom
                 },
                 distributed: true,
             },
@@ -39,13 +39,13 @@ const Year = () => {
             },
             offsetY: -20,
             style: {
-                fontSize: '12px',
-                colors: ['#6b7280'],
+                fontSize: "12px",
+                colors: ["#6b7280"],
             },
         },
         xaxis: {
-            categories: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Masters', 'PhD', 'Alumni', 'Faculty'],
-            position: 'bottom',
+            categories: ["Freshman", "Sophomore", "Junior", "Senior", "Masters", "PhD", "Alumni", "Faculty"],
+            position: "bottom",
             axisBorder: {
                 show: false,
             },
@@ -53,14 +53,14 @@ const Year = () => {
                 show: false,
             },
             tooltip: {
-                theme: 'dark',
+                theme: "dark",
 
                 enabled: true,
             },
             labels: {
                 style: {
-                    colors: '#6b7280',
-                    fontSize: '12px',
+                    colors: "#6b7280",
+                    fontSize: "12px",
                 },
             },
         },
@@ -75,7 +75,7 @@ const Year = () => {
                 show: false,
                 formatter: function (val: any) {
                     var percent = (val / 3677) * 100;
-                    return percent.toFixed(1) + '%';
+                    return percent.toFixed(1) + "%";
                 },
             },
         },

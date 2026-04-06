@@ -1,25 +1,25 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 
 const NumDatedGender = () => {
     const series = [
         {
-            name: 'Male',
+            name: "Male",
             data: [-29.2, -30.1, -23.2, -9.7, -3.5, -1.9, -1.5, -0.8],
-            color: '#38bdf8',
+            color: "#38bdf8",
         },
         {
-            name: 'Female',
+            name: "Female",
             data: [38.7, 28.5, 19.7, 8.5, 2.7, 1.0, 0.7, 0.2],
-            color: '#fb7185',
+            color: "#fb7185",
         },
     ];
     const options = {
         chart: {
-            type: 'bar',
+            type: "bar",
             stacked: true,
             toolbar: {
                 show: false,
@@ -31,7 +31,7 @@ const NumDatedGender = () => {
         plotOptions: {
             bar: {
                 horizontal: true,
-                barHeight: '80%',
+                barHeight: "80%",
             },
         },
         dataLabels: {
@@ -39,7 +39,7 @@ const NumDatedGender = () => {
         },
         stroke: {
             width: 1,
-            colors: ['#fff'],
+            colors: ["#fff"],
         },
         grid: {
             xaxis: {
@@ -53,46 +53,37 @@ const NumDatedGender = () => {
             max: 40,
             labels: {
                 style: {
-                    fontSize: '15px',
-                    colors: '#6b7280',
+                    fontSize: "15px",
+                    colors: "#6b7280",
                 },
             },
         },
         tooltip: {
-            theme: 'dark',
+            theme: "dark",
 
             shared: false,
             y: {
                 formatter: function (val: any) {
-                    return Math.abs(val) + '%';
+                    return Math.abs(val) + "%";
                 },
             },
         },
         xaxis: {
-            categories: [
-                '0 person',
-                '1 person',
-                '2 people',
-                '3 people',
-                '4 people',
-                '5 people',
-                '6-10 people',
-                '10+ people',
-            ],
+            categories: ["0 person", "1 person", "2 people", "3 people", "4 people", "5 people", "6-10 people", "10+ people"],
             labels: {
                 formatter: function (val: any) {
-                    return Math.abs(Math.round(val)) + '%';
+                    return Math.abs(Math.round(val)) + "%";
                 },
                 style: {
-                    fontSize: '15px',
-                    colors: '#6b7280',
+                    fontSize: "15px",
+                    colors: "#6b7280",
                 },
             },
         },
         legend: {
-            fontSize: '16px',
+            fontSize: "16px",
             labels: {
-                colors: '#6b7280',
+                colors: "#6b7280",
             },
         },
         responsive: [
@@ -102,7 +93,7 @@ const NumDatedGender = () => {
                     xaxis: {
                         labels: {
                             style: {
-                                fontSize: '11px',
+                                fontSize: "11px",
                             },
                             offsetY: -5,
                         },
@@ -110,13 +101,13 @@ const NumDatedGender = () => {
                     yaxis: {
                         labels: {
                             style: {
-                                fontSize: '11px',
-                                colors: '#6b7280',
+                                fontSize: "11px",
+                                colors: "#6b7280",
                             },
                         },
                     },
                     legend: {
-                        fontSize: '12px',
+                        fontSize: "12px",
                     },
                 },
             },

@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import authOptions from './auth/[...nextauth]';
-import { updateSurvey } from '@/controllers';
-import { Session } from 'next-auth';
-import { connect } from '@/database';
-import { User } from '@/types/users';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import authOptions from "./auth/[...nextauth]";
+import { updateSurvey } from "@/controllers";
+import { Session } from "next-auth";
+import { connect } from "@/database";
+import { User } from "@/types/users";
 
 /**
  * Handles the API request to update a survey.
@@ -21,8 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     // return res.status(403).send('Survey is currently closed.');
 
     const session: Session | null = await getServerSession(req, res, authOptions);
-    if (!session) return res.status(401).send('Unauthorized');
-    if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
+    if (!session) return res.status(401).send("Unauthorized");
+    if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
 
     await connect();
 
