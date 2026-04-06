@@ -1,27 +1,27 @@
-import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { Header } from '@/components/header';
-import { isAdmin } from '@/utils/admins';
-import { useRouter } from 'next/router';
-import AdminNavigation from '@/components/admin/navigation';
-import { ApiDocs, ReviewManagement, Dashboard } from '@/components/admin';
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { Header } from "@/components/header";
+import { isAdmin } from "@/utils/admins";
+import { useRouter } from "next/router";
+import AdminNavigation from "@/components/admin/navigation";
+import { ApiDocs, ReviewManagement, Dashboard, EmailMarketing } from "@/components/admin";
 
-type AdminSection = 'dashboard' | 'api-docs' | 'reviews';
+type AdminSection = "dashboard" | "api-docs" | "reviews" | "email-marketing";
 
 export default function AdminPanel() {
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    const [activeSection, setActiveSection] = useState<AdminSection>('dashboard');
+    const [activeSection, setActiveSection] = useState<AdminSection>("dashboard");
 
     // Admin check
     useEffect(() => {
         if (session) {
             if (!isAdmin(session.user?.email!)) {
-                router.push('/');
+                router.push("/");
             }
         }
-    }, [session, router]);    // Handler functions for component interactions
+    }, [session, router]); // Handler functions for component interactions
     const handleSectionChange = (section: AdminSection) => {
         setActiveSection(section);
     };
@@ -29,22 +29,22 @@ export default function AdminPanel() {
     // Render different sections based on active section
     const renderContent = () => {
         switch (activeSection) {
-            case 'dashboard':
+            case "dashboard":
                 return <Dashboard />;
-            case 'api-docs':
+            case "api-docs":
                 return <ApiDocs />;
-            case 'reviews':
+            case "reviews":
                 return <ReviewManagement />;
+            case "email-marketing":
+                return <EmailMarketing />;
             default:
                 return null;
         }
-    }; return (
-        <div className='bg-gray-50 min-h-screen'>
+    };
+    return (
+        <div className="bg-gray-50 min-h-screen">
             <Header />
-            <AdminNavigation
-                activeSection={activeSection}
-                onSectionChange={handleSectionChange}
-            />
+            <AdminNavigation activeSection={activeSection} onSectionChange={handleSectionChange} />
             {renderContent()}
         </div>
     );

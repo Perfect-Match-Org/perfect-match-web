@@ -55,7 +55,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 
     const fetchAvailableYears = async () => {
         try {
-            const response = await fetch("/admin/email/users/available-years");
+            const response = await fetch("/api/admin/email/users/available-years");
             const data = await response.json();
 
             if (response.ok) {
@@ -74,7 +74,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
             setLoading(true);
             setError("");
 
-            const response = await fetch("/admin/email/users/count", {
+            const response = await fetch("/api/admin/email/users/count", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(criteria),
@@ -100,7 +100,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
             setLoading(true);
             setError("");
 
-            const response = await fetch("/admin/email/users/preview", {
+            const response = await fetch("/api/admin/email/users/preview", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(criteria),
@@ -127,7 +127,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
             setAiProcessing(true);
             setError("");
 
-            const response = await fetch("/admin/email/users/filter", {
+            const response = await fetch("/api/admin/email/users/filter", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
