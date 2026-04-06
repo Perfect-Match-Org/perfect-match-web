@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { Header } from "@/components/header";
 import { isAdmin } from "@/utils/admins";
 import { useRouter } from "next/router";
-import AdminNavigation from "@/components/admin/navigation";
+import AdminLayout from "@/components/admin/AdminLayout";
 import { ApiDocs, ReviewManagement, Dashboard, EmailMarketing } from "@/components/admin";
 
 type AdminSection = "dashboard" | "api-docs" | "reviews" | "email-marketing";
@@ -14,19 +13,17 @@ export default function AdminPanel() {
 
 	const [activeSection, setActiveSection] = useState<AdminSection>("dashboard");
 
-	// Admin check
 	useEffect(() => {
-		if (session) {
-			if (!isAdmin(session.user?.email!)) {
-				router.push("/");
-			}
+		if (status === "loading") return;
+		if (!session || !isAdmin(session.user?.email ?? "")) {
+			router.push("/");
 		}
-	}, [session, router]); // Handler functions for component interactions
+	}, [session, status, router]);
+
 	const handleSectionChange = (section: AdminSection) => {
 		setActiveSection(section);
 	};
 
-	// Render different sections based on active section
 	const renderContent = () => {
 		switch (activeSection) {
 			case "dashboard":
@@ -41,11 +38,18 @@ export default function AdminPanel() {
 				return null;
 		}
 	};
+
+	if (status === "loading") {
+		return (
+			<div className="flex items-center justify-center min-h-screen bg-gray-50">
+				<div className="animate-spin w-8 h-8 border-4 border-pink-500 border-t-transparent rounded-full" />
+			</div>
+		);
+	}
+
 	return (
-		<div className="bg-gray-50 min-h-screen">
-			<Header />
-			<AdminNavigation activeSection={activeSection} onSectionChange={handleSectionChange} />
+		<AdminLayout activeSection={activeSection} onSectionChange={handleSectionChange}>
 			{renderContent()}
-		</div>
+		</AdminLayout>
 	);
 }
