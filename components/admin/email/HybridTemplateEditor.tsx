@@ -80,7 +80,7 @@ interface CodeEditorInstance {
 			range: CodeEditorRange;
 			text: string;
 			forceMoveMarkers: boolean;
-		}>
+		}>,
 	) => void;
 	focus: () => void;
 }
@@ -160,7 +160,15 @@ const serializeStyles = (styles: EmailBlockStyles): string => {
 };
 
 const normalizeBlockType = (value: string): BlockType => {
-	if (value === "heading" || value === "text" || value === "image" || value === "button" || value === "divider" || value === "spacer" || value === "logo") {
+	if (
+		value === "heading" ||
+		value === "text" ||
+		value === "image" ||
+		value === "button" ||
+		value === "divider" ||
+		value === "spacer" ||
+		value === "logo"
+	) {
 		return value;
 	}
 
@@ -178,7 +186,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 			{ type: "spacer", label: "Spacer", description: "Add breathing room", icon: Square },
 			{ type: "logo", label: "Brand Mark", description: "Perfect Match logo block", icon: Heart },
 		],
-		[]
+		[],
 	);
 
 	const defaultBlocks = useMemo<EmailBlock[]>(
@@ -239,7 +247,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 				},
 			},
 		],
-		[]
+		[],
 	);
 
 	const createBaseTemplate = useCallback(
@@ -259,7 +267,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 			is_shared: value?.is_shared,
 			components: value?.components,
 		}),
-		[]
+		[],
 	);
 
 	const hydrateSavedBlocks = useCallback(
@@ -296,7 +304,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 				},
 			}));
 		},
-		[defaultBlocks]
+		[defaultBlocks],
 	);
 
 	const [templateData, setTemplateData] = useState<Template>(() => createBaseTemplate(template));
@@ -348,15 +356,15 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 	const generateHtmlFromBlocks = useCallback((currentBlocks: EmailBlock[]) => {
 		const htmlParts = [
 			"<!DOCTYPE html>",
-			"<html lang=\"en\">",
+			'<html lang="en">',
 			"<head>",
-			"    <meta charset=\"UTF-8\" />",
-			"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+			'    <meta charset="UTF-8" />',
+			'    <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
 			"    <title>{{subject}}</title>",
 			"</head>",
 			"<body>",
-			"    <div class=\"email-shell\">",
-			"        <div class=\"email-card\">",
+			'    <div class="email-shell">',
+			'        <div class="email-card">',
 		];
 
 		currentBlocks.forEach((block) => {
@@ -364,9 +372,13 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 
 			if (block.type === "logo") {
 				htmlParts.push(`            <div style="${styles}">`);
-				htmlParts.push(`                <div style="font-size: 24px; font-weight: 800; color: #FF328F;">${block.content.text || "Perfect Match"}</div>`);
+				htmlParts.push(
+					`                <div style="font-size: 24px; font-weight: 800; color: #FF328F;">${block.content.text || "Perfect Match"}</div>`,
+				);
 				if (block.content.subtitle) {
-					htmlParts.push(`                <div style="margin-top: 6px; font-size: 14px; color: #6b7280;">${block.content.subtitle}</div>`);
+					htmlParts.push(
+						`                <div style="margin-top: 6px; font-size: 14px; color: #6b7280;">${block.content.subtitle}</div>`,
+					);
 				}
 				htmlParts.push("            </div>");
 				return;
@@ -383,21 +395,31 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 			}
 
 			if (block.type === "button") {
-				htmlParts.push(`            <div style="text-align: ${block.styles.textAlign || "center"}; margin-bottom: ${block.styles.marginBottom || "20px"};">`);
-				htmlParts.push(`                <a class="cta-button" href="${block.content.link || "{{ctaLink}}"}" style="${styles}">${block.content.text || "Call to action"}</a>`);
+				htmlParts.push(
+					`            <div style="text-align: ${block.styles.textAlign || "center"}; margin-bottom: ${block.styles.marginBottom || "20px"};">`,
+				);
+				htmlParts.push(
+					`                <a class="cta-button" href="${block.content.link || "{{ctaLink}}"}" style="${styles}">${block.content.text || "Call to action"}</a>`,
+				);
 				htmlParts.push("            </div>");
 				return;
 			}
 
 			if (block.type === "image") {
-				htmlParts.push(`            <div style="text-align: ${block.styles.textAlign || "center"}; margin-bottom: ${block.styles.marginBottom || "20px"};">`);
-				htmlParts.push(`                <img src="${block.content.src || "https://via.placeholder.com/640x320"}" alt="${block.content.alt || "Email image"}" style="max-width: 100%; height: auto; border-radius: 18px;" />`);
+				htmlParts.push(
+					`            <div style="text-align: ${block.styles.textAlign || "center"}; margin-bottom: ${block.styles.marginBottom || "20px"};">`,
+				);
+				htmlParts.push(
+					`                <img src="${block.content.src || "https://via.placeholder.com/640x320"}" alt="${block.content.alt || "Email image"}" style="max-width: 100%; height: auto; border-radius: 18px;" />`,
+				);
 				htmlParts.push("            </div>");
 				return;
 			}
 
 			if (block.type === "divider") {
-				htmlParts.push(`            <hr style="border: none; border-top: 1px solid #ececec; margin: ${block.styles.marginBottom || "24px"} 0;" />`);
+				htmlParts.push(
+					`            <hr style="border: none; border-top: 1px solid #ececec; margin: ${block.styles.marginBottom || "24px"} 0;" />`,
+				);
 				return;
 			}
 
@@ -407,14 +429,14 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 		});
 
 		htmlParts.push(
-			"            <div class=\"email-footer\">",
-			"                <p>Perfect Match | <a href=\"{{unsubscribeLink}}\">Unsubscribe</a></p>",
+			'            <div class="email-footer">',
+			'                <p>Perfect Match | <a href="{{unsubscribeLink}}">Unsubscribe</a></p>',
 			"                <p>© 2026 Perfect Match. All rights reserved.</p>",
 			"            </div>",
 			"        </div>",
 			"    </div>",
 			"</body>",
-			"</html>"
+			"</html>",
 		);
 
 		return htmlParts.join("\n");
@@ -471,7 +493,14 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 					: type === "text"
 						? { fontSize: "16px", color: "#4b5563", lineHeight: "1.7", marginBottom: "18px" }
 						: type === "button"
-							? { backgroundColor: "#FF328F", color: "#ffffff", padding: "14px 28px", borderRadius: "999px", textAlign: "center", marginBottom: "18px" }
+							? {
+									backgroundColor: "#FF328F",
+									color: "#ffffff",
+									padding: "14px 28px",
+									borderRadius: "999px",
+									textAlign: "center",
+									marginBottom: "18px",
+								}
 							: type === "image"
 								? { textAlign: "center", marginBottom: "18px" }
 								: type === "logo"
@@ -495,48 +524,54 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 		setHasUnsavedChanges(true);
 	}, []);
 
-	const moveBlock = useCallback((fromIndex: number, toIndex: number) => {
-		if (toIndex < 0 || toIndex >= blocks.length) {
-			return;
-		}
+	const moveBlock = useCallback(
+		(fromIndex: number, toIndex: number) => {
+			if (toIndex < 0 || toIndex >= blocks.length) {
+				return;
+			}
 
-		setBlocks((prev) => {
-			const nextBlocks = [...prev];
-			const [movedBlock] = nextBlocks.splice(fromIndex, 1);
-			nextBlocks.splice(toIndex, 0, movedBlock);
-			return nextBlocks;
-		});
-		setHasUnsavedChanges(true);
-	}, [blocks.length]);
+			setBlocks((prev) => {
+				const nextBlocks = [...prev];
+				const [movedBlock] = nextBlocks.splice(fromIndex, 1);
+				nextBlocks.splice(toIndex, 0, movedBlock);
+				return nextBlocks;
+			});
+			setHasUnsavedChanges(true);
+		},
+		[blocks.length],
+	);
 
-	const insertPersonalizationToken = useCallback((token: string) => {
-		if (editorMode !== "code") {
-			window.alert("Switch to the code editor to insert personalization tokens.");
-			return;
-		}
+	const insertPersonalizationToken = useCallback(
+		(token: string) => {
+			if (editorMode !== "code") {
+				window.alert("Switch to the code editor to insert personalization tokens.");
+				return;
+			}
 
-		const editorInstance = editorRef.current;
-		if (!editorInstance) {
-			return;
-		}
+			const editorInstance = editorRef.current;
+			if (!editorInstance) {
+				return;
+			}
 
-		const range = editorInstance.getSelection() || {
-			startLineNumber: 1,
-			startColumn: 1,
-			endLineNumber: 1,
-			endColumn: 1,
-		};
+			const range = editorInstance.getSelection() || {
+				startLineNumber: 1,
+				startColumn: 1,
+				endLineNumber: 1,
+				endColumn: 1,
+			};
 
-		editorInstance.executeEdits("insert-token", [
-			{
-				range,
-				text: `{{${token}}}`,
-				forceMoveMarkers: true,
-			},
-		]);
-		editorInstance.focus();
-		setHasUnsavedChanges(true);
-	}, [editorMode]);
+			editorInstance.executeEdits("insert-token", [
+				{
+					range,
+					text: `{{${token}}}`,
+					forceMoveMarkers: true,
+				},
+			]);
+			editorInstance.focus();
+			setHasUnsavedChanges(true);
+		},
+		[editorMode],
+	);
 
 	const validateTemplate = useCallback(() => {
 		const nextErrors: string[] = [];
@@ -567,8 +602,8 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 				components:
 					blocks.length > 0
 						? {
-							blocks: serializeBlocks(blocks),
-						}
+								blocks: serializeBlocks(blocks),
+							}
 						: templateData.components,
 			};
 
@@ -741,7 +776,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 				</div>
 
 				<div className="flex-1 overflow-y-auto p-6">
-					<div className="mx-auto max-w-[680px] rounded-[12px] border border-gray-200 bg-white p-8 shadow-[0_20px_70px_rgba(17,24,39,0.08)]">
+					<div className="mx-auto rounded-[12px] border border-gray-200 bg-white p-8 shadow-[0_20px_70px_rgba(17,24,39,0.08)]">
 						{blocks.length === 0 ? (
 							<div className="rounded-xl border border-dashed border-gray-200 bg-gray-50/60 px-8 py-16 text-center">
 								<div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-md bg-white shadow-sm">
@@ -755,7 +790,10 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 						) : (
 							<div className="space-y-4">
 								{blocks.map((block, index) => (
-									<div key={block.id} className="group rounded-xl border border-transparent p-3 transition-all hover:border-gray-200 hover:bg-gray-50/70">
+									<div
+										key={block.id}
+										className="group rounded-xl border border-transparent p-3 transition-all hover:border-gray-200 hover:bg-gray-50/70"
+									>
 										<div className="mb-3 flex items-center justify-between opacity-0 transition-opacity group-hover:opacity-100">
 											<div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400">
 												<GripVertical className="h-3.5 w-3.5" />
@@ -891,7 +929,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 
 	const previewModeContent = useMemo(() => {
 		return (
-			<div className="flex h-full flex-col bg-gray-50/80">
+			<div className="flex h-full p-2 flex-col bg-gray-50/80">
 				<div className="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
 					<div>
 						<h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">Preview</h3>
@@ -909,8 +947,11 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 								<button
 									key={modeOption.value}
 									onClick={() => setPreviewMode(modeOption.value as PreviewMode)}
-									className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-widest transition-all ${previewMode === modeOption.value ? "bg-pink-600 text-white shadow-lg shadow-pink-200" : "text-gray-500 hover:text-gray-900"
-										}`}
+									className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-widest transition-all ${
+										previewMode === modeOption.value
+											? "bg-pink-600 text-white shadow-lg shadow-pink-200"
+											: "text-gray-500 hover:text-gray-900"
+									}`}
 								>
 									<Icon className="h-3.5 w-3.5" />
 									{modeOption.label}
@@ -920,8 +961,11 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 					</div>
 				</div>
 
-				<div className="flex-1 overflow-auto p-8">
-					<div className="mx-auto h-full rounded-[12px] border border-gray-200 bg-white shadow-[0_20px_70px_rgba(17,24,39,0.08)] transition-all duration-300" style={{ maxWidth: previewWidth }}>
+				<div className="flex-1 overflow-auto py-4">
+					<div
+						className="mx-auto h-full border border-gray-200 bg-white shadow-[0_20px_70px_rgba(17,24,39,0.08)] transition-all duration-300"
+						style={{ maxWidth: previewWidth }}
+					>
 						<iframe ref={previewRef} title="Email preview" className="h-full min-h-[680px] w-full rounded-[12px]" />
 					</div>
 				</div>
@@ -937,7 +981,9 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 						<h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: theme.fonts.heading }}>
 							{template ? "Edit Template" : "Create New Template"}
 						</h1>
-						<p className="mt-1 text-gray-600">Design visually, edit the HTML directly, and preview the final send in one workflow.</p>
+						<p className="mt-1 text-gray-600">
+							Design visually, edit the HTML directly, and preview the final send in one workflow.
+						</p>
 					</div>
 
 					<div className="flex items-center gap-3">
@@ -1026,10 +1072,11 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 							<button
 								key={tab.id}
 								onClick={() => setEditorMode(tab.id as EditorMode)}
-								className={`inline-flex items-center gap-2 border-b-2 px-6 py-4 text-sm font-bold transition-all ${editorMode === tab.id
-									? "border-pink-500 text-pink-600"
-									: "border-transparent text-gray-500 hover:text-gray-900"
-									}`}
+								className={`inline-flex items-center gap-2 border-b-2 px-6 py-4 text-sm font-bold transition-all ${
+									editorMode === tab.id
+										? "border-pink-500 text-pink-600"
+										: "border-transparent text-gray-500 hover:text-gray-900"
+								}`}
 							>
 								<Icon className="h-4 w-4" />
 								{tab.label}

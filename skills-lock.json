@@ -1,65 +1,65 @@
 {
-    "version": 1,
-    "skills": {
-        "ai-sdk": {
-            "source": "vercel/ai",
-            "sourceType": "github",
-            "computedHash": "81af098a4ce6f0e323c1bd02b8e79df3bbaed57cbf1c4060f58ddc95de5545a1"
-        },
-        "before-and-after": {
-            "source": "vercel-labs/before-and-after",
-            "sourceType": "github",
-            "computedHash": "2ddadc58c8b916f8b253542c4c3ae0057e35530914c0d7627a0e10b89accaef5"
-        },
-        "frontend-design": {
-            "source": "anthropics/skills",
-            "sourceType": "github",
-            "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
-        },
-        "next-best-practices": {
-            "source": "vercel-labs/next-skills",
-            "sourceType": "github",
-            "computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
-        },
-        "next-upgrade": {
-            "source": "vercel-labs/next-skills",
-            "sourceType": "github",
-            "computedHash": "e3aeb1f9e8a68d24df0c1c2e3c8ab97ede09a7251a2c76988318d02254346979"
-        },
-        "penpot-uiux-design": {
-            "source": "github/awesome-copilot",
-            "sourceType": "github",
-            "computedHash": "cd29e08bb7d2d4b9212582bcd9b70823619fbc6397078b8ba853962054ba4230"
-        },
-        "polish": {
-            "source": "pbakaus/impeccable",
-            "sourceType": "github",
-            "computedHash": "33a8b5195481719e954b71762de56faaabc68c479602673894e0d0e47336756b"
-        },
-        "shadcn": {
-            "source": "shadcn/ui",
-            "sourceType": "github",
-            "computedHash": "507f011a70e8b3ae242bdc0bb5b39fd91a1d4049a0f3c281991ccf84973d591c"
-        },
-        "streamdown": {
-            "source": "vercel/streamdown",
-            "sourceType": "github",
-            "computedHash": "fb49b9edaf9d645d5fe56af9105050d7ae4765179d4996cb89efc049a7ecb000"
-        },
-        "ui-ux-pro-max": {
-            "source": "nextlevelbuilder/ui-ux-pro-max-skill",
-            "sourceType": "github",
-            "computedHash": "0a413bf988d06481f69bb81df2070741c3ba12dd9f1be2706d57f259c905992d"
-        },
-        "web-design-guidelines": {
-            "source": "vercel-labs/agent-skills",
-            "sourceType": "github",
-            "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
-        },
-        "web-design-reviewer": {
-            "source": "github/awesome-copilot",
-            "sourceType": "github",
-            "computedHash": "10c6fad8b4f01dbeae969009d81d6c306c8a96d56077cad9bfe2a73a38f5dcbe"
-        }
-    }
+	"version": 1,
+	"skills": {
+		"ai-sdk": {
+			"source": "vercel/ai",
+			"sourceType": "github",
+			"computedHash": "81af098a4ce6f0e323c1bd02b8e79df3bbaed57cbf1c4060f58ddc95de5545a1"
+		},
+		"before-and-after": {
+			"source": "vercel-labs/before-and-after",
+			"sourceType": "github",
+			"computedHash": "2ddadc58c8b916f8b253542c4c3ae0057e35530914c0d7627a0e10b89accaef5"
+		},
+		"frontend-design": {
+			"source": "anthropics/skills",
+			"sourceType": "github",
+			"computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+		},
+		"next-best-practices": {
+			"source": "vercel-labs/next-skills",
+			"sourceType": "github",
+			"computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
+		},
+		"next-upgrade": {
+			"source": "vercel-labs/next-skills",
+			"sourceType": "github",
+			"computedHash": "e3aeb1f9e8a68d24df0c1c2e3c8ab97ede09a7251a2c76988318d02254346979"
+		},
+		"penpot-uiux-design": {
+			"source": "github/awesome-copilot",
+			"sourceType": "github",
+			"computedHash": "cd29e08bb7d2d4b9212582bcd9b70823619fbc6397078b8ba853962054ba4230"
+		},
+		"polish": {
+			"source": "pbakaus/impeccable",
+			"sourceType": "github",
+			"computedHash": "33a8b5195481719e954b71762de56faaabc68c479602673894e0d0e47336756b"
+		},
+		"shadcn": {
+			"source": "shadcn/ui",
+			"sourceType": "github",
+			"computedHash": "507f011a70e8b3ae242bdc0bb5b39fd91a1d4049a0f3c281991ccf84973d591c"
+		},
+		"streamdown": {
+			"source": "vercel/streamdown",
+			"sourceType": "github",
+			"computedHash": "fb49b9edaf9d645d5fe56af9105050d7ae4765179d4996cb89efc049a7ecb000"
+		},
+		"ui-ux-pro-max": {
+			"source": "nextlevelbuilder/ui-ux-pro-max-skill",
+			"sourceType": "github",
+			"computedHash": "0a413bf988d06481f69bb81df2070741c3ba12dd9f1be2706d57f259c905992d"
+		},
+		"web-design-guidelines": {
+			"source": "vercel-labs/agent-skills",
+			"sourceType": "github",
+			"computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+		},
+		"web-design-reviewer": {
+			"source": "github/awesome-copilot",
+			"sourceType": "github",
+			"computedHash": "10c6fad8b4f01dbeae969009d81d6c306c8a96d56077cad9bfe2a73a38f5dcbe"
+		}
+	}
 }

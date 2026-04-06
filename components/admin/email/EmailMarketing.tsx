@@ -167,40 +167,44 @@ export default function EmailMarketing() {
 						<div className="flex space-x-8">
 							<button
 								onClick={() => setCurrentView("dashboard")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "dashboard"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
+									currentView === "dashboard"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-									}`}
+								}`}
 							>
 								Overview
 							</button>
 
 							<button
 								onClick={() => setCurrentView("templates")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "templates"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
+									currentView === "templates"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-									}`}
+								}`}
 							>
 								Templates
 							</button>
 
 							<button
 								onClick={() => setCurrentView("campaigns")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "campaigns"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
+									currentView === "campaigns"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-									}`}
+								}`}
 							>
 								Campaigns
 							</button>
 
 							<button
 								onClick={() => setCurrentView("analytics")}
-								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${currentView === "analytics"
+								className={`py-4 px-4 border-b-2 font-bold text-xs uppercase tracking-widest transition-all ${
+									currentView === "analytics"
 										? "border-pink-500 text-pink-600"
 										: "border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300"
-									}`}
+								}`}
 							>
 								Analytics
 							</button>

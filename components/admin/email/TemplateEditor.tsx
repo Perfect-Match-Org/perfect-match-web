@@ -368,8 +368,9 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 						<button
 							key={tab}
 							onClick={() => setActiveTab(tab)}
-							className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${activeTab === tab ? "border-pink-500 text-pink-600" : "border-transparent text-gray-500 hover:text-gray-700"
-								}`}
+							className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
+								activeTab === tab ? "border-pink-500 text-pink-600" : "border-transparent text-gray-500 hover:text-gray-700"
+							}`}
 						>
 							{tab.toUpperCase()}
 						</button>
@@ -382,8 +383,9 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 								<button
 									key={mode}
 									onClick={() => setPreviewMode(mode)}
-									className={`px-3 py-1 text-xs rounded-md transition-colors ${previewMode === mode ? "bg-pink-100 text-pink-700" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-										}`}
+									className={`px-3 py-1 text-xs rounded-md transition-colors ${
+										previewMode === mode ? "bg-pink-100 text-pink-700" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+									}`}
 								>
 									{mode}
 								</button>

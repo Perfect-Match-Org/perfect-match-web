@@ -60,8 +60,8 @@ the admin context.
 > **Why it matters:** The "Schedule for later" date/time field renders the browser's raw `datetime-local` input with `mm/dd/yyyy, --:-- --`
 > placeholder. It looks broken, renders inconsistently across browsers, and appears on the _final confirmation step_ of the campaign wizard
 > — the worst possible moment for an unpolished component.  
-> **Fix:** Replace with a styled date/time picker (`<Popover>` + `<Calendar>` + a time `Select`). At minimum, apply consistent
-> border, padding, and font styling to match the rest of the form.  
+> **Fix:** Replace with a styled date/time picker (`<Popover>` + `<Calendar>` + a time `Select`). At minimum, apply consistent border,
+> padding, and font styling to match the rest of the form.  
 > **Screen:** `admin--email-campaign-creator-schedule.png`
 
 ---
@@ -219,9 +219,9 @@ The Schedule page Campaign Summary shows label/value pairs in two inline columns
 >
 > ```css
 > .summary-grid {
->     display: grid;
->     grid-template-columns: max-content 1fr;
->     gap: 4px 24px;
+> 	display: grid;
+> 	grid-template-columns: max-content 1fr;
+> 	gap: 4px 24px;
 > }
 > ```
 >
