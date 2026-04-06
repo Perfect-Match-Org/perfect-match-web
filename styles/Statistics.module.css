@@ -1,9 +1,9 @@
 .custom-tooltip {
-    color: orange;
+	color: orange;
 }
 
 svg {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }

@@ -17,20 +17,20 @@ export const biggestRedFlag = ["latenight", "ex", "friends", "disappears", "publ
 export const interests = ["travel", "tech", "music", "art", "fitness", "literature", "food", "film", "sports", "games"];
 
 export const music = [
-    "pop",
-    "rock",
-    "indie",
-    "rap",
-    "jazz",
-    "blues",
-    "reggaeton",
-    "r&b",
-    "classical",
-    "kpop",
-    "edm",
-    "afrobeat",
-    "house",
-    "country",
+	"pop",
+	"rock",
+	"indie",
+	"rap",
+	"jazz",
+	"blues",
+	"reggaeton",
+	"r&b",
+	"classical",
+	"kpop",
+	"edm",
+	"afrobeat",
+	"house",
+	"country",
 ];
 
 export const tv = ["stranger", "severance", "singlesInferno", "knight", "office", "rivalry"];

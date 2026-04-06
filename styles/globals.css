@@ -2,38 +2,38 @@
 
 html,
 body {
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        Segoe UI,
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        Fira Sans,
-        Droid Sans,
-        Helvetica Neue,
-        sans-serif;
-    background-color: whitesmoke;
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		Segoe UI,
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		Fira Sans,
+		Droid Sans,
+		Helvetica Neue,
+		sans-serif;
+	background-color: whitesmoke;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #surveyElement {
-    --primary: #ff328f;
-    --background: #ffffff;
-    --background-dim: #f3f3f3;
-    --background-dim-light: #f9f9f9;
-    --primary-foreground: #ffffff;
-    --foreground: #161616;
-    --base-unit: 8px;
+	--primary: #ff328f;
+	--background: #ffffff;
+	--background-dim: #f3f3f3;
+	--background-dim-light: #f9f9f9;
+	--primary-foreground: #ffffff;
+	--foreground: #161616;
+	--base-unit: 8px;
 }
 
 @tailwind base;
@@ -41,16 +41,16 @@ a {
 @tailwind utilities;
 
 @media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
+	html {
+		color-scheme: dark;
+	}
 
-    body {
-        color: white;
-        background: whitesmoke;
-    }
+	body {
+		color: white;
+		background: whitesmoke;
+	}
 }
 
 .main {
-    font-family: "Work Sans";
+	font-family: "Work Sans";
 }

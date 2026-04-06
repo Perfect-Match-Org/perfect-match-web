@@ -15,25 +15,25 @@ import { connect } from "@/database";
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<number>) {
-    if (req.method !== "GET") return res.status(405).json(0);
+	if (req.method !== "GET") return res.status(405).json(0);
 
-    await connect();
+	await connect();
 
-    const { status } = req.query;
-    let count: number;
+	const { status } = req.query;
+	let count: number;
 
-    switch (status) {
-        case "pending":
-            count = await getPendingReviewsCount();
-            break;
-        case "approved":
-            count = await getApprovedReviewsCount();
-            break;
-        default:
-            // Return total count of both pending and approved
-            const [pendingCount, approvedCount] = await Promise.all([getPendingReviewsCount(), getApprovedReviewsCount()]);
-            count = pendingCount + approvedCount;
-            break;
-    }
-    return res.status(200).json(count);
+	switch (status) {
+		case "pending":
+			count = await getPendingReviewsCount();
+			break;
+		case "approved":
+			count = await getApprovedReviewsCount();
+			break;
+		default:
+			// Return total count of both pending and approved
+			const [pendingCount, approvedCount] = await Promise.all([getPendingReviewsCount(), getApprovedReviewsCount()]);
+			count = pendingCount + approvedCount;
+			break;
+	}
+	return res.status(200).json(count);
 }

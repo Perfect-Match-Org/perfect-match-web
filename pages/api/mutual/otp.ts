@@ -12,27 +12,27 @@ import { connect } from "@/database";
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-    // Validates the provided API token against the environment variable
-    const apiToken = req.headers["x-api-key"];
-    if (apiToken !== process.env.MUTUAL_API) {
-        return res.status(401).json({ message: "Invalid API Key" });
-    }
+	// Validates the provided API token against the environment variable
+	const apiToken = req.headers["x-api-key"];
+	if (apiToken !== process.env.MUTUAL_API) {
+		return res.status(401).json({ message: "Invalid API Key" });
+	}
 
-    if (req.method !== "POST") {
-        return res.status(405).json({ message: "Method Not Allowed" });
-    }
+	if (req.method !== "POST") {
+		return res.status(405).json({ message: "Method Not Allowed" });
+	}
 
-    await connect();
+	await connect();
 
-    const email = req.body.email;
-    if (!email) {
-        return res.status(400).json({ message: "Missing Email Address" });
-    }
+	const email = req.body.email;
+	if (!email) {
+		return res.status(400).json({ message: "Missing Email Address" });
+	}
 
-    const otp = await requestOTP(email);
-    if (otp === null) {
-        return res.status(400).json({ message: "User not found" });
-    }
+	const otp = await requestOTP(email);
+	if (otp === null) {
+		return res.status(400).json({ message: "User not found" });
+	}
 
-    return res.status(200).json({ message: "OTP Sent" });
+	return res.status(200).json({ message: "OTP Sent" });
 }

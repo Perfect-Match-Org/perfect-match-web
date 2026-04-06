@@ -17,23 +17,23 @@ import { User } from "@/types/users";
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<User | String>) {
-    const session: Session = (await getServerSession(req, res, authOptions))!;
-    if (!session) return res.status(401).send("Unauthorized");
+	const session: Session = (await getServerSession(req, res, authOptions))!;
+	if (!session) return res.status(401).send("Unauthorized");
 
-    await connect();
+	await connect();
 
-    const { method } = req;
-    switch (method) {
-        case "GET": {
-            const user = await getUser(session.user);
-            if (!user) return res.status(404).send("User not found");
-            return res.status(200).json(user);
-        }
-        case "POST": {
-            const user = await updateProfile(session.user, JSON.parse(req.body));
-            return res.status(200).json(user);
-        }
-        default:
-            return res.status(405).send("Method Not Allowed");
-    }
+	const { method } = req;
+	switch (method) {
+		case "GET": {
+			const user = await getUser(session.user);
+			if (!user) return res.status(404).send("User not found");
+			return res.status(200).json(user);
+		}
+		case "POST": {
+			const user = await updateProfile(session.user, JSON.parse(req.body));
+			return res.status(200).json(user);
+		}
+		default:
+			return res.status(405).send("Method Not Allowed");
+	}
 }

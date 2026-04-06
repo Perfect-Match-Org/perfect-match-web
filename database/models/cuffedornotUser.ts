@@ -5,4 +5,4 @@ import mongoose, { Model } from "mongoose";
 const cuffedOrNotUserSchema = new mongoose.Schema({}, { strict: false });
 
 export const CuffedOrNotUser: Model<any> =
-    mongoose.models.cuffedornot_user || mongoose.model("cuffedornot_user", cuffedOrNotUserSchema, "cuffedornot_users");
+	mongoose.models.cuffedornot_user || mongoose.model("cuffedornot_user", cuffedOrNotUserSchema, "cuffedornot_users");

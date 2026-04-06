@@ -17,14 +17,14 @@ import { Matches, MatchReview } from "@/types/users";
  * @returns {Promise<void>} - A promise that resolves when the response is sent.
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<MatchReview[] | String>) {
-    const session: Session = (await getServerSession(req, res, authOptions))!;
-    if (!session) return res.status(401).send("Unauthorized");
-    if (req.method !== "GET") return res.status(405).send("Method Not Allowed");
+	const session: Session = (await getServerSession(req, res, authOptions))!;
+	if (!session) return res.status(401).send("Unauthorized");
+	if (req.method !== "GET") return res.status(405).send("Method Not Allowed");
 
-    await connect();
+	await connect();
 
-    const user = await getUser(session.user);
-    if (!user) return res.status(404).send("User not found");
-    const matches: MatchReview[] = user.matchReviews;
-    return res.status(200).json(matches);
+	const user = await getUser(session.user);
+	if (!user) return res.status(404).send("User not found");
+	const matches: MatchReview[] = user.matchReviews;
+	return res.status(200).json(matches);
 }

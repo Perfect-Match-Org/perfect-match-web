@@ -15,24 +15,24 @@ import { Button } from "@/components/general";
 import { Reviews } from "@/components/testimonials/testimonials";
 
 {
-    /* Revert this commit to restore the original landing page (removes CuffedOrNotImage + this index.tsx) */
+	/* Revert this commit to restore the original landing page (removes CuffedOrNotImage + this index.tsx) */
 }
 const Home: NextPage = (props: any) => {
-    // const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
-    //     refreshInterval: 60000,
-    // });
-    const { data: cuffedCount } = useSWR("/api/cuffedornot/count", fetcher, {
-        refreshInterval: 60000,
-    });
-    return (
-        <div>
-            <Head>
-                <title>Perfect Match</title>
-                <meta name="description" content="Find your Perfect Match" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Header />
-            {/*
+	// const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
+	//     refreshInterval: 60000,
+	// });
+	const { data: cuffedCount } = useSWR("/api/cuffedornot/count", fetcher, {
+		refreshInterval: 60000,
+	});
+	return (
+		<div>
+			<Head>
+				<title>Perfect Match</title>
+				<meta name="description" content="Find your Perfect Match" />
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<Header />
+			{/*
             <div className="bg-pink-100">
                 <div className="py-2 px-3 sm:py-3 flex">
                     <div className="flex flex-wrap items-center sm:mx-auto">
@@ -52,73 +52,73 @@ const Home: NextPage = (props: any) => {
                 </div>
             </div>
             */}
-            {/* Scrolling Marquee Banner - Top */}
-            <MarqueeBanner text="Your Playlist Is A Red Flag" />
-            <div className="relative z-0 overflow-hidden">
-                <section className="bg-pmpink2-500">
-                    <div className="flex flex-col justify-center align-middle items-center h-full lg:h-[70vh] lg:flex-row lg:px-[12vw] z-20">
-                        <div className="w-full lg:w-1/2 lg:mr-16 xl:mr-0 flex items-center justify-center py-4 md:py-0 md:h-[50%]">
-                            <CuffedOrNotImage />
-                        </div>
-                        <div className="lg:w-1/2">
-                            <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
-                                <div className="">
-                                    <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                        <span className="bg-pmblue2-800 box-decoration-clone lg:px-4 lg:py-1 sm:px-2 sm:py-1 sm:leading-[1.1] lg:leading-[1.2]">
-                                            {" "}
-                                            APRIL FOOLS 💔🎧
-                                        </span>
-                                    </h1>
-                                </div>
-                                <div className="font-work-sans">
-                                    <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
-                                        <strong>Perfect Match</strong> partnered with <strong>Unserious Ventures</strong> to answer one
-                                        important question:
-                                        <br />
-                                        <strong>Are you actually single... or just pretending?</strong>
-                                        <br />
-                                        Drop your playlist and we&#39;ll analyze your taste 👀 (yes your music choices are that revealing)
-                                    </p>
-                                    <p className="text-pmblue-500 text-center lg:text-left mt-4">
-                                        <strong>{cuffedCount?.toLocaleString() ?? "..."}</strong> Cornellians got called out already
-                                    </p>
-                                    <Link
-                                        href="https://cuffedornot.perfectmatch.ai"
-                                        className="inline-block mt-6 px-6 py-2 rounded-full bg-white text-pmred-500 border-4 border-pmblue-500 font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none"
-                                    >
-                                        Judge My Playlist
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+			{/* Scrolling Marquee Banner - Top */}
+			<MarqueeBanner text="Your Playlist Is A Red Flag" />
+			<div className="relative z-0 overflow-hidden">
+				<section className="bg-pmpink2-500">
+					<div className="flex flex-col justify-center align-middle items-center h-full lg:h-[70vh] lg:flex-row lg:px-[12vw] z-20">
+						<div className="w-full lg:w-1/2 lg:mr-16 xl:mr-0 flex items-center justify-center py-4 md:py-0 md:h-[50%]">
+							<CuffedOrNotImage />
+						</div>
+						<div className="lg:w-1/2">
+							<div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
+								<div className="">
+									<h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
+										<span className="bg-pmblue2-800 box-decoration-clone lg:px-4 lg:py-1 sm:px-2 sm:py-1 sm:leading-[1.1] lg:leading-[1.2]">
+											{" "}
+											APRIL FOOLS 💔🎧
+										</span>
+									</h1>
+								</div>
+								<div className="font-work-sans">
+									<p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
+										<strong>Perfect Match</strong> partnered with <strong>Unserious Ventures</strong> to answer one
+										important question:
+										<br />
+										<strong>Are you actually single... or just pretending?</strong>
+										<br />
+										Drop your playlist and we&#39;ll analyze your taste 👀 (yes your music choices are that revealing)
+									</p>
+									<p className="text-pmblue-500 text-center lg:text-left mt-4">
+										<strong>{cuffedCount?.toLocaleString() ?? "..."}</strong> Cornellians got called out already
+									</p>
+									<Link
+										href="https://cuffedornot.perfectmatch.ai"
+										className="inline-block mt-6 px-6 py-2 rounded-full bg-white text-pmred-500 border-4 border-pmblue-500 font-bold shadow-[6px_6px_0px_0px_rgba(36,67,141,1)] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-[2px_2px_0px_0px_rgba(36,67,141,1)] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none"
+									>
+										Judge My Playlist
+									</Link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 
-                {/* Scrolling Marquee Banner - Bottom */}
-                <MarqueeBanner text="Drop Your Playlist" />
+				{/* Scrolling Marquee Banner - Bottom */}
+				<MarqueeBanner text="Drop Your Playlist" />
 
-                <section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
-                    <div className="pb-6 pt-8 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-1/2 lg:pr-3 lg:left-0">
-                        <div className="text-center lg:text-left sm:mx-auto mt-8 sm:mt-0 opacity-100 space-y-6">
-                            <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">
-                                    CAPTIVATING HEARTS SINCE 2019
-                                </span>
-                            </h1>
-                            <div className="">
-                                <div className="text-lg text-pmblue-500 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed font-work-sans space-y-4">
-                                    <p className="">
-                                        Perfect Match is Cornell&#39;s very own <strong>match making survey</strong> that pairs students
-                                        with potential partners with our comprehensive algorithm.
-                                    </p>
-                                    <p className="">
-                                        Last year we matched over <strong>5,000 students!</strong> Don&#39;t believe us? Check out our
-                                        statistics.{" "}
-                                    </p>
-                                </div>
-                                <Link
-                                    href="/statistics"
-                                    className="
+				<section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
+					<div className="pb-6 pt-8 sm:pt-20 lg:pt-44 lg:pb-36 lg:w-1/2 lg:pr-3 lg:left-0">
+						<div className="text-center lg:text-left sm:mx-auto mt-8 sm:mt-0 opacity-100 space-y-6">
+							<h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
+								<span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">
+									CAPTIVATING HEARTS SINCE 2019
+								</span>
+							</h1>
+							<div className="">
+								<div className="text-lg text-pmblue-500 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed font-work-sans space-y-4">
+									<p className="">
+										Perfect Match is Cornell&#39;s very own <strong>match making survey</strong> that pairs students
+										with potential partners with our comprehensive algorithm.
+									</p>
+									<p className="">
+										Last year we matched over <strong>5,000 students!</strong> Don&#39;t believe us? Check out our
+										statistics.{" "}
+									</p>
+								</div>
+								<Link
+									href="/statistics"
+									className="
                                     mt-6
                                     px-6 
                                     py-2
@@ -137,52 +137,52 @@ const Home: NextPage = (props: any) => {
                                     active:translate-y-[6px]
                                     active:shadow-none
                                 "
-                                >
-                                    last year&apos;s stats
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="lg:w-1/2 flex justify-center items-center">
-                        <Image
-                            src="/pm2026.png"
-                            alt="pm2026"
-                            height={396}
-                            width={504}
-                            loading="lazy"
-                            draggable="false"
-                            style={{ width: "100%", height: "auto" }}
-                        />
-                    </div>
-                </section>
-            </div>
-            <div className="bg-pmred-500">
-                <Reviews />
-                <div className="left-0 w-full overflow-hidden">
-                    <svg
-                        className="relative block w-full h-[60px] md:hidden" // Adjust height as needed
-                        viewBox="0 0 1200 120"
-                        preserveAspectRatio="none"
-                    >
-                        <path
-                            d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
-                            fill="#fce5f3"
-                        ></path>
-                    </svg>
-                </div>
-            </div>
-            <Footer />
-        </div>
-    );
+								>
+									last year&apos;s stats
+								</Link>
+							</div>
+						</div>
+					</div>
+					<div className="lg:w-1/2 flex justify-center items-center">
+						<Image
+							src="/pm2026.png"
+							alt="pm2026"
+							height={396}
+							width={504}
+							loading="lazy"
+							draggable="false"
+							style={{ width: "100%", height: "auto" }}
+						/>
+					</div>
+				</section>
+			</div>
+			<div className="bg-pmred-500">
+				<Reviews />
+				<div className="left-0 w-full overflow-hidden">
+					<svg
+						className="relative block w-full h-[60px] md:hidden" // Adjust height as needed
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none"
+					>
+						<path
+							d="M0,60 C40,40 80,80 120,60 C160,40 200,80 240,60 C280,40 320,80 360,60 C400,40 440,80 480,60 C520,40 560,80 600,60 C640,40 680,80 720,60 C760,40 800,80 840,60 C880,40 920,80 960,60 C1000,40 1040,80 1080,60 C1120,40 1160,80 1200,60 V120 H0 Z"
+							fill="#fce5f3"
+						></path>
+					</svg>
+				</div>
+			</div>
+			<Footer />
+		</div>
+	);
 };
 
 export async function getServerSideProps(context: any) {
-    const session = await getSession(context);
-    return {
-        props: {
-            user: session?.user || null,
-        },
-    };
+	const session = await getSession(context);
+	return {
+		props: {
+			user: session?.user || null,
+		},
+	};
 }
 
 export default Home;
