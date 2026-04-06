@@ -1,14 +1,21 @@
-// types/email.ts
 export interface Template {
 	_id: string;
 	name: string;
 	description: string;
 	html_content: string;
 	css_content: string;
-	components?: any;
+	components: {
+		blocks: {
+			type: string;
+			content: any;
+			styling: any;
+			custom_html: string;
+		}[];
+	};
 	thumbnail?: string;
 	version?: number;
 	tags: string[];
+	year?: string;
 	is_shared?: boolean;
 	created_at?: string;
 	updated_at?: string;

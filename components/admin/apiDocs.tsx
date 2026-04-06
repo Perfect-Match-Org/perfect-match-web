@@ -1,22 +1,24 @@
-import dynamic from "next/dynamic";
+"use client";
+
 import { Container } from "@/components/testimonials/Container";
-import "swagger-ui-react/swagger-ui.css";
 import spec from "public/swagger.json";
 
-const SwaggerUI = dynamic(() => import("swagger-ui-react"), { ssr: false });
+import SwaggerUI from "@/components/admin/SwaggerUI";
+import { theme } from "@/styles/themes";
 
 export default function ApiDocs() {
-	return (
-		<section className="pt-6 pb-8 sm:pt-10 sm:pb-12 bg-pmpink2-500 min-h-[calc(100vh-110px)]">
-			<Container>
-				<h1 className="text-4xl text-pmred-500 font-extrabold sm:text-4xl sm:text-center font-dela-gothic mb-8">
-					API Documentation
-				</h1>
+    return (
+        <section className="py-10 bg-gray-50 min-h-screen">
+            <Container>
+                <div className="mb-10">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: theme.fonts.heading }}>API Documentation</h1>
+                    <p className="text-gray-600">Technical reference for developers and integrations</p>
+                </div>
 
-				<div className="bg-white rounded-lg shadow-lg p-4">
-					<SwaggerUI spec={spec} />
-				</div>
-			</Container>
-		</section>
-	);
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <SwaggerUI spec={spec} />
+                </div>
+            </Container>
+        </section>
+    );
 }
