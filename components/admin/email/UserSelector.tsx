@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import {
 	AvailableYearsResponse,
 	FilterCriteria,
@@ -42,6 +42,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 		[],
 	);
 	const [availableYears, setAvailableYears] = useState<string[]>([]);
+	const previousInitialCriteria = useRef<string>("");
 	const [criteria, setCriteria] = useState<FilterCriteria>({
 		...defaultCriteria,
 		...initialCriteria,
@@ -51,6 +52,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 		},
 	});
 
+	const [aiModel, setAiModel] = useState<string>("gpt-4-turbo");
 	const [previewUsers, setPreviewUsers] = useState<User[]>([]);
 	const [userCount, setUserCount] = useState<UserSelectionStats>({ count: 0, total: 0, percentage: 0 });
 	const [loading, setLoading] = useState(false);
@@ -83,6 +85,12 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 			return;
 		}
 
+		const serialized = JSON.stringify(initialCriteria);
+		if (serialized === previousInitialCriteria.current) {
+			return;
+		}
+		previousInitialCriteria.current = serialized;
+
 		setCriteria((prev) => ({
 			...prev,
 			...initialCriteria,
@@ -93,7 +101,9 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 		}));
 	}, [initialCriteria]);
 
-	const updateUserCount = useCallback(async () => {
+	const criteriaRef = useRef<FilterCriteria>(criteria);
+
+	const updateUserCount = useCallback(async (countCriteria: FilterCriteria) => {
 		try {
 			setLoading(true);
 			setError("");
@@ -101,7 +111,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 			const response = await fetch("/api/admin/email/users/count", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(criteria),
+				body: JSON.stringify(countCriteria),
 			});
 
 			const data = (await response.json()) as UserCountResponse;
@@ -113,7 +123,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 					percentage: data.percentage ?? 0,
 				};
 				setUserCount(nextCount);
-				onSelectionChange(criteria, nextCount.count);
+				onSelectionChange(countCriteria, nextCount.count);
 			} else {
 				setError(data.error || "Failed to count users");
 			}
@@ -122,23 +132,35 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 		} finally {
 			setLoading(false);
 		}
-	}, [criteria, onSelectionChange]);
+	}, [onSelectionChange]);
+
+	const previousCriteriaRef = useRef<string>("");
 
 	useEffect(() => {
-		if (criteria.year) {
-			updateUserCount();
-		}
-	}, [updateUserCount, criteria.year]);
+		if (!criteria.year) return;
 
+		const serialized = JSON.stringify(criteria);
+		if (serialized === previousCriteriaRef.current) {
+			return;
+		}
+		previousCriteriaRef.current = serialized;
+		criteriaRef.current = criteria;
+
+		const timeoutId = setTimeout(() => {
+			updateUserCount(criteriaRef.current);
+		}, 300);
+
+		return () => clearTimeout(timeoutId);
+	}, [criteria, updateUserCount]);
 	const previewUsersAction = useCallback(async () => {
 		try {
 			setLoading(true);
 			setError("");
 
-			const response = await fetch("/api/admin/email/users/preview", {
+			const response = await fetch("/api/admin/email/users/filter", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(criteria),
+				body: JSON.stringify({ ...criteria, preview_only: true, limit: 10 }),
 			});
 
 			const data = (await response.json()) as UserPreviewResponse;
@@ -167,6 +189,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					...criteria,
+					ai_model: aiModel,
 					preview_only: true,
 					limit: 10,
 				}),
@@ -354,21 +377,28 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 						))}
 					</div>
 
-					<div className="mb-4 rounded-md border border-pink-100 bg-white/80 px-4 py-3 text-xs font-medium text-pink-700">
-						Use quick segments for the common sends we discussed, then fine-tune below if the campaign needs more targeting.
-					</div>
-
 					<div className="flex gap-3">
 						<div className="relative flex-1 group">
 							<Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-300 transition-colors group-focus-within:text-pink-500" />
 							<input
 								type="text"
 								value={criteria.natural_query}
-								// Add a debounce to prevent excessive API calls
 								onChange={(e) => setCriteria((prev) => ({ ...prev, natural_query: e.target.value }))}
 								placeholder="Or describe your audience... (e.g., users who haven't matched yet)"
 								className="w-full pl-10 pr-4 py-3 bg-white border-2 border-pink-100 rounded-md focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-medium text-gray-700 transition-all placeholder:text-pink-200 shadow-sm"
 							/>
+						</div>
+						<div className="relative group w-40">
+							<select
+								value={aiModel}
+								onChange={(e) => setAiModel(e.target.value)}
+								className="w-full pl-4 pr-10 py-3 bg-white border-2 border-pink-100 rounded-md focus:ring-4 focus:ring-pink-500/10 focus:border-pink-500 text-sm font-bold text-pink-600 transition-all appearance-none cursor-pointer group-hover:border-pink-200 shadow-sm"
+							>
+								<option value="gpt-4o">GPT-4o</option>
+								<option value="gpt-4-turbo">GPT-4 Turbo</option>
+								<option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+							</select>
+							<ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-300 pointer-events-none" />
 						</div>
 						<button
 							onClick={processNaturalLanguage}
@@ -427,7 +457,7 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 								</div>
 							))}
 
-							<div className="rounded-md border border-amber-100 bg-amber-50 p-3">
+							<div className="rounded-md border border-amber-100 bg-amber-50 p-3 hidden">
 								<div className="flex items-start gap-2">
 									<AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
 									<p className="text-xs font-medium text-amber-800">
@@ -555,28 +585,16 @@ export default function UserSelector({ onSelectionChange, initialCriteria }: Use
 				</div>
 
 				{activeFilterChips.length > 0 && (
-					<div className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
-						<div className="mb-3 flex items-center justify-between gap-4">
-							<div>
-								<p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Current Segment</p>
-								<p className="mt-1 text-xs font-medium text-gray-500">
-									AI and manual filters combine into the audience below.
-								</p>
-							</div>
-							<span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gray-500 shadow-sm">
-								{activeFilterChips.length} active
+					<div className="flex flex-wrap gap-2 items-center">
+						<span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mr-2">Current Segment:</span>
+						{activeFilterChips.map((chip) => (
+							<span
+								key={chip}
+								className="rounded-full border border-pink-100 bg-white px-3 py-1.5 text-[10px] font-bold text-gray-700 shadow-sm"
+							>
+								{chip}
 							</span>
-						</div>
-						<div className="flex flex-wrap gap-2">
-							{activeFilterChips.map((chip) => (
-								<span
-									key={chip}
-									className="rounded-full border border-pink-100 bg-white px-3 py-1.5 text-xs font-bold text-gray-700 shadow-sm"
-								>
-									{chip}
-								</span>
-							))}
-						</div>
+						))}
 					</div>
 				)}
 

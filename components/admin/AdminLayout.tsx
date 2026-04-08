@@ -59,8 +59,8 @@ export default function AdminLayout({ children, activeSection, onSectionChange }
 			>
 				{/* Logo */}
 				<div className="h-16 flex items-center px-5 border-b border-gray-100 shrink-0">
-					<div className="w-8 h-8 bg-pink-600 rounded-md flex items-center justify-center shrink-0 shadow-lg shadow-pink-200">
-						<span className="text-white font-bold text-lg leading-none">P</span>
+					<div className="w-12 h-12 rounded-md flex items-center justify-center shrink-0">
+						<img src="/logo.png" alt="Perfect Match" className="w-full h-full object-contain" />
 					</div>
 					{!isSidebarCollapsed && (
 						<span className="ml-3 font-bold text-xl tracking-tight text-gray-900 whitespace-nowrap overflow-hidden">

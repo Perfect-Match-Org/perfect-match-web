@@ -452,7 +452,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 							defaultLanguage="css"
 							value={templateData.css_content}
 							onChange={(value) => setTemplateData((prev) => ({ ...prev, css_content: value || "" }))}
-							theme="vs-light"
+							theme="vs-dark"
 							options={{
 								minimap: { enabled: false },
 								fontSize: 14,
@@ -467,7 +467,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
 
 				{activeTab === "preview" && (
 					<div className="flex-1 bg-gray-100 p-4">
-						<div className="mx-auto bg-white rounded-md shadow-sm overflow-hidden" style={{ width: getPreviewWidth() }}>
+						<div className="mx-auto bg-white overflow-hidden" style={{ width: getPreviewWidth() }}>
 							<iframe
 								ref={previewRef}
 								className="w-full h-full min-h-96"

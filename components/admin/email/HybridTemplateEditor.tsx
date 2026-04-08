@@ -17,6 +17,7 @@ import {
 	MousePointer2,
 	PencilRuler,
 	Smartphone,
+	Sparkles,
 	Square,
 	Tablet,
 	Trash2,
@@ -316,6 +317,10 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 	const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 	const [errors, setErrors] = useState<string[]>([]);
 	const [editingBlock, setEditingBlock] = useState<EmailBlock | null>(null);
+	const [aiPrompt, setAiPrompt] = useState("");
+	const [aiGenerating, setAiGenerating] = useState(false);
+	const [aiModel, setAiModel] = useState("gpt-4-turbo");
+	const [aiTemplateType, setAiTemplateType] = useState("update");
 
 	const editorRef = useRef<CodeEditorInstance | null>(null);
 	const previewRef = useRef<HTMLIFrameElement>(null);
@@ -514,6 +519,50 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 		setHasUnsavedChanges(true);
 	}, []);
 
+	const generateContent = useCallback(async () => {
+		if (!aiPrompt.trim()) return;
+		
+		try {
+			setAiGenerating(true);
+			const response = await fetch("/api/admin/email/templates/generate", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					prompt: aiPrompt,
+					template_type: aiTemplateType,
+					year: templateData.year,
+					ai_model: aiModel,
+				}),
+			});
+			
+			const data = await response.json();
+			if (response.ok && data.blocks) {
+				const newBlocks: EmailBlock[] = data.blocks.map((block: any, index: number) => ({
+					id: `ai-block-${Date.now()}-${index}`,
+					type: block.type || "text",
+					content: {
+						text: block.content?.text || "",
+						subtitle: block.content?.subtitle || "",
+						link: block.content?.link || "{{ctaLink}}",
+						src: block.content?.src || "https://via.placeholder.com/640x320",
+						alt: block.content?.alt || "",
+						height: block.content?.height || "20px",
+					},
+					styles: block.styles || { marginBottom: "18px" },
+				}));
+				setBlocks((prev) => [...prev, ...newBlocks]);
+				setAiPrompt("");
+				setHasUnsavedChanges(true);
+			} else {
+				setErrors(["Failed to generate content. Check API keys and try again."]);
+			}
+		} catch (error) {
+			setErrors(["Network error while generating content."]);
+		} finally {
+			setAiGenerating(false);
+		}
+	}, [aiPrompt, aiModel, aiTemplateType, templateData.year]);
+
 	const updateBlock = useCallback((updatedBlock: EmailBlock) => {
 		setBlocks((prev) => prev.map((block) => (block.id === updatedBlock.id ? updatedBlock : block)));
 		setHasUnsavedChanges(true);
@@ -638,9 +687,8 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 			return;
 		}
 
-		const sanitizedHtml = DOMPurify.sanitize(generatePreviewHtml());
 		previewDoc.open();
-		previewDoc.write(sanitizedHtml);
+		previewDoc.write(generatePreviewHtml());
 		previewDoc.close();
 	}, [generatePreviewHtml]);
 
@@ -762,15 +810,61 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 						})}
 					</div>
 
-					<div className="mt-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
-						<div className="flex items-start gap-3">
-							<AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-							<div>
-								<div className="text-xs font-bold uppercase tracking-widest text-amber-700">Visual note</div>
-								<p className="mt-1 text-sm font-medium text-amber-900">
-									The visual editor keeps your layout clean and fast. Use the code tab when you need exact markup control.
-								</p>
+					<div className="mt-8">
+						<h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-1.5">
+							<Sparkles className="h-4 w-4 text-pink-500" />
+							AI Content Writer
+						</h3>
+
+						<div className="space-y-3">
+							<div className="flex gap-2">
+								<select
+									value={aiTemplateType}
+									onChange={(e) => setAiTemplateType(e.target.value)}
+									className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 focus:border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-500/10"
+								>
+									<option value="update">Update</option>
+									<option value="reminder">Reminder</option>
+									<option value="release">Release</option>
+									<option value="welcome">Welcome</option>
+									<option value="event">Event</option>
+								</select>
+								<select
+									value={aiModel}
+									onChange={(e) => setAiModel(e.target.value)}
+									className="w-32 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 focus:border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-500/10"
+								>
+									<option value="gpt-4o">GPT-4o</option>
+									<option value="gpt-4-turbo">GPT-4 Turbo</option>
+									<option value="gpt-3.5-turbo">GPT-3.5</option>
+								</select>
 							</div>
+
+							<textarea
+								value={aiPrompt}
+								onChange={(e) => setAiPrompt(e.target.value)}
+								placeholder="Describe the content you want... (e.g. &quot;Announce new matches are ready with excitement&quot;)"
+								rows={3}
+								className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-700 resize-none focus:border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-500/10"
+							/>
+
+							<button
+								onClick={generateContent}
+								disabled={!aiPrompt.trim() || aiGenerating}
+								className="w-full rounded-lg bg-pink-600 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-pink-700 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+							>
+								{aiGenerating ? (
+									<>
+										<Loader2 className="h-4 w-4 animate-spin" />
+										Generating...
+									</>
+								) : (
+									<>
+										<Sparkles className="h-4 w-4" />
+										Generate Content
+									</>
+								)}
+							</button>
 						</div>
 					</div>
 				</div>
@@ -837,7 +931,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 				</div>
 			</div>
 		);
-	}, [addBlock, blockTypes, blocks, deleteBlock, moveBlock, renderBlockContent]);
+	}, [addBlock, blockTypes, blocks, deleteBlock, moveBlock, renderBlockContent, aiPrompt, aiGenerating, aiModel, aiTemplateType]);
 
 	const codeModeContent = useMemo(() => {
 		return (
@@ -860,7 +954,7 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 							setEditorReady(true);
 						}}
 						loading={
-							<div className="flex h-full items-center justify-center bg-gray-50">
+							<div className="flex h-full w-full items-center justify-center bg-gray-50">
 								<div className="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 shadow-xl">
 									<Loader2 className="mb-4 h-10 w-10 animate-spin text-pink-500" />
 									<span className="text-xs font-bold uppercase tracking-widest text-gray-400">Loading Editor...</span>
@@ -929,14 +1023,14 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 
 	const previewModeContent = useMemo(() => {
 		return (
-			<div className="flex h-full p-2 flex-col bg-gray-50/80">
-				<div className="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4">
+			<div className="flex h-full p-6 flex-col bg-gray-100/60">
+				<div className="flex items-center justify-between mb-4">
 					<div>
-						<h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">Preview</h3>
-						<p className="mt-1 text-sm text-gray-500">Simulated data is used for names, CTAs, and unsubscribe links.</p>
+						<h3 className="text-sm font-bold text-gray-500">Preview</h3>
+						<p className="text-xs text-gray-400">Simulated data for names, CTAs, and links</p>
 					</div>
 
-					<div className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 p-1">
+					<div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-lg shadow-sm border border-gray-200">
 						{[
 							{ value: "desktop", label: "Desktop", icon: Monitor },
 							{ value: "tablet", label: "Tablet", icon: Tablet },
@@ -947,10 +1041,10 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 								<button
 									key={modeOption.value}
 									onClick={() => setPreviewMode(modeOption.value as PreviewMode)}
-									className={`inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-widest transition-all ${
+									className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
 										previewMode === modeOption.value
-											? "bg-pink-600 text-white shadow-lg shadow-pink-200"
-											: "text-gray-500 hover:text-gray-900"
+											? "bg-gray-900 text-white"
+											: "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
 									}`}
 								>
 									<Icon className="h-3.5 w-3.5" />
@@ -961,12 +1055,21 @@ export default function HybridTemplateEditor({ template, onSave, onCancel }: Tem
 					</div>
 				</div>
 
-				<div className="flex-1 overflow-auto py-4">
-					<div
-						className="mx-auto h-full border border-gray-200 bg-white shadow-[0_20px_70px_rgba(17,24,39,0.08)] transition-all duration-300"
-						style={{ maxWidth: previewWidth }}
-					>
-						<iframe ref={previewRef} title="Email preview" className="h-full min-h-[680px] w-full rounded-[12px]" />
+				<div className="flex-1 flex items-start justify-center overflow-auto pb-4">
+					<div className="w-full" style={{ maxWidth: previewWidth }}>
+						<div className="rounded-lg overflow-auto shadow-md bg-[#1a1a1e] ring-1 ring-black/5">
+							<div className="flex items-center gap-2 px-4 py-3 bg-[#2a2a2e]">
+								<div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+								<div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+								<div className="w-3 h-3 rounded-full bg-[#28c840]" />
+								<div className="ml-4 text-xs text-gray-100 font-medium truncate">
+									Email Preview
+								</div>
+							</div>
+							<div className="bg-white">
+								<iframe ref={previewRef} title="Email preview" className="w-full" style={{ minHeight: "640px" }} />
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -32,12 +32,11 @@ export default function PreviewModal({ isOpen, onClose, htmlContent, cssContent,
 	const updatePreview = useCallback(() => {
 		if (previewRef.current) {
 			const previewHtml = generatePreviewHtml();
-			const sanitizedHtml = DOMPurify.sanitize(previewHtml);
 
 			const previewDoc = previewRef.current.contentDocument;
 			if (previewDoc) {
 				previewDoc.open();
-				previewDoc.write(sanitizedHtml);
+				previewDoc.write(previewHtml);
 				previewDoc.close();
 			}
 		}
