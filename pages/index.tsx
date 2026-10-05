@@ -4,19 +4,14 @@ import { getSession } from 'next-auth/react';
 import { Footer } from '@/components/footer';
 import { GoogleAuth, MarqueeBanner } from '@/components/general';
 import { Header } from '@/components/header';
-import { fetcher } from '@/utils/fetch';
-import useSWR from 'swr';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import demo from 'public/feedback-demo.gif';
-import Countdown from '@/components/countdown';
+import ReturnCalendar from '@/components/returnCalendar';
 import { Button } from '@/components/general';
 import { Reviews } from '@/components/testimonials/testimonials';
 const Home: NextPage = (props: any) => {
-    const { data: currentCount, error } = useSWR('/api/users/count', fetcher, {
-        refreshInterval: 60000,
-    });
     return (
         <div>
             <Head>
@@ -62,27 +57,26 @@ const Home: NextPage = (props: any) => {
             </div>
 
             {/* Scrolling Marquee Banner - Top */}
-            <MarqueeBanner text="Your Results Are Here" />
+            <MarqueeBanner text="See You In February" />
 
             <div className="relative z-0 overflow-hidden">
 
                 <section className="bg-pmpink2-500">
-                    <div className='flex flex-col justify-center align-middle items-center h-full lg:h-[70vh] lg:flex-row lg:px-[12vw] z-20'>
-                        <div className='h-[50%] w-full lg:w-1/2 lg:mr-16 xl:mr-0 items-center justify-center hidden md:flex '><Countdown /></div>
+                    <div className='flex flex-col justify-center align-middle items-center h-full py-10 lg:min-h-[70vh] lg:flex-row lg:px-[12vw] z-20'>
+                        <div className='w-full lg:w-1/2 lg:mr-16 xl:mr-0 flex items-center justify-center order-last mt-12 md:order-none md:mt-0 md:mb-12 lg:mb-0'><ReturnCalendar /></div>
                         <div className="lg:w-1/2">
-                            <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] mt-8 sm:mt-0 opacity-100">
+                            <div className="mx-2 max-w-xl text-center lg:text-left sm:mx-auto lg:ml-[17%] opacity-100">
                                 <div className="">
-                                    <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl sm:mt-5 ">
-                                        <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">THE WAIT IS OVER!</span>
+                                    <h1 className="text-2xl text-pmpink-500 font-dm-sans font-extrabold sm:text-3xl lg:text-5xl 2xl:text-6xl">
+                                        <span className="bg-pmblue2-800 box-decoration-clone lg:px-6 lg:py-3 sm:px-4 sm:py-2 sm:leading-[1.2] lg:leading-[1.4]">SEE YOU IN FEBRUARY</span>
                                     </h1>
                                 </div>
                                 <div className='font-work-sans'>
-                                    {/* SURVEY OPEN TEXT — uncomment for next year's cycle*/}
                                     <p className="text-lg text-pmblue-500 mt-4 lg:max-w-lg lg:text-left text-center lg:text-xl sm:leading-relaxed">
-                                        Your matches are here! Thank you to all <strong>{currentCount ?? '...'}</strong> Cornellians who participated.
+                                        Perfect Match is between rounds. The survey reopens <strong>February 2027</strong>, in time for Valentine&apos;s Day.
                                         <br />
                                         <br />
-                                        Sign in to view your results and find your Perfect Match 💕
+                                        Took part in 2026? {props.user ? 'Your matches are still here.' : 'Sign in to revisit your matches.'}
                                     </p>
                                     {!props.user ? (
                                         <GoogleAuth login={!props.user} />
@@ -101,7 +95,7 @@ const Home: NextPage = (props: any) => {
                 </section >
 
                 {/* Scrolling Marquee Banner - Bottom */}
-                <MarqueeBanner text="Your Results Are Here" />
+                <MarqueeBanner text="See You In February" />
 
                 <section className="bg-pmpink-500 flex flex-col lg:px-[12vw] lg:flex-row">
 
