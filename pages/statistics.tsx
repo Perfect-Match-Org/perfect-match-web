@@ -7,11 +7,14 @@ import Link from 'next/link';
 import Stats2023 from '@/components/analytics/2023Analytics';
 import Stats2022 from '@/components/analytics/2022Analytics';
 import Stats2024 from '@/components/analytics/2024Analytics';
+import SurveyStats from '@/components/analytics/survey-stats/surveyStats';
+import stats2025 from '@/components/analytics/survey-stats/data2025';
+import stats2026 from '@/components/analytics/survey-stats/data2026';
 import { useState, useEffect } from 'react';
 import { Button, MarqueeBanner } from '@/components/general';
 
 const Statistics = (props: { title: string }) => {
-    const [year, setYear] = useState(2024); // Default year
+    const [year, setYear] = useState(2026); // Default year
 
     return (
         <div className="font-work-sans overflow-x-hidden">
@@ -59,11 +62,13 @@ const Statistics = (props: { title: string }) => {
                     <div className="w-full max-w-screen-lg mx-auto flex flex-col md:flex-row items-center justify-center text-white px-6 sm:px-12">
 
                         <div className="flex flex-wrap justify-center items-center gap-4 mb-6 md:mt-0">
-                            {[2022, 2023, 2024].map((y) => (
+                            {[2022, 2023, 2024, 2025, 2026].map((y) => (
                                 <Button
                                     key={y}
                                     onClick={() => setYear(y)}
                                     bold={true}
+                                    bgColor={y === year ? 'bg-pmred-500' : 'bg-white'}
+                                    textColor={y === year ? 'text-white' : 'text-pmred-500'}
                                 >
                                     {y}
                                 </Button>
@@ -76,8 +81,10 @@ const Statistics = (props: { title: string }) => {
                     <Stats2022 />
                 ) : year === 2023 ? (
                     <Stats2023 />
-                ) : (
+                ) : year === 2024 ? (
                     <Stats2024 />
+                ) : (
+                    <SurveyStats stats={year === 2025 ? stats2025 : stats2026} />
                 )}
             </div>
 
