@@ -49,14 +49,14 @@ const Home: NextPage = (props: any) => {
             {/* Application Banner */}
             <div className="bg-pmblue-500 text-white text-center py-2 px-3">
                 <p className="text-sm sm:text-base font-work-sans">
-                    Be the face of Perfect Match. {' '}
+                    Perfect Match applications are open, due Oct 20, 2026 at 11:59 PM. {' '}
                     <a
-                        href="https://forms.gle/zMU4HtEwTyha1Ct68"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSek841wZ5j9nR0wUridgtl7AMXgzJzI9zQZrecxWXhNugQvCw/viewform?usp=dialog"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline font-bold hover:text-pmpink-500 transition-colors"
                     >
-                        Apply to become our video content creator! &rarr;
+                        Apply now &rarr;
                     </a>
                 </p>
             </div>
