@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import demo from 'public/feedback-demo.gif';
 import ReturnCalendar from '@/components/returnCalendar';
+import HowItWorks from '@/components/howItWorks';
 import { Button } from '@/components/general';
 const Home: NextPage = (props: any) => {
     return (
@@ -145,6 +146,7 @@ const Home: NextPage = (props: any) => {
                     </div>
                 </section >
             </div >
+            <HowItWorks />
             <Footer />
         </div >
     );
